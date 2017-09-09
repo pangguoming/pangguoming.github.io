@@ -1,0 +1,24 @@
+	
+/* objectbox */
+.objectbox{min-width:1000px;left:50%;min-height:450px;border: 1px solid rgb(86, 94, 101);outline: 0px none;position: fixed;padding: 10px;left: 50%;top: 50%;border-radius: 5px;background: linear-gradient(to bottom, rgba(48, 58, 68, 0.45) 0%, rgba(28, 35, 41, 0.45) 92%, rgba(61, 74, 89, 0.45) 100%) repeat scroll 0% 0% transparent;box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);}    
+.objectbox h2 a{position:absolute;right:5px;font-size:12px;color:#fff;}		
+.objectboxclose-drag-area {position: absolute;top: 0px;left: 0px;right: 0px;height: 30px; z-index: 100;}
+.objectboxclose { position: absolute; background: url("../images/icon/close-btn.png") no-repeat scroll center center rgba(229, 64, 64, 0.45);right: 0px;top: 0px;width: 30px;height: 30px;cursor: pointer;z-index: 1000;border-radius: 4px;transition: background-color 1s ease 0s;}
+
+/* tabshow */
+.tabshow{width:95%;height:95%;position:relative;margin:40px auto;}
+.tabshow .hide{display:none;}
+.tabshow .udbtn{display:block;width:194px;height:35px;overflow:hidden;border: 1px solid rgb(86, 94, 101);outline: 0px none;border-radius: 4px;box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);}
+.tabshow .uPrev{background: url("../images/icon/arrowupc.png") no-repeat;}
+.tabshow .dNext{background: url("../images/icon/arrowdownc.png") no-repeat}
+.tabshow .tabTagBox{height:359px;width:194px;overflow:hidden;position:relative;z-index:9;margin:0 0;border: 1px solid rgb(86, 94, 101);outline: 0px none;border-radius: 4px;box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);}
+.tabshow .tabTagBox .tabTagList{position:absolute;left:0;padding: 5px;}
+.tabshow .tabTagBox li{float:left;width:193px;height:58px;overflow:hidden;cursor:pointer;text-align: center;list-style: none;line-height: 5em;}
+.tabshow .tabTagBox li.current{width: 182px;border: 1px solid rgb(86, 94, 101);outline: 0px none;border-radius: 4px;box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);}
+.tabshow .tabTagBox li img{width:40px;height:40px;vertical-align: middle;}
+.tabshow .tabcon{position:absolute;top:0;right:0;z-index:1;background:#FCFCFC;height:100%;width:75%;overflow:hidden;background: none repeat scroll 0px 0px transparent !important;}
+.tabshow .tabcon h2{height:30px;line-height:30px;font-size:14px;color:#333;padding:10px 0 10px 25px;}
+.tabshow .tabcon li{float:left;width:100px;height:120px;overflow:hidden;margin:0 0 10px 24px;display:inline;}
+.tabshow .tabcon li .pic{display:block;width:100px;height:100px;}
+.tabshow .tabcon li .tit{height:20px;line-height:20px;display:block;margin:5px 0 0 0;}
+.tabshow .tabcon li .tit a{font-size:12px;color:#5e5e5e;text-decoration:none;}
