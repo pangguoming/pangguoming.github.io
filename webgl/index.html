@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>IntownHomes 3D</title>
+    <script type="text/javascript" src="javascript/jquery/jquery-1.10.2.min.js"></script>
+    
+    <script type="text/javascript" src="javascript/jquery/siderbar/jquery.hoverIntent.min.js"></script>
+    <script type="text/javascript" src="javascript/jquery/siderbar/jquery.mb.flipText.js"></script>
+    <script type="text/javascript" src="javascript/jquery/siderbar/mbExtruder.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#extruderLeft").buildMbExtruder({
+                position: "left",
+                width: 250,
+                extruderOpacity: .8,
+                hidePanelsOnClose: true,
+                accordionPanels: true,
+                onExtOpen: function () { },
+                onExtContentLoad: function () { },
+                onExtClose: function () { }
+            });
+			$("#extruderRight").buildMbExtruder({
+                position:"right",
+                width:300,
+                extruderOpacity:.8,
+                onExtOpen:function(){},
+                onExtContentLoad:function(){},
+                onExtClose:function(){}
+            });
+		  //$("#extruderBottom").buildMbExtruder({
+          //      position:"bottom",
+          //      extruderOpacity:.8,
+          //      onExtOpen:function(){},
+          //      onExtContentLoad:function(){},
+          //      onExtClose:function(){}
+          // });
+        });
+    </script>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/undermenu.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/objectbox.css">
+    <link href="css/mbExtruder.css" media="all" rel="stylesheet" type="text/css">
+    <style>
+        body { font-family: Monospace; background-color: #fff; color: #fff; margin: 0px; overflow: hidden; }
+    </style>
+</head>
+<body>
+    <script src="javascript/3Dwork/threeJS/three.min.js"></script>
+    <script src="javascript/3Dwork/threeJS/controls/FirstPersonControls.js"></script>
+    <script src="javascript/3Dwork/threeJS/controls/TransformControls.js"></script>
+    <script src="javascript/3Dwork/3denvironment.js"></script>
+    <script src="javascript/3Dwork/addobjects.js"></script>-
+     <!-- <!--<script src="javascript/3Dwork/pickobject.js.js"></script>-->-->
+    
+<div id="extruderLeft" class="a {title:'Product\'s Information', url:'parts/extruderLeft.html'}"></div>
+<div id="extruderRight" class="{title:'Control tools '}">
+<div class="text">  
+    <table>
+      <tr><td>Move:</td><td><input id="objconmov" type="button" checked value="Move"/></td><td>Key:</td><td><img  /></td></tr>
+      <tr><td>Zoom:</td><td><input id="objconzoo" type="button" value="Zoom"/></td><td>Key:</td><td><img  /></td></tr>
+      <tr><td>Rotate:</td><td><input id="objconrota" type="button" value="Rotate"/></td><td>Key:</td><td><img  /></td></tr>
+      <tr><td>Copy:</td><td><input id="objconcop" type="button" value="Copy"/></td><td>Key:</td><td><img  /></td></tr>
+      <tr><td>Delete:</td><td><input id="objcondel" type="button" value="Delete"/></td><td>Key:</td><td><img  /></td></tr>
+    </table>
+</div>
+<div class="voice {}"><span class="label"><a class="label" href="http://www.open-lab.com">Open Lab</a></span></div>
+<div id="tw" class="voice {panel:'parts/extr.tw.html'}"><a class="label" href="#">Object Control</a></div>
+<div class="voice {panel:'parts/extr.mti.html'}"><span class="label">Screen Control</span></div>
+<div class="voice {disabled:true}"><span class="label">Microsoft Internet Explorer</span> </div>
+<div class="voice {}"><a class="label" href="http://firefox.com" target="_blank">get FireFox</a> </div>
+
+
+</div>
+    
+    <div id="extruderBottom" class="{title:'extruder bottom '}">
+   </div>
+    
+    <div class="undermenu" >
+        <div class="stack">
+            <img src="images/stack.png" class="closed" alt="stack">
+            <ul id="stack">
+                <li><a href="#"><span>Bench</span><img src="images/TVbench.png" alt="Bench"></a></li>
+                <li><a href="#"><span>Table</span><img src="images/endtable.png" alt="Table"></a></li>
+                <li><a href="#"><span>Light</span><img src="images/droplight.png" alt="Light"></a></li>
+                <li><a href="#"><span>Television</span><img src="images/TV.png" alt="Television"></a></li>
+                <li id="sofabox"><a href="#"><span>Sofa</span><img src="images/sofa.png" alt="Sofa"></a></li>
+            </ul>
+            <br />
+            <span>Sitting Room</span>
+        </div>
+        <div class="stack">
+            <img src="images/stack.png" class="closed" alt="stack">
+            <ul id="stack">
+                <li><a href="#"><span>Bench</span><img src="images/TVbench.png" alt="Bench"></a></li>
+                <li><a href="#"><span>Table</span><img src="images/endtable.png" alt="Table"></a></li>
+                <li><a href="#"><span>Light</span><img src="images/droplight.png" alt="Light"></a></li>
+                <li><a href="#"><span>Armoire</span><img src="images/armoire.png" alt="Armoire"></a></li>
+                <li><a href="#"><span>Bed</span><img src="images/Bed.png" alt="Bed"></a></li>
+            </ul>
+            <br />
+            <span>Bed Room</span>
+        </div>
+    
+    
+    <div class="objectbox" style="display: none">
+        <a class="objectboxclose" href="javascript: void(0);"></a>
+        <div class="objectboxclose-drag-area">
+        </div>
+        <div class="tabshow">
+            <div class="tabbar">
+                <a href="javascript:void(0);" class="udbtn uPrev"></a>
+                <div class="tabTagBox">
+                    <ul class="tabTagList">
+                        <li id="tag01" class="current">
+                            <img src="images/chair.png" alt="Sofa"><span>Armchair</span></li>
+                        <li id="tag02">
+                            <img src="images/singlsofa.png" alt="Sofa"><span>singl sofa</span></li>
+                        <li id="tag04">
+                            <img src="images/sofa.png" alt="Sofa"><span>Sofa bed</span></li>
+                        <li id="tag03">
+                            <img src="images/sofabed.png" alt="Sofa"><span>Sofa bed</span></li>
+                        <li id="tag05">
+                            <img src="images/sofa.png" alt="Sofa"><span>Sofa bed</span></li>
+                        <li id="tag06">
+                            <img src="images/sofa.png" alt="Sofa"><span>Sofa bed</span></li>
+                        <li id="tag07">
+                            <img src="images/sofa.png" alt="Sofa"><span>Sofa bed</span></li>
+                        <li id="tag08">
+                            <img src="images/sofa.png" alt="Sofa"><span>Sofa bed</span></li>
+                        <li id="tag09">
+                            <img src="images/sofa.png" alt="Sofa"><span>Sofa bed</span></li>
+                        <li id="tag10">
+                            <img src="images/sofa.png" alt="Sofa"><span>Sofa bed</span></li>
+                    </ul>
+                </div>
+                <a href="javascript:void(0);" class="udbtn dNext"></a>
+            </div>
+            <div style="display: block;" class="tabcon">
+                <ul>
+                    <li><a class="pic" href="javascript:ThreeDEnvironment.LoadAndAddObject('javascript/3Dwork/object/sofa/sofa.js');closeobjbox();">
+                        <img style="display: inline;" src="javascript/3Dwork/object/sofa/sofa_model.png"
+                            height="100" width="100"></a> <span class="tit"><a href="#" target="_blank">Sofa1</a></span>
+                    </li>
+                </ul>
+            </div>
+            <div style="display: none;" class="tabcon hide">
+            </div>
+            <div style="display: none;" class="tabcon hide">
+            </div>
+            <div style="display: none;" class="tabcon hide">
+            </div>
+            <div style="display: none;" class="tabcon hide">
+            </div>
+            <div style="display: none;" class="tabcon hide">
+            </div>
+            <div style="display: none;" class="tabcon hide">
+            </div>
+            <div style="display: none;" class="tabcon hide">
+            </div>
+            <div style="display: none;" class="tabcon hide">
+            </div>
+        </div>
+        <!--tabshow end-->
+    </div>
+    </div>
+</body>
+<script type="text/javascript" src="javascript/jquery/tabbox.js"></script>
+<script type="text/javascript" src="javascript/jquery/controlbar.js"></script>
+</html>
