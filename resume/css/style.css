@@ -95,18 +95,18 @@ h2#contact:before {background-position: right bottom;}
 #bio {position: relative;}
 #bio #avatar {float: left; margin: 0 20px 0 0;}
 #bio h2 {font-size: 15px;}
-#bio p {
+#profile {
 	clear: left; 
 	margin:40px auto; 
 	padding:40px 45px; 
 	max-width: 560px; 
 	background: #fbfbfb; 
 	border: 1px solid #f3f3f3; 
-	border-radius: 8px; 
-	position: relative; 
+	border-radius: 8px;
 	border-width: 0 1px 1px; 
 	border-color: #fff #f3f3f3 #e8e8e8;
 	line-height: 1.6em;
+	min-height:260px;
 }
 #bio iframe {margin: 0 auto; display: block;}
 #bio p a {
@@ -263,19 +263,25 @@ li.s10 {width: 7.714285714285714%;}
 /* --------------------------*/
 /*---GENERAL LAYOUT STUFF---*/
 /* ------------------------*/
+ul#profile,
 ul#jobs,
 ul#schools,
 ul#recommends,
 ul#seenOn {margin: 0; list-style: none;}
 
+ul#profile li,
 ul#jobs li,
 ul#schools li,
 ul#recommends li {margin: 0 0 20px 0; clear: both;}
 
+ul#profile li .details,
 ul#jobs li .details,
 ul#schools li .details,
 ul#recommends li .details {float: left; width: 40%}
+
+
 ul#jobs li p,
+ul#profile li > p,
 ul#schools li > p,
 ul#recommends li > p {float: right; width: 57%; margin-bottom: 25px;}
 
@@ -314,10 +320,16 @@ body.respond #bio p {padding:0; background: #fff; max-width: 100%; border: none;
 body.respond ul#seenOn li {height: auto; line-height: 1em;}
 body.respond ul#seenOn li img {width: 96%; height: auto; padding: 2%;}
 
+body.respond ul#profile li .details{
+	float: none;
+	width: 100%;
+	text-align:center;
+}
 body.respond ul#jobs li .details,
 body.respond ul#schools li .details,
 body.respond ul#recommends li .details {float: none; width: 100%}
 body.respond ul#jobs li p,
+body.respond ul#profile li > p,
 body.respond ul#schools li > p,
 body.respond ul#recommends li > p {float: none; width: 100%; margin-bottom: 50px; margin-top: 10px;}
 
