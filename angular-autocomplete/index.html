@@ -1,0 +1,36 @@
+<html ng-app="app">
+<head>
+  <title>Angularjs Autocomplete Demo</title>
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/autocomplete.css">
+  <script src="js/angular.min.js"></script>
+
+</head>
+<body>
+
+<header>
+  <h1> Angularjs Autocomplete Demo</h1>
+</header>
+<div ng-controller="MyCtrl">
+  <div class="main">
+    <h2>Search for new released movies:</h2>
+    <autocomplete ng-model="result" attr-placeholder="type to search movies..." click-activation="true" data="movies" on-type="doSomething" on-select="doSomethingElse"></autocomplete>
+    <br>
+    <div class="description">
+      This is a simple autocomplete directive for AngularJS, packaged in a Angular module. You can check out the source code or download it here:
+      <br><br>
+      <a href="https://github.com/pangguoming/angular-autocomplete">angular Autocomplete on GitHub</a>
+    </div>
+  </div>
+</div>
+
+
+<footer>
+  made by <a href="http://github.com/pangguoming">pangguoming</a>
+</footer>
+
+<script type="text/javascript" src="js/angular-autocomplete.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+
+</body>
+</html>
