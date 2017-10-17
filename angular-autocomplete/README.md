@@ -5,7 +5,7 @@ Simple to use autocomplete directive in a module for AngularJS!
 Supports arrow keys to traverse suggestions as well as mouse input.
 You can load the suggestions from a remote REST API, it also supports promises.
 
-Checkout [the demo](http://justgoscha.github.io/angular-autocomplete/) to see what it does.
+Checkout [the demo](http://pangguoming.com/angular-autocomplete/) to see what it does.
 
 ## Setup
 
@@ -24,7 +24,7 @@ Also you should load the stylesheet of the autocomplete:
 Then in your HTML you should load it before the script of your main app. Like this:
 
 ```html
-<script type="text/javascript" src="script/autocomplete.js"></script>
+<script type="text/javascript" src="script/angular-autocomplete.js"></script>
 <script type="text/javascript" src="script/app.js"></script>
 ```
 
