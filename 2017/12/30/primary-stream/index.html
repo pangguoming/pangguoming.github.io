@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="spring-cloud,微服务,stream," />
 
 
 
@@ -96,15 +96,16 @@
 
 
 <meta name="description" content="Software make the information world run, and programer make the softeware run.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://pangguoming.com/tags/index.html">
+<meta name="keywords" content="spring-cloud,微服务,stream">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微服务Spring cloud经验总结系列(初级），第九篇：数据流stream">
+<meta property="og:url" content="http://pangguoming.com/2017/12/30/primary-stream/index.html">
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="Software make the information world run, and programer make the softeware run.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-24T11:18:23.953Z">
+<meta property="og:updated_time" content="2017-12-30T12:52:24.212Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
+<meta name="twitter:title" content="微服务Spring cloud经验总结系列(初级），第九篇：数据流stream">
 <meta name="twitter:description" content="Software make the information world run, and programer make the softeware run.">
 
 
@@ -135,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://pangguoming.com/tags/"/>
+  <link rel="canonical" href="http://pangguoming.com/2017/12/30/primary-stream/"/>
 
 
 
 
 
-  <title>标签 | 庞国明-博客</title>
+  <title>微服务Spring cloud经验总结系列(初级），第九篇：数据流stream | 庞国明-博客</title>
   
 
 
@@ -256,40 +257,202 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/12/30/primary-stream/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">标签</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 12 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Spring-boot/" style="font-size: 12px; color: #ccc">Spring-boot</a> <a href="/tags/config/" style="font-size: 12px; color: #ccc">config</a> <a href="/tags/eureka/" style="font-size: 12px; color: #ccc">eureka</a> <a href="/tags/feign/" style="font-size: 12px; color: #ccc">feign</a> <a href="/tags/hystrix/" style="font-size: 12px; color: #ccc">hystrix</a> <a href="/tags/kafka/" style="font-size: 12px; color: #ccc">kafka</a> <a href="/tags/resttemplate/" style="font-size: 12px; color: #ccc">resttemplate</a> <a href="/tags/ribbon/" style="font-size: 12px; color: #ccc">ribbon</a> <a href="/tags/spring-cloud/" style="font-size: 30px; color: #111">spring-cloud</a> <a href="/tags/stream/" style="font-size: 12px; color: #ccc">stream</a> <a href="/tags/zuul/" style="font-size: 12px; color: #ccc">zuul</a> <a href="/tags/微服务/" style="font-size: 30px; color: #111">微服务</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">微服务Spring cloud经验总结系列(初级），第九篇：数据流stream</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-30T20:47:48+08:00">
+                2017-12-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统架构/" itemprop="url" rel="index">
+                    <span itemprop="name">系统架构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring-cloud/" rel="tag"># spring-cloud</a>
+          
+            <a href="/tags/微服务/" rel="tag"># 微服务</a>
+          
+            <a href="/tags/stream/" rel="tag"># stream</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/30/primary-zuul/" rel="next" title="微服务Spring cloud经验总结系列(初级），第八篇：API网关zuul">
+                <i class="fa fa-chevron-left"></i> 微服务Spring cloud经验总结系列(初级），第八篇：API网关zuul
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/30/primary-kafka/" rel="prev" title="微服务Spring cloud经验总结系列(初级），第十篇：分布式消息系统kafka">
+                微服务Spring cloud经验总结系列(初级），第十篇：分布式消息系统kafka <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -581,6 +744,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
 
   
 
