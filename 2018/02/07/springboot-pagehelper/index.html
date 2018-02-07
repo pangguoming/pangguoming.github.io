@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="spring-cloud,微服务,stream," />
+  <meta name="keywords" content="spring-boot,pagehelper," />
 
 
 
@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="Software make the information world run, and programer make the softeware run.">
-<meta name="keywords" content="spring-cloud,微服务,stream">
+<meta name="description" content="问题描述：现在网上搜到的spring boot 环境下mybatis集成 pagehelper插件，都是采用添加PageHeleperConfig类，如下： 1234567891011121314151617@Configurationpublic class PageHelperConfig &amp;#123;   @Bean public PageHelper getPageHelper()&amp;#12">
+<meta name="keywords" content="spring-boot,pagehelper">
 <meta property="og:type" content="article">
-<meta property="og:title" content="微服务Spring cloud经验总结系列(初级），第九篇：数据流stream">
-<meta property="og:url" content="http://pangguoming.com/2017/12/30/primary-stream/index.html">
+<meta property="og:title" content="spring boot 添加 pagehelper 最新版5.0.0">
+<meta property="og:url" content="http://pangguoming.com/2018/02/07/springboot-pagehelper/index.html">
 <meta property="og:site_name" content="庞国明-博客">
-<meta property="og:description" content="Software make the information world run, and programer make the softeware run.">
+<meta property="og:description" content="问题描述：现在网上搜到的spring boot 环境下mybatis集成 pagehelper插件，都是采用添加PageHeleperConfig类，如下： 1234567891011121314151617@Configurationpublic class PageHelperConfig &amp;#123;   @Bean public PageHelper getPageHelper()&amp;#12">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-30T12:52:24.212Z">
+<meta property="og:updated_time" content="2018-02-07T12:26:58.860Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="微服务Spring cloud经验总结系列(初级），第九篇：数据流stream">
-<meta name="twitter:description" content="Software make the information world run, and programer make the softeware run.">
+<meta name="twitter:title" content="spring boot 添加 pagehelper 最新版5.0.0">
+<meta name="twitter:description" content="问题描述：现在网上搜到的spring boot 环境下mybatis集成 pagehelper插件，都是采用添加PageHeleperConfig类，如下： 1234567891011121314151617@Configurationpublic class PageHelperConfig &amp;#123;   @Bean public PageHelper getPageHelper()&amp;#12">
 
 
 
@@ -136,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://pangguoming.com/2017/12/30/primary-stream/"/>
+  <link rel="canonical" href="http://pangguoming.com/2018/02/07/springboot-pagehelper/"/>
 
 
 
 
 
-  <title>微服务Spring cloud经验总结系列(初级），第九篇：数据流stream | 庞国明-博客</title>
+  <title>spring boot 添加 pagehelper 最新版5.0.0 | 庞国明-博客</title>
   
 
 
@@ -269,7 +269,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/12/30/primary-stream/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/02/07/springboot-pagehelper/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -286,7 +286,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">微服务Spring cloud经验总结系列(初级），第九篇：数据流stream</h1>
+          <h1 class="post-title" itemprop="name headline">spring boot 添加 pagehelper 最新版5.0.0</h1>
         
 
         <div class="post-meta">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-30T20:47:48+08:00">
-                2017-12-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-07T20:25:04+08:00">
+                2018-02-07
               </time>
             
 
@@ -358,7 +358,10 @@
       
 
       
-        
+        <h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>现在网上搜到的spring boot 环境下mybatis集成 pagehelper插件，都是采用添加PageHeleperConfig类，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">@Configuration</div><div class="line">public class PageHelperConfig &#123;</div><div class="line"> </div><div class="line"> </div><div class="line"> @Bean</div><div class="line"> public PageHelper getPageHelper()&#123;</div><div class="line"> PageHelper pageHelper=new PageHelper();</div><div class="line"> Properties properties=new Properties();</div><div class="line"> properties.setProperty(&quot;helperDialect&quot;,&quot;mysql&quot;);</div><div class="line"> properties.setProperty(&quot;reasonable&quot;,&quot;true&quot;);</div><div class="line"> properties.setProperty(&quot;supportMethodsArguments&quot;,&quot;true&quot;);</div><div class="line"> properties.setProperty(&quot;params&quot;,&quot;count=countSql&quot;);</div><div class="line"> pageHelper.setProperties(properties);</div><div class="line"> return pageHelper;</div><div class="line"> &#125;</div><div class="line"> </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="原因及解决方案："><a href="#原因及解决方案：" class="headerlink" title="原因及解决方案："></a>原因及解决方案：</h3><p>这在新版PageHeleper 5.0中是不起作用的，我们需要在配置MybatisSqlSessionFactoryBean的地方使用 PageInterceptor来配置。如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">import com.github.pagehelper.PageInterceptor;</div><div class="line"></div><div class="line">@Bean</div><div class="line">	public MybatisSqlSessionFactoryBean mybatisSqlSessionFactoryBean() &#123;</div><div class="line">	MybatisSqlSessionFactoryBean mybatisPlus = new MybatisSqlSessionFactoryBean();</div><div class="line">    //集成分页插件 pagehelper</div><div class="line">	PageInterceptor pageInterceptor = new PageInterceptor();        </div><div class="line">        Properties properties = new Properties();</div><div class="line">        properties.setProperty(&quot;offsetAsPageNum&quot;, &quot;true&quot;);</div><div class="line">        properties.setProperty(&quot;rowBoundsWithCount&quot;, &quot;true&quot;);</div><div class="line">        properties.setProperty(&quot;reasonable&quot;, &quot;true&quot;);</div><div class="line">        properties.setProperty(&quot;supportMethodsArguments&quot;, &quot;true&quot;);</div><div class="line">        properties.setProperty(&quot;returnPageInfo&quot;, &quot;check&quot;);</div><div class="line">        pageInterceptor.setProperties(properties);</div><div class="line">        //添加插件</div><div class="line">        mybatisPlus.setPlugins(new Interceptor[]&#123;pageInterceptor&#125;);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -404,11 +407,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/spring-cloud/" rel="tag"># spring-cloud</a>
+            <a href="/tags/spring-boot/" rel="tag"># spring-boot</a>
           
-            <a href="/tags/微服务/" rel="tag"># 微服务</a>
-          
-            <a href="/tags/stream/" rel="tag"># stream</a>
+            <a href="/tags/pagehelper/" rel="tag"># pagehelper</a>
           
         </div>
       
@@ -421,8 +422,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/30/primary-zuul/" rel="next" title="微服务Spring cloud经验总结系列(初级），第八篇：API网关zuul">
-                <i class="fa fa-chevron-left"></i> 微服务Spring cloud经验总结系列(初级），第八篇：API网关zuul
+              <a href="/2018/01/10/springboot-shrio-vue-cors/" rel="next" title="spring boot shiro vue webpack 跨域及shiro无法获取登陆用户解决方案">
+                <i class="fa fa-chevron-left"></i> spring boot shiro vue webpack 跨域及shiro无法获取登陆用户解决方案
               </a>
             
           </div>
@@ -431,8 +432,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/30/primary-kafka/" rel="prev" title="微服务Spring cloud经验总结系列(初级），第十篇：分布式消息系统kafka">
-                微服务Spring cloud经验总结系列(初级），第十篇：分布式消息系统kafka <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/07/springboot-shiro-401/" rel="prev" title="spring boot  shiro 抛出的UnauthorizedException 统一返回 Http状态码 401">
+                spring boot  shiro 抛出的UnauthorizedException 统一返回 Http状态码 401 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -519,8 +520,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -617,6 +627,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述："><span class="nav-number">1.</span> <span class="nav-text">问题描述：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原因及解决方案："><span class="nav-number">2.</span> <span class="nav-text">原因及解决方案：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
