@@ -319,7 +319,7 @@ var showGraph=function( graph) {
 			  .on("end", dragended));
 
 	  node.append("title")
-		  .text(function(d) { return d.id; });
+		  .text(function(d) { return d.title; });
 
 	  simulation
 		  .nodes(graph.nodes)
