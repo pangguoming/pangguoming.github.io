@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="本帖最后由 felix0911 于 2014-5-21 09:32 编辑0起点，傻瓜操作，为什么不尝试录制一个自己的游戏视频，来展现自己牛逼风骚的操作呢？(本教学不包括后期制作，特效背景音乐等部分）  视频录制程序Open Broadcaster Software OBS对于很多经常接触实况直播主的玩家来说肯定不能再熟。良好亲民的操作性，完全免费的程序，上佳的录像质量，生成文件无需特别转码可以直接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="免费桌面视频录像工具OBS的简单操作介绍">
+<meta property="og:url" content="http://pangguoming.com/2018/06/01/免费桌面视频录像工具OBS的简单操作介绍/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="本帖最后由 felix0911 于 2014-5-21 09:32 编辑0起点，傻瓜操作，为什么不尝试录制一个自己的游戏视频，来展现自己牛逼风骚的操作呢？(本教学不包括后期制作，特效背景音乐等部分）  视频录制程序Open Broadcaster Software OBS对于很多经常接触实况直播主的玩家来说肯定不能再熟。良好亲民的操作性，完全免费的程序，上佳的录像质量，生成文件无需特别转码可以直接">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/081339lltsfi6wofhvoniq.png.thumb.jpg">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/081015uyfrouh2jqmros66.png.thumb.jpg">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/0817412thlqp3lpp9vvopo.png.thumb.jpg">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/081846huw0c07rx55thdfm.png.thumb.jpg">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/0820015vhjavtxrjvgvgnz.png.thumb.jpg">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/0823432icick5qiqiikbtt.png.thumb.jpg">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/082930wwn3s8zfrcanllfn.png.thumb.jpg">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/0836300x0chx90x8pv0av0.png.thumb.jpg">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/083842ascsbgssm9wu9hgs.png.thumb.jpg">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/084324rhy0iejq07mhh650.png.thumb.jpg">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/090211gqwbgqeppwwqqwgg.png.thumb.jpg">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/090552qqwvawwwq48t4qz1.png.thumb.jpg">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/091052f6ufbbtb21243taz.png.thumb.jpg">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/091838rojzf5ft1zf37yje.png.thumb.jpg">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/0920375w8vht2tthv420qh.png.thumb.jpg">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/092151k9fcmxem1hmkeqz4.png.thumb.jpg">
+<meta property="og:image" content="http://bbs-f.d.163.com/forum/201405/21/0923433082l1spk9jp59ja.png.thumb.jpg">
+<meta property="og:updated_time" content="2019-01-26T14:39:43.689Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="免费桌面视频录像工具OBS的简单操作介绍">
+<meta name="twitter:description" content="本帖最后由 felix0911 于 2014-5-21 09:32 编辑0起点，傻瓜操作，为什么不尝试录制一个自己的游戏视频，来展现自己牛逼风骚的操作呢？(本教学不包括后期制作，特效背景音乐等部分）  视频录制程序Open Broadcaster Software OBS对于很多经常接触实况直播主的玩家来说肯定不能再熟。良好亲民的操作性，完全免费的程序，上佳的录像质量，生成文件无需特别转码可以直接">
+<meta name="twitter:image" content="http://bbs-f.d.163.com/forum/201405/21/081339lltsfi6wofhvoniq.png.thumb.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2018/06/01/免费桌面视频录像工具OBS的简单操作介绍/">
+
+
+
+
+
+  <title>免费桌面视频录像工具OBS的简单操作介绍 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/06/01/免费桌面视频录像工具OBS的简单操作介绍/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">免费桌面视频录像工具OBS的简单操作介绍</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-01T18:36:00+08:00">
+                2018-06-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <table cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td id="postmessage_188719473" class="t_f"><span class="pstatus">本帖最后由 felix0911 于 2014-5-21 09:32 编辑<br><br><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="color: navy;"><em><span style="font-family: 黑体;"><span style="font-size: x-large;">0起点，傻瓜操作，为什么不尝试录制一个自己的游戏视频，来展现自己牛逼风骚的操作呢？(本教学不包括后期制作，特效背景音乐等部分）</span></span></em></span><br><br>  视频录制程序</span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><em>Open Broadcaster Software </em>OBS对于很多经常接触实况直播主的玩家来说肯定不能再熟。良好亲民的操作性，完全免费的程序，上佳的录像质量，生成文件无需特别转码可以直接被各大视频网站接收，使得frap、屏幕录像专家、</span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;">Camtasia Studio之类的收费共享软件可以直接搬去大街上睡了。<br><br><span style="font-size: large;">不会英文的玩家也不用担心，OBS官网提供的就是国际版，可以自行更改语言。<br></span><br><span style="font-size: large;">1.1  下载与安装   (地球人都明白的就不累赘了）</span><br><span style="font-size: large;"><a href="https://obsproject.com/download" target="_blank" rel="noopener">https://obsproject.com/download</a>     点击绿色download下载安装程序<br><br></span>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/081339lltsfi6wofhvoniq.png.thumb.jpg" alt="2014-05-21_021320.png" title="2014-05-21_021320.png"><br><span style="font-size: large;">1.2  配置程序</span><br>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/081015uyfrouh2jqmros66.png.thumb.jpg" alt="2014-05-21_020904.png" title="2014-05-21_020904.png"><br><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;">安装完成首先进入的应该是这样的程序界面，<br>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/0817412thlqp3lpp9vvopo.png.thumb.jpg" alt="2014-05-21_021700.png" title="2014-05-21_021700.png"><br></span></span></span></span></span><br><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;">我们选中第二个按钮settings（选项）<br>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/081846huw0c07rx55thdfm.png.thumb.jpg" alt="2014-05-21_021828.png" title="2014-05-21_021828.png"><br>在language(语言)选单里找中文，确定之后重启。<br></span></span></span></span></span></span></span></span>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/0820015vhjavtxrjvgvgnz.png.thumb.jpg" alt="2014-05-21_021946.png" title="2014-05-21_021946.png"><br><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;">然后就可以继续我们的初始配置了<br><br></span></span></span></span></span><br><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;">1.3  一般<br>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/0823432icick5qiqiikbtt.png.thumb.jpg" alt="2014-05-21_022328.png" title="2014-05-21_022328.png"><br></span></span></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;">我们在这里不需要做太多的更改，</span></span></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;"><em>设定档名称</em></span></span></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;"> 指的是你这个设定档配置的名称，因为这个版本不支持多个设定档添加的内容所以不做更改也无所谓<br><br>去掉<em> 显示日志窗口 </em>的选项可以不用在每次开启时花时间去关掉日志，没有理由不去掉吧。</span></span></span></span></span></span></span></span><br></span></span><br><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;">1.4  编码</span></span></span></span></span><br>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/082930wwn3s8zfrcanllfn.png.thumb.jpg" alt="2014-05-21_022915.png" title="2014-05-21_022915.png"><br><br><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;">编码部分，主要影响的是采样数据，比特率越高采得视频数据就越清晰，音频就越自然。这个数值其实是为在线视频直播准备的，因为采样率直接影响传输数据大小，设定合理采样率对一个在线直播播放播主非常重要，通常会根据网络和供应商提供的数据进行设定，扯的比较远。</span></span></span></span></span></span></span></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;">我们可以跳过这个条目<br><br></span></span></span></span></span></span></span></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;">1.5  广播设定<br><br>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/0836300x0chx90x8pv0av0.png.thumb.jpg" alt="2014-05-21_023604.png" title="2014-05-21_023604.png"><br></span></span></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;">初始设定是默认为在线直播模式，我们录制单机视频需要将模式切换到“<em>只输出文件</em>”选项<br>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/083842ascsbgssm9wu9hgs.png.thumb.jpg" alt="2014-05-21_023827.png" title="2014-05-21_023827.png"><br><em>档案路径  </em>就是录制结束后视频存放的地点和名称<br><br></span></span></span></span></span></span></span></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;">1.5  广播设定</span></span></span></span></span><br><br>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/084324rhy0iejq07mhh650.png.thumb.jpg" alt="2014-05-21_024047.png" title="2014-05-21_024047.png"><br><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;"><em><br>基本解析度 </em></span></span></span></span></span></span></span></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;">就是你希望录制视频原始未压缩的视频的清晰度，低清：640<em>480 </em></span></span></span></span></span></span></span></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;">即我们所说的480P</span></span></span></span></span></span></span></span></span></span> 普清：1280720 即我们所说的720P  高清：1920<em>1080 </em></span></span></span></span></span></span></span></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;">即我们所说的1080P 视网络情况及硬件能力自行设定，我一般选720P的普清  
+<br>压缩分辨率<em> 指实际显示的视频大小，真实大小还是按照你在基本解析率里设定的大小，实际大小小于基本解析率设定的大小之后，多出部分会按黑边显示，所以建议设定“无”即不压缩  
+
+</em>FPS<em> 即我们所说的视频帧数，所谓：D3野蛮人一个完整投掷动作花费40F的F指的就是这个概念，通常电影电视都会以60帧每秒的形式呈现，每秒30帧以上人眼就感觉不到钝滞感了。这个值会影响到视频的流畅清晰度，建议设定60帧  
+</em><br>启用时停用Aero<em> Aero就是win7 vista的毛玻璃特效，勾选可以大幅减少录制视频时的计算机的计算，减少CPU负荷<br><br></em></span></span></span></span></span></span></span></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;">1.6  音效/高级/麦克风噪音闸<br><br></span></span></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;">不需要做出额外设置，使用初始值就好<br><br></span></span></span></span></span></span></span></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;">2.1  录像准备<br><br>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/090211gqwbgqeppwwqqwgg.png.thumb.jpg" alt="2014-05-21_030155.png" title="2014-05-21_030155.png"><br></span></span></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;">场景：录制多个目标时需要设置这个选项来更改录制目标，我们可以不用管<br>来源：录制对象。我们需要选择建立一个游戏源<em> 选项卡来对付D3<br>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/090552qqwvawwwq48t4qz1.png.thumb.jpg" alt="2014-05-21_030540.png" title="2014-05-21_030540.png"><br>来源栏空白处右键，添加—游戏源<br><br>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/091052f6ufbbtb21243taz.png.thumb.jpg" alt="2014-05-21_031033.png" title="2014-05-21_031033.png"><br>应用程序里选中diablo3 确定   也可以是你想录的任何游戏，录制游戏使用游戏源特制的插件效果会更好<br><br>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/091838rojzf5ft1zf37yje.png.thumb.jpg" alt="2014-05-21_031823.png" title="2014-05-21_031823.png"><br>单击麦克风或者扬声器图标可以禁止录制过程中的麦克风声音或者内置音乐被录制进视频，当然如果你想要保留解说，你可以适当调低内置音乐的声音；或者像我一样录制展示视频，直接禁用麦克风的声音。<br></em></span></span></span></span></span></span></span></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;">2.2  录制<br><br></span></span></span></span></span>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/0920375w8vht2tthv420qh.png.thumb.jpg" alt="2014-05-21_032025.png" title="2014-05-21_032025.png"><br><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-size: large;"><span style="font-family: 微软雅黑;"><span style="font-size: xx-large;"><span style="font-family: 黑体;"><span style="font-size: x-large;"><span style="color: darkred;">在设定里勾选“总是在最上层”，确保你可以直接对它面板进行操作<br><br>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/092151k9fcmxem1hmkeqz4.png.thumb.jpg" alt="2014-05-21_032128.png" title="2014-05-21_032128.png"><br><br>全部准备妥当之后，点击 开始录制<em> ，当缩略视频出现之后就表示程序正常工作了，<br>&lt;ignore_js_op&gt;<img src="http://bbs-f.d.163.com/forum/201405/21/0923433082l1spk9jp59ja.png.thumb.jpg" alt="2014-05-21_032333.png" title="2014-05-21_032333.png"><br><br>全部录制结束的时候，点击 </em>停止录制 *视频就完成了。<br><br><span style="color: black;">最后在开始设定的目录下寻找录制完成的视频，观察效果然后上传整个步骤就全部完成了。</span><br><br><span style="font-size: xx-large;">你也打算录一个视频来为自己的帖子增光添彩吗？试试OBS吧，你不会失望的</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></td><br><br></tr><br><br></tbody><br></table>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/01/CentOS7下zip解压和unzip压缩文件/" rel="next" title="CentOS7下zip解压和unzip压缩文件">
+                <i class="fa fa-chevron-left"></i> CentOS7下zip解压和unzip压缩文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/13/mysql启动报错cannot allocate memory for the buffer pool处理/" rel="prev" title="mysql启动报错cannot allocate memory for the buffer pool处理">
+                mysql启动报错cannot allocate memory for the buffer pool处理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

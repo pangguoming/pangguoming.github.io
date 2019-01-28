@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="webgl,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="什么是WebGL？WebGL是一项使用JavaScript实现3D绘图的技术，浏览器无需插件支持，Web开发者就能借助系统显卡（GPU）进行编写代码从而呈现3D场景和对象。WebGL基于OpenGL ES 2.0，OpenGL ES 是 OpenGL 三维图形 API 的子集，针对手机、平板电脑和游戏主机等嵌入式设备而设计。浏览器内核通过对OpenGL API的封装，实现了通过JavaScript">
+<meta name="keywords" content="webgl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebGL 入门-WebGL简介与3D图形学">
+<meta property="og:url" content="http://pangguoming.com/2014/10/31/WebGL 入门-WebGL简介与3D图形学/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="什么是WebGL？WebGL是一项使用JavaScript实现3D绘图的技术，浏览器无需插件支持，Web开发者就能借助系统显卡（GPU）进行编写代码从而呈现3D场景和对象。WebGL基于OpenGL ES 2.0，OpenGL ES 是 OpenGL 三维图形 API 的子集，针对手机、平板电脑和游戏主机等嵌入式设备而设计。浏览器内核通过对OpenGL API的封装，实现了通过JavaScript">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://articles.csdn.net/uploads/allimg/131221/208_131221154921_1_lit.png">
+<meta property="og:image" content="http://articles.csdn.net/uploads/allimg/131221/208_131221155044_1_lit.png">
+<meta property="og:image" content="http://articles.csdn.net/uploads/allimg/131221/208_131221155122_1_lit.png">
+<meta property="og:image" content="http://articles.csdn.net/uploads/allimg/131221/208_131221155149_1_lit.jpg">
+<meta property="og:image" content="http://articles.csdn.net/uploads/allimg/131221/208_131221155320_1_lit.png">
+<meta property="og:updated_time" content="2019-01-26T15:13:51.342Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebGL 入门-WebGL简介与3D图形学">
+<meta name="twitter:description" content="什么是WebGL？WebGL是一项使用JavaScript实现3D绘图的技术，浏览器无需插件支持，Web开发者就能借助系统显卡（GPU）进行编写代码从而呈现3D场景和对象。WebGL基于OpenGL ES 2.0，OpenGL ES 是 OpenGL 三维图形 API 的子集，针对手机、平板电脑和游戏主机等嵌入式设备而设计。浏览器内核通过对OpenGL API的封装，实现了通过JavaScript">
+<meta name="twitter:image" content="http://articles.csdn.net/uploads/allimg/131221/208_131221154921_1_lit.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2014/10/31/WebGL 入门-WebGL简介与3D图形学/">
+
+
+
+
+
+  <title>WebGL 入门-WebGL简介与3D图形学 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2014/10/31/WebGL 入门-WebGL简介与3D图形学/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">WebGL 入门-WebGL简介与3D图形学</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-10-31T14:35:00+08:00">
+                2014-10-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div class="con news_content"><br><br><span style="font-size: larger;"><strong>什么是WebGL？</strong></span><br><br>WebGL是一项使用JavaScript实现3D绘图的技术，浏览器无需插件支持，Web开发者就能借助系统显卡（GPU）进行编写代码从而呈现3D场景和对象。<br><br>WebGL基于OpenGL ES 2.0，OpenGL ES 是 OpenGL 三维图形 API 的子集，针对手机、平板电脑和游戏主机等嵌入式设备而设计。浏览器内核通过对OpenGL API的封装，实现了通过JavaScript调用3D的能力。WebGL 内容作为 HTML5 中的Canvas标签的特殊上下文实现在浏览器中。<br><br>WebGL标准由科纳斯组织（Khronos Group）开发和维护，Google、Mozilla、Opera和Apple 等浏览器厂商都是其中的成员，为这一标准做出了显著贡献。<br><br><img src="http://articles.csdn.net/uploads/allimg/131221/208_131221154921_1_lit.png" alt=""><br><br><span style="font-size: larger;"><strong>WebGL支持现状</strong></span><br><br>目前所有的主流桌面浏览器都已经支持WebGL，但手机端的浏览器只有部分最新版支持。<br><br><span style="font-size: small;"><strong>桌面浏览器</strong></span><br><br><em>   Mozilla Firefox 4+
+</em>   Google Chrome 8+<br><em>   Internet Explorer 11+
+</em>   Safari 5.1+<br><em>   Opera 12+<br><br><span style="font-size: small;"><strong>移动浏览器</strong></span>
+
+</em>   Firefox 25+<br><em>   Google Chrome 31+
+</em>   Opera Mobile 12+<br><em>   Android Browser 暂不支持
+</em>   iOS Safari暂不支持<br>*   IE Mobile 暂不支持<br><br><img src="http://articles.csdn.net/uploads/allimg/131221/208_131221155044_1_lit.png" alt=""><br><br><span style="font-size: larger;"><strong>3D图形学</strong></span><br><br>在真正开始学习WlebGL之前，我们还要改了解下3D图形学，有助于接下来的3D图形编程。<br><br><span style="font-size: small;"><strong>3D坐标系</strong></span><br><br>笛卡儿坐标系相比大家都很熟悉，即数学中常见的直角坐标系，由两条互相垂直的坐标轴组成，通常标记为x轴和y轴。这种坐标系可以用于定义页面中元素的坐标位置。<br><br>而在绘制3D图形时，除了x轴和y轴，我们还需要一个z轴，用于表示深度，即3D物体距离屏幕的距离。<br><br><img src="http://articles.csdn.net/uploads/allimg/131221/208_131221155122_1_lit.png" alt=""><br><br><span style="font-size: small;"><strong>点、线、面和网格</strong></span><br><br>3D空间内的所有物体都是由点、线及面组成。一个点由3个值组成 - x、y、z，表示3D空间内的唯一位置。2个点可以连成一条线，3个点我们就可以形成一个平面。多个面相互拼接就组成了网格。<br><br>我们常见的球体看起来很圆滑，其实是由很多个点、线、面组合而成的。<br><br><img src="http://articles.csdn.net/uploads/allimg/131221/208_131221155149_1_lit.jpg" alt=""><br><br><span style="font-size: small;"><strong>纹理贴图及材质</strong></span><br><br>网格本身是没有纹理和材质的。<br><br>纹理可以定义一个网格表面的外观，可以是纯色或者是填充位图，甚至更加复杂。<br><br>材质就是网格表面的特性，模型外表是否透明、是否会反射等都是通过网格的材质所定义的。<br><br><span style="font-size: small;"><strong>变换和矩阵</strong></span><br><br>3D网格的形状由顶点位置决定。模型变换就是利用矩阵对模型的大小、位移、旋转等进行操作。如果你不了解矩阵也无须担心，许多WebGL库都能帮助我们完成相应的操作。<br><br><span style="font-size: small;"><strong>摄像机、视口和投影</strong></span><br><br>我们在Canvas上看到的3D空间并非一个真实的3D空间，而是用数学算法将模拟的3D空间投射到2D视口的图像而已。投影就是将模拟的三维空间内的物体映射到屏幕上生成一个二维图像的过程。投影分为正交投影和透视投影，这也就是摄像机的实现原理。<br><br>摄像机是用户观察场景的眼睛，摄像机的视野决定了透视关系和我们在Canvas上看到的内容。<br><br><img src="http://articles.csdn.net/uploads/allimg/131221/208_131221155320_1_lit.png" alt=""><br><br><span style="font-size: small;"><strong>着色器</strong></span><br><br>为了最终的渲染模型，开发者必须精确的定义定点、变换、材质和相机之间的关系。这就是由着色器来完成的。着色器包含了将模型投射到屏幕上的算法，通常是由类C语言编写，编译并运行在图形处理单元(GPU)中。<br><br></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webgl/" rel="tag"># webgl</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/10/28/在AngularJS应用中实现认证授权/" rel="next" title="在AngularJS应用中实现认证授权">
+                <i class="fa fa-chevron-left"></i> 在AngularJS应用中实现认证授权
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/11/04/Nodejs开发框架Express3.0开发手记–从零开始/" rel="prev" title="Nodejs开发框架Express3.0开发手记–从零开始">
+                Nodejs开发框架Express3.0开发手记–从零开始 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

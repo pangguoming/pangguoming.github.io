@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Node.js,PHP,Nginx-Lua,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="1. ngx_lua nodejs php 比较我在研究一阵子ngx_lua之后发现lua语法和js真的很像，同时ngx_lua模型也是单线程的异步的事件驱动的，工作原理和nodejs相同，代码甚至比nodejs的异步回调更好写一些。性能测试，100并发php:17400nodejs:31197ngx_lua:32628单纯做http代理服务器加上一些简单的逻辑，似乎ngx_lua的方案更加合适。">
+<meta name="keywords" content="Node.js,PHP,Nginx-Lua">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高性能Web服务端 PHP vs Node.js vs Nginx-Lua 的对比分析">
+<meta property="og:url" content="http://pangguoming.com/2014/10/16/高性能Web服务端 PHP vs Node.js vs Nginx-Lua 的对比分析/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="1. ngx_lua nodejs php 比较我在研究一阵子ngx_lua之后发现lua语法和js真的很像，同时ngx_lua模型也是单线程的异步的事件驱动的，工作原理和nodejs相同，代码甚至比nodejs的异步回调更好写一些。性能测试，100并发php:17400nodejs:31197ngx_lua:32628单纯做http代理服务器加上一些简单的逻辑，似乎ngx_lua的方案更加合适。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ourjs.github.io/static/images/lua_php_nodejs.jpg">
+<meta property="og:image" content="http://blog.skimlinks.com/files/2012/03/graph.png">
+<meta property="og:image" content="http://blog.skimlinks.com/files/2012/03/graph-1000.png">
+<meta property="og:updated_time" content="2019-01-26T15:13:57.511Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="高性能Web服务端 PHP vs Node.js vs Nginx-Lua 的对比分析">
+<meta name="twitter:description" content="1. ngx_lua nodejs php 比较我在研究一阵子ngx_lua之后发现lua语法和js真的很像，同时ngx_lua模型也是单线程的异步的事件驱动的，工作原理和nodejs相同，代码甚至比nodejs的异步回调更好写一些。性能测试，100并发php:17400nodejs:31197ngx_lua:32628单纯做http代理服务器加上一些简单的逻辑，似乎ngx_lua的方案更加合适。">
+<meta name="twitter:image" content="http://ourjs.github.io/static/images/lua_php_nodejs.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2014/10/16/高性能Web服务端 PHP vs Node.js vs Nginx-Lua 的对比分析/">
+
+
+
+
+
+  <title>高性能Web服务端 PHP vs Node.js vs Nginx-Lua 的对比分析 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2014/10/16/高性能Web服务端 PHP vs Node.js vs Nginx-Lua 的对比分析/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">高性能Web服务端 PHP vs Node.js vs Nginx-Lua 的对比分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-10-16T21:32:00+08:00">
+                2014-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div align="left"><span style="color: #333333;"><strong>1. ngx_lua nodejs php 比较</strong></span><br><br><div align="left"><span style="color: #333333;">我在研究一阵子ngx_lua之后发现lua语法和js真的很像，同时ngx_lua模型也是单线程的异步的事件驱动的，工作原理和nodejs相同，代码甚至比nodejs的异步回调更好写一些。</span><br><br>性能测试，100并发php:17400nodejs:31197ngx_lua:32628<br><br><div align="left"><span style="color: #333333;">单纯做http代理服务器加上一些简单的逻辑，似乎ngx_lua的方案更加合适。 引自： <span>PHP vs Node.js vs Nginx-Lua</span></span><br><br><div align="left"><span style="color: #333333;">以下是从占用的资源上来分析:</span><br><div align="left"><span style="color: #333333;"><img src="http://ourjs.github.io/static/images/lua_php_nodejs.jpg" alt=""></span><br><div align="left"><span style="color: #333333;">出自：<span>php</span><span style="color: #0088cc;">node </span><span>lua</span> 由图中可以看出:</span><br><div align="left"><span style="color: #333333;">nodejs占用CPU比lua高一些，</span><br><div align="left"><span style="color: #333333;"><strong>nodejs与ngx_lua二者占用内存不变(在处理同一业务逻辑时)</strong>，php占用内存不稳定（可能跟多线程有关，连接数越多，内存占用越多）</span><br><div align="left"><span style="color: #333333;"><strong><br><br>下面猿友对ngix_lua的一些看法：</strong></span><br><br><div align="left"><span style="color: #333333;">xueyangkk<br><br>其实这样考虑是对的 ！ ngx_lua是基于nginx的扩展 nginx已经有无数家验证过 他确实是个可靠的WEB应用。而且ngx_lua<br>已经有很多广泛的应用 可以说技术上来说已经很成熟了，你们的平台是一个OPANAPI的应用 。所以 在这个上 选ngx_lua 是对的<br>！当然这并不是说NODE不好 ！语言没什么好坏 ！只能从成本 技术成熟度来考虑 ！<br><br>jayceefun<br><br>之前使用过章大神openresty, 确实很值得一试, 比node.js易用, 没有那么裸, 做的各种性能优化也都是c级别的,<br>刚出时也是号称并发超过node.js的. lua确实是很快, 据说是脚本语言里最快的了. 不过也有缺点就是lua的文件处理很弱,<br>各种库非常的少, 记得当初的想要个好点的orm都没有, 还得手写. 同意楼主说的lua某种程度上真的是跟js很像啊,<br>当初转型node.js语言上也基本没费多少劲. 推荐一个用lua完全模仿node.js写的一个东西, 叫luvit, 现在完全不成熟,<br>只有些简单的http server功能, 但是基础的性能测试结果是比node.js快2倍还是4倍来的, 很恐怖啊有木有. </span><br><br><div align="left"><span style="color: #333333;"><strong>结论：</strong></span><br><div align="left"><span style="color: #333333;">并发请求数lua/nodejs相当，均比php快一倍</span><br><div align="left"><span style="color: #333333;">资源占用上lua最少，nodejs次之，二者对内存并不贪婪，php占用最多且不稳定。</span><br><br><div align="left"><span style="color: #333333;"><strong>2. nodejs python php 比较</strong></span><br><br><div align="left"><span style="color: #333333;">国外某猿友做过一个关于php/nodejs/go/scala/python之间的性能比较：<span>API Programming Language Bake-off</span> </span><br><div align="left"><span style="color: #333333;">以下测试用例为使用mongodb添加删除数据时，各个语言每秒处理的最大请求数：</span><br><div align="left"><span style="color: #333333;"><strong><img src="http://blog.skimlinks.com/files/2012/03/graph.png" alt=""></strong></span><br><div align="left"><span style="color: #333333;"><img src="http://blog.skimlinks.com/files/2012/03/graph-1000.png" alt=""></span><br><div align="left"><span style="color: #333333;">由上图可以看出，在并发线程达到一定程度时go和php写的测试脚本都挂了（go不是号称最快吗？)</span><br><br><div align="left"><span style="color: #333333;">另外两位中国猿友的评测，也证明了这一点,</span><br><div align="left"><span style="color: #333333;">1. <span>测了一下nodejs和php性能</span></span><br><div align="left"><span style="color: #333333;">2. <span>单服务器node.js和php性能测试</span></span><br><div align="left"><span style="color: #333333;">在他们的结论中node.js的并发处理能力均二倍于php.</span><br><br><div align="left"><span style="color: #333333;"><strong>结论：</strong></span><br><div align="left"><span style="color: #333333;">在一般情况下python和node.js的处理能力相当，均2倍于php, 在并发数达到一定程序时，php可能会挂，可能源于多线程对内存资源的占用是不可测的。</span><br><div align="left"><br><div align="left"><span style="color: #333333;">引自 ：<a href="http://bbs.phpchina.com/thread-278161-1-1.html" target="_blank" rel="noopener">http://bbs.phpchina.com/thread-278161-1-1.html</a></span><br><div align="left"><br><div align="left"><span style="color: #333333;">另附 测试报告：<a href="http://bluehua.org/demo/php.node.lua.html" target="_blank" rel="noopener">http://bluehua.org/demo/php.node.lua.html</a></span></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/Nginx-Lua/" rel="tag"># Nginx-Lua</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/10/16/七天学会NodeJS （原生NodeJS 学习资料 来自淘宝技术团队）/" rel="next" title="七天学会NodeJS （原生NodeJS 学习资料 来自淘宝技术团队）">
+                <i class="fa fa-chevron-left"></i> 七天学会NodeJS （原生NodeJS 学习资料 来自淘宝技术团队）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/10/19/Android平台GPS系统的应用开发/" rel="prev" title="Android平台GPS系统的应用开发">
+                Android平台GPS系统的应用开发 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="CentOS,Redis,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="方法一：使用命令安装（前提是已经安装了EPEL）。   安装redis:   yum -y install redis   启动/停止/重启 Redis 启动服务： 1 systemctl start redis.service 停止服务：   systemctl stop redis.service   重启服务：   systemctl restart redis.service   检查状态">
+<meta name="keywords" content="CentOS,Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos7安装redis">
+<meta property="og:url" content="http://pangguoming.com/2016/12/22/centos7安装redis/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="方法一：使用命令安装（前提是已经安装了EPEL）。   安装redis:   yum -y install redis   启动/停止/重启 Redis 启动服务： 1 systemctl start redis.service 停止服务：   systemctl stop redis.service   重启服务：   systemctl restart redis.service   检查状态">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-26T15:06:36.512Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="centos7安装redis">
+<meta name="twitter:description" content="方法一：使用命令安装（前提是已经安装了EPEL）。   安装redis:   yum -y install redis   启动/停止/重启 Redis 启动服务： 1 systemctl start redis.service 停止服务：   systemctl stop redis.service   重启服务：   systemctl restart redis.service   检查状态">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2016/12/22/centos7安装redis/">
+
+
+
+
+
+  <title>centos7安装redis | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2016/12/22/centos7安装redis/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">centos7安装redis</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-22T08:45:00+08:00">
+                2016-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>方法一：使用命令安装（前提是已经安装了EPEL）。  </p>
+<p>安装redis:  </p>
+<p>yum -y install redis  </p>
+<p>启动/停止/重启 Redis<br> 启动服务：<br> 1<br> systemctl start redis.service<br> 停止服务：  </p>
+<p>systemctl stop redis.service  </p>
+<p>重启服务：  </p>
+<p>systemctl restart redis.service  </p>
+<p>检查状态：  </p>
+<p>[root@idoseek ~]# systemctl status redis.service<br> redis.service - Redis persistent key-value database<br>    Loaded: loaded (/usr/lib/systemd/system/redis.service; enabled)<br>    Active: active (running) since 二 2014-10-21 21:37:22 EDT; 5h 26min ago<br>  Main PID: 30413 (redis-server)<br>    CGroup: /system.slice/redis.service<br>            └─30413 /usr/bin/redis-server 127.0.0.1:6379  </p>
+<p> 10月 21 21:37:22 idoseek.com systemd[1]: Started Redis persistent key-value database.  </p>
+<p>随系统启动服务：  </p>
+<p>[root@idoseek ~]# systemctl enable redis.service<br> ln -s ‘/usr/lib/systemd/system/redis.service’ ‘/etc/systemd/system/multi-user.target.wants/redis.service’  </p>
+<p>关闭随机启动：  </p>
+<p>[root@idoseek ~]# systemctl disable redis.service<br> rm ‘/etc/systemd/system/mult(<a href="http://www.111cn.net%29i-user.target.wants/redis.service&#39;" target="_blank" rel="noopener">www.111cn.net)i-user.target.wants/redis.service’</a>  </p>
+<p>方法二：编译安装  </p>
+<p>下载安装编译:  </p>
+<h1 id="wget-http-download-redis-io-releases-redis-2-8-17-tar-gz"><a href="#wget-http-download-redis-io-releases-redis-2-8-17-tar-gz" class="headerlink" title="wget http://download.redis.io/releases/redis-2.8.17.tar.gz"></a>wget <a href="http://download.redis.io/releases/redis-2.8.17.tar.gz" target="_blank" rel="noopener">http://download.redis.io/releases/redis-2.8.17.tar.gz</a></h1><h1 id="tar-xzf-redis-2-8-17-tar-gz"><a href="#tar-xzf-redis-2-8-17-tar-gz" class="headerlink" title="tar xzf redis-2.8.17.tar.gz"></a>tar xzf redis-2.8.17.tar.gz</h1><h1 id="cd-redis-2-8-17"><a href="#cd-redis-2-8-17" class="headerlink" title="cd redis-2.8.17"></a>cd redis-2.8.17</h1><h1 id="make"><a href="#make" class="headerlink" title="make"></a>make</h1><h1 id="make-install"><a href="#make-install" class="headerlink" title="make install"></a>make install</h1><p>设置配置文件路径:  </p>
+<h1 id="mkdir-p-etc-redis-amp-amp-cp-redis-conf-etc-redis"><a href="#mkdir-p-etc-redis-amp-amp-cp-redis-conf-etc-redis" class="headerlink" title="mkdir -p /etc/redis &amp;&amp; cp redis.conf /etc/redis"></a>mkdir -p /etc/redis &amp;&amp; cp redis.conf /etc/redis</h1><p>修改配置文件：  </p>
+<h1 id="vim-etc-redis-redis-conf"><a href="#vim-etc-redis-redis-conf" class="headerlink" title="vim /etc/redis/redis.conf"></a>vim /etc/redis/redis.conf</h1><p> 修改为： daemonize yes<br> 启动Redis:  </p>
+<h1 id="usr-local-bin-redis-server-etc-redis-redis-conf"><a href="#usr-local-bin-redis-server-etc-redis-redis-conf" class="headerlink" title="/usr/local/bin/redis-server /etc/redis/redis.conf"></a>/usr/local/bin/redis-server /etc/redis/redis.conf</h1><p> #关闭服务  </p>
+<p>redis-cli shutdown  </p>
+<p>或者在cli中执行shutdown  </p>
+<p>redis 127.0.0.1:6379&gt; shutdown  </p>
+<p>清除缓存  </p>
+<p>redis-cli flushall  </p>
+<p>更多文档请参考软件包内的“README”文件。<br> 查看状态 ：  </p>
+<h1 id="ss-nlp-grep-redis"><a href="#ss-nlp-grep-redis" class="headerlink" title="ss -nlp|grep redis"></a>ss -nlp|grep redis</h1><p>或者  </p>
+<h1 id="ps-ef-grep-redis"><a href="#ps-ef-grep-redis" class="headerlink" title="ps -ef | grep redis"></a>ps -ef | grep redis</h1><p>下面介绍为PHP添加redis插件。  </p>
+<p>从官网下载最新的拓展，地址：<a href="http://pecl.php.net/package/redis" target="_blank" rel="noopener">http://pecl.php.net/package/redis</a>或者<a href="https://github.com/phpredis/phpredis" target="_blank" rel="noopener">https://github.com/phpredis/phpredis</a>  </p>
+<p>#wget <a href="http://pecl.php.net/get/redis-2.2.5.tgz" target="_blank" rel="noopener">http://pecl.php.net/get/redis-2.2.5.tgz</a>  </p>
+<p> #phpize  </p>
+<p> #./configure –prefix=/opt/redis –enable-redis –with-php-config=/opt/php/bin/php-config  </p>
+<p> #make &amp;&amp; make install  </p>
+<p>把拓展添加至php.ini，重启php-fpm：  </p>
+<p>service php-fpm restart<br>from:<a href="http://www.111cn.net/sys/CentOS/85292.htm" target="_blank" rel="noopener">http://www.111cn.net/sys/CentOS/85292.htm</a></p>
+<p>错误描述</p>
+<p><a href="http://www.41443.com/HTML/xuniji/20150117/285110.html" target="_blank" rel="noopener">安装</a><a href="http://www.41443.com/HTML/Java/20150430/368050.html" target="_blank" rel="noopener">Redis</a> 2.8.18时<a href="http://www.41443.com/HTML/Oracle/20150206/321149.html" target="_blank" rel="noopener">报错</a>：</p>
+<p>zmalloc.h:50:31: <a href="http://www.41443.com/HTML/Delphi/20121115/5955.html" target="_blank" rel="noopener">error</a>: jemalloc/jemalloc.h: No such file or directory<br>zmalloc.h:55:2: <a href="http://www.41443.com/HTML/Delphi/20121115/5955.html" target="_blank" rel="noopener">error</a>: #error “Newer version of jemalloc required”<br>make[1]: <strong><em> [adlist.o] Error 1<br>make[1]: Leaving directory `/data0/src/redis-2.6.2/src’<br>make: </em></strong> [all] Error 2</p>
+<p>原因分析</p>
+<p>在README 有这个一段话。</p>
+<h2 id="Allocator"><a href="#Allocator" class="headerlink" title="Allocator    "></a>Allocator    </h2><p>Selecting a non-default memory allocator when building <a href="http://www.41443.com/HTML/Java/20150430/368050.html" target="_blank" rel="noopener">Redis</a> is done by setting<br>the <code>MALLOC</code> environment variable. Redis is compiled and linked against libc<br>malloc by default, with the exception of jemalloc being the default on Linux<br>systems. This default was picked because jemalloc has proven to have fewer<br>fragmentation problems than libc malloc.    </p>
+<p>To force compiling against libc malloc, use:    </p>
+<p>% make MALLOC=libc    </p>
+<p>To compile against jemalloc on Mac OS X systems, use:    </p>
+<p>% make MALLOC=jemalloc</p>
+<p>说关于分配器allocator， 如果有MALLOC  这个 环境变量， 会有用这个环境变量的 去建立Redis。</p>
+<p>而且libc 并不是默认的 分配器， 默认的是 jemalloc, 因为 jemalloc 被证明 有更少的 fragmentation problems 比libc。</p>
+<p>但是如果你又没有jemalloc 而只有 libc 当然 make 出错。 所以加这么一个参数。</p>
+<p>解决办法</p>
+<p>make MALLOC=libc</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CentOS/" rel="tag"># CentOS</a>
+          
+            <a href="/tags/Redis/" rel="tag"># Redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/21/Centos下Yum安装PHP5.5,5.6,7.0/" rel="next" title="Centos下Yum安装PHP5.5,5.6,7.0">
+                <i class="fa fa-chevron-left"></i> Centos下Yum安装PHP5.5,5.6,7.0
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/22/CentOS7 安装MongoDB 3.0服务器/" rel="prev" title="CentOS7 安装MongoDB 3.0服务器">
+                CentOS7 安装MongoDB 3.0服务器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#wget-http-download-redis-io-releases-redis-2-8-17-tar-gz"><span class="nav-number">1.</span> <span class="nav-text">wget http://download.redis.io/releases/redis-2.8.17.tar.gz</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-xzf-redis-2-8-17-tar-gz"><span class="nav-number">2.</span> <span class="nav-text">tar xzf redis-2.8.17.tar.gz</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cd-redis-2-8-17"><span class="nav-number">3.</span> <span class="nav-text">cd redis-2.8.17</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#make"><span class="nav-number">4.</span> <span class="nav-text">make</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#make-install"><span class="nav-number">5.</span> <span class="nav-text">make install</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mkdir-p-etc-redis-amp-amp-cp-redis-conf-etc-redis"><span class="nav-number">6.</span> <span class="nav-text">mkdir -p /etc/redis &amp;&amp; cp redis.conf /etc/redis</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vim-etc-redis-redis-conf"><span class="nav-number">7.</span> <span class="nav-text">vim /etc/redis/redis.conf</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#usr-local-bin-redis-server-etc-redis-redis-conf"><span class="nav-number">8.</span> <span class="nav-text">/usr/local/bin/redis-server /etc/redis/redis.conf</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ss-nlp-grep-redis"><span class="nav-number">9.</span> <span class="nav-text">ss -nlp|grep redis</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ps-ef-grep-redis"><span class="nav-number">10.</span> <span class="nav-text">ps -ef | grep redis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Allocator"><span class="nav-number">10.1.</span> <span class="nav-text">Allocator    </span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

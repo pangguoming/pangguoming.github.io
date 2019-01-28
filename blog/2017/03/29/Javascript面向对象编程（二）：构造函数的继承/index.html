@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="作者： 阮一峰 日期： 2010年5月23日 这个系列的第一部分，主要介绍了如何”封装”数据和方法，以及如何从原型对象生成实例。今天要介绍的是，对象之间的”继承”的五种方法。比如，现在有一个”动物”对象的构造函数。&amp;gt; function Animal(){&amp;gt;&amp;gt;  this.species = “动物”;&amp;gt;&amp;gt;  }还有一个”猫”对象的构造函数。&amp;gt; function">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript面向对象编程（二）：构造函数的继承">
+<meta property="og:url" content="http://pangguoming.com/2017/03/29/Javascript面向对象编程（二）：构造函数的继承/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="作者： 阮一峰 日期： 2010年5月23日 这个系列的第一部分，主要介绍了如何”封装”数据和方法，以及如何从原型对象生成实例。今天要介绍的是，对象之间的”继承”的五种方法。比如，现在有一个”动物”对象的构造函数。&amp;gt; function Animal(){&amp;gt;&amp;gt;  this.species = “动物”;&amp;gt;&amp;gt;  }还有一个”猫”对象的构造函数。&amp;gt; function">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-26T15:01:43.657Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript面向对象编程（二）：构造函数的继承">
+<meta name="twitter:description" content="作者： 阮一峰 日期： 2010年5月23日 这个系列的第一部分，主要介绍了如何”封装”数据和方法，以及如何从原型对象生成实例。今天要介绍的是，对象之间的”继承”的五种方法。比如，现在有一个”动物”对象的构造函数。&amp;gt; function Animal(){&amp;gt;&amp;gt;  this.species = “动物”;&amp;gt;&amp;gt;  }还有一个”猫”对象的构造函数。&amp;gt; function">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2017/03/29/Javascript面向对象编程（二）：构造函数的继承/">
+
+
+
+
+
+  <title>Javascript面向对象编程（二）：构造函数的继承 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/03/29/Javascript面向对象编程（二）：构造函数的继承/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Javascript面向对象编程（二）：构造函数的继承</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-29T10:13:00+08:00">
+                2017-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>作者： <a href="http://www.ruanyifeng.com/" target="_blank" rel="noopener">阮一峰</a></p>
+<p>日期： <a href="http://www.ruanyifeng.com/blog/2010/05/" target="_blank" rel="noopener">2010年5月23日</a></p>
+<div id="main-content" class="asset-content entry-content"><br><br>这个系列的<a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_encapsulation.html" target="_blank" rel="noopener">第一部分</a>，主要介绍了如何”封装”数据和方法，以及如何从原型对象生成实例。<br><br>今天要介绍的是，对象之间的”继承”的五种方法。<br><br>比如，现在有一个”动物”对象的构造函数。<br><br>&gt; function Animal(){<br>&gt;<br>&gt;  this.species = “动物”;<br>&gt;<br>&gt;  }<br><br>还有一个”猫”对象的构造函数。<br><br>&gt; function Cat(name,color){<br>&gt;<br>&gt;  this.name = name;<br>&gt;<br>&gt;  this.color = color;<br>&gt;<br>&gt;  }<br><br>怎样才能使”猫”继承”动物”呢？<br><br>一、 构造函数绑定<br><br>第一种方法也是最简单的方法，使用call或apply方法，将父对象的构造函数绑定在子对象上，即在子对象构造函数中加一行：<br><br>&gt; function Cat(name,color){<br>&gt;<br>&gt;  Animal.apply(this, arguments);<br>&gt;<br>&gt;  this.name = name;<br>&gt;<br>&gt;  this.color = color;<br>&gt;<br>&gt;  }<br>&gt;<br>&gt;  var cat1 = new Cat(“大毛”,”黄色”);<br>&gt;<br>&gt;  alert(cat1.species); // 动物<br><br>二、 prototype模式<br><br>第二种方法更常见，使用prototype属性。<br><br>如果”猫”的prototype对象，指向一个Animal的实例，那么所有”猫”的实例，就能继承Animal了。<br><br>&gt; Cat.prototype = new Animal();<br>&gt;<br>&gt;  Cat.prototype.constructor = Cat;<br>&gt;<br>&gt;  var cat1 = new Cat(“大毛”,”黄色”);<br>&gt;<br>&gt;  alert(cat1.species); // 动物<br><br>代码的第一行，我们将Cat的prototype对象指向一个Animal的实例。<br><br>&gt; Cat.prototype = new Animal();<br><br>它相当于完全删除了prototype 对象原先的值，然后赋予一个新值。但是，第二行又是什么意思呢？<br><br>&gt; Cat.prototype.constructor = Cat;<br><br>原来，任何一个prototype对象都有一个constructor属性，指向它的构造函数。如果没有”Cat.prototype = new Animal();”这一行，Cat.prototype.constructor是指向Cat的；加了这一行以后，Cat.prototype.constructor指向Animal。<br><br>&gt; alert(Cat.prototype.constructor == Animal); //true<br><br>更重要的是，每一个实例也有一个constructor属性，默认调用prototype对象的constructor属性。<br><br>&gt; alert(cat1.constructor == Cat.prototype.constructor); // true<br><br>因此，在运行”Cat.prototype = new Animal();”这一行之后，cat1.constructor也指向Animal！<br><br>&gt; alert(cat1.constructor == Animal); // true<br><br>这显然会导致继承链的紊乱（cat1明明是用构造函数Cat生成的），因此我们必须手动纠正，将Cat.prototype对象的constructor值改为Cat。这就是第二行的意思。<br><br>这是很重要的一点，编程时务必要遵守。下文都遵循这一点，即如果替换了prototype对象，<br><br>&gt; o.prototype = {};<br><br>那么，下一步必然是为新的prototype对象加上constructor属性，并将这个属性指回原来的构造函数。<br><br>&gt; o.prototype.constructor = o;<br><br>三、 直接继承prototype<br><br>第三种方法是对第二种方法的改进。由于Animal对象中，不变的属性都可以直接写入Animal.prototype。所以，我们也可以让Cat()跳过 Animal()，直接继承Animal.prototype。<br><br>现在，我们先将Animal对象改写：<br><br>&gt; function Animal(){ }<br>&gt;<br>&gt;  Animal.prototype.species = “动物”;<br><br>然后，将Cat的prototype对象，然后指向Animal的prototype对象，这样就完成了继承。<br><br>&gt; Cat.prototype = Animal.prototype;<br>&gt;<br>&gt;  Cat.prototype.constructor = Cat;<br>&gt;<br>&gt;  var cat1 = new Cat(“大毛”,”黄色”);<br>&gt;<br>&gt;  alert(cat1.species); // 动物<br><br>与前一种方法相比，这样做的优点是效率比较高（不用执行和建立Animal的实例了），比较省内存。缺点是 Cat.prototype和Animal.prototype现在指向了同一个对象，那么任何对Cat.prototype的修改，都会反映到Animal.prototype。<br><br>所以，上面这一段代码其实是有问题的。请看第二行<br><br>&gt; Cat.prototype.constructor = Cat;<br><br>这一句实际上把Animal.prototype对象的constructor属性也改掉了！<br><br>&gt; alert(Animal.prototype.constructor); // Cat<br><br>四、 利用空对象作为中介<br><br>由于”直接继承prototype”存在上述的缺点，所以就有第四种方法，利用一个空对象作为中介。<br><br>&gt; var F = function(){};<br>&gt;<br>&gt;  F.prototype = Animal.prototype;<br>&gt;<br>&gt;  Cat.prototype = new F();<br>&gt;<br>&gt;  Cat.prototype.constructor = Cat;<br><br>F是空对象，所以几乎不占内存。这时，修改Cat的prototype对象，就不会影响到Animal的prototype对象。<br><br>&gt; alert(Animal.prototype.constructor); // Animal<br><br>我们将上面的方法，封装成一个函数，便于使用。<br><br>&gt; function extend(Child, Parent) {<br>&gt;<br>&gt;  var F = function(){};<br>&gt;<br>&gt;  F.prototype = Parent.prototype;<br>&gt;<br>&gt;  Child.prototype = new F();<br>&gt;<br>&gt;  Child.prototype.constructor = Child;<br>&gt;<br>&gt;  Child.uber = Parent.prototype;<br>&gt;<br>&gt;  }<br><br>使用的时候，方法如下<br><br>&gt; extend(Cat,Animal);<br>&gt;<br>&gt;  var cat1 = new Cat(“大毛”,”黄色”);<br>&gt;<br>&gt;  alert(cat1.species); // 动物<br><br>这个extend函数，就是YUI库如何实现继承的方法。<br><br>另外，说明一点，函数体最后一行<br><br>&gt; Child.uber = Parent.prototype;<br><br>意思是为子对象设一个uber属性，这个属性直接指向父对象的prototype属性。（uber是一个德语词，意思是”向上”、”上一层”。）这等于在子对象上打开一条通道，可以直接调用父对象的方法。这一行放在这里，只是为了实现继承的完备性，纯属备用性质。<br><br>五、 拷贝继承<br><br>上面是采用prototype对象，实现继承。我们也可以换一种思路，纯粹采用”拷贝”方法实现继承。简单说，如果把父对象的所有属性和方法，拷贝进子对象，不也能够实现继承吗？这样我们就有了第五种方法。<br><br>首先，还是把Animal的所有不变属性，都放到它的prototype对象上。<br><br>&gt; function Animal(){}<br>&gt;<br>&gt;  Animal.prototype.species = “动物”;<br><br>然后，再写一个函数，实现属性拷贝的目的。<br><br>&gt; function extend2(Child, Parent) {<br>&gt;<br>&gt;  var p = Parent.prototype;<br>&gt;<br>&gt;  var c = Child.prototype;<br>&gt;<br>&gt;  for (var i in p) {<br>&gt;<br>&gt;  c[i] = p[i];<br>&gt;<br>&gt;  }<br>&gt;<br>&gt;  c.uber = p;<br>&gt;<br>&gt;  }<br><br>这个函数的作用，就是将父对象的prototype对象中的属性，一一拷贝给Child对象的prototype对象。<br><br>使用的时候，这样写：<br><br>&gt; extend2(Cat, Animal);<br>&gt;<br>&gt;  var cat1 = new Cat(“大毛”,”黄色”);<br>&gt;<br>&gt;  alert(cat1.species); // 动物<br><br>（本系列未完，请继续阅读第三部分<a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance_continued.html" target="_blank" rel="noopener">《非构造函数的继承》</a>。）<br><br>（完）<br><br></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/29/Javascript面向对象编程（三）：非构造函数的继承/" rel="next" title="Javascript面向对象编程（三）：非构造函数的继承">
+                <i class="fa fa-chevron-left"></i> Javascript面向对象编程（三）：非构造函数的继承
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/31/Javascript 严格模式详解/" rel="prev" title="Javascript 严格模式详解">
+                Javascript 严格模式详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

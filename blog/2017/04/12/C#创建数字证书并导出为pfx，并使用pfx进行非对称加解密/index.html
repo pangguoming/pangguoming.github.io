@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="C#,加密,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="本文源程序下载：http://download.csdn.net/source/2444494 我的项目当中，考虑到安全性，需要为每个客户端分发一个数字证书，同时使用数字证书中的公私钥来进行数据的加解密。为了完成这个安全模块，特写了如下一个DEMO程序，该DEMO程序包含的功能有： 1：调用.NET2.0的MAKECERT创建含有私钥的数字证书，并存储到个人证书区； 2：将该证书导出为pfx文件，">
+<meta name="keywords" content="C#,加密">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C#创建数字证书并导出为pfx，并使用pfx进行非对称加解密">
+<meta property="og:url" content="http://pangguoming.com/2017/04/12/C#创建数字证书并导出为pfx，并使用pfx进行非对称加解密/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="本文源程序下载：http://download.csdn.net/source/2444494 我的项目当中，考虑到安全性，需要为每个客户端分发一个数字证书，同时使用数字证书中的公私钥来进行数据的加解密。为了完成这个安全模块，特写了如下一个DEMO程序，该DEMO程序包含的功能有： 1：调用.NET2.0的MAKECERT创建含有私钥的数字证书，并存储到个人证书区； 2：将该证书导出为pfx文件，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201006/10/0_127614394522Rb.gif">
+<meta property="og:updated_time" content="2019-01-26T15:01:41.502Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C#创建数字证书并导出为pfx，并使用pfx进行非对称加解密">
+<meta name="twitter:description" content="本文源程序下载：http://download.csdn.net/source/2444494 我的项目当中，考虑到安全性，需要为每个客户端分发一个数字证书，同时使用数字证书中的公私钥来进行数据的加解密。为了完成这个安全模块，特写了如下一个DEMO程序，该DEMO程序包含的功能有： 1：调用.NET2.0的MAKECERT创建含有私钥的数字证书，并存储到个人证书区； 2：将该证书导出为pfx文件，">
+<meta name="twitter:image" content="http://hi.csdn.net/attachment/201006/10/0_127614394522Rb.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2017/04/12/C#创建数字证书并导出为pfx，并使用pfx进行非对称加解密/">
+
+
+
+
+
+  <title>C#创建数字证书并导出为pfx，并使用pfx进行非对称加解密 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/04/12/C#创建数字证书并导出为pfx，并使用pfx进行非对称加解密/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C#创建数字证书并导出为pfx，并使用pfx进行非对称加解密</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-12T17:20:00+08:00">
+                2017-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文源程序下载：<a href="http://download.csdn.net/source/2444494" target="_blank" rel="noopener">http://download.csdn.net/source/2444494</a></p>
+<p>我的项目当中，考虑到安全性，需要为每个客户端分发一个数字证书，同时使用数字证书中的公私钥来进行数据的加解密。为了完成这个安全模块，特写了如下一个DEMO程序，该DEMO程序包含的功能有：</p>
+<p>1：调用.NET2.0的MAKECERT创建含有私钥的数字证书，并存储到个人证书区；</p>
+<p>2：将该证书导出为pfx文件，并为其指定一个用来打开pfx文件的password；</p>
+<p>3：读取pfx文件，导出pfx中公钥和私钥；</p>
+<p>4：用pfx证书中的公钥进行数据的加密，用私钥进行数据的解密；</p>
+<p>系统界面：</p>
+<p><img src="http://hi.csdn.net/attachment/201006/10/0_127614394522Rb.gif" alt=""></p>
+<p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/// &lt;summary&gt;  </span><br><span class="line">            /// 将证书从证书存储区导出，并存储为pfx文件，同时为pfx文件指定打开的密码  </span><br><span class="line">            /// 本函数同时也演示如何用公钥进行加密，私钥进行解密  </span><br><span class="line">            /// &lt;/summary&gt;  </span><br><span class="line">            /// &lt;param name=&quot;sender&quot;&gt;&lt;/param&gt;  </span><br><span class="line">            /// &lt;param name=&quot;e&quot;&gt;&lt;/param&gt;  </span><br><span class="line">            private void btn_toPfxFile_Click(object sender, EventArgs e)  </span><br><span class="line">            &#123;  </span><br><span class="line">                X509Store store = new X509Store(StoreName.My, StoreLocation.CurrentUser);  </span><br><span class="line">                store.Open(OpenFlags.ReadWrite);  </span><br><span class="line">                X509Certificate2Collection storecollection = (X509Certificate2Collection)store.Certificates;  </span><br><span class="line">                foreach (X509Certificate2 x509 in storecollection)  </span><br><span class="line">                &#123;  </span><br><span class="line">                    if (x509.Subject == &quot;CN=luminji&quot;)  </span><br><span class="line">                    &#123;  </span><br><span class="line">                        Debug.Print(string.Format(&quot;certificate name: &#123;0&#125;&quot;, x509.Subject));  </span><br><span class="line">                        byte[] pfxByte = x509.Export(X509ContentType.Pfx, &quot;123&quot;);  </span><br><span class="line">                        using (FileStream  fileStream = new FileStream(&quot;luminji.pfx&quot;, FileMode.Create))  </span><br><span class="line">                        &#123;  </span><br><span class="line">                            // Write the data to the file, byte by byte.  </span><br><span class="line">                            for (int i = 0; i &lt; pfxByte.Length; i++)  </span><br><span class="line">                                fileStream.WriteByte(pfxByte[i]);  </span><br><span class="line">                            // Set the stream position to the beginning of the file.  </span><br><span class="line">                            fileStream.Seek(0, SeekOrigin.Begin);  </span><br><span class="line">                            // Read and verify the data.  </span><br><span class="line">                            for (int i = 0; i &lt; fileStream.Length; i++)  </span><br><span class="line">                            &#123;  </span><br><span class="line">                                if (pfxByte[i] != fileStream.ReadByte())  </span><br><span class="line">                                &#123;  </span><br><span class="line">                                    Debug.Print(&quot;Error writing data.&quot;);  </span><br><span class="line">                                    return;  </span><br><span class="line">                                &#125;  </span><br><span class="line">                            &#125;  </span><br><span class="line">                            fileStream.Close();  </span><br><span class="line">                            Debug.Print(&quot;The data was written to &#123;0&#125; &quot; +  </span><br><span class="line">                                &quot;and verified.&quot;, fileStream.Name);  </span><br><span class="line">                        &#125;  </span><br><span class="line">                        string myname = &quot;my name is luminji! and i love huzhonghua!&quot;;  </span><br><span class="line">                        string enStr = this.RSAEncrypt(x509.PublicKey.Key.ToXmlString(false), myname);  </span><br><span class="line">                        MessageBox.Show(&quot;密文是：&quot; + enStr);  </span><br><span class="line">                        string deStr = this.RSADecrypt(x509.PrivateKey.ToXmlString(true), enStr);  </span><br><span class="line">                        MessageBox.Show(&quot;明文是：&quot; + deStr);  </span><br><span class="line">                    &#125;  </span><br><span class="line">                &#125;  </span><br><span class="line">                store.Close();  </span><br><span class="line">                store = null;  </span><br><span class="line">                storecollection = null;  </span><br><span class="line">            &#125;  </span><br><span class="line">            /// &lt;summary&gt;  </span><br><span class="line">            /// 创建还有私钥的证书  </span><br><span class="line">            /// &lt;/summary&gt;  </span><br><span class="line">            /// &lt;param name=&quot;sender&quot;&gt;&lt;/param&gt;  </span><br><span class="line">            /// &lt;param name=&quot;e&quot;&gt;&lt;/param&gt;  </span><br><span class="line">            private void btn_createPfx_Click(object sender, EventArgs e)  </span><br><span class="line">            &#123;  </span><br><span class="line">                string MakeCert = &quot;C://Program Files//Microsoft Visual Studio 8//SDK//v2.0//Bin//makecert.exe&quot;;  </span><br><span class="line">                string x509Name = &quot;CN=luminji&quot;;  </span><br><span class="line">                string param = &quot; -pe -ss my -n /&quot;&quot; + x509Name + &quot;/&quot; &quot; ;  </span><br><span class="line">                Process p = Process.Start(MakeCert, param);  </span><br><span class="line">                p.WaitForExit();  </span><br><span class="line">                p.Close();  </span><br><span class="line">                MessageBox.Show(&quot;over&quot;);  </span><br><span class="line">            &#125;  </span><br><span class="line">            /// &lt;summary&gt;  </span><br><span class="line">            /// 从pfx文件读取证书信息  </span><br><span class="line">            /// &lt;/summary&gt;  </span><br><span class="line">            /// &lt;param name=&quot;sender&quot;&gt;&lt;/param&gt;  </span><br><span class="line">            /// &lt;param name=&quot;e&quot;&gt;&lt;/param&gt;  </span><br><span class="line">            private void btn_readFromPfxFile(object sender, EventArgs e)  </span><br><span class="line">            &#123;  </span><br><span class="line">                X509Certificate2 pc = new X509Certificate2(&quot;luminji.pfx&quot;, &quot;123&quot;);  </span><br><span class="line">                MessageBox.Show(&quot;name:&quot; + pc.SubjectName.Name);  </span><br><span class="line">                MessageBox.Show(&quot;public:&quot; + pc.PublicKey.ToString());  </span><br><span class="line">                MessageBox.Show(&quot;private:&quot; + pc.PrivateKey.ToString());  </span><br><span class="line">                pc = null;  </span><br><span class="line">            &#125;  </span><br><span class="line">            /// &lt;summary&gt;  </span><br><span class="line">            /// RSA解密  </span><br><span class="line">            /// &lt;/summary&gt;  </span><br><span class="line">            /// &lt;param name=&quot;xmlPrivateKey&quot;&gt;&lt;/param&gt;  </span><br><span class="line">            /// &lt;param name=&quot;m_strDecryptString&quot;&gt;&lt;/param&gt;  </span><br><span class="line">            /// &lt;returns&gt;&lt;/returns&gt;  </span><br><span class="line">            public string RSADecrypt(string xmlPrivateKey, string m_strDecryptString)  </span><br><span class="line">            &#123;  </span><br><span class="line">                RSACryptoServiceProvider provider = new RSACryptoServiceProvider();  </span><br><span class="line">                provider.FromXmlString(xmlPrivateKey);  </span><br><span class="line">                byte[] rgb = Convert.FromBase64String(m_strDecryptString);  </span><br><span class="line">                byte[] bytes = provider.Decrypt(rgb, false);  </span><br><span class="line">                return new UnicodeEncoding().GetString(bytes);  </span><br><span class="line">            &#125;  </span><br><span class="line">            /// &lt;summary&gt;  </span><br><span class="line">            /// RSA加密  </span><br><span class="line">            /// &lt;/summary&gt;  </span><br><span class="line">            /// &lt;param name=&quot;xmlPublicKey&quot;&gt;&lt;/param&gt;  </span><br><span class="line">            /// &lt;param name=&quot;m_strEncryptString&quot;&gt;&lt;/param&gt;  </span><br><span class="line">            /// &lt;returns&gt;&lt;/returns&gt;  </span><br><span class="line">            public string RSAEncrypt(string xmlPublicKey, string m_strEncryptString)  </span><br><span class="line">            &#123;  </span><br><span class="line">                RSACryptoServiceProvider provider = new RSACryptoServiceProvider();  </span><br><span class="line">                provider.FromXmlString(xmlPublicKey);  </span><br><span class="line">                byte[] bytes = new UnicodeEncoding().GetBytes(m_strEncryptString);  </span><br><span class="line">                return Convert.ToBase64String(provider.Encrypt(bytes, false));  </span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+<p> 上文是一个示例程序，一个完整的证书工具类如下：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:csharp;gutter:true;&quot;&gt;public sealed class DataCertificate  </span><br><span class="line">    &#123;  </span><br><span class="line">        #region 生成证书  </span><br><span class="line">        /// &lt;summary&gt;  </span><br><span class="line">        /// 根据指定的证书名和makecert全路径生成证书（包含公钥和私钥，并保存在MY存储区）  </span><br><span class="line">        /// &lt;/summary&gt;  </span><br><span class="line">        /// &lt;param name=&quot;subjectName&quot;&gt;&lt;/param&gt;  </span><br><span class="line">        /// &lt;param name=&quot;makecertPath&quot;&gt;&lt;/param&gt;  </span><br><span class="line">        /// &lt;returns&gt;&lt;/returns&gt;  </span><br><span class="line">        public static bool CreateCertWithPrivateKey(string subjectName, string makecertPath)  </span><br><span class="line">        &#123;  </span><br><span class="line">            subjectName = &quot;CN=&quot; + subjectName;  </span><br><span class="line">            string param = &quot; -pe -ss my -n /&quot;&quot; + subjectName + &quot;/&quot; &quot;;  </span><br><span class="line">            try  </span><br><span class="line">            &#123;  </span><br><span class="line">                Process p = Process.Start(makecertPath, param);  </span><br><span class="line">                p.WaitForExit();  </span><br><span class="line">                p.Close();  </span><br><span class="line">            &#125;  </span><br><span class="line">            catch (Exception e)  </span><br><span class="line">            &#123;  </span><br><span class="line">                LogRecord.putErrorLog(e.ToString(), &quot;DataCerficate.CreateCertWithPrivateKey&quot;);  </span><br><span class="line">                return false;  </span><br><span class="line">            &#125;  </span><br><span class="line">            return true;  </span><br><span class="line">        &#125;  </span><br><span class="line">        #endregion  </span><br><span class="line"></span><br><span class="line">        #region 文件导入导出  </span><br><span class="line">        /// &lt;summary&gt;  </span><br><span class="line">        /// 从WINDOWS证书存储区的个人MY区找到主题为subjectName的证书，  </span><br><span class="line">        /// 并导出为pfx文件，同时为其指定一个密码  </span><br><span class="line">        /// 并将证书从个人区删除(如果isDelFromstor为true)  </span><br><span class="line">        /// &lt;/summary&gt;  </span><br><span class="line">        /// &lt;param name=&quot;subjectName&quot;&gt;证书主题，不包含CN=&lt;/param&gt;  </span><br><span class="line">        /// &lt;param name=&quot;pfxFileName&quot;&gt;pfx文件名&lt;/param&gt;  </span><br><span class="line">        /// &lt;param name=&quot;password&quot;&gt;pfx文件密码&lt;/param&gt;  </span><br><span class="line">        /// &lt;param name=&quot;isDelFromStore&quot;&gt;是否从存储区删除&lt;/param&gt;  </span><br><span class="line">        /// &lt;returns&gt;&lt;/returns&gt;  </span><br><span class="line">        public static bool ExportToPfxFile(string subjectName, string pfxFileName,  </span><br><span class="line">            string password, bool isDelFromStore)  </span><br><span class="line">        &#123;  </span><br><span class="line">            subjectName = &quot;CN=&quot; + subjectName;  </span><br><span class="line">            X509Store store = new X509Store(StoreName.My, StoreLocation.CurrentUser);  </span><br><span class="line">            store.Open(OpenFlags.ReadWrite);  </span><br><span class="line">            X509Certificate2Collection storecollection = (X509Certificate2Collection)store.Certificates;  </span><br><span class="line">            foreach (X509Certificate2 x509 in storecollection)  </span><br><span class="line">            &#123;  </span><br><span class="line">                if (x509.Subject == subjectName)  </span><br><span class="line">                &#123;  </span><br><span class="line">                    Debug.Print(string.Format(&quot;certificate name: &#123;0&#125;&quot;, x509.Subject));  </span><br><span class="line"></span><br><span class="line">                    byte[] pfxByte = x509.Export(X509ContentType.Pfx, password);  </span><br><span class="line">                    using (FileStream fileStream = new FileStream(pfxFileName, FileMode.Create))  </span><br><span class="line">                    &#123;  </span><br><span class="line">                        // Write the data to the file, byte by byte.  </span><br><span class="line">                        for (int i = 0; i &lt; pfxByte.Length; i++)  </span><br><span class="line">                            fileStream.WriteByte(pfxByte[i]);  </span><br><span class="line">                        // Set the stream position to the beginning of the file.  </span><br><span class="line">                        fileStream.Seek(0, SeekOrigin.Begin);  </span><br><span class="line">                        // Read and verify the data.  </span><br><span class="line">                        for (int i = 0; i &lt; fileStream.Length; i++)  </span><br><span class="line">                        &#123;  </span><br><span class="line">                            if (pfxByte[i] != fileStream.ReadByte())  </span><br><span class="line">                            &#123;  </span><br><span class="line">                                LogRecord.putErrorLog(&quot;Export pfx error while verify the pfx file!&quot;, &quot;ExportToPfxFile&quot;);  </span><br><span class="line">                                fileStream.Close();  </span><br><span class="line">                                return false;  </span><br><span class="line">                            &#125;  </span><br><span class="line">                        &#125;  </span><br><span class="line">                        fileStream.Close();  </span><br><span class="line">                    &#125;  </span><br><span class="line">                    if( isDelFromStore == true)  </span><br><span class="line">                        store.Remove(x509);  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">            store.Close();  </span><br><span class="line">            store = null;  </span><br><span class="line">            storecollection = null;  </span><br><span class="line">            return true;  </span><br><span class="line">        &#125;  </span><br><span class="line">        /// &lt;summary&gt;  </span><br><span class="line">        /// 从WINDOWS证书存储区的个人MY区找到主题为subjectName的证书，  </span><br><span class="line">        /// 并导出为CER文件（即，只含公钥的）  </span><br><span class="line">        /// &lt;/summary&gt;  </span><br><span class="line">        /// &lt;param name=&quot;subjectName&quot;&gt;&lt;/param&gt;  </span><br><span class="line">        /// &lt;param name=&quot;cerFileName&quot;&gt;&lt;/param&gt;  </span><br><span class="line">        /// &lt;returns&gt;&lt;/returns&gt;  </span><br><span class="line">        public static bool ExportToCerFile(string subjectName, string cerFileName)  </span><br><span class="line">        &#123;  </span><br><span class="line">            subjectName = &quot;CN=&quot; + subjectName;  </span><br><span class="line">            X509Store store = new X509Store(StoreName.My, StoreLocation.CurrentUser);  </span><br><span class="line">            store.Open(OpenFlags.ReadWrite);  </span><br><span class="line">            X509Certificate2Collection storecollection = (X509Certificate2Collection)store.Certificates;  </span><br><span class="line">            foreach (X509Certificate2 x509 in storecollection)  </span><br><span class="line">            &#123;  </span><br><span class="line">                if (x509.Subject == subjectName)  </span><br><span class="line">                &#123;  </span><br><span class="line">                    Debug.Print(string.Format(&quot;certificate name: &#123;0&#125;&quot;, x509.Subject));  </span><br><span class="line">                    //byte[] pfxByte = x509.Export(X509ContentType.Pfx, password);  </span><br><span class="line">                    byte[] cerByte = x509.Export(X509ContentType.Cert);  </span><br><span class="line">                    using (FileStream fileStream = new FileStream(cerFileName, FileMode.Create))  </span><br><span class="line">                    &#123;  </span><br><span class="line">                        // Write the data to the file, byte by byte.  </span><br><span class="line">                        for (int i = 0; i &lt; cerByte.Length; i++)  </span><br><span class="line">                            fileStream.WriteByte(cerByte[i]);  </span><br><span class="line">                        // Set the stream position to the beginning of the file.  </span><br><span class="line">                        fileStream.Seek(0, SeekOrigin.Begin);  </span><br><span class="line">                        // Read and verify the data.  </span><br><span class="line">                        for (int i = 0; i &lt; fileStream.Length; i++)  </span><br><span class="line">                        &#123;  </span><br><span class="line">                            if (cerByte[i] != fileStream.ReadByte())  </span><br><span class="line">                            &#123;  </span><br><span class="line">                                LogRecord.putErrorLog(&quot;Export CER error while verify the CERT file!&quot;, &quot;ExportToCERFile&quot;);  </span><br><span class="line">                                fileStream.Close();  </span><br><span class="line">                                return false;  </span><br><span class="line">                            &#125;  </span><br><span class="line">                        &#125;  </span><br><span class="line">                        fileStream.Close();  </span><br><span class="line">                    &#125;  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">            store.Close();  </span><br><span class="line">            store = null;  </span><br><span class="line">            storecollection = null;  </span><br><span class="line">            return true;  </span><br><span class="line">        &#125;  </span><br><span class="line">        #endregion  </span><br><span class="line"></span><br><span class="line">        #region 从证书中获取信息  </span><br><span class="line">        /// &lt;summary&gt;  </span><br><span class="line">        /// 根据私钥证书得到证书实体，得到实体后可以根据其公钥和私钥进行加解密  </span><br><span class="line">        /// 加解密函数使用DEncrypt的RSACryption类  </span><br><span class="line">        /// &lt;/summary&gt;  </span><br><span class="line">        /// &lt;param name=&quot;pfxFileName&quot;&gt;&lt;/param&gt;  </span><br><span class="line">        /// &lt;param name=&quot;password&quot;&gt;&lt;/param&gt;  </span><br><span class="line">        /// &lt;returns&gt;&lt;/returns&gt;  </span><br><span class="line">        public static X509Certificate2 GetCertificateFromPfxFile(string pfxFileName,  </span><br><span class="line">            string password)  </span><br><span class="line">        &#123;  </span><br><span class="line">            try  </span><br><span class="line">            &#123;  </span><br><span class="line">                return new X509Certificate2(pfxFileName, password, X509KeyStorageFlags.Exportable);  </span><br><span class="line">            &#125;  </span><br><span class="line">            catch (Exception e)  </span><br><span class="line">            &#123;  </span><br><span class="line">                LogRecord.putErrorLog(&quot;get certificate from pfx&quot; + pfxFileName + &quot; error:&quot; + e.ToString(),  </span><br><span class="line">                    &quot;GetCertificateFromPfxFile&quot;);  </span><br><span class="line">                return null;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        /// &lt;summary&gt;  </span><br><span class="line">        /// 到存储区获取证书  </span><br><span class="line">        /// &lt;/summary&gt;  </span><br><span class="line">        /// &lt;param name=&quot;subjectName&quot;&gt;&lt;/param&gt;  </span><br><span class="line">        /// &lt;returns&gt;&lt;/returns&gt;  </span><br><span class="line">        public static X509Certificate2 GetCertificateFromStore(string subjectName)  </span><br><span class="line">        &#123;  </span><br><span class="line">            subjectName = &quot;CN=&quot; + subjectName;  </span><br><span class="line">            X509Store store = new X509Store(StoreName.My, StoreLocation.CurrentUser);  </span><br><span class="line">            store.Open(OpenFlags.ReadWrite);  </span><br><span class="line">            X509Certificate2Collection storecollection = (X509Certificate2Collection)store.Certificates;  </span><br><span class="line">            foreach (X509Certificate2 x509 in storecollection)  </span><br><span class="line">            &#123;  </span><br><span class="line">                if (x509.Subject == subjectName)  </span><br><span class="line">                &#123;  </span><br><span class="line">                    return x509;  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">            store.Close();  </span><br><span class="line">            store = null;  </span><br><span class="line">            storecollection = null;  </span><br><span class="line">            return null;  </span><br><span class="line">        &#125;  </span><br><span class="line">        /// &lt;summary&gt;  </span><br><span class="line">        /// 根据公钥证书，返回证书实体  </span><br><span class="line">        /// &lt;/summary&gt;  </span><br><span class="line">        /// &lt;param name=&quot;cerPath&quot;&gt;&lt;/param&gt;  </span><br><span class="line">        public static X509Certificate2 GetCertFromCerFile(string cerPath)  </span><br><span class="line">        &#123;  </span><br><span class="line">            try  </span><br><span class="line">            &#123;  </span><br><span class="line">                return new X509Certificate2(cerPath);  </span><br><span class="line">            &#125;  </span><br><span class="line">            catch (Exception e)  </span><br><span class="line">            &#123;  </span><br><span class="line">                LogRecord.putErrorLog(e.ToString(), &quot;DataCertificate.LoadStudentPublicKey&quot;);  </span><br><span class="line">                return null;  </span><br><span class="line">            &#125;              </span><br><span class="line">        &#125;  </span><br><span class="line">        #endregion         </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C#</a>
+          
+            <a href="/tags/加密/" rel="tag"># 加密</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/12/C#使用RSA证书文件加密和解密示例/" rel="next" title="C#使用RSA证书文件加密和解密示例">
+                <i class="fa fa-chevron-left"></i> C#使用RSA证书文件加密和解密示例
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/14/13个可实现超棒数据可视化效果的Javascript框架/" rel="prev" title="13个可实现超棒数据可视化效果的Javascript框架">
+                13个可实现超棒数据可视化效果的Javascript框架 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

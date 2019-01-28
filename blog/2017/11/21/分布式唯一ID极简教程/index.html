@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="原创 2017-11-21 帝都羊 架构师小秘圈一，题记所有的业务系统，都有生成ID的需求，如订单id，商品id，文章ID等。这个ID会是数据库中的唯一主键，在它上面会建立聚集索引！ID生成的核心需求有两点：全局唯一  趋势有序二，为什么要全局唯一？著名的例子就是身份证号码，身份证号码确实是对人唯一的，然而一个人是可以办理多个身份证的，例如你身份证丢了，又重新补办了一张，号码不变。问题来了，因为系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式唯一ID极简教程">
+<meta property="og:url" content="http://pangguoming.com/2017/11/21/分布式唯一ID极简教程/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="原创 2017-11-21 帝都羊 架构师小秘圈一，题记所有的业务系统，都有生成ID的需求，如订单id，商品id，文章ID等。这个ID会是数据库中的唯一主键，在它上面会建立聚集索引！ID生成的核心需求有两点：全局唯一  趋势有序二，为什么要全局唯一？著名的例子就是身份证号码，身份证号码确实是对人唯一的，然而一个人是可以办理多个身份证的，例如你身份证丢了，又重新补办了一张，号码不变。问题来了，因为系">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+<meta property="og:updated_time" content="2019-01-26T15:01:16.674Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分布式唯一ID极简教程">
+<meta name="twitter:description" content="原创 2017-11-21 帝都羊 架构师小秘圈一，题记所有的业务系统，都有生成ID的需求，如订单id，商品id，文章ID等。这个ID会是数据库中的唯一主键，在它上面会建立聚集索引！ID生成的核心需求有两点：全局唯一  趋势有序二，为什么要全局唯一？著名的例子就是身份证号码，身份证号码确实是对人唯一的，然而一个人是可以办理多个身份证的，例如你身份证丢了，又重新补办了一张，号码不变。问题来了，因为系">
+<meta name="twitter:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2017/11/21/分布式唯一ID极简教程/">
+
+
+
+
+
+  <title>分布式唯一ID极简教程 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/11/21/分布式唯一ID极简教程/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">分布式唯一ID极简教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-21T17:31:00+08:00">
+                2017-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="meta_content" class="rich_media_meta_list"><span id="copyright_logo" class="rich_media_meta meta_original_tag">原创 <span id="post-date" class="rich_media_meta rich_media_meta_text">2017-11-21 <span class="rich_media_meta rich_media_meta_text">帝都羊 <a href="http://mp.weixin.qq.com/s?__biz=MzU0OTE4MzYzMw==&amp;mid=2247484184&amp;idx=1&amp;sn=e0aed5908e4cd83fdb883e5c6f8d04a5&amp;chksm=fbb28ae6ccc503f0c565cb95a8bcb37de85c7760cb8059828af7913e4b4bb6b0317dd8651460&amp;mpshare=1&amp;scene=1&amp;srcid=1121EkbqBMckwvy2RUeW1rlZ##" target="_blank" rel="noopener">架构师小秘圈</a></span></span></span><br><div id="js_content" class="rich_media_content ">一，题记<br><br>所有的业务系统，都有生成ID的需求，如订单id，商品id，文章ID等。这个ID会是数据库中的唯一主键，在它上面会建立聚集索引！<br><br>ID生成的核心需求有两点：<br><br><em><br><br>全局唯一
+
+</em><br><br>趋势有序<br><br>二，为什么要全局唯一？<br><br>著名的例子就是身份证号码，身份证号码确实是对人唯一的，然而一个人是可以办理多个身份证的，例如你身份证丢了，又重新补办了一张，号码不变。<br><br>问题来了，因为系统是按照身份证号码做唯一主键的。此时，如果身份证是被盗的情况下，你是没有办法在系统里面注销的，因为新旧2个身份证的“主键”都是身份证号码。<br><br>也就是说，旧的身份证仍然逍遥在外，完全有效。这个时候，还好有一个身份证有效时间的东西，只有靠身份证有效期来辨识了。不过，这就是现在这么多银行，电信诈骗的由来，捡到一张身份证，去很多银行，手机，酒店都可以使用！身份证缺乏注销机制！<br><br>所以，经验告诉我们。不要相信自己的直觉，业务上所谓的唯一往往都是不靠谱的，经不起时间的考研的。所以需要单独设置一个和业务无关的主键，专业术语叫做代理主键（surrogate key）。<br><br>这也是为什么数据库设计范式，唯一主键是第一范式！<br><br>三，为什么要趋势有序<br><br>以mysql为例，InnoDB引擎表是基于B+树的索引组织表(IOT)；每个表都需要有一个聚集索引(clustered index)；所有的行记录都存储在B+树的叶子节点(leaf pages of the tree)；基于聚集索引的增、删、改、查的效率相对是最高的；如下图：<br><br><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt=""><br><br><em><br><br>如果我们定义了主键(PRIMARY KEY)，那么InnoDB会选择其作为聚集索引；
+
+</em><br><br>如果没有显式定义主键，则InnoDB会选择第一个不包含有NULL值的唯一索引作为主键索引；<br><br><em><br><br>如果也没有这样的唯一索引，则InnoDB会选择内置6字节长的ROWID作为隐含的聚集索引(ROWID随着行记录的写入而主键递增，这个ROWID不像ORACLE的ROWID那样可引用，是隐含的)。<br><br>综上总结，如果InnoDB表的数据写入顺序能和B+树索引的叶子节点顺序一致的话，这时候存取效率是最高的，也就是下面这几种情况的存取效率最高
+
+</em><br><br>使用自增列(INT/BIGINT类型)做主键，这时候写入顺序是自增的，和B+数叶子节点分裂顺序一致；<br><br><em><br><br>该表不指定自增列做主键，同时也没有可以被选为主键的唯一索引(上面的条件)，这时候InnoDB会选择内置的ROWID作为主键，写入顺序和ROWID增长顺序一致；
+
+</em><br><br>除此以外，如果一个InnoDB表又没有显示主键，又有可以被选择为主键的唯一索引，但该唯一索引可能不是递增关系时(例如字符串、UUID、多字段联合唯一索引的情况)，该表的存取效率就会比较差。）<br><br>这就是为什么我们的分布式ID一定要是趋势递增的！那么在开发当中，面对这种分布式ID需求，常见的处理方案有哪些呢？<br><br><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt=""><br><br>四，数据库自增长序列或字段<br><br>最常见的方式。利用数据库，全数据库唯一。<br><br>优点：<br><br>1）简单，代码方便，性能可以接受。<br><br>2）数字ID天然排序，对分页或者需要排序的结果很有帮助。<br><br>缺点：<br><br>1）不同数据库语法和实现不同，数据库迁移的时候或多数据库版本支持的时候需要处理。<br><br>2）在单个数据库或读写分离或一主多从的情况下，只有一个主库可以生成。有单点故障的风险。<br><br>3）在性能达不到要求的情况下，比较难于扩展。<br><br>4）如果遇见多个系统需要合并或者涉及到数据迁移会相当痛苦。<br><br>5）分表分库的时候会有麻烦。<br><br>优化方案：<br><br>1）针对主库单点，如果有多个Master库，则每个Master库设置的起始数字不一样，步长一样，可以是Master的个数。比如：Master1 生成的是 1，4，7，10，Master2生成的是2,5,8,11 Master3生成的是 3,6,9,12。这样就可以有效生成集群中的唯一ID，也可以大大降低ID生成数据库操作的负载。<br><br>五，UUID<br><br>常见的方式。可以利用数据库也可以利用程序生成，一般来说全球唯一。<br><br>优点：<br><br>1）简单，代码方便。<br><br>2）生成ID性能非常好，基本不会有性能问题。<br><br>3）全球唯一，在遇见数据迁移，系统数据合并，或者数据库变更等情况下，可以从容应对。<br><br>缺点：<br><br>1）没有排序，无法保证趋势递增。<br><br>2）UUID往往是使用字符串存储，查询的效率比较低。<br><br>3）存储空间比较大，如果是海量数据库，就需要考虑存储量的问题。<br><br>4）传输数据量大<br><br>5）不可读。<br><br>六，Redis生成ID<br><br>当使用数据库来生成ID性能不够要求的时候，我们可以尝试使用Redis来生成ID。这主要依赖于Redis是单线程的，所以也可以用生成全局唯一的ID。可以用Redis的原子操作 INCR和INCRBY来实现。<br><br>可以使用Redis集群来获取更高的吞吐量。假如一个集群中有5台Redis。可以初始化每台Redis的值分别是1,2,3,4,5，然后步长都是5。各个Redis生成的ID为：<br><br>A：1,6,11,16,21<br><br>B：2,7,12,17,22<br><br>C：3,8,13,18,23<br><br>D：4,9,14,19,24<br><br>E：5,10,15,20,25<br><br>这个，随便负载到哪个机确定好，未来很难做修改。但是3-5台服务器基本能够满足器上，都可以获得不同的ID。但是步长和初始值一定需要事先需要了。使用Redis集群也可以方式单点故障的问题。<br><br>另外，比较适合使用Redis来生成每天从0开始的流水号。比如订单号=日期+当日自增长号。可以每天在Redis中生成一个Key，使用INCR进行累加。<br><br>优点：<br><br>1）不依赖于数据库，灵活方便，且性能优于数据库。<br><br>2）数字ID天然排序，对分页或者需要排序的结果很有帮助。<br><br>缺点：<br><br>1）如果系统中没有Redis，还需要引入新的组件，增加系统复杂度。<br><br>2）需要编码和配置的工作量比较大。<br><br>七，twitter<br><br>twitter在把存储系统从MySQL迁移到Cassandra的过程中由于Cassandra没有顺序ID生成机制，于是自己开发了一套全局唯一ID生成服务：Snowflake。<br>1 41位的时间序列（精确到毫秒，41位的长度可以使用69年）<br>2 10位的机器标识（10位的长度最多支持部署1024个节点）<br>3 12位的计数顺序号（12位的计数顺序号支持每个节点每毫秒产生4096个ID序号） 最高位是符号位，始终为0。<br>优点：<br><br><em><br><br>高性能，低延迟；独立的应用；
+
+</em><br><br>按时间有序。<br><br>缺点：<br><br><em><br><br>需要独立的开发和部署。
+
+</em><br><br>强依赖时钟,如果主机时间回拨,则会造成重复ID,会产生<br><br><em><br><br>ID虽然有序,但是不连续<br><br>原理<br><br><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt=""><br><br>八，MongoDB的ObjectId<br><br>MongoDB的ObjectId和snowflake算法类似。它设计成轻量型的，不同的机器都能用全局唯一的同种方法方便地生成它。MongoDB 从一开始就设计用来作为分布式数据库，处理多个节点是一个核心要求。使其在分片环境中要容易生成得多。<br><br>ObjectId使用12字节的存储空间，其生成方式如下：<br><br>|0|1|2|3|4|5|6 |7|8|9|10|11|<br><br>|时间戳 |机器ID|PID|计数器 |<br><br>前四个字节时间戳是从标准纪元开始的时间戳，单位为秒，有如下特性：<br><br> 1 时间戳与后边5个字节一块，保证秒级别的唯一性；<br> 2 保证插入顺序大致按时间排序；<br> 3 隐含了文档创建时间；<br> 4 时间戳的实际值并不重要，不需要对服务器之间的时间进行同步（因为加上机器ID和进程ID已保证此值唯一，唯一性是ObjectId的最终诉求）。<br><br>机器ID是服务器主机标识，通常是机器主机名的散列值。<br><br>同一台机器上可以运行多个mongod实例，因此也需要加入进程标识符PID。<br><br>前9个字节保证了同一秒钟不同机器不同进程产生的ObjectId的唯一性。后三个字节是一个自动增加的计数器（一个mongod进程需要一个全局的计数器），保证同一秒的ObjectId是唯一的。同一秒钟最多允许每个进程拥有（256^3 = 16777216）个不同的ObjectId。<br><br>总结一下：时间戳保证秒级唯一，机器ID保证设计时考虑分布式，避免时钟同步，PID保证同一台服务器运行多个mongod实例时的唯一性，最后的计数器保证同一秒内的唯一性（选用几个字节既要考虑存储的经济性，也要考虑并发性能的上限）。<br><br>“_id”既可以在服务器端生成也可以在客户端生成，在客户端生成可以降低服务器端的压力。<br><br>九，类snowflake算法<br><br>国内有很多厂家基于snowflake算法进行了国产化，例如<br><br>百度的uid-generator：<br><br><a href="https://github.com/baidu/uid-generator" target="_blank" rel="noopener">https://github.com/baidu/uid-generator</a><br><br>美团Leaf：<br><br><a href="https://github.com/zhuzhong/idleaf" target="_blank" rel="noopener">https://github.com/zhuzhong/idleaf</a><br><br>基本是对snowflake的进一步优化，比如解决时钟 回拨问题！<br><br>十，总结<br><br>总体而言，分布式唯一ID需要满足以下条件：
+
+</em><br><br>高可用性：不能有单点故障。<br><br><em><br><br>全局唯一性：不能出现重复的ID号，既然是唯一标识，这是最基本的要求。
+
+</em><br><br>趋势递增：在MySQL InnoDB引擎中使用的是聚集索引，由于多数RDBMS使用B-tree的数据结构来存储索引数据，在主键的选择上面我们应该尽量使用有序的主键保证写入性能。<br><br><em><br><br>时间有序：以时间为序，或者ID里包含时间。这样一是可以少一个索引，二是冷热数据容易分离。
+
+</em><br><br>分片支持：可以控制ShardingId。比如某一个用户的文章要放在同一个分片内，这样查询效率高，修改也容易。<br><br><em><br><br>单调递增：保证下一个ID一定大于上一个ID，例如事务版本号、IM增量消息、排序等特殊需求。
+
+</em><br><br>长度适中：不要太长，最好64bit。使用long比较好操作，如果是96bit，那就要各种移位相当的不方便，还有可能有些组件不能支持这么大的ID。<br><br>*<br><br>信息安全：如果ID是连续的，恶意用户的扒取工作就非常容易做了，直接按照顺序下载指定URL即可；如果是订单号就更危险了，竞争对手可以直接知道我们一天的单量。所以在一些应用场景下，会需要ID无规则、不规则。<br><br>文章参考出处：叶金荣博客 <a href="http://imysql.com/，欢迎大家积极留言，您使用的是哪种方式" target="_blank" rel="noopener">http://imysql.com/，欢迎大家积极留言，您使用的是哪种方式</a>?<br><br>推荐阅读：<a href="http://mp.weixin.qq.com/s?__biz=MzU0OTE4MzYzMw==&amp;mid=2247483707&amp;idx=1&amp;sn=168c163e852e826d52c07b887977ff2f&amp;chksm=fbb288c5ccc501d3b0e43d8aca0cffcadfd0dd859f6840ca76fb8593d4593ef48134b22bb368&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">2T架构师教学视频分享</a><br><br></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/16/：Windows下RabbitMQ安装及入门/" rel="next" title="：Windows下RabbitMQ安装及入门">
+                <i class="fa fa-chevron-left"></i> ：Windows下RabbitMQ安装及入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/21/spring cloud 报错Error creating bean with name &#39;hystrixCommandAspect&#39; ，解决方案/" rel="prev" title="spring cloud 报错Error creating bean with name 'hystrixCommandAspect' ，解决方案">
+                spring cloud 报错Error creating bean with name 'hystrixCommandAspect' ，解决方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

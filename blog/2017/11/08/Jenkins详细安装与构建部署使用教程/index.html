@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Jenkins,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="Jenkins是一个开源软件项目，旨在提供一个开放易用的软件平台，使软件的持续集成变成可能。Jenkins是基于Java开发的一种持续集成工具，用于监控持续重复的工作，功能包括：1、持续的软件版本发布/测试项目。2、监控外部调用执行的工作。 本文使用的Linux：Ubuntu 其中JDK、Tomcat、SVN服务器请看这里Ubuntu安装配置JDK、Tomcat、SVN服务器 一、安装Jenk">
+<meta name="keywords" content="Jenkins">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jenkins详细安装与构建部署使用教程">
+<meta property="og:url" content="http://pangguoming.com/2017/11/08/Jenkins详细安装与构建部署使用教程/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="Jenkins是一个开源软件项目，旨在提供一个开放易用的软件平台，使软件的持续集成变成可能。Jenkins是基于Java开发的一种持续集成工具，用于监控持续重复的工作，功能包括：1、持续的软件版本发布/测试项目。2、监控外部调用执行的工作。 本文使用的Linux：Ubuntu 其中JDK、Tomcat、SVN服务器请看这里Ubuntu安装配置JDK、Tomcat、SVN服务器 一、安装Jenk">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.blog.csdn.net/20160114170545719">
+<meta property="og:image" content="http://img.blog.csdn.net/20160114171041150">
+<meta property="og:image" content="http://img.blog.csdn.net/20160114171141859">
+<meta property="og:image" content="http://img.blog.csdn.net/20160114175606318">
+<meta property="og:image" content="http://img.blog.csdn.net/20160114175627304">
+<meta property="og:image" content="http://img.blog.csdn.net/20160114175656084">
+<meta property="og:image" content="http://img.blog.csdn.net/20160114175822610">
+<meta property="og:image" content="http://img.blog.csdn.net/20160115131815483">
+<meta property="og:image" content="http://img.blog.csdn.net/20160114175734365">
+<meta property="og:image" content="http://img.blog.csdn.net/20160114175937302">
+<meta property="og:image" content="http://img.blog.csdn.net/20160114180108721">
+<meta property="og:image" content="http://img.blog.csdn.net/20160114180140441">
+<meta property="og:image" content="http://img.blog.csdn.net/20160114180223408">
+<meta property="og:image" content="http://img.blog.csdn.net/20160114180853260">
+<meta property="og:image" content="http://img.blog.csdn.net/20160115132152083">
+<meta property="og:image" content="http://img.blog.csdn.net/20160115132447659">
+<meta property="og:image" content="http://img.blog.csdn.net/20160114190901218">
+<meta property="og:image" content="http://img.blog.csdn.net/20160115132841040">
+<meta property="og:image" content="http://img.blog.csdn.net/20160115133038458">
+<meta property="og:image" content="http://img.blog.csdn.net/20160114191355628">
+<meta property="og:image" content="http://img.blog.csdn.net/20160115133537058">
+<meta property="og:image" content="http://img.blog.csdn.net/20160115134058186">
+<meta property="og:image" content="http://img.blog.csdn.net/20160115134827227">
+<meta property="og:image" content="http://img.blog.csdn.net/20160115134630635">
+<meta property="og:updated_time" content="2019-01-26T15:01:17.835Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jenkins详细安装与构建部署使用教程">
+<meta name="twitter:description" content="Jenkins是一个开源软件项目，旨在提供一个开放易用的软件平台，使软件的持续集成变成可能。Jenkins是基于Java开发的一种持续集成工具，用于监控持续重复的工作，功能包括：1、持续的软件版本发布/测试项目。2、监控外部调用执行的工作。 本文使用的Linux：Ubuntu 其中JDK、Tomcat、SVN服务器请看这里Ubuntu安装配置JDK、Tomcat、SVN服务器 一、安装Jenk">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160114170545719">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2017/11/08/Jenkins详细安装与构建部署使用教程/">
+
+
+
+
+
+  <title>Jenkins详细安装与构建部署使用教程 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/11/08/Jenkins详细安装与构建部署使用教程/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Jenkins详细安装与构建部署使用教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-08T16:32:00+08:00">
+                2017-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>  Jenkins是一个开源软件项目，旨在提供一个开放易用的软件平台，使软件的持续集成变成可能。Jenkins是基于Java开发的一种持续集成工具，用于监控持续重复的工作，功能包括：<br>1、持续的软件版本发布/测试项目。<br>2、监控外部调用执行的工作。</p>
+<p>本文使用的Linux：Ubuntu</p>
+<p>其中JDK、Tomcat、SVN服务器请看这里<a href="http://blog.csdn.net/evankaka/article/details/50463782" target="_blank" rel="noopener">Ubuntu安装配置JDK、Tomcat、SVN服务器</a></p>
+<h1 id="一、安装Jenkins"><a href="#一、安装Jenkins" class="headerlink" title="一、安装Jenkins"></a>一、安装Jenkins</h1><p>本文直接使用war包安装</p>
+<p>下载地址：<a href="https://jenkins-ci.org/content/thank-you-downloading-windows-installer/" target="_blank" rel="noopener">https://jenkins-ci.org/content/thank-you-downloading-windows-installer/</a></p>
+<p><img src="http://img.blog.csdn.net/20160114170545719" alt=""></p>
+<p>war包有两种安装方法</p>
+<p>方法一</p>
+<p> 下载jenkins.war, 拷贝到D:\Java\Tool\jenkins（）下，然后运行java -jar jenkins.war. (注意需要先安装JDK，然后设置JAVA_HOME环境变量且将%JAVA_HOME%\bin加入到PATH环境变量中)  </p>
+<p>运行如下：  </p>
+<div><img src="http://img.blog.csdn.net/20160114171041150" alt=""><br><br>访问<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> , jenkins的主界面如下：<br><br><img src="http://img.blog.csdn.net/20160114171141859" alt=""><br><br>方法二<br><br>把Jenkins 1.409.1版解压，把得到的war包直接扔到tomcat下，启动tomcat，Jenkins就安装完毕，访问<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a><br><br># 二、构建一个Maven项目<br><br>1、新建一个job<br><br><img src="http://img.blog.csdn.net/20160114175606318" alt=""><br><br>2、输入名称和项目类型<br><br><img src="http://img.blog.csdn.net/20160114175627304" alt=""><br><br>3、设置编译的版本号等信息<br><br><img src="http://img.blog.csdn.net/20160114175656084" alt=""><br><br>4、设置svn库地址：<br><br>输入项目托管的svn的地址，如果有出现要输入账号和密码的地方，输入即可。<br><br><img src="http://img.blog.csdn.net/20160114175822610" alt=""><br><br>如果有出现如下说明用户或密码不对:<br><br><div><img src="http://img.blog.csdn.net/20160115131815483" alt=""><br><br>点击进去重新设置用户和密码<br><br>5、配置jdk和maven<br><br>第一次打开出现如下，点击进去。要求提示设置JDK和Maven<br><br><img src="http://img.blog.csdn.net/20160114175734365" alt=""><br><br>点击系统管理-》系统设置，找到JDK和Maven的设置位置<br><br>选择本电脑的：<br><br><img src="http://img.blog.csdn.net/20160114175937302" alt=""><br><br>9、到这里已经可以构造这个项目了。<br><br>点击构建<br><br><img src="http://img.blog.csdn.net/20160114180108721" alt=""><br><br>构建输出的信息：<br><br><img src="http://img.blog.csdn.net/20160114180140441" alt=""><br><br>构建成功输出如下 ：<br><br><img src="http://img.blog.csdn.net/20160114180223408" alt=""><br><br>10、验证<br><br>这时它已经自动把这个项目打包了一个war包,默认打包到了C:\Users\linbingwen.jenkins\workspace\JavaWeb\JavaWeb\target<br><br><img src="http://img.blog.csdn.net/20160114180853260" alt=""><br><br>或者点击如下：<br><br><img src="http://img.blog.csdn.net/20160115132152083" alt=""><br><br># 三、自动远程部署到tomcat<br><br>接下来要完成自动构建成war包后，将些war包上传到远程linux的tomcat的webapps目录，更新项目的war包，并重启tomcat.<br><br>1、安装插件<br><br>系统管理-》管理插件，在可选插件里找到下面这个，然后点击直接安装命令，安装成功后要重启jenkins<br><br><img src="http://img.blog.csdn.net/20160115132447659" alt=""><br><br>t笔者在安装插件时报错如下：<br><br><img src="http://img.blog.csdn.net/20160114190901218" alt=""><br><br>这应该是天朝的墙所导致的，所以笔者就使用了手动安装的方式。<br><br>解决方法：<br><br>手动安装<br><br>到<a href="https://wiki.jenkins-ci.org/display/JENKINS/Publish+Over+SSH+Plugin，下载hpi到本地电脑到" target="_blank" rel="noopener">https://wiki.jenkins-ci.org/display/JENKINS/Publish+Over+SSH+Plugin，下载hpi到本地电脑到</a><br><br><img src="http://img.blog.csdn.net/20160115132841040" alt=""><br><br>在系统管理–管理插件–高级–浏览-上传插件即可<br><br><img src="http://img.blog.csdn.net/20160115133038458" alt=""><br><br>然后它自动上传并安装：<br><br>红色的是笔者在线安装不成功的，蓝色的是笔者安装成功的了，之后重启jenkis即可。<br><br><img src="http://img.blog.csdn.net/20160114191355628" alt=""><br><br><div>2、配置ssh内容:<br><div>在系统管理-》系统设置里<br><div>找到Publish over SSH<br>然后输入：<br><div><img src="http://img.blog.csdn.net/20160115133537058" alt=""><br><div>3、配置Post Steps<br>这里还是接着上面的JavaWeb项目，这个配置得安装了上面的插件后才会显示！<br><div><img src="http://img.blog.csdn.net/20160115134058186" alt=""><br><br><div>其中，<br>Transfer SetSource files：表示要上传的本地的war包及路径，可到工作空间去看<br><div><br>Remove prefix:表示要上传时要去除的文件夹，即只上传war包<br><div><br>remote driectory:即表示执行时的路径，相当于把war包上传到这里了<br><div><br>exec commad:要执行的命令<br><div><br><div><strong>要执行的脚本的内容：</strong><br><div><br><br>#!/bin/sh<br>    #defined<br>    TOMCAT_HOME=”/usr/java/tomcat/apache-tomcat-7.0.67/“<br>    ID=<code>ps -ef | grep java | grep tomcat|awk &#39;{print $2}&#39;</code><br>    echo $ID<br>    echo “kill tomcat”<br>    kill -9 $ID<br>    echo “remover war file”<br>    cd “$TOMCAT_HOME”/webapps<br>    rm -rf JavaWeb-0.0.1-SNAPSHOT<br>    rm -rf JavaWeb-0.0.1-SNAPSHOT.war<br>    echo “copy war to webapp”<br>    cd /home/lin<br>    cp JavaWeb-0.0.1-SNAPSHOT.war “$TOMCAT_HOME”/webapps<br>    cd “$TOMCAT_HOME”/bin<br>    echo “start tomcat”<br>    ./startup.sh<code>`</code><br>    <div>步骤：<br>    先停掉tomcat<br>    <div>删除webapp下对应的war包<br>    <div>复制war到webapps<br>    <div>重启tomcat<br><br>    <div><br>    <div>4、构建部署<br>    <div>点击项目的构建按钮，最终出现如下：<br>    <div><br>    <div><img src="http://img.blog.csdn.net/20160115134827227" alt=""><br>    <div>在linux上打开浏览器，输入<a href="http://localhost:8080/JavaWeb-0.0.1-SNAPSHOT/" target="_blank" rel="noopener">http://localhost:8080/JavaWeb-0.0.1-SNAPSHOT/</a><br>    <div><img src="http://img.blog.csdn.net/20160115134630635" alt=""><br><br>    <div id="yui-gen24" class="dd-handle"><br><br>注意：这里配置的ssh用户：lin要有root的权限，要不可以会报错没有权限执行kill 或rm 命令<br><br>本文使用的Linux：Ubuntu14.04<br><br>其中JDK、Tomcat、SVN服务器请看这里<a href="http://blog.csdn.net/evankaka/article/details/50463782" target="_blank" rel="noopener">Ubuntu安装配置JDK、Tomcat、SVN服务器</a><br><br>转自:<a href="http://m.blog.csdn.net/article/details?id=50518959" target="_blank" rel="noopener">http://m.blog.csdn.net/article/details?id=50518959</a><br><br>    <div id="share"><br><br>本文固定链接: <a href="https://www.whatled.com/post-1922.html" title="https://www.whatled.com/post-1922.html" target="_blank" rel="noopener">https://www.whatled.com/post-1922.html</a><br></div></div></div></div></div></div></div></div></div></div></div></div></div><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Jenkins/" rel="tag"># Jenkins</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/07/配置sonarqube+maven/" rel="next" title="配置sonarqube+maven">
+                <i class="fa fa-chevron-left"></i> 配置sonarqube+maven
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/09/删除在Godaddy注册的域名，申请退款的全过程/" rel="prev" title="删除在Godaddy注册的域名，申请退款的全过程">
+                删除在Godaddy注册的域名，申请退款的全过程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、安装Jenkins"><span class="nav-number">1.</span> <span class="nav-text">一、安装Jenkins</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

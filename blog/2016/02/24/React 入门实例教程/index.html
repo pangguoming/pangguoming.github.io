@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="react,react.js,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="作者： 阮一峰 日期： 2015年3月31日 现在最热门的前端框架，毫无疑问是 React 。上周，基于 React 的 React Native 发布，结果一天之内，就获得了 5000 颗星，受瞩目程度可见一斑。React 起源于 Facebook 的内部项目，因为该公司对市场上所有 JavaScript MVC 框架，都不满意，就决定自己写一套，用来架设Instagram 的网站。做出来以后，">
+<meta name="keywords" content="react,react.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React 入门实例教程">
+<meta property="og:url" content="http://pangguoming.com/2016/02/24/React 入门实例教程/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="作者： 阮一峰 日期： 2015年3月31日 现在最热门的前端框架，毫无疑问是 React 。上周，基于 React 的 React Native 发布，结果一天之内，就获得了 5000 颗星，受瞩目程度可见一斑。React 起源于 Facebook 的内部项目，因为该公司对市场上所有 JavaScript MVC 框架，都不满意，就决定自己写一套，用来架设Instagram 的网站。做出来以后，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://image.beekka.com/blog/2015/bg2015033101.png">
+<meta property="og:image" content="http://image.beekka.com/blog/2015/bg2015031302.jpg">
+<meta property="og:image" content="http://image.beekka.com/blog/2015/bg2015033103.png">
+<meta property="og:image" content="http://image.beekka.com/blog/2015/bg2015033104.png">
+<meta property="og:image" content="http://image.beekka.com/blog/2015/bg2015033109.png">
+<meta property="og:image" content="http://image.beekka.com/blog/2015/bg2015033107.png">
+<meta property="og:image" content="http://image.beekka.com/blog/2015/bg2015033108.png">
+<meta property="og:updated_time" content="2019-01-26T15:09:44.512Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React 入门实例教程">
+<meta name="twitter:description" content="作者： 阮一峰 日期： 2015年3月31日 现在最热门的前端框架，毫无疑问是 React 。上周，基于 React 的 React Native 发布，结果一天之内，就获得了 5000 颗星，受瞩目程度可见一斑。React 起源于 Facebook 的内部项目，因为该公司对市场上所有 JavaScript MVC 框架，都不满意，就决定自己写一套，用来架设Instagram 的网站。做出来以后，">
+<meta name="twitter:image" content="http://image.beekka.com/blog/2015/bg2015033101.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2016/02/24/React 入门实例教程/">
+
+
+
+
+
+  <title>React 入门实例教程 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2016/02/24/React 入门实例教程/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">React 入门实例教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-02-24T14:46:00+08:00">
+                2016-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>作者： <a href="http://www.ruanyifeng.com/" target="_blank" rel="noopener">阮一峰</a></p>
+<p>日期： <a href="http://www.ruanyifeng.com/blog/2015/03/" target="_blank" rel="noopener">2015年3月31日</a></p>
+<div id="main-content" class="asset-content entry-content"><br><br>现在最热门的前端框架，毫无疑问是 <a href="https://facebook.github.io/react/" target="_blank" rel="noopener">React</a> 。<br><br>上周，基于 React 的 <a href="http://facebook.github.io/react-native/" target="_blank" rel="noopener">React Native</a> 发布，结果一天之内，就获得了 5000 颗星，受瞩目程度可见一斑。<br><br>React 起源于 Facebook 的内部项目，因为该公司对市场上所有 <a href="http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html" target="_blank" rel="noopener">JavaScript MVC 框架</a>，都不满意，就决定自己写一套，用来架设<a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a> 的网站。做出来以后，发现这套东西很好用，就在2013年5月<a href="http://facebook.github.io/react/blog/2013/06/05/why-react.html" target="_blank" rel="noopener">开源</a>了。<br><br><img src="http://image.beekka.com/blog/2015/bg2015033101.png" alt=""><br><br>由于 React 的设计思想极其独特，属于革命性创新，性能出众，代码逻辑却非常简单。所以，越来越多的人开始关注和使用，认为它可能是将来 Web 开发的主流工具。<br><br>这个项目本身也越滚越大，从最早的UI引擎变成了一整套前后端通吃的 Web App 解决方案。衍生的 React Native 项目，目标更是宏伟，希望用写 Web App 的方式去写 Native App。如果能够实现，整个互联网行业都会被颠覆，因为同一组人只需要写一次 UI ，就能同时运行在服务器、浏览器和手机（参见<a href="http://www.ruanyifeng.com/blog/2015/02/future-of-dom.html" target="_blank" rel="noopener">《也许，DOM 不是答案》</a>）。<br><br><img src="http://image.beekka.com/blog/2015/bg2015031302.jpg" alt=""><br><br>既然 React 这么热门，看上去充满希望，当然应该好好学一下。从技术角度，可以满足好奇心，提高技术水平；从职业角度，有利于求职和晋升，有利于参与潜力大的项目。但是，好的 React 教程却不容易找到，这一方面因为这项技术太新，刚刚开始走红，大家都没有经验，还在摸索之中；另一方面因为 React 本身还在不断变动，API 一直在调整，至今没发布1.0版。<br><br><a href="https://github.com/ruanyf/react-demos" target="_blank" rel="noopener"><img src="http://image.beekka.com/blog/2015/bg2015033103.png" alt=""></a><br><br>我学习 React 时，就很苦恼。有的教程讨论一些细节问题，对入门没帮助；有的教程写得不错，但比较短，无助于看清全貌。我断断续续学了几个月，看过二十几篇教程，在这个过程中，将对自己有帮助的 Demo 都收集下来，做成了一个库 <a href="https://github.com/ruanyf/react-demos" target="_blank" rel="noopener">React Demos</a> 。<br><br><a href="https://github.com/ruanyf/react-demos" target="_blank" rel="noopener"><img src="http://image.beekka.com/blog/2015/bg2015033104.png" alt=""></a><br><br>下面，我就根据<a href="https://github.com/ruanyf/react-demos" target="_blank" rel="noopener">这个库</a>，写一篇全面又易懂的 React 入门教程。你只需要跟着每一个 Demo 做一遍，就能初步掌握 React 。当然，前提是你必须拥有基本 JavaScript 和 DOM 知识，但是你读完就会发现，React 所要求的预备知识真的很少。<br><br>## 零、安装<br><br>React 的安装包，可以到<a href="https://facebook.github.io/react/downloads.html" target="_blank" rel="noopener">官网</a>下载。不过，<a href="https://github.com/ruanyf/react-demos" target="_blank" rel="noopener"><code>React Demos</code></a> 已经自带 React 源码，不用另外安装，只需把这个库拷贝到你的硬盘就行了。<br><br>&gt; <code class=" language-bash"><br>&gt;     $ git clone <a href="mailto:git@github" target="_blank" rel="noopener">git@github</a><span class="token punctuation">.com<span class="token punctuation">:ruanyf<span class="token operator">/react<span class="token operator">-demos<span class="token punctuation">.git<br>&gt;     </span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果你没安装 git， 那就直接下载 [zip 压缩包](https://github.com/ruanyf/react-demos/archive/master.zip)。</span><br><span class="line"></span><br><span class="line">[![](http://image.beekka.com/blog/2015/bg2015033105.png)](https://github.com/ruanyf/react-demos)</span><br><span class="line"></span><br><span class="line">下面要讲解的12个例子在各个 `Demo` 子目录，每个目录都有一个 `index.html` 文件，在浏览器打开这个文件（大多数情况下双击即可），就能立刻看到效果。</span><br><span class="line"></span><br><span class="line">需要说明的是，React 可以在浏览器运行，也可以在服务器运行，但是本教程只涉及浏览器。一方面是为了尽量保持简单，另一方面 React 的语法是一致的，服务器的用法与浏览器差别不大。[`Demo13`](https://github.com/ruanyf/react-demos/tree/master/demo13) 是服务器首屏渲染的例子，有兴趣的朋友可以自己去看源码。</span><br><span class="line"></span><br><span class="line">## 一、HTML 模板</span><br><span class="line"></span><br><span class="line">使用 React 的网页源码，结构大致如下。</span><br><span class="line"></span><br><span class="line">&gt; &lt;code class=&quot; language-javascript&quot;&gt;</span><br><span class="line">&gt;     &lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;!DOCTYPE html&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;     &lt;span class=&quot;token operator&quot;&gt;&lt;html&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;       &lt;span class=&quot;token operator&quot;&gt;&lt;head&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;         &lt;span class=&quot;token operator&quot;&gt;&lt;script src&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;../build/react.js&quot;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/script&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;         &lt;span class=&quot;token operator&quot;&gt;&lt;script src&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;../build/react-dom.js&quot;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/script&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;         &lt;span class=&quot;token operator&quot;&gt;&lt;script src&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;../build/browser.min.js&quot;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/script&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;       &lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/head&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;       &lt;span class=&quot;token operator&quot;&gt;&lt;body&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;         &lt;span class=&quot;token operator&quot;&gt;&lt;div id&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;example&quot;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/div&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;         &lt;span class=&quot;token operator&quot;&gt;&lt;script type&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;text/babel&quot;&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;          &lt;span class=&quot;token comment&quot;&gt; // ** Our code goes here! **</span><br><span class="line">&gt;         &lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/script&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;       &lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/body&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;     &lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/html&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;     &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>上面代码有两个地方需要注意。首先，最后一个 <code>&lt;script&gt;</code> 标签的 <code>type</code> 属性为 <code>text/babel</code> 。这是因为 React 独有的 JSX 语法，跟 JavaScript 不兼容。凡是使用 JSX 的地方，都要加上 <code>type=&quot;text/babel&quot;</code> 。<br><br>其次，上面代码一共用了三个库： <code>react.js</code> 、<code>react-dom.js</code> 和 <code>Browser.js</code> ，它们必须首先加载。其中，<code>react.js</code> 是 React 的核心库，<code>react-dom.js</code> 是提供与 DOM 相关的功能，<code>Browser.js</code> 的作用是将 JSX 语法转为 JavaScript 语法，这一步很消耗时间，实际上线的时候，应该将它放到服务器完成。<br><br>&gt; <code class=" language-bash"><br>&gt;     $ babel src <span class="token operator">–out<span class="token operator">-dir build<br>&gt;     </span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上面命令可以将 `src` 子目录的 `js` 文件进行语法转换，转码后的文件全部放在 `build` 子目录。</span><br><span class="line"></span><br><span class="line">## 二、ReactDOM.render()</span><br><span class="line"></span><br><span class="line">ReactDOM.render 是 React 的最基本方法，用于将模板转为 HTML 语言，并插入指定的 DOM 节点。</span><br><span class="line"></span><br><span class="line">&gt; &lt;code class=&quot; language-javascript&quot;&gt;</span><br><span class="line">&gt;     ReactDOM&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;render&lt;span class=&quot;token punctuation&quot;&gt;(</span><br><span class="line">&gt;       &lt;span class=&quot;token operator&quot;&gt;&lt;h1&lt;span class=&quot;token operator&quot;&gt;&gt;Hello&lt;span class=&quot;token punctuation&quot;&gt;, world&lt;span class=&quot;token operator&quot;&gt;!&lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/h1&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt;       document&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;getElementById&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token string&quot;&gt;&apos;example&apos;&lt;span class=&quot;token punctuation&quot;&gt;)</span><br><span class="line">&gt;     &lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;     &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>上面代码将一个 <code>h1</code> 标题，插入 <code>example</code> 节点（查看 <a href="https://github.com/ruanyf/react-demos/blob/master/demo01/index.html" target="_blank" rel="noopener"><code>demo01</code></a>），运行结果如下。<br><br><img src="http://image.beekka.com/blog/2015/bg2015033109.png" alt=""><br><br>## 三、JSX 语法<br><br>上一节的代码， HTML 语言直接写在 JavaScript 语言之中，不加任何引号，这就是 <a href="http://facebook.github.io/react/docs/displaying-data.html#jsx-syntax" target="_blank" rel="noopener">JSX 的语法</a>，它允许 HTML 与 JavaScript 的混写（查看 <a href="https://github.com/ruanyf/react-demos/blob/master/demo02/index.html" target="_blank" rel="noopener"><code>Demo02</code></a> ）。<br><br>&gt; <code class=" language-javascript"><br>&gt;     <span class="token keyword">var names <span class="token operator">= <span class="token punctuation">[<span class="token string">‘Alice’<span class="token punctuation">, <span class="token string">‘Emily’<span class="token punctuation">, <span class="token string">‘Kate’<span class="token punctuation">]<span class="token punctuation">;<br>&gt;<br>&gt;     ReactDOM<span class="token punctuation">.<span class="token function">render<span class="token punctuation">(<br>&gt;       <span class="token operator">&lt;div<span class="token operator">&gt;<br>&gt;       <span class="token punctuation">{<br>&gt;         names<span class="token punctuation">.<span class="token function">map<span class="token punctuation">(<span class="token keyword">function <span class="token punctuation">(name<span class="token punctuation">) <span class="token punctuation">{<br>&gt;           <span class="token keyword">return <span class="token operator">&lt;div<span class="token operator">&gt;Hello<span class="token punctuation">, <span class="token punctuation">{name<span class="token punctuation">}<span class="token operator">!<span class="token operator">&lt;<span class="token operator">/div<span class="token operator">&gt;<br>&gt;         <span class="token punctuation">}<span class="token punctuation">)<br>&gt;       <span class="token punctuation">}<br>&gt;       <span class="token operator">&lt;<span class="token operator">/div<span class="token operator">&gt;<span class="token punctuation">,<br>&gt;       document<span class="token punctuation">.<span class="token function">getElementById<span class="token punctuation">(<span class="token string">‘example’<span class="token punctuation">)<br>&gt;     <span class="token punctuation">)<span class="token punctuation">;<br>&gt;     </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上面代码体现了 JSX 的基本语法规则：遇到 HTML 标签（以 `&lt;` 开头），就用 HTML 规则解析；遇到代码块（以 `&#123;` 开头），就用 JavaScript 规则解析。上面代码的运行结果如下。</span><br><span class="line"></span><br><span class="line">![](http://image.beekka.com/blog/2015/bg2015033106.png)</span><br><span class="line"></span><br><span class="line">JSX 允许直接在模板插入 JavaScript 变量。如果这个变量是一个数组，则会展开这个数组的所有成员（查看 [`demo03`](https://github.com/ruanyf/react-demos/blob/master/demo03/index.html) ）。</span><br><span class="line"></span><br><span class="line">&gt; &lt;code class=&quot; language-javascript&quot;&gt;</span><br><span class="line">&gt;     &lt;span class=&quot;token keyword&quot;&gt;var arr &lt;span class=&quot;token operator&quot;&gt;= &lt;span class=&quot;token punctuation&quot;&gt;[</span><br><span class="line">&gt;       &lt;span class=&quot;token operator&quot;&gt;&lt;h1&lt;span class=&quot;token operator&quot;&gt;&gt;Hello world&lt;span class=&quot;token operator&quot;&gt;!&lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/h1&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt;       &lt;span class=&quot;token operator&quot;&gt;&lt;h2&lt;span class=&quot;token operator&quot;&gt;&gt;React is awesome&lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/h2&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt;     &lt;span class=&quot;token punctuation&quot;&gt;]&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;     ReactDOM&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;render&lt;span class=&quot;token punctuation&quot;&gt;(</span><br><span class="line">&gt;       &lt;span class=&quot;token operator&quot;&gt;&lt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&#123;arr&lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt;       document&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;getElementById&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token string&quot;&gt;&apos;example&apos;&lt;span class=&quot;token punctuation&quot;&gt;)</span><br><span class="line">&gt;     &lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;     &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>上面代码的<code>arr</code>变量是一个数组，结果 JSX 会把它的所有成员，添加到模板，运行结果如下。<br><br><img src="http://image.beekka.com/blog/2015/bg2015033107.png" alt=""><br><br>## 四、组件<br><br>React 允许将代码封装成组件（component），然后像插入普通 HTML 标签一样，在网页中插入这个组件。React.createClass 方法就用于生成一个组件类（查看 <a href="https://github.com/ruanyf/react-demos/blob/master/demo04/index.html" target="_blank" rel="noopener"><code>demo04</code></a>）。<br><br>&gt; <code class=" language-javascript"><br>&gt;     <span class="token keyword">var HelloMessage <span class="token operator">= React<span class="token punctuation">.<span class="token function">createClass<span class="token punctuation">(<span class="token punctuation">{<br>&gt;       render<span class="token punctuation">: <span class="token keyword">function<span class="token punctuation">(<span class="token punctuation">) <span class="token punctuation">{<br>&gt;         <span class="token keyword">return <span class="token operator">&lt;h1<span class="token operator">&gt;Hello <span class="token punctuation">{this<span class="token punctuation">.props<span class="token punctuation">.name<span class="token punctuation">}<span class="token operator">&lt;<span class="token operator">/h1<span class="token operator">&gt;<span class="token punctuation">;<br>&gt;       <span class="token punctuation">}<br>&gt;     <span class="token punctuation">}<span class="token punctuation">)<span class="token punctuation">;<br>&gt;<br>&gt;     ReactDOM<span class="token punctuation">.<span class="token function">render<span class="token punctuation">(<br>&gt;       <span class="token operator">&lt;HelloMessage name<span class="token operator">=<span class="token string">“John” <span class="token operator">/<span class="token operator">&gt;<span class="token punctuation">,<br>&gt;       document<span class="token punctuation">.<span class="token function">getElementById<span class="token punctuation">(<span class="token string">‘example’<span class="token punctuation">)<br>&gt;     <span class="token punctuation">)<span class="token punctuation">;<br>&gt;     </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上面代码中，变量 `HelloMessage` 就是一个组件类。模板插入 `&lt;HelloMessage /&gt;` 时，会自动生成 `HelloMessage` 的一个实例（下文的&quot;组件&quot;都指组件类的实例）。所有组件类都必须有自己的 `render` 方法，用于输出组件。</span><br><span class="line"></span><br><span class="line">注意，组件类的第一个字母必须大写，否则会报错，比如`HelloMessage`不能写成`helloMessage`。另外，组件类只能包含一个顶层标签，否则也会报错。</span><br><span class="line"></span><br><span class="line">&gt; &lt;code class=&quot; language-javascript&quot;&gt;</span><br><span class="line">&gt;     &lt;span class=&quot;token keyword&quot;&gt;var HelloMessage &lt;span class=&quot;token operator&quot;&gt;= React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;createClass&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;       render&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token keyword&quot;&gt;function&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;         &lt;span class=&quot;token keyword&quot;&gt;return &lt;span class=&quot;token operator&quot;&gt;&lt;h1&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;           Hello &lt;span class=&quot;token punctuation&quot;&gt;&#123;this&lt;span class=&quot;token punctuation&quot;&gt;.props&lt;span class=&quot;token punctuation&quot;&gt;.name&lt;span class=&quot;token punctuation&quot;&gt;&#125;</span><br><span class="line">&gt;         &lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/h1&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token operator&quot;&gt;&lt;p&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;           some text</span><br><span class="line">&gt;         &lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/p&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;       &lt;span class=&quot;token punctuation&quot;&gt;&#125;</span><br><span class="line">&gt;     &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;     &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>上面代码会报错，因为<code>HelloMessage</code>组件包含了两个顶层标签：<code>h1</code>和<code>p</code>。<br><br>组件的用法与原生的 HTML 标签完全一致，可以任意加入属性，比如 <code>&lt;HelloMessage name=&quot;John&quot;&gt;</code> ，就是 <code>HelloMessage</code> 组件加入一个 <code>name</code> 属性，值为 <code>John</code>。组件的属性可以在组件类的 <code>this.props</code> 对象上获取，比如 <code>name</code> 属性就可以通过 <code>this.props.name</code> 读取。上面代码的运行结果如下。<br><br><img src="http://image.beekka.com/blog/2015/bg2015033108.png" alt=""><br><br>添加组件属性，有一个地方需要注意，就是 <code>class</code> 属性需要写成 <code>className</code> ，<code>for</code> 属性需要写成 <code>htmlFor</code> ，这是因为 <code>class</code> 和 <code>for</code> 是 JavaScript 的保留字。<br><br>## 五、this.props.children<br><br><code>this.props</code> 对象的属性与组件的属性一一对应，但是有一个例外，就是 <code>this.props.children</code> 属性。它表示组件的所有子节点（查看 <a href="https://github.com/ruanyf/react-demos/blob/master/demo05/index.html" target="_blank" rel="noopener"><code>demo05</code></a>）。<br><br>&gt; <code class=" language-javascript"><br>&gt;     <span class="token keyword">var NotesList <span class="token operator">= React<span class="token punctuation">.<span class="token function">createClass<span class="token punctuation">(<span class="token punctuation">{<br>&gt;       render<span class="token punctuation">: <span class="token keyword">function<span class="token punctuation">(<span class="token punctuation">) <span class="token punctuation">{<br>&gt;         <span class="token keyword">return <span class="token punctuation">(<br>&gt;           <span class="token operator">&lt;ol<span class="token operator">&gt;<br>&gt;           <span class="token punctuation">{<br>&gt;             React<span class="token punctuation">.Children<span class="token punctuation">.<span class="token function">map<span class="token punctuation">(this<span class="token punctuation">.props<span class="token punctuation">.children<span class="token punctuation">, <span class="token keyword">function <span class="token punctuation">(child<span class="token punctuation">) <span class="token punctuation">{<br>&gt;               <span class="token keyword">return <span class="token operator">&lt;li<span class="token operator">&gt;<span class="token punctuation">{child<span class="token punctuation">}<span class="token operator">&lt;<span class="token operator">/li<span class="token operator">&gt;<span class="token punctuation">;<br>&gt;             <span class="token punctuation">}<span class="token punctuation">)<br>&gt;           <span class="token punctuation">}<br>&gt;           <span class="token operator">&lt;<span class="token operator">/ol<span class="token operator">&gt;<br>&gt;         <span class="token punctuation">)<span class="token punctuation">;<br>&gt;       <span class="token punctuation">}<br>&gt;     <span class="token punctuation">}<span class="token punctuation">)<span class="token punctuation">;<br>&gt;<br>&gt;     ReactDOM<span class="token punctuation">.<span class="token function">render<span class="token punctuation">(<br>&gt;       <span class="token operator">&lt;NotesList<span class="token operator">&gt;<br>&gt;         <span class="token operator">&lt;span<span class="token operator">&gt;hello<span class="token operator">&lt;<span class="token operator">/span<span class="token operator">&gt;<br>&gt;         <span class="token operator">&lt;span<span class="token operator">&gt;world<span class="token operator">&lt;<span class="token operator">/span<span class="token operator">&gt;<br>&gt;       <span class="token operator">&lt;<span class="token operator">/NotesList<span class="token operator">&gt;<span class="token punctuation">,<br>&gt;       document<span class="token punctuation">.body<br>&gt;     <span class="token punctuation">)<span class="token punctuation">;<br>&gt;     </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上面代码的 `NoteList` 组件有两个 `span` 子节点，它们都可以通过 `this.props.children` 读取，运行结果如下。</span><br><span class="line"></span><br><span class="line">![](http://image.beekka.com/blog/2015/bg2015033110.png)</span><br><span class="line"></span><br><span class="line">这里需要注意， `this.props.children` 的值有三种可能：如果当前组件没有子节点，它就是 `undefined` ;如果有一个子节点，数据类型是 `object` ；如果有多个子节点，数据类型就是 `array` 。所以，处理 `this.props.children` 的时候要小心。</span><br><span class="line"></span><br><span class="line">React 提供一个工具方法 [`React.Children`](https://facebook.github.io/react/docs/top-level-api.html#react.children) 来处理 `this.props.children` 。我们可以用 `React.Children.map` 来遍历子节点，而不用担心 `this.props.children` 的数据类型是 `undefined` 还是 `object`。更多的 `React.Children` 的方法，请参考[官方文档](https://facebook.github.io/react/docs/top-level-api.html#react.children)。</span><br><span class="line"></span><br><span class="line">## 六、PropTypes</span><br><span class="line"></span><br><span class="line">组件的属性可以接受任意值，字符串、对象、函数等等都可以。有时，我们需要一种机制，验证别人使用组件时，提供的参数是否符合要求。</span><br><span class="line"></span><br><span class="line">组件类的`PropTypes`属性，就是用来验证组件实例的属性是否符合要求（查看 [`demo06`](https://github.com/ruanyf/react-demos/blob/master/demo06/index.html)）。</span><br><span class="line"></span><br><span class="line">&gt; &lt;code class=&quot; language-javascript&quot;&gt;</span><br><span class="line">&gt;     &lt;span class=&quot;token keyword&quot;&gt;var MyTitle &lt;span class=&quot;token operator&quot;&gt;= React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;createClass&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;       propTypes&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;         title&lt;span class=&quot;token punctuation&quot;&gt;: React&lt;span class=&quot;token punctuation&quot;&gt;.PropTypes&lt;span class=&quot;token punctuation&quot;&gt;.string&lt;span class=&quot;token punctuation&quot;&gt;.isRequired&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt;       &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt; </span><br><span class="line">&gt;       render&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token keyword&quot;&gt;function&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;          &lt;span class=&quot;token keyword&quot;&gt;return &lt;span class=&quot;token operator&quot;&gt;&lt;h1&lt;span class=&quot;token operator&quot;&gt;&gt; &lt;span class=&quot;token punctuation&quot;&gt;&#123;this&lt;span class=&quot;token punctuation&quot;&gt;.props&lt;span class=&quot;token punctuation&quot;&gt;.title&lt;span class=&quot;token punctuation&quot;&gt;&#125; &lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/h1&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;        &lt;span class=&quot;token punctuation&quot;&gt;&#125;</span><br><span class="line">&gt;     &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;     &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>上面的<code>Mytitle</code>组件有一个<code>title</code>属性。<code>PropTypes</code> 告诉 React，这个 <code>title</code> 属性是必须的，而且它的值必须是字符串。现在，我们设置 <code>title</code> 属性的值是一个数值。<br><br>&gt; <code class=" language-javascript"><br>&gt;     <span class="token keyword">var data <span class="token operator">= <span class="token number">123<span class="token punctuation">;<br>&gt;<br>&gt;     ReactDOM<span class="token punctuation">.<span class="token function">render<span class="token punctuation">(<br>&gt;       <span class="token operator">&lt;MyTitle title<span class="token operator">=<span class="token punctuation">{data<span class="token punctuation">} <span class="token operator">/<span class="token operator">&gt;<span class="token punctuation">,<br>&gt;       document<span class="token punctuation">.body<br>&gt;     <span class="token punctuation">)<span class="token punctuation">;<br>&gt;     </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这样一来，`title`属性就通不过验证了。控制台会显示一行错误信息。</span><br><span class="line"></span><br><span class="line">&gt; &lt;code class=&quot; language-bash&quot;&gt;</span><br><span class="line">&gt;     Warning&lt;span class=&quot;token punctuation&quot;&gt;: Failed propType&lt;span class=&quot;token punctuation&quot;&gt;: Invalid prop `title` of type `number` supplied to `MyTitle`&lt;span class=&quot;token punctuation&quot;&gt;, expected `string`&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>更多的<code>PropTypes</code>设置，可以查看<a href="http://facebook.github.io/react/docs/reusable-components.html" target="_blank" rel="noopener">官方文档</a>。<br><br>此外，<code>getDefaultProps</code> 方法可以用来设置组件属性的默认值。<br><br>&gt; <code class=" language-javascript"><br>&gt;     <span class="token keyword">var MyTitle <span class="token operator">= React<span class="token punctuation">.<span class="token function">createClass<span class="token punctuation">(<span class="token punctuation">{<br>&gt;       getDefaultProps <span class="token punctuation">: <span class="token keyword">function <span class="token punctuation">(<span class="token punctuation">) <span class="token punctuation">{<br>&gt;         <span class="token keyword">return <span class="token punctuation">{<br>&gt;           title <span class="token punctuation">: <span class="token string">‘Hello World’<br>&gt;         <span class="token punctuation">}<span class="token punctuation">;<br>&gt;       <span class="token punctuation">}<span class="token punctuation">,<br>&gt;<br>&gt;       render<span class="token punctuation">: <span class="token keyword">function<span class="token punctuation">(<span class="token punctuation">) <span class="token punctuation">{<br>&gt;          <span class="token keyword">return <span class="token operator">&lt;h1<span class="token operator">&gt; <span class="token punctuation">{this<span class="token punctuation">.props<span class="token punctuation">.title<span class="token punctuation">} <span class="token operator">&lt;<span class="token operator">/h1<span class="token operator">&gt;<span class="token punctuation">;<br>&gt;        <span class="token punctuation">}<br>&gt;     <span class="token punctuation">}<span class="token punctuation">)<span class="token punctuation">;<br>&gt;<br>&gt;     ReactDOM<span class="token punctuation">.<span class="token function">render<span class="token punctuation">(<br>&gt;       <span class="token operator">&lt;MyTitle <span class="token operator">/<span class="token operator">&gt;<span class="token punctuation">,<br>&gt;       document<span class="token punctuation">.body<br>&gt;     <span class="token punctuation">)<span class="token punctuation">;<br>&gt;     </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上面代码会输出&quot;Hello World&quot;。</span><br><span class="line"></span><br><span class="line">## 七、获取真实的DOM节点</span><br><span class="line"></span><br><span class="line">组件并不是真实的 DOM 节点，而是存在于内存之中的一种数据结构，叫做虚拟 DOM （virtual DOM）。只有当它插入文档以后，才会变成真实的 DOM 。根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 [DOM diff](http://calendar.perfplanet.com/2013/diff/) ，它可以极大提高网页的性能表现。</span><br><span class="line"></span><br><span class="line">但是，有时需要从组件获取真实 DOM 的节点，这时就要用到 `ref` 属性（查看 [demo07](https://github.com/ruanyf/react-demos/blob/master/demo07/index.html) ）。</span><br><span class="line"></span><br><span class="line">&gt; &lt;code class=&quot; language-javascript&quot;&gt;</span><br><span class="line">&gt;     &lt;span class=&quot;token keyword&quot;&gt;var MyComponent &lt;span class=&quot;token operator&quot;&gt;= React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;createClass&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;       handleClick&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token keyword&quot;&gt;function&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;         this&lt;span class=&quot;token punctuation&quot;&gt;.refs&lt;span class=&quot;token punctuation&quot;&gt;.myTextInput&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;focus&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;       &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt;       render&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token keyword&quot;&gt;function&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;         &lt;span class=&quot;token keyword&quot;&gt;return &lt;span class=&quot;token punctuation&quot;&gt;(</span><br><span class="line">&gt;           &lt;span class=&quot;token operator&quot;&gt;&lt;div&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;             &lt;span class=&quot;token operator&quot;&gt;&lt;input type&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;text&quot; ref&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;myTextInput&quot; &lt;span class=&quot;token operator&quot;&gt;/&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;             &lt;span class=&quot;token operator&quot;&gt;&lt;input type&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;button&quot; value&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;Focus the text input&quot; onClick&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token punctuation&quot;&gt;&#123;this&lt;span class=&quot;token punctuation&quot;&gt;.handleClick&lt;span class=&quot;token punctuation&quot;&gt;&#125; &lt;span class=&quot;token operator&quot;&gt;/&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;           &lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/div&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;         &lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;       &lt;span class=&quot;token punctuation&quot;&gt;&#125;</span><br><span class="line">&gt;     &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt; </span><br><span class="line">&gt;     ReactDOM&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;render&lt;span class=&quot;token punctuation&quot;&gt;(</span><br><span class="line">&gt;       &lt;span class=&quot;token operator&quot;&gt;&lt;MyComponent &lt;span class=&quot;token operator&quot;&gt;/&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt;       document&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;getElementById&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token string&quot;&gt;&apos;example&apos;&lt;span class=&quot;token punctuation&quot;&gt;)</span><br><span class="line">&gt;     &lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;     &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>上面代码中，组件 <code>MyComponent</code> 的子节点有一个文本输入框，用于获取用户的输入。这时就必须获取真实的 DOM 节点，虚拟 DOM 是拿不到用户输入的。为了做到这一点，文本输入框必须有一个 <code>ref</code> 属性，然后 <code>this.refs.[refName]</code> 就会返回这个真实的 DOM 节点。<br><br>需要注意的是，由于 <code>this.refs.[refName]</code> 属性获取的是真实 DOM ，所以必须等到虚拟 DOM 插入文档以后，才能使用这个属性，否则会报错。上面代码中，通过为组件指定 <code>Click</code> 事件的回调函数，确保了只有等到真实 DOM 发生 <code>Click</code> 事件之后，才会读取 <code>this.refs.[refName]</code> 属性。<br><br>React 组件支持很多事件，除了 <code>Click</code> 事件以外，还有 <code>KeyDown</code> 、<code>Copy</code>、<code>Scroll</code> 等，完整的事件清单请查看<a href="http://facebook.github.io/react/docs/events.html#supported-events" target="_blank" rel="noopener">官方文档</a>。<br><br>## 八、this.state<br><br>组件免不了要与用户互动，React 的一大创新，就是将组件看成是一个状态机，一开始有一个初始状态，然后用户互动，导致状态变化，从而触发重新渲染 UI （查看 <a href="https://github.com/ruanyf/react-demos/blob/master/demo08/index.html" target="_blank" rel="noopener"><code>demo08</code></a> ）。<br><br>&gt; <code class=" language-javascript"><br>&gt;     <span class="token keyword">var LikeButton <span class="token operator">= React<span class="token punctuation">.<span class="token function">createClass<span class="token punctuation">(<span class="token punctuation">{<br>&gt;       getInitialState<span class="token punctuation">: <span class="token keyword">function<span class="token punctuation">(<span class="token punctuation">) <span class="token punctuation">{<br>&gt;         <span class="token keyword">return <span class="token punctuation">{liked<span class="token punctuation">: <span class="token boolean">false<span class="token punctuation">}<span class="token punctuation">;<br>&gt;       <span class="token punctuation">}<span class="token punctuation">,<br>&gt;       handleClick<span class="token punctuation">: <span class="token keyword">function<span class="token punctuation">(event<span class="token punctuation">) <span class="token punctuation">{<br>&gt;         this<span class="token punctuation">.<span class="token function">setState<span class="token punctuation">(<span class="token punctuation">{liked<span class="token punctuation">: <span class="token operator">!this<span class="token punctuation">.state<span class="token punctuation">.liked<span class="token punctuation">}<span class="token punctuation">)<span class="token punctuation">;<br>&gt;       <span class="token punctuation">}<span class="token punctuation">,<br>&gt;       render<span class="token punctuation">: <span class="token keyword">function<span class="token punctuation">(<span class="token punctuation">) <span class="token punctuation">{<br>&gt;         <span class="token keyword">var text <span class="token operator">= this<span class="token punctuation">.state<span class="token punctuation">.liked <span class="token operator">? <span class="token string">‘like’ <span class="token punctuation">: <span class="token string">‘haven\’t liked’<span class="token punctuation">;<br>&gt;         <span class="token keyword">return <span class="token punctuation">(<br>&gt;           <span class="token operator">&lt;p onClick<span class="token operator">=<span class="token punctuation">{this<span class="token punctuation">.handleClick<span class="token punctuation">}<span class="token operator">&gt;<br>&gt;             You <span class="token punctuation">{text<span class="token punctuation">} this<span class="token punctuation">. Click to toggle<span class="token punctuation">.<br>&gt;           <span class="token operator">&lt;<span class="token operator">/p<span class="token operator">&gt;<br>&gt;         <span class="token punctuation">)<span class="token punctuation">;<br>&gt;       <span class="token punctuation">}<br>&gt;     <span class="token punctuation">}<span class="token punctuation">)<span class="token punctuation">;<br>&gt;<br>&gt;     ReactDOM<span class="token punctuation">.<span class="token function">render<span class="token punctuation">(<br>&gt;       <span class="token operator">&lt;LikeButton <span class="token operator">/<span class="token operator">&gt;<span class="token punctuation">,<br>&gt;       document<span class="token punctuation">.<span class="token function">getElementById<span class="token punctuation">(<span class="token string">‘example’<span class="token punctuation">)<br>&gt;     <span class="token punctuation">)<span class="token punctuation">;<br>&gt;     </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上面代码是一个 `LikeButton` 组件，它的 `getInitialState` 方法用于定义初始状态，也就是一个对象，这个对象可以通过 `this.state` 属性读取。当用户点击组件，导致状态变化，`this.setState` 方法就修改状态值，每次修改以后，自动调用 `this.render` 方法，再次渲染组件。</span><br><span class="line"></span><br><span class="line">由于 `this.props` 和 `this.state` 都用于描述组件的特性，可能会产生混淆。一个简单的区分方法是，`this.props` 表示那些一旦定义，就不再改变的特性，而 `this.state` 是会随着用户互动而产生变化的特性。</span><br><span class="line"></span><br><span class="line">## 九、表单</span><br><span class="line"></span><br><span class="line">用户在表单填入的内容，属于用户跟组件的互动，所以不能用 `this.props` 读取（查看 [`demo9`](https://github.com/ruanyf/react-demos/blob/master/demo09/index.html) ）。</span><br><span class="line"></span><br><span class="line">&gt; &lt;code class=&quot; language-javascript&quot;&gt;</span><br><span class="line">&gt;     &lt;span class=&quot;token keyword&quot;&gt;var Input &lt;span class=&quot;token operator&quot;&gt;= React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;createClass&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;       getInitialState&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token keyword&quot;&gt;function&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;         &lt;span class=&quot;token keyword&quot;&gt;return &lt;span class=&quot;token punctuation&quot;&gt;&#123;value&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token string&quot;&gt;&apos;Hello!&apos;&lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;       &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt;       handleChange&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token keyword&quot;&gt;function&lt;span class=&quot;token punctuation&quot;&gt;(event&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;         this&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;setState&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;&#123;value&lt;span class=&quot;token punctuation&quot;&gt;: event&lt;span class=&quot;token punctuation&quot;&gt;.target&lt;span class=&quot;token punctuation&quot;&gt;.value&lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;       &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt;       render&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token keyword&quot;&gt;function &lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;         &lt;span class=&quot;token keyword&quot;&gt;var value &lt;span class=&quot;token operator&quot;&gt;= this&lt;span class=&quot;token punctuation&quot;&gt;.state&lt;span class=&quot;token punctuation&quot;&gt;.value&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;         &lt;span class=&quot;token keyword&quot;&gt;return &lt;span class=&quot;token punctuation&quot;&gt;(</span><br><span class="line">&gt;           &lt;span class=&quot;token operator&quot;&gt;&lt;div&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;             &lt;span class=&quot;token operator&quot;&gt;&lt;input type&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;text&quot; value&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token punctuation&quot;&gt;&#123;value&lt;span class=&quot;token punctuation&quot;&gt;&#125; onChange&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token punctuation&quot;&gt;&#123;this&lt;span class=&quot;token punctuation&quot;&gt;.handleChange&lt;span class=&quot;token punctuation&quot;&gt;&#125; &lt;span class=&quot;token operator&quot;&gt;/&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;             &lt;span class=&quot;token operator&quot;&gt;&lt;p&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&#123;value&lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/p&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;           &lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/div&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;         &lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;       &lt;span class=&quot;token punctuation&quot;&gt;&#125;</span><br><span class="line">&gt;     &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt; </span><br><span class="line">&gt;     ReactDOM&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;render&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token operator&quot;&gt;&lt;Input&lt;span class=&quot;token operator&quot;&gt;/&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token punctuation&quot;&gt;, document&lt;span class=&quot;token punctuation&quot;&gt;.body&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;     &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>上面代码中，文本输入框的值，不能用 <code>this.props.value</code> 读取，而要定义一个 <code>onChange</code> 事件的回调函数，通过 <code>event.target.value</code> 读取用户输入的值。<code>textarea</code> 元素、<code>select</code>元素、<code>radio</code>元素都属于这种情况，更多介绍请参考<a href="http://facebook.github.io/react/docs/forms.html" target="_blank" rel="noopener">官方文档</a>。<br><br>## 十、组件的生命周期<br><br>组件的<a href="https://facebook.github.io/react/docs/working-with-the-browser.html#component-lifecycle" target="_blank" rel="noopener">生命周期</a>分成三个状态：<br><br>&gt; <em>   Mounting：已插入真实 DOM<br>&gt; </em>   Updating：正在被重新渲染<br>&gt; <em>   Unmounting：已移出真实 DOM<br><br>React 为每个状态都提供了两种处理函数，<code>will</code> 函数在进入状态之前调用，<code>did</code> 函数在进入状态之后调用，三种状态共计五种处理函数。<br><br>&gt; </em>   componentWillMount()<br>&gt; <em>   componentDidMount()<br>&gt; </em>   componentWillUpdate(object nextProps, object nextState)<br>&gt; <em>   componentDidUpdate(object prevProps, object prevState)<br>&gt; </em>   componentWillUnmount()<br><br>此外，React 还提供两种特殊状态的处理函数。<br><br>&gt; <em>   componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用<br>&gt; </em>   shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用<br><br>这些方法的详细说明，可以参考<a href="http://facebook.github.io/react/docs/component-specs.html#lifecycle-methods" target="_blank" rel="noopener">官方文档</a>。下面是一个例子（查看 <a href="https://github.com/ruanyf/react-demos/blob/master/demo10/index.html" target="_blank" rel="noopener"><code>demo10</code></a> ）。<br><br>&gt; <code class=" language-javascript"><br>&gt;     <span class="token keyword">var Hello <span class="token operator">= React<span class="token punctuation">.<span class="token function">createClass<span class="token punctuation">(<span class="token punctuation">{<br>&gt;       getInitialState<span class="token punctuation">: <span class="token keyword">function <span class="token punctuation">(<span class="token punctuation">) <span class="token punctuation">{<br>&gt;         <span class="token keyword">return <span class="token punctuation">{<br>&gt;           opacity<span class="token punctuation">: <span class="token number">1.0<br>&gt;         <span class="token punctuation">}<span class="token punctuation">;<br>&gt;       <span class="token punctuation">}<span class="token punctuation">,<br>&gt;<br>&gt;       componentDidMount<span class="token punctuation">: <span class="token keyword">function <span class="token punctuation">(<span class="token punctuation">) <span class="token punctuation">{<br>&gt;         this<span class="token punctuation">.timer <span class="token operator">= <span class="token function">setInterval<span class="token punctuation">(<span class="token keyword">function <span class="token punctuation">(<span class="token punctuation">) <span class="token punctuation">{<br>&gt;           <span class="token keyword">var opacity <span class="token operator">= this<span class="token punctuation">.state<span class="token punctuation">.opacity<span class="token punctuation">;<br>&gt;           opacity <span class="token operator">-<span class="token operator">= <span class="token punctuation">.<span class="token number">05<span class="token punctuation">;<br>&gt;           <span class="token keyword">if <span class="token punctuation">(opacity <span class="token operator">&lt; <span class="token number">0.1<span class="token punctuation">) <span class="token punctuation">{<br>&gt;             opacity <span class="token operator">= <span class="token number">1.0<span class="token punctuation">;<br>&gt;           <span class="token punctuation">}<br>&gt;           this<span class="token punctuation">.<span class="token function">setState<span class="token punctuation">(<span class="token punctuation">{<br>&gt;             opacity<span class="token punctuation">: opacity<br>&gt;           <span class="token punctuation">}<span class="token punctuation">)<span class="token punctuation">;<br>&gt;         <span class="token punctuation">}<span class="token punctuation">.<span class="token function">bind<span class="token punctuation">(this<span class="token punctuation">)<span class="token punctuation">, <span class="token number">100<span class="token punctuation">)<span class="token punctuation">;<br>&gt;       <span class="token punctuation">}<span class="token punctuation">,<br>&gt;<br>&gt;       render<span class="token punctuation">: <span class="token keyword">function <span class="token punctuation">(<span class="token punctuation">) <span class="token punctuation">{<br>&gt;         <span class="token keyword">return <span class="token punctuation">(<br>&gt;           <span class="token operator">&lt;div style<span class="token operator">=<span class="token punctuation">{<span class="token punctuation">{opacity<span class="token punctuation">: this<span class="token punctuation">.state<span class="token punctuation">.opacity<span class="token punctuation">}<span class="token punctuation">}<span class="token operator">&gt;<br>&gt;             Hello <span class="token punctuation">{this<span class="token punctuation">.props<span class="token punctuation">.name<span class="token punctuation">}<br>&gt;           <span class="token operator">&lt;<span class="token operator">/div<span class="token operator">&gt;<br>&gt;         <span class="token punctuation">)<span class="token punctuation">;<br>&gt;       <span class="token punctuation">}<br>&gt;     <span class="token punctuation">}<span class="token punctuation">)<span class="token punctuation">;<br>&gt;<br>&gt;     ReactDOM<span class="token punctuation">.<span class="token function">render<span class="token punctuation">(<br>&gt;       <span class="token operator">&lt;Hello name<span class="token operator">=<span class="token string">“world”<span class="token operator">/<span class="token operator">&gt;<span class="token punctuation">,<br>&gt;       document<span class="token punctuation">.body<br>&gt;     <span class="token punctuation">)<span class="token punctuation">;<br>&gt;     </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上面代码在`hello`组件加载以后，通过 `componentDidMount` 方法设置一个定时器，每隔100毫秒，就重新设置组件的透明度，从而引发重新渲染。</span><br><span class="line"></span><br><span class="line">另外，组件的`style`属性的设置方式也值得注意，不能写成</span><br><span class="line"></span><br><span class="line">&gt; &lt;code class=&quot; language-javascript&quot;&gt;</span><br><span class="line">&gt;     style&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;opacity:&#123;this.state.opacity&#125;;&quot;</span><br><span class="line">&gt;     &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>而要写成<br><br>&gt; <code class=" language-javascript"><br>&gt;     style<span class="token operator">=<span class="token punctuation">{<span class="token punctuation">{opacity<span class="token punctuation">: this<span class="token punctuation">.state<span class="token punctuation">.opacity<span class="token punctuation">}<span class="token punctuation">}<br>&gt;     </span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这是因为 [React 组件样式](https://facebook.github.io/react/tips/inline-styles.html)是一个对象，所以第一重大括号表示这是 JavaScript 语法，第二重大括号表示样式对象。</span><br><span class="line"></span><br><span class="line">## 十一、Ajax</span><br><span class="line"></span><br><span class="line">组件的数据来源，通常是通过 Ajax 请求从服务器获取，可以使用 `componentDidMount` 方法设置 Ajax 请求，等到请求成功，再用 `this.setState` 方法重新渲染 UI （查看 [`demo11`](https://github.com/ruanyf/react-demos/blob/master/demo11/index.html) ）。</span><br><span class="line"></span><br><span class="line">&gt; &lt;code class=&quot; language-javascript&quot;&gt;</span><br><span class="line">&gt;     &lt;span class=&quot;token keyword&quot;&gt;var UserGist &lt;span class=&quot;token operator&quot;&gt;= React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;createClass&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;       getInitialState&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token keyword&quot;&gt;function&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;         &lt;span class=&quot;token keyword&quot;&gt;return &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;           username&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token string&quot;&gt;&apos;&apos;&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt;           lastGistUrl&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token string&quot;&gt;&apos;&apos;</span><br><span class="line">&gt;         &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;       &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt; </span><br><span class="line">&gt;       componentDidMount&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token keyword&quot;&gt;function&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;         $&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;get&lt;span class=&quot;token punctuation&quot;&gt;(this&lt;span class=&quot;token punctuation&quot;&gt;.props&lt;span class=&quot;token punctuation&quot;&gt;.source&lt;span class=&quot;token punctuation&quot;&gt;, &lt;span class=&quot;token keyword&quot;&gt;function&lt;span class=&quot;token punctuation&quot;&gt;(result&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;           &lt;span class=&quot;token keyword&quot;&gt;var lastGist &lt;span class=&quot;token operator&quot;&gt;= result&lt;span class=&quot;token punctuation&quot;&gt;[&lt;span class=&quot;token number&quot;&gt;0&lt;span class=&quot;token punctuation&quot;&gt;]&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;           &lt;span class=&quot;token keyword&quot;&gt;if &lt;span class=&quot;token punctuation&quot;&gt;(this&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;isMounted&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;             this&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;setState&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;               username&lt;span class=&quot;token punctuation&quot;&gt;: lastGist&lt;span class=&quot;token punctuation&quot;&gt;.owner&lt;span class=&quot;token punctuation&quot;&gt;.login&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt;               lastGistUrl&lt;span class=&quot;token punctuation&quot;&gt;: lastGist&lt;span class=&quot;token punctuation&quot;&gt;.html_url</span><br><span class="line">&gt;             &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;           &lt;span class=&quot;token punctuation&quot;&gt;&#125;</span><br><span class="line">&gt;         &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;bind&lt;span class=&quot;token punctuation&quot;&gt;(this&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;       &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt; </span><br><span class="line">&gt;       render&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token keyword&quot;&gt;function&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;         &lt;span class=&quot;token keyword&quot;&gt;return &lt;span class=&quot;token punctuation&quot;&gt;(</span><br><span class="line">&gt;           &lt;span class=&quot;token operator&quot;&gt;&lt;div&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;             &lt;span class=&quot;token punctuation&quot;&gt;&#123;this&lt;span class=&quot;token punctuation&quot;&gt;.state&lt;span class=&quot;token punctuation&quot;&gt;.username&lt;span class=&quot;token punctuation&quot;&gt;&#125;&apos;s last gist is</span><br><span class="line">&gt;             &lt;span class=&quot;token operator&quot;&gt;&lt;a href&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token punctuation&quot;&gt;&#123;this&lt;span class=&quot;token punctuation&quot;&gt;.state&lt;span class=&quot;token punctuation&quot;&gt;.lastGistUrl&lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token operator&quot;&gt;&gt;here&lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/a&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token punctuation&quot;&gt;.</span><br><span class="line">&gt;           &lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/div&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;         &lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;       &lt;span class=&quot;token punctuation&quot;&gt;&#125;</span><br><span class="line">&gt;     &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt; </span><br><span class="line">&gt;     ReactDOM&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;render&lt;span class=&quot;token punctuation&quot;&gt;(</span><br><span class="line">&gt;       &lt;span class=&quot;token operator&quot;&gt;&lt;UserGist source&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;[https://api.github.com/users/octocat/gists](https://api.github.com/users/octocat/gists)&quot; &lt;span class=&quot;token operator&quot;&gt;/&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt;       document&lt;span class=&quot;token punctuation&quot;&gt;.body</span><br><span class="line">&gt;     &lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;     &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>上面代码使用 jQuery 完成 Ajax 请求，这是为了便于说明。React 本身没有任何依赖，完全可以不用jQuery，而使用其他库。<br><br>我们甚至可以把一个Promise对象传入组件，请看<a href="https://github.com/ruanyf/react-demos/blob/master/demo12/index.html" target="_blank" rel="noopener"><code>Demo12</code></a>。<br><br>&gt; <code class=" language-javascript"><br>&gt;     ReactDOM<span class="token punctuation">.<span class="token function">render<span class="token punctuation">(<br>&gt;       <span class="token operator"><repolist>         promise<span class="token operator">=<span class="token punctuation">{$<span class="token punctuation">.<span class="token function">getJSON<span class="token punctuation">(<span class="token string">‘<a href="https://api.github.com/search/repositories" target="_blank" rel="noopener">https://api.github.com/search/repositories</a>?q=javascript&amp;sort=stars’<span class="token punctuation">)<span class="token punctuation">}<br>&gt;       <span class="token operator">/<span class="token operator">&gt;<span class="token punctuation">,<br>&gt;       document<span class="token punctuation">.body<br>&gt;     <span class="token punctuation">)<span class="token punctuation">;<br>&gt;     </span></span></span></span></span></span></span></span></span></span></span></span></span></span></repolist></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上面代码从Github的API抓取数据，然后将Promise对象作为属性，传给`RepoList`组件。</span><br><span class="line"></span><br><span class="line">如果Promise对象正在抓取数据（pending状态），组件显示&quot;正在加载&quot;；如果Promise对象报错（rejected状态），组件显示报错信息；如果Promise对象抓取数据成功（fulfilled状态），组件显示获取的数据。</span><br><span class="line"></span><br><span class="line">&gt; &lt;code class=&quot; language-javascript&quot;&gt;</span><br><span class="line">&gt;     &lt;span class=&quot;token keyword&quot;&gt;var RepoList &lt;span class=&quot;token operator&quot;&gt;= React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;createClass&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;       getInitialState&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token keyword&quot;&gt;function&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;         &lt;span class=&quot;token keyword&quot;&gt;return &lt;span class=&quot;token punctuation&quot;&gt;&#123; loading&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token boolean&quot;&gt;true&lt;span class=&quot;token punctuation&quot;&gt;, error&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token keyword&quot;&gt;null&lt;span class=&quot;token punctuation&quot;&gt;, data&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token keyword&quot;&gt;null&lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;       &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt; </span><br><span class="line">&gt;       &lt;span class=&quot;token function&quot;&gt;componentDidMount&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;         this&lt;span class=&quot;token punctuation&quot;&gt;.props&lt;span class=&quot;token punctuation&quot;&gt;.promise&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;then&lt;span class=&quot;token punctuation&quot;&gt;(</span><br><span class="line">&gt;           value &lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token operator&quot;&gt;&gt; this&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;setState&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;&#123;loading&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token boolean&quot;&gt;false&lt;span class=&quot;token punctuation&quot;&gt;, data&lt;span class=&quot;token punctuation&quot;&gt;: value&lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt;           error &lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token operator&quot;&gt;&gt; this&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;setState&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;&#123;loading&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token boolean&quot;&gt;false&lt;span class=&quot;token punctuation&quot;&gt;, error&lt;span class=&quot;token punctuation&quot;&gt;: error&lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;       &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;,</span><br><span class="line">&gt; </span><br><span class="line">&gt;       render&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token keyword&quot;&gt;function&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;         &lt;span class=&quot;token keyword&quot;&gt;if &lt;span class=&quot;token punctuation&quot;&gt;(this&lt;span class=&quot;token punctuation&quot;&gt;.state&lt;span class=&quot;token punctuation&quot;&gt;.loading&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;           &lt;span class=&quot;token keyword&quot;&gt;return &lt;span class=&quot;token operator&quot;&gt;&lt;span&lt;span class=&quot;token operator&quot;&gt;&gt;Loading&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/span&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;         &lt;span class=&quot;token punctuation&quot;&gt;&#125;</span><br><span class="line">&gt;         &lt;span class=&quot;token keyword&quot;&gt;else &lt;span class=&quot;token keyword&quot;&gt;if &lt;span class=&quot;token punctuation&quot;&gt;(this&lt;span class=&quot;token punctuation&quot;&gt;.state&lt;span class=&quot;token punctuation&quot;&gt;.error &lt;span class=&quot;token operator&quot;&gt;!&lt;span class=&quot;token operator&quot;&gt;== &lt;span class=&quot;token keyword&quot;&gt;null&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;           &lt;span class=&quot;token keyword&quot;&gt;return &lt;span class=&quot;token operator&quot;&gt;&lt;span&lt;span class=&quot;token operator&quot;&gt;&gt;Error&lt;span class=&quot;token punctuation&quot;&gt;: &lt;span class=&quot;token punctuation&quot;&gt;&#123;this&lt;span class=&quot;token punctuation&quot;&gt;.state&lt;span class=&quot;token punctuation&quot;&gt;.error&lt;span class=&quot;token punctuation&quot;&gt;.message&lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/span&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;         &lt;span class=&quot;token punctuation&quot;&gt;&#125;</span><br><span class="line">&gt;         &lt;span class=&quot;token keyword&quot;&gt;else &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;           &lt;span class=&quot;token keyword&quot;&gt;var repos &lt;span class=&quot;token operator&quot;&gt;= this&lt;span class=&quot;token punctuation&quot;&gt;.state&lt;span class=&quot;token punctuation&quot;&gt;.data&lt;span class=&quot;token punctuation&quot;&gt;.items&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;           &lt;span class=&quot;token keyword&quot;&gt;var repoList &lt;span class=&quot;token operator&quot;&gt;= repos&lt;span class=&quot;token punctuation&quot;&gt;.&lt;span class=&quot;token function&quot;&gt;map&lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token keyword&quot;&gt;function &lt;span class=&quot;token punctuation&quot;&gt;(repo&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token punctuation&quot;&gt;&#123;</span><br><span class="line">&gt;             &lt;span class=&quot;token keyword&quot;&gt;return &lt;span class=&quot;token punctuation&quot;&gt;(</span><br><span class="line">&gt;               &lt;span class=&quot;token operator&quot;&gt;&lt;li&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;                 &lt;span class=&quot;token operator&quot;&gt;&lt;a href&lt;span class=&quot;token operator&quot;&gt;=&lt;span class=&quot;token punctuation&quot;&gt;&#123;repo&lt;span class=&quot;token punctuation&quot;&gt;.html_url&lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&#123;repo&lt;span class=&quot;token punctuation&quot;&gt;.name&lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/a&lt;span class=&quot;token operator&quot;&gt;&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;span class=&quot;token punctuation&quot;&gt;&#123;repo&lt;span class=&quot;token punctuation&quot;&gt;.stargazers_count&lt;span class=&quot;token punctuation&quot;&gt;&#125; stars&lt;span class=&quot;token punctuation&quot;&gt;) &lt;span class=&quot;token operator&quot;&gt;&lt;br&lt;span class=&quot;token operator&quot;&gt;/&lt;span class=&quot;token operator&quot;&gt;&gt; &lt;span class=&quot;token punctuation&quot;&gt;&#123;repo&lt;span class=&quot;token punctuation&quot;&gt;.description&lt;span class=&quot;token punctuation&quot;&gt;&#125;</span><br><span class="line">&gt;               &lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/li&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;             &lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;           &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;           &lt;span class=&quot;token keyword&quot;&gt;return &lt;span class=&quot;token punctuation&quot;&gt;(</span><br><span class="line">&gt;             &lt;span class=&quot;token operator&quot;&gt;&lt;main&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;               &lt;span class=&quot;token operator&quot;&gt;&lt;h1&lt;span class=&quot;token operator&quot;&gt;&gt;Most Popular JavaScript Projects &lt;span class=&quot;token keyword&quot;&gt;in Github&lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/h1&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;               &lt;span class=&quot;token operator&quot;&gt;&lt;ol&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&#123;repoList&lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/ol&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;             &lt;span class=&quot;token operator&quot;&gt;&lt;&lt;span class=&quot;token operator&quot;&gt;/main&lt;span class=&quot;token operator&quot;&gt;&gt;</span><br><span class="line">&gt;           &lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;         &lt;span class=&quot;token punctuation&quot;&gt;&#125;</span><br><span class="line">&gt;       &lt;span class=&quot;token punctuation&quot;&gt;&#125;</span><br><span class="line">&gt;     &lt;span class=&quot;token punctuation&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;span class=&quot;token punctuation&quot;&gt;;</span><br><span class="line">&gt;     &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>## 十二、参考链接<br><br>1.  <a href="http://facebook.github.io/react" target="_blank" rel="noopener">React’s official site</a><br>2.  <a href="https://github.com/facebook/react/tree/master/examples" target="_blank" rel="noopener">React’s official examples</a><br>3.  <a href="http://facebook.github.io/react/docs/glossary.html" target="_blank" rel="noopener">React (Virtual) DOM Terminology</a>, by Sebastian Markbåge<br>4.  <a href="http://www.jackcallister.com/2015/01/05/the-react-quick-start-guide.html" target="_blank" rel="noopener">The React Quick Start Guide</a>, by Jack Callister<br>5.  <a href="https://scotch.io/tutorials/learning-react-getting-started-and-concepts" target="_blank" rel="noopener">Learning React.js: Getting Started and Concepts</a>, by Ken Wheeler<br>6.  <a href="http://ryanclark.me/getting-started-with-react/" target="_blank" rel="noopener">Getting started with React</a>, by Ryan Clark<br>7.  <a href="https://zapier.com/engineering/react-js-tutorial-guide-gotchas/" target="_blank" rel="noopener">React JS Tutorial and Guide to the Gotchas</a>, by Justin Deal<br>8.  <a href="https://github.com/BinaryMuse/react-primer" target="_blank" rel="noopener">React Primer</a>, by Binary Muse<br>9.  <a href="http://blog.zigomir.com/react.js/jquery/2015/01/11/jquery-versus-react-thinking.html" target="_blank" rel="noopener">jQuery versus React.js thinking</a>, by zigomir<br><br>（完）<br><br>引自：<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/03/react.html</a><br><br></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+            <a href="/tags/react-js/" rel="tag"># react.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/23/Ubuntu下VIM的安装和基本用法/" rel="next" title="Ubuntu下VIM的安装和基本用法">
+                <i class="fa fa-chevron-left"></i> Ubuntu下VIM的安装和基本用法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/28/Ubuntu 下 Neo4j单机安装和集群环境安装/" rel="prev" title="Ubuntu 下 Neo4j单机安装和集群环境安装">
+                Ubuntu 下 Neo4j单机安装和集群环境安装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

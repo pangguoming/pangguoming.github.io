@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="spring boot,email,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="简单几步，实现在spring boot中发送邮件：   1、引入依赖： [html] view plain copy1.  &amp;lt;dependency&amp;gt;  2.      &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;  3.      &amp;lt;artifactId&amp;gt;spring-boot-starter-mail&amp;lt">
+<meta name="keywords" content="spring boot,email">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring boot 发送邮件">
+<meta property="og:url" content="http://pangguoming.com/2018/01/12/spring boot 发送邮件/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="简单几步，实现在spring boot中发送邮件：   1、引入依赖： [html] view plain copy1.  &amp;lt;dependency&amp;gt;  2.      &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;  3.      &amp;lt;artifactId&amp;gt;spring-boot-starter-mail&amp;lt">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pangguoming.com/">
+<meta property="og:image" content="http://pangguoming.com/%27cid:">
+<meta property="og:updated_time" content="2019-01-26T15:01:08.071Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spring boot 发送邮件">
+<meta name="twitter:description" content="简单几步，实现在spring boot中发送邮件：   1、引入依赖： [html] view plain copy1.  &amp;lt;dependency&amp;gt;  2.      &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;  3.      &amp;lt;artifactId&amp;gt;spring-boot-starter-mail&amp;lt">
+<meta name="twitter:image" content="http://pangguoming.com/">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2018/01/12/spring boot 发送邮件/">
+
+
+
+
+
+  <title>spring boot 发送邮件 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/12/spring boot 发送邮件/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">spring boot 发送邮件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T10:29:00+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>简单几步，实现在spring boot中发送邮件：  </p>
+<p>1、引入依赖：</p>
+<div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/clementad/article/details/51833416#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/clementad/article/details/51833416#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="tag">&lt;<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>2.      <span class="tag">&lt;<span class="tag-name">groupId<span class="tag">&gt;org.springframework.boot<span class="tag">&lt;/<span class="tag-name">groupId<span class="tag">&gt;  </span></span></span></span></span></span><br>3.      <span class="tag">&lt;<span class="tag-name">artifactId<span class="tag">&gt;spring-boot-starter-mail<span class="tag">&lt;/<span class="tag-name">artifactId<span class="tag">&gt;  </span></span></span></span></span></span><br>4.  <span class="tag">&lt;/<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br><br>2、application.yml中配置邮件相关的参数：<br><br><div class="dp-highlighter bg_plain"><br><div class="bar"><br><div class="tools"><strong>[plain]</strong> <a href="http://blog.csdn.net/clementad/article/details/51833416#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/clementad/article/details/51833416#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  spring:<br>2.    mail:<br>3.      host: smtp.exmail.qq.com<br>4.      username: 用户名<br>5.      password: 密码<br>6.      properties:<br>7.        mail:<br>8.          smtp:<br>9.            auth: true<br>10.            starttls:<br>11.              enable: true<br>12.              required: true<br><br>3、邮件service代码：<br><br><div class="dp-highlighter bg_java"><br><div class="bar"><br><div class="tools"><strong>[java]</strong> <a href="http://blog.csdn.net/clementad/article/details/51833416#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/clementad/article/details/51833416#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="annotation">@Service  </span><br>2.  <span class="keyword">public <span class="keyword">class MailService {  </span></span><br>3.      <span class="keyword">private <span class="keyword">final Logger logger = LoggerFactory.getLogger(<span class="keyword">this.getClass());  </span></span></span><br>4.<br>5.      <span class="annotation">@Autowired  </span><br>6.      <span class="keyword">private JavaMailSender sender;  </span><br>7.<br>8.      <span class="annotation">@Value(<span class="string">“${spring.mail.username}”)  </span></span><br>9.      <span class="keyword">private String from;  </span><br>10.<br>11.      <span class="comment">/<strong> </strong></span><br>12.  <span class="comment">     <em> 发送纯文本的简单邮件 </em></span><br>13.  <span class="comment">      @param to </span><br>14.  <span class="comment">     <em> @param subject </em></span><br>15.  <span class="comment">      @param content </span><br>16.  <span class="comment">     */  </span><br>17.      <span class="keyword">public <span class="keyword">void sendSimpleMail(String to, String subject, String content){  </span></span><br>18.          SimpleMailMessage message = <span class="keyword">new SimpleMailMessage();  </span><br>19.          message.setFrom(from);<br>20.          message.setTo(to);<br>21.          message.setSubject(subject);<br>22.          message.setText(content);<br>23.<br>24.          <span class="keyword">try {  </span><br>25.              sender.send(message);<br>26.              logger.info(<span class="string">“简单邮件已经发送。”);  </span><br>27.          } <span class="keyword">catch (Exception e) {  </span><br>28.              logger.error(<span class="string">“发送简单邮件时发生异常！”, e);  </span><br>29.          }<br>30.      }<br>31.<br>32.      <span class="comment">/ </span><br>33.  <span class="comment">     <em> 发送html格式的邮件 </em></span><br>34.  <span class="comment">      @param to </span><br>35.  <span class="comment">     <em> @param subject </em></span><br>36.  <span class="comment">      @param content </span><br>37.  <span class="comment">     <em>/  </em></span><br>38.      <span class="keyword">public <span class="keyword">void sendHtmlMail(String to, String subject, String content){  </span></span><br>39.          MimeMessage message = sender.createMimeMessage();<br>40.<br>41.          <span class="keyword">try {  </span><br>42.              <span class="comment">//true表示需要创建一个multipart message  </span><br>43.              MimeMessageHelper helper = <span class="keyword">new MimeMessageHelper(message, <span class="keyword">true);  </span></span><br>44.              helper.setFrom(from);<br>45.              helper.setTo(to);<br>46.              helper.setSubject(subject);<br>47.              helper.setText(content, <span class="keyword">true);  </span><br>48.<br>49.              sender.send(message);<br>50.              logger.info(<span class="string">“html邮件已经发送。”);  </span><br>51.          } <span class="keyword">catch (MessagingException e) {  </span><br>52.              logger.error(<span class="string">“发送html邮件时发生异常！”, e);  </span><br>53.          }<br>54.      }<br>55.<br>56.      <span class="comment">/** </span><br>57.  <span class="comment">      发送带附件的邮件 </span><br>58.  <span class="comment">     <em> @param to </em></span><br>59.  <span class="comment">      @param subject </span><br>60.  <span class="comment">     <em> @param content </em></span><br>61.  <span class="comment">      @param filePath </span><br>62.  <span class="comment">     <em>/  </em></span><br>63.      <span class="keyword">public <span class="keyword">void sendAttachmentsMail(String to, String subject, String content, String filePath){  </span></span><br>64.          MimeMessage message = sender.createMimeMessage();<br>65.<br>66.          <span class="keyword">try {  </span><br>67.              <span class="comment">//true表示需要创建一个multipart message  </span><br>68.              MimeMessageHelper helper = <span class="keyword">new MimeMessageHelper(message, <span class="keyword">true);  </span></span><br>69.              helper.setFrom(from);<br>70.              helper.setTo(to);<br>71.              helper.setSubject(subject);<br>72.              helper.setText(content, <span class="keyword">true);  </span><br>73.<br>74.              FileSystemResource file = <span class="keyword">new FileSystemResource(<span class="keyword">new File(filePath));  </span></span><br>75.              String fileName = filePath.substring(filePath.lastIndexOf(File.separator));<br>76.              helper.addAttachment(fileName, file);<br>77.<br>78.              sender.send(message);<br>79.              logger.info(<span class="string">“带附件的邮件已经发送。”);  </span><br>80.          } <span class="keyword">catch (MessagingException e) {  </span><br>81.              logger.error(<span class="string">“发送带附件的邮件时发生异常！”, e);  </span><br>82.          }<br>83.      }<br>84.<br>85.      <span class="comment">/** </span><br>86.  <span class="comment">      发送嵌入静态资源（一般是图片）的邮件 </span><br>87.  <span class="comment">     <em> @param to </em></span><br>88.  <span class="comment">      @param subject </span><br>89.  <span class="comment">     <em> @param content 邮件内容，需要包括一个静态资源的id，比如：<img src="\" cid:rscid01\""=""> </em></span><br>90.  <span class="comment">      @param rscPath 静态资源路径和文件名 </span><br>91.  <span class="comment">     <em> @param rscId 静态资源id </em></span><br>92.  <span class="comment">     /  </span><br>93.      <span class="keyword">public <span class="keyword">void sendInlineResourceMail(String to, String subject, String content, String rscPath, String rscId){  </span></span><br>94.          MimeMessage message = sender.createMimeMessage();<br>95.<br>96.          <span class="keyword">try {  </span><br>97.              <span class="comment">//true表示需要创建一个multipart message  </span><br>98.              MimeMessageHelper helper = <span class="keyword">new MimeMessageHelper(message, <span class="keyword">true);  </span></span><br>99.              helper.setFrom(from);<br>100.              helper.setTo(to);<br>101.              helper.setSubject(subject);<br>102.              helper.setText(content, <span class="keyword">true);  </span><br>103.<br>104.              FileSystemResource res = <span class="keyword">new FileSystemResource(<span class="keyword">new File(rscPath));  </span></span><br>105.              helper.addInline(rscId, res);<br>106.<br>107.              sender.send(message);<br>108.              logger.info(<span class="string">“嵌入静态资源的邮件已经发送。”);  </span><br>109.          } <span class="keyword">catch (MessagingException e) {  </span><br>110.              logger.error(<span class="string">“发送嵌入静态资源的邮件时发生异常！”, e);  </span><br>111.          }<br>112.      }<br>113.  }<br><br>4、单元测试代码：<br><br><div class="dp-highlighter bg_java"><br><div class="bar"><br><div class="tools"><strong>[java]</strong> <a href="http://blog.csdn.net/clementad/article/details/51833416#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/clementad/article/details/51833416#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="keyword">public <span class="keyword">class MailTests <span class="keyword">extends BasicUtClass{  </span></span></span><br>2.      <span class="annotation">@Autowired  </span><br>3.      <span class="keyword">private MailService mailService;  </span><br>4.<br>5.      <span class="keyword">private String to = <span class="string">“<a href="mailto:xujijun@mail.cn" target="_blank" rel="noopener">xujijun@mail.cn</a>“;  </span></span><br>6.<br>7.      <span class="annotation">@Test  </span><br>8.      <span class="keyword">public <span class="keyword">void sendSimpleMail() {  </span></span><br>9.          mailService.sendSimpleMail(to, <span class="string">“主题：简单邮件”, <span class="string">“测试邮件内容”);  </span></span><br>10.      }<br>11.<br>12.      <span class="annotation">@Autowired  </span><br>13.      VelocityEngine velocityEngine;<br>14.<br>15.      <span class="annotation">@Test  </span><br>16.      <span class="keyword">public <span class="keyword">void sendHtmlMail() {  </span></span><br>17.          Map&lt;String, Object&gt; model = <span class="keyword">new HashMap&lt;String, Object&gt;();  </span><br>18.          model.put(<span class="string">“time”, XDateUtils.nowToString());  </span><br>19.          model.put(<span class="string">“message”, <span class="string">“这是测试的内容。。。”);  </span></span><br>20.          model.put(<span class="string">“toUserName”, <span class="string">“张三”);  </span></span><br>21.          model.put(<span class="string">“fromUserName”, <span class="string">“老许”);  </span></span><br>22.          String content = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, <span class="string">“welcome.vm”, <span class="string">“UTF-8”, model);  </span></span><br>23.<br>24.          mailService.sendHtmlMail(to, <span class="string">“主题：html邮件”, content);  </span><br>25.      }<br>26.<br>27.      <span class="annotation">@Test  </span><br>28.      <span class="keyword">public <span class="keyword">void sendAttachmentsMail() {  </span></span><br>29.          mailService.sendAttachmentsMail(to, <span class="string">“主题：带附件的邮件”, <span class="string">“有附件，请查收！”, <span class="string">“C:\Users\Xu\Desktop\csdn\1.png”);  </span></span></span><br>30.      }<br>31.<br>32.      <span class="annotation">@Test  </span><br>33.      <span class="keyword">public <span class="keyword">void sendInlineResourceMail() {  </span></span><br>34.          String rscId = <span class="string">“rscId001”;  </span><br>35.          mailService.sendInlineResourceMail(to,<br>36.                  <span class="string">“主题：嵌入静态资源的邮件”,  </span><br>37.                  <span class="string">“<html><body>这是有嵌入静态资源：<img src="\'cid:" "="" +="" rscid="" <span="" class="string">"\' ></body></html>“,  </span><br>38.                  <span class="string">“C:\Users\Xu\Desktop\csdn\1.png”,  </span><br>39.                  rscId);<br>40.      }<br>41.  }<br><br>源代码参考：<a href="https://github.com/xujijun/my-spring-boot" target="_blank" rel="noopener">https://github.com/xujijun/my-spring-boot</a><br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring-boot/" rel="tag"># spring boot</a>
+          
+            <a href="/tags/email/" rel="tag"># email</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/10/Centos7下yum安装配置nginx与php/" rel="next" title="Centos7下yum安装配置nginx与php">
+                <i class="fa fa-chevron-left"></i> Centos7下yum安装配置nginx与php
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/12/linux 如何正确的关闭mongodb/" rel="prev" title="linux 如何正确的关闭mongodb">
+                linux 如何正确的关闭mongodb <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

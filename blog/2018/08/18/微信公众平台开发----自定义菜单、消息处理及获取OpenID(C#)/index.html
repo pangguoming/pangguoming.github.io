@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="微信,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="一、成为开发者   服务器配置    登录微信公众平台官网后，在公众平台后台管理页面 开发者中心页，点击“修改配置”按钮，填写服务器地址（URL）、Token和EncodingAESKey，如下图所示：12345![微信服务器配置](https://img-blog.csdn.net/20160728101107260)&amp;lt;code class=&amp;quot;has-numbering&amp;quo">
+<meta name="keywords" content="微信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信公众平台开发----自定义菜单、消息处理及获取OpenID(C#)">
+<meta property="og:url" content="http://pangguoming.com/2018/08/18/微信公众平台开发----自定义菜单、消息处理及获取OpenID(C#)/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="一、成为开发者   服务器配置    登录微信公众平台官网后，在公众平台后台管理页面 开发者中心页，点击“修改配置”按钮，填写服务器地址（URL）、Token和EncodingAESKey，如下图所示：12345![微信服务器配置](https://img-blog.csdn.net/20160728101107260)&amp;lt;code class=&amp;quot;has-numbering&amp;quo">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdn.net/20160728102502610">
+<meta property="og:image" content="https://img-blog.csdn.net/20160728102518923">
+<meta property="og:image" content="https://img-blog.csdn.net/20160728102628641">
+<meta property="og:image" content="https://img-blog.csdn.net/20160728102730845">
+<meta property="og:image" content="https://img-blog.csdn.net/20160728102840382">
+<meta property="og:image" content="https://img-blog.csdn.net/20160728102921320">
+<meta property="og:image" content="https://img-blog.csdn.net/20160728095109674">
+<meta property="og:image" content="https://img-blog.csdn.net/20160728094200986">
+<meta property="og:updated_time" content="2019-01-26T14:39:31.767Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信公众平台开发----自定义菜单、消息处理及获取OpenID(C#)">
+<meta name="twitter:description" content="一、成为开发者   服务器配置    登录微信公众平台官网后，在公众平台后台管理页面 开发者中心页，点击“修改配置”按钮，填写服务器地址（URL）、Token和EncodingAESKey，如下图所示：12345![微信服务器配置](https://img-blog.csdn.net/20160728101107260)&amp;lt;code class=&amp;quot;has-numbering&amp;quo">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20160728102502610">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2018/08/18/微信公众平台开发----自定义菜单、消息处理及获取OpenID(C#)/">
+
+
+
+
+
+  <title>微信公众平台开发----自定义菜单、消息处理及获取OpenID(C#) | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/08/18/微信公众平台开发----自定义菜单、消息处理及获取OpenID(C#)/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">微信公众平台开发----自定义菜单、消息处理及获取OpenID(C#)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-18T11:53:00+08:00">
+                2018-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、成为开发者"><a href="#一、成为开发者" class="headerlink" title="一、成为开发者"></a>一、成为开发者</h2><ol>
+<li></li>
+</ol>
+<p>服务器配置</p>
+<p><code class="has-numbering">   登录微信公众平台官网后，在公众平台后台管理页面 开发者中心页，点击“修改配置”按钮，填写服务器地址（URL）、Token和EncodingAESKey，如下图所示：</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![微信服务器配置](https://img-blog.csdn.net/20160728101107260)</span><br><span class="line"></span><br><span class="line">&lt;code class=&quot;has-numbering&quot;&gt;   其中URL是开发者用来接收微信消息和事件的接口URL。Token可由开发者任意填写，用作生成签名（该Token会和接口URL中包含的Token进行比对，从而验证安全性）。</span><br><span class="line">    &lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li><p>验证URL</p>
+<p> <pre class="prettyprint"><code class="has-numbering">       开发者提交信息后，微信服务器将发送GET请求到填写的服务器地址URL上，GET请求携带四个参数：<br> </code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![这里写图片描述](https://img-blog.csdn.net/20160728101500362)</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs markdown has-numbering&quot;&gt;加密/校验流程如下：</span><br><span class="line">    &lt;span class=&quot;hljs-bullet&quot;&gt;1. 将token、timestamp、nonce三个参数进行字典序排序</span><br><span class="line">    &lt;span class=&quot;hljs-bullet&quot;&gt;2. 将三个参数字符串拼接成一个字符串进行sha1加密</span><br><span class="line">    &lt;span class=&quot;hljs-bullet&quot;&gt;3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></pre></p>
+</li>
+</ol>
+<p>按照该流程，在上面填写的服务器中，写入如下验证代码：</p>
+<p><img src="https://img-blog.csdn.net/20160728102502610" alt="这里写图片描述"></p>
+<p>将以上代码部署到服务器端，通过微信公众平台去验证，如果验证成功，则成为开发者成功，否则失败。验证成功后显示如下图：</p>
+<p><img src="https://img-blog.csdn.net/20160728102518923" alt="这里写图片描述"></p>
+<pre><code>## 二、创建菜单
+
+1.  
+</code></pre><p>新建菜单JSON文件，如下图所示：<br><img src="https://img-blog.csdn.net/20160728102628641" alt="这里写图片描述"></p>
+<pre><code>&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;has-numbering&quot;&gt; 其中，button目录下为以及菜单，sub_button下为二级菜单&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    &lt;/pre&gt;</span><br><span class="line">    2.  </span><br><span class="line"></span><br><span class="line">获取acxess_token</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;has-numbering&quot;&gt;    access_token是公众号的全局唯一票据，公众号调用各接口时都需使用access_token。access_token的有效期目前为2个小时，需定时刷新，重复获取将导致上次获取的access_token失效&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+&lt;/pre&gt;
+3.  
+</code></pre><p><img src="https://img-blog.csdn.net/20160728102730845" alt="这里写图片描述"><br>参数说明<br><img src="https://img-blog.csdn.net/20160728102840382" alt="这里写图片描述"></p>
+<pre><code>4.  
+</code></pre><p>创建菜单</p>
+<p><img src="https://img-blog.csdn.net/20160728102921320" alt="这里写图片描述"></p>
+<pre><code>&lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs r has-numbering&quot;&gt;注意： 
+&lt;span class=&quot;hljs-number&quot;&gt;1、自定义菜单最多包括&lt;span class=&quot;hljs-number&quot;&gt;3个一级菜单，每个一级菜单最多包含&lt;span class=&quot;hljs-number&quot;&gt;5个二级菜单。
+&lt;span class=&quot;hljs-number&quot;&gt;2、一级菜单最多&lt;span class=&quot;hljs-number&quot;&gt;4个汉字，二级菜单最多&lt;span class=&quot;hljs-number&quot;&gt;7个汉字，多出来的部分将会以“&lt;span class=&quot;hljs-keyword&quot;&gt;...”代替。
+&lt;span class=&quot;hljs-number&quot;&gt;3、创建自定义菜单后，由于微信客户端缓存，需要&lt;span class=&quot;hljs-number&quot;&gt;24小时微信客户端才会展现出来。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 三、消息处理</span><br><span class="line"></span><br><span class="line">&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;has-numbering&quot;&gt; 对消息的监听操作，要放置到最初配置URL的服务器中进行操作。判断是事件还是信息。</span><br><span class="line">&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><ol>
+<li><p>消息监听</p>
+<p> <pre name="code" class="prettyprint"><code class="hljs xml has-numbering"><span class="hljs-tag">&lt;<span class="hljs-title">xml&gt;<br>  <span class="hljs-tag">&lt;<span class="hljs-title">ToUserName&gt;<span class="hljs-cdata">&lt;![CDATA[toUser]]&gt;<span class="hljs-tag">&lt;/<span class="hljs-title">ToUserName&gt;<br>  <span class="hljs-tag">&lt;<span class="hljs-title">FromUserName&gt;<span class="hljs-cdata">&lt;![CDATA[fromUser]]&gt;<span class="hljs-tag">&lt;/<span class="hljs-title">FromUserName&gt;<br>  <span class="hljs-tag">&lt;<span class="hljs-title">CreateTime&gt;1348831860<span class="hljs-tag">&lt;/<span class="hljs-title">CreateTime&gt;<br>  <span class="hljs-tag">&lt;<span class="hljs-title">MsgType&gt;<span class="hljs-cdata">&lt;![CDATA[text]]&gt;<span class="hljs-tag">&lt;/<span class="hljs-title">MsgType&gt;<br>  <span class="hljs-tag">&lt;<span class="hljs-title">Content&gt;<span class="hljs-cdata">&lt;![CDATA[this is a test]]&gt;<span class="hljs-tag">&lt;/<span class="hljs-title">Content&gt;<br>  <span class="hljs-tag">&lt;<span class="hljs-title">MsgId&gt;1234567890123456<span class="hljs-tag">&lt;/<span class="hljs-title">MsgId&gt;<br>  <span class="hljs-tag">&lt;/<span class="hljs-title">xml&gt;</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![这里写图片描述](https://img-blog.csdn.net/20160728095800026)   </span><br><span class="line">2. 事件监听</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;has-numbering&quot;&gt;    点击菜单拉取消息时的事件推送 </span><br><span class="line">    &lt;/code&gt;</span><br></pre></td></tr></table></figure></pre></p>
+</li>
+</ol>
+<p>推送XML数据包示例：</p>
+<pre><code>&lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs xml has-numbering&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;xml&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;ToUserName&gt;&lt;span class=&quot;hljs-cdata&quot;&gt;&lt;![CDATA[toUser]]&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;ToUserName&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;FromUserName&gt;&lt;span class=&quot;hljs-cdata&quot;&gt;&lt;![CDATA[FromUser]]&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;FromUserName&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;CreateTime&gt;123456789&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;CreateTime&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;MsgType&gt;&lt;span class=&quot;hljs-cdata&quot;&gt;&lt;![CDATA[event]]&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;MsgType&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;Event&gt;&lt;span class=&quot;hljs-cdata&quot;&gt;&lt;![CDATA[CLICK]]&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;Event&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;EventKey&gt;&lt;span class=&quot;hljs-cdata&quot;&gt;&lt;![CDATA[EVENTKEY]]&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;EventKey&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;xml&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![获取菜单点击事件](https://img-blog.csdn.net/20160728095350269)</span><br><span class="line"></span><br><span class="line">    ## 四、获取openID</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;has-numbering&quot;&gt; 用户向公众号发送消息时，公众号方收到的消息发送者是一个OpenID，是使用用户微信号加密后的结果，每个用户对每个公众号有一个唯一的OpenID。</span><br><span class="line">    &lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>消息返回参数如下：<br><img src="https://img-blog.csdn.net/20160728095109674" alt="消息参数列表"></p>
+<p>解析XML，并获取OpenID:</p>
+<p><img src="https://img-blog.csdn.net/20160728094200986" alt="获取OpenID"><br></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/微信/" rel="tag"># 微信</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/18/微信公众平台开发 自定义菜单/" rel="next" title="微信公众平台开发 自定义菜单">
+                <i class="fa fa-chevron-left"></i> 微信公众平台开发 自定义菜单
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/20/敏捷软件开发简述/" rel="prev" title="敏捷软件开发简述">
+                敏捷软件开发简述 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、成为开发者"><span class="nav-number">1.</span> <span class="nav-text">一、成为开发者</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

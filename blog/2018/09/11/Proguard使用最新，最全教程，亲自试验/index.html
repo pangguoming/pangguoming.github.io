@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Proguard,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="最近公司有一个项目，是外包项目，由于对方也有技术人员，出于技术上的保密，需要对class文件进行二次处理，于是网上找了好久，只发现Proguard是用的最广泛而且网上资料最多的。由于不是纯JAVA项目，而是WEB项目，涉及到大量的配置文件，所以用这个工具稍显吃力，于是开始研究这玩意，花了好长一段时间，重复试验了N次，终于整出来了，下面总结一下我的经验。。 首先我介绍下我要混淆的项目框架是jeecg">
+<meta name="keywords" content="Proguard">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Proguard使用最新，最全教程，亲自试验">
+<meta property="og:url" content="http://pangguoming.com/2018/09/11/Proguard使用最新，最全教程，亲自试验/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="最近公司有一个项目，是外包项目，由于对方也有技术人员，出于技术上的保密，需要对class文件进行二次处理，于是网上找了好久，只发现Proguard是用的最广泛而且网上资料最多的。由于不是纯JAVA项目，而是WEB项目，涉及到大量的配置文件，所以用这个工具稍显吃力，于是开始研究这玩意，花了好长一段时间，重复试验了N次，终于整出来了，下面总结一下我的经验。。 首先我介绍下我要混淆的项目框架是jeecg">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdn.net/20150109095248984?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20150109095248984?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20150109095623468?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20150109095754130?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20150109095825860?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20150109095858870?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20150109095916997?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20150109100011234?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20150109100052095?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20150109100122015?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20150109100221499?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20150109100353664?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20150109100431463?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20150109100457780?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20150109100559353?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2019-01-26T14:39:21.926Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Proguard使用最新，最全教程，亲自试验">
+<meta name="twitter:description" content="最近公司有一个项目，是外包项目，由于对方也有技术人员，出于技术上的保密，需要对class文件进行二次处理，于是网上找了好久，只发现Proguard是用的最广泛而且网上资料最多的。由于不是纯JAVA项目，而是WEB项目，涉及到大量的配置文件，所以用这个工具稍显吃力，于是开始研究这玩意，花了好长一段时间，重复试验了N次，终于整出来了，下面总结一下我的经验。。 首先我介绍下我要混淆的项目框架是jeecg">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20150109095248984?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2018/09/11/Proguard使用最新，最全教程，亲自试验/">
+
+
+
+
+
+  <title>Proguard使用最新，最全教程，亲自试验 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/09/11/Proguard使用最新，最全教程，亲自试验/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Proguard使用最新，最全教程，亲自试验</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-11T08:53:00+08:00">
+                2018-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近公司有一个项目，是外包项目，由于对方也有技术人员，出于技术上的保密，需要对class文件进行二次处理，于是网上找了好久，只发现Proguard是用的最广泛而且网上资料最多的。由于不是纯JAVA项目，而是WEB项目，涉及到大量的配置文件，所以用这个工具稍显吃力，于是开始研究这玩意，花了好长一段时间，重复试验了N次，终于整出来了，下面总结一下我的经验。。</p>
+<p>首先我介绍下我要混淆的项目框架是jeecg+easyui+spring（包含xml配置文件，导致部分class文件不能直接混淆）。下面开始说详细的操作步奏：</p>
+<p>1）将web项目的src目录的java文件打包，只需要选择java文件即可，其他配置文件什么的都不用选择，如图</p>
+<p><img src="https://img-blog.csdn.net/20150109095248984?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>2）到<a href="http://demo.netfoucs.com/rulon147/article/details/42550901#" target="_blank" rel="noopener">http://proguard.sourceforge.net/</a>下载proguard，目前我下载并使用的是proguard5.1（注：本人下载频道也有proguard5.1）。</p>
+<p>3）解压proguard5.1，执行 bin目录下的proguardgui.bat</p>
+<p><img src="https://img-blog.csdn.net/20150109095248984?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>然后会弹出如下图所示窗口</p>
+<p><img src="https://img-blog.csdn.net/20150109095623468?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>4）点击左边“input/output”菜单，然后点击右边的“Add input”按钮，添加需要混淆的jar包，我这里是test.jar,然后点击“add output”,选择输出的路径和包名。</p>
+<p> <img src="https://img-blog.csdn.net/20150109095754130?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>5）下面开始添加支持库，这个地方很重要，很多同学刚开始使用这个工具的时候就是这里老是出问题。<br>   点击右边的“add”。</p>
+<p><img src="https://img-blog.csdn.net/20150109095825860?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p> 说明一下，这里最好把你的eclipse里java project里的libraries所有Library的jar包，包含web项目lib下面的包，jdk中jre下面的包和servlet.jar包等copy到一个目录，然后在这里加入这些jar包。系统默认会带上rt.jar,这里我们可以先remove掉，然后到jre下面copy所有的包。</p>
+<p> <img src="https://img-blog.csdn.net/20150109095858870?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>6）点击“shrinking”，设置成如图所示。</p>
+<p><img src="https://img-blog.csdn.net/20150109095916997?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>7）点击“obfuscation”，设置如图所示</p>
+<p> <img src="https://img-blog.csdn.net/20150109100011234?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>8）点击“optimization”设置如图所示</p>
+<p><img src="https://img-blog.csdn.net/20150109100052095?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>9）点击information,设置如图所示，注意选择jdk版本（Target）</p>
+<p> <img src="https://img-blog.csdn.net/20150109100122015?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>10) 点击“process”，再点击“save configuration”，在弹出的对话框中，输入要保存的配置文件名称(这里我的是1111111.pro)，最后点击“保存”.</p>
+<p><img src="https://img-blog.csdn.net/20150109100221499?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>11) 设置基本完成，关掉proguard窗口，找到刚刚保存的配置文件，开始手动修改部分配置。</p>
+<p>以下是我的配置文件，经测试通过，手动修改的部分为红色字体</p>
+<table border="1" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="top"><br><br>-injars Test\test.jar<br><br>-outjars Test\test–.jar<br><br>-libraryjars ‘D:\jdk1.6.0_45\jre\lib\rt.jar’<br><br>-libraryjars hunxiao\a\activation-1.1.jar<br><br>-libraryjars hunxiao\a\activiti-cxf-5.10.jar<br><br>-libraryjars hunxiao\a\activiti-engine-5.10.jar<br><br>-libraryjars hunxiao\a\activiti-spring-5.10.jar<br><br>-libraryjars hunxiao\a\alt-rt.jar<br><br>-libraryjars hunxiao\a\alt-string.jar<br><br>-libraryjars hunxiao\a\aopalliance-1.0.jar<br><br>-libraryjars hunxiao\a\c3p0-0.9.1.2.jar<br><br>-libraryjars hunxiao\a\charsets.jar<br><br>-libraryjars hunxiao\a\commons-beanutils-1.9.1.jar<br><br>-libraryjars hunxiao\a\commons-codec-1.9.jar<br><br>-libraryjars hunxiao\a\commons-collections-3.2.1.jar<br><br>-libraryjars hunxiao\a\commons-digester-1.7.jar<br><br>-libraryjars hunxiao\a\commons-digester3-3.2.jar<br><br>-libraryjars hunxiao\a\commons-io-2.0.1.jar<br><br>-libraryjars hunxiao\a\commons-lang3-3.3.jar<br><br>-libraryjars hunxiao\a\commons-logging-1.1.3.jar<br><br>-libraryjars hunxiao\a\cos-26Dec2008.jar<br><br>-libraryjars hunxiao\a\deploy.jar<br><br>-libraryjars hunxiao\a\dom4j-1.6.1.jar<br><br>-libraryjars hunxiao\a\druid-0.2.6.jar<br><br>-libraryjars hunxiao\a\edtftpj.jar<br><br>-libraryjars hunxiao\a\ehcache-core-2.5.2.jar<br><br>-libraryjars hunxiao\a\fastjson-1.2.0.jar<br><br>-libraryjars hunxiao\a\fprzMock.jar<br><br>-libraryjars hunxiao\a\freemarker-2.3.16.jar<br><br>-libraryjars hunxiao\a\groovy-all-1.5.5.jar<br><br>-libraryjars hunxiao\a\guava-16.0.1.jar<br><br>-libraryjars hunxiao\a\hessian-4.0.7.jar<br><br>-libraryjars hunxiao\a\itext-2.1.7.jar<br><br>-libraryjars hunxiao\a\iTextAsian-2.1.jar<br><br>-libraryjars hunxiao\a\jasperreports-3.7.4.jar<br><br>-libraryjars hunxiao\a\javaws.jar<br><br>-libraryjars hunxiao\a\javax.servlet.jsp.jstl-1.2.0.v201105211821.jar<br><br>-libraryjars hunxiao\a\jce.jar<br><br>-libraryjars hunxiao\a\jfinal-1.6-bin-with-src.jar<br><br>-libraryjars hunxiao\a\jfinal-ext-eu.jar<br><br>-libraryjars hunxiao\a\jna-4.1.0.jar<br><br>-libraryjars hunxiao\a\jna-platform-4.1.0.jar<br><br>-libraryjars hunxiao\a\joda-time-2.1.jar<br><br>-libraryjars hunxiao\a\joor-0.9.3.jar<br><br>-libraryjars hunxiao\a\jsse.jar<br><br>-libraryjars hunxiao\a\jxls-core-0.9.9.jar<br><br>-libraryjars hunxiao\a\kaptcha-2.3.2.jar<br><br>-libraryjars hunxiao\a\log4j-1.2.16.jar<br><br>-libraryjars hunxiao\a\management-agent.jar<br><br>-libraryjars hunxiao\a\mybatis-3.1.1.jar<br><br>-libraryjars hunxiao\a\mysql-connector-java-5.1.20-bin.jar<br><br>-libraryjars hunxiao\a\ojdbc6.jar<br><br>-libraryjars hunxiao\a\org.apache.taglibs.standard.glassfish-1.2.0.v201112081803.jar<br><br>-libraryjars hunxiao\a\org.springframework.aop-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.asm-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.aspects-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.beans-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.context-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.context.support-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.core-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.expression-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.instrument-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.instrument.tomcat-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.jdbc-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.jms-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.org.apache.commons.logging-1.1.1.jar<br><br>-libraryjars hunxiao\a\org.springframework.orm-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.oxm-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.test-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.transaction-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.web-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.web.portlet-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\org.springframework.web.servlet-3.1.1.RELEASE.jar<br><br>-libraryjars hunxiao\a\plugin.jar<br><br>-libraryjars hunxiao\a\poi-3.9.jar<br><br>-libraryjars hunxiao\a\quartz-1.8.6.jar<br><br>-libraryjars hunxiao\a\resources.jar<br><br>-libraryjars hunxiao\a\rt.jar<br><br>-libraryjars hunxiao\a\servlet-api.jar<br><br>-libraryjars hunxiao\a\shiro-all-1.2.3.jar<br><br>-libraryjars hunxiao\a\slf4j-api-1.6.1.jar<br><br>-libraryjars hunxiao\a\slf4j-log4j12-1.6.1.jar<br><br>-libraryjars hunxiao\a\sqlite-jdbc-3.7.2.jar<br><br>-libraryjars hunxiao\a\ssosdk-2.0-SNAPSHOT.jar<br><br>-libraryjars hunxiao\a\TaxWsBean.jar<br><br>-target 1.6<br><br>-dontshrink<br><br>-useuniqueclassmembernames<br><br>-keeppackagenames<br><br>-keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,LocalVariable<em>Table,</em>Annotation<em>,Synthetic,EnclosingMethod<br><br>-keepparameternames<br><br>#保留单个类<br><br>-keep public class net.easyunion.common.shiro.ShiroDbRealm<br><br>-keep public class net.easyunion.common.filters.SetCharacterEncodingFilter<br><br>-keep public class net.easyunion.common.queue.MakeQueue<br><br>#保留所有控制类（如果是SSH三大框架，由于页面发出请求到struts核心拦截器拦截之后，找到配置文件，配置文件必须对应action里面的类和方法，这里就不能混淆类和方法，所以所有的action类包括里面的方法都不需要混淆，按照如下方式设置就行，保留所有的Action类名和方法名）<br><br>-keep public class net.easyunion.app.invoice.controller.</em> {<em>;}<br><br>-keep public class net.easyunion.app.sysseting.controller.</em> {<em>;}<br><br>-keep public class net.easyunion.app.system.controller.</em> {<em>;}<br><br>-keep public class net.easyunion.app.system.model.</em> {<em>;}<br><br>-keep public class net.easyunion.app.supplier.controller.</em>  {<em>;}<br><br>-keep public class net.easyunion.common.controller.</em>  {<em>;}<br><br>-keep public class net.easyunion.app.Config<br><br># Keep names - Native method names. Keep all native class/method names.<br><br>-keepclasseswithmembers,includedescriptorclasses,allowshrinking class </em> {<br><br>    native <methods>;<br><br>}<br><br># Keep names - _class method names. Keep all .class method names. This may be<br><br># useful for libraries that will be obfuscated again with different obfuscators.<br><br>-keepclassmembers,allowshrinking class <em> {<br><br>    java.lang.Class class$(java.lang.String);<br><br>    java.lang.Class class$(java.lang.String,boolean);<br><br>}<br><br># Remove - System method calls. Remove all invocations of System<br><br># methods without side effects whose return values are not used.<br><br>-assumenosideeffects public class java.lang.System {<br><br>    public static long currentTimeMillis();<br><br>    static java.lang.Class getCallerClass();<br><br>    public static int identityHashCode(java.lang.Object);<br><br>    public static java.lang.SecurityManager getSecurityManager();<br><br>    public static java.util.Properties getProperties();<br><br>    public static java.lang.String getProperty(java.lang.String);<br><br>    public static java.lang.String getenv(java.lang.String);<br><br>    public static java.lang.String mapLibraryName(java.lang.String);<br><br>    public static java.lang.String getProperty(java.lang.String,java.lang.String);<br><br>}<br><br># Remove - Math method calls. Remove all invocations of Math<br><br># methods without side effects whose return values are not used.<br><br>-assumenosideeffects public class java.lang.Math {<br><br>    public static double sin(double);<br><br>    public static double cos(double);<br><br>    public static double tan(double);<br><br>    public static double asin(double);<br><br>    public static double acos(double);<br><br>    public static double atan(double);<br><br>    public static double toRadians(double);<br><br>    public static double toDegrees(double);<br><br>    public static double exp(double);<br><br>    public static double log(double);<br><br>    public static double log10(double);<br><br>    public static double sqrt(double);<br><br>    public static double cbrt(double);<br><br>    public static double IEEEremainder(double,double);<br><br>    public static double ceil(double);<br><br>    public static double floor(double);<br><br>    public static double rint(double);<br><br>    public static double atan2(double,double);<br><br>    public static double pow(double,double);<br><br>    public static int round(float);<br><br>    public static long round(double);<br><br>    public static double random();<br><br>    public static int abs(int);<br><br>    public static long abs(long);<br><br>    public static float abs(float);<br><br>    public static double abs(double);<br><br>    public static int max(int,int);<br><br>    public static long max(long,long);<br><br>    public static float max(float,float);<br><br>    public static double max(double,double);<br><br>    public static int min(int,int);<br><br>    public static long min(long,long);<br><br>    public static float min(float,float);<br><br>    public static double min(double,double);<br><br>    public static double ulp(double);<br><br>    public static float ulp(float);<br><br>    public static double signum(double);<br><br>    public static float signum(float);<br><br>    public static double sinh(double);<br><br>    public static double cosh(double);<br><br>    public static double tanh(double);<br><br>    public static double hypot(double,double);<br><br>    public static double expm1(double);<br><br>    public static double log1p(double);<br><br>}<br><br># Remove - Number method calls. Remove all invocations of Number<br><br># methods without side effects whose return values are not used.<br><br>-assumenosideeffects public class java.lang.</em> extends java.lang.Number {<br><br>    public static java.lang.String toString(byte);<br><br>    public static java.lang.Byte valueOf(byte);<br><br>    public static byte parseByte(java.lang.String);<br><br>    public static byte parseByte(java.lang.String,int);<br><br>    public static java.lang.Byte valueOf(java.lang.String,int);<br><br>    public static java.lang.Byte valueOf(java.lang.String);<br><br>    public static java.lang.Byte decode(java.lang.String);<br><br>    public int compareTo(java.lang.Byte);<br><br>    public static java.lang.String toString(short);<br><br>    public static short parseShort(java.lang.String);<br><br>    public static short parseShort(java.lang.String,int);<br><br>    public static java.lang.Short valueOf(java.lang.String,int);<br><br>    public static java.lang.Short valueOf(java.lang.String);<br><br>    public static java.lang.Short valueOf(short);<br><br>    public static java.lang.Short decode(java.lang.String);<br><br>    public static short reverseBytes(short);<br><br>    public int compareTo(java.lang.Short);<br><br>    public static java.lang.String toString(int,int);<br><br>    public static java.lang.String toHexString(int);<br><br>    public static java.lang.String toOctalString(int);<br><br>    public static java.lang.String toBinaryString(int);<br><br>    public static java.lang.String toString(int);<br><br>    public static int parseInt(java.lang.String,int);<br><br>    public static int parseInt(java.lang.String);<br><br>    public static java.lang.Integer valueOf(java.lang.String,int);<br><br>    public static java.lang.Integer valueOf(java.lang.String);<br><br>    public static java.lang.Integer valueOf(int);<br><br>    public static java.lang.Integer getInteger(java.lang.String);<br><br>    public static java.lang.Integer getInteger(java.lang.String,int);<br><br>    public static java.lang.Integer getInteger(java.lang.String,java.lang.Integer);<br><br>    public static java.lang.Integer decode(java.lang.String);<br><br>    public static int highestOneBit(int);<br><br>    public static int lowestOneBit(int);<br><br>    public static int numberOfLeadingZeros(int);<br><br>    public static int numberOfTrailingZeros(int);<br><br>    public static int bitCount(int);<br><br>    public static int rotateLeft(int,int);<br><br>    public static int rotateRight(int,int);<br><br>    public static int reverse(int);<br><br>    public static int signum(int);<br><br>    public static int reverseBytes(int);<br><br>    public int compareTo(java.lang.Integer);<br><br>    public static java.lang.String toString(long,int);<br><br>    public static java.lang.String toHexString(long);<br><br>    public static java.lang.String toOctalString(long);<br><br>    public static java.lang.String toBinaryString(long);<br><br>    public static java.lang.String toString(long);<br><br>    public static long parseLong(java.lang.String,int);<br><br>    public static long parseLong(java.lang.String);<br><br>    public static java.lang.Long valueOf(java.lang.String,int);<br><br>    public static java.lang.Long valueOf(java.lang.String);<br><br>    public static java.lang.Long valueOf(long);<br><br>    public static java.lang.Long decode(java.lang.String);<br><br>    public static java.lang.Long getLong(java.lang.String);<br><br>    public static java.lang.Long getLong(java.lang.String,long);<br><br>    public static java.lang.Long getLong(java.lang.String,java.lang.Long);<br><br>    public static long highestOneBit(long);<br><br>    public static long lowestOneBit(long);<br><br>    public static int numberOfLeadingZeros(long);<br><br>    public static int numberOfTrailingZeros(long);<br><br>    public static int bitCount(long);<br><br>    public static long rotateLeft(long,int);<br><br>    public static long rotateRight(long,int);<br><br>    public static long reverse(long);<br><br>    public static int signum(long);<br><br>    public static long reverseBytes(long);<br><br>    public int compareTo(java.lang.Long);<br><br>    public static java.lang.String toString(float);<br><br>    public static java.lang.String toHexString(float);<br><br>    public static java.lang.Float valueOf(java.lang.String);<br><br>    public static java.lang.Float valueOf(float);<br><br>    public static float parseFloat(java.lang.String);<br><br>    public static boolean isNaN(float);<br><br>    public static boolean isInfinite(float);<br><br>    public static int floatToIntBits(float);<br><br>    public static int floatToRawIntBits(float);<br><br>    public static float intBitsToFloat(int);<br><br>    public static int compare(float,float);<br><br>    public boolean isNaN();<br><br>    public boolean isInfinite();<br><br>    public int compareTo(java.lang.Float);<br><br>    public static java.lang.String toString(double);<br><br>    public static java.lang.String toHexString(double);<br><br>    public static java.lang.Double valueOf(java.lang.String);<br><br>    public static java.lang.Double valueOf(double);<br><br>    public static double parseDouble(java.lang.String);<br><br>    public static boolean isNaN(double);<br><br>    public static boolean isInfinite(double);<br><br>    public static long doubleToLongBits(double);<br><br>    public static long doubleToRawLongBits(double);<br><br>    public static double longBitsToDouble(long);<br><br>    public static int compare(double,double);<br><br>    public boolean isNaN();<br><br>    public boolean isInfinite();<br><br>    public int compareTo(java.lang.Double);<br><br>    public byte byteValue();<br><br>    public short shortValue();<br><br>    public int intValue();<br><br>    public long longValue();<br><br>    public float floatValue();<br><br>    public double doubleValue();<br><br>    public int compareTo(java.lang.Object);<br><br>    public boolean equals(java.lang.Object);<br><br>    public int hashCode();<br><br>    public java.lang.String toString();<br><br>}<br><br># Remove - String method calls. Remove all invocations of String<br><br># methods without side effects whose return values are not used.<br><br>-assumenosideeffects public class java.lang.String {<br><br>    public static java.lang.String copyValueOf(char[]);<br><br>    public static java.lang.String copyValueOf(char[],int,int);<br><br>    public static java.lang.String valueOf(boolean);<br><br>    public static java.lang.String valueOf(char);<br><br>    public static java.lang.String valueOf(char[]);<br><br>    public static java.lang.String valueOf(char[],int,int);<br><br>    public static java.lang.String valueOf(double);<br><br>    public static java.lang.String valueOf(float);<br><br>    public static java.lang.String valueOf(int);<br><br>    public static java.lang.String valueOf(java.lang.Object);<br><br>    public static java.lang.String valueOf(long);<br><br>    public boolean contentEquals(java.lang.StringBuffer);<br><br>    public boolean endsWith(java.lang.String);<br><br>    public boolean equalsIgnoreCase(java.lang.String);<br><br>    public boolean equals(java.lang.Object);<br><br>    public boolean matches(java.lang.String);<br><br>    public boolean regionMatches(boolean,int,java.lang.String,int,int);<br><br>    public boolean regionMatches(int,java.lang.String,int,int);<br><br>    public boolean startsWith(java.lang.String);<br><br>    public boolean startsWith(java.lang.String,int);<br><br>    public byte[] getBytes();<br><br>    public byte[] getBytes(java.lang.String);<br><br>    public char charAt(int);<br><br>    public char[] toCharArray();<br><br>    public int compareToIgnoreCase(java.lang.String);<br><br>    public int compareTo(java.lang.Object);<br><br>    public int compareTo(java.lang.String);<br><br>    public int hashCode();<br><br>    public int indexOf(int);<br><br>    public int indexOf(int,int);<br><br>    public int indexOf(java.lang.String);<br><br>    public int indexOf(java.lang.String,int);<br><br>    public int lastIndexOf(int);<br><br>    public int lastIndexOf(int,int);<br><br>    public int lastIndexOf(java.lang.String);<br><br>    public int lastIndexOf(java.lang.String,int);<br><br>    public int length();<br><br>    public java.lang.CharSequence subSequence(int,int);<br><br>    public java.lang.String concat(java.lang.String);<br><br>    public java.lang.String replaceAll(java.lang.String,java.lang.String);<br><br>    public java.lang.String replace(char,char);<br><br>    public java.lang.String replaceFirst(java.lang.String,java.lang.String);<br><br>    public java.lang.String[] split(java.lang.String);<br><br>    public java.lang.String[] split(java.lang.String,int);<br><br>    public java.lang.String substring(int);<br><br>    public java.lang.String substring(int,int);<br><br>    public java.lang.String toLowerCase();<br><br>    public java.lang.String toLowerCase(java.util.Locale);<br><br>    public java.lang.String toString();<br><br>    public java.lang.String toUpperCase();<br><br>    public java.lang.String toUpperCase(java.util.Locale);<br><br>    public java.lang.String trim();<br><br>}<br><br># Remove - StringBuffer method calls. Remove all invocations of StringBuffer<br><br># methods without side effects whose return values are not used.<br><br>-assumenosideeffects public class java.lang.StringBuffer {<br><br>    public java.lang.String toString();<br><br>    public char charAt(int);<br><br>    public int capacity();<br><br>    public int codePointAt(int);<br><br>    public int codePointBefore(int);<br><br>    public int indexOf(java.lang.String,int);<br><br>    public int lastIndexOf(java.lang.String);<br><br>    public int lastIndexOf(java.lang.String,int);<br><br>    public int length();<br><br>    public java.lang.String substring(int);<br><br>    public java.lang.String substring(int,int);<br><br>}<br><br># Remove - StringBuilder method calls. Remove all invocations of StringBuilder<br><br># methods without side effects whose return values are not used.<br><br>-assumenosideeffects public class java.lang.StringBuilder {<br><br>    public java.lang.String toString();<br><br>    public char charAt(int);<br><br>    public int capacity();<br><br>    public int codePointAt(int);<br><br>    public int codePointBefore(int);<br><br>    public int indexOf(java.lang.String,int);<br><br>    public int lastIndexOf(java.lang.String);<br><br>    public int lastIndexOf(java.lang.String,int);<br><br>    public int length();<br><br>    public java.lang.String substring(int);<br><br>    public java.lang.String substring(int,int);<br><br>}<br><br></methods></td><br><br></tr><br><br></tbody><br><br></table>
+
+<p>12）手动设置完成后保存，然后重新打开progrard，执行 bin目录下的proguardgui.bat。</p>
+<p>   点击第一个选项“Proguard”，再点击“Load configuration”，选择我们刚才保存的“1111111.pro”进行加载。</p>
+<p> <img src="https://img-blog.csdn.net/20150109100353664?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>13）然后点击Process，然后点击View configuration查看是否是已经修改过后的配置文件。</p>
+<p> <img src="https://img-blog.csdn.net/20150109100431463?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>14） 确认是最新修改过的配置文件，然后点击process！开始混淆。。</p>
+<p>如下图，表示混淆成功。。</p>
+<p> <img src="https://img-blog.csdn.net/20150109100457780?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>15）我们可以用jd-gui反编译工具看看混淆后的效果。可以看到，之前设置不混淆的类都没有更换类名，而混淆的类都自动更换为a,b,c等类名了。到此，整个java项目混淆就成功了，然后把混淆成功的class文件拷贝到自己的web项目中，替换原先的class文件，然后用tomcat跑项目，发现和正常的class文件运行效果一样，项目正常运行。</p>
+<p> <img src="https://img-blog.csdn.net/20150109100559353?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcnVsb24xNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>16）说明下配置</p>
+<p>参数：   </p>
+<p>-include {filename}    从给定的文件中读取配置参数<br>-basedirectory {directoryname}    指定基础目录为以后相对的档案名称<br>-injars {class_path}    指定要处理的应用程序jar,war,ear和目录<br>-outjars {class_path}    指定处理完后要输出的jar,war,ear和目录的名称<br>-libraryjars {classpath}    指定要处理的应用程序jar,war,ear和目录所需要的程序库文件<br>-dontskipnonpubliclibraryclasses    指定不去忽略非公共的库类。<br>-dontskipnonpubliclibraryclassmembers    指定不去忽略包可见的库类的成员。   </p>
+<p>保留选项   </p>
+<p>-keep {Modifier} {class_specification}    保护指定的类文件和类的成员<br>-keepclassmembers {modifier} {class_specification}    保护指定类的成员，如果此类受到保护他们会保护的更好<br>-keepclasseswithmembers {class_specification}    保护指定的类和类的成员，但条件是所有指定的类和类成员是要存在。<br>-keepnames {class_specification}    保护指定的类和类的成员的名称（如果他们不会压缩步骤中删除）<br>-keepclassmembernames {class_specification}    保护指定的类的成员的名称（如果他们不会压缩步骤中删除）<br>-keepclasseswithmembernames {class_specification}    保护指定的类和类的成员的名称，如果所有指定的类成员出席（在压缩步骤之后）<br>-printseeds {filename}    列出类和类的成员-keep选项的清单，标准输出到给定的文件   </p>
+<p>压缩   </p>
+<p>-dontshrink    不压缩输入的类文件<br>-printusage {filename}<br>-whyareyoukeeping {class_specification}       </p>
+<p>优化   </p>
+<p>-dontoptimize    不优化输入的类文件<br>-assumenosideeffects {class_specification}    优化时假设指定的方法，没有任何副作用<br>-allowaccessmodification    优化时允许访问并修改有修饰符的类和类的成员   </p>
+<p>混淆   </p>
+<p>-dontobfuscate    不混淆输入的类文件<br>-printmapping {filename}<br>-applymapping {filename}    重用映射增加混淆<br>-obfuscationdictionary {filename}    使用给定文件中的关键字作为要混淆方法的名称<br>-overloadaggressively    混淆时应用侵入式重载<br>-useuniqueclassmembernames    确定统一的混淆类的成员名称来增加混淆<br>-flattenpackagehierarchy {package_name}    重新包装所有重命名的包并放在给定的单一包中<br>-repackageclass {package_name}    重新包装所有重命名的类文件中放在给定的单一包中<br>-dontusemixedcaseclassnames    混淆时不会产生形形色色的类名<br>-keepattributes {attribute_name,…}    保护给定的可选属性，例如LineNumberTable, LocalVariableTable, SourceFile, Deprecated, Synthetic, Signature, and InnerClasses.<br>-renamesourcefileattribute {string}    设置源文件中给定的字符串常量</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Proguard/" rel="tag"># Proguard</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/11/Maven WEB 项目使用ProGuard进行混淆，最佳解决方案/" rel="next" title="Maven WEB 项目使用ProGuard进行混淆，最佳解决方案">
+                <i class="fa fa-chevron-left"></i> Maven WEB 项目使用ProGuard进行混淆，最佳解决方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/11/【Error】centos7 minimal connect： Network is unreachable/" rel="prev" title="【Error】centos7 minimal connect： Network is unreachable">
+                【Error】centos7 minimal connect： Network is unreachable <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

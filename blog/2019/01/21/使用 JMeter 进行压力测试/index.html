@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JMeter,测试,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="一.前言压力测试是每一个Web应用程序上线之前都需要做的一个测试，他可以帮助我们发现系统中的瓶颈问题，减少发布到生产环境后出问题的几率；预估系统的承载能力，使我们能根据其做出一些应对措施。所以压力测试是一个非常重要的步骤，下面我带大家来使用一款压力测试工具JMeter。 二.关于JMeterApache JMeter是Apache组织开发的基于Java的压力测试工具。用于对软件做压力测试，它最初被">
+<meta name="keywords" content="JMeter,测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 JMeter 进行压力测试">
+<meta property="og:url" content="http://pangguoming.com/2019/01/21/使用 JMeter 进行压力测试/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="一.前言压力测试是每一个Web应用程序上线之前都需要做的一个测试，他可以帮助我们发现系统中的瓶颈问题，减少发布到生产环境后出问题的几率；预估系统的承载能力，使我们能根据其做出一些应对措施。所以压力测试是一个非常重要的步骤，下面我带大家来使用一款压力测试工具JMeter。 二.关于JMeterApache JMeter是Apache组织开发的基于Java的压力测试工具。用于对软件做压力测试，它最初被">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429182446546-1074951655.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429182511445-1603366546.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429183255514-2033730042.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429184947149-2117252461.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429185411556-710704956.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429185539424-1104651080.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429185907741-859427144.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429201416944-2060347522.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/668104/201805/668104-20180505141719591-1926998849.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/668104/201805/668104-20180505141843551-1345786493.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/668104/201805/668104-20180505142108497-713212179.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/668104/201805/668104-20180505143855300-678010921.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/668104/201805/668104-20180505142733531-35292771.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/668104/201805/668104-20180505143000759-389642924.png">
+<meta property="og:updated_time" content="2019-01-26T14:39:04.749Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 JMeter 进行压力测试">
+<meta name="twitter:description" content="一.前言压力测试是每一个Web应用程序上线之前都需要做的一个测试，他可以帮助我们发现系统中的瓶颈问题，减少发布到生产环境后出问题的几率；预估系统的承载能力，使我们能根据其做出一些应对措施。所以压力测试是一个非常重要的步骤，下面我带大家来使用一款压力测试工具JMeter。 二.关于JMeterApache JMeter是Apache组织开发的基于Java的压力测试工具。用于对软件做压力测试，它最初被">
+<meta name="twitter:image" content="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429182446546-1074951655.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2019/01/21/使用 JMeter 进行压力测试/">
+
+
+
+
+
+  <title>使用 JMeter 进行压力测试 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2019/01/21/使用 JMeter 进行压力测试/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用 JMeter 进行压力测试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-21T18:20:00+08:00">
+                2019-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h2><p>压力测试是每一个Web应用程序上线之前都需要做的一个测试，他可以帮助我们发现系统中的瓶颈问题，减少发布到生产环境后出问题的几率；预估系统的承载能力，使我们能根据其做出一些应对措施。所以压力测试是一个非常重要的步骤，下面我带大家来使用一款压力测试工具JMeter。</p>
+<h2 id="二-关于JMeter"><a href="#二-关于JMeter" class="headerlink" title="二.关于JMeter"></a>二.关于JMeter</h2><p>Apache JMeter是Apache组织开发的基于Java的压力测试工具。用于对软件做压力测试，它最初被设计用于Web应用测试，但后来扩展到其他测试领域。 它可以用于测试静态和动态资源，例如静态文件、Java 小服务程序、CGI 脚本、Java 对象、数据库、FTP 服务器， 等等。JMeter 可以用于对服务器、网络或对象模拟巨大的负载，来自不同压力类别下测试它们的强度和分析整体性能。另外，JMeter能够对应用程序做功能/回归测试，通过创建带有断言的脚本来验证你的程序返回了你期望的结果。为了最大限度的灵活性，JMeter允许使用正则表达式创建断言。<br>Apache jmeter 可以用于对静态的和动态的资源（文件，Servlet，Perl脚本，java 对象，数据库和查询，FTP服务器等等）的性能进行测试。它可以用于对服务器、网络或对象模拟繁重的负载来测试它们的强度或分析不同压力类型下的整体性能。你可以使用它做性能的图形分析或在大并发负载测试你的服务器/脚本/对象。</p>
+<p>官网：<a href="http://jmeter.apache.org/download_jmeter.cgi" target="_blank" rel="noopener">http://jmeter.apache.org/download_jmeter.cgi</a></p>
+<p>这里我选用了 4.0 版本的二进制包：<a href="http://mirror.bit.edu.cn/apache//jmeter/binaries/apache-jmeter-4.0.zip" target="_blank" rel="noopener">http://mirror.bit.edu.cn/apache//jmeter/binaries/apache-jmeter-4.0.zip</a></p>
+<blockquote>
+<p>更多内容介绍 <a href="https://baike.baidu.com/item/Jmeter/3104456" target="_blank" rel="noopener">https://baike.baidu.com/item/Jmeter/3104456</a></p>
+</blockquote>
+<h2 id="三-准备工作"><a href="#三-准备工作" class="headerlink" title="三.准备工作"></a>三.准备工作</h2><blockquote>
+<p>因为JMeter是使用JAVA写的，所以使用JMeter之前，先安装JAVA环境，本文就不讲不如安装JAVA环境了。.</p>
+</blockquote>
+<p>JAVA环境变量配置:<a href="https://jingyan.baidu.com/article/fd8044fa2c22f15031137a2a.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/fd8044fa2c22f15031137a2a.html</a></p>
+<p>解压下载的二进制包，进入bin目录，使用<code>jmeter.bat</code>启动程序。</p>
+<p>启动之后会有两个窗口，一个cmd窗口，一个JMeter的 GUI。前面<strong>不要忽略</strong>CMD窗口的提示信息：</p>
+<p><img src="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429182446546-1074951655.png" alt=""></p>
+<p>JMeter:</p>
+<p><img src="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429182511445-1603366546.png" alt=""></p>
+<h3 id="CMD窗口的提示信息"><a href="#CMD窗口的提示信息" class="headerlink" title="CMD窗口的提示信息"></a>CMD窗口的提示信息</h3><p><code class="hljs">================================================================================<br>    Don’t use GUI mode for load testing !, only for Test creation and Test debugging.<br>    For load testing, use NON GUI Mode:<br>       jmeter -n -t [jmx file] -l [results file] -e -o [Path to web report folder]<br>    &amp; increase Java Heap to meet your test requirements:<br>       Modify current env variable HEAP=”-Xms1g -Xmx1g -XX:MaxMetaspaceSize=256m” in the jmeter batch file<br>    Check : <a href="https://jmeter.apache.org/usermanual/best-practices.html" target="_blank" rel="noopener">https://jmeter.apache.org/usermanual/best-practices.html</a><br>    ================================================================================</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上面的意思就是：不要使用GUI运行压力测试，GUI仅用于压力测试的创建和调试；执行压力测试请不要使用GUI。使用下面的命令来执行测试：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;shell&quot;&gt;&lt;code class=&quot;hljs&quot;&gt; jmeter -n -t [jmx file] -l [results file] -e -o [Path to web report folder]&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<p>并且修改JMeter批处理文件的环境变量：<code>HEAP=&quot;-Xms1g -Xmx1g -XX:MaxMetaspaceSize=256m&quot;</code></p>
+<pre><code>### 更改语言为中文
+</code></pre><p>官方默认为我们提供了简体中文。通过 【Options】-&gt;【Choose Language】变更为简体中文</p>
+<p><img src="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429183255514-2033730042.png" alt=""></p>
+<pre><code>## 四.创建测试
+
+### 1.创建线程组
+</code></pre><p>在“测试计划”上右键 【添加】–&gt;【Threads(Users)】–&gt;【线程组】。</p>
+<p><img src="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429184947149-2117252461.png" alt=""></p>
+<p>设置线程数和循环次数。我这里设置线程数为500，循环一次。</p>
+<p><img src="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429185411556-710704956.png" alt=""></p>
+<pre><code>### 2.配置元件
+</code></pre><p>在我们刚刚创建的线程组上右键 【添加】–&gt;【配置元件】–&gt;【HTTP请求默认值】。</p>
+<p><img src="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429185539424-1104651080.png" alt=""></p>
+<p>配置我们需要进行测试的程序协议、地址和端口</p>
+<p><img src="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429185907741-859427144.png" alt=""></p>
+<blockquote>
+<p>当所有的接口测试的访问域名和端口都一样时，可以使用该元件，一旦服务器地址变更，只需要修改请求默认值即可。</p>
+</blockquote>
+<pre><code>### 3.构造HTTP请求
+</code></pre><p>在“线程组”右键 【添加-】-&gt;【samlper】–&gt;【HTTP 请求】设置我们需要测试的API的请求路径和数据。我这里是用的json</p>
+<p><img src="https://images2018.cnblogs.com/blog/668104/201804/668104-20180429201416944-2060347522.png" alt=""></p>
+<pre><code>### 4.添加HTTP请求头
+</code></pre><p>在我们刚刚创建的线程组上右键 【添加】–&gt;【配置元件】–&gt;【HTTP信息头管理器】。</p>
+<p>因为我要传输的数据为json，所以设置一个 <code>Content-Type:application/json</code></p>
+<p><img src="https://images2018.cnblogs.com/blog/668104/201805/668104-20180505141719591-1926998849.png" alt=""></p>
+<pre><code>### 5.添加断言
+</code></pre><p>在我们刚刚创建的线程组上右键 【添加】–&gt;【断言】–&gt;【响应断言】。</p>
+<p>根据响应的数据来判断请求是否正常。我在这里只判断的响应代码是否为200。还可以配置错误信息</p>
+<p><img src="https://images2018.cnblogs.com/blog/668104/201805/668104-20180505141843551-1345786493.png" alt=""></p>
+<pre><code>### 6.添加察看结果树
+</code></pre><p>在我们刚刚创建的线程组上右键 【添加】–&gt;【监听器】–&gt;【察看结果树】。</p>
+<p>直接添加，然后点击<code>运行</code>按钮就可以看到结果了。</p>
+<p><img src="https://images2018.cnblogs.com/blog/668104/201805/668104-20180505142108497-713212179.png" alt=""></p>
+<pre><code>### 7.添加Summary Report
+</code></pre><p>在我们刚刚创建的线程组上右键 【添加】–&gt;【监听器】–&gt;【Summary Report】。</p>
+<p>直接添加，然后点击<code>运行</code>按钮就可以看到结果了。</p>
+<p><img src="https://images2018.cnblogs.com/blog/668104/201805/668104-20180505143855300-678010921.png" alt=""></p>
+<blockquote>
+<p>为了不引起不必要的争论，隐藏了TPS。此数据不具备任何价值，仅仅为文章演示。</p>
+</blockquote>
+<pre><code>### 8.测试计划创建完成
+</code></pre><p>记得点保存。</p>
+<pre><code>## 五.执行测试计划
+</code></pre><p>前面我们说过，执行测试计划不能用GUI，需要用命令行来执行。</p>
+<p><img src="https://images2018.cnblogs.com/blog/668104/201805/668104-20180505142733531-35292771.png" alt=""></p>
+<p>我这里执行的命令为：</p>
+<pre><code>&lt;pre class=&quot;shell&quot;&gt;&lt;code class=&quot;hljs&quot;&gt;jmeter -n -t testplan/RedisLock.jmx -l testplan/result/result.txt -e -o testplan/webreport&lt;/code&gt;```
+</code></pre><p>说明：</p>
+<p><code>testplan/RedisLock.jmx</code> 为测试计划文件路径<br><code>testplan/result/result.txt</code> 为测试结果文件路径<br><code>testplan/webreport</code> 为web报告保存路径。</p>
+<p>Web报告如下：</p>
+<p><img src="https://images2018.cnblogs.com/blog/668104/201805/668104-20180505143000759-389642924.png" alt=""></p>
+<pre><code>## 六.写在最后
+</code></pre><p>线程数量和循环次数将会影响最终的测试报告,请大家多多测试。<br></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JMeter/" rel="tag"># JMeter</a>
+          
+            <a href="/tags/测试/" rel="tag"># 测试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/18/Centos7 设置、查看、添加、删除服务的开机启动项/" rel="next" title="Centos7 设置、查看、添加、删除服务的开机启动项">
+                <i class="fa fa-chevron-left"></i> Centos7 设置、查看、添加、删除服务的开机启动项
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/25/PDF.js 分片下载的介绍2-分片下载demo/" rel="prev" title="PDF.js 分片下载的介绍2:分片下载demo">
+                PDF.js 分片下载的介绍2:分片下载demo <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-前言"><span class="nav-number">1.</span> <span class="nav-text">一.前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-关于JMeter"><span class="nav-number">2.</span> <span class="nav-text">二.关于JMeter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-准备工作"><span class="nav-number">3.</span> <span class="nav-text">三.准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD窗口的提示信息"><span class="nav-number">3.1.</span> <span class="nav-text">CMD窗口的提示信息</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

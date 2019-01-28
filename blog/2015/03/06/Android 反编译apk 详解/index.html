@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="apk,反编译,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="测试环境： win 7  使用工具： CSDN上下载地址：    **apktool （资源文件获取）  [下载](http://download.csdn.net/detail/vipzjyno1/7025111)  **        dex2jar（源码文件获取） 下载        jd-gui  （源码查看） 下载        Android反编译整合工具包（最新） 下载 官方最新版本">
+<meta name="keywords" content="apk,反编译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 反编译apk 详解">
+<meta property="og:url" content="http://pangguoming.com/2015/03/06/Android 反编译apk 详解/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="测试环境： win 7  使用工具： CSDN上下载地址：    **apktool （资源文件获取）  [下载](http://download.csdn.net/detail/vipzjyno1/7025111)  **        dex2jar（源码文件获取） 下载        jd-gui  （源码查看） 下载        Android反编译整合工具包（最新） 下载 官方最新版本">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.blog.csdn.net/20140311215117218?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdmlwemp5bm8x/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20140311215241218?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdmlwemp5bm8x/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20140311215335046?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdmlwemp5bm8x/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20140311215400359">
+<meta property="og:image" content="http://img.blog.csdn.net/20140311215413031">
+<meta property="og:image" content="http://img.blog.csdn.net/20140311215508890">
+<meta property="og:image" content="http://img.blog.csdn.net/20140311215538953">
+<meta property="og:updated_time" content="2019-01-26T15:11:05.228Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 反编译apk 详解">
+<meta name="twitter:description" content="测试环境： win 7  使用工具： CSDN上下载地址：    **apktool （资源文件获取）  [下载](http://download.csdn.net/detail/vipzjyno1/7025111)  **        dex2jar（源码文件获取） 下载        jd-gui  （源码查看） 下载        Android反编译整合工具包（最新） 下载 官方最新版本">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20140311215117218?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdmlwemp5bm8x/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2015/03/06/Android 反编译apk 详解/">
+
+
+
+
+
+  <title>Android 反编译apk 详解 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2015/03/06/Android 反编译apk 详解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android 反编译apk 详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-06T15:27:00+08:00">
+                2015-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>测试环境：</p>
+<pre><code>win 7 
+</code></pre><p>使用工具：</p>
+<pre><code>CSDN上下载地址：
+
+  **apktool （资源文件获取）  [下载](http://download.csdn.net/detail/vipzjyno1/7025111)  **
+</code></pre><p><strong>       dex2jar（源码文件获取） <a href="http://download.csdn.net/detail/vipzjyno1/7025127" target="_blank" rel="noopener">下载</a></strong></p>
+<p><strong>       jd-gui  （源码查看） <a href="http://download.csdn.net/detail/vipzjyno1/7025145" target="_blank" rel="noopener">下载</a></strong></p>
+<p><strong>       </strong>Android反编译整合工具包（最新） <strong><a href="http://download.csdn.net/detail/vipzjyno1/7025729" target="_blank" rel="noopener">下载</a></strong></p>
+<pre><code>官方最新版本下载地址：
+</code></pre><p><strong>       </strong><a href="https://code.google.com/p/android-apktool/downloads/list" target="_blank" rel="noopener">apktool</a>（google code）</p>
+<p><strong><a href="https://code.google.com/p/android-apktool/downloads/list" target="_blank" rel="noopener"> </a> </strong><a href="http://code.google.com/p/dex2jar/downloads/list" target="_blank" rel="noopener"><strong>dex2jar</strong></a>（google code）<strong>  </strong></p>
+<p><a href="https://code.google.com/p/android-apktool/downloads/list" target="_blank" rel="noopener">  </a><strong> </strong><a href="http://code.google.com/p/innlab/downloads/list" target="_blank" rel="noopener">jd-gui</a>（google code）最新版请见<a href="http://java.decompiler.free.fr/?q=jdgui" target="_blank" rel="noopener">官方</a></p>
+<p>工具介绍：</p>
+<p><strong>apktool  </strong></p>
+<p><strong>**     </strong>作用：资源文件获取，可以提取出图片文件和布局文件进行使用查看**</p>
+<p><strong>dex2jar</strong></p>
+<p><strong>     作用：将apk反编译成java源码（classes.dex转化成jar文件）</strong></p>
+<p><strong>jd-gui</strong></p>
+<p><strong>**     </strong>作用：查看APK中classes.dex转化成出的jar文件，即源码文件**</p>
+<hr>
+<p><strong>反编译流程：</strong></p>
+<p><strong>一、apk</strong>反编译得到<strong>程序的源代码、图片、XML配置、语言资源等文件</strong></p>
+<p>下载上述工具中的apktool，解压得到3个文件：aapt.exe，apktool.bat，apktool.jar ，将需要反编译的APK文件放到该目录下，</p>
+<p><strong>打开命令行界面（运行-CMD） </strong>，定位到apktool文件夹，输入以下命令：<strong>apktool.bat d -f  test.apk  test    </strong></p>
+<p><strong><img src="http://img.blog.csdn.net/20140311215117218?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdmlwemp5bm8x/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">  
+</strong></p>
+<p>（命令中test.apk指的是要反编译的APK文件全名，test为反编译后资源文件存放的目录名称，即为：apktool.bat   d  -f    [apk文件 ]   [输出文件夹]）</p>
+<p><strong><img src="http://img.blog.csdn.net/20140311215241218?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdmlwemp5bm8x/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></strong></p>
+<p>说明获取成功，之后发现在文件夹下多了个test文件，点击便可以查看该应用的所有资源文件了。</p>
+<p>如果你想将反编译完的文件重新打包成apk，那你可以：输入<strong>apktool.bat   b    test</strong>（你编译出来文件夹）便可，效果如下：</p>
+<p><img src="http://img.blog.csdn.net/20140311215335046?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdmlwemp5bm8x/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>之后在之前的test文件下便可以发现多了2个文件夹:</p>
+<p>build</p>
+<p>dist(里面存放着打包出来的APK文件)</p>
+<p>二、Apk<strong>反编译</strong>得到Java源代码</p>
+<p>下载上述工具中的dex2jar和<strong>jd-gui**</strong> ，解压**</p>
+<p>将要反编译的APK后缀名改为.rar或则 .zip，并解压，得到其中的额classes.dex文件（它就是java文件编译再通过dx工具打包而成的），将获取到的<strong>classes.dex放到之前解压出来的工具dex2jar-0.0.9.15 文件夹内，</strong></p>
+<p>在命令行下定位到dex2jar.bat所在目录，输入dex2jar.bat   classes.dex，效果如下：</p>
+<p><strong><img src="http://img.blog.csdn.net/20140311215400359" alt=""></strong></p>
+<p><strong>在改目录下会生成一个</strong>classes_dex2jar.jar的文件，然后打开工具jd-gui文件夹里的jd-gui.exe，之后用该工具打开之前生成的classes_dex2jar.jar文件，便可以看到源码了，效果如下：</p>
+<p><img src="http://img.blog.csdn.net/20140311215413031" alt=""></p>
+<p>被混淆过的效果图（类文件名称以及里面的方法名称都会以a,b,c….之类的样式命名）：</p>
+<p><img src="http://img.blog.csdn.net/20140311215508890" alt=""></p>
+<p><strong>三、 图形化反编译apk（本人未使用过）</strong></p>
+<p>上述步骤一、二讲述了命令行反编译apk，现在提供一种图形化反编译工具：Androidfby</p>
+<p>首先，下载上述反编译工具包，打开Androidfby目录，双击Android反编译工具.exe，就可以浏览打开要反编译的apk</p>
+<p><img src="http://img.blog.csdn.net/20140311215538953" alt=""></p>
+<p>通过反编译，你可以获知该应用用到了什么第3方的库文件，它的代码是如何编写的等等。</p>
+<p>然而，如果该APK进行了混淆处理，那么你看到的类文件名称以及里面的方法名称都会以a,b,c….之类的样式命名，所以你可以想找到你所想得知的界面代码可能会十分费劲，找到了代码可能看起来也会很费劲，可是一个大体的思路会获得，有了这个思路，你就可以自己去尝试了。</p>
+<p>本人曾经想写一个类似唱吧的名人界面布局，可是当初第一次接触不知道如何去写，进进行了反编译，即使他的那个代码是混淆过的，我也看出来他是通过LISTVIEW的TYPE设定不同的ITEM布局实现了。可能好多引用都是采用重写VIEW来实现效果，你可以得到他的大体思路对你的开发有益无害。</p>
+<p>还有处于一个开发者辛辛苦苦将自己的应用开发出来被别人一反编译便成为了他自己的东西，所以要进行混淆处理：</p>
+<p>以下是我转载的混淆的教程：<a href="http://blog.csdn.net/vipzjyno1/article/details/21042823" target="_blank" rel="noopener">http://blog.csdn.net/vipzjyno1/article/details/21042823</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/apk/" rel="tag"># apk</a>
+          
+            <a href="/tags/反编译/" rel="tag"># 反编译</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/02/26/Node.js 开发模式（设计模式）/" rel="next" title="Node.js 开发模式（设计模式）">
+                <i class="fa fa-chevron-left"></i> Node.js 开发模式（设计模式）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/03/19/AngularJS 中文资料+工具+库+Demo 大搜集/" rel="prev" title="AngularJS 中文资料+工具+库+Demo 大搜集">
+                AngularJS 中文资料+工具+库+Demo 大搜集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

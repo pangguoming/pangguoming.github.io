@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Sharding-JDBC,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="转载请注明出处：http://blog.csdn.net/l1028386804/article/details/79368021 一、概述之前，我们介绍了利用Mycat进行分库分表操作，Mycat分表操作是利用分库来进行的，单个库中的分表操作可结合MySQL的分区进行，这也是Mycat官方提倡的方式。那么，如何利用Mycat真正实现数据库的分库分表，可以私信我。今天，我们来看看sharding-">
+<meta name="keywords" content="Sharding-JDBC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sharding-jdbc之——分库分表实例">
+<meta property="og:url" content="http://pangguoming.com/2018/08/29/sharding-jdbc之——分库分表实例/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="转载请注明出处：http://blog.csdn.net/l1028386804/article/details/79368021 一、概述之前，我们介绍了利用Mycat进行分库分表操作，Mycat分表操作是利用分库来进行的，单个库中的分表操作可结合MySQL的分区进行，这也是Mycat官方提倡的方式。那么，如何利用Mycat真正实现数据库的分库分表，可以私信我。今天，我们来看看sharding-">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdn.net/20180225123715151">
+<meta property="og:updated_time" content="2019-01-26T14:39:28.097Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sharding-jdbc之——分库分表实例">
+<meta name="twitter:description" content="转载请注明出处：http://blog.csdn.net/l1028386804/article/details/79368021 一、概述之前，我们介绍了利用Mycat进行分库分表操作，Mycat分表操作是利用分库来进行的，单个库中的分表操作可结合MySQL的分区进行，这也是Mycat官方提倡的方式。那么，如何利用Mycat真正实现数据库的分库分表，可以私信我。今天，我们来看看sharding-">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180225123715151">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2018/08/29/sharding-jdbc之——分库分表实例/">
+
+
+
+
+
+  <title>sharding-jdbc之——分库分表实例 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/08/29/sharding-jdbc之——分库分表实例/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">sharding-jdbc之——分库分表实例</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-29T14:50:00+08:00">
+                2018-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://blog.csdn.net/l1028386804/article/details/79368021" target="_blank" rel="noopener">转载请注明出处：http://blog.csdn.net/l1028386804/article/details/79368021</a></p>
+<h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><p>之前，我们介绍了利用Mycat进行分库分表操作，Mycat分表操作是利用分库来进行的，单个库中的分表操作可结合MySQL的分区进行，这也是Mycat官方提倡的方式。那么，如何利用Mycat真正实现数据库的分库分表，可以私信我。今天，我们来看看sharding-jdbc，sharding-jdbc也是一款分库分表的“中间件”，不过，它并不向Mycat那样作为一个真正的中间件，它是一款以jar包的形式整合到业务中的插件，这就决定了它是轻量级的，用法也是十分简单的。</p>
+<h3 id="二、分库分表实战"><a href="#二、分库分表实战" class="headerlink" title="二、分库分表实战"></a>二、分库分表实战</h3><p>接下来，我们就利用sharding-jdbc进行数据库的分库分表操作。</p>
+<h4 id="1、创建数据库"><a href="#1、创建数据库" class="headerlink" title="1、创建数据库"></a>1、创建数据库</h4><p>首先我们创建相应的数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">create database sharding_0;</span><br><span class="line">    create database sharding_1;</span><br></pre></td></tr></table></figure>
+<p>这样我们就创建了两个数据库sharding_0和sharding_1;</p>
+<p>接下来我们在两个库中创建相应的数据表，在两个库中分别进行如下SQL:</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:sql;gutter:true;&quot;&gt;SET FOREIGN_KEY_CHECKS=0;</span><br><span class="line"></span><br><span class="line">-- ----------------------------</span><br><span class="line">-- Table structure for t_student_00</span><br><span class="line">-- ----------------------------</span><br><span class="line">DROP TABLE IF EXISTS `t_student_00`;</span><br><span class="line">CREATE TABLE `t_student_00` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `student_id` int(11) NOT NULL,</span><br><span class="line">  `name` varchar(255) NOT NULL,</span><br><span class="line">  `age` int(11) NOT NULL,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br><span class="line"></span><br><span class="line">-- ----------------------------</span><br><span class="line">-- Table structure for t_student_01</span><br><span class="line">-- ----------------------------</span><br><span class="line">DROP TABLE IF EXISTS `t_student_01`;</span><br><span class="line">CREATE TABLE `t_student_01` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `student_id` int(11) NOT NULL,</span><br><span class="line">  `name` varchar(255) NOT NULL,</span><br><span class="line">  `age` int(11) NOT NULL,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;</span><br><span class="line"></span><br><span class="line">-- ----------------------------</span><br><span class="line">-- Table structure for t_user_00</span><br><span class="line">-- ----------------------------</span><br><span class="line">DROP TABLE IF EXISTS `t_user_00`;</span><br><span class="line">CREATE TABLE `t_user_00` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `user_id` int(11) NOT NULL,</span><br><span class="line">  `name` varchar(255) NOT NULL,</span><br><span class="line">  `age` int(11) NOT NULL,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br><span class="line"></span><br><span class="line">-- ----------------------------</span><br><span class="line">-- Table structure for t_user_01</span><br><span class="line">-- ----------------------------</span><br><span class="line">DROP TABLE IF EXISTS `t_user_01`;</span><br><span class="line">CREATE TABLE `t_user_01` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `user_id` int(11) NOT NULL,</span><br><span class="line">  `name` varchar(255) NOT NULL,</span><br><span class="line">  `age` int(11) NOT NULL,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;</span><br><span class="line"></span><br><span class="line">-- ----------------------------</span><br><span class="line">-- Table structure for t_user_02</span><br><span class="line">-- ----------------------------</span><br><span class="line">DROP TABLE IF EXISTS `t_user_02`;</span><br><span class="line">CREATE TABLE `t_user_02` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `user_id` int(11) NOT NULL,</span><br><span class="line">  `name` varchar(255) NOT NULL,</span><br><span class="line">  `age` int(11) NOT NULL,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;</span><br></pre></td></tr></table></figure>
+</code></pre><p>这样，我们的数据库就准备好了。</p>
+<pre><code>#### 2、创建项目
+</code></pre><p>接下来，我们就创建一个Maven项目，项目结构如下：</p>
+<p><img src="https://img-blog.csdn.net/20180225123715151" alt=""></p>
+<pre><code>#### 3、配置pom.xml
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:html;gutter:true;&quot;&gt;&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;  </span><br><span class="line">  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;  </span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;  </span><br><span class="line"></span><br><span class="line">  &lt;groupId&gt;com.lyz&lt;/groupId&gt;  </span><br><span class="line">  &lt;artifactId&gt;sharding-jdbc-mybatis&lt;/artifactId&gt;  </span><br><span class="line">  &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;  </span><br><span class="line">  &lt;packaging&gt;jar&lt;/packaging&gt;  </span><br><span class="line"></span><br><span class="line">  &lt;name&gt;sharding-jdbc-mybatis&lt;/name&gt;  </span><br><span class="line">  &lt;url&gt;http://maven.apache.org&lt;/url&gt;  </span><br><span class="line"></span><br><span class="line"> &lt;properties&gt;  </span><br><span class="line">        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;  </span><br><span class="line">        &lt;spring.version&gt;4.1.0.RELEASE&lt;/spring.version&gt;</span><br><span class="line">        &lt;mybatis.version&gt;3.2.4&lt;/mybatis.version&gt;  </span><br><span class="line">    &lt;/properties&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;dependencies&gt;  </span><br><span class="line">        &lt;dependency&gt;  </span><br><span class="line">            &lt;groupId&gt;junit&lt;/groupId&gt;  </span><br><span class="line">            &lt;artifactId&gt;junit&lt;/artifactId&gt;  </span><br><span class="line">            &lt;version&gt;4.10&lt;/version&gt;  </span><br><span class="line">        &lt;/dependency&gt;  </span><br><span class="line">        &lt;dependency&gt;  </span><br><span class="line">            &lt;groupId&gt;com.dangdang&lt;/groupId&gt;  </span><br><span class="line">            &lt;artifactId&gt;sharding-jdbc-core&lt;/artifactId&gt;  </span><br><span class="line">            &lt;version&gt;1.0.0&lt;/version&gt;  </span><br><span class="line">        &lt;/dependency&gt;  </span><br><span class="line">        &lt;dependency&gt;  </span><br><span class="line">            &lt;groupId&gt;org.springframework&lt;/groupId&gt;  </span><br><span class="line">            &lt;artifactId&gt;spring-orm&lt;/artifactId&gt;  </span><br><span class="line">            &lt;version&gt;$&#123;spring.version&#125;&lt;/version&gt;  </span><br><span class="line">        &lt;/dependency&gt;  </span><br><span class="line">        &lt;dependency&gt;  </span><br><span class="line">            &lt;groupId&gt;commons-dbcp&lt;/groupId&gt;  </span><br><span class="line">            &lt;artifactId&gt;commons-dbcp&lt;/artifactId&gt;  </span><br><span class="line">            &lt;version&gt;1.4&lt;/version&gt;  </span><br><span class="line">        &lt;/dependency&gt;  </span><br><span class="line">        &lt;dependency&gt;  </span><br><span class="line">            &lt;groupId&gt;org.mybatis&lt;/groupId&gt;  </span><br><span class="line">            &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;  </span><br><span class="line">            &lt;version&gt;1.2.2&lt;/version&gt;  </span><br><span class="line">        &lt;/dependency&gt;  </span><br><span class="line">        &lt;dependency&gt;  </span><br><span class="line">            &lt;groupId&gt;org.mybatis&lt;/groupId&gt;  </span><br><span class="line">            &lt;artifactId&gt;mybatis&lt;/artifactId&gt;  </span><br><span class="line">            &lt;version&gt;$&#123;mybatis.version&#125;&lt;/version&gt;  </span><br><span class="line">        &lt;/dependency&gt;  </span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;  </span><br><span class="line">            &lt;groupId&gt;org.springframework&lt;/groupId&gt;  </span><br><span class="line">            &lt;artifactId&gt;spring-expression&lt;/artifactId&gt;  </span><br><span class="line">            &lt;version&gt;$&#123;spring.version&#125;&lt;/version&gt;  </span><br><span class="line">        &lt;/dependency&gt;  </span><br><span class="line">        &lt;dependency&gt;  </span><br><span class="line">            &lt;groupId&gt;org.springframework&lt;/groupId&gt;  </span><br><span class="line">            &lt;artifactId&gt;spring-aop&lt;/artifactId&gt;  </span><br><span class="line">            &lt;version&gt;$&#123;spring.version&#125;&lt;/version&gt;  </span><br><span class="line">        &lt;/dependency&gt;  </span><br><span class="line">        &lt;dependency&gt;  </span><br><span class="line">            &lt;groupId&gt;org.springframework&lt;/groupId&gt;  </span><br><span class="line">            &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;  </span><br><span class="line">            &lt;version&gt;$&#123;spring.version&#125;&lt;/version&gt;  </span><br><span class="line">        &lt;/dependency&gt;  </span><br><span class="line">        &lt;dependency&gt;  </span><br><span class="line">            &lt;groupId&gt;org.springframework&lt;/groupId&gt;  </span><br><span class="line">            &lt;artifactId&gt;spring-context&lt;/artifactId&gt;  </span><br><span class="line">            &lt;version&gt;$&#123;spring.version&#125;&lt;/version&gt;  </span><br><span class="line">        &lt;/dependency&gt;  </span><br><span class="line">        &lt;dependency&gt;  </span><br><span class="line">            &lt;groupId&gt;org.springframework&lt;/groupId&gt;  </span><br><span class="line">            &lt;artifactId&gt;spring-context-support&lt;/artifactId&gt;  </span><br><span class="line">            &lt;version&gt;$&#123;spring.version&#125;&lt;/version&gt;  </span><br><span class="line">        &lt;/dependency&gt;  </span><br><span class="line">        &lt;dependency&gt;  </span><br><span class="line">            &lt;groupId&gt;org.springframework&lt;/groupId&gt;  </span><br><span class="line">            &lt;artifactId&gt;spring-test&lt;/artifactId&gt;  </span><br><span class="line">            &lt;version&gt;$&#123;spring.version&#125;&lt;/version&gt;  </span><br><span class="line">        &lt;/dependency&gt;  </span><br><span class="line">        &lt;dependency&gt;  </span><br><span class="line">            &lt;groupId&gt;org.springframework&lt;/groupId&gt;  </span><br><span class="line">            &lt;artifactId&gt;spring-tx&lt;/artifactId&gt;  </span><br><span class="line">            &lt;version&gt;$&#123;spring.version&#125;&lt;/version&gt;  </span><br><span class="line">        &lt;/dependency&gt;  </span><br><span class="line">        &lt;dependency&gt;  </span><br><span class="line">            &lt;groupId&gt;mysql&lt;/groupId&gt;  </span><br><span class="line">            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;  </span><br><span class="line">            &lt;version&gt;5.1.28&lt;/version&gt;  </span><br><span class="line">        &lt;/dependency&gt;  </span><br><span class="line">        &lt;dependency&gt;  </span><br><span class="line">            &lt;groupId&gt;log4j&lt;/groupId&gt;  </span><br><span class="line">            &lt;artifactId&gt;log4j&lt;/artifactId&gt;  </span><br><span class="line">            &lt;version&gt;1.2.16&lt;/version&gt;  </span><br><span class="line">        &lt;/dependency&gt;  </span><br><span class="line">        &lt;dependency&gt;  </span><br><span class="line">            &lt;groupId&gt;org.slf4j&lt;/groupId&gt;  </span><br><span class="line">            &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;  </span><br><span class="line">            &lt;version&gt;1.7.5&lt;/version&gt;  </span><br><span class="line">        &lt;/dependency&gt;  </span><br><span class="line">    &lt;/dependencies&gt;  </span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+
+#### 4、创建数据库映射类
+</code></pre><p>这里，我们创建两个数据库映射类：User类和Student类。</p>
+<p>4-1、User类</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;package com.lyz.sharding.entity;</span><br><span class="line"></span><br><span class="line">import java.io.Serializable;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 用户类</span><br><span class="line"> * @author liuyazhuang</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class User implements Serializable &#123;</span><br><span class="line"></span><br><span class="line">    private static final long serialVersionUID = 1L;</span><br><span class="line"></span><br><span class="line">    private Integer id;</span><br><span class="line"></span><br><span class="line">    private Integer userId;</span><br><span class="line"></span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    private Integer age;</span><br><span class="line"></span><br><span class="line">    public Integer getId() &#123;</span><br><span class="line">        return id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setId(Integer id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Integer getUserId() &#123;</span><br><span class="line">        return userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setUserId(Integer userId) &#123;</span><br><span class="line">        this.userId = userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Integer getAge() &#123;</span><br><span class="line">        return age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAge(Integer age) &#123;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;User [id=&quot; + id + &quot;, userId=&quot; + userId + &quot;, name=&quot; + name + &quot;, age=&quot; + age + &quot;]&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p> 4-2、Student类</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;package com.lyz.sharding.entity;</span><br><span class="line"></span><br><span class="line">import java.io.Serializable;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 学生类</span><br><span class="line"> * @author liuyazhuang</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class Student implements Serializable &#123;</span><br><span class="line"></span><br><span class="line">    private static final long serialVersionUID = 8920597824668331209L;</span><br><span class="line"></span><br><span class="line">    private Integer id;</span><br><span class="line"></span><br><span class="line">    private Integer studentId;</span><br><span class="line"></span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    private Integer age;</span><br><span class="line"></span><br><span class="line">    public Integer getId() &#123;</span><br><span class="line">        return id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setId(Integer id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Integer getStudentId() &#123;</span><br><span class="line">        return studentId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setStudentId(Integer studentId) &#123;</span><br><span class="line">        this.studentId = studentId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Integer getAge() &#123;</span><br><span class="line">        return age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAge(Integer age) &#123;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;Student [id=&quot; + id + &quot;, studentId=&quot; + studentId + &quot;, name=&quot; + name + &quot;, age=&quot; + age + &quot;]&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+#### 5、创建Mapper类
+</code></pre><p>5-1、UserMapper类</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;package com.lyz.sharding.mapper;</span><br><span class="line"></span><br><span class="line">import java.util.List;</span><br><span class="line">import com.lyz.sharding.entity.User;  </span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 处理用户的数据操作接口</span><br><span class="line"> * @author liuyazhuang</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public interface UserMapper &#123;  </span><br><span class="line"></span><br><span class="line">    Integer insert(User u);  </span><br><span class="line"></span><br><span class="line">    List&lt;User&gt; findAll();  </span><br><span class="line"></span><br><span class="line">    List&lt;User&gt; findByUserIds(List&lt;Integer&gt; userIds);  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p> 5-2、StudentMapper类</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;package com.lyz.sharding.mapper;</span><br><span class="line"></span><br><span class="line">import java.util.List;</span><br><span class="line">import com.lyz.sharding.entity.Student;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 处理学生的数据操作接口</span><br><span class="line"> * @author liuyazhuang</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public interface StudentMapper &#123;  </span><br><span class="line"></span><br><span class="line">    Integer insert(Student s);  </span><br><span class="line"></span><br><span class="line">    List&lt;Student&gt; findAll();  </span><br><span class="line"></span><br><span class="line">    List&lt;Student&gt; findByStudentIds(List&lt;Integer&gt; studentIds);  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+#### 6、创建service类
+</code></pre><p>6-1、UserService类</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;package com.lyz.sharding.service;  </span><br><span class="line"></span><br><span class="line">import java.util.List;</span><br><span class="line">import com.lyz.sharding.entity.User;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 处理用户的Service</span><br><span class="line"> * @author liuyazhuang</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public interface UserService &#123;  </span><br><span class="line"></span><br><span class="line">    public boolean insert(User u);  </span><br><span class="line"></span><br><span class="line">    public List&lt;User&gt; findAll();  </span><br><span class="line"></span><br><span class="line">    public List&lt;User&gt; findByUserIds(List&lt;Integer&gt; ids);  </span><br><span class="line"></span><br><span class="line">    public void transactionTestSucess();  </span><br><span class="line"></span><br><span class="line">    public void transactionTestFailure() throws IllegalAccessException;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p> 6-2、StudentService类</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;package com.lyz.sharding.service;</span><br><span class="line"></span><br><span class="line">import com.lyz.sharding.entity.Student;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 处理学生的service</span><br><span class="line"> * @author liuyazhuang</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public interface StudentService &#123;  </span><br><span class="line"></span><br><span class="line">    boolean insert(Student student);  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+#### 7、创建service的实现类
+</code></pre><p>7-1、UserServiceImpl类</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;package com.lyz.sharding.service.impl;</span><br><span class="line"> import java.util.List;</span><br><span class="line"></span><br><span class="line">import javax.annotation.Resource;</span><br><span class="line"></span><br><span class="line">import org.springframework.stereotype.Service;</span><br><span class="line">import org.springframework.transaction.annotation.Propagation;</span><br><span class="line">import org.springframework.transaction.annotation.Transactional;</span><br><span class="line"></span><br><span class="line">import com.lyz.sharding.entity.Student;</span><br><span class="line">import com.lyz.sharding.entity.User;</span><br><span class="line">import com.lyz.sharding.mapper.StudentMapper;</span><br><span class="line">import com.lyz.sharding.mapper.UserMapper;</span><br><span class="line">import com.lyz.sharding.service.UserService; </span><br><span class="line"></span><br><span class="line">@Service  </span><br><span class="line">@Transactional  </span><br><span class="line">public class UserServiceImpl implements UserService &#123;  </span><br><span class="line"></span><br><span class="line">    @Resource  </span><br><span class="line">    public UserMapper userMapper;  </span><br><span class="line"></span><br><span class="line">    @Resource  </span><br><span class="line">    public StudentMapper studentMapper;  </span><br><span class="line"></span><br><span class="line">    public boolean insert(User u) &#123;  </span><br><span class="line">        return userMapper.insert(u) &gt; 0 ? true :false;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    public List&lt;User&gt; findAll() &#123;  </span><br><span class="line">        return userMapper.findAll();  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    public List&lt;User&gt; findByUserIds(List&lt;Integer&gt; ids) &#123;  </span><br><span class="line">        return userMapper.findByUserIds(ids);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    @Transactional(propagation=Propagation.REQUIRED)  </span><br><span class="line">    public void transactionTestSucess() &#123;  </span><br><span class="line">        User u = new User();  </span><br><span class="line">        u.setUserId(13);  </span><br><span class="line">        u.setAge(25);  </span><br><span class="line">        u.setName(&quot;war3 1.27&quot;);  </span><br><span class="line">        userMapper.insert(u);  </span><br><span class="line"></span><br><span class="line">        Student student = new Student();  </span><br><span class="line">        student.setStudentId(21);  </span><br><span class="line">        student.setAge(21);  </span><br><span class="line">        student.setName(&quot;hehe&quot;);  </span><br><span class="line">        studentMapper.insert(student);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    @Transactional(propagation=Propagation.REQUIRED)  </span><br><span class="line">    public void transactionTestFailure() throws IllegalAccessException &#123;  </span><br><span class="line">        User u = new User();  </span><br><span class="line">        u.setUserId(13);  </span><br><span class="line">        u.setAge(25);  </span><br><span class="line">        u.setName(&quot;war3 1.27 good&quot;);  </span><br><span class="line">        userMapper.insert(u);  </span><br><span class="line"></span><br><span class="line">        Student student = new Student();  </span><br><span class="line">        student.setStudentId(21);  </span><br><span class="line">        student.setAge(21);  </span><br><span class="line">        student.setName(&quot;hehe1&quot;);  </span><br><span class="line">        studentMapper.insert(student);  </span><br><span class="line">        throw new IllegalAccessException();  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p> 7-2、StudentServiceImpl类</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;package com.lyz.sharding.service.impl;</span><br><span class="line">import javax.annotation.Resource;</span><br><span class="line"></span><br><span class="line">import org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line">import com.lyz.sharding.entity.Student;</span><br><span class="line">import com.lyz.sharding.mapper.StudentMapper;</span><br><span class="line">import com.lyz.sharding.service.StudentService;</span><br><span class="line"></span><br><span class="line">@Service  </span><br><span class="line">public class StudentServiceImpl implements StudentService&#123;  </span><br><span class="line"></span><br><span class="line">    @Resource  </span><br><span class="line">    public StudentMapper studentMapper;  </span><br><span class="line"></span><br><span class="line">    public boolean insert(Student student) &#123;  </span><br><span class="line">        return studentMapper.insert(student) &gt; 0 ? true : false;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+#### 8、创建分库逻辑
+</code></pre><p>8-1、User分库逻辑UserSingleKeyDatabaseShardingAlgorithm类</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;package com.lyz.sharding.algorithm;  </span><br><span class="line"></span><br><span class="line">import java.util.Collection;  </span><br><span class="line">import java.util.LinkedHashSet;  </span><br><span class="line"></span><br><span class="line">import com.dangdang.ddframe.rdb.sharding.api.ShardingValue;  </span><br><span class="line">import com.dangdang.ddframe.rdb.sharding.api.strategy.database.SingleKeyDatabaseShardingAlgorithm;  </span><br><span class="line">import com.google.common.collect.Range;  </span><br><span class="line"></span><br><span class="line">/** </span><br><span class="line"> * user表分库的逻辑函数 </span><br><span class="line"> * @author liuyazhuang</span><br><span class="line"> * </span><br><span class="line"> */  </span><br><span class="line">public class UserSingleKeyDatabaseShardingAlgorithm implements SingleKeyDatabaseShardingAlgorithm&lt;Integer&gt;&#123;  </span><br><span class="line"></span><br><span class="line">    /** </span><br><span class="line">     * sql 中关键字 匹配符为 =的时候，表的路由函数 </span><br><span class="line">     */  </span><br><span class="line">    public String doEqualSharding(Collection&lt;String&gt; availableTargetNames, ShardingValue&lt;Integer&gt; shardingValue) &#123;  </span><br><span class="line">        for (String each : availableTargetNames) &#123;  </span><br><span class="line">            if (each.endsWith(shardingValue.getValue() % 2 + &quot;&quot;)) &#123;  </span><br><span class="line">                return each;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        throw new IllegalArgumentException();  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    /** </span><br><span class="line">     * sql 中关键字 匹配符为 in 的时候，表的路由函数 </span><br><span class="line">     */  </span><br><span class="line">    public Collection&lt;String&gt; doInSharding(Collection&lt;String&gt; availableTargetNames, ShardingValue&lt;Integer&gt; shardingValue) &#123;  </span><br><span class="line">        Collection&lt;String&gt; result = new LinkedHashSet&lt;String&gt;(availableTargetNames.size());  </span><br><span class="line">        for (Integer value : shardingValue.getValues()) &#123;  </span><br><span class="line">            for (String tableName : availableTargetNames) &#123;  </span><br><span class="line">                if (tableName.endsWith(value % 2 + &quot;&quot;)) &#123;  </span><br><span class="line">                    result.add(tableName);  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        return result;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    /** </span><br><span class="line">     * sql 中关键字 匹配符为 between的时候，表的路由函数 </span><br><span class="line">     */  </span><br><span class="line">    public Collection&lt;String&gt; doBetweenSharding(Collection&lt;String&gt; availableTargetNames,  </span><br><span class="line">            ShardingValue&lt;Integer&gt; shardingValue) &#123;  </span><br><span class="line">        Collection&lt;String&gt; result = new LinkedHashSet&lt;String&gt;(availableTargetNames.size());  </span><br><span class="line">        Range&lt;Integer&gt; range = (Range&lt;Integer&gt;) shardingValue.getValueRange();  </span><br><span class="line">        for (Integer i = range.lowerEndpoint(); i &lt;= range.upperEndpoint(); i++) &#123;  </span><br><span class="line">            for (String each : availableTargetNames) &#123;  </span><br><span class="line">                if (each.endsWith(i % 2 + &quot;&quot;)) &#123;  </span><br><span class="line">                    result.add(each);  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        return result;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p> 8-2、Student分库逻辑StudentSingleKeyDatabaseShardingAlgorithm</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;package com.lyz.sharding.algorithm;</span><br><span class="line">import java.util.Collection;  </span><br><span class="line">import java.util.LinkedHashSet;  </span><br><span class="line"></span><br><span class="line">import com.dangdang.ddframe.rdb.sharding.api.ShardingValue;  </span><br><span class="line">import com.dangdang.ddframe.rdb.sharding.api.strategy.database.SingleKeyDatabaseShardingAlgorithm;  </span><br><span class="line">import com.google.common.collect.Range;  </span><br><span class="line"></span><br><span class="line">/** </span><br><span class="line"> * user表分库的逻辑函数 </span><br><span class="line"> * @author liuyazhuang </span><br><span class="line"> * </span><br><span class="line"> */  </span><br><span class="line">public class StudentSingleKeyDatabaseShardingAlgorithm implements SingleKeyDatabaseShardingAlgorithm&lt;Integer&gt;&#123;  </span><br><span class="line"></span><br><span class="line">    /** </span><br><span class="line">     * sql 中关键字 匹配符为 =的时候，表的路由函数 </span><br><span class="line">     */  </span><br><span class="line">    @Override</span><br><span class="line">    public String doEqualSharding(Collection&lt;String&gt; availableTargetNames, ShardingValue&lt;Integer&gt; shardingValue) &#123;  </span><br><span class="line">        for (String each : availableTargetNames) &#123;  </span><br><span class="line">            if (each.endsWith(shardingValue.getValue() % 2 + &quot;&quot;)) &#123;  </span><br><span class="line">                return each;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        throw new IllegalArgumentException();  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    /** </span><br><span class="line">     * sql 中关键字 匹配符为 in 的时候，表的路由函数 </span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public Collection&lt;String&gt; doInSharding(Collection&lt;String&gt; availableTargetNames, ShardingValue&lt;Integer&gt; shardingValue) &#123;  </span><br><span class="line">        Collection&lt;String&gt; result = new LinkedHashSet&lt;String&gt;(availableTargetNames.size());  </span><br><span class="line">        for (Integer value : shardingValue.getValues()) &#123;  </span><br><span class="line">            for (String tableName : availableTargetNames) &#123;  </span><br><span class="line">                if (tableName.endsWith(value % 2 + &quot;&quot;)) &#123;  </span><br><span class="line">                    result.add(tableName);  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        return result;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    /** </span><br><span class="line">     * sql 中关键字 匹配符为 between的时候，表的路由函数 </span><br><span class="line">     */  </span><br><span class="line">    @Override</span><br><span class="line">    public Collection&lt;String&gt; doBetweenSharding(Collection&lt;String&gt; availableTargetNames,  </span><br><span class="line">            ShardingValue&lt;Integer&gt; shardingValue) &#123;  </span><br><span class="line">        Collection&lt;String&gt; result = new LinkedHashSet&lt;String&gt;(availableTargetNames.size());  </span><br><span class="line">        Range&lt;Integer&gt; range = (Range&lt;Integer&gt;) shardingValue.getValueRange();  </span><br><span class="line">        for (Integer i = range.lowerEndpoint(); i &lt;= range.upperEndpoint(); i++) &#123;  </span><br><span class="line">            for (String each : availableTargetNames) &#123;  </span><br><span class="line">                if (each.endsWith(i % 2 + &quot;&quot;)) &#123;  </span><br><span class="line">                    result.add(each);  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        return result;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+#### 9、创建分表逻辑
+</code></pre><p>9-1、User分表逻辑UserSingleKeyTableShardingAlgorithm</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;package com.lyz.sharding.algorithm;  </span><br><span class="line"></span><br><span class="line">import java.util.Collection;  </span><br><span class="line">import java.util.LinkedHashSet;  </span><br><span class="line"></span><br><span class="line">import com.dangdang.ddframe.rdb.sharding.api.ShardingValue;  </span><br><span class="line">import com.dangdang.ddframe.rdb.sharding.api.strategy.table.SingleKeyTableShardingAlgorithm;  </span><br><span class="line">import com.google.common.collect.Range;  </span><br><span class="line">/** </span><br><span class="line"> * 因为t_student实际表在每个库中只有3个，所以 %3 </span><br><span class="line"> * @author iuyazhuang</span><br><span class="line"> * </span><br><span class="line"> */  </span><br><span class="line">public class UserSingleKeyTableShardingAlgorithm implements SingleKeyTableShardingAlgorithm&lt;Integer&gt;&#123;  </span><br><span class="line"></span><br><span class="line">    /** </span><br><span class="line">     * sql 中 = 操作时，table的映射 </span><br><span class="line">     */  </span><br><span class="line">    public String doEqualSharding(Collection&lt;String&gt; tableNames, ShardingValue&lt;Integer&gt; shardingValue) &#123;  </span><br><span class="line">        for (String each : tableNames) &#123;  </span><br><span class="line">            if (each.endsWith((&quot;0&quot;.concat(String.valueOf(shardingValue.getValue() % 3))))) &#123;  </span><br><span class="line">                return each;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        throw new IllegalArgumentException();  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    /** </span><br><span class="line">     * sql 中 in 操作时，table的映射 </span><br><span class="line">     */  </span><br><span class="line">    public Collection&lt;String&gt; doInSharding(Collection&lt;String&gt; tableNames, ShardingValue&lt;Integer&gt; shardingValue) &#123;  </span><br><span class="line">        Collection&lt;String&gt; result = new LinkedHashSet&lt;String&gt;(tableNames.size());  </span><br><span class="line">        for (Integer value : shardingValue.getValues()) &#123;  </span><br><span class="line">            for (String tableName : tableNames) &#123;  </span><br><span class="line">                if (tableName.endsWith((&quot;0&quot;.concat(String.valueOf(value % 3))))) &#123;  </span><br><span class="line">                    result.add(tableName);  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        return result;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    /** </span><br><span class="line">     * sql 中 between 操作时，table的映射 </span><br><span class="line">     */  </span><br><span class="line">    public Collection&lt;String&gt; doBetweenSharding(Collection&lt;String&gt; tableNames,  </span><br><span class="line">            ShardingValue&lt;Integer&gt; shardingValue) &#123;  </span><br><span class="line">        Collection&lt;String&gt; result = new LinkedHashSet&lt;String&gt;(tableNames.size());  </span><br><span class="line">        Range&lt;Integer&gt; range = (Range&lt;Integer&gt;) shardingValue.getValueRange();  </span><br><span class="line">        for (Integer i = range.lowerEndpoint(); i &lt;= range.upperEndpoint(); i++) &#123;  </span><br><span class="line">            for (String each : tableNames) &#123;  </span><br><span class="line">                if (each.endsWith((&quot;0&quot;.concat(String.valueOf(i % 3))))) &#123;  </span><br><span class="line">                    result.add(each);  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        return result;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p> 9-2、创建Student分表逻辑StudentSingleKeyTableShardingAlgorithm</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;package com.lyz.sharding.algorithm;</span><br><span class="line"> import java.util.Collection;  </span><br><span class="line">import java.util.LinkedHashSet;  </span><br><span class="line"></span><br><span class="line">import com.dangdang.ddframe.rdb.sharding.api.ShardingValue;  </span><br><span class="line">import com.dangdang.ddframe.rdb.sharding.api.strategy.table.SingleKeyTableShardingAlgorithm;  </span><br><span class="line">import com.google.common.collect.Range;  </span><br><span class="line"></span><br><span class="line">/** </span><br><span class="line"> * 因为t_student实际表在每个库中只有2个，所以 %2 </span><br><span class="line"> * @author iuyazhuang</span><br><span class="line"> * </span><br><span class="line"> */  </span><br><span class="line">public class StudentSingleKeyTableShardingAlgorithm implements SingleKeyTableShardingAlgorithm&lt;Integer&gt;&#123;  </span><br><span class="line"></span><br><span class="line">    /** </span><br><span class="line">     * sql 中 = 操作时，table的映射 </span><br><span class="line">     */  </span><br><span class="line">    public String doEqualSharding(Collection&lt;String&gt; tableNames, ShardingValue&lt;Integer&gt; shardingValue) &#123;  </span><br><span class="line">        for (String each : tableNames) &#123;  </span><br><span class="line">            if (each.endsWith(&quot;0&quot;.concat(String.valueOf(shardingValue.getValue() % 2)))) &#123;  </span><br><span class="line">                return each;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        throw new IllegalArgumentException();  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    /** </span><br><span class="line">     * sql 中 in 操作时，table的映射 </span><br><span class="line">     */  </span><br><span class="line">    public Collection&lt;String&gt; doInSharding(Collection&lt;String&gt; tableNames, ShardingValue&lt;Integer&gt; shardingValue) &#123;  </span><br><span class="line">        Collection&lt;String&gt; result = new LinkedHashSet&lt;String&gt;(tableNames.size());  </span><br><span class="line">        for (Integer value : shardingValue.getValues()) &#123;  </span><br><span class="line">            for (String tableName : tableNames) &#123;  </span><br><span class="line">                if (tableName.endsWith(&quot;0&quot;.concat(String.valueOf(value % 2)))) &#123;  </span><br><span class="line">                    result.add(tableName);  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        return result;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    /** </span><br><span class="line">     * sql 中 between 操作时，table的映射 </span><br><span class="line">     */  </span><br><span class="line">    public Collection&lt;String&gt; doBetweenSharding(Collection&lt;String&gt; tableNames,  </span><br><span class="line">            ShardingValue&lt;Integer&gt; shardingValue) &#123;  </span><br><span class="line">        Collection&lt;String&gt; result = new LinkedHashSet&lt;String&gt;(tableNames.size());  </span><br><span class="line">        Range&lt;Integer&gt; range = (Range&lt;Integer&gt;) shardingValue.getValueRange();  </span><br><span class="line">        for (Integer i = range.lowerEndpoint(); i &lt;= range.upperEndpoint(); i++) &#123;  </span><br><span class="line">            for (String each : tableNames) &#123;  </span><br><span class="line">                if (each.endsWith(&quot;0&quot;.concat(String.valueOf(i % 2)))) &#123;  </span><br><span class="line">                    result.add(each);  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        return result;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+#### 10、创建Mapper.xml
+</code></pre><p>10-1、创建UserMapper.xml</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:html;gutter:true;&quot;&gt;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;  </span><br><span class="line">&lt;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot; &gt;  </span><br><span class="line">&lt;mapper namespace=&quot;com.lyz.sharding.mapper.UserMapper&quot; &gt;  </span><br><span class="line">  &lt;resultMap id=&quot;resultMap&quot; type=&quot;com.lyz.sharding.entity.User&quot; &gt;  </span><br><span class="line">    &lt;id column=&quot;id&quot; property=&quot;id&quot; jdbcType=&quot;INTEGER&quot; /&gt;  </span><br><span class="line">    &lt;result column=&quot;user_id&quot; property=&quot;userId&quot; jdbcType=&quot;INTEGER&quot; /&gt;  </span><br><span class="line">    &lt;result column=&quot;name&quot; property=&quot;name&quot; jdbcType=&quot;VARCHAR&quot; /&gt;  </span><br><span class="line">    &lt;result column=&quot;age&quot; property=&quot;age&quot; jdbcType=&quot;INTEGER&quot; /&gt;  </span><br><span class="line">  &lt;/resultMap&gt;  </span><br><span class="line"></span><br><span class="line">  &lt;insert id=&quot;insert&quot;&gt;  </span><br><span class="line">    insert into t_user (user_id,name,age) values (#&#123;userId&#125;,#&#123;name&#125;,#&#123;age&#125;)  </span><br><span class="line">  &lt;/insert&gt;  </span><br><span class="line"></span><br><span class="line">  &lt;select id=&quot;findAll&quot; resultMap=&quot;resultMap&quot;&gt;  </span><br><span class="line">   select &lt;include refid=&quot;columnsName&quot;/&gt; from t_user   </span><br><span class="line">  &lt;/select&gt;  </span><br><span class="line"></span><br><span class="line">  &lt;select id=&quot;findByUserIds&quot; resultMap=&quot;resultMap&quot;&gt;  </span><br><span class="line">    select &lt;include refid=&quot;columnsName&quot;/&gt; from t_user where user_id in (  </span><br><span class="line">     &lt;foreach collection=&quot;list&quot; item=&quot;item&quot; separator=&quot;,&quot;&gt;  </span><br><span class="line">        #&#123;item&#125;  </span><br><span class="line">     &lt;/foreach&gt;  </span><br><span class="line">    )  </span><br><span class="line"></span><br><span class="line">  &lt;/select&gt;  </span><br><span class="line"></span><br><span class="line">  &lt;sql id=&quot;columnsName&quot;&gt;  </span><br><span class="line">     id,user_id,name,age  </span><br><span class="line">  &lt;/sql&gt;      </span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p> 10-2、创建StudentMapper.xml</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:html;gutter:true;&quot;&gt;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;  </span><br><span class="line">&lt;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot; &gt;  </span><br><span class="line">&lt;mapper namespace=&quot;com.lyz.sharding.mapper.StudentMapper&quot; &gt;  </span><br><span class="line">  &lt;resultMap id=&quot;resultMap&quot; type=&quot;com.lyz.sharding.entity.Student&quot; &gt;  </span><br><span class="line">    &lt;id column=&quot;id&quot; property=&quot;id&quot; jdbcType=&quot;INTEGER&quot; /&gt;  </span><br><span class="line">    &lt;result column=&quot;student_id&quot; property=&quot;studentId&quot; jdbcType=&quot;INTEGER&quot; /&gt;  </span><br><span class="line">    &lt;result column=&quot;name&quot; property=&quot;name&quot; jdbcType=&quot;VARCHAR&quot; /&gt;  </span><br><span class="line">    &lt;result column=&quot;age&quot; property=&quot;age&quot; jdbcType=&quot;INTEGER&quot; /&gt;  </span><br><span class="line">  &lt;/resultMap&gt;  </span><br><span class="line"></span><br><span class="line">  &lt;insert id=&quot;insert&quot;&gt;  </span><br><span class="line">    insert into t_student (student_id,name,age) values (#&#123;studentId&#125;,#&#123;name&#125;,#&#123;age&#125;)  </span><br><span class="line">  &lt;/insert&gt;  </span><br><span class="line"></span><br><span class="line">  &lt;select id=&quot;findAll&quot; resultMap=&quot;resultMap&quot;&gt;  </span><br><span class="line">   select &lt;include refid=&quot;columnsName&quot;/&gt; from t_student  </span><br><span class="line">  &lt;/select&gt;  </span><br><span class="line"></span><br><span class="line">  &lt;select id=&quot;findByStudentIds&quot; resultMap=&quot;resultMap&quot;&gt;  </span><br><span class="line">    select &lt;include refid=&quot;columnsName&quot;/&gt; from t_student where student_id in (  </span><br><span class="line">     &lt;foreach collection=&quot;list&quot; item=&quot;item&quot; separator=&quot;,&quot;&gt;  </span><br><span class="line">        #&#123;item&#125;  </span><br><span class="line">     &lt;/foreach&gt;  </span><br><span class="line">    )  </span><br><span class="line"></span><br><span class="line">  &lt;/select&gt;  </span><br><span class="line"></span><br><span class="line">  &lt;sql id=&quot;columnsName&quot;&gt;  </span><br><span class="line">     id,student_id,name,age  </span><br><span class="line">  &lt;/sql&gt;      </span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
+
+#### 11、创建jdbc_dev.properties
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;jdbc_driver0   = com.mysql.jdbc.Driver</span><br><span class="line">jdbc_url0      = jdbc:mysql://localhost:3306/sharding_0?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true</span><br><span class="line">jdbc_username0 = root</span><br><span class="line">jdbc_password0 = root</span><br><span class="line"></span><br><span class="line">jdbc_driver1   = com.mysql.jdbc.Driver</span><br><span class="line">jdbc_url1      = jdbc:mysql://localhost:3306/sharding_1?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true</span><br><span class="line">jdbc_username1 = root</span><br><span class="line">jdbc_password1 = root</span><br><span class="line"></span><br><span class="line">validationQuery=SELECT 1</span><br></pre></td></tr></table></figure>
+
+#### 12、创建spring配置文件
+</code></pre><p>12-1、spring-database.xml</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:html;gutter:true;&quot;&gt;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  </span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;  </span><br><span class="line">    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot;  </span><br><span class="line">    xmlns:mybatis-spring=&quot;http://mybatis.org/schema/mybatis-spring&quot;  </span><br><span class="line">    xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;  </span><br><span class="line">    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  </span><br><span class="line">        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd  </span><br><span class="line">        http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd  </span><br><span class="line">        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd&quot;&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;bean class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;  </span><br><span class="line">        &lt;property name=&quot;locations&quot;&gt;  </span><br><span class="line">            &lt;list&gt;  </span><br><span class="line">                &lt;value&gt;classpath:config/resource/jdbc_dev.properties&lt;/value&gt;  </span><br><span class="line">            &lt;/list&gt;  </span><br><span class="line">        &lt;/property&gt;  </span><br><span class="line">    &lt;/bean&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;bean name=&quot;sharding_0&quot; class=&quot;com.alibaba.druid.pool.DruidDataSource&quot; init-method=&quot;init&quot; destroy-method=&quot;close&quot;&gt;  </span><br><span class="line">        &lt;property name=&quot;url&quot; value=&quot;$&#123;jdbc_url0&#125;&quot; /&gt;  </span><br><span class="line">        &lt;property name=&quot;username&quot; value=&quot;$&#123;jdbc_username0&#125;&quot; /&gt;  </span><br><span class="line">        &lt;property name=&quot;password&quot; value=&quot;$&#123;jdbc_password0&#125;&quot; /&gt;  </span><br><span class="line">&lt;!--         &lt;property name=&quot;driverClass&quot; value=&quot;$&#123;jdbc_driver0&#125;&quot; /&gt; --&gt;  </span><br><span class="line">        &lt;!-- 初始化连接大小 --&gt;  </span><br><span class="line">        &lt;property name=&quot;initialSize&quot; value=&quot;0&quot; /&gt;  </span><br><span class="line">        &lt;!-- 连接池最大使用连接数量 --&gt;  </span><br><span class="line">        &lt;property name=&quot;maxActive&quot; value=&quot;20&quot; /&gt;  </span><br><span class="line">        &lt;!-- 连接池最小空闲 --&gt;  </span><br><span class="line">        &lt;property name=&quot;minIdle&quot; value=&quot;0&quot; /&gt;  </span><br><span class="line">        &lt;!-- 获取连接最大等待时间 --&gt;  </span><br><span class="line">        &lt;property name=&quot;maxWait&quot; value=&quot;60000&quot; /&gt;  </span><br><span class="line">        &lt;property name=&quot;validationQuery&quot; value=&quot;$&#123;validationQuery&#125;&quot; /&gt;  </span><br><span class="line">        &lt;property name=&quot;testOnBorrow&quot; value=&quot;false&quot; /&gt;  </span><br><span class="line">        &lt;property name=&quot;testOnReturn&quot; value=&quot;false&quot; /&gt;  </span><br><span class="line">        &lt;property name=&quot;testWhileIdle&quot; value=&quot;true&quot; /&gt;  </span><br><span class="line">        &lt;!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 --&gt;  </span><br><span class="line">        &lt;property name=&quot;timeBetweenEvictionRunsMillis&quot; value=&quot;60000&quot; /&gt;  </span><br><span class="line">        &lt;!-- 配置一个连接在池中最小生存的时间，单位是毫秒 --&gt;  </span><br><span class="line">        &lt;property name=&quot;minEvictableIdleTimeMillis&quot; value=&quot;25200000&quot; /&gt;  </span><br><span class="line">        &lt;!-- 打开removeAbandoned功能 --&gt;  </span><br><span class="line">        &lt;property name=&quot;removeAbandoned&quot; value=&quot;true&quot; /&gt;  </span><br><span class="line">        &lt;!-- 1800秒，也就是30分钟 --&gt;  </span><br><span class="line">        &lt;property name=&quot;removeAbandonedTimeout&quot; value=&quot;1800&quot; /&gt;  </span><br><span class="line">        &lt;!-- 关闭abanded连接时输出错误日志 --&gt;  </span><br><span class="line">        &lt;property name=&quot;logAbandoned&quot; value=&quot;true&quot; /&gt;  </span><br><span class="line">        &lt;property name=&quot;filters&quot; value=&quot;stat&quot; /&gt;  </span><br><span class="line">    &lt;/bean&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;bean name=&quot;sharding_1&quot; class=&quot;com.alibaba.druid.pool.DruidDataSource&quot; init-method=&quot;init&quot; destroy-method=&quot;close&quot;&gt;  </span><br><span class="line">        &lt;property name=&quot;url&quot; value=&quot;$&#123;jdbc_url1&#125;&quot; /&gt;  </span><br><span class="line">        &lt;property name=&quot;username&quot; value=&quot;$&#123;jdbc_username1&#125;&quot; /&gt;  </span><br><span class="line">        &lt;property name=&quot;password&quot; value=&quot;$&#123;jdbc_password1&#125;&quot; /&gt;  </span><br><span class="line">&lt;!--         &lt;property name=&quot;driverClass&quot; value=&quot;$&#123;jdbc_driver1&#125;&quot; /&gt; --&gt;  </span><br><span class="line">        &lt;!-- 初始化连接大小 --&gt;  </span><br><span class="line">        &lt;property name=&quot;initialSize&quot; value=&quot;0&quot; /&gt;  </span><br><span class="line">        &lt;!-- 连接池最大使用连接数量 --&gt;  </span><br><span class="line">        &lt;property name=&quot;maxActive&quot; value=&quot;20&quot; /&gt;  </span><br><span class="line">        &lt;!-- 连接池最小空闲 --&gt;  </span><br><span class="line">        &lt;property name=&quot;minIdle&quot; value=&quot;0&quot; /&gt;  </span><br><span class="line">        &lt;!-- 获取连接最大等待时间 --&gt;  </span><br><span class="line">        &lt;property name=&quot;maxWait&quot; value=&quot;60000&quot; /&gt;  </span><br><span class="line">        &lt;property name=&quot;validationQuery&quot; value=&quot;$&#123;validationQuery&#125;&quot; /&gt;  </span><br><span class="line">        &lt;property name=&quot;testOnBorrow&quot; value=&quot;false&quot; /&gt;  </span><br><span class="line">        &lt;property name=&quot;testOnReturn&quot; value=&quot;false&quot; /&gt;  </span><br><span class="line">        &lt;property name=&quot;testWhileIdle&quot; value=&quot;true&quot; /&gt;  </span><br><span class="line">        &lt;!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 --&gt;  </span><br><span class="line">        &lt;property name=&quot;timeBetweenEvictionRunsMillis&quot; value=&quot;60000&quot; /&gt;  </span><br><span class="line">        &lt;!-- 配置一个连接在池中最小生存的时间，单位是毫秒 --&gt;  </span><br><span class="line">        &lt;property name=&quot;minEvictableIdleTimeMillis&quot; value=&quot;25200000&quot; /&gt;  </span><br><span class="line">        &lt;!-- 打开removeAbandoned功能 --&gt;  </span><br><span class="line">        &lt;property name=&quot;removeAbandoned&quot; value=&quot;true&quot; /&gt;  </span><br><span class="line">        &lt;!-- 1800秒，也就是30分钟 --&gt;  </span><br><span class="line">        &lt;property name=&quot;removeAbandonedTimeout&quot; value=&quot;1800&quot; /&gt;  </span><br><span class="line">        &lt;!-- 关闭abanded连接时输出错误日志 --&gt;  </span><br><span class="line">        &lt;property name=&quot;logAbandoned&quot; value=&quot;true&quot; /&gt;  </span><br><span class="line">        &lt;property name=&quot;filters&quot; value=&quot;stat&quot; /&gt;  </span><br><span class="line">    &lt;/bean&gt;  </span><br><span class="line"></span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p> 12-2、spring-sharding.xml</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:html;gutter:true;&quot;&gt;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  </span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;  </span><br><span class="line">    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot;  </span><br><span class="line">    xmlns:mybatis-spring=&quot;http://mybatis.org/schema/mybatis-spring&quot;  </span><br><span class="line">    xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;  </span><br><span class="line">    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  </span><br><span class="line">        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd  </span><br><span class="line">        http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd  </span><br><span class="line">        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd&quot;&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;context:component-scan base-package=&quot;com.lyz.sharding&quot; /&gt; </span><br><span class="line"></span><br><span class="line">    &lt;bean class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;  </span><br><span class="line">        &lt;property name=&quot;basePackage&quot; value=&quot;com.lyz.sharding.mapper&quot;/&gt;  </span><br><span class="line">        &lt;property name=&quot;sqlSessionFactoryBeanName&quot; value=&quot;sqlSessionFactory&quot;/&gt;  </span><br><span class="line">    &lt;/bean&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置sqlSessionFactory --&gt;  </span><br><span class="line">     &lt;bean id=&quot;sqlSessionFactory&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;  </span><br><span class="line">        &lt;property name=&quot;dataSource&quot; ref=&quot;shardingDataSource&quot;/&gt;  </span><br><span class="line">        &lt;property name=&quot;mapperLocations&quot; value=&quot;classpath*:config/mapper/*Mapper.xml&quot;/&gt;  </span><br><span class="line">    &lt;/bean&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置好dataSourceRulue,即对数据源进行管理 --&gt;  </span><br><span class="line">    &lt;bean id=&quot;dataSourceRule&quot; class=&quot;com.dangdang.ddframe.rdb.sharding.api.rule.DataSourceRule&quot;&gt;  </span><br><span class="line">        &lt;constructor-arg&gt;  </span><br><span class="line">            &lt;map&gt;  </span><br><span class="line">                &lt;entry key=&quot;sharding_0&quot; value-ref=&quot;sharding_0&quot;/&gt;  </span><br><span class="line">                &lt;entry key=&quot;sharding_1&quot; value-ref=&quot;sharding_1&quot;/&gt;  </span><br><span class="line">            &lt;/map&gt;  </span><br><span class="line">        &lt;/constructor-arg&gt;  </span><br><span class="line">    &lt;/bean&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;!-- 对t_user表的配置，进行分库配置，逻辑表名为t_user，每个库有实际的三张表 --&gt;  </span><br><span class="line">    &lt;bean id=&quot;userTableRule&quot; class=&quot;com.dangdang.ddframe.rdb.sharding.api.rule.TableRule&quot;&gt;  </span><br><span class="line">        &lt;constructor-arg value=&quot;t_user&quot; index=&quot;0&quot;/&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;1&quot;&gt;  </span><br><span class="line">            &lt;list&gt;  </span><br><span class="line">                &lt;value&gt;t_user_00&lt;/value&gt;  </span><br><span class="line">                &lt;value&gt;t_user_01&lt;/value&gt;  </span><br><span class="line">                &lt;value&gt;t_user_02&lt;/value&gt;  </span><br><span class="line">            &lt;/list&gt;  </span><br><span class="line">        &lt;/constructor-arg&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;2&quot; ref=&quot;dataSourceRule&quot;/&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;3&quot; ref=&quot;userDatabaseShardingStrategy&quot;/&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;4&quot; ref=&quot;userTableShardingStrategy&quot;/&gt;  </span><br><span class="line">    &lt;/bean&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;!-- t_user分库策略 --&gt;  </span><br><span class="line">    &lt;bean id=&quot;userDatabaseShardingStrategy&quot; class=&quot;com.dangdang.ddframe.rdb.sharding.api.strategy.database.DatabaseShardingStrategy&quot;&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;0&quot; value=&quot;user_id&quot;/&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;1&quot;&gt;  </span><br><span class="line">            &lt;bean class=&quot;com.lyz.sharding.algorithm.UserSingleKeyDatabaseShardingAlgorithm&quot; /&gt;  </span><br><span class="line">        &lt;/constructor-arg&gt;  </span><br><span class="line">    &lt;/bean&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;!-- t_user 分表策略 --&gt;  </span><br><span class="line">    &lt;bean id=&quot;userTableShardingStrategy&quot; class=&quot;com.dangdang.ddframe.rdb.sharding.api.strategy.table.TableShardingStrategy&quot;&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;0&quot; value=&quot;user_id&quot;/&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;1&quot;&gt;  </span><br><span class="line">            &lt;bean class=&quot;com.lyz.sharding.algorithm.UserSingleKeyTableShardingAlgorithm&quot; /&gt;  </span><br><span class="line">        &lt;/constructor-arg&gt;  </span><br><span class="line">    &lt;/bean&gt;  </span><br><span class="line"></span><br><span class="line">      &lt;!-- 对t_student表的配置，进行分库配置，逻辑表名为t_student，每个库有实际的三张表 --&gt;  </span><br><span class="line">    &lt;bean id=&quot;studentTableRule&quot; class=&quot;com.dangdang.ddframe.rdb.sharding.api.rule.TableRule&quot;&gt;  </span><br><span class="line">        &lt;constructor-arg value=&quot;t_student&quot; index=&quot;0&quot;/&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;1&quot;&gt;  </span><br><span class="line">            &lt;list&gt;  </span><br><span class="line">                &lt;value&gt;t_student_00&lt;/value&gt;  </span><br><span class="line">                &lt;value&gt;t_student_01&lt;/value&gt;  </span><br><span class="line">            &lt;/list&gt;  </span><br><span class="line">        &lt;/constructor-arg&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;2&quot; ref=&quot;dataSourceRule&quot;/&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;3&quot; ref=&quot;studentDatabaseShardingStrategy&quot;/&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;4&quot; ref=&quot;studentTableShardingStrategy&quot;/&gt;  </span><br><span class="line">    &lt;/bean&gt;  </span><br><span class="line"></span><br><span class="line">     &lt;!-- t_student分库策略 --&gt;  </span><br><span class="line">    &lt;bean id=&quot;studentDatabaseShardingStrategy&quot; class=&quot;com.dangdang.ddframe.rdb.sharding.api.strategy.database.DatabaseShardingStrategy&quot;&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;0&quot; value=&quot;student_id&quot;/&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;1&quot;&gt;  </span><br><span class="line">            &lt;bean class=&quot;com.lyz.sharding.algorithm.StudentSingleKeyDatabaseShardingAlgorithm&quot; /&gt;  </span><br><span class="line">        &lt;/constructor-arg&gt;  </span><br><span class="line">    &lt;/bean&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;!-- t_student 分表策略 --&gt;  </span><br><span class="line">    &lt;bean id=&quot;studentTableShardingStrategy&quot; class=&quot;com.dangdang.ddframe.rdb.sharding.api.strategy.table.TableShardingStrategy&quot;&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;0&quot; value=&quot;student_id&quot;/&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;1&quot;&gt;  </span><br><span class="line">            &lt;bean class=&quot;com.lyz.sharding.algorithm.StudentSingleKeyTableShardingAlgorithm&quot; /&gt;  </span><br><span class="line">        &lt;/constructor-arg&gt;  </span><br><span class="line">    &lt;/bean&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;!-- 构成分库分表的规则 传入数据源集合和每个表的分库分表的具体规则 --&gt;  </span><br><span class="line">    &lt;bean id=&quot;shardingRule&quot; class=&quot;com.dangdang.ddframe.rdb.sharding.api.rule.ShardingRule&quot;&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;0&quot; ref=&quot;dataSourceRule&quot;/&gt;  </span><br><span class="line">        &lt;constructor-arg index=&quot;1&quot;&gt;  </span><br><span class="line">            &lt;list&gt;  </span><br><span class="line">                &lt;ref bean=&quot;userTableRule&quot;/&gt;  </span><br><span class="line">                &lt;ref bean=&quot;studentTableRule&quot;/&gt;  </span><br><span class="line">            &lt;/list&gt;  </span><br><span class="line">        &lt;/constructor-arg&gt;  </span><br><span class="line">    &lt;/bean&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;!-- 对datasource进行封装 --&gt;  </span><br><span class="line">    &lt;bean id=&quot;shardingDataSource&quot; class=&quot;com.dangdang.ddframe.rdb.sharding.api.ShardingDataSource&quot;&gt;  </span><br><span class="line">        &lt;constructor-arg ref=&quot;shardingRule&quot;/&gt;  </span><br><span class="line">    &lt;/bean&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;!-- 事务 --&gt;  </span><br><span class="line">    &lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;  </span><br><span class="line">        &lt;property name=&quot;dataSource&quot; ref=&quot;shardingDataSource&quot; /&gt;  </span><br><span class="line">    &lt;/bean&gt;  </span><br><span class="line"></span><br><span class="line">    &lt;tx:annotation-driven transaction-manager=&quot;transactionManager&quot; /&gt;  </span><br><span class="line"></span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+
+#### 13、创建log4j.xml
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:html;gutter:true;&quot;&gt;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;      </span><br><span class="line">&lt;!DOCTYPE log4j:configuration PUBLIC &quot;-//APACHE//DTD LOG4J 1.2//EN&quot; &quot;log4j.dtd&quot;&gt;    </span><br><span class="line">&lt;log4j:configuration xmlns:log4j=&quot;http://jakarta.apache.org/log4j/&quot;&gt;    </span><br><span class="line">  &lt;!-- [控制台STDOUT] --&gt;    </span><br><span class="line">  &lt;appender name=&quot;console&quot; class=&quot;org.apache.log4j.ConsoleAppender&quot;&gt;    </span><br><span class="line">     &lt;param name=&quot;encoding&quot; value=&quot;GBK&quot; /&gt;    </span><br><span class="line">     &lt;param name=&quot;target&quot; value=&quot;System.out&quot; /&gt;    </span><br><span class="line">     &lt;layout class=&quot;org.apache.log4j.PatternLayout&quot;&gt;    </span><br><span class="line">       &lt;param name=&quot;ConversionPattern&quot; value=&quot;%-5p %c&#123;2&#125; - %m%n&quot; /&gt;    </span><br><span class="line">     &lt;/layout&gt;    </span><br><span class="line">  &lt;/appender&gt;    </span><br><span class="line"></span><br><span class="line">  &lt;!-- [公共Appender] --&gt;    </span><br><span class="line">  &lt;appender name=&quot;DEFAULT-APPENDER&quot; class=&quot;org.apache.log4j.DailyRollingFileAppender&quot;&gt;    </span><br><span class="line">     &lt;param name=&quot;File&quot; value=&quot;logs/common-default.log&quot; /&gt;    </span><br><span class="line">     &lt;param name=&quot;Append&quot; value=&quot;true&quot; /&gt;    </span><br><span class="line">     &lt;param name=&quot;encoding&quot; value=&quot;GBK&quot; /&gt;    </span><br><span class="line">     &lt;param name=&quot;DatePattern&quot; value=&quot;&apos;.&apos;yyyy-MM-dd&apos;.log&apos;&quot; /&gt;    </span><br><span class="line">     &lt;layout class=&quot;org.apache.log4j.PatternLayout&quot;&gt;    </span><br><span class="line">    &lt;param name=&quot;ConversionPattern&quot; value=&quot;%d %-5p %c&#123;2&#125; - %m%n&quot; /&gt;    </span><br><span class="line">     &lt;/layout&gt;    </span><br><span class="line">   &lt;/appender&gt;    </span><br><span class="line"></span><br><span class="line">   &lt;!-- [错误日志APPENDER] --&gt;    </span><br><span class="line">   &lt;appender name=&quot;ERROR-APPENDER&quot; class=&quot;org.apache.log4j.DailyRollingFileAppender&quot;&gt;    </span><br><span class="line">     &lt;param name=&quot;File&quot; value=&quot;logs/common-error.log&quot; /&gt;    </span><br><span class="line">     &lt;param name=&quot;Append&quot; value=&quot;true&quot; /&gt;    </span><br><span class="line">     &lt;param name=&quot;encoding&quot; value=&quot;GBK&quot; /&gt;    </span><br><span class="line">     &lt;param name=&quot;threshold&quot; value=&quot;error&quot; /&gt;    </span><br><span class="line">     &lt;param name=&quot;DatePattern&quot; value=&quot;&apos;.&apos;yyyy-MM-dd&apos;.log&apos;&quot; /&gt;    </span><br><span class="line">     &lt;layout class=&quot;org.apache.log4j.PatternLayout&quot;&gt;    </span><br><span class="line">        &lt;param name=&quot;ConversionPattern&quot; value=&quot;%d %-5p %c&#123;2&#125; - %m%n&quot; /&gt;    </span><br><span class="line">     &lt;/layout&gt;    </span><br><span class="line">   &lt;/appender&gt;    </span><br><span class="line"></span><br><span class="line">   &lt;!-- [组件日志APPENDER] --&gt;    </span><br><span class="line">   &lt;appender name=&quot;COMPONENT-APPENDER&quot; class=&quot;org.apache.log4j.DailyRollingFileAppender&quot;&gt;    </span><br><span class="line">     &lt;param name=&quot;File&quot; value=&quot;logs/logistics-component.log&quot; /&gt;    </span><br><span class="line">     &lt;param name=&quot;Append&quot; value=&quot;true&quot; /&gt;    </span><br><span class="line">     &lt;param name=&quot;encoding&quot; value=&quot;GBK&quot; /&gt;    </span><br><span class="line">     &lt;param name=&quot;DatePattern&quot; value=&quot;&apos;.&apos;yyyy-MM-dd&apos;.log&apos;&quot; /&gt;    </span><br><span class="line">     &lt;layout class=&quot;org.apache.log4j.PatternLayout&quot;&gt;    </span><br><span class="line">    &lt;param name=&quot;ConversionPattern&quot; value=&quot;%d %-5p %c&#123;2&#125; - %m%n&quot; /&gt;    </span><br><span class="line">     &lt;/layout&gt;    </span><br><span class="line">   &lt;/appender&gt;    </span><br><span class="line"></span><br><span class="line">   &lt;!-- [组件日志] --&gt;    </span><br><span class="line">   &lt;logger name=&quot;LOGISTICS-COMPONENT&quot;&gt;    </span><br><span class="line">      &lt;level value=&quot;$&#123;loggingLevel&#125;&quot; /&gt;    </span><br><span class="line">      &lt;appender-ref ref=&quot;COMPONENT-APPENDER&quot; /&gt;    </span><br><span class="line">      &lt;appender-ref ref=&quot;ERROR-APPENDER&quot; /&gt;    </span><br><span class="line">   &lt;/logger&gt;    </span><br><span class="line"></span><br><span class="line">   &lt;!-- Root Logger --&gt;    </span><br><span class="line">   &lt;root&gt;    </span><br><span class="line">       &lt;level value=&quot;$&#123;rootLevel&#125;&quot;&gt;&lt;/level&gt;    </span><br><span class="line">       &lt;appender-ref ref=&quot;DEFAULT-APPENDER&quot; /&gt;    </span><br><span class="line">       &lt;appender-ref ref=&quot;ERROR-APPENDER&quot; /&gt;    </span><br><span class="line">       &lt;appender-ref ref=&quot;console&quot; /&gt;   </span><br><span class="line">       &lt;appender-ref ref=&quot;COMPONENT-APPENDER&quot; /&gt;   </span><br><span class="line">   &lt;/root&gt;    </span><br><span class="line">&lt;/log4j:configuration&gt;</span><br></pre></td></tr></table></figure>
+
+#### 14、创建测试类ShardingJdbcMybatisTest
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;package com.lyz.sharding.test;  </span><br><span class="line"></span><br><span class="line">import java.util.Arrays;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">import javax.annotation.Resource;</span><br><span class="line"></span><br><span class="line">import org.junit.Assert;</span><br><span class="line">import org.junit.Test;</span><br><span class="line">import org.junit.runner.RunWith;</span><br><span class="line">import org.springframework.test.context.ContextConfiguration;</span><br><span class="line">import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"></span><br><span class="line">import com.lyz.sharding.entity.Student;</span><br><span class="line">import com.lyz.sharding.entity.User;</span><br><span class="line">import com.lyz.sharding.service.StudentService;</span><br><span class="line">import com.lyz.sharding.service.UserService;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 测试分库分表规则</span><br><span class="line"> * @author liuyazhuang</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">@RunWith(SpringJUnit4ClassRunner.class)  </span><br><span class="line">@ContextConfiguration(locations = &#123; &quot;classpath*:config/spring/spring-database.xml&quot;, &quot;classpath*:config/spring/spring-sharding.xml&quot; &#125;)  </span><br><span class="line">public class ShardingJdbcMybatisTest &#123;  </span><br><span class="line"></span><br><span class="line">    @Resource  </span><br><span class="line">    public UserService userService;  </span><br><span class="line"></span><br><span class="line">    @Resource  </span><br><span class="line">    public StudentService studentService;  </span><br><span class="line"></span><br><span class="line">    @Test  </span><br><span class="line">    public void testUserInsert() &#123;  </span><br><span class="line">        User u = new User();  </span><br><span class="line">        u.setUserId(11);  </span><br><span class="line">        u.setAge(25);  </span><br><span class="line">        u.setName(&quot;github&quot;);  </span><br><span class="line">        Assert.assertEquals(userService.insert(u), true);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    @Test  </span><br><span class="line">    public void testStudentInsert() &#123;  </span><br><span class="line">        Student student = new Student();  </span><br><span class="line">        student.setStudentId(21);  </span><br><span class="line">        student.setAge(21);  </span><br><span class="line">        student.setName(&quot;hehe&quot;);  </span><br><span class="line">        Assert.assertEquals(studentService.insert(student), true);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    @Test  </span><br><span class="line">    public void testFindAll()&#123;  </span><br><span class="line">        List&lt;User&gt; users = userService.findAll();  </span><br><span class="line">        if(null != users &amp;&amp; !users.isEmpty())&#123;  </span><br><span class="line">            for(User u :users)&#123;  </span><br><span class="line">                System.out.println(u);  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    @Test  </span><br><span class="line">    public void testSQLIN()&#123;  </span><br><span class="line">        List&lt;User&gt; users = userService.findByUserIds(Arrays.asList(1));  </span><br><span class="line">        if(null != users &amp;&amp; !users.isEmpty())&#123;  </span><br><span class="line">            for(User u :users)&#123;  </span><br><span class="line">                System.out.println(u);  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    @Test  </span><br><span class="line">    public void testTransactionTestSucess()&#123;  </span><br><span class="line">        userService.transactionTestSucess();  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    @Test(expected = IllegalAccessException.class)  </span><br><span class="line">    public void testTransactionTestFailure() throws IllegalAccessException&#123;  </span><br><span class="line">        userService.transactionTestFailure();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+### 三、测试
+</code></pre><p>我们进行ShardingJdbcMybatisTest类，查看数据表数据，即可看到我们的程序利用sharding-jdbc实现了分库分表操作。</p>
+<pre><code>### 四、温馨提示
+</code></pre><p>大家可以到链接<a href="http://download.csdn.net/download/l1028386804/10258290" target="_blank" rel="noopener">http://download.csdn.net/download/l1028386804/10258290</a>下载完整的sharding-jdbc分库分表实例源代码</p>
+<p></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Sharding-JDBC/" rel="tag"># Sharding-JDBC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/29/在springboot项目中使用mybatis 集成 Sharding-JDBC/" rel="next" title="在springboot项目中使用mybatis 集成 Sharding-JDBC">
+                <i class="fa fa-chevron-left"></i> 在springboot项目中使用mybatis 集成 Sharding-JDBC
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/29/Mysql主从配置，实现读写分离/" rel="prev" title="Mysql主从配置，实现读写分离">
+                Mysql主从配置，实现读写分离 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、概述"><span class="nav-number">1.</span> <span class="nav-text">一、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、分库分表实战"><span class="nav-number">2.</span> <span class="nav-text">二、分库分表实战</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、创建数据库"><span class="nav-number">2.1.</span> <span class="nav-text">1、创建数据库</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

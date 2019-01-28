@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="mysql,分布式数据库,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="目前数据库中间件有很多，基本这些中间件在下都有了解和使用，各种中间件优缺点及使用场景也都有些心的。所以总结一个关于中间件比较的系列，希望可以对大家有帮助。## 1. 什么是中间件传统的架构模式就是 应用连接数据库直接对数据进行访问，这种架构特点就是简单方便。但是随着目前数据量不断的增大我们就遇到了问题:   单个表数据量太大    单个库数据量太大   单台数据量服务器压力很大    读写速度遇到">
+<meta name="keywords" content="mysql,分布式数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql分布式数据库中间件对比">
+<meta property="og:url" content="http://pangguoming.com/2018/08/27/mysql分布式数据库中间件对比/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="目前数据库中间件有很多，基本这些中间件在下都有了解和使用，各种中间件优缺点及使用场景也都有些心的。所以总结一个关于中间件比较的系列，希望可以对大家有帮助。## 1. 什么是中间件传统的架构模式就是 应用连接数据库直接对数据进行访问，这种架构特点就是简单方便。但是随着目前数据量不断的增大我们就遇到了问题:   单个表数据量太大    单个库数据量太大   单台数据量服务器压力很大    读写速度遇到">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.open-open.com/news/uploadImg/20151119/20151119212723_279.jpg">
+<meta property="og:image" content="http://static.open-open.com/news/uploadImg/20151119/20151119212723_98.jpg">
+<meta property="og:image" content="http://static.open-open.com/news/uploadImg/20151119/20151119212724_752.jpg">
+<meta property="og:image" content="https://common.cnblogs.com/images/icon_weibo_24.png">
+<meta property="og:image" content="https://common.cnblogs.com/images/wechat.png">
+<meta property="og:updated_time" content="2019-01-26T14:39:28.831Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql分布式数据库中间件对比">
+<meta name="twitter:description" content="目前数据库中间件有很多，基本这些中间件在下都有了解和使用，各种中间件优缺点及使用场景也都有些心的。所以总结一个关于中间件比较的系列，希望可以对大家有帮助。## 1. 什么是中间件传统的架构模式就是 应用连接数据库直接对数据进行访问，这种架构特点就是简单方便。但是随着目前数据量不断的增大我们就遇到了问题:   单个表数据量太大    单个库数据量太大   单台数据量服务器压力很大    读写速度遇到">
+<meta name="twitter:image" content="http://static.open-open.com/news/uploadImg/20151119/20151119212723_279.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2018/08/27/mysql分布式数据库中间件对比/">
+
+
+
+
+
+  <title>mysql分布式数据库中间件对比 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/08/27/mysql分布式数据库中间件对比/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mysql分布式数据库中间件对比</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-27T08:14:00+08:00">
+                2018-08-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="cnblogs_post_body" class="blogpost-body"><br><br>目前<a href="http://lib.csdn.net/base/14" title="MySQL知识库" target="_blank" rel="noopener">数据库</a>中间件有很多，基本这些中间件在下都有了解和使用，各种中间件优缺点及使用场景也都有些心的。所以总结一个关于中间件比较的系列，希望可以对大家有帮助。<br><br>## 1. 什么是中间件<br><br>传统的<a href="http://lib.csdn.net/base/16" title="大型网站架构知识库" target="_blank" rel="noopener">架构</a>模式就是 应用连接数据库直接对数据进行访问，这种架构特点就是简单方便。<br><br>但是随着目前数据量不断的增大我们就遇到了问题:<br><br><em>   单个表数据量太大
+</em>   单个库数据量太大<br><em>   单台数据量服务器压力很大
+</em>   读写速度遇到瓶颈<br><br>当面临以上问题时，我们会想到的第一种解决方式就是 向上扩展(scale up) 简单来说就是不断增加硬件性能。这种方式只能暂时解决问题，当业务量不断增长时还是解决不了问题。特别是淘宝，facebook，youtube这种业务成线性，甚至指数级上升的情况<br><br>此时我们不得不依赖于第二种方式： 水平扩展 。 直接增加机器，把数据库放到不同服务器上，在应用到数据库之间加一个proxy进行路由，这样就可以解决上面的问题了。<br><br>## 2. 中间件与读写分离<br><br>很多人都会把中间件认为是读写分离，其实读写分离只是中间件可以提供的一种功能，最主要的功能还是在于他可以 分库分表 ，下面是一个读写分离的示意图：<br><br><img src="http://static.open-open.com/news/uploadImg/20151119/20151119212723_279.jpg" alt="分布式数据库中间件对比总结"><br><br>上面的图可以看出，红线代表写请求，绿线代表读请求。这就是一个简单的读写分离，下面我们在看看分库分表中间件。<br><br><img src="http://static.open-open.com/news/uploadImg/20151119/20151119212723_98.jpg" alt="分布式数据库中间件对比总结"><br><br>上面这幅图就可以看出中间件作用，比如下面的这个SQL：<br><br><div class="dp-highlighter bg_sql"><br><div class="bar"><br><div class="tools"><strong>[sql]</strong> <a href="http://blog.csdn.net/moonpure/article/details/52846447#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168"> <a href="http://blog.csdn.net/moonpure/article/details/52846447#" title="copy" target="_blank" rel="noopener">copy</a></span></span></span><br><div><br><br>1.  &lt;span class=<span class="string">“operator” style=<span class="string">“”&gt;&lt;span class=<span class="string">“keyword” style=<span class="string">“”&gt;<span class="keyword">select</span> * &lt;span class=<span class="string">“keyword” style=<span class="string">“”&gt;<span class="keyword">from</span> table_name &lt;span class=<span class="string">“keyword” style=<span class="string">“”&gt;<span class="keyword">where</span> id = &lt;span class=<span class="string">“number” style=<span class="string">“”&gt;1</span>;</span>  </span></span></span></span></span></span></span></span><br><br>按照中间件分库分表算法，此SQL将发送到DB1节点，由DB1这个<a href="http://lib.csdn.net/base/14" title="MySQL知识库" target="_blank" rel="noopener">MySQL</a>负责解析和获取id=1的数据，并通过中间件返回给客户端。而在读写分离结构中并没有这些分库分表规则， 他只能在众多读节点中load balance随机进行分发，它要求各个节点都要存放一份完整的数据。<br><br>## 3.各类中间件比较<br><br>目前市面上中间件种类很多种 先看下各种中间件背景:<br><br><img src="http://static.open-open.com/news/uploadImg/20151119/20151119212724_752.jpg" alt="分布式数据库中间件对比总结"><br><br>#### Cobar:<br><br>阿里巴巴B2B开发的关系型分布式系统，管理将近3000个MySQL实例。 在阿里经受住了考验，后面由于作者的走开的原因cobar没有人维护 了，阿里也开发了tddl替代cobar。<br><br>#### MyCAT:<br><br>社区爱好者在阿里cobar基础上进行二次开发，解决了cobar当时存 在的一些问题，并且加入了许多新的功能在其中。目前MyCAT社区活 跃度很高，目前已经有一些公司在使用MyCAT。总体来说支持度比 较高，也会一直维护下去，<br><br>#### OneProxy:<br><br>数据库界大牛，前支付宝数据库团队领导楼总开发，基于mysql官方 的proxy思想利用c进行开发的，OneProxy是一款商业收费的中间件， 楼总舍去了一些功能点，专注在性能和稳定性上。有朋友测试过说在 高并发下很稳定。<br><br>#### Vitess:<br><br>这个中间件是Youtube生产在使用的，但是架构很复杂。 与以往中间件不同，使用Vitess应用改动比较大要 使用他提供语言的API接口，我们可以借鉴他其中的一些设计思想。<br><br>#### Kingshard:<br><br>Kingshard是前360Atlas中间件开发团队的陈菲利用业务时间 用go语言开发的，目前参与开发的人员有3个左右， 目前来看还不是成熟可以使用的产品，需要在不断完善。<br><br>#### Atlas:<br><br>360团队基于mysql proxy 把lua用C改写。原有版本是支持分表， 目前已经放出了分库分表版本。在网上看到一些朋友经常说在高并 发下会经常挂掉，如果大家要使用需要提前做好测试。<br><br>#### MaxScale与MySQL Route:<br><br>这两个中间件都算是官方的吧，MaxScale是mariadb (MySQL原作者维护的一个版本)研发的，目前版本不支持分库分表。<br><br>MySQL Route是现在MySQL 官方Oracle公司发布出来的一个中间件。<br><br>这两个中间件后面也会跟进测试下，看下效果如何。<br><br>## 4. 结语<br><br>这里主要是简单介绍了下各种中间件由来和特点，后面文章会陆续介绍各个中间件更详细的特性，优缺点，性能测试结果。<br><br><div class="clear"><br><div id="blog_post_info_block"><br><div id="BlogPostCategory"><br><div id="EntryTag"><br><div id="blog_post_info"><br><div id="green_channel">好文要顶 关注我 收藏该文 <img src="https://common.cnblogs.com/images/icon_weibo_24.png" alt=""> <img src="https://common.cnblogs.com/images/wechat.png" alt=""><br><br></div></div></div></div></div></div></div></div></div></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+            <a href="/tags/分布式数据库/" rel="tag"># 分布式数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/24/申请高级项目经理/" rel="next" title="申请高级项目经理">
+                <i class="fa fa-chevron-left"></i> 申请高级项目经理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/27/Neo4j资料 Neo4j教程   Neo4j视频教程  Neo4j 图数据库视频教程/" rel="prev" title="Neo4j资料 Neo4j教程   Neo4j视频教程  Neo4j 图数据库视频教程">
+                Neo4j资料 Neo4j教程   Neo4j视频教程  Neo4j 图数据库视频教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

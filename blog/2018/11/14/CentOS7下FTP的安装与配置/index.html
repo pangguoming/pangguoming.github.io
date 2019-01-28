@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="CentOS,vsftp,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="1、安装vsftpd 1[root@localhost modules]# yum install -y vsftpd 2、编辑ftp配置文件1[root@localhost modules]# vi /etc/vsftpd/vsftpd.conf做如下修改：12345678910111213141516anonymous_enable=NO #关闭匿名登录  chroot_local_user=">
+<meta name="keywords" content="CentOS,vsftp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS7下FTP的安装与配置">
+<meta property="og:url" content="http://pangguoming.com/2018/11/14/CentOS7下FTP的安装与配置/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="1、安装vsftpd 1[root@localhost modules]# yum install -y vsftpd 2、编辑ftp配置文件1[root@localhost modules]# vi /etc/vsftpd/vsftpd.conf做如下修改：12345678910111213141516anonymous_enable=NO #关闭匿名登录  chroot_local_user=">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-26T14:39:09.412Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS7下FTP的安装与配置">
+<meta name="twitter:description" content="1、安装vsftpd 1[root@localhost modules]# yum install -y vsftpd 2、编辑ftp配置文件1[root@localhost modules]# vi /etc/vsftpd/vsftpd.conf做如下修改：12345678910111213141516anonymous_enable=NO #关闭匿名登录  chroot_local_user=">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2018/11/14/CentOS7下FTP的安装与配置/">
+
+
+
+
+
+  <title>CentOS7下FTP的安装与配置 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/11/14/CentOS7下FTP的安装与配置/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CentOS7下FTP的安装与配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-14T10:17:00+08:00">
+                2018-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1、安装vsftpd</p>
+<div class="cnblogs_Highlighter sh-gutter"><br><div id="highlighter_291892" class="syntaxhighlighter  bash"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="bash plain">[root@localhost modules]</code><code class="bash comments"># yum install -y vsftpd</code><br><br></div></div></td><br></tr><br></tbody><br></table><br><br> 2、编辑ftp配置文件<br><br><div class="cnblogs_Highlighter sh-gutter"><br><div id="highlighter_244299" class="syntaxhighlighter  bash"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="bash plain">[root@localhost modules]</code><code class="bash comments"># vi /etc/vsftpd/vsftpd.conf</code><br><br></div></div></td><br></tr><br></tbody><br></table><br><br>做如下修改：<br><br><div class="cnblogs_Highlighter sh-gutter"><br><div id="highlighter_22646" class="syntaxhighlighter  bash"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><div class="line number3 index2 alt2">3<br><div class="line number4 index3 alt1">4<br><div class="line number5 index4 alt2">5<br><div class="line number6 index5 alt1">6<br><div class="line number7 index6 alt2">7<br><div class="line number8 index7 alt1">8<br><div class="line number9 index8 alt2">9<br><div class="line number10 index9 alt1">10<br><div class="line number11 index10 alt2">11<br><div class="line number12 index11 alt1">12<br><div class="line number13 index12 alt2">13<br><div class="line number14 index13 alt1">14<br><div class="line number15 index14 alt2">15<br><div class="line number16 index15 alt1">16<br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="bash plain">anonymous_enable=NO </code><br><div class="line number2 index1 alt1"><code class="bash comments">#关闭匿名登录</code><br><div class="line number3 index2 alt2"><code class="bash spaces">  </code><br><div class="line number4 index3 alt1"><code class="bash plain">chroot_local_user=YES </code><br><div class="line number5 index4 alt2"><code class="bash comments">#用于指定用户列表文件中的用户是否允许切换到上级目录。默认值为NO。</code><br><div class="line number6 index5 alt1"><code class="bash comments">#通过搭配能实现以下几种效果： </code><br><div class="line number7 index6 alt2"><code class="bash comments">#①当chroot_list_enable=YES，chroot_local_user=YES时，在/etc/vsftpd.chroot_list文件中列出的用户，可以切换到其他目录；未在文件中列出的用户，不能切换到其他目录。 </code><br><div class="line number8 index7 alt1"><code class="bash comments">#②当chroot_list_enable=YES，chroot_local_user=NO时，在/etc/vsftpd.chroot_list文件中列出的用户，不能切换到其他目录；未在文件中列出的用户，可以切换到其他目录。 </code><br><div class="line number9 index8 alt2"><code class="bash comments">#③当chroot_list_enable=NO，chroot_local_user=YES时，所有的用户均不能切换到其他目录。 </code><br><div class="line number10 index9 alt1"><code class="bash comments">#④当chroot_list_enable=NO，chroot_local_user=NO时，所有的用户均可以切换到其他目录。 </code><br><div class="line number11 index10 alt2"><code class="bash spaces">  </code><br><div class="line number12 index11 alt1"><code class="bash plain">chroot_list_enable=YES </code><br><div class="line number13 index12 alt2"><code class="bash plain">chroot_list_file=</code><code class="bash plain">/etc/vsftpd/chroot_list</code><br><div class="line number14 index13 alt1"><br><div class="line number15 index14 alt2"><code class="bash plain">allow_writeable_chroot=YES </code><br><div class="line number16 index15 alt1"><code class="bash comments">#加上这行解决了无法登陆的问题 </code><br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>3、设置开机启动ftp<br><br><div class="cnblogs_Highlighter sh-gutter"><br><div id="highlighter_737844" class="syntaxhighlighter  bash"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="bash plain">[root@localhost modules]</code><code class="bash comments"># chkconfig vsftpd on</code><br><br></div></div></td><br></tr><br></tbody><br></table><br><br>4、启动/重新启动ftp服务<br><br><div class="cnblogs_Highlighter sh-gutter"><br><div id="highlighter_664111" class="syntaxhighlighter  bash"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="bash plain">[root@localhost modules]</code><code class="bash comments"># systemctl start vsftpd.service</code><br><div class="line number2 index1 alt1"><code class="bash plain">[root@localhost modules]</code><code class="bash comments"># systemctl restart vsftpd.service</code><br><br></div></div></div></td><br></tr><br></tbody><br></table><br><br>5、防火墙配置<br><br>方法1：<br><br><div class="cnblogs_Highlighter sh-gutter"><br><div id="highlighter_293182" class="syntaxhighlighter  bash"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><div class="line number3 index2 alt2">3<br><div class="line number4 index3 alt1">4<br></div></div></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="bash plain">[root@localhost modules]</code><code class="bash comments"># vim /etc/sysconfig/iptables</code><br><div class="line number2 index1 alt1"><br><div class="line number3 index2 alt2"><code class="bash plain">-A INPUT -m state –state NEW -m tcp -p tcp –dport 21 -j ACCEPT</code><br><div class="line number4 index3 alt1"><code class="bash comments">#增加本行</code><br><br></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>方法2：关闭防火墙<br><br><div class="cnblogs_Highlighter sh-gutter"><br><div id="highlighter_300470" class="syntaxhighlighter  bash"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="bash plain">[root@localhost modules]</code><code class="bash comments"># systemctl stop firewalld.service      #停止 </code><br><div class="line number2 index1 alt1"><code class="bash plain">[root@localhost modules]</code><code class="bash comments"># systemctl disable firewalld.service  #禁用 </code><br><br></div></div></div></td><br></tr><br></tbody><br></table><br><br>6、建立ftp账号<br><br><div class="cnblogs_Highlighter sh-gutter"><br><div id="highlighter_756717" class="syntaxhighlighter  bash"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="bash functions">useradd</code> <code class="bash plain">-d </code><code class="bash plain">/path</code><code class="bash plain">（你的</code><code class="bash functions">ftp</code><code class="bash plain">文件夹） -s </code><code class="bash plain">/sbin/nologin</code> <code class="bash plain">ftpname（用户名）</code><br><br></div></div></td><br></tr><br></tbody><br></table><br><br>7、修改密码<br><br><div class="cnblogs_Highlighter sh-gutter"><br><div id="highlighter_23993" class="syntaxhighlighter  bash"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="bash functions">passwd</code> <code class="bash plain">ftpname</code><br><br></div></div></td><br></tr><br></tbody><br></table><br><br>8、设置账户权限<br><br><div class="cnblogs_Highlighter sh-gutter"><br><div id="highlighter_860705" class="syntaxhighlighter  bash"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="bash functions">chown</code> <code class="bash plain">-R ftpname.ftpname </code><code class="bash plain">/path</code><code class="bash plain">（你的</code><code class="bash functions">ftp</code><code class="bash plain">路径）</code><br><div class="line number2 index1 alt1"><code class="bash functions">chmod</code> <code class="bash plain">777 </code><code class="bash plain">/path</code><br><br></div></div></div></td><br></tr><br></tbody><br></table><br><br>9、设置路径运行上传<br><br><div class="cnblogs_Highlighter sh-gutter"><br><div id="highlighter_739663" class="syntaxhighlighter  bash"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="bash plain">setsebool -P ftp_home_dir on</code><br><div class="line number2 index1 alt1"><code class="bash plain">setsebool allow_ftpd_full_access on</code><br><br></div></div></div></td><br></tr><br></tbody><br></table><br><br>10、重启vsftp服务<br><br><div class="cnblogs_Highlighter sh-gutter"><br><div id="highlighter_856450" class="syntaxhighlighter  bash"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="bash plain">systemctl restart vsftpd.service</code><br><br></div></div></td><br></tr><br></tbody><br></table><br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CentOS/" rel="tag"># CentOS</a>
+          
+            <a href="/tags/vsftp/" rel="tag"># vsftp</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/13/yum离线安装rpm包/" rel="next" title="yum离线安装rpm包">
+                <i class="fa fa-chevron-left"></i> yum离线安装rpm包
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/15/CentOS 7安装SSHFS 实现远程主机目录 挂载为本地目录/" rel="prev" title="CentOS 7安装SSHFS 实现远程主机目录 挂载为本地目录">
+                CentOS 7安装SSHFS 实现远程主机目录 挂载为本地目录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="java,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="最近项目用到了Dropwizard框架，个人感觉还不错，那么这里就从他们官网入手，然后加上自己的实现步骤让大家初步了解这个框架。 官网对DW（Dropwizard）的定义是跨越了一个库和框架之间的界限。他的目标是提供一个生产就绪的web应用程序所需的一切性能可靠的实现。那么这句话可能有些绕，我个人理解就是他能免去我们部署web应用的很多步骤。由于这个功能被提取到可以重复使用的库中，我们的应用程序保">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dropwizard框架入门">
+<meta property="og:url" content="http://pangguoming.com/2017/05/15/Dropwizard框架入门/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="最近项目用到了Dropwizard框架，个人感觉还不错，那么这里就从他们官网入手，然后加上自己的实现步骤让大家初步了解这个框架。 官网对DW（Dropwizard）的定义是跨越了一个库和框架之间的界限。他的目标是提供一个生产就绪的web应用程序所需的一切性能可靠的实现。那么这句话可能有些绕，我个人理解就是他能免去我们部署web应用的很多步骤。由于这个功能被提取到可以重复使用的库中，我们的应用程序保">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.blog.csdn.net/20170113103753322?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20170113110740753?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20170113111845221?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20170113131046777?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20170113131200497?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20170113131427622?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20170113131935343?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20170113132143126?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2019-01-26T15:01:40.063Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dropwizard框架入门">
+<meta name="twitter:description" content="最近项目用到了Dropwizard框架，个人感觉还不错，那么这里就从他们官网入手，然后加上自己的实现步骤让大家初步了解这个框架。 官网对DW（Dropwizard）的定义是跨越了一个库和框架之间的界限。他的目标是提供一个生产就绪的web应用程序所需的一切性能可靠的实现。那么这句话可能有些绕，我个人理解就是他能免去我们部署web应用的很多步骤。由于这个功能被提取到可以重复使用的库中，我们的应用程序保">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170113103753322?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2017/05/15/Dropwizard框架入门/">
+
+
+
+
+
+  <title>Dropwizard框架入门 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/05/15/Dropwizard框架入门/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Dropwizard框架入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-15T10:12:00+08:00">
+                2017-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近项目用到了Dropwizard框架，个人感觉还不错，那么这里就从他们官网入手，然后加上自己的实现步骤让大家初步了解这个框架。</p>
+<p>官网对DW（Dropwizard）的定义是跨越了一个库和框架之间的界限。他的目标是提供一个生产就绪的web应用程序所需的一切性能可靠的实现。那么这句话可能有些绕，我个人理解就是他能免去我们部署web应用的很多步骤。由于这个功能被提取到可以重复使用的库中，我们的应用程序保持很大程度的精简和集中，这样可以减少我们程序的上线时间和维护负担。</p>
+<h3 id="Jetty-for-HTTP"><a href="#Jetty-for-HTTP" class="headerlink" title="Jetty for HTTP"></a>Jetty for HTTP</h3><p>由于Web应用不可能缺少HTTP，DW使用Jetty Http库将一个非常棒的HTTP服务器嵌入到我们的项目中。DW不是将你的程序提交到复杂的服务器上，DW上有个main方法来启动我们的服务器，DW是将我们的应用作为一个简单的线程来跑，消去了Java生产环境中一些非常复杂令人讨厌的过程，并且允许我们使用所有现有的Unix进程管理工具。</p>
+<h3 id="Jersey-for-REST"><a href="#Jersey-for-REST" class="headerlink" title="Jersey for REST"></a>Jersey for REST</h3><p>为了定义Restful的web应用，我们发现在性能和特性方面没有什么能比得过Jersey。它允许你编写干净的，可以<a href="http://lib.csdn.net/base/softwaretest" title="软件测试知识库" target="_blank" rel="noopener">测试</a>的类，这个类可以优雅的将http请求映射成为简单的<a href="http://lib.csdn.net/base/javase" title="Java SE知识库" target="_blank" rel="noopener">Java</a>对象。它支持流输出，矩阵URL参数，条件GET请求，还有更多。</p>
+<h3 id="Jackson-for-JSON"><a href="#Jackson-for-JSON" class="headerlink" title="Jackson for JSON"></a>Jackson for JSON</h3><p>在数据格式方面，JSON已经成为了网络的通用语，Jackson在jvm中就是Json的龙头老大。除了像闪电一样快速，他有一个复杂的对象映射，允许你直接导出你的域模型。</p>
+<h3 id="Metrics-for-metrics"><a href="#Metrics-for-metrics" class="headerlink" title="Metrics for metrics"></a>Metrics for metrics</h3><p>Metrics库对事物进行舍入，在你的生产环境中，为你提供独一无二的洞察力。（也就是说这个是用来监控）那么到了这里，我们关于DW的总体印象应该已经差不多了，下面我结合官网实际操作。</p>
+<p>我使用maven和idea进行开发，项目名字为：dw_demo。关于如何创建maven项目不解释，创建完项目后如图所示：</p>
+<p><img src="http://img.blog.csdn.net/20170113103753322?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>然后打开我们的pom.xml文件，加入dw的依赖（以下并非完全pom文件，仅展现部分）：</p>
+<p><properties><br>        &lt;dropwizard.version&gt;0.9.2&lt;/dropwizard.version&gt;<br>    </properties><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre&gt;&lt;dependencies&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>&lt;pre&gt;&lt;dependency&gt;
+    &lt;groupId&gt;io.dropwizard&lt;/groupId&gt;
+    &lt;artifactId&gt;dropwizard-core&lt;/artifactId&gt;
+    &lt;version&gt;${dropwizard.version}&lt;/version&gt;
+&lt;/dependency&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre&gt;&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+
+## Creating A Configuration Class
+
+&lt;div&gt; 
+&lt;div&gt;每个DW应用都有他自己的子类：Configuration,这个类指定环境中特定的参数。这
+&lt;div&gt;些参数在YAML类型的配置文件中被指定，其被反序列化为应用程序配置类的实例并验
+&lt;div&gt;证。（这句话的意思就是这个配置文件中指定的参数，会被映射到我们项目的一个类）
+&lt;div&gt;我们将要构建的是一个helloworld高性能服务。我们的一个要求就是我们需要能够在不同
+&lt;div&gt;的环境中让它说hello。在开始之前我们需要指定至少两个内容：一个说hello的模板 还有
+&lt;div&gt;一个默认的名字以防用户忘记指定。
+&lt;div&gt; 
+&lt;div&gt;那么我下面开始创建我的配置文件：
+&lt;div&gt; 
+&lt;div&gt;![](http://img.blog.csdn.net/20170113105245244?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+&lt;div&gt; 
+</code></pre><p>内容如下：</p>
+<pre><code>&lt;pre&gt;package com.config;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.dropwizard.Configuration;
+import org.hibernate.validator.constraints.NotEmpty;
+
+/**
+ * Created by moon on 2017/1/13.
+ */
+public class HelloWorldConfiguration extends Configuration {
+    @NotEmpty
+    private String template;
+
+    @NotEmpty
+    private String defaultName = &quot;Stranger&quot;;
+
+    @JsonProperty
+    public String getTemplate() {
+        return template;
+    }
+
+    @JsonProperty
+    public void setTemplate(String template) {
+        this.template = template;
+    }
+
+    @JsonProperty
+    public String getDefaultName() {
+        return defaultName;
+    }
+
+    @JsonProperty
+    public void setDefaultName(String name) {
+        this.defaultName = name;
+    }
+}<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">当这个类被从YAML配置文件反序列化的时候，他会从YAML对象中获取两个根层次的变量：template 用来说helloworld的模板。defaultName 默认的名字。template和defaultName都用@NotEmpty被注释，所以在YAML配置文件中如果有空值或者忘了其中一者，异常将会被抛出，我们的应用将不会被启动。</span><br><span class="line"></span><br><span class="line">defaultName和template的get 和set 方法都被@JsonProperty标注，这不止允许jackson从YAML配置文件反序列化，同样允许它序列化。</span><br><span class="line"></span><br><span class="line">然后我们创建一个YAML的配置文件：</span><br><span class="line"></span><br><span class="line">![](http://img.blog.csdn.net/20170113110034164?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)</span><br><span class="line"></span><br><span class="line">里面的内容如下：</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;template: Hello, %s!</span><br><span class="line">    defaultName: Stranger</span><br></pre></td></tr></table></figure>
+</code></pre><p>大家可以看到，与我们的配置类中的变量一一对应，相信很多人看到这里就明白了。</p>
+<pre><code>## Creating An Application Class
+</code></pre><p>结合我们项目中的Configuration子类，我们的Application的子类形成了我们DW的应用的核心。Application的子类把不同的提供各式各样功能的包和命令拉取到了一起。</p>
+<p>现在，我们开始建立我们的Application子类：</p>
+<p><img src="http://img.blog.csdn.net/20170113110740753?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>其内容如下：</p>
+<pre><code>&lt;pre&gt;package com.app;
+
+import com.config.HelloWorldConfiguration;
+import io.dropwizard.Application;
+import io.dropwizard.setup.Bootstrap;
+import io.dropwizard.setup.Environment;
+
+/**
+ * Created by moon on 2017/1/13.
+ */
+public class HelloWorldApplication extends Application&lt;HelloWorldConfiguration&gt; {
+    public static void main(String[] args) throws Exception {
+        new HelloWorldApplication().run(args);
+    }
+
+    @Override
+    public String getName() {
+        return &quot;hello-world&quot;;
+    }
+
+    @Override
+    public void initialize(Bootstrap&lt;HelloWorldConfiguration&gt; bootstrap) {
+        // nothing to do yet
+    }
+
+    @Override
+    public void run(HelloWorldConfiguration configuration,
+                    Environment environment) {
+        // nothing to do yet
+    }
+
+}<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">正如我们所看到的，HelloWorldApplication使用应用程序的configuration进行参数化。（因为用了我们的HelloWorldConfiuration，而它是Configuration的子类）。</span><br><span class="line"></span><br><span class="line">initialize方法用于配置应用在正式启动之前所需：包，配置源等。同时我们需要加入一个main方法，这是我们应用的入口。到目前为止，我们并没有实现任何的功能，所以我们的run方法有点无趣，让我们开始丰富它。</span><br><span class="line"></span><br><span class="line">    ## Creating A Representation Class</span><br><span class="line"></span><br><span class="line">在我们开始继续我们的程序之前，我们需要停下来思考一下我们程序的API。幸运的是，我们的应用需要符合行业标准。RFC 1149（别问我这是什么，连这个都不知道，我tm也不知道）。他指定了helloworld saying的如下json表达形式：</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;span class=&quot;p&quot;&gt;&#123;</span><br><span class="line">      &lt;span class=&quot;s2&quot;&gt;&quot;id&quot;&lt;span class=&quot;o&quot;&gt;: &lt;span class=&quot;mi&quot;&gt;1&lt;span class=&quot;p&quot;&gt;,</span><br><span class="line">      &lt;span class=&quot;s2&quot;&gt;&quot;content&quot;&lt;span class=&quot;o&quot;&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;Hi!&quot;</span><br><span class="line">    &lt;span class=&quot;p&quot;&gt;&#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>id字段是语法的唯一标识符。content是说的具体内容。</p>
+<p>为了建模这个表示，我们需要创建一个表示类 ：</p>
+<p><img src="http://img.blog.csdn.net/20170113111845221?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>该类的内容如下：</p>
+<pre><code>&lt;pre&gt;package com.api;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.Length;
+
+/**
+ * Created by moon on 2017/1/13.
+ */
+public class Saying {
+    private long id;
+
+    @Length(max = 3)
+    private String content;
+
+    public Saying() {
+        // Jackson deserialization
+    }
+
+    public Saying(long id, String content) {
+        this.id = id;
+        this.content = content;
+    }
+
+    @JsonProperty
+    public long getId() {
+        return id;
+    }
+
+    @JsonProperty
+    public String getContent() {
+        return content;
+    }
+}<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这是一个非常简单的POJO，但是有些需要注意的地方。</span><br><span class="line"></span><br><span class="line">首先，他是不可更改的。这使得saying在多线程环境和单线程环境非常容易被推理。其次，它使用java的JavaBean来保存id和content属性。这允许jackson把他序列化为我们需要的JSON。jackson对象的映射代码将会使用getId()返回的对象来填充JSON对象的id字段，content同理。最后，bean利用验证来确保内容不大于3。</span><br><span class="line"></span><br><span class="line">    ## Creating A Resource Class</span><br><span class="line"></span><br><span class="line">Jersey资源是DW应用程序的肉和土豆（这种比喻我也是醉了）。每个资源类都与URL相关联（这个很重要，后面有说）。对于我们的应用程序来说，我们需要一个resources来通过url：/helloworld来返回新的Saying实例对象。</span><br><span class="line"></span><br><span class="line">现在我们开始建立的Resource：</span><br><span class="line"></span><br><span class="line">![](http://img.blog.csdn.net/20170113123951830?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)</span><br><span class="line"></span><br><span class="line">类的内容如下：</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;package com.resource;</span><br><span class="line"></span><br><span class="line">    import com.api.Saying;</span><br><span class="line">    import com.codahale.metrics.annotation.Timed;</span><br><span class="line">    import com.google.common.base.Optional;</span><br><span class="line"></span><br><span class="line">    import javax.ws.rs.GET;</span><br><span class="line">    import javax.ws.rs.Path;</span><br><span class="line">    import javax.ws.rs.Produces;</span><br><span class="line">    import javax.ws.rs.QueryParam;</span><br><span class="line">    import javax.ws.rs.core.MediaType;</span><br><span class="line">    import java.util.concurrent.atomic.AtomicLong;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Created by moon on 2017/1/13.</span><br><span class="line">     */</span><br><span class="line">    @Path(&quot;/hello-world&quot;)</span><br><span class="line">    @Produces(MediaType.***APPLICATION_JSON***)</span><br><span class="line">    public class HelloWorldResource &#123;</span><br><span class="line">        private final String template;</span><br><span class="line">        private final String defaultName;</span><br><span class="line">        private final AtomicLong counter;</span><br><span class="line"></span><br><span class="line">        public HelloWorldResource(String template, String defaultName) &#123;</span><br><span class="line">            this.template = template;</span><br><span class="line">            this.defaultName = defaultName;</span><br><span class="line">            this.counter = new AtomicLong();</span><br><span class="line">        &#125;</span><br><span class="line">        @GET</span><br><span class="line">        @Timed</span><br><span class="line">        public Saying sayHello(@QueryParam(&quot;name&quot;) Optional&lt;String&gt; name) &#123;</span><br><span class="line">            final String value = String.format(template, name.or(defaultName));</span><br><span class="line">            return new Saying(counter.incrementAndGet(), value);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p>HelloWorldResource有两个声明：@Path和@Produces。@Path(“/hello-world”)告诉Jersey这个resource可以通过 “/hello-world”URL被访问。</p>
+<p>@Produces(MediaType.APPLICATION_JSON)让Jersey的内容协商代码知道这个资源产生的是application/json.</p>
+<p>HelloWorldResource构造器接收两个参数，创建saying的template和当用户没有指明名字时的默认名称。AtomicLong为我们提供一种线程安全，简易的方式去生成（ish）ID。</p>
+<p>sayHello方法是这个类的肉，也是一个非常简单的方法。@QueryParam(“name”)告诉Jersey把在查询参数中的name映射到方法中的name中。如果一个客户发送请求到：/hello-world?name=Dougie,sayHello 方法将会伴随Optional.of(“Dougie”)被调用。如果查询参数中没有name，sayHello将会伴随着Optional.absent()被调用。</p>
+<p>在sayHello方法里面，我们增加计数器的值，使用String.format来格式化模板，返回一个新的Saying实例。因为sayHello被@Timed注释，DW将会自动调用他的持续时间和速率记录为度量定时器。</p>
+<p>一旦sayHello返回，Jersey将会采用Saying的实例，并寻找一个提供程序类来将Saying实例写为：application/json。</p>
+<pre><code>### Registering A Resource
+</code></pre><p>在这些正式工作之前，我们需要到HelloWorldApplication中，并将新的resouce加入其中，在run方法中我们可以读取到HelloWorldConfiguration的template和defaultName实例，创建一个新的HelloWorldResource实例，并将其加入到新的Jersey环境中。</p>
+<p>我们HelloWorldApplication中新的run方法如下：</p>
+<pre><code>&lt;pre&gt;@Override
+public void run(HelloWorldConfiguration configuration,
+                Environment environment) {
+    final HelloWorldResource resource = new HelloWorldResource(
+            configuration.getTemplate(),
+            configuration.getDefaultName()
+    );
+    environment.jersey().register(resource);
+}<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">当我们的应用启动的时候，我们使用配置文件中的参数创建一个新的资源类实例，并传递给environment.</span><br><span class="line"></span><br><span class="line">在pom文件中加入：</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;2.3&lt;/version&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;createDependencyReducedPom&gt;true&lt;/createDependencyReducedPom&gt;</span><br><span class="line">                    &lt;filters&gt;</span><br><span class="line">                        &lt;filter&gt;</span><br><span class="line">                            &lt;artifact&gt;*:*&lt;/artifact&gt;</span><br><span class="line">                            &lt;excludes&gt;</span><br><span class="line">                                &lt;exclude&gt;META-INF/*.SF&lt;/exclude&gt;</span><br><span class="line">                                &lt;exclude&gt;META-INF/*.DSA&lt;/exclude&gt;</span><br><span class="line">                                &lt;exclude&gt;META-INF/*.RSA&lt;/exclude&gt;</span><br><span class="line">                            &lt;/excludes&gt;</span><br><span class="line">                        &lt;/filter&gt;</span><br><span class="line">                    &lt;/filters&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">                &lt;executions&gt;</span><br><span class="line">                    &lt;execution&gt;</span><br><span class="line">                        &lt;phase&gt;package&lt;/phase&gt;</span><br><span class="line">                        &lt;goals&gt;</span><br><span class="line">                            &lt;goal&gt;shade&lt;/goal&gt;</span><br><span class="line">                        &lt;/goals&gt;</span><br><span class="line">                        &lt;configuration&gt;</span><br><span class="line">                            &lt;transformers&gt;</span><br><span class="line">                                &lt;transformer</span><br><span class="line">           implementation=&quot;org.apache.maven.plugins.shade.resource.ServicesResourceTransformer&quot;/&gt;</span><br><span class="line">                                &lt;transformer</span><br><span class="line">            implementation=&quot;org.apache.maven.plugins.shade.resource.ManifestResourceTransformer&quot;&gt;</span><br><span class="line">                                    &lt;mainClass&gt;com.app.HelloWorldApplication&lt;/mainClass&gt;</span><br><span class="line">                                &lt;/transformer&gt;</span><br><span class="line">                            &lt;/transformers&gt;</span><br><span class="line">                        &lt;/configuration&gt;</span><br><span class="line">                    &lt;/execution&gt;</span><br><span class="line">                &lt;/executions&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;source&gt;1.8&lt;/source&gt;</span><br><span class="line">                    &lt;target&gt;1.8&lt;/target&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line"></span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>然后打包：</p>
+<p><img src="http://img.blog.csdn.net/20170113131046777?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>打包成功后，在我们的target目录下面会出现我们所需的包：</p>
+<p><img src="http://img.blog.csdn.net/20170113131200497?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>然后我们开始运行：</p>
+<p><img src="http://img.blog.csdn.net/20170113131427622?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>这里面官方为我们提供两个参数，我们需要启动服务，所以后面加入server参数，重新启动如下：</p>
+<p><img src="http://img.blog.csdn.net/20170113131935343?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>这说明我们的项目已经启动了，那么让我们访问一下url看是否正确：</p>
+<p><img src="http://img.blog.csdn.net/20170113132143126?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjM2NjAyNDM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">  </p>
+<p>返回结果正常，没毛病。</p>
+<p>以上仅仅是DW的初步，还有许多其他功能，由于时间关系，不做详细介绍，如果</p>
+<p>有时间我会再奉上一版深度版的。链接为：</p>
+<p><a href="http://www.dropwizard.io/0.9.2/docs/manual/index.html#manual-index" target="_blank" rel="noopener">DW官网深层次内容</a>  </p>
+<p>希望这次的讲解对大家有帮助，感谢开源。<br></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/12/使用Spring Security和OAuth2实现RESTful服务安全认证/" rel="next" title="使用Spring Security和OAuth2实现RESTful服务安全认证">
+                <i class="fa fa-chevron-left"></i> 使用Spring Security和OAuth2实现RESTful服务安全认证
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/23/Java 解析Excel文件为JSON/" rel="prev" title="Java 解析Excel文件为JSON">
+                Java 解析Excel文件为JSON <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jetty-for-HTTP"><span class="nav-number">1.</span> <span class="nav-text">Jetty for HTTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jersey-for-REST"><span class="nav-number">2.</span> <span class="nav-text">Jersey for REST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jackson-for-JSON"><span class="nav-number">3.</span> <span class="nav-text">Jackson for JSON</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Metrics-for-metrics"><span class="nav-number">4.</span> <span class="nav-text">Metrics for metrics</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
