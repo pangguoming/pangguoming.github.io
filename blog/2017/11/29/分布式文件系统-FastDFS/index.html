@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="fastDFS,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="一、FastDFS简介 一、FastDFS简介 FastDFS是由国人余庆所开发，其项目地址：https://github.com/happyfish100 FastDFS是一个轻量级的开源分布式文件系统，主要解决了大容量的文件存储和高并发访问的问题，文件存取时实现了负载均衡。 支持存储服务器在线扩容,支持相同的文件只保存一份,节约磁盘。 FastDFS只能通过Client API访问，不支持PO">
+<meta name="keywords" content="fastDFS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式文件系统-FastDFS">
+<meta property="og:url" content="http://pangguoming.com/blog/2017/11/29/分布式文件系统-FastDFS/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="一、FastDFS简介 一、FastDFS简介 FastDFS是由国人余庆所开发，其项目地址：https://github.com/happyfish100 FastDFS是一个轻量级的开源分布式文件系统，主要解决了大容量的文件存储和高并发访问的问题，文件存取时实现了负载均衡。 支持存储服务器在线扩容,支持相同的文件只保存一份,节约磁盘。 FastDFS只能通过Client API访问，不支持PO">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://obbogqhb1.bkt.clouddn.com/fastdfs2.png">
+<meta property="og:image" content="http://obbogqhb1.bkt.clouddn.com/fastdfs1.png">
+<meta property="og:image" content="http://obbogqhb1.bkt.clouddn.com/fastdfs3.png">
+<meta property="og:updated_time" content="2019-01-26T15:01:15.896Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分布式文件系统-FastDFS">
+<meta name="twitter:description" content="一、FastDFS简介 一、FastDFS简介 FastDFS是由国人余庆所开发，其项目地址：https://github.com/happyfish100 FastDFS是一个轻量级的开源分布式文件系统，主要解决了大容量的文件存储和高并发访问的问题，文件存取时实现了负载均衡。 支持存储服务器在线扩容,支持相同的文件只保存一份,节约磁盘。 FastDFS只能通过Client API访问，不支持PO">
+<meta name="twitter:image" content="http://obbogqhb1.bkt.clouddn.com/fastdfs2.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2017/11/29/分布式文件系统-FastDFS/">
+
+
+
+
+
+  <title>分布式文件系统-FastDFS | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2017/11/29/分布式文件系统-FastDFS/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">分布式文件系统-FastDFS</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-29T14:00:00+08:00">
+                2017-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一、FastDFS简介</p>
+<h3 id="一、FastDFS简介"><a href="#一、FastDFS简介" class="headerlink" title="一、FastDFS简介"></a>一、FastDFS简介</h3><blockquote>
+<p><code>FastDFS</code>是由国人余庆所开发，其项目地址：<a href="https://github.com/happyfish100" target="_blank" rel="noopener">https://github.com/happyfish100</a><br> <code>FastDFS</code>是一个轻量级的开源分布式文件系统，主要解决了大容量的文件存储和高并发访问的问题，文件存取时实现了负载均衡。<br> 支持存储服务器在线扩容,支持相同的文件只保存一份,节约磁盘。<br> <code>FastDFS</code>只能通过Client API访问，不支持POSIX访问方式。<br> FastDFS适合中大型网站使用，用来存储资源文件(如：图片、文档、视频等)</p>
+</blockquote>
+<h3 id="二、FastDFS组成部分及其它名词"><a href="#二、FastDFS组成部分及其它名词" class="headerlink" title="二、FastDFS组成部分及其它名词"></a>二、FastDFS组成部分及其它名词</h3><h4 id="1、tracker-server"><a href="#1、tracker-server" class="headerlink" title="1、tracker server"></a>1、tracker server</h4><p>跟踪服务器：用来调度来自客户端的请求。且在内存中记录所有存储组和存储服务器的信息状态。</p>
+<h4 id="2、storage-server"><a href="#2、storage-server" class="headerlink" title="2、storage server"></a>2、storage server</h4><p>存储服务器：用来存储文件(data)和文件属性(metadata)</p>
+<h4 id="3、client"><a href="#3、client" class="headerlink" title="3、client"></a>3、client</h4><p>客户端：业务请求发起方，通过专用接口基于TCP协议与<code>tracker</code>以及<code>storage server</code>进行交互</p>
+<h4 id="group"><a href="#group" class="headerlink" title="group"></a><code>group</code></h4><p>组，也可称为卷：同组内上的文件是完全相同的</p>
+<h4 id="文件标识"><a href="#文件标识" class="headerlink" title="文件标识"></a><code>文件标识</code></h4><p>包括两部分：组名和文件名(包含路径)</p>
+<h4 id="meta-data"><a href="#meta-data" class="headerlink" title="meta data"></a><code>meta data</code></h4><p>文件相关属性：键值对(Key Value Pair)方式</p>
+<h4 id="fid"><a href="#fid" class="headerlink" title="fid"></a><code>fid</code></h4><p>文件标识符：<br>例如：<br><code>group1/M00/00/00/CgEOxVegXB2AdYafAAAB0b8tBbQ9155303</code><br><code>group_name</code>：存储组的组名；上传完成后，需要客户端自行保存<br><code>M##</code>：服务器配置的虚拟路径，与磁盘选项store_path#对应<br>两级以两位16进制数字命名的目录<br><code>文件名</code>：与原文件名并不相同；由storage server根据特定信息生成。文件名包含：源存储服务器的IP地址、文件创建时间戳、文件大小、随机数和文件扩展名等</p>
+<h3 id="三、FastDFS同步机制"><a href="#三、FastDFS同步机制" class="headerlink" title="三、FastDFS同步机制"></a>三、FastDFS同步机制</h3><blockquote>
+<p>1、同一组内的storage server之间是对等的，文件上传、删除等操作可以在任意一台storage server上进行；<br> 2、文件同步只在同组内的storage server之间进行，采用push方式，即源服务器同步给目标服务器；<br> 3、源头数据才需要同步，备份数据不需要再次同步，否则就构成环路了；<br> 上述第二条规则有个例外，就是新增加一台storage server时，由已有的一台storage server将已有的所有数据（包括源头数据和备份数据）同步给该新增服务器。</p>
+</blockquote>
+<h3 id="四、FastDFS与集中存储方式对比"><a href="#四、FastDFS与集中存储方式对比" class="headerlink" title="四、FastDFS与集中存储方式对比"></a>四、FastDFS与集中存储方式对比</h3><p><a href="http://obbogqhb1.bkt.clouddn.com/fastdfs2.png" target="_blank" rel="noopener"><img src="http://obbogqhb1.bkt.clouddn.com/fastdfs2.png" alt="fastdfs2.png"></a></p>
+<h3 id="五、FastDFS和mogileFS对比"><a href="#五、FastDFS和mogileFS对比" class="headerlink" title="五、FastDFS和mogileFS对比"></a>五、FastDFS和mogileFS对比</h3><p><a href="http://obbogqhb1.bkt.clouddn.com/fastdfs1.png" target="_blank" rel="noopener"><img src="http://obbogqhb1.bkt.clouddn.com/fastdfs1.png" alt="fastdfs1.png"></a></p>
+<h3 id="六、FastDFS安装配置"><a href="#六、FastDFS安装配置" class="headerlink" title="六、FastDFS安装配置"></a>六、FastDFS安装配置</h3><h4 id="1、安装开发环境"><a href="#1、安装开发环境" class="headerlink" title="1、安装开发环境"></a>1、安装开发环境</h4><p><code class="hljs autoit"><span class="hljs-preprocessor"># yum groupinstall <span class="hljs-string">“Development Tools” <span class="hljs-string">“Server platform Development”<br></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #### 2、安装libfastcommon</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs vala&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# git clone https://github.com/happyfish100/libfastcommon.git  </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# cd libfastcommon/  </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# ./make.sh   </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# ./make.sh install  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>#### 3、安装fastdfs
+
+&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs vala&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# cd /root/  
+</code></pre><p><span class="hljs-preprocessor"># git clone <a href="https://github.com/happyfish100/fastdfs.git" target="_blank" rel="noopener">https://github.com/happyfish100/fastdfs.git</a><br><span class="hljs-preprocessor"># cd fastdfs/<br><span class="hljs-preprocessor"># ./make.sh<br><span class="hljs-preprocessor"># ./make.sh install<br></span></span></span></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #### tracker 配置</span><br><span class="line"></span><br><span class="line">配置文件修改：根据需求修改</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs vala&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# cd /etc/fdfs  </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# cp tracker.conf.sample tracker.conf  </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# vim /etc/fdfs/tracker.conf  </span><br><span class="line">  base_path=/data/fdfs/tracker # 存储日志及tracker的状态信息  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<p>启动服务（Centos6）：</p>
+<pre><code>&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs vala&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# mkdir -pv /data/fdfs/tracker  
+</code></pre><p><span class="hljs-preprocessor"># service fdfs_trackerd start<br></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">启动服务（Centos7）方式一：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs vala&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# mkdir -pv /data/fdfs/tracker  </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# /etc/init.d/fdfs_trackerd start  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<p>启动服务（Centos7）方式二：<br>添加systemd的units文件</p>
+<pre><code>&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs fortran&quot;&gt;# cat &gt; /usr/lib/systemd/system/fdfs_trackerd &lt;&lt; EOF  
+</code></pre><h1 id="Systemd-unit-file-for-default-tomcat"><a href="#Systemd-unit-file-for-default-tomcat" class="headerlink" title="Systemd unit file for default tomcat"></a>Systemd <span class="hljs-keyword">unit <span class="hljs-keyword">file for <span class="hljs-keyword">default tomcat</span></span></span></h1><h1 id=""><a href="#" class="headerlink" title=" "></a> </h1><p>[<span class="hljs-keyword">Unit]<br>Description=FastDFS tracker script<br>After=syslog.<span class="hljs-type">target network.<span class="hljs-type">target  </span></span></span></p>
+<p>[Service]<br><span class="hljs-keyword">Type=notify<br>ExecStart=/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf  </span></p>
+<p>[Install]<br>WantedBy=multi-user.<span class="hljs-type">target<br>EOF<br></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">通过systemd启动</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;systemctl start fdfs_trackerd.service  </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# ss -tnl|grep &lt;span class=&quot;hljs-number&quot;&gt;22122  </span><br><span class="line">LISTEN     &lt;span class=&quot;hljs-number&quot;&gt;0      &lt;span class=&quot;hljs-number&quot;&gt;128          *:&lt;span class=&quot;hljs-number&quot;&gt;22122                    *:*    </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>#### storage 配置
+</code></pre><p>根据需求修改</p>
+<pre><code>&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# cd /etc/fdfs  
+</code></pre><p><span class="hljs-preprocessor"># cp storage.conf.sample storage.conf<br><span class="hljs-preprocessor"># vim /etc/fdfs/storage.conf<br>  group_name=group1  <span class="hljs-preprocessor">#指定组名<br>  base_path=/data/fdfs/storage <span class="hljs-preprocessor"># 用于存储数据<br>  store_path_count=<span class="hljs-number">2 <span class="hljs-preprocessor"># 设置设备数量<br>  store_path0=/data/fdfs/storage/m0 <span class="hljs-preprocessor">#指定存储路径<span class="hljs-number">0<br>  store_path1=/data/fdfs/storage/m1 <span class="hljs-preprocessor">#指定存储路径<span class="hljs-number">1<br>  <span class="hljs-preprocessor"># 注意：同一组内存储路径不能冲突，例如：下一个节点的存储路径就是m2,m3….等<br>  tracker_server=<span class="hljs-number">10.1<span class="hljs-number">.14<span class="hljs-number">.197:<span class="hljs-number">22122 <span class="hljs-preprocessor">#指定tracker<br></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">启动服务（Centos6）：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs vala&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# mkdir -pv /data/fdfs/storage/&#123;m0,m1&#125; # 创建数据目录  </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# service fdfs_storaged start  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<p>启动服务（Centos7）方式一：</p>
+<pre><code>&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs vala&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# mkdir -pv /data/fdfs/storage/{m0,m1} # 创建数据目录  
+</code></pre><p><span class="hljs-preprocessor"># /etc/init.d/fdfs_storaged start<br></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">启动服务（Centos7）方式二：   </span><br><span class="line">添加systemd的units文件</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs fortran&quot;&gt;# mkdir -pv /&lt;span class=&quot;hljs-type&quot;&gt;data/fdfs/storage/&#123;m0,m1&#125; # 创建数据目录  </span><br><span class="line"></span><br><span class="line"># cat &gt; /usr/lib/systemd/system/fdfs_trackerd &lt;&lt; EOF  </span><br><span class="line"># Systemd &lt;span class=&quot;hljs-keyword&quot;&gt;unit &lt;span class=&quot;hljs-keyword&quot;&gt;file for &lt;span class=&quot;hljs-keyword&quot;&gt;default fastdfs storage  </span><br><span class="line">#   </span><br><span class="line"></span><br><span class="line">[&lt;span class=&quot;hljs-keyword&quot;&gt;Unit]  </span><br><span class="line">Description=FastDFS storage script  </span><br><span class="line">After=syslog.&lt;span class=&quot;hljs-type&quot;&gt;target network.&lt;span class=&quot;hljs-type&quot;&gt;target  </span><br><span class="line"></span><br><span class="line">[Service]  </span><br><span class="line">&lt;span class=&quot;hljs-keyword&quot;&gt;Type=notify  </span><br><span class="line">ExecStart=/usr/bin/fdfs_storaged /etc/fdfs/storage.conf  </span><br><span class="line"></span><br><span class="line">[Install]  </span><br><span class="line">WantedBy=multi-user.&lt;span class=&quot;hljs-type&quot;&gt;target  </span><br><span class="line">EOF  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<p>通过systemd启动</p>
+<pre><code>&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;systemctl start fdfs_storaged.service  
+</code></pre><p><span class="hljs-preprocessor"># ss -tnl|grep <span class="hljs-number">23000<br>LISTEN     <span class="hljs-number">0      <span class="hljs-number">128          <em>:<span class="hljs-number">23000                    </span></em>:*<br></span></span></span></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #### client配置</span><br><span class="line"></span><br><span class="line">修改客户端配置文件</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;base_path=/data/fdfs/client  </span><br><span class="line">tracker_server=&lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.197:&lt;span class=&quot;hljs-number&quot;&gt;22122  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>### 七、测试FastDFS
+
+#### 1、上传文件
+</code></pre><p>fdfs_upload_file   [storage_ip:port] [store_path_index]</p>
+<pre><code>&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# fdfs_upload_file /etc/fdfs/client.conf /etc/issue  
+</code></pre><p>group1/M00/<span class="hljs-number">00/<span class="hljs-number">00/CgEOxVeMxeuABKiEAAAAF30Ccq85795930<br></span></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #### 2、查看文件</span><br><span class="line"></span><br><span class="line">fdfs_file_info</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# fdfs_file_info /etc/fdfs/client.conf group1/M00/&lt;span class=&quot;hljs-number&quot;&gt;00/&lt;span class=&quot;hljs-number&quot;&gt;00/CgEOxVeMxeuABKiEAAAAF30Ccq85795930  </span><br><span class="line"></span><br><span class="line">source storage id: &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">source ip address: &lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.198  </span><br><span class="line">file create timestamp: &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;07-&lt;span class=&quot;hljs-number&quot;&gt;18 &lt;span class=&quot;hljs-number&quot;&gt;20:&lt;span class=&quot;hljs-number&quot;&gt;04:&lt;span class=&quot;hljs-number&quot;&gt;59  </span><br><span class="line">file size: &lt;span class=&quot;hljs-number&quot;&gt;23  </span><br><span class="line">file crc32: &lt;span class=&quot;hljs-number&quot;&gt;2097312431 (&lt;span class=&quot;hljs-number&quot;&gt;0x7D0272AF)  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>#### 3、下载文件
+</code></pre><p>fdfs_download_file   [local_filename] [ ]</p>
+<pre><code>&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs gradle&quot;&gt;# fdfs_download_file &lt;span class=&quot;hljs-regexp&quot;&gt;/etc/fdfs&lt;span class=&quot;hljs-regexp&quot;&gt;/client.conf group1/M00&lt;span class=&quot;hljs-regexp&quot;&gt;/00/&lt;span class=&quot;hljs-number&quot;&gt;00&lt;span class=&quot;hljs-regexp&quot;&gt;/CgEOxVeMxeuABKiEAAAAF30Ccq85795930 /tmp&lt;span class=&quot;hljs-regexp&quot;&gt;/issue  
+</code></pre><p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #### 4、查看存储节点状态</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# fdfs_monitor /etc/fdfs/client.conf  </span><br><span class="line">[&lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;11:&lt;span class=&quot;hljs-number&quot;&gt;58:&lt;span class=&quot;hljs-number&quot;&gt;20] DEBUG - base_path=/data/fdfs/client, connect_timeout=&lt;span class=&quot;hljs-number&quot;&gt;30, network_timeout=&lt;span class=&quot;hljs-number&quot;&gt;60, tracker_server_count=&lt;span class=&quot;hljs-number&quot;&gt;1, anti_steal_token=&lt;span class=&quot;hljs-number&quot;&gt;0, anti_steal_secret_key length=&lt;span class=&quot;hljs-number&quot;&gt;0, use_connection_pool=&lt;span class=&quot;hljs-number&quot;&gt;0, g_connection_pool_max_idle_time=&lt;span class=&quot;hljs-number&quot;&gt;3600s, use_storage_id=&lt;span class=&quot;hljs-number&quot;&gt;0, storage server id count: &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line"></span><br><span class="line">server_count=&lt;span class=&quot;hljs-number&quot;&gt;1, server_index=&lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line"></span><br><span class="line">tracker server is &lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.197:&lt;span class=&quot;hljs-number&quot;&gt;22122  </span><br><span class="line"></span><br><span class="line">group count: &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line"></span><br><span class="line">Group &lt;span class=&quot;hljs-number&quot;&gt;1:  </span><br><span class="line">group name = mage1  </span><br><span class="line">disk total space = &lt;span class=&quot;hljs-number&quot;&gt;18898 MB  </span><br><span class="line">disk &lt;span class=&quot;hljs-built_in&quot;&gt;free space = &lt;span class=&quot;hljs-number&quot;&gt;17222 MB  </span><br><span class="line">trunk &lt;span class=&quot;hljs-built_in&quot;&gt;free space = &lt;span class=&quot;hljs-number&quot;&gt;0 MB  </span><br><span class="line">storage server count = &lt;span class=&quot;hljs-number&quot;&gt;2  </span><br><span class="line">active server count = &lt;span class=&quot;hljs-number&quot;&gt;2  </span><br><span class="line">storage server port = &lt;span class=&quot;hljs-number&quot;&gt;23000  </span><br><span class="line">storage HTTP port = &lt;span class=&quot;hljs-number&quot;&gt;8888  </span><br><span class="line">store path count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">subdir count per path = &lt;span class=&quot;hljs-number&quot;&gt;256  </span><br><span class="line">current write server index = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">current trunk file id = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line"></span><br><span class="line">    Storage &lt;span class=&quot;hljs-number&quot;&gt;1:  </span><br><span class="line">        id = &lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.198  </span><br><span class="line">        ip_addr = &lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.198  ACTIVE  </span><br><span class="line">        http domain =   </span><br><span class="line">        version = &lt;span class=&quot;hljs-number&quot;&gt;5.08  </span><br><span class="line">        join time = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;20:&lt;span class=&quot;hljs-number&quot;&gt;40:&lt;span class=&quot;hljs-number&quot;&gt;46  </span><br><span class="line">        up time = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;11:&lt;span class=&quot;hljs-number&quot;&gt;58:&lt;span class=&quot;hljs-number&quot;&gt;16  </span><br><span class="line">        total storage = &lt;span class=&quot;hljs-number&quot;&gt;18898 MB  </span><br><span class="line">        &lt;span class=&quot;hljs-built_in&quot;&gt;free storage = &lt;span class=&quot;hljs-number&quot;&gt;17222 MB  </span><br><span class="line">        upload priority = &lt;span class=&quot;hljs-number&quot;&gt;10  </span><br><span class="line">        store_path_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        subdir_count_per_path = &lt;span class=&quot;hljs-number&quot;&gt;256  </span><br><span class="line">        storage_port = &lt;span class=&quot;hljs-number&quot;&gt;23000  </span><br><span class="line">        storage_http_port = &lt;span class=&quot;hljs-number&quot;&gt;8888  </span><br><span class="line">        current_write_path = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        source storage id =   </span><br><span class="line">        if_trunk_server = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        connection.alloc_count = &lt;span class=&quot;hljs-number&quot;&gt;256  </span><br><span class="line">        connection.current_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        connection.max_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_upload_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        success_upload_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        total_append_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_append_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_modify_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_modify_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_truncate_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_truncate_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_set_meta_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_set_meta_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_delete_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_delete_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_download_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_download_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_get_meta_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_get_meta_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_create_link_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_create_link_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_delete_link_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_delete_link_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_upload_bytes = &lt;span class=&quot;hljs-number&quot;&gt;23  </span><br><span class="line">        success_upload_bytes = &lt;span class=&quot;hljs-number&quot;&gt;23  </span><br><span class="line">        total_append_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_append_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_modify_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_modify_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        stotal_download_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_download_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_sync_in_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_sync_in_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_sync_out_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_sync_out_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_file_open_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        success_file_open_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        total_file_read_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_file_read_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_file_write_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        success_file_write_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        last_heart_beat_time = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;11:&lt;span class=&quot;hljs-number&quot;&gt;58:&lt;span class=&quot;hljs-number&quot;&gt;15  </span><br><span class="line">        last_source_update = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;20:&lt;span class=&quot;hljs-number&quot;&gt;43:&lt;span class=&quot;hljs-number&quot;&gt;55  </span><br><span class="line">        last_sync_update = &lt;span class=&quot;hljs-number&quot;&gt;1970-&lt;span class=&quot;hljs-number&quot;&gt;01-&lt;span class=&quot;hljs-number&quot;&gt;01 &lt;span class=&quot;hljs-number&quot;&gt;08:&lt;span class=&quot;hljs-number&quot;&gt;00:&lt;span class=&quot;hljs-number&quot;&gt;00  </span><br><span class="line">        last_synced_timestamp = &lt;span class=&quot;hljs-number&quot;&gt;1970-&lt;span class=&quot;hljs-number&quot;&gt;01-&lt;span class=&quot;hljs-number&quot;&gt;01 &lt;span class=&quot;hljs-number&quot;&gt;08:&lt;span class=&quot;hljs-number&quot;&gt;00:&lt;span class=&quot;hljs-number&quot;&gt;00   </span><br><span class="line">    Storage &lt;span class=&quot;hljs-number&quot;&gt;2:  </span><br><span class="line">        id = &lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.199  </span><br><span class="line">        ip_addr = &lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.199  ACTIVE  </span><br><span class="line">        http domain =   </span><br><span class="line">        version = &lt;span class=&quot;hljs-number&quot;&gt;5.08  </span><br><span class="line">        join time = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;20:&lt;span class=&quot;hljs-number&quot;&gt;42:&lt;span class=&quot;hljs-number&quot;&gt;13  </span><br><span class="line">        up time = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;11:&lt;span class=&quot;hljs-number&quot;&gt;58:&lt;span class=&quot;hljs-number&quot;&gt;08  </span><br><span class="line">        total storage = &lt;span class=&quot;hljs-number&quot;&gt;18898 MB  </span><br><span class="line">        &lt;span class=&quot;hljs-built_in&quot;&gt;free storage = &lt;span class=&quot;hljs-number&quot;&gt;17222 MB  </span><br><span class="line">        upload priority = &lt;span class=&quot;hljs-number&quot;&gt;10  </span><br><span class="line">        store_path_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        subdir_count_per_path = &lt;span class=&quot;hljs-number&quot;&gt;256  </span><br><span class="line">        storage_port = &lt;span class=&quot;hljs-number&quot;&gt;23000  </span><br><span class="line">        storage_http_port = &lt;span class=&quot;hljs-number&quot;&gt;8888  </span><br><span class="line">        current_write_path = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        source storage id = &lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.198  </span><br><span class="line">        if_trunk_server = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        connection.alloc_count = &lt;span class=&quot;hljs-number&quot;&gt;256  </span><br><span class="line">        connection.current_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        connection.max_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_upload_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_upload_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_append_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_append_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_modify_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_modify_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_truncate_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_truncate_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_set_meta_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_set_meta_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_delete_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_delete_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_download_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_download_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_get_meta_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_get_meta_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_create_link_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_create_link_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_delete_link_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_delete_link_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_upload_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_upload_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_append_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_append_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_modify_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_modify_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        stotal_download_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_download_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_sync_in_bytes = &lt;span class=&quot;hljs-number&quot;&gt;23  </span><br><span class="line">        success_sync_in_bytes = &lt;span class=&quot;hljs-number&quot;&gt;23  </span><br><span class="line">        total_sync_out_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_sync_out_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_file_open_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        success_file_open_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        total_file_read_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_file_read_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_file_write_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        success_file_write_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        last_heart_beat_time = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;11:&lt;span class=&quot;hljs-number&quot;&gt;58:&lt;span class=&quot;hljs-number&quot;&gt;07  </span><br><span class="line">        last_source_update = &lt;span class=&quot;hljs-number&quot;&gt;1970-&lt;span class=&quot;hljs-number&quot;&gt;01-&lt;span class=&quot;hljs-number&quot;&gt;01 &lt;span class=&quot;hljs-number&quot;&gt;08:&lt;span class=&quot;hljs-number&quot;&gt;00:&lt;span class=&quot;hljs-number&quot;&gt;00  </span><br><span class="line">        last_sync_update = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;20:&lt;span class=&quot;hljs-number&quot;&gt;43:&lt;span class=&quot;hljs-number&quot;&gt;57  </span><br><span class="line">        last_synced_timestamp = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;20:&lt;span class=&quot;hljs-number&quot;&gt;43:&lt;span class=&quot;hljs-number&quot;&gt;55 (&lt;span class=&quot;hljs-number&quot;&gt;0s delay)  </span><br><span class="line"></span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>### 八、配置nginx为storage server提供http访问接口
+
+#### 1、下载fastdfs-nginx-module
+
+&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# git clone https:&lt;span class=&quot;hljs-comment&quot;&gt;//github.com/happyfish100/fastdfs-nginx-module.git  
+</code></pre><p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #### 2、下载nginx源码，并编译支持fastdfs</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs gradle&quot;&gt;# 安装依赖程序  </span><br><span class="line"># yum install openssl-devel pcre-devel -y &amp;&gt;&lt;span class=&quot;hljs-regexp&quot;&gt;/dev/&lt;span class=&quot;hljs-keyword&quot;&gt;null  </span><br><span class="line"></span><br><span class="line"># wget http:&lt;span class=&quot;hljs-comment&quot;&gt;//nginx.org/download/nginx-1.10.1.tar.gz &amp;&gt;/dev/null  </span><br><span class="line"></span><br><span class="line"># tar xf &lt;span class=&quot;hljs-regexp&quot;&gt;/root/nginx-&lt;span class=&quot;hljs-number&quot;&gt;1.10.&lt;span class=&quot;hljs-number&quot;&gt;1.tar.gz  </span><br><span class="line"></span><br><span class="line"># cd &lt;span class=&quot;hljs-regexp&quot;&gt;/root/nginx-&lt;span class=&quot;hljs-number&quot;&gt;1.10.&lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line"># useradd -r nginx &amp;&gt;&lt;span class=&quot;hljs-regexp&quot;&gt;/dev/&lt;span class=&quot;hljs-keyword&quot;&gt;null  </span><br><span class="line"></span><br><span class="line"># .&lt;span class=&quot;hljs-regexp&quot;&gt;/configure --prefix=/usr&lt;span class=&quot;hljs-regexp&quot;&gt;/local/nginx --conf-path=&lt;span class=&quot;hljs-regexp&quot;&gt;/etc/nginx&lt;span class=&quot;hljs-regexp&quot;&gt;/nginx.conf --error-log-path=/var&lt;span class=&quot;hljs-regexp&quot;&gt;/log/nginx&lt;span class=&quot;hljs-regexp&quot;&gt;/error.log --http-log-path=/var&lt;span class=&quot;hljs-regexp&quot;&gt;/log/nginx&lt;span class=&quot;hljs-regexp&quot;&gt;/access.log --pid-path=/var&lt;span class=&quot;hljs-regexp&quot;&gt;/run/nginx&lt;span class=&quot;hljs-regexp&quot;&gt;/nginx.pid --lock-path=/var&lt;span class=&quot;hljs-regexp&quot;&gt;/lock/nginx.lock --user=nginx --&lt;span class=&quot;hljs-keyword&quot;&gt;group=nginx --with-http_ssl_module --with-http_stub_status_module --with-pcre --add-module=..&lt;span class=&quot;hljs-regexp&quot;&gt;/fastdfs-nginx-module/src  </span><br><span class="line"># make  </span><br><span class="line"># make install  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>#### 3、复制配置文件
+
+&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# cp /root/fastdfs-nginx-module/src/mod_fastdfs.conf  /etc/fdfs/  
+</code></pre><p><span class="hljs-preprocessor"># cp /root/fastdfs-<span class="hljs-number">5.0<span class="hljs-number">.8/conf/{http.conf,mime.types}  /etc/fdfs/<br></span></span></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">注意：`fastdfs-5.0.8`为`fastdfs`源码目录，如为更改，应叫`fastdfs`</span><br><span class="line"></span><br><span class="line">    #### 4、配置fastdfs-nginx-module配置文件</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# vim /etc/fdfs/mod_fastdfs.conf  </span><br><span class="line">base_path=/data/fdfs/storage &lt;span class=&quot;hljs-preprocessor&quot;&gt;#存储节点的目录位置  </span><br><span class="line">tracker_server=&lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.197:&lt;span class=&quot;hljs-number&quot;&gt;22122 &lt;span class=&quot;hljs-preprocessor&quot;&gt;#制定tracker-server  </span><br><span class="line">storage_server_port=&lt;span class=&quot;hljs-number&quot;&gt;23000  </span><br><span class="line">group_name=mage1  &lt;span class=&quot;hljs-preprocessor&quot;&gt;#制定组名  </span><br><span class="line">url_have_group_name = &lt;span class=&quot;hljs-literal&quot;&gt;true  &lt;span class=&quot;hljs-preprocessor&quot;&gt;#访问路径中是否包括组名  </span><br><span class="line">store_path_count=&lt;span class=&quot;hljs-number&quot;&gt;1 &lt;span class=&quot;hljs-preprocessor&quot;&gt;#配置路径个数  </span><br><span class="line">store_path0=/data/fdfs/storage/m0  &lt;span class=&quot;hljs-preprocessor&quot;&gt;#指定要查看的路径  </span><br><span class="line"></span><br><span class="line">[group1]  </span><br><span class="line">group_name=mage1  </span><br><span class="line">storage_server_port=&lt;span class=&quot;hljs-number&quot;&gt;23000  </span><br><span class="line">store_path_count=&lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">store_path0=/data/fdfs/storage/m0  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>#### 5、配置nginx
+
+&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs elixir&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# vim /etc/nginx/nginx.conf  
+</code></pre><p>location ~ <span class="hljs-regexp">/mage[0-9]+/<span class="hljs-constant">M00/ {<br>    root /data/fdfs/storage/m<span class="hljs-number">0/data/;<br>    ngx_fastdfs_module;<br>}<br><span class="hljs-comment"># cat &gt;&gt; /etc/profile.d/nginx.sh &lt;&lt; EOF<br>export <span class="hljs-constant">PATH=<span class="hljs-variable">$PATH<span class="hljs-symbol">:/usr/local/nginx/sbin<br><span class="hljs-constant">EOF  </span></span></span></span></span></span></span></span></p>
+<p><span class="hljs-comment"># source /etc/profile.d/nginx.sh  </span></p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #### 6、为存储文件路径穿件链接至M00</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs gradle&quot;&gt;# ln -sv &lt;span class=&quot;hljs-regexp&quot;&gt;/data/fdfs&lt;span class=&quot;hljs-regexp&quot;&gt;/storage/m0&lt;span class=&quot;hljs-regexp&quot;&gt;/data  /data&lt;span class=&quot;hljs-regexp&quot;&gt;/fdfs/storage&lt;span class=&quot;hljs-regexp&quot;&gt;/m0/data&lt;span class=&quot;hljs-regexp&quot;&gt;/M00   </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>#### 7、启动nginx和重启storage并上传文件测试
+
+&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;启动nginx  
+</code></pre><p><span class="hljs-preprocessor"># nginx -t<br><span class="hljs-preprocessor"># nginx<br><span class="hljs-preprocessor"># /etc/init.d/fdfs_storaged restart<br><span class="hljs-preprocessor"># ss -tnl|grep -E <span class="hljs-string">“(80|23000)”<br>LISTEN     <span class="hljs-number">0      <span class="hljs-number">128          <em>:<span class="hljs-number">80                       </span></em>:<em><br>LISTEN     <span class="hljs-number">0      <span class="hljs-number">128          </span></span></em>:<span class="hljs-number">23000                    <em>:</em>    </span></span></span></span></span></span></span></span></p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**上传文件**</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs gradle&quot;&gt;# fdfs_upload_file &lt;span class=&quot;hljs-regexp&quot;&gt;/etc/fdfs&lt;span class=&quot;hljs-regexp&quot;&gt;/client.conf /usr&lt;span class=&quot;hljs-regexp&quot;&gt;/share/wallpapers&lt;span class=&quot;hljs-regexp&quot;&gt;/CentOS7/contents&lt;span class=&quot;hljs-regexp&quot;&gt;/images/&lt;span class=&quot;hljs-number&quot;&gt;2560x1600.jpg  </span><br><span class="line">mage1&lt;span class=&quot;hljs-regexp&quot;&gt;/M00/&lt;span class=&quot;hljs-number&quot;&gt;00&lt;span class=&quot;hljs-regexp&quot;&gt;/00/CgEOx1ehc2eATt6RAA6q2wjnW8s035.jpg  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>查看测试</strong></p>
+<p><a href="http://obbogqhb1.bkt.clouddn.com/fastdfs3.png" target="_blank" rel="noopener"><img src="http://obbogqhb1.bkt.clouddn.com/fastdfs3.png" alt="fastdfs3.png"></a></p>
+<blockquote>
+<p> 作者：<code>Antony</code> <code>WX&amp;QQ：1257465991</code><br> Q/A：如有问题请慷慨提出</p>
+<p>如有格式问题请访问：<br><a href="http://zantony.top/2016/08/02/%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F-FastDFS/" target="_blank" rel="noopener">http://zantony.top/2016/08/02/%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F-FastDFS/</a></p>
+</blockquote>
+<p></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/fastDFS/" rel="tag"># fastDFS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/23/Spring Security OAuth2 Demo/" rel="next" title="Spring Security OAuth2 Demo">
+                <i class="fa fa-chevron-left"></i> Spring Security OAuth2 Demo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/02/thinkphp生成的验证码不显示问题解决/" rel="prev" title="thinkphp生成的验证码不显示问题解决">
+                thinkphp生成的验证码不显示问题解决 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、FastDFS简介"><span class="nav-number">1.</span> <span class="nav-text">一、FastDFS简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、FastDFS组成部分及其它名词"><span class="nav-number">2.</span> <span class="nav-text">二、FastDFS组成部分及其它名词</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、tracker-server"><span class="nav-number">2.1.</span> <span class="nav-text">1、tracker server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、storage-server"><span class="nav-number">2.2.</span> <span class="nav-text">2、storage server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、client"><span class="nav-number">2.3.</span> <span class="nav-text">3、client</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#group"><span class="nav-number">2.4.</span> <span class="nav-text">group</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件标识"><span class="nav-number">2.5.</span> <span class="nav-text">文件标识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#meta-data"><span class="nav-number">2.6.</span> <span class="nav-text">meta data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fid"><span class="nav-number">2.7.</span> <span class="nav-text">fid</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、FastDFS同步机制"><span class="nav-number">3.</span> <span class="nav-text">三、FastDFS同步机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、FastDFS与集中存储方式对比"><span class="nav-number">4.</span> <span class="nav-text">四、FastDFS与集中存储方式对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、FastDFS和mogileFS对比"><span class="nav-number">5.</span> <span class="nav-text">五、FastDFS和mogileFS对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、FastDFS安装配置"><span class="nav-number">6.</span> <span class="nav-text">六、FastDFS安装配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、安装开发环境"><span class="nav-number">6.1.</span> <span class="nav-text">1、安装开发环境</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#Systemd-unit-file-for-default-tomcat"><span class="nav-number"></span> <span class="nav-text">Systemd unit file for default tomcat</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text"> </span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

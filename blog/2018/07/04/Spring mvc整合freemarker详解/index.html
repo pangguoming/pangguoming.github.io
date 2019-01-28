@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="freemarker,spring mvc,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="1.什么是FreeMarkerFreeMarker是一个模板引擎，一个基于模板生成文本输出的通用工具，使用纯Java编写FreeMarker被设计用来生成HTML Web页面，特别是基于MVC模式的应用程序虽然FreeMarker具有一些编程的能力，但通常由Java程序准备要显示的数据，由FreeMarker生成页面，通过模板显示准备的数据（如下图） 2.FreeMarker特性能够生成各种文本：">
+<meta name="keywords" content="freemarker,spring mvc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring mvc整合freemarker详解">
+<meta property="og:url" content="http://pangguoming.com/blog/2018/07/04/Spring mvc整合freemarker详解/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="1.什么是FreeMarkerFreeMarker是一个模板引擎，一个基于模板生成文本输出的通用工具，使用纯Java编写FreeMarker被设计用来生成HTML Web页面，特别是基于MVC模式的应用程序虽然FreeMarker具有一些编程的能力，但通常由Java程序准备要显示的数据，由FreeMarker生成页面，通过模板显示准备的数据（如下图） 2.FreeMarker特性能够生成各种文本：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdn.net/20160713215630876">
+<meta property="og:image" content="https://img-blog.csdn.net/20160713220156728">
+<meta property="og:updated_time" content="2019-01-26T14:39:41.050Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring mvc整合freemarker详解">
+<meta name="twitter:description" content="1.什么是FreeMarkerFreeMarker是一个模板引擎，一个基于模板生成文本输出的通用工具，使用纯Java编写FreeMarker被设计用来生成HTML Web页面，特别是基于MVC模式的应用程序虽然FreeMarker具有一些编程的能力，但通常由Java程序准备要显示的数据，由FreeMarker生成页面，通过模板显示准备的数据（如下图） 2.FreeMarker特性能够生成各种文本：">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20160713215630876">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2018/07/04/Spring mvc整合freemarker详解/">
+
+
+
+
+
+  <title>Spring mvc整合freemarker详解 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2018/07/04/Spring mvc整合freemarker详解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring mvc整合freemarker详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-04T10:28:00+08:00">
+                2018-07-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-什么是FreeMarker"><a href="#1-什么是FreeMarker" class="headerlink" title="1.什么是FreeMarker"></a>1.什么是FreeMarker</h1><p>FreeMarker是一个模板引擎，一个基于模板生成文本输出的通用工具，使用纯Java编写<br>FreeMarker被设计用来生成HTML Web页面，特别是基于MVC模式的应用程序<br>虽然FreeMarker具有一些编程的能力，但通常由Java程序准备要显示的数据，由FreeMarker生成页面，通过模板显示准备的数据（如下图）<br><img src="https://img-blog.csdn.net/20160713215630876" alt="这里写图片描述"></p>
+<h1 id="2-FreeMarker特性"><a href="#2-FreeMarker特性" class="headerlink" title="2.FreeMarker特性"></a>2.FreeMarker特性</h1><p>能够生成各种文本：HTML、XML、RTF、Java源代码等等<br>易于嵌入到你的产品中：轻量级；不需要Servlet环境<br>插件式模板载入器：可以从任何源载入模板，如本地文件、数据库等等<br>你可以按你所需生成文本：保存到本地文件；作为Email发送；从Web应用程序发送它返回给Web浏览器</p>
+<h1 id="3-springMVC整合Freemarker"><a href="#3-springMVC整合Freemarker" class="headerlink" title="3. springMVC整合Freemarker"></a>3. springMVC整合Freemarker</h1><h2 id="1-添加jar包"><a href="#1-添加jar包" class="headerlink" title="1.添加jar包"></a>1.添加jar包</h2><p>添加freemarker的jar，还需要额外添加spring-content-support的jar包，不然会报错。</p>
+<h2 id="2-然后再Spring的配置文件中添加对freemarker的配置"><a href="#2-然后再Spring的配置文件中添加对freemarker的配置" class="headerlink" title="2.然后再Spring的配置文件中添加对freemarker的配置"></a>2.然后再Spring的配置文件中添加对freemarker的配置</h2><p><code class="hljs xml has-numbering"><span class="hljs-comment"><!-- 配置freeMarker的模板路径 --><br>         <span class="hljs-tag">&lt;<span class="hljs-title">bean <span class="hljs-attribute">class=<span class="hljs-value">“org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer”&gt;<br>            <span class="hljs-tag">&lt;<span class="hljs-title">property <span class="hljs-attribute">name=<span class="hljs-value">“templateLoaderPath” <span class="hljs-attribute">value=<span class="hljs-value">“WEB-INF/ftl/“ /&gt;<br>            <span class="hljs-tag">&lt;<span class="hljs-title">property <span class="hljs-attribute">name=<span class="hljs-value">“defaultEncoding” <span class="hljs-attribute">value=<span class="hljs-value">“UTF-8” /&gt;<br>         <span class="hljs-tag">&lt;/<span class="hljs-title">bean&gt;<br>         <span class="hljs-comment"><!-- freemarker视图解析器 --><br>         <span class="hljs-tag">&lt;<span class="hljs-title">bean <span class="hljs-attribute">class=<span class="hljs-value">“org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver”&gt;<br>            <span class="hljs-tag">&lt;<span class="hljs-title">property <span class="hljs-attribute">name=<span class="hljs-value">“suffix” <span class="hljs-attribute">value=<span class="hljs-value">“.html” /&gt;<br>            <span class="hljs-tag">&lt;<span class="hljs-title">property <span class="hljs-attribute">name=<span class="hljs-value">“contentType” <span class="hljs-attribute">value=<span class="hljs-value">“text/html;charset=UTF-8” /&gt;<br>            <span class="hljs-comment"><!-- 此变量值为pageContext.request, 页面使用方法：rc.contextPath --><br>            <span class="hljs-tag">&lt;<span class="hljs-title">property <span class="hljs-attribute">name=<span class="hljs-value">“requestContextAttribute” <span class="hljs-attribute">value=<span class="hljs-value">“rc” /&gt;<br>         <span class="hljs-tag">&lt;/<span class="hljs-title">bean&gt; </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">*   1</span><br><span class="line">*   2</span><br><span class="line">*   3</span><br><span class="line">*   4</span><br><span class="line">*   5</span><br><span class="line">*   6</span><br><span class="line">*   7</span><br><span class="line">*   8</span><br><span class="line">*   9</span><br><span class="line">*   10</span><br><span class="line">*   11</span><br><span class="line">*   12</span><br><span class="line"></span><br><span class="line">## 3.写一个User类：</span><br><span class="line"></span><br><span class="line">&lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs cs has-numbering&quot;&gt;package com.my.springmvc.bean;</span><br><span class="line"></span><br><span class="line">&lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-keyword&quot;&gt;class User &#123;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;private String username;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;private String password;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;public String &lt;span class=&quot;hljs-title&quot;&gt;getUsername() &#123;</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;return username;</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-keyword&quot;&gt;void &lt;span class=&quot;hljs-title&quot;&gt;setUsername(String username) &#123;</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;this.username = username;</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;public String &lt;span class=&quot;hljs-title&quot;&gt;getPassword() &#123;</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;return password;</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-keyword&quot;&gt;void &lt;span class=&quot;hljs-title&quot;&gt;setPassword(String password) &#123;</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;this.password = password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>*   1
+*   2
+*   3
+*   4
+*   5
+*   6
+*   7
+*   8
+*   9
+*   10
+*   11
+*   12
+*   13
+*   14
+*   15
+*   16
+*   17
+*   18
+*   19
+
+## 4.一个FreeMarkerController类：
+
+&lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs java has-numbering&quot;&gt;&lt;span class=&quot;hljs-annotation&quot;&gt;@Controller
+&lt;span class=&quot;hljs-annotation&quot;&gt;@RequestMapping(&lt;span class=&quot;hljs-string&quot;&gt;&quot;/home&quot;)
+&lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class &lt;span class=&quot;hljs-title&quot;&gt;FreeMarkerController {
+
+    &lt;span class=&quot;hljs-annotation&quot;&gt;@RequestMapping(&lt;span class=&quot;hljs-string&quot;&gt;&quot;/index&quot;)
+    &lt;span class=&quot;hljs-keyword&quot;&gt;public ModelAndView &lt;span class=&quot;hljs-title&quot;&gt;Add(HttpServletRequest request,HttpServletResponse response){
+        User user = &lt;span class=&quot;hljs-keyword&quot;&gt;new User();
+        user.setUsername(&lt;span class=&quot;hljs-string&quot;&gt;&quot;sg&quot;);
+        user.setPassword(&lt;span class=&quot;hljs-string&quot;&gt;&quot;1234&quot;);
+        List&lt;User&gt; users  = &lt;span class=&quot;hljs-keyword&quot;&gt;new ArrayList&lt;User&gt;();
+        users.add(user);
+
+        ModelAndView mv = &lt;span class=&quot;hljs-keyword&quot;&gt;new ModelAndView();
+        mv.setViewName(&lt;span class=&quot;hljs-string&quot;&gt;&quot;index&quot;);
+        mv.addObject(&lt;span class=&quot;hljs-string&quot;&gt;&quot;users&quot;,users);
+        &lt;span class=&quot;hljs-keyword&quot;&gt;return mv;
+    }
+}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    *   1</span><br><span class="line">    *   2</span><br><span class="line">    *   3</span><br><span class="line">    *   4</span><br><span class="line">    *   5</span><br><span class="line">    *   6</span><br><span class="line">    *   7</span><br><span class="line">    *   8</span><br><span class="line">    *   9</span><br><span class="line">    *   10</span><br><span class="line">    *   11</span><br><span class="line">    *   12</span><br><span class="line">    *   13</span><br><span class="line">    *   14</span><br><span class="line">    *   15</span><br><span class="line">    *   16</span><br><span class="line">    *   17</span><br><span class="line">    *   18</span><br><span class="line"></span><br><span class="line">    ## 5.然后再WEB-INF/ftl目录下创建一个index.html文件：</span><br><span class="line"></span><br><span class="line">##</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs xml has-numbering&quot;&gt;&lt;span class=&quot;hljs-doctype&quot;&gt;&lt;!DOCTYPE html&gt;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;html&gt;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;head&gt;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;meta &lt;span class=&quot;hljs-attribute&quot;&gt;charset=&lt;span class=&quot;hljs-value&quot;&gt;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;title&gt;another&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;title&gt;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;head&gt;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;body&gt;  </span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;#list &lt;span class=&quot;hljs-attribute&quot;&gt;users &lt;span class=&quot;hljs-attribute&quot;&gt;as &lt;span class=&quot;hljs-attribute&quot;&gt;user&gt;  </span><br><span class="line">    username : $&#123;user.username&#125;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;br/&gt;  </span><br><span class="line">    password : $&#123;user.password&#125;  </span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;#list&gt;  </span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;body&gt;  </span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;html&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+*   1
+*   2
+*   3
+*   4
+*   5
+*   6
+*   7
+*   8
+*   9
+*   10
+*   11
+*   12
+*   13
+
+## 结果：
+</code></pre><p><img src="https://img-blog.csdn.net/20160713220156728" alt="这里写图片描述"></p>
+<pre><code># 4.freemarker语法介绍：
+
+## 1. FreeMarker模板文件主要由如下4个部分组成
+</code></pre><p>文本：直接输出的部分<br>注释：&lt;#– … –&gt; 格式部分，不会输出<br>插值：即 ${…} 或 #{…} 格式的部分，将使用数据模型中的部分替代输出<br>指令：FreeMarker 指定，和 HTML 标记类似，名字前加 # 予以区分，不会输出</p>
+<pre><code>&lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs xml has-numbering&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;html&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;head&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;title&gt;Welcome!&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;title&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;head&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;body&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;#-- 注释部分 &lt;span class=&quot;hljs-attribute&quot;&gt;--&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;#-- 下面使用插值 &lt;span class=&quot;hljs-attribute&quot;&gt;--&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;h1&gt;Welcome ${username} !&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;h1&gt;
+
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;p&gt;We have these animals:&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;p&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;u1&gt;
+        &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 使用FTL指令 --&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;#list &lt;span class=&quot;hljs-attribute&quot;&gt;animals &lt;span class=&quot;hljs-attribute&quot;&gt;as &lt;span class=&quot;hljs-attribute&quot;&gt;animal&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;li&gt;${animal.name} for ${animal.price} Euros&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;li&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;#list&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;u1&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;body&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;html
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">*   1</span><br><span class="line">*   2</span><br><span class="line">*   3</span><br><span class="line">*   4</span><br><span class="line">*   5</span><br><span class="line">*   6</span><br><span class="line">*   7</span><br><span class="line">*   8</span><br><span class="line">*   9</span><br><span class="line">*   10</span><br><span class="line">*   11</span><br><span class="line">*   12</span><br><span class="line">*   13</span><br><span class="line">*   14</span><br><span class="line">*   15</span><br><span class="line">*   16</span><br><span class="line">*   17</span><br><span class="line">*   18</span><br><span class="line">*   19</span><br><span class="line"></span><br><span class="line">## 2.控制语句</span><br><span class="line"></span><br><span class="line">&lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs r has-numbering&quot;&gt;&lt;&lt;span class=&quot;hljs-comment&quot;&gt;#if condition&gt; </span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;... </span><br><span class="line">&lt;&lt;span class=&quot;hljs-comment&quot;&gt;#elseif condition2&gt; </span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;... </span><br><span class="line">&lt;&lt;span class=&quot;hljs-comment&quot;&gt;#elseif condition3&gt; </span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;... </span><br><span class="line">&lt;&lt;span class=&quot;hljs-comment&quot;&gt;#else&gt;</span><br><span class="line">&lt;&lt;span class=&quot;hljs-comment&quot;&gt;#switch value&gt; </span><br><span class="line">    &lt;&lt;span class=&quot;hljs-comment&quot;&gt;#case refValue1&gt; </span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;... </span><br><span class="line">        &lt;&lt;span class=&quot;hljs-comment&quot;&gt;#break&gt; </span><br><span class="line">    &lt;&lt;span class=&quot;hljs-comment&quot;&gt;#case refValue2&gt; </span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;... </span><br><span class="line">        &lt;&lt;span class=&quot;hljs-comment&quot;&gt;#break&gt; </span><br><span class="line">    &lt;&lt;span class=&quot;hljs-comment&quot;&gt;#case refValueN&gt; </span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;... </span><br><span class="line">        &lt;&lt;span class=&quot;hljs-comment&quot;&gt;#break&gt; </span><br><span class="line">    &lt;&lt;span class=&quot;hljs-comment&quot;&gt;#default&gt; </span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;... </span><br><span class="line">&lt;/&lt;span class=&quot;hljs-comment&quot;&gt;#switch&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+*   1
+*   2
+*   3
+*   4
+*   5
+*   6
+*   7
+*   8
+*   9
+*   10
+*   11
+*   12
+*   13
+*   14
+*   15
+*   16
+*   17
+*   18
+*   19
+*   20
+
+## 3判断变量是否存在
+
+&lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs cs has-numbering&quot;&gt;&lt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;#&lt;span class=&quot;hljs-keyword&quot;&gt;if readonly??&gt;&lt;/#&lt;span class=&quot;hljs-keyword&quot;&gt;if&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    *   1</span><br><span class="line"></span><br><span class="line">    ## 4.防止空指针报错</span><br><span class="line"></span><br><span class="line">变量名后用 ! 加默认值：$&#123;foo!”Default”&#125;，如果 foo 为 null 则输出 Default</span><br><span class="line"></span><br><span class="line">    ## 5.普通的变量</span><br><span class="line"></span><br><span class="line">这是最简单的情况，直接&lt;span id=&quot;MathJax-Element-1-Frame&quot; class=&quot;MathJax&quot; data-mathml=&quot;&lt;math xmlns=&quot; http://www.w3.org/1998/math/mathml&quot;=&quot;&quot;&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mo&gt;变&lt;/mo&gt;&lt;/mrow&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mo&gt;量&lt;/mo&gt;&lt;/mrow&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mo&gt;名&lt;/mo&gt;&lt;/mrow&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mo&gt;称&lt;/mo&gt;&lt;/mrow&gt;&lt;/mrow&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mo&gt;，&lt;/mo&gt;&lt;/mrow&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mo&gt;如&lt;/mo&gt;&lt;/mrow&gt;&quot;&gt;&lt;span id=&quot;MathJax-Span-1&quot; class=&quot;math&quot;&gt;&lt;span id=&quot;MathJax-Span-2&quot; class=&quot;mrow&quot;&gt;&lt;span id=&quot;MathJax-Span-3&quot; class=&quot;texatom&quot;&gt;&lt;span id=&quot;MathJax-Span-4&quot; class=&quot;mrow&quot;&gt;&lt;span id=&quot;MathJax-Span-5&quot; class=&quot;texatom&quot;&gt;&lt;span id=&quot;MathJax-Span-6&quot; class=&quot;mrow&quot;&gt;&lt;span id=&quot;MathJax-Span-7&quot; class=&quot;mo&quot;&gt;变&lt;span id=&quot;MathJax-Span-8&quot; class=&quot;texatom&quot;&gt;&lt;span id=&quot;MathJax-Span-9&quot; class=&quot;mrow&quot;&gt;&lt;span id=&quot;MathJax-Span-10&quot; class=&quot;mo&quot;&gt;量&lt;span id=&quot;MathJax-Span-11&quot; class=&quot;texatom&quot;&gt;&lt;span id=&quot;MathJax-Span-12&quot; class=&quot;mrow&quot;&gt;&lt;span id=&quot;MathJax-Span-13&quot; class=&quot;mo&quot;&gt;名&lt;span id=&quot;MathJax-Span-14&quot; class=&quot;texatom&quot;&gt;&lt;span id=&quot;MathJax-Span-15&quot; class=&quot;mrow&quot;&gt;&lt;span id=&quot;MathJax-Span-16&quot; class=&quot;mo&quot;&gt;称&lt;span id=&quot;MathJax-Span-17&quot; class=&quot;texatom&quot;&gt;&lt;span id=&quot;MathJax-Span-18&quot; class=&quot;mrow&quot;&gt;&lt;span id=&quot;MathJax-Span-19&quot; class=&quot;mo&quot;&gt;，&lt;span id=&quot;MathJax-Span-20&quot; class=&quot;texatom&quot;&gt;&lt;span id=&quot;MathJax-Span-21&quot; class=&quot;mrow&quot;&gt;&lt;span id=&quot;MathJax-Span-22&quot; class=&quot;mo&quot;&gt;如&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;MJX_Assistive_MathML&quot;&gt;变量名称，如&#123;name&#125;&lt;/span&gt;&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">需要注意的是有的变量是需要转义的如双引号</span><br><span class="line"></span><br><span class="line">    ## 6..遍历List集合</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs smalltalk has-numbering&quot;&gt;&lt;&lt;span class=&quot;hljs-symbol&quot;&gt;#list [&lt;span class=&quot;hljs-comment&quot;&gt;&quot;克里斯埃文斯&quot;, &lt;span class=&quot;hljs-comment&quot;&gt;&quot;斯嘉丽约翰逊&quot;, &lt;span class=&quot;hljs-comment&quot;&gt;&quot;小罗伯特唐尼&quot;]  as x&gt;  </span><br><span class="line">    &lt;span class=&quot;hljs-char&quot;&gt;$&#123;x&#125;  </span><br><span class="line">    &lt;/&lt;span class=&quot;hljs-symbol&quot;&gt;#list&gt;  </span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+*   1
+*   2
+*   3
+*   4
+</code></pre><p>此外,迭代集合对象时,还包含两个特殊的循环变量:<br>item_index:当前变量的索引值<br>item_has_next:是否存在下一个对象<br>也可以使用&lt;#break&gt;指令跳出迭代</p>
+<pre><code>## 7.运算符
+</code></pre><p>FreeMarker表达式中完全支持算术运算,FreeMarker支持的算术运算符包括:+, - , * , / , %<br>比较运算符</p>
+<p>表达式中支持的比较运算符有如下几个:<br>1,=或者==:判断两个值是否相等.<br>2,!=:判断两个值是否不等.<br>3,&gt;或者gt:判断左边值是否大于右边值<br>4,&gt;=或者gte:判断左边值是否大于等于右边值<br>5,&lt;或者lt:判断左边值是否小于右边值<br>6,&lt;=或者lte:判断左边值是否小于等于右边值</p>
+<p>注意:=和!=可以用于字符串,数值和日期来比较是否相等,但=和!=两边必须是相同类型的值,否则会产生错误,而且FreeMarker是精确比较,”x”,”x “,”X”是不等的.其它的运行符可以作用于数字和日期,但不能作用于字符串,大部分的时候,使用gt等字母运算符代替&gt;会有更好的效果,因为FreeMarker会把&gt;解释成FTL标签的结束字符,当然,也可以使用括号来避免这种情况,如:&lt;#if (x&gt;y)&gt;</p>
+<p>逻辑运算符</p>
+<p>和普通程序一样，freemarker也有&amp;&amp;，|| ，!三种</p>
+<pre><code>## 8.变量的声明
+</code></pre><p>&lt;#assign num=0/&gt;</p>
+<pre><code>## 9.include指令
+</code></pre><p>include指令的作用类似于JSP的包含指令,用于包含指定页.include指令的语法格式如下:<br>&lt;#include filename [options]&gt;<br>在上面的语法格式中,两个参数的解释如下:<br>filename:该参数指定被包含的模板文件<br>options:该参数可以省略,指定包含时的选项,包含encoding和parse两个选项,其中encoding指定包含页面时所用的解码集,而parse指定被包含文件是否作为FTL文件来解析,如果省略了parse选项值,则该选项默认是true.</p>
+<pre><code>## 10.import指令
+</code></pre><p>该指令用于导入FreeMarker模板中的所有变量,并将该变量放置在指定的Map对象中,import指令的语法格式如下:<br>&lt;#import “/lib/common.ftl” as com&gt;<br>上面的代码将导入/lib/common.ftl模板文件中的所有变量,交将这些变量放置在一个名为com的Map对象中.</p>
+<pre><code>## 11 macro的使用
+</code></pre><p>这个可以用来实现自定义指令，一般用来做公共组件，例如分页条<br>最后说下list中含有map的遍历，这种情况可以使用点语法或方括号语法.假如有下面的数据模型:<br>Map root = new HashMap();<br>Book book = new Book();<br>Author author = new Author();<br>author.setName(“annlee”);<br>author.setAddress(“gz”);<br>book.setName(“struts2”);<br>book.setAuthor(author);<br>root.put(“info”,”struts”);<br>root.put(“book”, book);</p>
+<p>为了访问数据模型中名为struts2的书的作者的名字,可以使用如下语法:<br>book.author.name //全部使用点语法<br>book[“author”].name<br>book.author[“name”] //混合使用点语法和方括号语法<br>book[“author”][“name”] //全部使用方括号语法</p>
+<p>参考：<br><a href="http://blog.csdn.net/walkcode/article/details/26393211" target="_blank" rel="noopener">http://blog.csdn.net/walkcode/article/details/26393211</a><br><a href="http://blog.csdn.net/win_man/article/details/51317957" target="_blank" rel="noopener">http://blog.csdn.net/win_man/article/details/51317957</a><br><a href="http://rongjih.blog.163.com/blog/static/3357446120127632757911/" target="_blank" rel="noopener">http://rongjih.blog.163.com/blog/static/3357446120127632757911/</a><br><a href="http://qtdebug.com/spring-web/11.%20Freemarker%20%E8%AF%AD%E6%B3%95%E7%AE%80%E4%BB%8B.html" target="_blank" rel="noopener">http://qtdebug.com/spring-web/11.%20Freemarker%20%E8%AF%AD%E6%B3%95%E7%AE%80%E4%BB%8B.html</a><br><a href="http://blog.csdn.net/walkcode/article/details/26393211" target="_blank" rel="noopener">http://blog.csdn.net/walkcode/article/details/26393211</a><br><a href="http://blog.csdn.net/shimiso/article/details/8778793" target="_blank" rel="noopener">http://blog.csdn.net/shimiso/article/details/8778793</a><br></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/freemarker/" rel="tag"># freemarker</a>
+          
+            <a href="/tags/spring-mvc/" rel="tag"># spring mvc</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/28/kafka 主要内容介绍/" rel="next" title="kafka 主要内容介绍">
+                <i class="fa fa-chevron-left"></i> kafka 主要内容介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/05/Git可视化教程——Git Gui的使用/" rel="prev" title="Git可视化教程——Git Gui的使用">
+                Git可视化教程——Git Gui的使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是FreeMarker"><span class="nav-number">1.</span> <span class="nav-text">1.什么是FreeMarker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-FreeMarker特性"><span class="nav-number">2.</span> <span class="nav-text">2.FreeMarker特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-springMVC整合Freemarker"><span class="nav-number">3.</span> <span class="nav-text">3. springMVC整合Freemarker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-添加jar包"><span class="nav-number">3.1.</span> <span class="nav-text">1.添加jar包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-然后再Spring的配置文件中添加对freemarker的配置"><span class="nav-number">3.2.</span> <span class="nav-text">2.然后再Spring的配置文件中添加对freemarker的配置</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

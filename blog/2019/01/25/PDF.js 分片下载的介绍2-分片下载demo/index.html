@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="pdf.js,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="上一个章节，简要说了以下分片下载的几个特性。今天主要用示例说明一下pdf.js分片下载。 服务器环境：php7.2nginx 1.14ubuntu 18.04测试浏览器:谷歌浏览器 70.0.3538.110（ 第一个场景，直接使用pdf 文件1.1 代码如下：注意路径使用的是pdf 文件的物理路径 $filePath = ‘…/doc/big.pdf’;这里是举例，这样作有一个明显的缺点，就是容">
+<meta name="keywords" content="pdf.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PDF.js 分片下载的介绍2:分片下载demo">
+<meta property="og:url" content="http://pangguoming.com/blog/2019/01/25/PDF.js 分片下载的介绍2-分片下载demo/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="上一个章节，简要说了以下分片下载的几个特性。今天主要用示例说明一下pdf.js分片下载。 服务器环境：php7.2nginx 1.14ubuntu 18.04测试浏览器:谷歌浏览器 70.0.3538.110（ 第一个场景，直接使用pdf 文件1.1 代码如下：注意路径使用的是pdf 文件的物理路径 $filePath = ‘…/doc/big.pdf’;这里是举例，这样作有一个明显的缺点，就是容">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181128002243313.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25pZWRld2FuZw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181128002300642.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25pZWRld2FuZw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181128003646588.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25pZWRld2FuZw==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-01-26T14:39:00.763Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PDF.js 分片下载的介绍2:分片下载demo">
+<meta name="twitter:description" content="上一个章节，简要说了以下分片下载的几个特性。今天主要用示例说明一下pdf.js分片下载。 服务器环境：php7.2nginx 1.14ubuntu 18.04测试浏览器:谷歌浏览器 70.0.3538.110（ 第一个场景，直接使用pdf 文件1.1 代码如下：注意路径使用的是pdf 文件的物理路径 $filePath = ‘…/doc/big.pdf’;这里是举例，这样作有一个明显的缺点，就是容">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181128002243313.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25pZWRld2FuZw==,size_16,color_FFFFFF,t_70">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2019/01/25/PDF.js 分片下载的介绍2-分片下载demo/">
+
+
+
+
+
+  <title>PDF.js 分片下载的介绍2:分片下载demo | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2019/01/25/PDF.js 分片下载的介绍2-分片下载demo/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PDF.js 分片下载的介绍2:分片下载demo</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-25T11:06:00+08:00">
+                2019-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>上一个章节，简要说了以下分片下载的几个特性。今天主要用示例说明一下pdf.js分片下载。</p>
+<p>服务器环境：<br>php7.2<br>nginx 1.14<br>ubuntu 18.04<br>测试浏览器:谷歌浏览器 70.0.3538.110（</p>
+<p>第一个场景，直接使用pdf 文件<br>1.1 代码如下：注意路径使用的是pdf 文件的物理路径</p>
+<p>$filePath = ‘…/doc/big.pdf’;<br>这里是举例，这样作有一个明显的缺点，就是容易被盗链<br>getDocument 方法中的 rangeChunkSize 参数，就是设置分块大小，默认是64k,可以修改这个数字，来改变<br>这个例子使用的 1664k ,1m 左右来分片，方便测试。您可以根据具体情况，来调整<br>PDFJS.getDocument({url:url,rangeChunkSize:6553616,disableAutoFetch:0}).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">        &lt;head&gt;&lt;title&gt;pdf.js展示1，上一页，下一页&lt;/title&gt;&lt;/head&gt;</span><br><span class="line">        &lt;h1&gt;PDF.js Previous/Next example&lt;/h1&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;button id=&quot;prev&quot;&gt;Previous&lt;/button&gt;</span><br><span class="line">            &lt;button id=&quot;next&quot;&gt;Next&lt;/button&gt;     &lt;span&gt;Page: &lt;span id=&quot;page_num&quot;&gt;&lt;/span&gt; / &lt;span</span><br><span class="line">                id=&quot;page_count&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">        &lt;canvas id=&quot;the-canvas&quot;&gt;&lt;/canvas&gt;</span><br><span class="line">        &lt;script src=&quot;../js/pdfjs/pdf.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">        &lt;script src=&quot;../js/pdfjs/pdf.worker.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">        &lt;script&gt;</span><br><span class="line">            var url = &apos;../doc/big.pdf&apos;;</span><br><span class="line"></span><br><span class="line">            var pdfDoc = null,</span><br><span class="line">                pageNum = 1,</span><br><span class="line">                pageRendering = false,</span><br><span class="line">                pageNumPending = null,</span><br><span class="line">                scale = 0.8,</span><br><span class="line">                canvas = document.getElementById(&apos;the-canvas&apos;),</span><br><span class="line">                ctx = canvas.getContext(&apos;2d&apos;);</span><br><span class="line"></span><br><span class="line">            /**</span><br><span class="line">             * Get page info from document, resize canvas accordingly, and render page.</span><br><span class="line">             * @param num Page number.</span><br><span class="line">             */</span><br><span class="line">            function renderPage(num) &#123;</span><br><span class="line">                pageRendering = true;</span><br><span class="line">                // Using promise to fetch the page</span><br><span class="line">                pdfDoc.getPage(num).then(function (page) &#123;</span><br><span class="line">                    var viewport = page.getViewport(scale);</span><br><span class="line">                    canvas.height = viewport.height;</span><br><span class="line">                    canvas.width = viewport.width;</span><br><span class="line"></span><br><span class="line">                    // Render PDF page into canvas context</span><br><span class="line">                    var renderContext = &#123;</span><br><span class="line">                        canvasContext: ctx,</span><br><span class="line">                        viewport: viewport</span><br><span class="line">                    &#125;;</span><br><span class="line">                    var renderTask = page.render(renderContext);</span><br><span class="line"></span><br><span class="line">                    // Wait for rendering to finish</span><br><span class="line">                    renderTask.promise.then(function () &#123;</span><br><span class="line">                        pageRendering = false;</span><br><span class="line">                        if (pageNumPending !== null) &#123;</span><br><span class="line">                            // New page rendering is pending</span><br><span class="line">                            renderPage(pageNumPending);</span><br><span class="line">                            pageNumPending = null;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">                // Update page counters</span><br><span class="line">                document.getElementById(&apos;page_num&apos;).textContent = num;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            /**</span><br><span class="line">             * If another page rendering in progress, waits until the rendering is</span><br><span class="line">             * finised. Otherwise, executes rendering immediately.</span><br><span class="line">             */</span><br><span class="line">            function queueRenderPage(num) &#123;</span><br><span class="line">                if (pageRendering) &#123;</span><br><span class="line">                    pageNumPending = num;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    renderPage(num);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            /**</span><br><span class="line">             * Displays previous page.</span><br><span class="line">             */</span><br><span class="line">            function onPrevPage() &#123;</span><br><span class="line">                if (pageNum &lt;= 1) &#123;</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">                pageNum--;</span><br><span class="line">                queueRenderPage(pageNum);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            document.getElementById(&apos;prev&apos;).addEventListener(&apos;click&apos;, onPrevPage);</span><br><span class="line"></span><br><span class="line">            /**</span><br><span class="line">             * Displays next page.</span><br><span class="line">             */</span><br><span class="line">            function onNextPage() &#123;</span><br><span class="line">                if (pageNum &gt;= pdfDoc.numPages) &#123;</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">                pageNum++;</span><br><span class="line">                queueRenderPage(pageNum);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            document.getElementById(&apos;next&apos;).addEventListener(&apos;click&apos;, onNextPage);</span><br><span class="line"></span><br><span class="line">            /**</span><br><span class="line">             * Asynchronously downloads PDF.</span><br><span class="line">             */</span><br><span class="line">            PDFJS.getDocument(&#123;url:url,rangeChunkSize:65536*16,disableAutoFetch:0&#125;).then(function(pdfDoc_) &#123;</span><br><span class="line">                pdfDoc = pdfDoc_;</span><br><span class="line">                document.getElementById(&apos;page_count&apos;).textContent = pdfDoc.numPages;</span><br><span class="line"></span><br><span class="line">                // Initial/first page rendering</span><br><span class="line">                renderPage(pageNum);</span><br><span class="line">            &#125;);</span><br><span class="line">        &lt;/script&gt;</span><br><span class="line">        &lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>1.2今天第一加载：发现没有出现分片效果。如果您也遇到这种情况，不要着急，很大程度是因为浏览器缓存<br><img src="https://img-blog.csdnimg.cn/20181128002243313.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25pZWRld2FuZw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>1.3 在浏览器中，安Ctrl+alt+delte 键，清除缓存</p>
+<p><img src="https://img-blog.csdnimg.cn/20181128002300642.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25pZWRld2FuZw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>1.4 清除缓存后，再次刷新页面，发现分片下载功能出现了。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:html;gutter:true;&quot;&gt;后台代码</span><br><span class="line"></span><br><span class="line"> &lt;?php</span><br><span class="line">$filePath = &apos;../doc/big.pdf&apos;;</span><br><span class="line"></span><br><span class="line">//普通的方式处理包装pdf文件 </span><br><span class="line">download_file($filePath);</span><br><span class="line"></span><br><span class="line">function download_file($file, $fname = &apos;chunk.pdf&apos;)</span><br><span class="line">&#123;</span><br><span class="line">    header(&quot;Content-Type: application/octet-stream&quot;);</span><br><span class="line">    header(&quot;Content-Disposition: attachment;filename=$fname&quot;);</span><br><span class="line"></span><br><span class="line">    echo(file_get_contents($file));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p> 前台js 调用代码</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:html;gutter:true;&quot;&gt;  。。。。。</span><br><span class="line">    var url = &apos;download.php&apos;;</span><br><span class="line"></span><br><span class="line">    var pdfDoc = null,</span><br><span class="line">        pageNum = 1,</span><br><span class="line">        pageRendering = false,</span><br><span class="line">        pageNumPending = null,</span><br><span class="line">        scale = 0.8,</span><br><span class="line">        canvas = document.getElementById(&apos;the-canvas&apos;),</span><br><span class="line">        ctx = canvas.getContext(&apos;2d&apos;);</span><br><span class="line"></span><br><span class="line">。。。。</span><br></pre></td></tr></table></figure>
+</code></pre><p>2.2 经过清理缓存，发现无法达到分片的效果。<br><img src="https://img-blog.csdnimg.cn/20181128003646588.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25pZWRld2FuZw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>初步总结如下，常规的附件处理方式，会影响分片下载的效果</p>
+</blockquote>
+<pre><code>## 场景3：使用php 结合httprange,实现分片的效果
+</code></pre><p>3.1 这里是从网上搜集到的分片下载php 函数</p>
+<p>代码的核心是，增加head 头，开启分片 Header(“Accept-Ranges: bytes”); 至于 Http range 如何计算，就比较繁琐了，这里就不详细介绍了。有兴趣的可以去百度</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:html;gutter:true;&quot;&gt;&lt;?php</span><br><span class="line">$filePath = &apos;../doc/big.pdf&apos;;</span><br><span class="line"></span><br><span class="line">//分片下载</span><br><span class="line">chunk_download_file($filePath);</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 分篇下载的汉书</span><br><span class="line"> *</span><br><span class="line"> * @param $file</span><br><span class="line"> * @param $fname</span><br><span class="line"> */</span><br><span class="line">function chunk_download_file($file, $fname = &apos;chunk.pdf&apos;)</span><br><span class="line">&#123;</span><br><span class="line">    $fhandle = fopen($file, &apos;rb&apos;);//文件句柄</span><br><span class="line">    $fsize = filesize($file);//文件大小</span><br><span class="line"></span><br><span class="line">    //断点续传和整个文件下载的判断，支持多段下载</span><br><span class="line">    if (!empty($_SERVER[&apos;HTTP_RANGE&apos;])) &#123;</span><br><span class="line">        $range = str_replace(&quot;=&quot;, &quot;-&quot;, $_SERVER[&apos;HTTP_RANGE&apos;]);</span><br><span class="line">        $match = explode(&quot;-&quot;, $range);</span><br><span class="line">        $start = $match[1];</span><br><span class="line">        $end = !empty($match[2]) ? $match[2] : $fsize - 1;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        $start = 0;</span><br><span class="line">        $end = $fsize - 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (($end - $start) &lt; ($fsize - 1)) &#123;</span><br><span class="line">        fseek($fhandle, $start);</span><br><span class="line">        header(&quot;HTTP/1.1 206 Partial Content&quot;);</span><br><span class="line">        header(&quot;Content-Length: &quot; . ($end - $start + 1));</span><br><span class="line">        header(&quot;Content-Range: bytes &quot; . $start . &quot;-&quot; . $end . &quot;/&quot; . $fsize);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        header(&quot;HTTP/1.1 200 OK&quot;);</span><br><span class="line">        header(&quot;Content-Length: $fsize&quot;);</span><br><span class="line">        Header(&quot;Accept-Ranges: bytes&quot;);</span><br><span class="line">        header(&quot;Content-Range: bytes &quot; . $start . &quot;-&quot; . $end . &quot;/&quot; . $fsize);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    header(&quot;Content-Type: application/octet-stream&quot;);</span><br><span class="line">    header(&quot;Content-Disposition: attachment;filename=$fname&quot;);</span><br><span class="line"></span><br><span class="line">    if (!feof($fhandle)) &#123;</span><br><span class="line">        set_time_limit(0);</span><br><span class="line">        $buffer = fread($fhandle, $end - $start + 1);</span><br><span class="line">        echo $buffer;</span><br><span class="line">        flush();</span><br><span class="line">        ob_flush();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p>demo 下载路径：<br><a href="https://download.csdn.net/download/niedewang/10804164" target="_blank" rel="noopener">https://download.csdn.net/download/niedewang/10804164</a></p>
+<p>3.2 清理调浏览器缓存，发现这种方式可以达到分片下载的效果</p>
+<p>经过测试，谷歌浏览器支持的很好，如上图所示，截图就是使用的谷歌浏览器。<br>但是firefox 在这种场景下，分片效果不理想。具体原因未知</p>
+<p>简要的总结<br>1：前期承诺的demo 放出来了，blog貌似会清理连接地址，不知道是否会删除<br>2：使用pdf 真实文件路径，分片兼容性最好。但是地址容易泄漏<br>3：如果使用php 处理，一般的处理程序，不能达到分片效果。需要结合http range特性，但是不知道什么原因，firefox测试下来，效果不好。谷歌浏览器支持的较好，好消息是谷歌浏览器现在占用量是最大的。  </p>
+<h2 id="4：后面有时间了，会介绍以下使用-x-sendfile-的方式处理附件，无论性能还是兼容性都比php-处理要好"><a href="#4：后面有时间了，会介绍以下使用-x-sendfile-的方式处理附件，无论性能还是兼容性都比php-处理要好" class="headerlink" title="4：后面有时间了，会介绍以下使用 x-sendfile 的方式处理附件，无论性能还是兼容性都比php 处理要好  "></a>4：后面有时间了，会介绍以下使用 x-sendfile 的方式处理附件，无论性能还是兼容性都比php 处理要好  </h2><p>作者：只看远方<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/niedewang/article/details/84576969" target="_blank" rel="noopener">https://blog.csdn.net/niedewang/article/details/84576969</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！<br></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pdf-js/" rel="tag"># pdf.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/21/使用 JMeter 进行压力测试/" rel="next" title="使用 JMeter 进行压力测试">
+                <i class="fa fa-chevron-left"></i> 使用 JMeter 进行压力测试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/26/centos7防火墙iptables开放常用端口/" rel="prev" title="centos7防火墙iptables开放常用端口">
+                centos7防火墙iptables开放常用端口 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#4：后面有时间了，会介绍以下使用-x-sendfile-的方式处理附件，无论性能还是兼容性都比php-处理要好"><span class="nav-number">1.</span> <span class="nav-text">4：后面有时间了，会介绍以下使用 x-sendfile 的方式处理附件，无论性能还是兼容性都比php 处理要好  </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="微信,公众号,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="一、 初始微信公众平台 微信公众平台，即我们平时所说的“公众号”，曾用名“官方平台”、“媒体平台”，但最终命名为“公众平台”。从微信的命名我可以发现，公众平台不只是官方、媒体使用的平台，而是对所有公众都开放的统一平台。 微信公众平台地址：https://mp.weixin.qq.com/ 微信公众平台公分4大板块：订阅号、服务号、小程序、企业号。按照微信2016年公开课规划，企业号后续将与企业微信">
+<meta name="keywords" content="微信,公众号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用JAVA开发微信公众平台（一）——环境搭建与开发接入">
+<meta property="og:url" content="http://pangguoming.com/blog/2018/04/09/使用JAVA开发微信公众平台（一）——环境搭建与开发接入/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="一、 初始微信公众平台 微信公众平台，即我们平时所说的“公众号”，曾用名“官方平台”、“媒体平台”，但最终命名为“公众平台”。从微信的命名我可以发现，公众平台不只是官方、媒体使用的平台，而是对所有公众都开放的统一平台。 微信公众平台地址：https://mp.weixin.qq.com/ 微信公众平台公分4大板块：订阅号、服务号、小程序、企业号。按照微信2016年公开课规划，企业号后续将与企业微信">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208131934744-2012202339.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132008057-998431864.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132033479-1712815602.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132110401-1161974215.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132208885-1287552449.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132258619-815108031.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132328026-1383226437.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132401854-55323163.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132422088-1568324632.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132442729-1381767374.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132511729-591422608.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132533447-2117875691.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132603104-1636736042.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132646088-1080755262.png">
+<meta property="og:updated_time" content="2019-01-26T15:00:59.450Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用JAVA开发微信公众平台（一）——环境搭建与开发接入">
+<meta name="twitter:description" content="一、 初始微信公众平台 微信公众平台，即我们平时所说的“公众号”，曾用名“官方平台”、“媒体平台”，但最终命名为“公众平台”。从微信的命名我可以发现，公众平台不只是官方、媒体使用的平台，而是对所有公众都开放的统一平台。 微信公众平台地址：https://mp.weixin.qq.com/ 微信公众平台公分4大板块：订阅号、服务号、小程序、企业号。按照微信2016年公开课规划，企业号后续将与企业微信">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208131934744-2012202339.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2018/04/09/使用JAVA开发微信公众平台（一）——环境搭建与开发接入/">
+
+
+
+
+
+  <title>使用JAVA开发微信公众平台（一）——环境搭建与开发接入 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2018/04/09/使用JAVA开发微信公众平台（一）——环境搭建与开发接入/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用JAVA开发微信公众平台（一）——环境搭建与开发接入</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T10:23:00+08:00">
+                2018-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一、 初始微信公众平台</p>
+<p>微信公众平台，即我们平时所说的“公众号”，曾用名“官方平台”、“媒体平台”，但最终命名为“公众平台”。从微信的命名我可以发现，公众平台不只是官方、媒体使用的平台，而是对所有公众都开放的统一平台。</p>
+<p>微信公众平台地址：<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">https://mp.weixin.qq.com/</a></p>
+<p>微信公众平台公分4大板块：订阅号、服务号、小程序、企业号。按照微信2016年公开课规划，企业号后续将与企业微信合并，因此我们主要针对前三部分开始讲解：</p>
+<p> <img src="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208131934744-2012202339.png" alt=""></p>
+<p>简单的对比一下前三者的区别以及本次课程即后续课程的讲解重点：</p>
+<p>1、 订阅号和服务号均为传统意义的“公众号”，具有消息群发能力，详细区别可在官方平台查看：<a href="http://kf.qq.com/faq/140806zARbmm140826M36RJF.html" target="_blank" rel="noopener">http://kf.qq.com/faq/140806zARbmm140826M36RJF.html</a> 我们将注重于服务能力开发，而在服务方面，两者开发模式完全相同，只不过服务号可以使用更多的服务接口，而订阅号则是“阉割版”的服务号。因此，后续课程我们将使用服务号为案例进行操作。</p>
+<p>2、 微信小程序，原本为“微信应用号”，即一个根植在微信生态系统内的APP。因苹果和谷歌的限制，“应用号”未上线便已夭折，取而代之的是适度阉割功能的“微信小程序”，而其堪比原生APP的操作体验，也使得小程序成为时下大火的开发方向。而<a href="http://www.jredu100.com/" target="_blank" rel="noopener">杰瑞教育</a> 全新的H5开发课程，也将加入时下火爆的微信小程序开发。</p>
+<p>二、 开发账号准备</p>
+<p>1、 账号注册</p>
+<p>进入微信公众平台<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">https://mp.weixin.qq.com</a> ，点击右上角立即注册，选择“服务号”或“订阅号”注册（服务号仅限机构用户注册，个人用户只能选择订阅号）</p>
+<p>注册时需填写一系列信息，根据提示填写即可，此处不做赘述。</p>
+<p>2、 测试账号申请</p>
+<p>如果暂时不想注册账号，或者无法注册服务号，可选择官方提供的测试账号申请。申请地址：<a href="http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login" target="_blank" rel="noopener">http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login</a> 点击后扫描二维码，即可获得一个测试账号，拥有服务号全部权限。</p>
+<p> <img src="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132008057-998431864.png" alt=""></p>
+<p>三、 开发环境准备</p>
+<p>1、 外网映射工具</p>
+<p>微信公众平台在访问后台时，必须提供能够正确访问的外网地址，微信平台对后台URL的要求有两点：</p>
+<p>① 必须能够用公网访问    ② 必须使用80端口</p>
+<p>要实现以上两点，我们可以选择购买外网服务器，例如：阿里云、百度云、腾讯云…都是不错的选择。如果没有服务器，可以选择用外网映射工具，将我们的内网链接映射为公网，比较不错的映射软件有：花生壳、ngrok、nat123等…</p>
+<p>这几款软件都可以百度很容易搜索到并下载，下面简单讲解一下用法：</p>
+<p>① Ngrock：</p>
+<p>进入dos环境，切换到ngrock所在盘符，输入ngrock 8080 回车：</p>
+<p> <img src="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132033479-1712815602.png" alt=""></p>
+<p>回车后等待一会，即可得到公网链接，下图所示阴影区域给出的链接，即可直接访问本机127.0.0.1:8080下的链接内容，分别是http协议和https协议对应的地址：</p>
+<p> <img src="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132110401-1161974215.png" alt=""></p>
+<p>② 花生壳、nat123，均可安装软件后，在软件中操作，详情可查看百度经验：<a href="http://jingyan.baidu.com/article/363872ec361d3f6e4ba16ff9.html" target="_blank" rel="noopener">http://jingyan.baidu.com/article/363872ec361d3f6e4ba16ff9.html</a> 此处不做赘述</p>
+<p>四、 微信公众平台数据交互原理</p>
+<p>搭建好公网访问地址后，我们自己开发的后台代码就可以放到公网地址了，那么用户是怎么样访问到我们的代码呢？</p>
+<p>下面我们来看一下微信公众平台的数据交互原理：</p>
+<p> <img src="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132208885-1287552449.png" alt=""></p>
+<p>从上图可以看到，微信公众平台实际只是起到一个桥梁作用，实际处理业务、提供服务的代码，依然是放在我们自己的服务器或者公网映射上面。</p>
+<p>那么，我们就可以在我们自己的电脑（服务器）上面编写后台代码，并通过映射工具提供公网能够访问的URL，然后将此URL绑定到微信后台即可。</p>
+<p>五、 开发模式接入</p>
+<p>下面将进入实际开发过程，我们可以参考官方提供的开发文档：<a href="https://mp.weixin.qq.com/wiki" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki</a> </p>
+<p>1、 填写服务器配置</p>
+<p>进入微信公众平台，点击左侧【开发——基本配置】，选择【服务器配置】。即可进入配置页面：</p>
+<p> <img src="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132258619-815108031.png" alt=""></p>
+<p>其中：</p>
+<p>URL：即我们上述所说的后台服务器公网访问地址</p>
+<p>Token：开发者自定的验证口令</p>
+<p>EncodingAESKey：随机字符串，如果消息加解密方式采用安全模式才需验证</p>
+<p>2、 验证消息是否有效</p>
+<p>当我们点击提交时，微信服务器将会发送一个Get请求，到我们上述地址，同时传递四个参数：</p>
+<p> <img src="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132328026-1383226437.png" alt=""></p>
+<p>我们通过检验signature对请求进行校验（下面有校验方式）。若确认此次GET请求来自微信服务器，请原样返回echostr参数内容，则接入生效，成为开发者成功，否则接入失败。加密/校验流程如下：</p>
+<p>下面，我们实现代码操作。</p>
+<p>六、 开发接入后台代码</p>
+<p>1、 使用MyEclipse创建Web项目，并新建一个servlet：</p>
+<p> <img src="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132401854-55323163.png" alt=""></p>
+<p>2、 在servlet的doGet方法中，获取上述四个校验参数：</p>
+<p> <img src="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132422088-1568324632.png" alt=""></p>
+<p>3、 编写工具类，进行校验方法的操作：</p>
+<p> <img src="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132442729-1381767374.png" alt=""></p>
+<p>校验步骤，参考上述【五-2】三大步操作流程</p>
+<p> <img src="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132511729-591422608.png" alt=""></p>
+<p>使用sha1加密方法↓</p>
+<p> <img src="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132533447-2117875691.png" alt=""></p>
+<p>4、 Servlet中调用校验方法，并验证结果，如果检验成功，将得到的随机字符串eahostr原路返回结果给微信平台：</p>
+<p> <img src="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132603104-1636736042.png" alt=""></p>
+<p>至此，Servlet及Check工具类，编写完成。</p>
+<p>5、 启动Tomcat，将Servlet的本地地址（例如本机为：localhost:8080/WeiXin/servlet/WeiXinServlet ）进行公网映射，参照上述第三大部分内容，进行公网映射，确定公网地址能够正确访问。</p>
+<p>我将直接将将代码放到<a href="http://www.jredu100.com/" target="_blank" rel="noopener">杰瑞教育</a> 公网服务器进行访问。获得如下地址：<a href="http://www.jredu100.com/WeiXin/servlet/WeiXinServlet" target="_blank" rel="noopener">http://www.jredu100.com/WeiXin/servlet/WeiXinServlet</a> </p>
+<p>七、 配置公众平台后台</p>
+<p>进入微信后台配置相关信息：</p>
+<p> <img src="https://images2015.cnblogs.com/blog/708076/201702/708076-20170208132646088-1080755262.png" alt=""></p>
+<p>点击提交，微信将发送Get指令到Servlet，并调用doGet方法，进行我们编写的验证操作，最后如果顺利返回随机字符串，则绑定成功。</p>
+<p>八、 源码共享</p>
+<p>1、 Servlet源码（只保留doGet部分）：</p>
+<p>public void doGet(HttpServletRequest request, HttpServletResponse response)</p>
+<p>throws ServletException, IOException {</p>
+<p>String signature = request.getParameter(“signature”);</p>
+<p>String timestamp = request.getParameter(“timestamp”);</p>
+<p>String nonce = request.getParameter(“nonce”);</p>
+<p>String echostr = request.getParameter(“echostr”);</p>
+<p>PrintWriter out = response.getWriter();</p>
+<p>if(CheckUtil.checkSignature(signature, timestamp, nonce)){</p>
+<p>//如果校验成功，将得到的随机字符串原路返回</p>
+<p>out.print(echostr);</p>
+<p>}</p>
+<p>}</p>
+<p>2、 CheckUtil源码（可直接Copy其中的getSha1加密方法）：</p>
+<p>package com.jredu.util;</p>
+<p>import java.security.MessageDigest;</p>
+<p>import java.util.Arrays;</p>
+<p>public class CheckUtil {</p>
+<p>public static final String  tooken = “jredu100”; //开发者自行定义Tooken</p>
+<p>public static boolean checkSignature(String signature,String timestamp,String nonce){</p>
+<p>//1.定义数组存放tooken，timestamp,nonce</p>
+<p>String[] arr = {tooken,timestamp,nonce};</p>
+<p>//2.对数组进行排序</p>
+<p>Arrays.sort(arr);</p>
+<p>//3.生成字符串</p>
+<p>StringBuffer sb = new StringBuffer();</p>
+<p>for(String s : arr){</p>
+<p>sb.append(s);</p>
+<p>}</p>
+<p>//4.sha1加密,网上均有现成代码</p>
+<p>String temp = getSha1(sb.toString());</p>
+<p>//5.将加密后的字符串，与微信传来的加密签名比较，返回结果</p>
+<p>return temp.equals(signature);</p>
+<p>}</p>
+<p>public static String getSha1(String str){</p>
+<pre><code>    if(str==null||str.length()==0){
+
+        return null;
+
+    }
+
+    char hexDigits[] = {&apos;0&apos;,&apos;1&apos;,&apos;2&apos;,&apos;3&apos;,&apos;4&apos;,&apos;5&apos;,&apos;6&apos;,&apos;7&apos;,&apos;8&apos;,&apos;9&apos;,
+
+            &apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;,&apos;f&apos;};
+
+    try {
+
+        MessageDigest mdTemp = MessageDigest.getInstance(&quot;SHA1&quot;);
+
+        mdTemp.update(str.getBytes(&quot;UTF-8&quot;));
+
+        byte[] md = mdTemp.digest();
+
+        int j = md.length;
+
+        char buf[] = new char[j*2];
+
+        int k = 0;
+
+        for (int i = 0; i &lt; j; i++) {
+
+            byte byte0 = md[i];
+
+            buf[k++] = hexDigits[byte0 &gt;&gt;&gt; 4 &amp; 0xf];
+
+            buf[k++] = hexDigits[byte0 &amp; 0xf];      
+
+        }
+
+        return new String(buf);
+
+    } catch (Exception e) {
+
+        // TODO: handle exception
+
+        return null;
+
+    }
+
+}
+</code></pre><p>}</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/微信/" rel="tag"># 微信</a>
+          
+            <a href="/tags/公众号/" rel="tag"># 公众号</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/03/使用Vue.js实现列表选中效果/" rel="next" title="使用Vue.js实现列表选中效果">
+                <i class="fa fa-chevron-left"></i> 使用Vue.js实现列表选中效果
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/09/js遍历Object所有属性/" rel="prev" title="js遍历Object所有属性">
+                js遍历Object所有属性 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="vue,axios,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="axios基于 Promise 的 HTTP 请求客户端，可同时在浏览器和 node.js 中使用 功能特性 在浏览器中发送 XMLHttpRequests 请求 在 node.js 中发送 http请求 支持 Promise API 拦截请求和响应 转换请求和响应数据 自动转换 JSON 数据 客户端支持保护安全免受 XSRF 攻击  浏览器支持 安装使用 bower:     使用 npm:1">
+<meta name="keywords" content="vue,axios">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue2.0之axios使用详解">
+<meta property="og:url" content="http://pangguoming.com/blog/2018/02/09/vue2.0之axios使用详解/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="axios基于 Promise 的 HTTP 请求客户端，可同时在浏览器和 node.js 中使用 功能特性 在浏览器中发送 XMLHttpRequests 请求 在 node.js 中发送 http请求 支持 Promise API 拦截请求和响应 转换请求和响应数据 自动转换 JSON 数据 客户端支持保护安全免受 XSRF 攻击  浏览器支持 安装使用 bower:     使用 npm:1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://saucelabs.com/browser-matrix/axios.svg">
+<meta property="og:updated_time" content="2019-01-26T15:01:03.947Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue2.0之axios使用详解">
+<meta name="twitter:description" content="axios基于 Promise 的 HTTP 请求客户端，可同时在浏览器和 node.js 中使用 功能特性 在浏览器中发送 XMLHttpRequests 请求 在 node.js 中发送 http请求 支持 Promise API 拦截请求和响应 转换请求和响应数据 自动转换 JSON 数据 客户端支持保护安全免受 XSRF 攻击  浏览器支持 安装使用 bower:     使用 npm:1">
+<meta name="twitter:image" content="https://saucelabs.com/browser-matrix/axios.svg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2018/02/09/vue2.0之axios使用详解/">
+
+
+
+
+
+  <title>vue2.0之axios使用详解 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2018/02/09/vue2.0之axios使用详解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue2.0之axios使用详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-09T13:45:00+08:00">
+                2018-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h1><p>基于 Promise 的 HTTP 请求客户端，可同时在浏览器和 node.js 中使用</p>
+<h2 id="功能特性"><a href="#功能特性" class="headerlink" title="功能特性"></a>功能特性</h2><ul>
+<li>在浏览器中发送 <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank" rel="noopener">XMLHttpRequests</a> 请求</li>
+<li>在 node.js 中发送 <a href="http://nodejs.org/api/http.html" target="_blank" rel="noopener">http</a>请求</li>
+<li>支持 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener">Promise</a> API</li>
+<li>拦截请求和响应</li>
+<li>转换请求和响应数据</li>
+<li>自动转换 JSON 数据</li>
+<li>客户端支持保护安全免受 <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank" rel="noopener">XSRF</a> 攻击</li>
+</ul>
+<h2 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h2><p><a href="https://saucelabs.com/u/axios" target="_blank" rel="noopener"><img src="https://saucelabs.com/browser-matrix/axios.svg" alt="Browser Matrix"></a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用 bower:</p>
+<p><code class=" language-bash" style="font-family: 'Hiragino Sans GB',Helvetica,Arial,STHeiti,'WenQuanYi Micro Hei',sans-serif; font-size: 15px; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 25px; margin-bottom: 10px; color: #333333;"><br>    使用 npm:</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;pre name=&quot;code&quot; class=&quot;  language-bash&quot;&gt;&lt;code class=&quot; language-bash&quot; style=&quot;font-family: Consolas,Monaco,&apos;Andale Mono&apos;,&apos;Ubuntu Mono&apos;,monospace; font-size: 30px; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.1; color: #333333; margin-top: 20px; margin-bottom: 10px;&quot;&gt;</span><br><span class="line">例子&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<p>发送一个 <code style="font-family: Menlo,Monaco,Consolas,'Courier New',monospace; font-size: 13.5px; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4;">GET</code> 请求</p>
+<pre><code>&lt;pre name=&quot;code&quot; class=&quot;  language-js&quot;&gt;&lt;code class=&quot; language-js&quot; style=&quot;font-family: Consolas,Monaco,&apos;Andale Mono&apos;,&apos;Ubuntu Mono&apos;,monospace; font-size: undefined; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; background-color: transparent;&quot;&gt;&lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// Make a request for a user with a given ID
+axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;get&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;/user?ID=12345&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)
+  &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;then&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;{
+    console&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;log&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+  &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;}&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)
+  &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;catch&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;{
+    console&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;log&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+  &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;}&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+
+&lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// Optionally the request above could also be done as
+axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;get&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;/user&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;, &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;{
+    params&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;: &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;{
+      ID&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;: &lt;span class=&quot;token number&quot; style=&quot;color: #990055;&quot;&gt;12345
+    &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;}
+  &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;}&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)
+  &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;then&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;{
+    console&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;log&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+  &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;}&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)
+  &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;catch&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;{
+    console&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;log&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+  &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;}&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">发送一个 &lt;code style=&quot;font-family: Menlo,Monaco,Consolas,&apos;Courier New&apos;,monospace; font-size: 13.5px; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4;&quot;&gt;POST&lt;/code&gt; 请求</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;  language-js&quot;&gt;&lt;code class=&quot; language-js&quot; style=&quot;font-family: Consolas,Monaco,&apos;Andale Mono&apos;,&apos;Ubuntu Mono&apos;,monospace; font-size: undefined; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; background-color: transparent;&quot;&gt;axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;post&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;/user&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;, &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#123;</span><br><span class="line">        firstName&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;: &lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;Fred&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;,</span><br><span class="line">        lastName&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;: &lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;Flintstone&apos;</span><br><span class="line">      &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)</span><br><span class="line">      &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;then&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#123;</span><br><span class="line">        console&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;log&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">      &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)</span><br><span class="line">      &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;catch&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#123;</span><br><span class="line">        console&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;log&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">      &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>发送多个并发请求</p>
+<pre><code>&lt;pre name=&quot;code&quot; class=&quot;  language-js&quot;&gt;&lt;code class=&quot; language-js&quot; style=&quot;font-family: Consolas,Monaco,&apos;Andale Mono&apos;,&apos;Ubuntu Mono&apos;,monospace; font-size: undefined; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; background-color: transparent;&quot;&gt;&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function &lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;getUserAccount&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;{
+  &lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;return axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;get&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;/user/12345&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;}
+
+&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function &lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;getUserPermissions&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;{
+  &lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;return axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;get&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;/user/12345/permissions&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;}
+
+axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;all&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;[&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;getUserAccount&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;, &lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;getUserPermissions&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;]&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)
+  &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;then&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;spread&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(acct&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;, perms&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;{
+    &lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// Both requests are now complete
+  &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;}&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ##  axios API</span><br><span class="line"></span><br><span class="line">可以通过给 &lt;code style=&quot;font-family: Menlo,Monaco,Consolas,&apos;Courier New&apos;,monospace; font-size: 14px; padding: 2px 4px; color: #333333; line-height: 1.1; margin-top: 10px; margin-bottom: 10px;&quot;&gt; axios(config) &lt;/code&gt;</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;  language-js&quot;&gt;&lt;code style=&quot;font-family: Menlo,Monaco,Consolas,&apos;Courier New&apos;,monospace; font-size: 14px; padding: 2px 4px; color: #333333; line-height: 1.1; margin-top: 10px; margin-bottom: 10px;&quot;&gt;&lt;code class=&quot; language-js&quot; style=&quot;font-family: Consolas,Monaco,&apos;Andale Mono&apos;,&apos;Ubuntu Mono&apos;,monospace; font-size: undefined; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; background-color: transparent;&quot;&gt;&lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// Send a POST request</span><br><span class="line">    &lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#123;</span><br><span class="line">      method&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;: &lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;post&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;,</span><br><span class="line">      url&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;: &lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;/user/12345&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;,</span><br><span class="line">      data&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;: &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#123;</span><br><span class="line">        firstName&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;: &lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;Fred&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;,</span><br><span class="line">        lastName&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;: &lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;Flintstone&apos;</span><br><span class="line">      &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#125;</span><br><span class="line">    &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+#####  axios(url[, config])
+
+&lt;pre name=&quot;code&quot; class=&quot;  language-js&quot;&gt;&lt;code class=&quot; language-js&quot; style=&quot;font-family: Consolas,Monaco,&apos;Andale Mono&apos;,&apos;Ubuntu Mono&apos;,monospace; font-size: undefined; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; background-color: transparent;&quot;&gt;&lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// Sned a GET request (default method)
+&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;/user/12345&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ###  请求方法别名</span><br><span class="line"></span><br><span class="line">为方便起见，我们为所有支持的请求方法都提供了别名</span><br><span class="line"></span><br><span class="line">    #####  axios.get(url[, config])</span><br><span class="line"></span><br><span class="line">    #####  axios.delete(url[, config])</span><br><span class="line"></span><br><span class="line">    #####  axios.head(url[, config])</span><br><span class="line"></span><br><span class="line">    #####  axios.post(url[, data[, config]])</span><br><span class="line"></span><br><span class="line">    #####  axios.put(url[, data[, config]])</span><br><span class="line"></span><br><span class="line">    #####  axios.patch(url[, data[, config]])</span><br><span class="line"></span><br><span class="line">    ######  注意</span><br><span class="line"></span><br><span class="line">当使用别名方法时， &lt;code style=&quot;font-family: Menlo,Monaco,Consolas,&apos;Courier New&apos;,monospace; font-size: 13.5px; padding: 2px 4px; color: #c7254e;&quot;&gt;method&lt;/code&gt; 和 &lt;code style=&quot;font-family: Menlo,Monaco,Consolas,&apos;Courier New&apos;,monospace; font-size: 13.5px; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4;&quot;&gt;data&lt;/code&gt; 属性不需要在 config 参数里面指定。</span><br><span class="line"></span><br><span class="line">    ###  并发</span><br><span class="line"></span><br><span class="line">处理并发请求的帮助方法</span><br><span class="line"></span><br><span class="line">    #####  axios.all(iterable)</span><br><span class="line"></span><br><span class="line">    #####  axios.spread(callback)</span><br><span class="line"></span><br><span class="line">    ###  创建一个实例</span><br><span class="line"></span><br><span class="line">你可以用自定义配置创建一个新的 axios 实例。</span><br><span class="line"></span><br><span class="line">    #####  axios.create([config])</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;  language-js&quot;&gt;&lt;code class=&quot; language-js&quot; style=&quot;font-family: Consolas,Monaco,&apos;Andale Mono&apos;,&apos;Ubuntu Mono&apos;,monospace; font-size: undefined; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; background-color: transparent;&quot;&gt;&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;var instance &lt;span class=&quot;token operator&quot; style=&quot;color: #a67f59;&quot;&gt;= axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;create&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#123;</span><br><span class="line">      baseURL&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;: &lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;https://some-domain.com/api/&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;,</span><br><span class="line">      timeout&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;: &lt;span class=&quot;token number&quot; style=&quot;color: #990055;&quot;&gt;1000&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;,</span><br><span class="line">      headers&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;: &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#123;&lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;X-Custom-Header&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;: &lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;foobar&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#125;</span><br><span class="line">    &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+###  实例方法
+</code></pre><p>所有可用的实例方法都列在下面了，指定的配置将会和该实例的配置合并。</p>
+<pre><code>#####  axios#request(config)
+
+#####  axios#get(url[, config])
+
+#####  axios#delete(url[, config])
+
+#####  axios#head(url[, config])
+
+#####  axios#post(url[, data[, config]])
+
+#####  axios#put(url[, data[, config]])
+
+#####  axios#patch(url[, data[, config]])
+
+##  请求配置
+</code></pre><p>下面是可用的请求配置项，只有 <code style="font-family: Menlo,Monaco,Consolas,'Courier New',monospace; font-size: 13.5px; padding: 2px 4px; color: #c7254e;">method</code> ，默认的请求方法是 <code style="font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; font-size: 13px; padding: 1em; color: #c7254e; margin-top: 0.5em; margin-bottom: 0.5em; line-height: 1.5; word-break: normal; overflow-wrap: normal; border: 0px none; direction: ltr; background: #cce8cf none repeat scroll 0% 0%;" lang="js"><code class=" language-js" style="font-family: Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace; font-size: undefined; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; background-color: transparent;"><span class="token punctuation" style="color: #999999;">{ <span class="token comment" style="color: #708090;">// <code>url</code> is the server URL that will be used for the request url<span class="token punctuation" style="color: #999999;">: <span class="token string" style="color: #669900;">‘/user’<span class="token punctuation" style="color: #999999;">, <span class="token comment" style="color: #708090;">// <code>method</code> is the request method to be used when making the request method<span class="token punctuation" style="color: #999999;">: <span class="token string" style="color: #669900;">‘get’<span class="token punctuation" style="color: #999999;">, <span class="token comment" style="color: #708090;">// default <span class="token comment" style="color: #708090;">// <code>baseURL</code> will be prepended to <code>url</code> unless <code>url</code> is absolute. <span class="token comment" style="color: #708090;">// It can be convenient to set <code>baseURL</code> for an instance of axios to pass relative URLs <span class="token comment" style="color: #708090;">// to methods of that instance. baseURL<span class="token punctuation" style="color: #999999;">: <span class="token string" style="color: #669900;">‘<a href="https://some-domain.com/api/&#39;" target="_blank" rel="noopener">https://some-domain.com/api/&#39;</a><span class="token punctuation" style="color: #999999;">, <span class="token comment" style="color: #708090;">// <code>transformRequest</code> allows changes to the request data before it is sent to the server <span class="token comment" style="color: #708090;">// This is only applicable for request methods ‘PUT’, ‘POST’, and ‘PATCH’ <span class="token comment" style="color: #708090;">// The last function in the array must return a string or an ArrayBuffer transformRequest<span class="token punctuation" style="color: #999999;">: <span class="token punctuation" style="color: #999999;">[<span class="token keyword" style="color: #0077aa;">function <span class="token punctuation" style="color: #999999;">(data<span class="token punctuation" style="color: #999999;">) <span class="token punctuation" style="color: #999999;">{ <span class="token comment" style="color: #708090;">// Do whatever you want to transform the data <span class="token keyword" style="color: #0077aa;">return data<span class="token punctuation" style="color: #999999;">; <span class="token punctuation" style="color: #999999;">}<span class="token punctuation" style="color: #999999;">]<span class="token punctuation" style="color: #999999;">, <span class="token comment" style="color: #708090;">// <code>transformResponse</code> allows changes to the response data to be made before <span class="token comment" style="color: #708090;">// it is passed to then/catch transformResponse<span class="token punctuation" style="color: #999999;">: <span class="token punctuation" style="color: #999999;">[<span class="token keyword" style="color: #0077aa;">function <span class="token punctuation" style="color: #999999;">(data<span class="token punctuation" style="color: #999999;">) <span class="token punctuation" style="color: #999999;">{ <span class="token comment" style="color: #708090;">// Do whatever you want to transform the data <span class="token keyword" style="color: #0077aa;">return data<span class="token punctuation" style="color: #999999;">; <span class="token punctuation" style="color: #999999;">}<span class="token punctuation" style="color: #999999;">]<span class="token punctuation" style="color: #999999;">, <span class="token comment" style="color: #708090;">// <code>headers</code> are custom headers to be sent headers<span class="token punctuation" style="color: #999999;">: <span class="token punctuation" style="color: #999999;">{<span class="token string" style="color: #669900;">‘X-Requested-With’<span class="token punctuation" style="color: #999999;">: <span class="token string" style="color: #669900;">‘XMLHttpRequest’<span class="token punctuation" style="color: #999999;">}<span class="token punctuation" style="color: #999999;">, <span class="token comment" style="color: #708090;">// <code>params</code> are the URL parameters to be sent with the request params<span class="token punctuation" style="color: #999999;">: <span class="token punctuation" style="color: #999999;">{ ID<span class="token punctuation" style="color: #999999;">: <span class="token number" style="color: #990055;">12345 <span class="token punctuation" style="color: #999999;">}<span class="token punctuation" style="color: #999999;">, <span class="token comment" style="color: #708090;">// <code>paramsSerializer</code> is an optional function in charge of serializing <code>params</code> <span class="token comment" style="color: #708090;">// (e.g. <a href="https://www.npmjs.com/package/qs" target="_blank" rel="noopener">https://www.npmjs.com/package/qs</a>, <a href="http://api.jquery.com/jquery.param/" target="_blank" rel="noopener">http://api.jquery.com/jquery.param/</a>) paramsSerializer<span class="token punctuation" style="color: #999999;">: <span class="token keyword" style="color: #0077aa;">function<span class="token punctuation" style="color: #999999;">(params<span class="token punctuation" style="color: #999999;">) <span class="token punctuation" style="color: #999999;">{ <span class="token keyword" style="color: #0077aa;">return Qs<span class="token punctuation" style="color: #999999;">.<span class="token function" style="color: #dd4a68;">stringify<span class="token punctuation" style="color: #999999;">(params<span class="token punctuation" style="color: #999999;">, <span class="token punctuation" style="color: #999999;">{arrayFormat<span class="token punctuation" style="color: #999999;">: <span class="token string" style="color: #669900;">‘brackets’<span class="token punctuation" style="color: #999999;">}<span class="token punctuation" style="color: #999999;">) <span class="token punctuation" style="color: #999999;">}<span class="token punctuation" style="color: #999999;">, <span class="token comment" style="color: #708090;">// <code>data</code> is the data to be sent as the request body <span class="token comment" style="color: #708090;">// Only applicable for request methods ‘PUT’, ‘POST’, and ‘PATCH’ <span class="token comment" style="color: #708090;">// When no <code>transformRequest</code> is set, must be a string, an ArrayBuffer or a hash data<span class="token punctuation" style="color: #999999;">: <span class="token punctuation" style="color: #999999;">{ firstName<span class="token punctuation" style="color: #999999;">: <span class="token string" style="color: #669900;">‘Fred’ <span class="token punctuation" style="color: #999999;">}<span class="token punctuation" style="color: #999999;">, <span class="token comment" style="color: #708090;">// <code>timeout</code> specifies the number of milliseconds before the request times out. <span class="token comment" style="color: #708090;">// If the request takes longer than <code>timeout</code>, the request will be aborted. timeout<span class="token punctuation" style="color: #999999;">: <span class="token number" style="color: #990055;">1000<span class="token punctuation" style="color: #999999;">, <span class="token comment" style="color: #708090;">// <code>withCredentials</code> indicates whether or not cross-site Access-Control requests <span class="token comment" style="color: #708090;">// should be made using credentials withCredentials<span class="token punctuation" style="color: #999999;">: <span class="token boolean" style="color: #990055;">false<span class="token punctuation" style="color: #999999;">, <span class="token comment" style="color: #708090;">// default <span class="token comment" style="color: #708090;">// <code>adapter</code> allows custom handling of requests which makes testing easier. <span class="token comment" style="color: #708090;">// Call <code>resolve</code> or <code>reject</code> and supply a valid response (see <a href="#response-api">response docs</a>). adapter<span class="token punctuation" style="color: #999999;">: <span class="token keyword" style="color: #0077aa;">function <span class="token punctuation" style="color: #999999;">(resolve<span class="token punctuation" style="color: #999999;">, reject<span class="token punctuation" style="color: #999999;">, config<span class="token punctuation" style="color: #999999;">) <span class="token punctuation" style="color: #999999;">{ <span class="token comment" style="color: #708090;">/<em> … </em>/ <span class="token punctuation" style="color: #999999;">}<span class="token punctuation" style="color: #999999;">, <span class="token comment" style="color: #708090;">// <code>auth</code> indicates that HTTP Basic auth should be used, and supplies credentials. <span class="token comment" style="color: #708090;">// This will set an <code>Authorization</code> header, overwriting any existing <span class="token comment" style="color: #708090;">// <code>Authorization</code> custom headers you have set using <code>headers</code>. auth<span class="token punctuation" style="color: #999999;">: <span class="token punctuation" style="color: #999999;">{ username<span class="token punctuation" style="color: #999999;">: <span class="token string" style="color: #669900;">‘janedoe’<span class="token punctuation" style="color: #999999;">, password<span class="token punctuation" style="color: #999999;">: <span class="token string" style="color: #669900;">‘s00pers3cret’ <span class="token punctuation" style="color: #999999;">} <span class="token comment" style="color: #708090;">// <code>responseType</code> indicates the type of data that the server will respond with <span class="token comment" style="color: #708090;">// options are ‘arraybuffer’, ‘blob’, ‘document’, ‘json’, ‘text’ responseType<span class="token punctuation" style="color: #999999;">: <span class="token string" style="color: #669900;">‘json’<span class="token punctuation" style="color: #999999;">, <span class="token comment" style="color: #708090;">// default <span class="token comment" style="color: #708090;">// <code>xsrfCookieName</code> is the name of the cookie to use as a value for xsrf token xsrfCookieName<span class="token punctuation" style="color: #999999;">: <span class="token string" style="color: #669900;">‘XSRF-TOKEN’<span class="token punctuation" style="color: #999999;">, <span class="token comment" style="color: #708090;">// default <span class="token comment" style="color: #708090;">// <code>xsrfHeaderName</code> is the name of the http header that carries the xsrf token value xsrfHeaderName<span class="token punctuation" style="color: #999999;">: <span class="token string" style="color: #669900;">‘X-XSRF-TOKEN’<span class="token punctuation" style="color: #999999;">, <span class="token comment" style="color: #708090;">// default <span class="token comment" style="color: #708090;">// <code>progress</code> allows handling of progress events for ‘POST’ and ‘PUT uploads’ <span class="token comment" style="color: #708090;">// as well as ‘GET’ downloads progress<span class="token punctuation" style="color: #999999;">: <span class="token keyword" style="color: #0077aa;">function<span class="token punctuation" style="color: #999999;">(progressEvent<span class="token punctuation" style="color: #999999;">) <span class="token punctuation" style="color: #999999;">{ <span class="token comment" style="color: #708090;">// Do whatever you want with the native progress event <span class="token punctuation" style="color: #999999;">} <span class="token punctuation" style="color: #999999;">} </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code></code></p>
+<pre><code>##  响应的数据结构
+</code></pre><p>响应的数据包括下面的信息：</p>
+<pre><code>&lt;pre name=&quot;code&quot; class=&quot;  language-js&quot;&gt;&lt;code class=&quot; language-js&quot; style=&quot;font-family: &apos;Hiragino Sans GB&apos;,Helvetica,Arial,STHeiti,&apos;WenQuanYi Micro Hei&apos;,sans-serif; font-size: 15px; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 25px; margin-bottom: 10px; color: #333333;&quot;&gt;
+当使用 &lt;code style=&quot;font-family: Menlo,Monaco,Consolas,&apos;Courier New&apos;,monospace; font-size: 13.5px; padding: 2px 4px; color: #c7254e;&quot;&gt;catch&lt;/code&gt; 时,
+ 你会收到下面的响应：&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;pre name=&quot;code&quot; class=&quot;  language-js&quot;&gt;&lt;code class=&quot; language-js&quot; style=&quot;font-family: Consolas,Monaco,&apos;Andale Mono&apos;,&apos;Ubuntu Mono&apos;,monospace; font-size: undefined; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; background-color: transparent;&quot;&gt;axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;get&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;/user/12345&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)</span><br><span class="line">  &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;then&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#123;</span><br><span class="line">    console&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;log&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.data&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">    console&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;log&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.status&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">    console&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;log&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.statusText&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">    console&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;log&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.headers&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">    console&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;log&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.config&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+##  默认配置
+</code></pre><p>你可以为每一个请求指定默认配置。</p>
+<pre><code>###  全局 axios 默认配置
+
+&lt;pre name=&quot;code&quot; class=&quot;  language-js&quot;&gt;&lt;code class=&quot; language-js&quot; style=&quot;font-family: Consolas,Monaco,&apos;Andale Mono&apos;,&apos;Ubuntu Mono&apos;,monospace; font-size: undefined; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; background-color: transparent;&quot;&gt;axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.defaults&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.baseURL &lt;span class=&quot;token operator&quot; style=&quot;color: #a67f59;&quot;&gt;= &lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;https://api.example.com&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.defaults&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.headers&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.common&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;[&lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;Authorization&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;] &lt;span class=&quot;token operator&quot; style=&quot;color: #a67f59;&quot;&gt;= AUTH_TOKEN&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.defaults&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.headers&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.post&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;[&lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;Content-Type&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;] &lt;span class=&quot;token operator&quot; style=&quot;color: #a67f59;&quot;&gt;= &lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;application/x-www-form-urlencoded&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">###  自定义实例默认配置</span><br><span class="line"></span><br><span class="line">&lt;pre name=&quot;code&quot; class=&quot;  language-js&quot;&gt;&lt;code class=&quot; language-js&quot; style=&quot;font-family: Consolas,Monaco,&apos;Andale Mono&apos;,&apos;Ubuntu Mono&apos;,monospace; font-size: undefined; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; background-color: transparent;&quot;&gt;&lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// Set config defaults when creating the instance</span><br><span class="line">&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;var instance &lt;span class=&quot;token operator&quot; style=&quot;color: #a67f59;&quot;&gt;= axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;create&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#123;</span><br><span class="line">  baseURL&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;: &lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;https://api.example.com&apos;</span><br><span class="line">&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line"></span><br><span class="line">&lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// Alter defaults after instance has been created</span><br><span class="line">instance&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.defaults&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.headers&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.common&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;[&lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;Authorization&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;] &lt;span class=&quot;token operator&quot; style=&quot;color: #a67f59;&quot;&gt;= AUTH_TOKEN&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+###  配置的优先顺序
+</code></pre><p>Config will be merged with an order of precedence. The order is library defaults found in <code style="font-family: Menlo,Monaco,Consolas,'Courier New',monospace; font-size: 13.5px; padding: 2px 4px; color: #c7254e;">defaults</code> property of the instance, and finally <code style="font-family: Menlo,Monaco,Consolas,'Courier New',monospace; font-size: 13.5px; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4;">config</code> argument for the request. The latter will take precedence over the former. Here’s an example.</p>
+<pre><code>&lt;pre name=&quot;code&quot; class=&quot;  language-js&quot;&gt;&lt;code class=&quot; language-js&quot; style=&quot;font-family: Consolas,Monaco,&apos;Andale Mono&apos;,&apos;Ubuntu Mono&apos;,monospace; font-size: undefined; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; background-color: transparent;&quot;&gt;&lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// Create an instance using the config defaults provided by the library
+&lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// At this point the timeout config value is `0` as is the default for the library
+&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;var instance &lt;span class=&quot;token operator&quot; style=&quot;color: #a67f59;&quot;&gt;= axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;create&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+
+&lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// Override timeout default for the library
+&lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// Now all requests will wait 2.5 seconds before timing out
+instance&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.defaults&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.timeout &lt;span class=&quot;token operator&quot; style=&quot;color: #a67f59;&quot;&gt;= &lt;span class=&quot;token number&quot; style=&quot;color: #990055;&quot;&gt;2500&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+
+&lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// Override timeout for this request as it&apos;s known to take a long time
+instance&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;get&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;/longRequest&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;, &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;{
+  timeout&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;: &lt;span class=&quot;token number&quot; style=&quot;color: #990055;&quot;&gt;5000
+&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;}&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ##  拦截器</span><br><span class="line"></span><br><span class="line">你可以在处理 &lt;code style=&quot;font-family: Menlo,Monaco,Consolas,&apos;Courier New&apos;,monospace; font-size: 13.5px; padding: 2px 4px; color: #c7254e;&quot;&gt;catch&lt;/code&gt; 之前拦截请求和响应</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;  language-js&quot;&gt;&lt;code class=&quot; language-js&quot; style=&quot;font-family: Consolas,Monaco,&apos;Andale Mono&apos;,&apos;Ubuntu Mono&apos;,monospace; font-size: undefined; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; background-color: transparent;&quot;&gt;&lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// 添加一个请求拦截器</span><br><span class="line">    axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.interceptors&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.request&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;use&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(config&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#123;</span><br><span class="line">        &lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// Do something before request is sent</span><br><span class="line">        &lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;return config&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">      &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;, &lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(error&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#123;</span><br><span class="line">        &lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// Do something with request error</span><br><span class="line">        &lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;return Promise&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;reject&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(error&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">      &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// 添加一个响应拦截器</span><br><span class="line">    axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.interceptors&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;use&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#123;</span><br><span class="line">        &lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// Do something with response data</span><br><span class="line">        &lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;return response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">      &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;, &lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(error&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#123;</span><br><span class="line">        &lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// Do something with response error</span><br><span class="line">        &lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;return Promise&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;reject&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(error&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">      &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>移除一个拦截器：</p>
+<pre><code>&lt;pre name=&quot;code&quot; class=&quot;  language-js&quot;&gt;&lt;code class=&quot; language-js&quot; style=&quot;font-family: Consolas,Monaco,&apos;Andale Mono&apos;,&apos;Ubuntu Mono&apos;,monospace; font-size: undefined; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; background-color: transparent;&quot;&gt;&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;var myInterceptor &lt;span class=&quot;token operator&quot; style=&quot;color: #a67f59;&quot;&gt;= axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.interceptors&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.request&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;use&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;{&lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;/*...*/&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;}&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.interceptors&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.request&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;eject&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(myInterceptor&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">你可以给一个自定义的 axios 实例添加拦截器：</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;  language-js&quot;&gt;&lt;code class=&quot; language-js&quot; style=&quot;font-family: Consolas,Monaco,&apos;Andale Mono&apos;,&apos;Ubuntu Mono&apos;,monospace; font-size: undefined; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; background-color: transparent;&quot;&gt;&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;var instance &lt;span class=&quot;token operator&quot; style=&quot;color: #a67f59;&quot;&gt;= axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;create&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">    instance&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.interceptors&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.request&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;use&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#123;&lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;/*...*/&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;&#125;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+##  错误处理
+
+&lt;pre name=&quot;code&quot; class=&quot;  language-js&quot;&gt;&lt;code class=&quot; language-js&quot; style=&quot;font-family: Consolas,Monaco,&apos;Andale Mono&apos;,&apos;Ubuntu Mono&apos;,monospace; font-size: undefined; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; background-color: transparent;&quot;&gt;axios&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;get&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;/user/12345&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)
+  &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;catch&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;{
+    &lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;if &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response &lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;instanceof &lt;span class=&quot;token class-name&quot;&gt;Error&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;) &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;{
+      &lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// Something happened in setting up the request that triggered an Error
+      console&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;log&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;span class=&quot;token string&quot; style=&quot;color: #669900;&quot;&gt;&apos;Error&apos;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;, response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.message&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+    &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;} &lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;else &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;{
+      &lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// The request was made, but the server responded with a status code
+      &lt;span class=&quot;token comment&quot; style=&quot;color: #708090;&quot;&gt;// that falls out of the range of 2xx
+      console&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;log&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.data&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+      console&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;log&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.status&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+      console&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;log&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.headers&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+      console&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;span class=&quot;token function&quot; style=&quot;color: #dd4a68;&quot;&gt;log&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(response&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.config&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+    &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;}
+  &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;}&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ##  Promises</span><br><span class="line"></span><br><span class="line">axios 依赖一个原生的 ES6 Promise 实现，如果你的浏览器环境不支持 ES6 Promises，你需要引入 [polyfill](https://github.com/jakearchibald/es6-promise)</span><br><span class="line"></span><br><span class="line">    ##  TypeScript</span><br><span class="line"></span><br><span class="line">axios 包含一个 [TypeScript](http://typescriptlang.org/) 定义</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;  language-typescript&quot;&gt;&lt;code id=&quot;12345&apos;);&quot; class=&quot; language-typescript&quot; style=&quot;font-family: Consolas,Monaco,&apos;Andale Mono&apos;,&apos;Ubuntu Mono&apos;,monospace; font-size: undefined; padding: 0px; direction: ltr; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5;&quot;&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+##  Credits
+</code></pre><p>axios is heavily inspired by the <a href="https://docs.angularjs.org/api/ng/service/$http" target="_blank" rel="noopener">$http service</a> provided in <a href="https://angularjs.org/" target="_blank" rel="noopener">Angular</a>. Ultimately axios is an effort to provide a standalone <code style="font-family: Menlo,Monaco,Consolas,'Courier New',monospace; font-size: 30px; padding: 2px 4px; color: #333333; line-height: 1.1; margin-top: 20px; margin-bottom: 10px;"> License </code></p>
+<p><code style="font-family: Menlo,Monaco,Consolas,'Courier New',monospace; font-size: 30px; padding: 2px 4px; color: #333333; line-height: 1.1; margin-top: 20px; margin-bottom: 10px;"> MIT</code></p>
+<p>转载:<a href="https://www.awesomes.cn/repo/mzabriskie/axios" target="_blank" rel="noopener">https://www.awesomes.cn/repo/mzabriskie/axios</a><br></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+            <a href="/tags/axios/" rel="tag"># axios</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/09/mybatis xml mapper 文件中 if-else 写法/" rel="next" title="mybatis xml mapper 文件中 if-else 写法">
+                <i class="fa fa-chevron-left"></i> mybatis xml mapper 文件中 if-else 写法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/09/iview,用render函数渲染/" rel="prev" title="iview,用render函数渲染">
+                iview,用render函数渲染 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#axios"><span class="nav-number">1.</span> <span class="nav-text">axios</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#功能特性"><span class="nav-number">1.1.</span> <span class="nav-text">功能特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器支持"><span class="nav-number">1.2.</span> <span class="nav-text">浏览器支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.3.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

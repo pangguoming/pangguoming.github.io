@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="Excel转Json的需求反正我对SSM基本不会的情况下来到现在这家公司，都是90后，感觉很好。第二天就给我开发任务，就是把用户上传的Excel文件转成JSON返回给前台用于大屏的数据展示。 解决方案   方案1：百度一下，全是Java使用jxl去做的，我一开始也尝试这样做，但是卡死在一个地方，我们公司的SSM框架用户上传的File是MultipartFile的，它的流InputStream在构造">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 解析Excel文件为JSON">
+<meta property="og:url" content="http://pangguoming.com/blog/2017/05/23/Java 解析Excel文件为JSON/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="Excel转Json的需求反正我对SSM基本不会的情况下来到现在这家公司，都是90后，感觉很好。第二天就给我开发任务，就是把用户上传的Excel文件转成JSON返回给前台用于大屏的数据展示。 解决方案   方案1：百度一下，全是Java使用jxl去做的，我一开始也尝试这样做，但是卡死在一个地方，我们公司的SSM框架用户上传的File是MultipartFile的，它的流InputStream在构造">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-26T15:01:39.823Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 解析Excel文件为JSON">
+<meta name="twitter:description" content="Excel转Json的需求反正我对SSM基本不会的情况下来到现在这家公司，都是90后，感觉很好。第二天就给我开发任务，就是把用户上传的Excel文件转成JSON返回给前台用于大屏的数据展示。 解决方案   方案1：百度一下，全是Java使用jxl去做的，我一开始也尝试这样做，但是卡死在一个地方，我们公司的SSM框架用户上传的File是MultipartFile的，它的流InputStream在构造">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2017/05/23/Java 解析Excel文件为JSON/">
+
+
+
+
+
+  <title>Java 解析Excel文件为JSON | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2017/05/23/Java 解析Excel文件为JSON/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java 解析Excel文件为JSON</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-23T13:03:00+08:00">
+                2017-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Excel转Json的需求"><a href="#Excel转Json的需求" class="headerlink" title="Excel转Json的需求"></a><strong>Excel转Json的需求</strong></h3><p>反正我对SSM基本不会的情况下来到现在这家公司，都是90后，感觉很好。第二天就给我开发任务，就是把用户上传的Excel文件转成JSON返回给前台用于大屏的数据展示。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a><strong>解决方案</strong></h3><ul>
+<li></li>
+</ul>
+<p>方案1：百度一下，全是<a href="http://lib.csdn.net/base/javase" title="Java SE知识库" target="_blank" rel="noopener">Java</a>使用jxl去做的，我一开始也尝试这样做，但是卡死在一个地方，我们公司的SSM框架用户上传的File是MultipartFile的，它的流InputStream在构造Workbook时传递InputStream并不起作用，本地文件FileInputStream就可以，不知道是不是我无能，反正我没辙了。这东西感觉本来就是javase的。</p>
+<ul>
+<li></li>
+</ul>
+<p>方案2：问了个大神，告诉我一个词叫<strong>POI</strong>。捣鼓了一天，终于解决了，对，<strong>解决方案就是 Apache的 POI</strong>（我的选择方案）</p>
+<h3 id="Excel的xls和xlsx的差别"><a href="#Excel的xls和xlsx的差别" class="headerlink" title="Excel的xls和xlsx的差别"></a><strong>Excel的xls和xlsx的差别</strong></h3><ul>
+<li></li>
+</ul>
+<p>xls 是Excel 2007以下版本的后缀名，但是所有excel都能打开，对应POI里HSSFWorkbook。</p>
+<ul>
+<li></li>
+</ul>
+<p>xlsx 是Excel 2007及以上版本的后缀名，对应POI里XSSFWorkbook。</p>
+<h3 id="需要的JAR包"><a href="#需要的JAR包" class="headerlink" title="需要的JAR包"></a><strong>需要的JAR包</strong></h3><dl><dt><strong>如果只需要支持 xls</strong></dt><dd>poi-3.9.jar</dd><dt><strong>如果只需要支持 xlsx</strong></dt><dd>poi-ooxml-3.8.jar</dd><dd>poi-ooxml-schemas-3.10-FINAL.jar</dd><dd>xmlbeans.jar</dd><dd>dom4j-1.6.1-hudson-1.jar</dd></dl>
+
+<p><strong>我的工具代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import com.alibaba.fastjson.JSON;</span><br><span class="line">    import org.apache.poi.hssf.usermodel.*;</span><br><span class="line">    import org.apache.poi.poifs.filesystem.POIFSFileSystem;</span><br><span class="line">    import org.apache.poi.ss.usermodel.*;</span><br><span class="line">    import org.apache.poi.xssf.usermodel.XSSFDataFormat;</span><br><span class="line">    import org.apache.poi.xssf.usermodel.XSSFWorkbook;</span><br><span class="line">    import org.springframework.web.multipart.MultipartFile;</span><br><span class="line"></span><br><span class="line">    import java.io.IOException;</span><br><span class="line">    import java.util.LinkedHashMap;</span><br><span class="line">    import java.util.LinkedList;</span><br><span class="line">    import java.util.List;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Created by huangzheng on 2016/11/29.</span><br><span class="line">     */</span><br><span class="line">    public class ExcelUtils &#123;</span><br><span class="line">        /**</span><br><span class="line">         * 解决思路：采用Apache的POI的API来操作Excel，读取内容后保存到List中，再将List转Json（推荐Linked，增删快，与Excel表顺序保持一致）</span><br><span class="line">         *</span><br><span class="line">         *          Sheet表1  ————&gt;    List1&lt;Map&lt;列头，列值&gt;&gt;</span><br><span class="line">         *          Sheet表2  ————&gt;    List2&lt;Map&lt;列头，列值&gt;&gt;</span><br><span class="line">         *</span><br><span class="line">         * 步骤1：根据Excel版本类型创建对于的Workbook以及CellSytle</span><br><span class="line">         * 步骤2：遍历每一个表中的每一行的每一列</span><br><span class="line">         * 步骤3：一个sheet表就是一个Json，多表就多Json，对应一个 List</span><br><span class="line">         *       一个sheet表的一行数据就是一个 Map</span><br><span class="line">         *       一行中的一列，就把当前列头为key，列值为value存到该列的Map中</span><br><span class="line">         *</span><br><span class="line">         *</span><br><span class="line">         * @param file  SSM框架下用户上传的Excel文件</span><br><span class="line">         * @return Map  一个线性HashMap，以Excel的sheet表顺序，并以sheet表明作为key，sheet表转换json后的字符串作为value</span><br><span class="line">         * @throws IOException</span><br><span class="line">         */</span><br><span class="line">        public static LinkedHashMap&lt;String,String&gt; excel2json(MultipartFile file) throws IOException &#123;</span><br><span class="line"></span><br><span class="line">            System.out.println(&quot;excel2json方法执行....&quot;);</span><br><span class="line"></span><br><span class="line">            // 返回的map</span><br><span class="line">            LinkedHashMap&lt;String,String&gt; excelMap = new LinkedHashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">            // Excel列的样式，主要是为了解决Excel数字科学计数的问题</span><br><span class="line">            CellStyle cellStyle;</span><br><span class="line">            // 根据Excel构成的对象</span><br><span class="line">            Workbook wb;</span><br><span class="line">            // 如果是2007及以上版本，则使用想要的Workbook以及CellStyle</span><br><span class="line">            if(file.getOriginalFilename().endsWith(&quot;xlsx&quot;))&#123;</span><br><span class="line">                System.out.println(&quot;是2007及以上版本  xlsx&quot;);</span><br><span class="line">                wb = new XSSFWorkbook(file.getInputStream());</span><br><span class="line">                XSSFDataFormat dataFormat = (XSSFDataFormat) wb.createDataFormat();</span><br><span class="line">                cellStyle = wb.createCellStyle();</span><br><span class="line">                // 设置Excel列的样式为文本</span><br><span class="line">                cellStyle.setDataFormat(dataFormat.getFormat(&quot;@&quot;));</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                System.out.println(&quot;是2007以下版本  xls&quot;);</span><br><span class="line">                POIFSFileSystem fs = new POIFSFileSystem(file.getInputStream());</span><br><span class="line">                wb = new HSSFWorkbook(fs);</span><br><span class="line">                HSSFDataFormat dataFormat = (HSSFDataFormat) wb.createDataFormat();</span><br><span class="line">                cellStyle = wb.createCellStyle();</span><br><span class="line">                // 设置Excel列的样式为文本</span><br><span class="line">                cellStyle.setDataFormat(dataFormat.getFormat(&quot;@&quot;));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // sheet表个数</span><br><span class="line">            int sheetsCounts = wb.getNumberOfSheets();</span><br><span class="line">            // 遍历每一个sheet</span><br><span class="line">            for (int i = 0; i &lt; sheetsCounts; i++) &#123;</span><br><span class="line">                Sheet sheet = wb.getSheetAt(i);</span><br><span class="line">                System.out.println(&quot;第&quot; + i + &quot;个sheet:&quot; + sheet.toString());</span><br><span class="line"></span><br><span class="line">                // 一个sheet表对于一个List</span><br><span class="line">                List list = new LinkedList();</span><br><span class="line"></span><br><span class="line">                // 将第一行的列值作为正个json的key</span><br><span class="line">                String[] cellNames;</span><br><span class="line">                // 取第一行列的值作为key</span><br><span class="line">                Row fisrtRow = sheet.getRow(0);</span><br><span class="line">                // 如果第一行就为空，则是空sheet表，该表跳过</span><br><span class="line">                if(null == fisrtRow)&#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                // 得到第一行有多少列</span><br><span class="line">                int curCellNum = fisrtRow.getLastCellNum();</span><br><span class="line">                System.out.println(&quot;第一行的列数：&quot; + curCellNum);</span><br><span class="line">                // 根据第一行的列数来生成列头数组</span><br><span class="line">                cellNames = new String[curCellNum];</span><br><span class="line">                // 单独处理第一行，取出第一行的每个列值放在数组中，就得到了整张表的JSON的key</span><br><span class="line">                for (int m = 0; m &lt; curCellNum; m++) &#123;</span><br><span class="line">                    Cell cell = fisrtRow.getCell(m);</span><br><span class="line">                    // 设置该列的样式是字符串</span><br><span class="line">                    cell.setCellStyle(cellStyle);</span><br><span class="line">                    cell.setCellType(Cell.CELL_TYPE_STRING);</span><br><span class="line">                    // 取得该列的字符串值</span><br><span class="line">                    cellNames[m] = cell.getStringCellValue();</span><br><span class="line">                &#125;</span><br><span class="line">                for (String s : cellNames) &#123;</span><br><span class="line">                    System.out.print(&quot;得到第&quot; + i +&quot; 张sheet表的列头： &quot; + s + &quot;,&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println();</span><br><span class="line"></span><br><span class="line">                // 从第二行起遍历每一行</span><br><span class="line">                int rowNum = sheet.getLastRowNum();</span><br><span class="line">                System.out.println(&quot;总共有 &quot; + rowNum + &quot; 行&quot;);</span><br><span class="line">                for (int j = 1; j &lt;= rowNum; j++) &#123;</span><br><span class="line">                    // 一行数据对于一个Map</span><br><span class="line">                    LinkedHashMap rowMap = new LinkedHashMap();</span><br><span class="line">                    // 取得某一行</span><br><span class="line">                    Row row = sheet.getRow(j);</span><br><span class="line">                    int cellNum = row.getLastCellNum();</span><br><span class="line">                    // 遍历每一列</span><br><span class="line">                    for (int k = 0; k &lt; cellNum; k++) &#123;</span><br><span class="line">                        Cell cell = row.getCell(k);</span><br><span class="line"></span><br><span class="line">                        cell.setCellStyle(cellStyle);</span><br><span class="line">                        cell.setCellType(Cell.CELL_TYPE_STRING);</span><br><span class="line">                        // 保存该单元格的数据到该行中</span><br><span class="line">            rowMap.put(cellNames[k],cell.getStringCellValue());</span><br><span class="line">                    &#125;</span><br><span class="line">                    // 保存该行的数据到该表的List中</span><br><span class="line">                    list.add(rowMap);</span><br><span class="line">                &#125;</span><br><span class="line">                // 将该sheet表的表名为key，List转为json后的字符串为Value进行存储</span><br><span class="line">                excelMap.put(sheet.getSheetName(),JSON.toJSONString(list,false));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            System.out.println(&quot;excel2json方法结束....&quot;);</span><br><span class="line"></span><br><span class="line">            return excelMap;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/15/Dropwizard框架入门/" rel="next" title="Dropwizard框架入门">
+                <i class="fa fa-chevron-left"></i> Dropwizard框架入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/26/jquery 图片文件转base64 显示/" rel="prev" title="jquery 图片文件转base64 显示">
+                jquery 图片文件转base64 显示 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Excel转Json的需求"><span class="nav-number">1.</span> <span class="nav-text">Excel转Json的需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Excel的xls和xlsx的差别"><span class="nav-number">3.</span> <span class="nav-text">Excel的xls和xlsx的差别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要的JAR包"><span class="nav-number">4.</span> <span class="nav-text">需要的JAR包</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

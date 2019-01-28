@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="angular,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="Angular CLI 现在虽然可以正常使用但仍然处于测试阶段. Angular CLI 依赖 Node 4 和 NPM 3 或更高版本. 安装要安装Angular CLI你需要先安装node和npm，然后运行以下命令来安装最新的Angular CLI：  注意：Angular CLI 需要Node 4.X 和 NPM 3.X 以上的版本支持。  1234&amp;gt; 在 Mac 或 Linux 平台">
+<meta name="keywords" content="angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular CLI 使用教程指南参考">
+<meta property="og:url" content="http://pangguoming.com/blog/2018/05/17/Angular CLI 使用教程指南参考/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="Angular CLI 现在虽然可以正常使用但仍然处于测试阶段. Angular CLI 依赖 Node 4 和 NPM 3 或更高版本. 安装要安装Angular CLI你需要先安装node和npm，然后运行以下命令来安装最新的Angular CLI：  注意：Angular CLI 需要Node 4.X 和 NPM 3.X 以上的版本支持。  1234&amp;gt; 在 Mac 或 Linux 平台">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-26T15:00:56.243Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular CLI 使用教程指南参考">
+<meta name="twitter:description" content="Angular CLI 现在虽然可以正常使用但仍然处于测试阶段. Angular CLI 依赖 Node 4 和 NPM 3 或更高版本. 安装要安装Angular CLI你需要先安装node和npm，然后运行以下命令来安装最新的Angular CLI：  注意：Angular CLI 需要Node 4.X 和 NPM 3.X 以上的版本支持。  1234&amp;gt; 在 Mac 或 Linux 平台">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2018/05/17/Angular CLI 使用教程指南参考/">
+
+
+
+
+
+  <title>Angular CLI 使用教程指南参考 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2018/05/17/Angular CLI 使用教程指南参考/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Angular CLI 使用教程指南参考</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T17:56:00+08:00">
+                2018-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Angular CLI 现在虽然可以正常使用但仍然处于测试阶段. Angular CLI 依赖 Node 4 和 NPM 3 或更高版本.</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>要安装Angular CLI你需要先安装node和npm，然后运行以下命令来安装最新的Angular CLI：</p>
+<blockquote>
+<p>注意：Angular CLI 需要Node 4.X 和 NPM 3.X 以上的版本支持。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; 在 Mac 或 Linux 平台上，你可能需要添加`sudo`前缀提权进行全局安装：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs coffeescript&quot;&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>## 基本用法
+</code></pre><p>你可以通过 Angular CLI 的 <code>help</code> 命令来获取相关的命令信息.</p>
+<pre><code>&lt;pre class=&quot;hljs sql&quot;&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; Angular CLI的命令关键字为 `ng`</span><br><span class="line"></span><br><span class="line">    ## ng new</span><br><span class="line"></span><br><span class="line">    &lt;table&gt;</span><br><span class="line">    &lt;thead&gt;</span><br><span class="line">    &lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;</span><br><span class="line">    &lt;/thead&gt;</span><br><span class="line">    &lt;tbody&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;`ng new &lt;project-name&gt; [options]`&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;创建一个新的 Angular 项目,默认在当前所在目录下&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;/tbody&gt;</span><br><span class="line">    &lt;/table&gt;</span><br><span class="line">    &lt;table&gt;</span><br><span class="line">    &lt;thead&gt;</span><br><span class="line">    &lt;tr&gt;&lt;th&gt;参数&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;</span><br><span class="line">    &lt;/thead&gt;</span><br><span class="line">    &lt;tbody&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;`--dry-run` `-d`&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;只输出要创建的文件和执行的操作，实际上并没有创建项目&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;`--verbose` `-v`&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;输出详细信息&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;`--skip-npm`&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;在项目第一次创建时不执行任何npm命令&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;`--name`&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;指定创建项目的名称&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;/tbody&gt;</span><br><span class="line">    &lt;/table&gt;</span><br><span class="line"></span><br><span class="line">    ## ng serve</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs coffeescript&quot;&gt;&lt;code&gt;ng &lt;span class=&quot;hljs-keyword&quot;&gt;new PROJECT_NAME</span><br><span class="line">    cd PROJECT_NAME</span><br><span class="line">    ng serve&lt;/span&gt;&lt;/code&gt;```</span><br><span class="line"></span><br><span class="line">将会自动在浏览器中打开默认地址 `http://localhost:4200/`. 运行之后如果你修改了程序源代码.应用将会自动重载.</span><br><span class="line"></span><br><span class="line">你也可以自定义配置 IP, 端口和实时重载端口号</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs nginx&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+## ng init
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng init &lt;project-name&gt; [options]`&lt;/td&gt;
+&lt;td&gt;在当前所在目录下初始化一个新的 Angular 项目&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;参数&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`--dry-run` `-d`&lt;/td&gt;
+&lt;td&gt;只输出要创建的文件和执行的操作，实际上并没有创建项目&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--verbose` `-v`&lt;/td&gt;
+&lt;td&gt;输出详细信息&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--skip-npm`&lt;/td&gt;
+&lt;td&gt;在项目第一次创建时不执行任何npm命令&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--name`&lt;/td&gt;
+&lt;td&gt;指定创建项目的名称&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng completion
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng completion`&lt;/td&gt;
+&lt;td&gt;将自动完成功能添加到ng命令的shell中&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng doc
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng doc &lt;keyword&gt;`&lt;/td&gt;
+&lt;td&gt;在浏览器中打开Angular文档并搜索当前关键字&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng e2e
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng e2e`&lt;/td&gt;
+&lt;td&gt;使用`protractor`在当前应用中运行e2e测试&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng format
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng format`&lt;/td&gt;
+&lt;td&gt;使用`clang-format`格式化当前项目代码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng generate
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng generate &lt;type&gt; [options]`&lt;/td&gt;
+&lt;td&gt;在项目中构建新代码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng g &lt;type&gt; [options]`&lt;/td&gt;
+&lt;td&gt;简写&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;支持的类型&lt;/th&gt;&lt;th&gt;用法&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Component&lt;/td&gt;
+&lt;td&gt;ng g component my-new-component&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Directive&lt;/td&gt;
+&lt;td&gt;ng g directive my-new-directive&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Pipe&lt;/td&gt;
+&lt;td&gt;ng g pipe my-new-pipe&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Service&lt;/td&gt;
+&lt;td&gt;ng g service my-new-service&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Class&lt;/td&gt;
+&lt;td&gt;ng g class my-new-class&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Interface&lt;/td&gt;
+&lt;td&gt;ng g interface my-new-interface&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Enum&lt;/td&gt;
+&lt;td&gt;ng g enum my-new-enum&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Module&lt;/td&gt;
+&lt;td&gt;ng g module my-module&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Route&lt;/td&gt;
+&lt;td&gt;ng g route my-route`当前已禁用`&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre><p>构建的组件都会使用自用目录,除非 <code>--flat</code> 单独指定.</p>
+<pre><code>&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;参数&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`--flat`&lt;/td&gt;
+&lt;td&gt;不在自用目录内创建代码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--route=&lt;route&gt;`&lt;/td&gt;
+&lt;td&gt;指定父路由.仅用于生成组件和路由.默认为指定的路径.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--skip-router-generation`&lt;/td&gt;
+&lt;td&gt;跳过生成父路由配置。只能用于路由命令。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--default`&lt;/td&gt;
+&lt;td&gt;指定路由应为默认路由。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--lazy`&lt;/td&gt;
+&lt;td&gt;指定路由是延迟的。 默认为true。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng get
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng get &lt;path1, path2, ...pathN&gt; [options]`&lt;/td&gt;
+&lt;td&gt;从Angular CLI配置获取值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre><p>pathN是一个有效的JavaScript参数路径，例如“users[1].userName”。 如果未设置该值，将显示“undefined”。 此命令默认情况下仅在项目目录中工作。</p>
+<pre><code>&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;参数&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`--global`&lt;/td&gt;
+&lt;td&gt;返回全局配置值，而不是本地配置值（如果都设置）. 此选项还可以使命令在项目目录外工作&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng set
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng get &lt;path1=value1, path2=value2, ...pathN=valueN&gt; [options]`&lt;/td&gt;
+&lt;td&gt;在Angular CLI配置中设置值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre><p>默认情况下，如果在项目内部运行，则设置项目配置中的值，如果不在项目内部，则失败。 pathN参数是一个有效的JavaScript路径，如“users [1] .userName”。 该值将被强制转换为正确的类型，或者如果类型无法强制，则会抛出错误。</p>
+<pre><code>&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;参数&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`--global`&lt;/td&gt;
+&lt;td&gt;设置全局配置值，而不是本地配置值。 这也使`ng set`可以在项目之外工作。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng build
+</code></pre><p>构建工件将存储在<code>/dist</code>目录中。</p>
+<p>ng build可以指定构建目标（–target = production或–target = development）和要与该构建一起使用的环境文件（–environment = dev或–environment = prod）。 默认情况下，使用开发构建目标和环境。</p>
+<pre><code>&lt;pre class=&quot;hljs sql&quot;&gt;&lt;code&gt;# 这是生产构建
+ng build &lt;span class=&quot;hljs-comment&quot;&gt;--target=production --environment=prod
+ng build &lt;span class=&quot;hljs-comment&quot;&gt;--prod --env=prod
+ng build &lt;span class=&quot;hljs-comment&quot;&gt;--prod
+
+# 这是开发构建
+ng build &lt;span class=&quot;hljs-comment&quot;&gt;--target=development --environment=dev
+ng build &lt;span class=&quot;hljs-comment&quot;&gt;--dev --e=dev
+ng build &lt;span class=&quot;hljs-comment&quot;&gt;--dev
+ng build&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;```
+
+## ng github-pages:deploy
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng github-pages:deploy [options]`&lt;/td&gt;
+&lt;td&gt;构建生产应用程序，设置GitHub存储库，然后发布应用程序。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;参数&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`--message=&lt;message&gt;`&lt;/td&gt;
+&lt;td&gt;构建并提交信息.默认为 &quot;new gh-pages version&quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--environment=&lt;env&gt;`&lt;/td&gt;
+&lt;td&gt;angular 环境构建。 默认为“production”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--branch=&lt;branch-name&gt;`&lt;/td&gt;
+&lt;td&gt;推送页面的git分支。 默认为“gh-branch”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--skip-build`&lt;/td&gt;
+&lt;td&gt;在发布之前跳过构建项目&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--gh-token=&lt;token&gt;`&lt;/td&gt;
+&lt;td&gt;用于部署的API令牌,必须.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--gh-username=&lt;username&gt;`&lt;/td&gt;
+&lt;td&gt;使用的Github用户名,必须.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng lint
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng lint`&lt;/td&gt;
+&lt;td&gt;在项目上运行codelyzer linter&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng test
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng test [options]`&lt;/td&gt;
+&lt;td&gt;使用 `karma` 运行单元测试&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;参数&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`--watch`&lt;/td&gt;
+&lt;td&gt;继续运行测试. 默认为true&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--browsers`, `--colors`, `--reporters`, `--port`, `--log-level`&lt;/td&gt;
+&lt;td&gt;这些参数直接传递给karma&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng version
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng version`&lt;/td&gt;
+&lt;td&gt;输出cli版本, node 版本和操作系统信息&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;参数&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`--watch`&lt;/td&gt;
+&lt;td&gt;继续运行测试. 默认为true&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/angular/" rel="tag"># angular</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/17/java 反射机制--根据属性名获取属性值/" rel="next" title="java 反射机制--根据属性名获取属性值">
+                <i class="fa fa-chevron-left"></i> java 反射机制--根据属性名获取属性值
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/19/Spring Boot Maven Plugin打包异常及三种解决方法：Unable to find main class/" rel="prev" title="Spring Boot Maven Plugin打包异常及三种解决方法：Unable to find main class">
+                Spring Boot Maven Plugin打包异常及三种解决方法：Unable to find main class <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="java,oauth2,restful,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="这篇教程是展示如何设置一个OAuth2服务来保护REST资源. 源代码下载github. (https://github.com/iainporter/oauth2-provider)你能下载这个源码就开始编写一个被OAuth方法保护的服务。该源码包含功能：  用户注册和登录   Email验证   Password 丢失  采取的技术有以下：  OAuth2 Protocol    spring">
+<meta name="keywords" content="java,oauth2,restful">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Spring Security和OAuth2实现RESTful服务安全认证">
+<meta property="og:url" content="http://pangguoming.com/blog/2017/05/12/使用Spring Security和OAuth2实现RESTful服务安全认证/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="这篇教程是展示如何设置一个OAuth2服务来保护REST资源. 源代码下载github. (https://github.com/iainporter/oauth2-provider)你能下载这个源码就开始编写一个被OAuth方法保护的服务。该源码包含功能：  用户注册和登录   Email验证   Password 丢失  采取的技术有以下：  OAuth2 Protocol    spring">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-26T15:01:40.717Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Spring Security和OAuth2实现RESTful服务安全认证">
+<meta name="twitter:description" content="这篇教程是展示如何设置一个OAuth2服务来保护REST资源. 源代码下载github. (https://github.com/iainporter/oauth2-provider)你能下载这个源码就开始编写一个被OAuth方法保护的服务。该源码包含功能：  用户注册和登录   Email验证   Password 丢失  采取的技术有以下：  OAuth2 Protocol    spring">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2017/05/12/使用Spring Security和OAuth2实现RESTful服务安全认证/">
+
+
+
+
+
+  <title>使用Spring Security和OAuth2实现RESTful服务安全认证 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2017/05/12/使用Spring Security和OAuth2实现RESTful服务安全认证/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用Spring Security和OAuth2实现RESTful服务安全认证</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-12T16:46:00+08:00">
+                2017-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这篇教程是展示如何设置一个OAuth2服务来保护REST资源. 源代码下载<a href="https://github.com/iainporter/oauth2-provider" target="_blank" rel="noopener">github</a>. (<a href="https://github.com/iainporter/oauth2-provider)你能下载这个源码就开始编写一个被OAuth方法保护的服务。该源码包含功能：" target="_blank" rel="noopener">https://github.com/iainporter/oauth2-provider)你能下载这个源码就开始编写一个被OAuth方法保护的服务。该源码包含功能：</a></p>
+<ul>
+<li>用户注册和登录  </li>
+<li>Email验证  </li>
+<li>Password 丢失</li>
+</ul>
+<p>采取的技术有以下：</p>
+<ul>
+<li>OAuth2 Protocol   </li>
+<li><a href="http://lib.csdn.net/base/javaee" title="Java EE知识库" target="_blank" rel="noopener">spring</a> Security   </li>
+<li>Spring Integration   </li>
+<li>Spring Data   </li>
+<li>Jersey/JAX-RS   </li>
+<li>Gradle / Groovy   </li>
+<li><a href="http://lib.csdn.net/base/mongodb" title="MongoDB知识库" target="_blank" rel="noopener">MongoDB</a></li>
+</ul>
+<p>通过以下方式构建项目：</p>
+<blockquote>
+<p><a href="http://lib.csdn.net/base/git" title="Git知识库" target="_blank" rel="noopener">Git</a> clone  <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:iainporter/oauth2-provider.git<br>cd oauth2-provider<br>./gradlew clean build integrationTest</p>
+</blockquote>
+<p>运行Web项目：</p>
+<p>这个应用是基于MongoDB作为持久层，在运行应用之前确认mongod是运行在端口27017.</p>
+<p>运行命令：</p>
+<blockquote>
+<p>./gradlew tomcatRun</p>
+</blockquote>
+<p>在浏览器打开<a href="http://localhost:8080/oauth2-provider/index.html" target="_blank" rel="noopener">http://localhost:8080/oauth2-provider/index.html</a></p>
+<ol>
+<li>创建一个用户：</li>
+</ol>
+<p>curl -v -X POST \<br>   -H “Content-Type: application/json” \<br>   -H “Authorization: Basic MzUzYjMwMmM0NDU3NGY1NjUwNDU2ODdlNTM0ZTdkNmE6Mjg2OTI0Njk3ZTYxNWE2NzJhNjQ2YTQ5MzU0NTY0NmM=” \<br>   -d ‘{“user”:{“emailAddress”:”<a href="mailto:user@example.com" target="_blank" rel="noopener">user@example.com</a>“}, “password”:”password”}’ \<br>   ‘<a href="http://localhost:8080/oauth2-provider/v1.0/users&#39;" target="_blank" rel="noopener">http://localhost:8080/oauth2-provider/v1.0/users&#39;</a></p>
+<p>结果应该是：</p>
+<p>{“apiUser”:<br>   {“emailAddress”:”<a href="mailto:user@example.com" target="_blank" rel="noopener">user@example.com</a>“,<br>   “firstName”:null,<br>   “lastName”:null,<br>   “age”:null,<br>   “id”:”8a34d009-3558-4c8c-a8da-1ad2b2a393c7”,<br>   “name”:”<a href="mailto:user@example.com" target="_blank" rel="noopener">user@example.com</a>“},<br>   “oauth2AccessToken”:<br>   {“access_token”:”7e0e4708-7837-4a7e-9f87-81c6429b02ac”,<br>   “token_type”:”bearer”,<br>   “refresh_token”:”d0f248ab-e30f-4a85-860c-bd1e388a39b5”,<br>   “expires_in”:5183999,<br>   “scope”:”read write”<br>   }<br>}</p>
+<ol start="2">
+<li>请求一个access token：</li>
+</ol>
+<p>curl -v -X POST \<br>   -H “Content-Type: application/json” \<br>   -H “Authorization: Basic MzUzYjMwMmM0NDU3NGY1NjUwNDU2ODdlNTM0ZTdkNmE6Mjg2OTI0Njk3ZTYxNWE2NzJhNjQ2YTQ5MzU0NTY0NmM=” \<br>   ‘<a href="http://localhost:8080/oauth2-provider/oauth/token?grant_type=password&amp;username=user@example.com&amp;password=password&#39;" target="_blank" rel="noopener">http://localhost:8080/oauth2-provider/oauth/token?grant_type=password&amp;username=user@example.com&amp;password=password&#39;</a></p>
+<p>结果应该是：</p>
+<p>{<br>  “access_token”:”a838780e-35ef-4bd5-92c0-07a45aa74948”,<br>  “token_type”:”bearer”,<br>  “refresh_token”:”ab06022f-247c-450a-a11e-2ffab116e3dc”,<br>  “expires_in”:5183999<br>}</p>
+<ol start="3">
+<li>刷新一个token：</li>
+</ol>
+<p>curl -v -X POST \<br>   -H “Content-Type: application/json” \<br>   -H “Authorization: Basic MzUzYjMwMmM0NDU3NGY1NjUwNDU2ODdlNTM0ZTdkNmE6Mjg2OTI0Njk3ZTYxNWE2NzJhNjQ2YTQ5MzU0NTY0NmM=” \<br>   ‘<a href="http://localhost:8080/oauth2-provider/oauth/token?grant_type=refresh_token&amp;refresh_token=ab06022f-247c-450a-a11e-2ffab116e3dc&#39;" target="_blank" rel="noopener">http://localhost:8080/oauth2-provider/oauth/token?grant_type=refresh_token&amp;refresh_token=ab06022f-247c-450a-a11e-2ffab116e3dc&#39;</a></p>
+<p>结果应该是：</p>
+<p>{<br>   “access_token”:”4835cd11-8bb7-4b76-b857-55c6e7f36fc4”,<br>   “token_type”:”bearer”,<br>   “refresh_token”:”ab06022f-247c-450a-a11e-2ffab116e3dc”,<br>   “expires_in”:5183999<br>}</p>
+<h2 id="Web-Context"><a href="#Web-Context" class="headerlink" title="Web Context"></a>Web Context</h2><p>一个Jersey 处理所有资源调用：</p>
+<ol>
+<li><servlet-mapping>  </servlet-mapping></li>
+<li><servlet-name>jersey-servlet</servlet-name>  </li>
+<li><url-pattern>/*</url-pattern>  </li>
+<li>  </li>
+</ol>
+<p>Spring servlet处理所有oauth 调用：</p>
+<ol>
+<li><servlet-mapping>  </servlet-mapping></li>
+<li><servlet-name>spring</servlet-name>  </li>
+<li><url-pattern>/oauth/*</url-pattern>  </li>
+<li>  </li>
+</ol>
+<p>spring security配合定义一个过滤器：</p>
+<ol>
+<li><filter>  </filter></li>
+<li><filter-name>springSecurityFilterChain</filter-name>  </li>
+<li><filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>  </li>
+<li><init-param>  </init-param></li>
+<li><param-name>contextAttribute</param-name>  </li>
+<li><param-value>org.springframework.web.servlet.FrameworkServlet.CONTEXT.spring</param-value>  </li>
+<li>  </li>
+<li>  </li>
+</ol>
+<p>对根目录下所有url进行 过滤：</p>
+<ol>
+<li><filter-mapping>  </filter-mapping></li>
+<li><filter-name>springSecurityFilterChain</filter-name>  </li>
+<li><url-pattern>/*</url-pattern>  </li>
+<li>  </li>
+</ol>
+<h2 id="配置OAuth-流程"><a href="#配置OAuth-流程" class="headerlink" title="配置OAuth 流程"></a>配置OAuth 流程</h2><ol>
+<li>&lt;oauth:authorization-server client-details-service-ref=”client-details-service” token-services-ref=”tokenServices”&gt;  </li>
+<li><a href="oauth:refresh-token/" target="_blank" rel="noopener">oauth:refresh-token/</a>  </li>
+<li><a href="oauth:password/" target="_blank" rel="noopener">oauth:password/</a>  </li>
+<li>&lt;/oauth:authorization-server&gt;  </li>
+</ol>
+<p>缺省的token端点是/oauth/token ，只有 password flow 和刷新 token 支持。</p>
+<h2 id="保护token端点"><a href="#保护token端点" class="headerlink" title="保护token端点"></a>保护token端点</h2><p>使用Spring security 保护token端点：</p>
+<ol>
+<li>&lt;http pattern=”/oauth/token” create-session=”stateless” authentication-manager-ref=”clientAuthenticationManager”  </li>
+<li>xmlns=”<a href="http://www.springframework.org/schema/security&quot;&gt;" target="_blank" rel="noopener">http://www.springframework.org/schema/security&quot;&gt;</a>  </li>
+<li><anonymous enabled="false">  </anonymous></li>
+<li><http-basic entry-point-ref="clientAuthenticationEntryPoint">  </http-basic></li>
+<li><access-denied-handler ref="oauthAccessDeniedHandler">  </access-denied-handler></li>
+<li>  </li>
+</ol>
+<p>下面配置授权authentication 管理器和客户端服务：</p>
+<ol>
+<li>&lt;bean id=”clientCredentialsTokenEndpointFilter”  </li>
+<li>class=”org.springframework.security.oauth2.provider.client.ClientCredentialsTokenEndpointFilter”&gt;  </li>
+<li><property name="authenticationManager" ref="clientAuthenticationManager">  </property></li>
+<li>  </li>
+<li></li>
+<li><authentication-manager id="clientAuthenticationManager" xmlns="http://www.springframework.org/schema/security">  </authentication-manager></li>
+<li><authentication-provider user-service-ref="client-details-user-service">  </authentication-provider></li>
+<li>  </li>
+<li></li>
+<li></li>
+<li><bean id="client-details-user-service" class="org.springframework.security.oauth2.provider.client.ClientDetailsUserDetailsService">  </bean></li>
+<li><constructor-arg ref="client-details-service">  </constructor-arg></li>
+<li>  </li>
+</ol>
+<h2 id="配置用户授权服务"><a href="#配置用户授权服务" class="headerlink" title="配置用户授权服务"></a>配置用户授权服务</h2><p>Resource Owner Password flow 需要管理用户的授权管理器</p>
+<ol>
+<li><bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder">  </bean></li>
+<li></li>
+<li>&lt;sec:authentication-manager alias=”userAuthenticationManager”&gt;  </li>
+<li>&lt;sec:authentication-provider user-service-ref=”userService”&gt;  </li>
+<li>&lt;sec:password-encoder ref=”passwordEncoder”/&gt;  </li>
+<li>&lt;/sec:authentication-provider&gt;  </li>
+<li>&lt;/sec:authentication-manager&gt;  </li>
+</ol>
+<p>密码 password encoder是用于加密密码。用户服务必须实现一个UserDetailsService ，能根据用户名返回用户。</p>
+<ol>
+<li>@Override  </li>
+<li>public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {  </li>
+<li>notNull(username, “Mandatory argument ‘username’ missing.”);  </li>
+<li>User user = userRepository.findByEmailAddress(username.toLowerCase());  </li>
+<li>if (user == null) {  </li>
+<li>throw new AuthenticationException();  </li>
+<li>}  </li>
+<li>return user;  </li>
+<li>}  </li>
+</ol>
+<h2 id="配置Token-服务"><a href="#配置Token-服务" class="headerlink" title="配置Token 服务"></a>配置Token 服务</h2><ol>
+<li><bean id="tokenServices" class="org.springframework.security.oauth2.provider.token.DefaultTokenServices">  </bean></li>
+<li><property name="tokenStore" ref="tokenStore">  </property></li>
+<li><property name="supportRefreshToken" value="true">  </property></li>
+<li><property name="clientDetailsService" ref="client-details-service">  </property></li>
+<li>  </li>
+</ol>
+<h2 id="保护资源访问"><a href="#保护资源访问" class="headerlink" title="保护资源访问"></a>保护资源访问</h2><ol>
+<li>&lt;oauth:resource-server id=”resourceServerFilter” token-services-ref=”tokenServices”/&gt;  </li>
+</ol>
+<h2 id="核心服务"><a href="#核心服务" class="headerlink" title="核心服务"></a>核心服务</h2><p>这个服务提供基于访问token获得用户的信息。URL格式：</p>
+<p>/v1.0/users/{id}/someresource </p>
+<ol>
+<li>@Path(“/v1.0/me”)  </li>
+<li>@Component  </li>
+<li>@Produces({MediaType.APPLICATION_JSON})  </li>
+<li>@Consumes({MediaType.APPLICATION_JSON})  </li>
+<li>public class MeResource extends BaseResource {  </li>
+<li></li>
+<li>@RolesAllowed({“ROLE_USER”})  </li>
+<li>@GET  </li>
+<li>public ApiUser getUser(final @Context SecurityContext securityContext) {  </li>
+<li>User requestingUser = loadUserFromSecurityContext(securityContext);  </li>
+<li>if(requestingUser == null) {  </li>
+<li>throw new UserNotFoundException();  </li>
+<li>}  </li>
+<li>return new ApiUser(requestingUser);  </li>
+<li>}  </li>
+<li></li>
+<li>protected User loadUserFromSecurityContext(SecurityContext securityContext) {  </li>
+<li>OAuth2Authentication requestingUser = (OAuth2Authentication) securityContext.getUserPrincipal();  </li>
+<li>Object principal = requestingUser.getUserAuthentication().getPrincipal();  </li>
+<li>User user = null;  </li>
+<li>if(principal instanceof User) {  </li>
+<li>user = (User)principal;  </li>
+<li>} else {  </li>
+<li>user = userRepository.findByEmailAddress((String)principal);  </li>
+<li>}  </li>
+<li>return user;  </li>
+<li>}  </li>
+<li>}  </li>
+</ol>
+<p><a href="http://lib.csdn.net/base/softwaretest" title="软件测试知识库" target="_blank" rel="noopener">测试</a>这个应用，启动：</p>
+<blockquote>
+<p>./gradlew tomcatRun</p>
+</blockquote>
+<p>测试：</p>
+<p>curl -v -X GET \<br>  -H “Content-Type: application/json” \<br>  -H “Authorization: Bearer [your token here]” \<br>  ‘<a href="http://localhost:8080/oauth2-provider/v1.0/me&#39;" target="_blank" rel="noopener">http://localhost:8080/oauth2-provider/v1.0/me&#39;</a></p>
+<p>参考：<a href="https://github.com/tcompiegne/couchbase-token-store-spring-oauth2" target="_blank" rel="noopener">https://github.com/tcompiegne/couchbase-token-store-spring-oauth2</a></p>
+<pre><code>https://github.com/tcompiegne/oauth2-server-spring-couchbase
+</code></pre><p>转自：<a href="http://www.jdon.com/dl/best/securing-rest-services-with-spring.html.html" target="_blank" rel="noopener">http://www.jdon.com/dl/best/securing-rest-services-with-spring.html.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/oauth2/" rel="tag"># oauth2</a>
+          
+            <a href="/tags/restful/" rel="tag"># restful</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/14/SQL语句大小写是否区分的问题，批量修改整个数据库所有表所有字段大小写/" rel="next" title="SQL语句大小写是否区分的问题，批量修改整个数据库所有表所有字段大小写">
+                <i class="fa fa-chevron-left"></i> SQL语句大小写是否区分的问题，批量修改整个数据库所有表所有字段大小写
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/15/Dropwizard框架入门/" rel="prev" title="Dropwizard框架入门">
+                Dropwizard框架入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-Context"><span class="nav-number">1.</span> <span class="nav-text">Web Context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置OAuth-流程"><span class="nav-number">2.</span> <span class="nav-text">配置OAuth 流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保护token端点"><span class="nav-number">3.</span> <span class="nav-text">保护token端点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置用户授权服务"><span class="nav-number">4.</span> <span class="nav-text">配置用户授权服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Token-服务"><span class="nav-number">5.</span> <span class="nav-text">配置Token 服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保护资源访问"><span class="nav-number">6.</span> <span class="nav-text">保护资源访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心服务"><span class="nav-number">7.</span> <span class="nav-text">核心服务</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

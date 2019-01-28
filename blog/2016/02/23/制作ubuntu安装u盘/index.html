@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="安装ubuntu,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="Ubuntu官方中文译名为友帮拓，是一款开源免费的linux操作系统。与其他的linux操作系统不同之处在于Ubuntu的软件包清单只包含那些高质量的重要应用程序，因此深受广大linux用户的喜爱，那么ubuntu怎样安装呢？下面就跟小编一起来看看怎么用u盘安装ubuntu系统（因为现在很多的台式电脑已经没有光驱了）。## 工具/原料*   U盘，ubuntu操作系统的iso文件，UltraISO">
+<meta name="keywords" content="安装ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="制作ubuntu安装u盘">
+<meta property="og:url" content="http://pangguoming.com/blog/2016/02/23/制作ubuntu安装u盘/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="Ubuntu官方中文译名为友帮拓，是一款开源免费的linux操作系统。与其他的linux操作系统不同之处在于Ubuntu的软件包清单只包含那些高质量的重要应用程序，因此深受广大linux用户的喜爱，那么ubuntu怎样安装呢？下面就跟小编一起来看看怎么用u盘安装ubuntu系统（因为现在很多的台式电脑已经没有光驱了）。## 工具/原料*   U盘，ubuntu操作系统的iso文件，UltraISO">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://h.hiphotos.baidu.com/exp/w=500/sign=aff8b84665380cd7e61ea2ed9145ad14/9c16fdfaaf51f3deab09fe9294eef01f3b297988.jpg">
+<meta property="og:image" content="http://b.hiphotos.baidu.com/exp/w=500/sign=4dd4fed601e9390156028d3e4bed54f9/0823dd54564e9258e004c0189c82d158ccbf4e17.jpg">
+<meta property="og:image" content="http://h.hiphotos.baidu.com/exp/w=500/sign=096618a60c3387449cc52f7c610ed937/b3b7d0a20cf431ad34ad05cf4b36acaf2fdd98cd.jpg">
+<meta property="og:image" content="http://d.hiphotos.baidu.com/exp/w=500/sign=3a9bcb5fa9014c08193b28a53a7a025b/0b46f21fbe096b63259b18a60c338744eaf8ac42.jpg">
+<meta property="og:image" content="http://h.hiphotos.baidu.com/exp/w=500/sign=faa8a50ea786c91708035239f93c70c6/962bd40735fae6cd14ebea970fb30f2443a70fec.jpg">
+<meta property="og:image" content="http://e.hiphotos.baidu.com/exp/w=500/sign=7da038ce6e061d957d4637384bf50a5d/bf096b63f6246b60d892f382ebf81a4c500fa2ac.jpg">
+<meta property="og:image" content="http://e.hiphotos.baidu.com/exp/w=500/sign=2ec622ea11dfa9ecfd2e561752d1f754/d8f9d72a6059252d083f5df2349b033b5bb5b918.jpg">
+<meta property="og:image" content="http://d.hiphotos.baidu.com/exp/w=500/sign=8ddce8d0fdfaaf5184e381bfbc5594ed/960a304e251f95ca920fd240c9177f3e66095249.jpg">
+<meta property="og:image" content="http://e.hiphotos.baidu.com/exp/w=500/sign=9683a6640cf431adbcd243397b37ac0f/2cf5e0fe9925bc317854426e5edf8db1cb13703e.jpg">
+<meta property="og:updated_time" content="2019-01-26T15:09:46.608Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="制作ubuntu安装u盘">
+<meta name="twitter:description" content="Ubuntu官方中文译名为友帮拓，是一款开源免费的linux操作系统。与其他的linux操作系统不同之处在于Ubuntu的软件包清单只包含那些高质量的重要应用程序，因此深受广大linux用户的喜爱，那么ubuntu怎样安装呢？下面就跟小编一起来看看怎么用u盘安装ubuntu系统（因为现在很多的台式电脑已经没有光驱了）。## 工具/原料*   U盘，ubuntu操作系统的iso文件，UltraISO">
+<meta name="twitter:image" content="http://h.hiphotos.baidu.com/exp/w=500/sign=aff8b84665380cd7e61ea2ed9145ad14/9c16fdfaaf51f3deab09fe9294eef01f3b297988.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2016/02/23/制作ubuntu安装u盘/">
+
+
+
+
+
+  <title>制作ubuntu安装u盘 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2016/02/23/制作ubuntu安装u盘/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">制作ubuntu安装u盘</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-02-23T14:22:00+08:00">
+                2016-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div class="exp-content-block"><br><div class="exp-content-body exp-brief-step"><br><div class="exp-content-listblock"><br><div class="content-listblock-text"><br><br>Ubuntu官方中文译名为友帮拓，是一款开源免费的linux操作系统。与其他的linux操作系统不同之处在于Ubuntu的软件包清单只包含那些高质量的重要应用程序，因此深受广大linux用户的喜爱，那么ubuntu怎样安装呢？下面就跟小编一起来看看怎么用u盘安装ubuntu系统（因为现在很多的台式电脑已经没有光驱了）。<br><br><div class="exp-content-block"><br><br>## 工具/原料<br><br><div class="exp-content-body"><br><br>*   <div class="content-list-text"><br><br>U盘，ubuntu操作系统的iso文件，UltraISO软件。<br><br></div>
+
+<div class="exp-content-block"><br><br>## 安装步骤<br><br><div class="exp-content-body"><br><br>1.  <div class="list-icon"><br><div class="content-list-text"><br><br>首先我们要来下载Ubuntu操作系统，操作系统的下载可以到Ubuntu的中文官方网站进行下载，也可以到其他的软件网站进行下载，但是到其他地方下载的时候一定要注意到大型的软件网站，以免中毒，下载的时候注意下载ISO格式的。<br><br><div class="content-list-media"><br><div class="content-list-image clearfix"><a href="http://jingyan.baidu.com/album/a3761b2b66fe141577f9aa51.html?picindex=1" target="_blank" rel="noopener"><img src="http://h.hiphotos.baidu.com/exp/w=500/sign=aff8b84665380cd7e61ea2ed9145ad14/9c16fdfaaf51f3deab09fe9294eef01f3b297988.jpg" alt="怎么用u盘安装ubuntu"></a><br><br></div></div></div></div><br>2.  <div class="list-icon"><br><div class="content-list-text"><br><br>接着我们就要下载UltraISO软碟通，用于制作U盘启动盘。这个软件小编没有找到官网，我们只有到各大软件网站进行下载，还是那句话，下载的时候一定要小心。完成下载之后，我们就可以进行软件的安装了，安装过程很简单，小编不再复述了。<br><br><div class="content-list-media"><br><div class="content-list-image clearfix"><a href="http://jingyan.baidu.com/album/a3761b2b66fe141577f9aa51.html?picindex=2" target="_blank" rel="noopener"><img src="http://b.hiphotos.baidu.com/exp/w=500/sign=4dd4fed601e9390156028d3e4bed54f9/0823dd54564e9258e004c0189c82d158ccbf4e17.jpg" alt="怎么用u盘安装ubuntu"></a><br><br></div></div></div></div><br>3.  <div class="list-icon"><br><div class="content-list-text"><br><br>安装之后我们打开软件，点击文件打开，找到我们刚才进行下载的Ubuntu的ISO文件，然后点击打开，完成ISO文件的加载。接着我们插入U盘，点击UltraISO启动选项，然后找到写入硬盘映像选项，点击它进入到将要进行操作的界面。<br><br><div class="content-list-media"><br><div class="content-list-image clearfix"><a href="http://jingyan.baidu.com/album/a3761b2b66fe141577f9aa51.html?picindex=3" target="_blank" rel="noopener"><img src="http://h.hiphotos.baidu.com/exp/w=500/sign=096618a60c3387449cc52f7c610ed937/b3b7d0a20cf431ad34ad05cf4b36acaf2fdd98cd.jpg" alt="怎么用u盘安装ubuntu"></a><br><div class="content-list-image clearfix"><a href="http://jingyan.baidu.com/album/a3761b2b66fe141577f9aa51.html?picindex=4" target="_blank" rel="noopener"><img src="http://d.hiphotos.baidu.com/exp/w=500/sign=3a9bcb5fa9014c08193b28a53a7a025b/0b46f21fbe096b63259b18a60c338744eaf8ac42.jpg" alt="怎么用u盘安装ubuntu"></a><br><br></div></div></div></div></div><br>4.  <div class="list-icon"><br><div class="content-list-text"><br><br>此时如果你插入了U盘就可以看到，如果你插入的U盘很多的话，一定要注意选择自己需要进行操作的U盘，然后点击便捷启动，写入新的驱动器引导区写入新的驱动器引导区写入新的驱动器引导区写入新的驱动器引导区–Syslinux，然后点击确定。<br><br><div class="content-list-media"><br><div class="content-list-image clearfix"><a href="http://jingyan.baidu.com/album/a3761b2b66fe141577f9aa51.html?picindex=5" target="_blank" rel="noopener"><img src="http://h.hiphotos.baidu.com/exp/w=500/sign=faa8a50ea786c91708035239f93c70c6/962bd40735fae6cd14ebea970fb30f2443a70fec.jpg" alt="怎么用u盘安装ubuntu"></a><br><div class="content-list-image clearfix"><a href="http://jingyan.baidu.com/album/a3761b2b66fe141577f9aa51.html?picindex=6" target="_blank" rel="noopener"><img src="http://e.hiphotos.baidu.com/exp/w=500/sign=7da038ce6e061d957d4637384bf50a5d/bf096b63f6246b60d892f382ebf81a4c500fa2ac.jpg" alt="怎么用u盘安装ubuntu"></a><br><br></div></div></div></div></div><br>5.  <div class="list-icon"><br><div class="content-list-text"><br><br>接着我们就需要最后一步操作了，点击写入按钮，会弹出再次确认是否是你需要写入的U盘，点击确定后开始写入，完成了之后我们就可以使用U盘启动盘了。<br><br><div class="content-list-media"><br><div class="content-list-image clearfix"><a href="http://jingyan.baidu.com/album/a3761b2b66fe141577f9aa51.html?picindex=7" target="_blank" rel="noopener"><img src="http://e.hiphotos.baidu.com/exp/w=500/sign=2ec622ea11dfa9ecfd2e561752d1f754/d8f9d72a6059252d083f5df2349b033b5bb5b918.jpg" alt="怎么用u盘安装ubuntu"></a><br><br></div></div></div></div><br>6.  <div class="list-icon"><br><div class="content-list-text"><br><br>在进行U盘安装系统之前，我们还需要设置BIOS选项，因为默认的是硬盘启动，因此我们需要进行设置为U盘启动，不同的主板设置U盘启动的方式也不同，因此小编就不在此详述怎么更改BIOS设置，大家查找自己的主板型号然后在网上找相关的设置教程即可。<br><br><div class="content-list-media"><br><div class="content-list-image clearfix"><a href="http://jingyan.baidu.com/album/a3761b2b66fe141577f9aa51.html?picindex=8" target="_blank" rel="noopener"><img src="http://d.hiphotos.baidu.com/exp/w=500/sign=8ddce8d0fdfaaf5184e381bfbc5594ed/960a304e251f95ca920fd240c9177f3e66095249.jpg" alt="怎么用u盘安装ubuntu"></a><br><br></div></div></div></div><br>7.  <div class="list-icon"><br><div class="content-list-text"><br><br>完成BIOS设置后我们就可以插入U盘，重启电脑了，我们就可以使用U盘进行Ubuntu操作系统的安装了，具体的安装步骤小编就不在详述了，网上有很多相关的教程，大家可以参考下。<br><br><div class="content-list-media"><br><div class="content-list-image clearfix"><a href="http://jingyan.baidu.com/album/a3761b2b66fe141577f9aa51.html?picindex=9" target="_blank" rel="noopener"><img src="http://e.hiphotos.baidu.com/exp/w=500/sign=9683a6640cf431adbcd243397b37ac0f/2cf5e0fe9925bc317854426e5edf8db1cb13703e.jpg" alt="怎么用u盘安装ubuntu"></a><br><br><div class="last-item"><span class="last-item-end">END</span><br></div></div></div></div></div>
+
+<div class="exp-content-block"><br><br>## 注意事项<br><br><div class="exp-content-body"><br><br><em>   <div class="content-list-text"><br><br>下载Ubuntu操作系统的时候一定要注意，如果你对linux操作系统不是很熟悉的情况下，建议你下载桌面版本，小编就是在不知道的情况下下载了服务器版本，都是命令行操作，难为死我了。<br><br></div>
+</em>   <div class="content-list-text"><br><br>由于小编的U盘中有东西，所以不便进行U盘启动盘的制作，只是按照网上现有的方法进行，至于效果如何小编没有做确认。<br><br></div>
+
+<p></p></div></div></div></div></div></div></div></div></div></div><p></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/安装ubuntu/" rel="tag"># 安装ubuntu</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/18/PowerDesigner使用教程-使用方法/" rel="next" title="PowerDesigner使用教程|使用方法">
+                <i class="fa fa-chevron-left"></i> PowerDesigner使用教程|使用方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/23/Ubuntu 修复windows启动项/" rel="prev" title="Ubuntu 修复windows启动项">
+                Ubuntu 修复windows启动项 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

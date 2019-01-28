@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Redis,ubuntu,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="1. 下载并安装 redis 2.6.16版sudo mkdir /usr/local/src/Redis cd /usr/local/src/Redis sudo wget http://download.redis.io/releases/redis-2.6.16.tar.gz    tar -zxf redis-2.6.16.tar.gzcd redis-2.6.16 sudo make 2">
+<meta name="keywords" content="Redis,ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 安装 Redis">
+<meta property="og:url" content="http://pangguoming.com/blog/2015/06/22/Ubuntu 安装 Redis/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="1. 下载并安装 redis 2.6.16版sudo mkdir /usr/local/src/Redis cd /usr/local/src/Redis sudo wget http://download.redis.io/releases/redis-2.6.16.tar.gz    tar -zxf redis-2.6.16.tar.gzcd redis-2.6.16 sudo make 2">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:updated_time" content="2019-01-26T15:11:00.893Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu 安装 Redis">
+<meta name="twitter:description" content="1. 下载并安装 redis 2.6.16版sudo mkdir /usr/local/src/Redis cd /usr/local/src/Redis sudo wget http://download.redis.io/releases/redis-2.6.16.tar.gz    tar -zxf redis-2.6.16.tar.gzcd redis-2.6.16 sudo make 2">
+<meta name="twitter:image" content="https://code.csdn.net/assets/CODE_ico.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2015/06/22/Ubuntu 安装 Redis/">
+
+
+
+
+
+  <title>Ubuntu 安装 Redis | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2015/06/22/Ubuntu 安装 Redis/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Ubuntu 安装 Redis</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-22T21:27:00+08:00">
+                2015-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-下载并安装-redis-2-6-16版"><a href="#1-下载并安装-redis-2-6-16版" class="headerlink" title="1. 下载并安装 redis 2.6.16版"></a>1. 下载并安装 redis 2.6.16版</h3><p>sudo mkdir /usr/local/src/Redis</p>
+<p>cd /usr/local/src/Redis</p>
+<p>sudo wget <a href="http://download.redis.io/releases/redis-2.6.16.tar.gz" target="_blank" rel="noopener">http://download.redis.io/releases/redis-2.6.16.tar.gz  
+</a></p>
+<p>tar -zxf redis-2.6.16.tar.gz<br>cd redis-2.6.16</p>
+<p>sudo make</p>
+<h3 id="2-检验编译是否-正确"><a href="#2-检验编译是否-正确" class="headerlink" title="2. 检验编译是否 正确"></a>2. 检验编译是否 正确</h3><p>sudo make test</p>
+<div class="dp-highlighter bg_cpp"><br><div class="bar"><br><div class="tools"><strong>[cpp]</strong> <a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="view plain" target="_blank" rel="noopener">view plain</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="copy" target="_blank" rel="noopener">copy</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/302207" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/302207/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a><br><div><br><br>1.  &lt;span style=<span class="string">“font-size:14px;”&gt;sounion@ubuntu:/usr/local/src/redis-2.6.16$ make test  </span><br>2.  cd src &amp;&amp; make test<br>3.  make[1]: Entering directory <code>/usr/local/src/redis-2.6.16/src&#39;  
+4.  You need tcl 8.5 or newer in order to run the Redis test  
+5.  make[1]: *** [test] Error 1  
+6.  make[1]: Leaving directory</code>/usr/local/src/redis-2.6.16/src’<br>7.  make: <strong>* [test] Error 2<br>8.  <br><br>安装 tcl 8.5 后可以解决上述编译错误。<br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"></div></div></div></strong>[html]<strong> <a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="view plain" target="_blank" rel="noopener">view plain</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="copy" target="_blank" rel="noopener">copy</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/302207" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/302207/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a><br><div><br><br>1.  <span class="tag">&lt;<span class="tag-name">span <span class="attribute">style=<span class="attribute-value">“font-size:14px;”<span class="tag">&gt;sounion@ubuntu:/usr/local/src/redis-2.6.16$ sudo apt-get install tcl  </span></span></span></span></span><br>2.  Reading package lists… Done<br>3.  Building dependency tree<br>4.  Reading state information… Done<br>5.  The following package was automatically installed and is no longer required:<br>6.    tdb-tools<br>7.  Use ‘apt-get autoremove’ to remove them.<br>8.  The following extra packages will be installed:<br>9.    tcl8.5<br>10.  Suggested packages:<br>11.    tclreadline<br>12.  The following NEW packages will be installed:<br>13.    tcl tcl8.5<br>14.  0 upgraded, 2 newly installed, 0 to remove and 565 not upgraded.<br>15.  Need to get 1,102 kB of archives.<br>16.  After this operation, 3,862 kB of additional disk space will be used.<br>17.  Do you want to continue [Y/n]? y<br>18.  Get:1 <a href="http://mirrors.sohu.com/ubuntu/" target="_blank" rel="noopener">http://mirrors.sohu.com/ubuntu/</a> precise/main tcl8.5 amd64 8.5.11-1ubuntu1 [1,098 kB]<br>19.  Get:2 <a href="http://mirrors.sohu.com/ubuntu/" target="_blank" rel="noopener">http://mirrors.sohu.com/ubuntu/</a> precise/main tcl all 8.5.0-2 [4,690 B]<br>20.  Fetched 1,102 kB in 3s (303 kB/s)<br>21.  Selecting previously unselected package tcl8.5.<br>22.  (Reading database … 199470 files and directories currently installed.)<br>23.  Unpacking tcl8.5 (from …/tcl8.5_8.5.11-1ubuntu1_amd64.deb) …<br>24.  Selecting previously unselected package tcl.<br>25.  Unpacking tcl (from …/archives/tcl_8.5.0-2_all.deb) …<br>26.  Processing triggers for man-db …<br>27.  Setting up tcl8.5 (8.5.11-1ubuntu1) …<br>28.  update-alternatives: using /usr/bin/tclsh8.5 to provide /usr/bin/tclsh (tclsh) in auto mode.<br>29.  Setting up tcl (8.5.0-2) …<br>30.  update-alternatives: using /usr/bin/tclsh-default to provide /usr/bin/tclsh (tclsh) in auto mode.<br>31.  Processing triggers for libc-bin …<br>32.  ldconfig deferred processing now taking place<br>33.  <span class="tag">&lt;/<span class="tag-name">span<span class="tag">&gt;  </span></span></span><br><br>### 3. 手工启动redis，测试redis是否运行正常<br><br>a)执行命令手工启动redis server: </div></strong>  <strong>  该命令将使用缺省参数
+
+</strong>./src/redis-server<strong><br><br>b)检查进程是否有Redis了：ps aux | grep redis，可以看见进程列表中有一个叫“src/redis-server”的进程了<br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"></div></div></div></strong>[html]<strong> <a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="view plain" target="_blank" rel="noopener">view plain</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="copy" target="_blank" rel="noopener">copy</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/302207" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/302207/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a><br><div><br><br>1.  <span class="tag">&lt;<span class="tag-name">span <span class="attribute">style=<span class="attribute-value">“font-size:14px;”<span class="tag">&gt;sounion@ubuntu:~/Desktop$ ps aux | grep redis  </span></span></span></span></span><br>2.  sounion  65350  0.0  0.0  35024  1960 pts/1    Sl+  07:28   0:00 ./src/redis-server<br>3.  sounion  65441  0.0  0.0  13584   916 pts/4    S+   07:31   0:00 grep <span class="attribute">–color=<span class="attribute-value">auto redis  </span></span><br>4.  <span class="tag">&lt;/<span class="tag-name">span<span class="tag">&gt;  </span></span></span><br><br>c) 启动redis自带的客户端，进行测试：<br>        # src/redis-cli – 启动客户端并连接本地Redis<br>        # set foo bar – 提示 “ok”说明设置键值正常。<br>        # get foo – 能够提示返回正确的“bar”，说明运行正常。<br>        # quit – 退出客户端<br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"></div></div></div></div></strong>[html]<strong> <a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="view plain" target="_blank" rel="noopener">view plain</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="copy" target="_blank" rel="noopener">copy</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/302207" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/302207/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a><br><div><br><br>1.  <span class="tag">&lt;<span class="tag-name">span <span class="attribute">style=<span class="attribute-value">“font-size:14px;”<span class="tag">&gt;sounion@ubuntu:/usr/local/src/redis-2.6.16$ ./src/redis-cli   </span></span></span></span></span><br>2.  redis 127.0.0.1:6379<span class="tag">&gt; set foo bar  </span><br>3.  OK<br>4.  redis 127.0.0.1:6379<span class="tag">&gt; get foo  </span><br>5.  “bar”<br>6.  redis 127.0.0.1:6379<span class="tag">&gt; quit  </span><br>7.  <span class="tag">&lt;/<span class="tag-name">span<span class="tag">&gt;  </span></span></span><br><br>d) 如果希望使用自己的 redis.conf 配置文件，可以使用如下命令：
+
+</div></strong>./src/redis-server /path/to/redis.conf<strong><br><br>e) 如果希望额外覆盖 redis.conf 配置文件中的某些参数，可以直接在命令行中使用参数：
+
+</strong>./src/redis-server /etc/redis.conf  –loglevel debug<strong>
+
+</strong>./sr/redis-server  –port 9999 –slaveof 127.0.0.1 6379<strong><br><br>### 4.  开启多个redis 服务器实例<br><br><span lang="zh-CN">一台Redis<span lang="zh-CN">服务器，分成多个节点，每个节点分配一个端口（6380<span lang="zh-CN">，6381…<span lang="zh-CN">），默认端口是6379<span lang="zh-CN">。</span></span></span></span></span><br><br><span lang="zh-CN">如果已经开启了 一个redis 服务实例，再次执行 ./src/redis-server 会产生如下错误</span><br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"></div></div></div></strong>[html]<strong> <a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="view plain" target="_blank" rel="noopener">view plain</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="copy" target="_blank" rel="noopener">copy</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/302207" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/302207/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a><br><div><br><br>1.  <span class="tag">&lt;<span class="tag-name">span <span class="attribute">style=<span class="attribute-value">“font-size:14px;”<span class="tag">&gt;sounion@ubuntu:/usr/local/src/redis-2.6.16$ sudo ./src/redis-server   </span></span></span></span></span><br>2.  [347] 19 Apr 07:47:00.859 # Warning: no config file specified, using the default config. In order to specify a config file use ./src/redis-server /path/to/redis.conf<br>3.  [347] 19 Apr 07:47:00.861 * Max number of open files set to 10032<br>4.  [347] 19 Apr 07:47:00.861 # Opening port 6379: bind: Address already in use<br>5.  <span class="tag">&lt;/<span class="tag-name">span<span class="tag">&gt;  </span></span></span><br><br><span lang="zh-CN"> </span><br><br><span lang="zh-CN">每个节点对应一个Redis<span lang="zh-CN">配置文件，如：redis6380.conf<span lang="zh-CN">、redis6381.conf</span></span></span><br><br>cp redis.conf  redis6380.conf<br><br>vi redis6380.conf<br><br>pidfile : pidfile/var/run/redis/redis_6380.pid<br><br>port 6380<br><br>logfile : logfile/var/log/redis/redis_6380.log<br><br>rdbfile : dbfilenamedump_6380.rdb<br><br>启动多个redis实例：<br><br>./src/redis-server /usr/local/redis/redis6380.conf<br><br>./src/redis-server /usr/local/redis/redis6381.conf<br><br>### 5、安装 redis-server<br><br>如果只是偶尔测试使用，可以使用 ./src/redis-server 方式直接启动。<br><br>但是如果是生产环境，需要进行 redis-server 安装部署。<br><br>命令：
+
+</div></strong>cd /us/local/src/redis-2.6.16//utils<strong>
+
+</strong>sudo ./install_server.sh<strong>
+
+</strong>这个悲催的install_server.sh 命令必须在进入 utils 目录后再执行！<strong>
+
+</strong>因为它的脚本写法以来一些相对目录路径！<strong><br><br><div class="dp-highlighter bg_cpp"><br><div class="bar"><br><div class="tools"></div></div></div></strong>[cpp]** <a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="view plain" target="_blank" rel="noopener">view plain</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="copy" target="_blank" rel="noopener">copy</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/cfy_phonex/article/details/24140985" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/302207" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/302207/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a><br><div><br><br>1.  sounion@ubuntu:/usr/local/src/redis-2.6.16/utils$ sudo ./install_server.sh<br>2.  Welcome to the redis service installer<br>3.  This script will help you easily set up a running redis server<br>4.<br>5.<br>6.  Please select the redis port <span class="keyword">for <span class="keyword">this instance: [6379]   </span></span><br>7.  Selecting <span class="keyword">default: 6379  </span><br>8.  Please select the redis config file name [/etc/redis/6379.conf]<br>9.  Selected <span class="keyword">default - /etc/redis/6379.conf  </span><br>10.  Please select the redis log file name [/var/log/redis_6379.log]<br>11.  Selected <span class="keyword">default - /var/log/redis_6379.log  </span><br>12.  Please select the data directory <span class="keyword">for <span class="keyword">this instance [/var/lib/redis/6379]   </span></span><br>13.  Selected <span class="keyword">default - /var/lib/redis/6379  </span><br>14.  Please select the redis executable path [] /usr/local/src/redis-2.6.16/src/redis-server<br>15.  s#^port [0-9]{4}$#port 6379#;s#^logfile .+$#logfile /var/log/redis_6379.log#;s#^dir .+$#dir /var/lib/redis/6379#;s#^pidfile .+$#pidfile /var/run/redis_6379.pid#;s#^daemonize no$#daemonize yes#;<br>16.  Copied /tmp/6379.conf =&gt; /etc/init.d/redis_6379<br>17.  Installing service…<br>18.  update-rc.d: warning: /etc/init.d/redis_6379 missing LSB information<br>19.  update-rc.d: see &lt;http:<span class="comment">//wiki.debian.org/LSBInitScripts&gt;  </span><br>20.   Adding system startup <span class="keyword">for /etc/init.d/redis_6379 …  </span><br>21.     /etc/rc0.d/K20redis_6379 -&gt; ../init.d/redis_6379<br>22.     /etc/rc1.d/K20redis_6379 -&gt; ../init.d/redis_6379<br>23.     /etc/rc6.d/K20redis_6379 -&gt; ../init.d/redis_6379<br>24.     /etc/rc2.d/S20redis_6379 -&gt; ../init.d/redis_6379<br>25.     /etc/rc3.d/S20redis_6379 -&gt; ../init.d/redis_6379<br>26.     /etc/rc4.d/S20redis_6379 -&gt; ../init.d/redis_6379<br>27.     /etc/rc5.d/S20redis_6379 -&gt; ../init.d/redis_6379<br>28.  Success!<br>29.  Starting Redis server…<br>30.  Installation successful!<br><br>### 6、添加到开机启动<br><br>如果进行了上述生产环境安装，则不再需要手动添加开机启动。<br><br>否则，需要修改<br><br>sudo vim /etc/rc.local<br><br>添加 /usr/local/src/redis-2.6.16/src/redis-server redis.conf<br><br>### 7、修改redis配置<br><br>如果 vm.overcommit_memory=0, 则在低内存状态时，后台redis 保存服务可能会失败。<br><br>需要修改配置文件/etc/sysctl.conf  添加 vm.overcommit_memory=1 然后重新启动使之生效。<br><br>刷新配置生效 sysctl vm.overcommit_memory=1<br><br>补充介绍<br><br>如果内存情况比较紧张的话，需要设定内核参数： /proc/sys/vm/overcommit_memory<br><br>这里说一下这个配置的含义：<br><br>/proc/sys/vm/overcommit_memory<br><br>该文件指定了内核针对内存分配的策略，其值可以是0、1、2。<br><br>0，表示内核将检查是否有足够的可用内存供应用进程使用；如果有足够的可用内存，内存申请允许；否则，内存申请失败，并把错误返回给应用进程。<br><br>1，表示内核允许分配所有的物理内存，而不管当前的内存状态如何。<br><br>2，表示内核允许分配超过所有物理内存和交换空间总和的内存<br></div></div></div></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redis/" rel="tag"># Redis</a>
+          
+            <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/18/安装Ubuntu Linux系统时硬盘分区最合理的方法/" rel="next" title="安装Ubuntu Linux系统时硬盘分区最合理的方法">
+                <i class="fa fa-chevron-left"></i> 安装Ubuntu Linux系统时硬盘分区最合理的方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/05/Redis快速入门/" rel="prev" title="Redis快速入门">
+                Redis快速入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-下载并安装-redis-2-6-16版"><span class="nav-number">1.</span> <span class="nav-text">1. 下载并安装 redis 2.6.16版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-检验编译是否-正确"><span class="nav-number">2.</span> <span class="nav-text">2. 检验编译是否 正确</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

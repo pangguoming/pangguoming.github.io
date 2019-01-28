@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="# 首先，要明确几个点：1.在JS里，万物皆对象。方法（Function）是对象，方法的原型(Function.prototype)是对象。因此，它们都会具有对象共有的特点。即：对象具有属性proto，可称为隐式原型，一个对象的隐式原型指向构造该对象的构造函数的原型，这也保证了实例能够访问在构造函数原型中定义的属性和方法。2.方法(Function)方法这个特殊的对象，除了和其他对象一样有上述pr">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解js中的原型链，prototype与__proto__的关系">
+<meta property="og:url" content="http://pangguoming.com/blog/2017/03/06/理解js中的原型链，prototype与__proto__的关系/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="# 首先，要明确几个点：1.在JS里，万物皆对象。方法（Function）是对象，方法的原型(Function.prototype)是对象。因此，它们都会具有对象共有的特点。即：对象具有属性proto，可称为隐式原型，一个对象的隐式原型指向构造该对象的构造函数的原型，这也保证了实例能够访问在构造函数原型中定义的属性和方法。2.方法(Function)方法这个特殊的对象，除了和其他对象一样有上述pr">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images0.cnblogs.com/blog2015/683809/201508/201728184569708.jpg">
+<meta property="og:updated_time" content="2019-01-26T15:06:23.882Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="理解js中的原型链，prototype与__proto__的关系">
+<meta name="twitter:description" content="# 首先，要明确几个点：1.在JS里，万物皆对象。方法（Function）是对象，方法的原型(Function.prototype)是对象。因此，它们都会具有对象共有的特点。即：对象具有属性proto，可称为隐式原型，一个对象的隐式原型指向构造该对象的构造函数的原型，这也保证了实例能够访问在构造函数原型中定义的属性和方法。2.方法(Function)方法这个特殊的对象，除了和其他对象一样有上述pr">
+<meta name="twitter:image" content="https://images0.cnblogs.com/blog2015/683809/201508/201728184569708.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2017/03/06/理解js中的原型链，prototype与__proto__的关系/">
+
+
+
+
+
+  <title>理解js中的原型链，prototype与__proto__的关系 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2017/03/06/理解js中的原型链，prototype与__proto__的关系/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">理解js中的原型链，prototype与__proto__的关系</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-06T12:31:00+08:00">
+                2017-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="blog_content" class="blog_content"><br><br><img src="https://images0.cnblogs.com/blog2015/683809/201508/201728184569708.jpg" alt=""><br><br># 首先，要明确几个点：<br><br>1.在JS里，万物皆对象。方法（Function）是对象，方法的原型(Function.prototype)是对象。因此，它们都会具有对象共有的特点。<br>即：对象具有属性<strong>proto</strong>，可称为隐式原型，一个对象的隐式原型指向构造该对象的构造函数的原型，这也保证了实例能够访问在构造函数原型中定义的属性和方法。<br><br>2.方法(Function)<br>方法这个特殊的对象，除了和其他对象一样有上述<em>proto</em>属性之外，还有自己特有的属性——原型属性（prototype），这个属性是一个指针，指向一个对象，这个对象的用途就是包含所有实例共享的属性和方法（我们把这个对象叫做原型对象）。原型对象也有一个属性，叫做constructor，这个属性包含了一个指针，指回原构造函数。<br><br># 好啦，知道了这两个基本点，我们来看看上面这副图。<br><br>1.构造函数Foo()<br>构造函数的原型属性Foo.prototype指向了原型对象，在原型对象里有共有的方法，所有构造函数声明的实例（这里是f1，f2）都可以共享这个方法。<br><br>2.原型对象Foo.prototype<br>Foo.prototype保存着实例共享的方法，有一个指针constructor指回构造函数。<br><br>3.实例<br>f1和f2是Foo这个对象的两个实例，这两个对象也有属性<strong>proto</strong>，指向构造函数的原型对象，这样子就可以像上面1所说的访问原型对象的所有方法啦。<br><br># 另外：<br><br>构造函数Foo()除了是方法，也是对象啊，它也有<strong>proto</strong>属性，指向谁呢？<br>指向它的构造函数的原型对象呗。函数的构造函数不就是Function嘛，因此这里的<strong>proto</strong>指向了Function.prototype。<br>其实除了Foo()，Function(), Object()也是一样的道理。<br><br>原型对象也是对象啊，它的<strong>proto</strong>属性，又指向谁呢？<br>同理，指向它的构造函数的原型对象呗。这里是Object.prototype.<br><br>最后，Object.prototype的<strong>proto</strong>属性指向null。<br><br># 总结：<br><br>1.对象有属性<strong>proto</strong>,指向该对象的构造函数的原型对象。<br>2.方法除了有属性<strong>proto</strong>,还有属性prototype，prototype指向该方法的原型对象。<br><br><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>***</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br><br>说到prototype，就不得不先说下new的过程。<br><br>我们先看看这样一段代码：<br><br><div class="syntaxhighlighter  "><br><div class="lines"><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>1</code></td><br><td class="content"><code class="plain">&lt;script type=</code><code class="string">“text/javascript”</code><code class="plain">&gt;</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>2</code></td><br><td class="content"><code class="keyword"> var</code> <code class="plain">Person = </code><code class="keyword">function</code> <code class="plain">() { };</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>3</code></td><br><td class="content"><code class="keyword"> var</code> <code class="plain">p = </code><code class="keyword">new</code> <code class="plain">Person();</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>4</code></td><br><td class="content"><code class="plain"></code></td><br><br></tr><br><br></tbody><br><br></table><br><br>很简单的一段代码，我们来看看这个new究竟做了什么？我们可以把new的过程拆分成以下三步：<br><br><1> var p={}; 也就是说，初始化一个对象p。<br><br><2> p.<strong>proto</strong>=Person.prototype;<br><br><3> Person.call(p);也就是说构造p，也可以称之为初始化p。<br><br>关键在于第二步，我们来证明一下：<br><br><div class="syntaxhighlighter  "><br><div class="lines"><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>1</code></td><br><td class="content"><code class="plain">&lt;script type=</code><code class="string">“text/javascript”</code><code class="plain">&gt;</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>2</code></td><br><td class="content"><code class="keyword">var</code> <code class="plain">Person = </code><code class="keyword">function</code> <code class="plain">() { };</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>3</code></td><br><td class="content"><code class="keyword">var</code> <code class="plain">p = </code><code class="keyword">new</code> <code class="plain">Person();</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>4</code></td><br><td class="content"><code class="plain">alert(p.<strong>proto</strong> === Person.prototype);</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>5</code></td><br><td class="content"><code class="plain"></code></td><br><br></tr><br><br></tbody><br><br></table><br><br>这段代码会返回true。说明我们步骤2的正确。<br><br>那么<strong>proto</strong>是什么？我们在这里简单地说下。每个对象都会在其内部初始化一个属性，就是<strong>proto</strong>，当我们访问一个对象的属性 时，如果这个对象内部不存在这个属性，那么他就会去<strong>proto</strong>里找这个属性，这个<strong>proto</strong>又会有自己的<strong>proto</strong>，于是就这样 一直找下去，也就是我们平时所说的原型链的概念。<br><br>按照标准，<strong>proto</strong>是不对外公开的，也就是说是个私有属性，但是Firefox的引擎将他暴露了出来成为了一个共有的属性，我们可以对外访问和设置。<br><br>好，概念说清了，让我们看一下下面这些代码：<br><br><div class="syntaxhighlighter  "><br><div class="lines"><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>1</code></td><br><td class="content"><code class="plain">&lt;script type=</code><code class="string">“text/javascript”</code><code class="plain">&gt;</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>2</code></td><br><td class="content"><code class="keyword">var</code> <code class="plain">Person = </code><code class="keyword">function</code> <code class="plain">() { };</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>3</code></td><br><td class="content"><code class="plain"> Person.prototype.Say = </code><code class="keyword">function</code> <code class="plain">() {</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>4</code></td><br><td class="content"><code class="plain"> alert(</code><code class="string">“Person say”</code><code class="plain">);</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>5</code></td><br><td class="content"><code class="plain">}</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>6</code></td><br><td class="content"><code class="keyword">var</code> <code class="plain">p = </code><code class="keyword">new</code> <code class="plain">Person();</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>7</code></td><br><td class="content"><code class="plain">p.Say();</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>8</code></td><br><td class="content"><code class="plain"></code></td><br><br></tr><br><br></tbody><br><br></table><br><br>这段代码很简单，相信每个人都这样写过，那就让我们看下为什么p可以访问Person的Say。<br><br>首先var p=new Person()；可以得出p.<strong>proto</strong>=Person.prototype。那么当我们调用p.Say()时，首先p中没有Say这个属性， 于是，他就需要到他的<strong>proto</strong>中去找，也就是Person.prototype，而我们在上面定义了 Person.prototype.Say=function(){}; 于是，就找到了这个方法。<br><br>好，接下来，让我们看个更复杂的。<br><br><div class="syntaxhighlighter  "><br><div class="lines"><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>01</code></td><br><td class="content"><code class="plain">&lt;script type=</code><code class="string">“text/javascript”</code><code class="plain">&gt;</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>02</code></td><br><td class="content"><code class="keyword">var</code> <code class="plain">Person = </code><code class="keyword">function</code> <code class="plain">() { };</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>03</code></td><br><td class="content"><code class="plain"> Person.prototype.Say = </code><code class="keyword">function</code> <code class="plain">() {</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>04</code></td><br><td class="content"><code class="plain"> alert(</code><code class="string">“Person say”</code><code class="plain">);</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>05</code></td><br><td class="content"><code class="plain">}</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>06</code></td><br><td class="content"><code class="plain">Person.prototype.Salary = 50000;</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>07</code></td><br><td class="content"><code class="keyword">var</code> <code class="plain">Programmer = </code><code class="keyword">function</code> <code class="plain">() { };</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>08</code></td><br><td class="content"><code class="plain">Programmer.prototype = </code><code class="keyword">new</code> <code class="plain">Person();</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>09</code></td><br><td class="content"><code class="plain">Programmer.prototype.WriteCode = </code><code class="keyword">function</code> <code class="plain">() {</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>10</code></td><br><td class="content"><code class="plain"> alert(</code><code class="string">“programmer writes code”</code><code class="plain">);</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>11</code></td><br><td class="content"><code class="plain">};</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>12</code></td><br><td class="content"><code class="plain">Programmer.prototype.Salary = 500;</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>13</code></td><br><td class="content"><code class="keyword">var</code> <code class="plain">p = </code><code class="keyword">new</code> <code class="plain">Programmer();</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>14</code></td><br><td class="content"><code class="plain">p.Say();</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>15</code></td><br><td class="content"><code class="plain">p.WriteCode();</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>16</code></td><br><td class="content"><code class="plain">alert(p.Salary);</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>17</code></td><br><td class="content"><code class="plain"></code></td><br><br></tr><br><br></tbody><br><br></table><br><br>我们来做这样的推导：<br><br>var p=new Programmer()可以得出p.<strong>proto</strong>=Programmer.prototype;<br><br>而在上面我们指定了Programmer.prototype=new Person();我们来这样拆分，var p1=new Person();Programmer.prototype=p1;那么:<br><br>p1.<strong>proto</strong>=Person.prototype;<br><br>Programmer.prototype.<strong>proto</strong>=Person.prototype;<br><br>由根据上面得到p.<strong>proto</strong>=Programmer.prototype。可以得到p.<strong>proto</strong>.<strong>proto</strong>=Person.prototype。<br><br>好，算清楚了之后我们来看上面的结果,p.Say()。由于p没有Say这个属性，于是去p.<strong>proto</strong>，也就是 Programmer.prototype，也就是p1中去找，由于p1中也没有Say，那就去p.<strong>proto</strong>.<strong>proto</strong>，也就是 Person.prototype中去找，于是就找到了alert(“Person say”)的方法。<br><br>其余的也都是同样的道理。<br><br>这也就是原型链的实现原理。<br><br>最后，其实prototype只是一个假象，他在实现原型链中只是起到了一个辅助作用，换句话说，他只是在new的时候有着一定的价值，而原型链的本质，其实在于<strong>proto</strong>！<br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></3></2></1></div></div></div></div></div></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/02/C# 事件（Event）/" rel="next" title="C# 事件（Event）">
+                <i class="fa fa-chevron-left"></i> C# 事件（Event）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/06/JS原型继承和类式继承/" rel="prev" title="JS原型继承和类式继承">
+                JS原型继承和类式继承 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

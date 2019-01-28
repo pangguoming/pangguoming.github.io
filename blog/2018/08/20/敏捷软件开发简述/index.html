@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="软件工程,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="前言：由于我读了邹欣老师的《构建之法:现代软件工程(第二版)》，因此对敏捷软件开发有了比较大的兴趣。于是我在网上找了一些论文，比如Requirements Engineering and Agile Software Development、A decade of agile methodologies: Towards explaining agile software development。">
+<meta name="keywords" content="软件工程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="敏捷软件开发简述">
+<meta property="og:url" content="http://pangguoming.com/blog/2018/08/20/敏捷软件开发简述/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="前言：由于我读了邹欣老师的《构建之法:现代软件工程(第二版)》，因此对敏捷软件开发有了比较大的兴趣。于是我在网上找了一些论文，比如Requirements Engineering and Agile Software Development、A decade of agile methodologies: Towards explaining agile software development。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1030887/201610/1030887-20161022224315701-1449445333.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1030887/201610/1030887-20161022224425123-1825836340.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1030887/201610/1030887-20161022224526576-1651164232.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1030887/201610/1030887-20161022224556560-1472814008.png">
+<meta property="og:updated_time" content="2019-01-26T14:39:31.676Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="敏捷软件开发简述">
+<meta name="twitter:description" content="前言：由于我读了邹欣老师的《构建之法:现代软件工程(第二版)》，因此对敏捷软件开发有了比较大的兴趣。于是我在网上找了一些论文，比如Requirements Engineering and Agile Software Development、A decade of agile methodologies: Towards explaining agile software development。">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/1030887/201610/1030887-20161022224315701-1449445333.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2018/08/20/敏捷软件开发简述/">
+
+
+
+
+
+  <title>敏捷软件开发简述 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2018/08/20/敏捷软件开发简述/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">敏捷软件开发简述</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-20T10:45:00+08:00">
+                2018-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前言：由于我读了邹欣老师的《构建之法:现代软件工程(第二版)》，因此对敏捷软件开发有了比较大的兴趣。于是我在网上找了一些论文，比如Requirements Engineering and Agile Software Development、A decade of agile methodologies: Towards explaining agile software development。在读了这些论文之后，对敏捷软件开发有了大致的了解。这篇博文主要是简单介绍敏捷软件开发，重点集中在主要的敏捷开发方法和它的优势，同时也作为一个备忘录，来记录我在这个过程中收获到的重要的知识。</p>
+<p>目录</p>
+<ol>
+<li><p>敏捷开发简介</p>
+</li>
+<li><p>传统软件开发方法的缺点</p>
+</li>
+<li><p>敏捷的优势</p>
+</li>
+<li><p>主要的敏捷方法</p>
+</li>
+</ol>
+<p>4.1 Scrum</p>
+<p>4.2   极限编程（eXtreme Prgramming）</p>
+<p>4.3   精益软件开发（Lean Software Development）</p>
+<ol start="5">
+<li>参考文献</li>
+</ol>
+<h2 id="1-敏捷开发简介"><a href="#1-敏捷开发简介" class="headerlink" title="1.  敏捷开发简介"></a>1.  敏捷开发简介</h2><pre><code>软件工程一直是一项复杂的任务，而纵观其历史，软件工程也发展出了许多不同的理论。从最开始的原始状态，到逐渐成型的瀑布模型，软件工程正在不断发展。在二十一世纪初，有专家又提出了敏捷开发的概念，并且这个概念在近些年来被大量实践。因此，本博客将主要介绍敏捷软件开发的优点以及具体内容。
+
+敏捷不是某一种方法论、过程或框架，也不是字面意义上的敏捷，而是一组价值观和原则。这些价值观和原则由17位软件开发领域的领军人物在2001年通过《敏捷宣言》传递给世界，也在那个时候宣告了全球敏捷开发运动的开始。
+</code></pre><p><strong>敏捷宣言</strong></p>
+<pre><code>我们通过身体力行和帮助他人来揭示更好的软件开发方式。经由这项工作，我们形成了如下价值观：
+</code></pre><p>个体与交互 重于 过程和工具</p>
+<p>可用的软件 重于 完备的文档</p>
+<p>客户协作   重于 合同谈判</p>
+<p>响应变化   重于 遵循计划</p>
+<pre><code>在每组比对中，后者并非全无价值，但我们更看重前者。
+</code></pre><p><strong>敏捷12原则</strong></p>
+<ol>
+<li><p>我们的最高目标是，通过尽早和持续地交付有价值的软件来满足客户。</p>
+</li>
+<li><p>欢迎对需求提出变更——即使是在项目开发后期。要善于利用需求变更，帮助客户获得竞争优势。</p>
+</li>
+<li><p>要不断交付可用的软件，周期从几周到几个月不等，且越短越好。</p>
+</li>
+<li><p>项目过程中，业务人员与开发人员必须在一起工作。</p>
+</li>
+<li><p>要善于激励项目人员，给他们以所需要的环境和支持，并相信他们能够完成任务。</p>
+</li>
+<li><p>无论是团队内还是团队间，最有效的沟通方法是面对面的交谈。</p>
+</li>
+<li><p>可用的软件是衡量进度的主要指标。</p>
+</li>
+<li><p>敏捷过程提倡可持续的开发。项目方、开发人员和用户应该能够保持持续稳定的进展速度。</p>
+</li>
+<li><p>对技术的精益求精以及对设计的不断完善将提升敏捷性。</p>
+</li>
+<li><p>要做到简洁，即尽最大可能减少不必要的工作。这是一门艺术。</p>
+</li>
+<li><p>最佳的架构、需求和设计出自于自组织的团队。</p>
+</li>
+<li><p>团队要定期反省如何能够做到更有效，并相应地调整团队的行为。</p>
+<p>符合敏捷价值观及原则的主流敏捷开发方法包括：极限编程（eXtreme Prgramming），精益软件开发（Lean Software Development），动态系统开发方法（DSDM）,Scrum等等。</p>
+</li>
+</ol>
+<h2 id="2-传统软件开发方法的缺点"><a href="#2-传统软件开发方法的缺点" class="headerlink" title="2. 传统软件开发方法的缺点"></a>2. 传统软件开发方法的缺点</h2><p> 传统型软件开发是基于“瀑布模型”的开发方式，以软件架构为核心，采用结构化设计以及分析方法将软件生命划分期限，并且开发进度按照从上而下的顺序相互衔接，如同瀑布一般。瀑布模型是Winston Royce在1970年提出的一种软件开发模型，其严格遵守计划、分析、编码、测试、维护的步骤。阶段之间通过文档流通，每个阶段结束时要进行严格的审查，检查功能设计和实现是否符合上阶段流下了的文档的要求，如果不符合就逆流到上个阶段检查并修正，以此往复，直到流到最后阶段产品通过测试后进行发布及运行期间的维护。</p>
+<p><img src="https://images2015.cnblogs.com/blog/1030887/201610/1030887-20161022224315701-1449445333.png" alt=""></p>
+<p>图1  瀑布模型开发过程</p>
+<p> 由于各个阶段需要文档相互流通，在软件开发前期就需要对整个软件的架构进行设计。优秀的架构可以使软件足以支撑整个功能体系以及便于维护，而这样优秀强大的框架通常需要在十分有经验并且有着独特眼光的架构师在完全理解开发用户的需求之后才可能设计出，通常难度是较大。并且软件的框架一旦确定下来就很难改变，甚至会牵一发而动全身，难以适应的客户需求。此外，在软件开发过程中需要人员之间交流的并不多，每一个阶段对代码的编写或者测试都由文档规定。由于各个阶段要自上而下相互衔接，各个阶段的沟通要通过大量臃肿、复杂的文档来传递信息。这样的软件开发通常会将每一块的功能做的相对完善，而模块之间的衔接以及充分理解文档的时间将显得非常长。</p>
+<h2 id="3-敏捷的优势"><a href="#3-敏捷的优势" class="headerlink" title="3. 敏捷的优势"></a>3. 敏捷的优势</h2><pre><code>敏捷方法主要通过迭代过程来应对需求和技术的变化。在每一次迭代周期结束时，都应交付用户一个可用的，可部署的系统，使得用户可以尽早的体验系统并给予反馈。每次迭代周期应尽可能短，以便能及时频繁地处理需求变化和用户反馈。
+
+采用敏捷开发方式将会给企业和用户带来诸多好处：
+</code></pre><p><strong> 交付用户需要的软件。</strong>它将带给用户其真正需要的软件系统。瀑布模式通常会在产品的起点与最终结果之间划出一条直线，然后沿着直线不断往前走。然而当项目完成时，用户通常会发现终点已经不是他们真正的目的地。而敏捷方法则采用小步的方式前行，每走完一步，都需要及时调整并确定下一步的方向，直到抵达真正的终点。</p>
+<p><strong> 更高的质量。</strong>敏捷对迭代周期的产出有严格的质量要求。敏捷提倡使用测试驱动开发（test-driven development），即在正式开发功能代码之前，先开发该功能的测试代码。这为敏捷项目的整个开发周期提供了可靠的质量保证。</p>
+<p><strong> 更快的将产品推向市场</strong>。敏捷提倡避免大规模的前期计划，认为那是一种很大的浪费。因为很多预先的计划的东西都会发生改变，大而全的前期计划通常是徒劳的。敏捷提倡逐步完善的计划。敏捷团队只专注于开发项目中当前最需要的、最具价值的部分。这样能尽早地投入开发，缩短产品上市的时间，或者说使得软件可以更早的交付使用。</p>
+<h2 id="4-主要的敏捷方法"><a href="#4-主要的敏捷方法" class="headerlink" title="4. 主要的敏捷方法"></a>4. 主要的敏捷方法</h2><h3 id="4-1-Scrum"><a href="#4-1-Scrum" class="headerlink" title="4.1     **Scrum**"></a><strong>4.1     **</strong>Scrum**</h3><p> Scrum最早由Jeff Sutherland在1993年提出，Ken Schwaber 在1995年OOPSLA会议上形式化了Scrum开发过程，并向业界公布。目前Scrum是应用最为广泛的敏捷方法之一。Scrum中的主要角色包括：</p>
+<p> Scrum Master: Scrum教练和团队带头人，确保团队合理的运作Scrum，并帮助团队扫除实施中的障碍；</p>
+<p> 产品负责人: 确定产品的方向和愿景，定义产品发布的内容、优先级及交付时间，为产品投资报酬率负责；</p>
+<p> 开发团队: 一个跨职能的小团队，人数5-9人，团队拥有交付可用软件需要的各种技能。</p>
+<p> 在每一次冲刺或迭代当中，开发团队创建可用的软件的一个增量。每一个迭代所要实现的功能来自产品订单。产品订单按照优先级排列工作需求。在迭代计划会议中，产品负责人告诉开发团队需要完成产品订单中的哪些订单项。开发团队决定在下一次迭代中他们能够承诺完成多少订单项。在迭代的过程中，没有人能够变更迭代订单，这意味着在一个迭代中需求是被冻结的。</p>
+<p><img src="https://images2015.cnblogs.com/blog/1030887/201610/1030887-20161022224425123-1825836340.png" alt=""></p>
+<p>图2 scrum 过程</p>
+<p> Scrum中通过三个活动进行检验和适应：每日例会检验Sprint目标的进展，做出调整，从而优化次日的工作价值；Sprint评审和计划会议检验发布目标的进展，做出调整，从而优化下一个Sprint的工作价值；Sprint回顾会议是用来回顾已经完成的Sprint，并且确定做出什么样的改善可以使接下来的Sprint更加高效、更加令人满意，并且工作更快乐。</p>
+<h3 id="4-2-极限编程（eXtreme-Prgramming）"><a href="#4-2-极限编程（eXtreme-Prgramming）" class="headerlink" title="4.2     **极限编程（eXtreme Prgramming）**"></a><strong>4.2     **</strong>极限编程（<strong>eXtreme Prgramming</strong>）**</h3><p> 极限编程（eXtreme Prgramming），是一种软件工程方法学。如同其他敏捷方法学，极限编程和传统方法学的本质不同在于它更强调可适应性而不是可预测性。极限编程的支持者认为软件需求的不断变化是很自然的现象，是软件项目开发中不可避免的、也是应该欣然接受的现象；他们相信，和传统的在项目起始阶段定义好所有需求再费尽心思的控制变化的方法相比，有能力在项目周期的任何阶段去适应变化，将是更加现实更加有效的方法。极限编程规定了一些实践和简单规则，包括：编写用户故事、架构规范、实施规划、迭代计划、代码开发、单元测试、验收测试等等。</p>
+<p> 像所有其他敏捷方法一样，极限编程预期并积极接受变化。它具有以下的价值观或原则：</p>
+<p><strong> 互动交流</strong>。团队成员不是通过文档来交流，文档不是必须的。团队成员之间通过日常沟通、简单设计、测试、系统隐喻以及代码本身来沟通产品需求和系统设计。</p>
+<p><strong> 反馈</strong>。反馈是一种信息的交流，能使系统更加完善。反馈也和交流密切相关，客户的实际使用、功能测试、单元测试等都能为开发团队提供反馈信息。同时，开发团队也可以通过估计和设计用户案例的方式将信息反馈给客户。</p>
+<p><strong> 简单</strong>。极限编程提倡简单的设计，简单的解决方案。极限编程总是从一个简单的系统入手，并且只创建今天可能需要的功能模块。因为它认为，创建明天需要的功能模块可能会由于需求的变化而成为浪费。</p>
+<p><strong> 勇气</strong>。极限编程理论中的“系统开发中的勇气”最好用一组实践来诠释。其中之一就是“只为今天的需求设计以及编码，不要考虑明天”这条戒律。这是努力避免陷入设计的泥潭、而在其他问题上花费了太多不必要的精力。勇气使得开发人员在需要重构他们的代码时能感到舒适。这意味着重新审查现有系统并完善它会使得以后出现的变化需求更容易被实现。另一个勇气的例子是了解什么时候应该完全丢弃现有的代码。每个程序员都有这样的经历：他们花了一整天的时间纠缠于自己设计和代码中的一个复杂的难题却无所得，而第二天回来以一个全新而清醒的角度来考虑，在半小时内就轻松解决了问题。</p>
+<p><strong> 团队</strong>。极限编程提倡团队合作，相互尊重。极限编程以建立并激励团队为一项重要任务。同时它把互相尊重和实际的开发习惯相结合。比如，为了尊重其他团队成员的劳动成果，每个人不得将未通过单元测试的代码集成到系统中。因此，每个人的代码质量必须过关。</p>
+<p><img src="https://images2015.cnblogs.com/blog/1030887/201610/1030887-20161022224526576-1651164232.png" alt=""></p>
+<p>图3 极限编程示意图</p>
+<h3 id="4-3-精益软件开发（Lean-Software-Development）"><a href="#4-3-精益软件开发（Lean-Software-Development）" class="headerlink" title="4.3     **精益软件开发（Lean Software Development）**"></a><strong>4.3     **</strong>精益软件开发（Lean Software Development）**</h3><p> 精益思想的核心思想是查明和消除浪费。在软件开发过程中，bugs，没用的功能，等待以及其他任何对实现结果没有益处的东西都是浪费。浪费及其源头必须被分析查明，然后设法消除。精益开发的其它原则包括:</p>
+<p> <strong>强调学习。</strong>软件开发过程是一个不断学习的过程。每个团队成员都需要从日常的失败，互动，交流以及信息反馈中学习，不断改进所开发的产品和开发效率。</p>
+<p> <strong>在最后时刻做决定。</strong>这样可以避免在可能改变的事情上做无谓的努力，从而有效的避免浪费。</p>
+<p> <strong>用最快的速度交付用户。</strong>较短的迭代周期能够加速产品的开发及交付，加快交流，提高生产力。</p>
+<p> <strong>给团队自主权。</strong>激励团队并让所有团队成员自我管理始终是所有敏捷方法获得成功的基本因素之一。</p>
+<p> <strong>诚信。</strong>确保整个系统正常工作，真正满足客户的需求是整个团队需要努力坚持的诚信和和对用户的承诺。</p>
+<p> <strong>全局观。</strong>精益开发强调整体优化的系统。无论开发的组织还是被开发的产品， 从整体上考虑优化比从各个局部去优化更高效。</p>
+<p><img src="https://images2015.cnblogs.com/blog/1030887/201610/1030887-20161022224556560-1472814008.png" alt=""></p>
+<p>图4 精益软件开发原则</p>
+<p> 对于上述的每个原则，都有一些相应的实现工具。这些工具包括价值流图（Value Stream Mapping），基于集合的开发（set-based development），拉系统（pull system），排队论（queuing theory），等等。和其它敏捷方法相比，精益软件更重要的是不断完善开发过程的一种思维方式。因此，将精益模式与其他敏捷开发模式一起使用将会取得很好的效果。</p>
+<h2 id="5-参考文献"><a href="#5-参考文献" class="headerlink" title="5. 参考文献"></a>5. 参考文献</h2><p>[1].      敏捷开发宣言 <a href="http://agilemanifesto.org/iso/zhchs/manifesto.html" target="_blank" rel="noopener">http://agilemanifesto.org/iso/zhchs/manifesto.html</a></p>
+<p>[2].      敏捷开发十二条原则 <a href="http://agilemanifesto.org/iso/zhchs/principles.html" target="_blank" rel="noopener">http://agilemanifesto.org/iso/zhchs/principles.html</a></p>
+<p>[3].      《构建之法:现代软件工程(第二版)》 邹欣</p>
+<p>[4].      Scrum 维基百科 <a href="https://zh.wikipedia.org/wiki/Scrum" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/Scrum</a></p>
+<p>[5].      敏捷软件开发 维基百科<a href="https://zh.wikipedia.org/wiki/%E6%95%8F%E6%8D%B7%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E6%95%8F%E6%8D%B7%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91</a></p>
+<p>[6].      极限编程 维基百科 <a href="https://zh.wikipedia.org/wiki/%E6%9E%81%E9%99%90%E7%BC%96%E7%A8%8B" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E6%9E%81%E9%99%90%E7%BC%96%E7%A8%8B</a></p>
+<p>[7].      Dingsøyr, Torgeir, et al. “A decade of agile methodologies: Towards explaining agile software development.” <em>Journal of Systems and Software</em>85.6 (2012): 1213-1221.</p>
+<p>[8].      Paetsch, Frauke, Armin Eberlein, and Frank Maurer. “Requirements Engineering and Agile Software Development.” <em>WETICE</em>. Vol. 3. 2003.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件工程/" rel="tag"># 软件工程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/18/微信公众平台开发----自定义菜单、消息处理及获取OpenID(C#)/" rel="next" title="微信公众平台开发----自定义菜单、消息处理及获取OpenID(C#)">
+                <i class="fa fa-chevron-left"></i> 微信公众平台开发----自定义菜单、消息处理及获取OpenID(C#)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/22/微信公众号网页授权获取用户openid/" rel="prev" title="微信公众号网页授权获取用户openid">
+                微信公众号网页授权获取用户openid <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-敏捷开发简介"><span class="nav-number">1.</span> <span class="nav-text">1.  敏捷开发简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-传统软件开发方法的缺点"><span class="nav-number">2.</span> <span class="nav-text">2. 传统软件开发方法的缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-敏捷的优势"><span class="nav-number">3.</span> <span class="nav-text">3. 敏捷的优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-主要的敏捷方法"><span class="nav-number">4.</span> <span class="nav-text">4. 主要的敏捷方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Scrum"><span class="nav-number">4.1.</span> <span class="nav-text">4.1     **Scrum**</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-极限编程（eXtreme-Prgramming）"><span class="nav-number">4.2.</span> <span class="nav-text">4.2     **极限编程（eXtreme Prgramming）**</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-精益软件开发（Lean-Software-Development）"><span class="nav-number">4.3.</span> <span class="nav-text">4.3     **精益软件开发（Lean Software Development）**</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-参考文献"><span class="nav-number">5.</span> <span class="nav-text">5. 参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="java,SnowFlake,雪花算法,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="概述SnowFlake算法是Twitter设计的一个可以在分布式系统中生成唯一的ID的算法，它可以满足Twitter每秒上万条消息ID分配的请求，这些消息ID是唯一的且有大致的递增顺序。    原理    SnowFlake算法产生的ID是一个64位的整型，结构如下（每一部分用“-”符号分隔）：    0 - 0000000000 0000000000 0000000000 0000000000">
+<meta name="keywords" content="java,SnowFlake,雪花算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Twitter雪花算法 SnowFlake算法 的java实现">
+<meta property="og:url" content="http://pangguoming.com/blog/2018/02/01/Twitter雪花算法 SnowFlake算法 的java实现/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="概述SnowFlake算法是Twitter设计的一个可以在分布式系统中生成唯一的ID的算法，它可以满足Twitter每秒上万条消息ID分配的请求，这些消息ID是唯一的且有大致的递增顺序。    原理    SnowFlake算法产生的ID是一个64位的整型，结构如下（每一部分用“-”符号分隔）：    0 - 0000000000 0000000000 0000000000 0000000000">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-26T15:01:06.010Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Twitter雪花算法 SnowFlake算法 的java实现">
+<meta name="twitter:description" content="概述SnowFlake算法是Twitter设计的一个可以在分布式系统中生成唯一的ID的算法，它可以满足Twitter每秒上万条消息ID分配的请求，这些消息ID是唯一的且有大致的递增顺序。    原理    SnowFlake算法产生的ID是一个64位的整型，结构如下（每一部分用“-”符号分隔）：    0 - 0000000000 0000000000 0000000000 0000000000">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2018/02/01/Twitter雪花算法 SnowFlake算法 的java实现/">
+
+
+
+
+
+  <title>Twitter雪花算法 SnowFlake算法 的java实现 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2018/02/01/Twitter雪花算法 SnowFlake算法 的java实现/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Twitter雪花算法 SnowFlake算法 的java实现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T10:56:00+08:00">
+                2018-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div><strong>概述</strong><br><div>SnowFlake算法是Twitter设计的一个可以在分布式系统中生成唯一的ID的算法，它可以满足Twitter每秒上万条消息ID分配的请求，这些消息ID是唯一的且有大致的递增顺序。<br><div><br><br><div><br>    <strong>原理</strong><br><br><div><br>    SnowFlake算法产生的ID是一个64位的整型，结构如下（每一部分用“-”符号分隔）：<br><br><div><br><br><div><br>    <strong>0 - 0000000000 0000000000 0000000000 0000000000 0 - 00000 - 00000 - 000000000000</strong><br><br><div><br><br><div><br>    <strong>1位标识部分</strong>，在java中由于long的最高位是符号位，正数是0，负数是1，一般生成的ID为正数，所以为0；<br><br><div><br>    <strong>41位时间戳部分</strong>，这个是毫秒级的时间，一般实现上不会存储当前的时间戳，而是时间戳的差值（当前时间-固定的开始时间），这样可以使产生的ID从更小值开始；41位的时间戳可以使用69年，(1L<br> &lt;&lt; 41) / (1000L <em> 60 </em> 60 <em> 24 </em> 365) = 69年；<br><br><div><br>    <strong>10位节点部分</strong>，Twitter实现中使用前5位作为数据中心标识，后5位作为机器标识，可以部署1024个节点；<br><br><div><br>    <strong>12位序列号部分</strong>，支持同一毫秒内同一个节点可以生成4096个ID；<br><br><div><br><br><div><br><br>SnowFlake算法生成的ID大致上是按照时间递增的，用在分布式系统中时，需要注意数据中心标识和机器标识必须唯一，这样就能保证每个节点生成的ID都是唯一的。或许我们不一定都需要像上面那样使用5位作为数据中心标识，5位作为机器标识，可以根据我们业务的需要，灵活分配节点部分，如：若不需要数据中心，完全可以使用全部10位作为机器标识；若数据中心不多，也可以只使用3位作为数据中心，7位作为机器标识。<br><br><div><br><br><div><br><br><strong>源码</strong><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">    * twitter的snowflake算法 -- java实现</span><br><span class="line">    *</span><br><span class="line">    * @author rock</span><br><span class="line">    * @date 2016/11/26</span><br><span class="line">    */</span><br><span class="line">    public class SnowFlake &#123;</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">        * 起始的时间戳</span><br><span class="line">        */</span><br><span class="line">        private final static long START_STMP = 1480166465631L;</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">        * 每一部分占用的位数</span><br><span class="line">        */</span><br><span class="line">        private final static long SEQUENCE_BIT = 12; //序列号占用的位数</span><br><span class="line">        private final static long MACHINE_BIT = 5;  //机器标识占用的位数</span><br><span class="line">        private final static long DATACENTER_BIT = 5;//数据中心占用的位数</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">        * 每一部分的最大值</span><br><span class="line">        */</span><br><span class="line">        private final static long MAX_DATACENTER_NUM = -1L ^ (-1L &lt;&lt; DATACENTER_BIT);</span><br><span class="line">        private final static long MAX_MACHINE_NUM = -1L ^ (-1L &lt;&lt; MACHINE_BIT);</span><br><span class="line">        private final static long MAX_SEQUENCE = -1L ^ (-1L &lt;&lt; SEQUENCE_BIT);</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">        * 每一部分向左的位移</span><br><span class="line">        */</span><br><span class="line">        private final static long MACHINE_LEFT = SEQUENCE_BIT;</span><br><span class="line">        private final static long DATACENTER_LEFT = SEQUENCE_BIT + MACHINE_BIT;</span><br><span class="line">        private final static long TIMESTMP_LEFT = DATACENTER_LEFT + DATACENTER_BIT;</span><br><span class="line"></span><br><span class="line">        private long datacenterId;  //数据中心</span><br><span class="line">        private long machineId;    //机器标识</span><br><span class="line">        private long sequence = 0L; //序列号</span><br><span class="line">        private long lastStmp = -1L;//上一次时间戳</span><br><span class="line"></span><br><span class="line">        public SnowFlake(long datacenterId, long machineId) &#123;</span><br><span class="line">            if (datacenterId &gt; MAX_DATACENTER_NUM || datacenterId &lt; 0) &#123;</span><br><span class="line">                throw new IllegalArgumentException(&quot;datacenterId can&apos;t be greater than MAX_DATACENTER_NUM or less than 0&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            if (machineId &gt; MAX_MACHINE_NUM || machineId &lt; 0) &#123;</span><br><span class="line">                throw new IllegalArgumentException(&quot;machineId can&apos;t be greater than MAX_MACHINE_NUM or less than 0&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            this.datacenterId = datacenterId;</span><br><span class="line">            this.machineId = machineId;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">        * 产生下一个ID</span><br><span class="line">        *</span><br><span class="line">        * @return</span><br><span class="line">        */</span><br><span class="line">        public synchronized long nextId() &#123;</span><br><span class="line">            long currStmp = getNewstmp();</span><br><span class="line">            if (currStmp &lt; lastStmp) &#123;</span><br><span class="line">                throw new RuntimeException(&quot;Clock moved backwards.  Refusing to generate id&quot;);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (currStmp == lastStmp) &#123;</span><br><span class="line">                //相同毫秒内，序列号自增</span><br><span class="line">                sequence = (sequence + 1) &amp; MAX_SEQUENCE;</span><br><span class="line">                //同一毫秒的序列数已经达到最大</span><br><span class="line">                if (sequence == 0L) &#123;</span><br><span class="line">                    currStmp = getNextMill();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                //不同毫秒内，序列号置为0</span><br><span class="line">                sequence = 0L;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            lastStmp = currStmp;</span><br><span class="line"></span><br><span class="line">            return (currStmp - START_STMP) &lt;&lt; TIMESTMP_LEFT //时间戳部分</span><br><span class="line">                    | datacenterId &lt;&lt; DATACENTER_LEFT      //数据中心部分</span><br><span class="line">                    | machineId &lt;&lt; MACHINE_LEFT            //机器标识部分</span><br><span class="line">                    | sequence;                            //序列号部分</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private long getNextMill() &#123;</span><br><span class="line">            long mill = getNewstmp();</span><br><span class="line">            while (mill &lt;= lastStmp) &#123;</span><br><span class="line">                mill = getNewstmp();</span><br><span class="line">            &#125;</span><br><span class="line">            return mill;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private long getNewstmp() &#123;</span><br><span class="line">            return System.currentTimeMillis();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br><br> 可以写一代码测试一下，如下所示：<br><br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;public static void main(String[] args) &#123;</span><br><span class="line">        SnowFlake snowFlake = new SnowFlake(2, 3);</span><br><span class="line">        for (int i = 0; i &lt; (1 &lt;&lt; 12); i++) &#123;</span><br><span class="line">            System.out.println(snowFlake.nextId());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br><br> 循环生成2^12个ID，运行结果如下：<br><br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;...</span><br><span class="line">2099698216995</span><br><span class="line">2099698216996</span><br><span class="line">2099698216997</span><br><span class="line">2099698216998</span><br><span class="line">2099698216999</span><br><span class="line">2099698217000</span><br><span class="line">2099698217001</span><br><span class="line">2099698217002</span><br><span class="line">2099698217003</span><br><span class="line">2099698217004</span><br><span class="line">2099698217005</span><br><span class="line">2099698217006</span><br><span class="line">2099698217007</span><br><span class="line">2099698217008</span><br><span class="line">2099698217009</span><br><span class="line">2099698217010</span><br><span class="line">2099698217011</span><br><span class="line">2099698217012</span><br><span class="line">2099698217013</span><br><span class="line">2099698217014</span><br><span class="line">2099698217015</span><br><span class="line">2099698217016</span><br><span class="line">2099698217017</span><br><span class="line">2099698217018</span><br><span class="line">2099698217019</span><br><span class="line">2099698217020</span><br><span class="line">2099698217021</span><br><span class="line">2099698217022</span><br><span class="line">2099698217023</span><br><span class="line">2099698217024</span><br><span class="line">2099698217025</span><br><span class="line">2099698217026</span><br><span class="line">2099698217027</span><br><span class="line">2099698217028</span><br><span class="line">2099698217029</span><br><span class="line">2099698217030</span><br><span class="line">2099698217031</span><br><span class="line">2099702411264</span><br><span class="line">2099702411265</span><br><span class="line">2099702411266</span><br><span class="line">2099702411267</span><br><span class="line">2099702411268</span><br><span class="line">2099702411269</span><br><span class="line">2099702411270</span><br><span class="line">2099702411271</span><br><span class="line">2099702411272</span><br><span class="line">2099702411273</span><br><span class="line">2099702411274</span><br><span class="line">2099702411275</span><br><span class="line">2099702411276</span><br><span class="line">2099702411277</span><br><span class="line">...</span><br></pre></td></tr></table></figure><br><br>    <div>可以看到生成的ID都是递增的，而且都是唯一的。<br>    <div><br><br>    服务器的实现可以参考：<a href="http://www.wolfbe.com/detail/201701/386.html" target="_blank" rel="noopener">基于twitter雪花算法的分布式ID —— 服务器篇</a><br><br>    <div><br>            源码已经提交在GitHub：<a href="https://github.com/beyondfengyu/SnowFlake" target="_blank" rel="noopener"><strong>https://github.com/beyondfengyu/SnowFlake</strong></a><br><br>    <div><br><br>    <div><br>            <strong>参考<br><br>    <a href="https://github.com/beyondfengyu/SnowFlake" target="_blank" rel="noopener">https://github.com/beyondfengyu/SnowFlake<br><br>    http://www.wolfbe.com/detail/201701/386.html</a></strong><br><br>    <div><br>            <a href="https://github.com/twitter/snowflake" target="_blank" rel="noopener"><strong>https://github.com/twitter/snowflake</strong></a><br>        </div></div></div></div></div></div><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/SnowFlake/" rel="tag"># SnowFlake</a>
+          
+            <a href="/tags/雪花算法/" rel="tag"># 雪花算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/26/Centos的yum源更换为国内的阿里云源/" rel="next" title="Centos的yum源更换为国内的阿里云源">
+                <i class="fa fa-chevron-left"></i> Centos的yum源更换为国内的阿里云源
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/01/Twitter的分布式自增ID算法snowflake (Java版)/" rel="prev" title="Twitter的分布式自增ID算法snowflake (Java版)">
+                Twitter的分布式自增ID算法snowflake (Java版) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

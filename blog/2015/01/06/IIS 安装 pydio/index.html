@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="IntroductionIn this how-to, we’ll see the installation of Pydio (Put Your Data In Orbit), which is a good alternative to Dropbox, Drive, or ownCloud. In this case, the installation will be carried on">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IIS 安装 pydio">
+<meta property="og:url" content="http://pangguoming.com/blog/2015/01/06/IIS 安装 pydio/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="IntroductionIn this how-to, we’ll see the installation of Pydio (Put Your Data In Orbit), which is a good alternative to Dropbox, Drive, or ownCloud. In this case, the installation will be carried on">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen1-300x288.png">
+<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen2-300x260.png">
+<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen3.png">
+<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen4-300x233.png">
+<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen5-236x300.png">
+<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen6-300x35.jpg">
+<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen7-300x239.png">
+<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen8-300x176.png">
+<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen9-300x221.png">
+<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen11-300x203.png">
+<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen13-227x300.png">
+<meta property="og:updated_time" content="2019-01-26T15:13:31.638Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IIS 安装 pydio">
+<meta name="twitter:description" content="IntroductionIn this how-to, we’ll see the installation of Pydio (Put Your Data In Orbit), which is a good alternative to Dropbox, Drive, or ownCloud. In this case, the installation will be carried on">
+<meta name="twitter:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen1-300x288.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2015/01/06/IIS 安装 pydio/">
+
+
+
+
+
+  <title>IIS 安装 pydio | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2015/01/06/IIS 安装 pydio/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">IIS 安装 pydio</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-06T14:17:00+08:00">
+                2015-01-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a><span id="Introduction">Introduction</span></h2><p>In this how-to, we’ll see the installation of Pydio (Put Your Data In Orbit), which is a good alternative to Dropbox, Drive, or ownCloud. In this case, the installation will be carried on a Microsoft IIS 8 webserver, which in this case, is installed on Windows 8.</p>
+<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a><span id="Prerequisites">Prerequisites</span></h2><p>Before you begin, verify that you have the following prerequisites :</p>
+<ul>
+<li></li>
+</ul>
+<p>IIS 8 webserver is installed</p>
+<ul>
+<li></li>
+</ul>
+<p>PHP engine is integrated at the IIS 8 webserver</p>
+<ul>
+<li></li>
+</ul>
+<p>MySQL is already installed (it is recommended, but only necessary if you want use Pydio with a database)</p>
+<ul>
+<li></li>
+</ul>
+<p>Pydio : You must <a href="https://pyd.io/download/" target="_blank" rel="noopener">download the Pydio source</a> before starting this how-to.</p>
+<h2 id="Prepare-your-IIS-webserver"><a href="#Prepare-your-IIS-webserver" class="headerlink" title="Prepare your IIS webserver"></a><span id="Prepare_your_IIS_webserver">Prepare your IIS webserver</span></h2><p>First off, we will prepare the IIS webserver to have the proper configuration to serve Pydio. Open the IIS manager on your server.</p>
+<h3 id="Prepare-the-site"><a href="#Prepare-the-site" class="headerlink" title="Prepare the site"></a><span id="Prepare_the_site"><strong>Prepare the site</strong></span></h3><p>Do a right click on « <strong>Sites</strong> » then « <strong>Add Website</strong> », you will obtain the form present in the screenshot below.</p>
+<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen1.png" target="_blank" rel="noopener"><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen1-300x288.png" alt="pydioiisen1"></a>Add website in IIS manager</p>
+<p>Complete the different fields :</p>
+<ul>
+<li></li>
+</ul>
+<p><strong>Site name</strong> : Give a name to your site; it will be displayed in the IIS manager</p>
+<ul>
+<li></li>
+</ul>
+<p><strong>Physical path</strong> : Root path of the site</p>
+<ul>
+<li></li>
+</ul>
+<p><strong>Type</strong> : Use HTTP, or HTTPS if you have an SSL certificate</p>
+<ul>
+<li></li>
+</ul>
+<p><strong>Port</strong> : Indicate 80 for HTTP, 443 for HTTPS, or another port if you’d prefer.</p>
+<p>Complete the other fields if necessary. Once the configuration is complete, click on “<strong>OK</strong>” to finish the creation.</p>
+<p>Now, open the Pydio archive that you previously downloaded. Then, unzip the contents of the pydio-core-5.x.x directory to the root of your website. Example:</p>
+<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen2.png" target="_blank" rel="noopener"><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen2-300x260.png" alt="pydioiisen2"></a>Pydio distribution unzipped</p>
+<h3 id="Requests-Filtering"><a href="#Requests-Filtering" class="headerlink" title="Requests Filtering"></a><span id="Requests_Filtering"><span style="color: inherit; font-family: inherit; font-size: 24.5px;">Requests Filtering</span></span></h3><p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen3.png" target="_blank" rel="noopener"> <img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen3.png" alt="pydioiisen3"></a>For security reason, it’s necessary to prohibit access to the “<strong>data</strong>” directory of Pydio. To do this, you can either place the data directory out of the Pydio website’s root, or you can create an IIS rule to prevent access, we will do the latter. For this, you must have the “<strong>Request Filtering</strong>” functionality in IIS (the name of this functionality is dependent on the version). Once in the Pydio site, click on the icon which is presented to the left of this tutorial, and click on “<strong>Add hidden segment</strong>” on the right in the IIS window, shown below. Fill the field “<strong>data</strong>”, then confirm to create the protection rule.</p>
+<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen4.png" target="_blank" rel="noopener"><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen4-300x233.png" alt="pydioiisen4"></a>Adding a hidden segment</p>
+<p>If not already accessible, you may have to add this module to IIS. To do this, activate the “<strong>Request Filtering</strong>” by “adding features”.</p>
+<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen5.png" target="_blank" rel="noopener"><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen5-236x300.png" alt="pydioiisen5"></a>Enable Request Filtering feature</p>
+<p>Once the addition is complete, you can perform the operation described previously.</p>
+<h3 id="Authorization-Rules"><a href="#Authorization-Rules" class="headerlink" title="Authorization Rules"></a><span id="Authorization_Rules">Authorization Rules</span></h3><p>Using Request Filtering keeps the public folder from working in its default location.  We can use <strong>Authorization Rules</strong> to disallow access to certain subfolders, which allows overriding at a lower level.  Thus, let’s “deny all” at the data folder, and “allow all” at the public folder.  See below for as sample <strong><em>web.config</em></strong> files and their location using <strong>\</strong> as the root installation location of Pydio.</p>
+<ul>
+<li><authorization> tags are for Authorization Rules.</authorization></li>
+<li><httperrors> is to change the default error page for the public folder</httperrors></li>
+<li><requestfiltering> is to deny access to “.ajxp_” files in the public folder, though this has not been tested.</requestfiltering></li>
+</ul>
+<p><strong>\conf\web.config</strong></p>
+<p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;<br>    <configuration><br>    &lt;system.webServer&gt;<br>    <security><br>    <authorization><br>    <remove users="*" roles="" verbs=""><br>    <add accesstype="Deny" users="*"><br>    </add></remove></authorization><br>    </security><br>    &lt;/system.webServer&gt;<br>    </configuration><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**\data\web.config**</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">    &lt;system.webServer&gt;</span><br><span class="line">    &lt;security&gt;</span><br><span class="line">    &lt;authorization&gt;</span><br><span class="line">    &lt;remove users=&quot;*&quot; roles=&quot;&quot; verbs=&quot;&quot; /&gt;</span><br><span class="line">    &lt;add accessType=&quot;Deny&quot; users=&quot;*&quot; /&gt;</span><br><span class="line">    &lt;/authorization&gt;</span><br><span class="line">    &lt;/security&gt;</span><br><span class="line">    &lt;/system.webServer&gt;</span><br><span class="line">    &lt;/configuration&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>\data\public\web.config</strong></p>
+<pre><code>&lt;pre&gt;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;configuration&gt;
+&lt;system.webServer&gt;
+&lt;security&gt;
+&lt;authorization&gt;
+&lt;remove users=&quot;*&quot; roles=&quot;&quot; verbs=&quot;&quot; /&gt;
+&lt;add accessType=&quot;Allow&quot; users=&quot;*&quot; /&gt;
+&lt;/authorization&gt;
+&lt;requestFiltering&gt;
+&lt;filteringRules&gt;
+&lt;filteringRule name=&quot;Pydio Public&quot; scanUrl=&quot;true&quot; scanQueryString=&quot;false&quot;&gt;
+&lt;denyStrings&gt;
+&lt;clear /&gt;
+&lt;add string=&quot;.ajxp_&quot; /&gt;
+&lt;/denyStrings&gt;
+&lt;scanHeaders&gt;
+&lt;clear /&gt;
+&lt;/scanHeaders&gt;
+&lt;appliesTo&gt;
+&lt;clear /&gt;
+&lt;/appliesTo&gt;
+&lt;/filteringRule&gt;
+&lt;/filteringRules&gt;
+&lt;/requestFiltering&gt;
+&lt;/security&gt;
+&lt;httpErrors&gt;
+&lt;remove statusCode=&quot;404&quot; subStatusCode=&quot;-1&quot; /&gt;
+&lt;error statusCode=&quot;404&quot; prefixLanguageFilePath=&quot;&quot; path=&quot;/data/public/404.html&quot; responseMode=&quot;ExecuteURL&quot; /&gt;
+&lt;/httpErrors&gt;
+&lt;/system.webServer&gt;
+&lt;/configuration&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**\files\plugins\editor.zoho\agent\files\web.config**</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">    &lt;system.webServer&gt;</span><br><span class="line">    &lt;security&gt;</span><br><span class="line">    &lt;authorization&gt;</span><br><span class="line">    &lt;remove users=&quot;*&quot; roles=&quot;&quot; verbs=&quot;&quot; /&gt;</span><br><span class="line">    &lt;add accessType=&quot;Deny&quot; users=&quot;*&quot; /&gt;</span><br><span class="line">    &lt;/authorization&gt;</span><br><span class="line">    &lt;/security&gt;</span><br><span class="line">    &lt;/system.webServer&gt;</span><br><span class="line">    &lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p><strong>\files\plugins\editor.pixlr\web.config</strong></p>
+<pre><code>&lt;pre&gt;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;configuration&gt;
+&lt;system.webServer&gt;
+&lt;rewrite&gt;
+&lt;rules&gt;
+&lt;rule name=&quot;PixlrSave&quot; stopProcessing=&quot;true&quot;&gt;
+&lt;match url=&quot;^fake_save_pixlr_(.*).php$&quot; /&gt;
+&lt;action type=&quot;Rewrite&quot; url=&quot;fake_save_pixlr.php&quot; /&gt;
+&lt;/rule&gt;
+&lt;/rules&gt;
+&lt;/rewrite&gt;
+&lt;/system.webServer&gt;
+&lt;/configuration&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**\files\web.config**</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">    &lt;system.webServer&gt;</span><br><span class="line">    &lt;rewrite&gt;</span><br><span class="line">    &lt;rules&gt;</span><br><span class="line">    &lt;rule name=&quot;Pydio WebDAV&quot; stopProcessing=&quot;true&quot;&gt;</span><br><span class="line">    &lt;match url=&quot;^shares&quot; ignoreCase=&quot;false&quot; /&gt;</span><br><span class="line">    &lt;conditions&gt;</span><br><span class="line">    &lt;add input=&quot;&#123;REQUEST_FILENAME&#125;&quot; matchType=&quot;IsFile&quot; ignoreCase=&quot;false&quot; negate=&quot;true&quot; /&gt;</span><br><span class="line">    &lt;add input=&quot;&#123;REQUEST_FILENAME&#125;&quot; matchType=&quot;IsDirectory&quot; ignoreCase=&quot;false&quot; negate=&quot;true&quot; /&gt;</span><br><span class="line">    &lt;/conditions&gt;</span><br><span class="line">    &lt;action type=&quot;Rewrite&quot; url=&quot;./dav.php&quot; /&gt;</span><br><span class="line">    &lt;/rule&gt;</span><br><span class="line">    &lt;rule name=&quot;Pydio API_REST&quot; stopProcessing=&quot;true&quot;&gt;</span><br><span class="line">    &lt;match url=&quot;^api&quot; ignoreCase=&quot;false&quot; /&gt;</span><br><span class="line">    &lt;action type=&quot;Rewrite&quot; url=&quot;./rest.php&quot; /&gt;</span><br><span class="line">    &lt;/rule&gt;</span><br><span class="line">    &lt;/rules&gt;</span><br><span class="line">    &lt;/rewrite&gt;</span><br><span class="line">    &lt;/system.webServer&gt;</span><br><span class="line">    &lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+
+### &lt;span id=&quot;optional_Dedicated_Windows_User&quot;&gt;[optional] Dedicated Windows User&lt;/span&gt;
+</code></pre><p>Within IIS, you can convert /pydio to an Application, so that you can configure it to run under a different user account than the DefaultAppPool. Create a specific user for the application to run as that is just a local user with no group memberships.  Give this user read-only rights everywhere under /pydio, and add Modify rights (read/write/delete) to the data folder.</p>
+<p>When doing an upgrade, add Modify rights at the root level and then remove it after you finish the in-Pydio upgrade.</p>
+<pre><code>### &lt;span id=&quot;PHP_configuration&quot;&gt;PHP configuration&lt;/span&gt;
+</code></pre><p>Now, we will configure PHP to prevent Pydio’s “<strong>PHP Output Buffer disabled</strong>” warning on the diagnostic page. Click on “<strong>PHP Manager</strong>” then “<strong>Manage all parameters</strong>”.</p>
+<p><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen6-300x35.jpg" alt="pydioiisen6">Disabling output_buffering</p>
+<p>Use the search area to find the parameter “<strong>output_buffering</strong>”. Double click on the parameter and write the value to “<strong>off</strong>”. The website php.net indicates:</p>
+<p>“<em>You can enable output buffering for all files by setting this directive to ‘On’. If you wish to limit the size of the buffer to a certain size – you can use a maximum number of bytes instead of ‘On’, as a value for this directive (e.g., output_buffering=4096). As of PHP 4.3.5, this directive is always Off in PHP-CLI.”</em></p>
+<pre><code>## &lt;span id=&quot;Installing_the_application&quot;&gt;Installing the application&lt;/span&gt;
+</code></pre><p>The server is ready, the site is online, and now we can install Pydio.</p>
+<p>With your favorite browser, go to your Pydio website. The diagnostics page will appear named “<strong>Pydio Diagnostic Tool</strong>”. Double click on “<strong>click here to continue to Pydio</strong>” – Unless you get one or more critical errors, but if you followed this tutorial properly, there won’t be a problem.</p>
+<p>Regarding the “<strong>SSL Encryption</strong>” advertisement: It’s recommended to use a HTTPS connection on your website, so you must use HTTPS in your IIS site and have a certificate to secure exchanges between the client and the server.</p>
+<p>If you want to activate the automatic redirection to HTTPS on your site, modify the file “<strong>conf/bootstrap_conf.php</strong>” of Pydio and remove comment:</p>
+<p>define(“AJXP_FORCE_SSL_REDIRECT”, true);</p>
+<p>Start the setup with the area “<strong>Admin access</strong>”, set a name for the Administrator account, a display name for this account, and enter a passphrase.</p>
+<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen7.png" target="_blank" rel="noopener"><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen7-300x239.png" alt="pydioiisen7"></a>Pydio Install : Administrator user</p>
+<p>Go to “<strong>Global options</strong>” and choose “<strong>English</strong>” for the “<strong>Default Language</strong>”.</p>
+<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen8.png" target="_blank" rel="noopener"><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen8-300x176.png" alt="pydioiisen8"></a>Pydio Install: Global Options</p>
+<p>This next step is the trickiest. Indeed, to store data, Pydio can use a database but it isn’t an obligation. If you want to do an installation without database, go to step 1 below. If you want to do an installation with a database, go to step 2.</p>
+<pre><code>1.  **Without a database**
+</code></pre><p>Without a database, no configuration is necessary, you must only select “<strong>No Database (Quick Start)</strong>” and continue.</p>
+<p><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen9-300x221.png" alt="pydioiisen9">Installing with or without DB</p>
+<pre><code>1.  
+</code></pre><p><strong>With database</strong></p>
+<p>You should already have a MySQL Server installed on your machine if you followed the prerequisites. If so, Open a CMD to establish a connection with the MySQL Server (make sure you cd to the bin directory of MySQL). Run the following command:</p>
+<pre><code>&lt;pre&gt;mysql.exe –u root –p<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">You get this :</span><br><span class="line"></span><br><span class="line">[![pydioiisen10](https://pyd.io/wp-content/uploads/2014/02/pydioiisen10-300x151.png)](https://pyd.io/wp-content/uploads/2014/02/pydioiisen10.png)Accessing Mysql server from command line</span><br><span class="line"></span><br><span class="line">Then, for example I have decided to create a database named “**itconnectpydio**” for Pydio only, with a user named “**pydio**”, which has “password” as its passphrase. This is just an example. You should change these defaults in your environment.</span><br><span class="line"></span><br><span class="line">The user “**pydio**” must have all privileges on tables in the database because it must manage the data stored in it. Enter the following commands:</span><br><span class="line"></span><br><span class="line">**# Create the database**</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;CREATE DATABASE itconnectpydio;</span><br></pre></td></tr></table></figure>
+</code></pre><p><strong># Create the user</strong></p>
+<pre><code>&lt;pre&gt;CREATE USER &quot;pydio&quot;@&quot;localhost&quot; IDENTIFIED BY &quot;password&quot;;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**# Assign rights**</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;GRANT ALL PRIVILEGES ON itconnectpydio.* TO &quot;pydio&quot;@&quot;localhost&quot;;</span><br></pre></td></tr></table></figure>
+</code></pre><p>Then, go to the webpage of Pydio configuration, choose “Database” for “Storage Type” and “MySQL” for “Database”. After, complete the fields to establish a connection with the MySQL server.</p>
+<p>Once that is complete, click on “Try connecting to the database” to verify the connection between Pydio and the SQL server.</p>
+<p>If the configuration is correct, you will have this message: “<strong>Connection established</strong>!”</p>
+<p><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen11-300x203.png" alt="pydioiisen11">Testing connection parameters</p>
+<p>This is the last step, create one or many users different of the account “Administrator” (optional). Then, click on “<strong>Install Pydio Now!”</strong></p>
+<pre><code>1.  
+</code></pre><p><span style="font-size: large;"><strong>First connection</strong></span></p>
+<p>When the installation is complete, you will be redirected on the login page of Pydio. Use the account “<strong>Administrator</strong>”, or another account that you created in the previous step.</p>
+<p><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen13-227x300.png" alt="pydioiisen13">Login screen: install successfull!</p>
+<p>You are now connected and ready to use Pydio!<br></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/01/06/Windows 8 IIS配置PHP运行环境/" rel="next" title="Windows 8 IIS配置PHP运行环境">
+                <i class="fa fa-chevron-left"></i> Windows 8 IIS配置PHP运行环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/01/06/Windows环境配置Apache+Mysql+PHP/" rel="prev" title="Windows环境配置Apache+Mysql+PHP">
+                Windows环境配置Apache+Mysql+PHP <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prerequisites"><span class="nav-number">2.</span> <span class="nav-text">Prerequisites</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prepare-your-IIS-webserver"><span class="nav-number">3.</span> <span class="nav-text">Prepare your IIS webserver</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prepare-the-site"><span class="nav-number">3.1.</span> <span class="nav-text">Prepare the site</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Requests-Filtering"><span class="nav-number">3.2.</span> <span class="nav-text">Requests Filtering</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Authorization-Rules"><span class="nav-number">3.3.</span> <span class="nav-text">Authorization Rules</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

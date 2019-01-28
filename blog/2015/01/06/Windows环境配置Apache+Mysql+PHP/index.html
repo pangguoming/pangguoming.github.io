@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="apache,PHP,Windows,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="一、安装配置Apache2.4.7(httpd-2.4.7-win64-VC11.zip ) 1、解压下载的安装包:httpd-2.4.7-win64-VC11.zip将其放到自己的安装目录(我的目录D:\phpEnv\Apache24)     2.  22、然后对http.conf(D:\phpEnv\Apache24\conf\http.conf)配置文件进行修改">
+<meta name="keywords" content="apache,PHP,Windows">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows环境配置Apache+Mysql+PHP">
+<meta property="og:url" content="http://pangguoming.com/blog/2015/01/06/Windows环境配置Apache+Mysql+PHP/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="一、安装配置Apache2.4.7(httpd-2.4.7-win64-VC11.zip ) 1、解压下载的安装包:httpd-2.4.7-win64-VC11.zip将其放到自己的安装目录(我的目录D:\phpEnv\Apache24)     2.  22、然后对http.conf(D:\phpEnv\Apache24\conf\http.conf)配置文件进行修改">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/414908/201601/414908-20160129171652708-803539266.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/414908/201601/414908-20160129171720911-1966794819.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/414908/201601/414908-20160129171741396-824334731.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/414908/201601/414908-20160129171810568-161965531.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/414908/201601/414908-20160129171830364-1481361815.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/414908/201601/414908-20160129171857364-1035617417.png">
+<meta property="og:updated_time" content="2019-01-26T15:13:31.094Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows环境配置Apache+Mysql+PHP">
+<meta name="twitter:description" content="一、安装配置Apache2.4.7(httpd-2.4.7-win64-VC11.zip ) 1、解压下载的安装包:httpd-2.4.7-win64-VC11.zip将其放到自己的安装目录(我的目录D:\phpEnv\Apache24)     2.  22、然后对http.conf(D:\phpEnv\Apache24\conf\http.conf)配置文件进行修改">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/414908/201601/414908-20160129171652708-803539266.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2015/01/06/Windows环境配置Apache+Mysql+PHP/">
+
+
+
+
+
+  <title>Windows环境配置Apache+Mysql+PHP | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2015/01/06/Windows环境配置Apache+Mysql+PHP/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Windows环境配置Apache+Mysql+PHP</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-06T20:35:00+08:00">
+                2015-01-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li><p><div class="content-list-text"><br><div class="exp-content-block"></div></div></p>
+<div class="exp-content-body">
+
+<ol>
+<li><p><div class="content-list-text"><br><div class="exp-content-block"></div></div></p>
+<div class="exp-content-body">
+</div></li>
+<li><div class="content-list-text">
+
+</div></li>
+</ol>
+</div></li>
+</ol>
+<p><strong>一、安装配置Apache2.4.7(httpd-2.4.7-win64-VC11.zip )</strong></p>
+<p>1、解压下载的安装包:httpd-2.4.7-win64-VC11.zip将其放到自己的安装目录(我的目录D:\phpEnv\Apache24)</p>
+<div class="content-list-media"><br><div class="content-list-image clearfix"><img src="https://images2015.cnblogs.com/blog/414908/201601/414908-20160129171652708-803539266.png" alt=""><br><br></div></div><br>    2.  <div class="list-icon">2<br><div class="content-list-text"><br><br>2、然后对http.conf(D:\phpEnv\Apache24\conf\http.conf)配置文件进行修改-使用记事本打开就行<br><br>    <strong>(1)</strong>修改ServerRoot Apache的根路径:<br><br>        (37行)ServerRoot”c:/Apache24”改成=&gt;ServerRoot “D:/phpEnv/Apache24”<br><br>    <strong>(2)</strong>修改ServerName你的主机名称:<br><br>        (217行)ServerName<a href="http://www.example.com:80将前面的#去掉,该属性在从命令行启动Apache时需要用到。" target="_blank" rel="noopener">www.example.com:80将前面的#去掉,该属性在从命令行启动Apache时需要用到。</a><br><br>    <strong>(3)</strong>修改DocumentRoot Apache访问的主文件夹目录,就是php、html代码文件的位置。Apache默认的路径是在htdocs(D:\phpEnv\Apache24\htdocs)下面,里面会有个简单的入口文件index.html。这个路径可以自己进行修改,我这里将其配置在我自己新建的文件夹www(D:\phpEnv\www)下。<br><br>(247行) DocumentRoot “c:/Apache24/htdocs”<br><br>        <directory"c: apache24="" htdocs"=""><br><br>改为=&gt;<br><br>        DocumentRoot “D:\phpEnv\www”<br><br>        <directory "d:\phpenv\www"=""><br><br>    <strong>(4)</strong>修改入口文件配置:DirectoryIndex一般情况下我们都是以index.php、index.html、index.htm作为web项目的入口。Apache默认的入口只有index.html需要添加其他两个的支持，当然这个入口文件的设置可以根据自己的需要增减,如果要求比较严格的话可以只写一个index.php,这样在项目里面的入口就只能是index.php<br><br>(274行)&lt;IfModuledir_module&gt;<br><br>        DirectoryIndexindex.html<br><br>       <br><br>改为=&gt;<br><br>       &lt;IfModuledir_module&gt;<br><br>        DirectoryIndex  index.php index.htm index.html<br><br>        <br><br>   <strong>(5)</strong>设定serverscript的目录:<br><br>        (358行)ScriptAlias/cgi-bin/ “c:/Apache24/cgi-bin/“改为=&gt; ScriptAlias/cgi-bin/ “D:/phpEnv/Apache24/cgi-bin”<br><br><strong>  (6)</strong>(380行)<br><br>        <directory"c: apache24="" cgi-bin"=""><br><br>          AllowOverride None<br><br>          Options None<br><br>          Require all granted<br><br>        </directory"c:></directory><br><br>改为=&gt;<br><br>        <directory"d: phpenv="" apache24="" cgi-bin"=""><br><br>          AllowOverride None<br><br>          Options None<br><br>          Require all granted<br><br>        <br><br></directory"d:></directory"c:></div></div><br>    3.  <div class="list-icon">3<br><div class="content-list-text"><br><br>3、接下来就可以启动Apache了<br><br>开始—运行,输入cmd,打开命令提示符。接着进入D:\phpEnv\Apache24\bin目录下回车httpd回车，如图所示.<br><br>没有报错的话就可以测试了（保持该命令窗口为打开的状态）。<br><br>    把Apache24\htdocs目录下的index.html放到D:\phpEnv\www目录下，用浏览器访问会出现“It works”那么就说明apache已经正确安装并启动了。也可以自己写一个简单的index.html文件也可以打开。<br><br><div class="content-list-media"><br><div class="content-list-image clearfix"><img src="https://images2015.cnblogs.com/blog/414908/201601/414908-20160129171720911-1966794819.png" alt=""><br><br></div></div></div></div><br>    4.  <div class="list-icon">4<br><div class="content-list-text"><br><br>4、将Apache加入到window服务启动项里面并设置成开机启动<br><br>先关闭httpd的服务（将命令窗口关闭即可）<br><br>重新打开一个新的命令窗口进入到D:\phpEnv\Apache24\bin目录下：<br><br>添加HTTP服务的命令是：httpd.exe -kinstall -n “servicename”  servicename是服务的名称，我添加的是：httpd.exe -k install -n “Apache24”命令成功后会有成功的提示，此时你可以在window服务启动项中看到Apache24这个服务<br><br>然后点击启动就可以了，如果不想设置成开机启动的话也可以将启动类型修改为手动。<br><br>如果要卸载这个服务的话，先要停止这个服务，然后输入httpd.exe -k uninstall -n “Apache24”卸载这个服务。<br><br>当然也可以通过D:\phpEnv\Apache24\bin下面的ApacheMonitor.exe来启动Apache这里就不多说了<br><br>如此Apache的配置就基本完成了。<br><br><div class="content-list-media"><br><div class="content-list-image clearfix"><img src="https://images2015.cnblogs.com/blog/414908/201601/414908-20160129171741396-824334731.png" alt=""><br><br><div class="last-item"><span class="last-item-end">END</span><br></div></div></div></div></div>
+
+<div class="exp-content-block"><br><br>## 方法/步骤2<br><br><div class="exp-content-body"><br><br>    1.  <div class="list-icon">1<br><div class="content-list-text"><br><br><strong>二、安装配置php5.5.10（php-5.5.10-Win32-VC11-x64.zip）</strong><br><br>1、将下载的php-5.5.10-Win32-VC11-x64.zip  解压到安装目录下我的是（D:\phpEnv\php）<br><br>2、将目录下的php.ini-development文件复制一份并改名为php.ini他是php的配置文件<br><br>3、为Apache服务添加php支持<br><br>打开Apache的配置文件http.conf在最后加上<br><br># php5 support<br><br>LoadModulephp5_module D:/phpEnv/php/php5apache2_4.dll<br><br>AddTypeapplication/x-httpd-php .php .html .htm<br><br># configure thepath to php.ini<br><br>PHPIniDir “D:/phpEnv/php”<br><br>这里我添加在LoadModule下面<br><br>添加的时候要保证你的php5apache2_4.dll文件确实存在php5.5的早期版本里面是没有这个文件的，不过高点版本里面已经有了，可以打开php安装目录找下这个文件<br><br>PHPIniDir”D:/phpEnv/php”这个就是你的php根目录<br><br><div class="content-list-media"><br><div class="content-list-image clearfix"><img src="https://images2015.cnblogs.com/blog/414908/201601/414908-20160129171810568-161965531.png" alt=""><br><br></div></div></div></div><br>    2.  <div class="list-icon">2<br><div class="content-list-text"><br><br>4.重启Apache服务器。<br><br>5.测试。删除www中其他文件，新建一个index.php，内容为&lt;?php phpinfo(); ?&gt;保存，访问出现php的信息就说明php已经成功安装。<br><br><em>备注：</em><br><br><em>Php的一些常用配置修改：（D:\phpEnv\php\php.ini）</em><br><br><em>时区的设置：date.timezone = Asia/Shanghai</em><br><br><em>错误报告等级：error_reporting = E_ALL这个在开发模式下可以全部打开。</em><br><br><div class="content-list-media"><br><div class="content-list-image clearfix"><img src="https://images2015.cnblogs.com/blog/414908/201601/414908-20160129171830364-1481361815.png" alt=""><br><br><div class="last-item"><span class="last-item-end">END</span><br></div></div></div></div></div>
+
+<div class="exp-content-block"><br><br>## 方法/步骤3<br><br><div class="exp-content-body"><br><br>    1.  <div class="list-icon"><br><div class="content-list-text"><br><br><strong>三、安装配置mysql5.6.16（mysql-5.6.16-winx64.zip）</strong><br><br>1、安装mysql<br><br>64位的mysql暂时没找到msi的安装包，因此直接解压到安装目录下，然后配置相关的环境变量，修改配置文件，添加window服务就行，这里就不详细写了。这里把我的配置文件贴出来给大家参考下：<br><br>    [mysqld]<br><br>    loose-default-character-set = utf8<br><br>    basedir = D:/program/mysql-5.6<br><br>    datadir = D:/program/mysql-5.6/data<br><br>    port = 3306<br><br>    sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES<br><br>    character_set_server = utf8<br><br>    [client]<br><br>    loose-default-character-set = utf8<br><br>注：basedir是mysql的根目录，datadir是mysql的数据存储目录。其他的我就不做解释了<br><br>安装完mysql是没有图形用户界面的，可以安装个Navicat for MySQL之类的软件，这样看起来会比较方便点。<br><br></div></div><br>    2.  <div class="list-icon"><br><div class="content-list-text"><br><br>2、安装完成mysql之后，为php添加mysql支持<br><br>打开php的配置文件php.ini（D:\phpEnv\php\php.ini）<br><br>（1）（721行）; extension_dir = “ext”，去掉前面的“;”，并改为extension_dir =”D:\phpEnv\php\ext”打开php的扩展支持，ext文件夹下有很多php的扩展支持.dll文件，感兴趣的同学可以看一下。<br><br>（2）然后就是打开php的mysql扩展了<br><br>    （875、876行）去掉前面的“;”<br><br>        extension=php_mysql.dll<br><br>        extension=php_mysqli.dll<br><br>当然也可以打开881行的php_pdo_mysql.dll启用php的pdo支持我一般都用这个。<br><br>注：在第863行到第888行有很多扩展选择，你要用到什么，去掉前面的“;”就可以了。当然如果要添加其他的扩展支持如redis支持，php本身可能没有提供相应的dll文件，就需要自己去找到相应版本的dll添加到ext文件夹中，然后在配置文件中添加一个extension=…<br><br>完成之后，重启Apache<br><br>在访问phpinfo的时候就可以看到<br><br><div class="content-list-media"><br><div class="content-list-image clearfix"><br><div class="content-list-image clearfix"><br><div class="content-list-image clearfix"><img src="https://images2015.cnblogs.com/blog/414908/201601/414908-20160129171857364-1035617417.png" alt=""><br><br><div class="last-item"><span class="last-item-end">END</span><br></div></div></div></div></div></div></div>
+
+<div class="exp-content-block"><br><br>## 方法/步骤4<br><br><div class="exp-content-body"><br><br>    1.  <div class="list-icon">1<br><div class="content-list-text"><br><br>四、小结：<br><br>    Php环境的安装网上已经有很多资料了，自己在接触php的时候也是翻天覆地的查，在自己的电脑上也装过不少次了，开始的时候也用集成的软件包，WAMP、AppServ等，后来php版本升级后，发现要想升级集成包的php很麻烦，所以强烈建议自己动手单独配置下环境，更好的了解Apache、php、mysql之间的联系。<br><br><div class="last-item"><span class="last-item-end">END</span><br></div></div></div>
+
+<div class="exp-content-block"><br><br>## 注意事项<br><br>php_curl.dll libssh2.dll 始终无法加载的原因 及解决办法,在StackOverflow得到最终原因及解决办法<br><br><a href="http://stackoverflow.com/questions/16424117/php-unable-to-load-php-curl-dll-extension" target="_blank" rel="noopener">http://stackoverflow.com/questions/16424117/php-unable-to-load-php-curl-dll-extension</a><br><br><code>libeay32.dll</code> and <code>ssleay32.dll</code> have to be path-accessible for <code>php_curl.dll</code> loading to succeed. Copying them into <code>System32</code> (or even into the Windows main directory) is a bad hack and does not even work with newer PHP versions.<br><br>The right way to do it is to add the PHP path to the Windows <code>Path</code> variable. In <code>Control Panel -&gt; System</code> click on <strong>Advanced System Settings</strong> and use the button <strong>Environment Variables</strong>. Under<strong>System Variables</strong> you will find the <code>Path</code> variable. Edit it and append <code>;C:\PHP</code> to it - or whatever the path to your PHP folder is. Then restart Apache.<br><br>就是在环境变量里面添加PHP的路径。<br><br></div></div></div></div></div></div></div>
+
+<p></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/apache/" rel="tag"># apache</a>
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/Windows/" rel="tag"># Windows</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/01/06/IIS 安装 pydio/" rel="next" title="IIS 安装 pydio">
+                <i class="fa fa-chevron-left"></i> IIS 安装 pydio
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/01/17/Azure 云平台用 SQOOP 将 SQL server 2012 数据表导入 HIVE - HBASE/" rel="prev" title="Azure 云平台用 SQOOP 将 SQL server 2012 数据表导入 HIVE / HBASE">
+                Azure 云平台用 SQOOP 将 SQL server 2012 数据表导入 HIVE / HBASE <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

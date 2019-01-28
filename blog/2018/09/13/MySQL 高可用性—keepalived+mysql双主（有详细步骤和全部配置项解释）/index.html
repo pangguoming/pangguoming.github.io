@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="CentOS,keepalived,mysql,高可用,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="博主QQ：819594300 博客地址：http://zpf666.blog.51cto.com/ 有什么疑问的朋友可以联系博主，博主会帮你们解答，谢谢支持！ 前言：生产环境中一台mysql主机存在单点故障，所以我们要确保mysql的高可用性，即两台MySQL服务器如果其中有一台MySQL服务器挂掉后，另外一台能立马接替其进行工作。 MySQL的高可用方案一般有如下几种： keepalived+双">
+<meta name="keywords" content="CentOS,keepalived,mysql,高可用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 高可用性—keepalived+mysql双主（有详细步骤和全部配置项解释）">
+<meta property="og:url" content="http://pangguoming.com/blog/2018/09/13/MySQL 高可用性—keepalived+mysql双主（有详细步骤和全部配置项解释）/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="博主QQ：819594300 博客地址：http://zpf666.blog.51cto.com/ 有什么疑问的朋友可以联系博主，博主会帮你们解答，谢谢支持！ 前言：生产环境中一台mysql主机存在单点故障，所以我们要确保mysql的高可用性，即两台MySQL服务器如果其中有一台MySQL服务器挂掉后，另外一台能立马接替其进行工作。 MySQL的高可用方案一般有如下几种： keepalived+双">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s4.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLHuR3l7HAAHYSz089fw044.jpg">
+<meta property="og:image" content="https://s4.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLIey1ApkAAPgbbhDvwo982.jpg">
+<meta property="og:image" content="https://s5.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLJCDQWtvAAMYwyVd-oc720.jpg">
+<meta property="og:image" content="https://s3.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLJGgbqmKAAC60NyNk-A967.jpg">
+<meta property="og:image" content="https://s4.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLJPAISjhAADr3DabXe8300.jpg">
+<meta property="og:image" content="https://s5.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLJaC1RRIAADrr-KsmSE920.jpg">
+<meta property="og:image" content="https://s5.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLJ2g1CLhAALhaSE39eE948.jpg">
+<meta property="og:image" content="https://s2.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLJ_BLHK5AAC94hdtBQQ794.jpg">
+<meta property="og:image" content="https://s4.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLKLBx7TmAAEVHooj98k364.jpg">
+<meta property="og:image" content="https://s4.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLKaA03eQAAErx1O-rno921.jpg">
+<meta property="og:image" content="https://s3.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLK2DcGcKAAISmuwZaNs964.jpg">
+<meta property="og:image" content="https://s5.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLK2CaaEQAADnRPu3QrA960.jpg">
+<meta property="og:image" content="https://s5.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLK2R4MlgAAHc_Bc8c8E991.jpg">
+<meta property="og:image" content="https://s3.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLK6TLZzSAAExMKaDPM4413.jpg">
+<meta property="og:image" content="https://s3.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLK-TTZwkAAJU4I82V9c066.jpg">
+<meta property="og:image" content="https://s2.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLK-i0v6hAAC4h5C1iHQ170.jpg">
+<meta property="og:image" content="https://s2.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLLDgIaGrAADlVt7630A610.jpg">
+<meta property="og:image" content="https://s2.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLLDRV4z_AADl5W2gM4M735.jpg">
+<meta property="og:image" content="https://s2.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLLHD9XJXAAJfFeYTHK8663.jpg">
+<meta property="og:image" content="https://s2.51cto.com/wyfs02/M02/8F/9F/wKioL1jnLLHQf1HUAAFMrZIy6vI976.jpg">
+<meta property="og:image" content="https://s3.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLLLC8v1rAAHqIozz_CA612.jpg">
+<meta property="og:image" content="https://s3.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLLLDwwu3AAH9V7F283s122.jpg">
+<meta property="og:image" content="https://s3.51cto.com/wyfs02/M02/8F/9F/wKioL1jnLLKw2CR8AAGRKIpxkQ8557.jpg">
+<meta property="og:image" content="https://s5.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLLORWQJwAAB1GsjZ0RM267.jpg">
+<meta property="og:image" content="https://s1.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLLOxEGWSAAF6gWxpz_8831.jpg">
+<meta property="og:image" content="https://s1.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLLOzz6n0AADPbqZQxVE640.jpg">
+<meta property="og:image" content="https://s5.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLLTT05AgAACmwUh0ouU884.jpg">
+<meta property="og:image" content="https://s5.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLLTDedvJAAESpUpb7XA654.jpg">
+<meta property="og:image" content="https://s5.51cto.com/wyfs02/M02/8F/9F/wKioL1jnLLSA8xeUAACaeQKSKVM344.jpg">
+<meta property="og:image" content="https://s5.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLLWCTZqjAAEhFi9071s627.jpg">
+<meta property="og:image" content="https://s5.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLLWzzwNCAAK3OBVf8iQ452.jpg">
+<meta property="og:image" content="https://s5.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLLbwBLWJAAND2YVoXRM716.jpg">
+<meta property="og:image" content="https://s5.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLODheqrjAANF2XgFeuc652.jpg">
+<meta property="og:image" content="https://s1.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLOGw8qmPAAH_RyWHGjY216.jpg">
+<meta property="og:image" content="https://s1.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLOHhuzIkAACMRtWOZDE239.jpg">
+<meta property="og:image" content="https://s2.51cto.com/wyfs02/M02/8F/9F/wKioL1jnLOHDYjlGAADV21Ou_V0874.jpg">
+<meta property="og:image" content="https://s1.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLOKT0amfAADeX5kw9Nw004.jpg">
+<meta property="og:image" content="https://s2.51cto.com/wyfs02/M02/8F/9F/wKioL1jnLOLjBpjgAACjKpZRP_s633.jpg">
+<meta property="og:image" content="https://s3.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLObRO7kAAAFZrDE0A4I304.jpg">
+<meta property="og:image" content="https://s3.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLOijvuALAAEc-Tbq9lQ042.jpg">
+<meta property="og:image" content="https://s1.51cto.com/wyfs02/M00/8F/A0/wKioL1jnLOryIVO7AAEMVrMAETs562.jpg">
+<meta property="og:image" content="https://s3.51cto.com/wyfs02/M01/8F/A0/wKioL1jnLO6DeS-AAAFTTbamlgs692.jpg">
+<meta property="og:image" content="https://s4.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLPLg6lOkAAEIC75-c1Q029.jpg">
+<meta property="og:image" content="https://s1.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLPWAmum_AAErgsnHOm8188.jpg">
+<meta property="og:image" content="https://s4.51cto.com/wyfs02/M01/8F/A0/wKioL1jnLPiQg3zqAAFep6K1b9E362.jpg">
+<meta property="og:image" content="https://s2.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLPyR1HyPAAFujBaMMSk453.jpg">
+<meta property="og:image" content="https://s3.51cto.com/wyfs02/M02/8F/A0/wKioL1jnLQGhXoXFAAIy3pt7jiE132.jpg">
+<meta property="og:image" content="https://s4.51cto.com/wyfs02/M01/8F/A0/wKioL1jnLQOSpPe5AAD_D8pVJ78849.jpg">
+<meta property="og:image" content="https://s1.51cto.com/wyfs02/M00/8F/A0/wKioL1jnLQqA5m4PAAIYqzox4XI257.jpg">
+<meta property="og:updated_time" content="2019-01-26T14:39:15.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL 高可用性—keepalived+mysql双主（有详细步骤和全部配置项解释）">
+<meta name="twitter:description" content="博主QQ：819594300 博客地址：http://zpf666.blog.51cto.com/ 有什么疑问的朋友可以联系博主，博主会帮你们解答，谢谢支持！ 前言：生产环境中一台mysql主机存在单点故障，所以我们要确保mysql的高可用性，即两台MySQL服务器如果其中有一台MySQL服务器挂掉后，另外一台能立马接替其进行工作。 MySQL的高可用方案一般有如下几种： keepalived+双">
+<meta name="twitter:image" content="https://s4.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLHuR3l7HAAHYSz089fw044.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2018/09/13/MySQL 高可用性—keepalived+mysql双主（有详细步骤和全部配置项解释）/">
+
+
+
+
+
+  <title>MySQL 高可用性—keepalived+mysql双主（有详细步骤和全部配置项解释） | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2018/09/13/MySQL 高可用性—keepalived+mysql双主（有详细步骤和全部配置项解释）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySQL 高可用性—keepalived+mysql双主（有详细步骤和全部配置项解释）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T14:42:00+08:00">
+                2018-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>博主QQ：819594300</p>
+<p>博客地址：<a href="http://zpf666.blog.51cto.com/%E3%80%82" target="_blank" rel="noopener">http://zpf666.blog.51cto.com/</a></p>
+<p>有什么疑问的朋友可以联系博主，博主会帮你们解答，谢谢支持！</p>
+<p>前言：生产环境中一台mysql主机存在单点故障，所以我们要确保mysql的高可用性，即两台MySQL服务器如果其中有一台MySQL服务器挂掉后，另外一台能立马接替其进行工作。</p>
+<p>MySQL的高可用方案一般有如下几种：</p>
+<p>keepalived+双主，MHA，PXC，MMM，Heartbeat+DRBD等，比较常用的是keepalived+双主，MHA和PXC。</p>
+<p>本节主要介绍了利用 keepalived 实现 MySQL 数据库的高可用。</p>
+<p>Keepalived+mysql双主来实现MySQL-HA，我们必须保证两台MySQL数据库的数据完全一样，基本思路是两台MySQL互为主从关系，通过Keepalived配置虚拟IP，实现当其中的一台MySQL数据库宕机后，应用能够自动切换到另外一台MySQL数据库，保证系统的高可用。</p>
+<p>拓扑环境：</p>
+<p>OS：centos7.2x86_64</p>
+<p>Mysql版本：mysql5.7.13</p>
+<p>Keepalived: keepalived-1.2.20</p>
+<p>Mysql-vip:192.168.1.150</p>
+<p>Mysql-master1:192.168.1.100</p>
+<p>Mysql-master2:192.168.1.200</p>
+<p>一、   配置两台mysql主主同步</p>
+<p><a href="https://s4.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLHuR3l7HAAHYSz089fw044.jpg" target="_blank" rel="noopener"><img src="https://s4.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLHuR3l7HAAHYSz089fw044.jpg" alt="wKiom1jnLHuR3l7HAAHYSz089fw044.jpg" title="image001.jpg"></a></p>
+<p>该过程的第一部分就是master记录二进制日志。在每个事务更新数据完成之前，master在二日志记录这些改变。MySQL将事务写入二进制日志。在事件写入二进制日志完成后，master通知存储引擎提交事务。</p>
+<p>下一步就是slave将master的binarylog拷贝到它自己的中继日志。首先，slave开始一个工作线程——I/O线程。I/O线程在master上打开一个普通的连接，然后开始binlog dump process。Binlog dump process从master的二进制日志中读取事件，如果已经同步了master，它会睡眠并等待master产生新的事件。I/O线程将这些事件写入中继日志。</p>
+<p>SQL slave thread（SQL从线程）处理该过程的最后一步。SQL线程从中继日志读取事件，并重放其中的事件而更新slave的数据，使其与master中的数据一致。只要该线程与I/O线程保持一致，中继日志通常会位于OS的缓存中，所以中继日志的开销很小。</p>
+<p>主主同步就是两台机器互为主的关系，在任何一台机器上写入都会同步。</p>
+<p>若mysql主机开启了防火墙，需要关闭防火墙或创建规则。</p>
+<p>实验具体过程如下：</p>
+<p>1、修改MySQL配置文件</p>
+<p><a href="https://s4.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLIey1ApkAAPgbbhDvwo982.jpg" target="_blank" rel="noopener"><img src="https://s4.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLIey1ApkAAPgbbhDvwo982.jpg" alt="wKiom1jnLIey1ApkAAPgbbhDvwo982.jpg" title="image002.jpg"></a></p>
+<p><a href="https://s5.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLJCDQWtvAAMYwyVd-oc720.jpg" target="_blank" rel="noopener"><img src="https://s5.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLJCDQWtvAAMYwyVd-oc720.jpg" alt="wKioL1jnLJCDQWtvAAMYwyVd-oc720.jpg" title="image003.jpg"></a></p>
+<p>注意：mysql1和mysql只有server-id不同和auto-increment-offset不同,其他必须相同。</p>
+<p>部分配置项解释如下：</p>
+<p>binlog_format= mixed：指定mysql的binlog日志的格式，mixed是混合模式。</p>
+<p>relay-log：开启中继日志功能</p>
+<p>relay-log-index：中继日志清单</p>
+<p>auto-increment-increment= 2：表示自增长字段每次递增的量，其默认值是1。它的值应设为整个结构中服务器的总数，本案例用到两台服务器，所以值设为2。</p>
+<p>auto-increment-offset= 2：用来设定数据库中自动增长的起点(即初始值)，因为这两能服务器都设定了一次自动增长值2，所以它们的起点必须得不同，这样才能避免两台服务器数据同步时出现主键冲突。</p>
+<p>注：另外还可以在my.cnf配置文件中，添加“binlog_do_db=数据库名”配置项（可以添加多个）来指定要同步的数据库。如果配置了这个配置项，如果没添加在该配置项后面的数据库，则binlog不记录它的事件。</p>
+<p>2、将mysql1设为mysql2的主服务器</p>
+<p>在mysql1主机上创建授权账户，允许在mysql2(192.168.1.200)主机上连接</p>
+<p><a href="https://s3.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLJGgbqmKAAC60NyNk-A967.jpg" target="_blank" rel="noopener"><img src="https://s3.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLJGgbqmKAAC60NyNk-A967.jpg" alt="wKioL1jnLJGgbqmKAAC60NyNk-A967.jpg" title="image004.jpg"></a></p>
+<p>查看mysql1的当前binlog状态信息：</p>
+<p><a href="https://s4.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLJPAISjhAADr3DabXe8300.jpg" target="_blank" rel="noopener"><img src="https://s4.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLJPAISjhAADr3DabXe8300.jpg" alt="wKiom1jnLJPAISjhAADr3DabXe8300.jpg" title="image005.jpg"></a></p>
+<p>在mysql2上将mysql1设为自已的主服务器并开启slave功能：</p>
+<p><a href="https://s5.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLJaC1RRIAADrr-KsmSE920.jpg" target="_blank" rel="noopener"><img src="https://s5.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLJaC1RRIAADrr-KsmSE920.jpg" alt="wKiom1jnLJaC1RRIAADrr-KsmSE920.jpg" title="image006.jpg"></a></p>
+<p>下面看一看mysql2的状态：</p>
+<p><a href="https://s5.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLJ2g1CLhAALhaSE39eE948.jpg" target="_blank" rel="noopener"><img src="https://s5.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLJ2g1CLhAALhaSE39eE948.jpg" alt="wKioL1jnLJ2g1CLhAALhaSE39eE948.jpg" title="image007.jpg"></a></p>
+<p><a href="https://s2.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLJ_BLHK5AAC94hdtBQQ794.jpg" target="_blank" rel="noopener"><img src="https://s2.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLJ_BLHK5AAC94hdtBQQ794.jpg" alt="wKiom1jnLJ_BLHK5AAC94hdtBQQ794.jpg" title="image008.jpg"></a></p>
+<p>在mysql1防火墙上开启3306/tcp例外：</p>
+<p><a href="https://s4.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLKLBx7TmAAEVHooj98k364.jpg" target="_blank" rel="noopener"><img src="https://s4.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLKLBx7TmAAEVHooj98k364.jpg" alt="wKiom1jnLKLBx7TmAAEVHooj98k364.jpg" title="image009.jpg"></a></p>
+<p>顺道把mysql2的防火墙也开启3306/tcp例外，反正后面实验还是要开，那就现在一道开了吧：</p>
+<p><a href="https://s4.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLKaA03eQAAErx1O-rno921.jpg" target="_blank" rel="noopener"><img src="https://s4.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLKaA03eQAAErx1O-rno921.jpg" alt="wKioL1jnLKaA03eQAAErx1O-rno921.jpg" title="image010.jpg"></a></p>
+<p>再次查看mysql2的状态：</p>
+<p><a href="https://s3.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLK2DcGcKAAISmuwZaNs964.jpg" target="_blank" rel="noopener"><img src="https://s3.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLK2DcGcKAAISmuwZaNs964.jpg" alt="wKiom1jnLK2DcGcKAAISmuwZaNs964.jpg" title="image011.jpg"></a></p>
+<p><a href="https://s5.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLK2CaaEQAADnRPu3QrA960.jpg" target="_blank" rel="noopener"><img src="https://s5.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLK2CaaEQAADnRPu3QrA960.jpg" alt="wKiom1jnLK2CaaEQAADnRPu3QrA960.jpg" title="image012.jpg"></a></p>
+<p>更换mysql2的UUID号：</p>
+<p><a href="https://s5.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLK2R4MlgAAHc_Bc8c8E991.jpg" target="_blank" rel="noopener"><img src="https://s5.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLK2R4MlgAAHc_Bc8c8E991.jpg" alt="wKioL1jnLK2R4MlgAAHc_Bc8c8E991.jpg" title="image013.jpg"></a></p>
+<p>修改完UUID必须重启mysqld服务才能生效：</p>
+<p><a href="https://s3.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLK6TLZzSAAExMKaDPM4413.jpg" target="_blank" rel="noopener"><img src="https://s3.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLK6TLZzSAAExMKaDPM4413.jpg" alt="wKiom1jnLK6TLZzSAAExMKaDPM4413.jpg" title="image014.jpg"></a></p>
+<p>这次再来查看mysql2的状态：</p>
+<p><a href="https://s3.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLK-TTZwkAAJU4I82V9c066.jpg" target="_blank" rel="noopener"><img src="https://s3.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLK-TTZwkAAJU4I82V9c066.jpg" alt="wKioL1jnLK-TTZwkAAJU4I82V9c066.jpg" title="image015.jpg"></a></p>
+<p>3、现在反过来·，再将mysql2设为mysql1的主服务器</p>
+<p>在mysql2主机上创建授权账户，允许在mysql1(192.168.1.100)主机上连接</p>
+<p><a href="https://s2.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLK-i0v6hAAC4h5C1iHQ170.jpg" target="_blank" rel="noopener"><img src="https://s2.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLK-i0v6hAAC4h5C1iHQ170.jpg" alt="wKioL1jnLK-i0v6hAAC4h5C1iHQ170.jpg" title="image016.jpg"></a></p>
+<p>查看mysql2的当前binlog状态信息：</p>
+<p><a href="https://s2.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLLDgIaGrAADlVt7630A610.jpg" target="_blank" rel="noopener"><img src="https://s2.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLLDgIaGrAADlVt7630A610.jpg" alt="wKiom1jnLLDgIaGrAADlVt7630A610.jpg" title="image017.jpg"></a></p>
+<p>在mysql1上将mysql2设为自已的主服务器并开启slave功能：</p>
+<p><a href="https://s2.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLLDRV4z_AADl5W2gM4M735.jpg" target="_blank" rel="noopener"><img src="https://s2.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLLDRV4z_AADl5W2gM4M735.jpg" alt="wKioL1jnLLDRV4z_AADl5W2gM4M735.jpg" title="image018.jpg"></a></p>
+<p>查看mysql1的状态：</p>
+<p><a href="https://s2.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLLHD9XJXAAJfFeYTHK8663.jpg" target="_blank" rel="noopener"><img src="https://s2.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLLHD9XJXAAJfFeYTHK8663.jpg" alt="wKiom1jnLLHD9XJXAAJfFeYTHK8663.jpg" title="image019.jpg"></a></p>
+<p>4、测试主主同步</p>
+<p>在mysql1上创建要同步的数据库如bdqn，并在bdqn中创建一张测试表叫it</p>
+<p><a href="https://s2.51cto.com/wyfs02/M02/8F/9F/wKioL1jnLLHQf1HUAAFMrZIy6vI976.jpg" target="_blank" rel="noopener"><img src="https://s2.51cto.com/wyfs02/M02/8F/9F/wKioL1jnLLHQf1HUAAFMrZIy6vI976.jpg" alt="wKioL1jnLLHQf1HUAAFMrZIy6vI976.jpg" title="image020.jpg"></a></p>
+<p>查看mysql2主机是否同步了mysql1上的数据变化：</p>
+<p><a href="https://s3.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLLLC8v1rAAHqIozz_CA612.jpg" target="_blank" rel="noopener"><img src="https://s3.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLLLC8v1rAAHqIozz_CA612.jpg" alt="wKiom1jnLLLC8v1rAAHqIozz_CA612.jpg" title="image021.jpg"></a></p>
+<p>从上图可以看出mysql2同步了mysql1的数据变化</p>
+<p>现在往mysql2主机上向it表中插入两行数据：</p>
+<p><a href="https://s3.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLLLDwwu3AAH9V7F283s122.jpg" target="_blank" rel="noopener"><img src="https://s3.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLLLDwwu3AAH9V7F283s122.jpg" alt="wKiom1jnLLLDwwu3AAH9V7F283s122.jpg" title="image022.jpg"></a></p>
+<p>查看mysql1主机是否同步了mysql2上的数据变化：</p>
+<p><a href="https://s3.51cto.com/wyfs02/M02/8F/9F/wKioL1jnLLKw2CR8AAGRKIpxkQ8557.jpg" target="_blank" rel="noopener"><img src="https://s3.51cto.com/wyfs02/M02/8F/9F/wKioL1jnLLKw2CR8AAGRKIpxkQ8557.jpg" alt="wKioL1jnLLKw2CR8AAGRKIpxkQ8557.jpg" title="image023.jpg"></a></p>
+<p>总结：至此现在任何一台MySQL上更新数据都会同步到另一台MySQL，MySQL同步完成。</p>
+<p>注意：若主MYSQL服务器已经存在，只是后期才搭建从MYSQL服务器，在置配数据同步前应先将主MYSQL服务器的要同步的数据库拷贝到从MYSQL服务器上（如先在主MYSQL上备份数据库，再用备份在从MYSQL服务器上恢复）</p>
+<p>下面我们就完成keepalived的高可用性：</p>
+<p>说明：keepalived是集群管理中保证集群高可用的一个软件解决方案，其功能类似于heartbeat，用来防止单点故障</p>
+<p>keepalived是以VRRP协议为实现基础的，VRRP全称VirtualRouter Redundancy Protocol，即虚拟路由冗余协议。</p>
+<p>虚拟路由冗余协议，可以认为是实现路由器高可用的协议，即将N台提供相同功能的路由器组成一个路由器组，这个组里面有一个master和多个backup，master上面有一个对外提供服务的vip，master会发组播（组播地址为224.0.0.18），当backup收不到vrrp包时就认为master宕掉了，这时就需要根据VRRP的优先级来选举一个backup当master，这样的话就可以保证路由器的高可用了。</p>
+<p>keepalived主要有三个模块，分别是core 、check和vrrp。core模块为keepalived的核心，负责主进程的启动、维护以及全局配置文件的加载和解析。check负责健康检查，包括常见的各种检查方式。vrrp模块是来实现VRRP协议的。</p>
+<p>二、keepalived的安装配置</p>
+<p>1、在mysql1和mysql2两台服务器上安装keepalived的几个依赖包</p>
+<p><a href="https://s5.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLLORWQJwAAB1GsjZ0RM267.jpg" target="_blank" rel="noopener"><img src="https://s5.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLLORWQJwAAB1GsjZ0RM267.jpg" alt="wKiom1jnLLORWQJwAAB1GsjZ0RM267.jpg" title="image024.jpg"></a></p>
+<p>注意：如不知道keepalived需要哪些依赖包，可到下载后的源码解压目录下查看INSTALL 文件内容，安装需要的依赖包，源码安装任何一个软件都要养成查看源码包文档的习惯，比如INSTALL，README,doc等文档，可以获得很多有用的信息。</p>
+<p>下面我们来看一看keepalived的INSTALL文件：</p>
+<p><a href="https://s1.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLLOxEGWSAAF6gWxpz_8831.jpg" target="_blank" rel="noopener"><img src="https://s1.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLLOxEGWSAAF6gWxpz_8831.jpg" alt="wKioL1jnLLOxEGWSAAF6gWxpz_8831.jpg" title="image025.jpg"></a></p>
+<p>2、在两台mysql上都开始解压缩编译安装keepalived</p>
+<p><a href="https://s1.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLLOzz6n0AADPbqZQxVE640.jpg" target="_blank" rel="noopener"><img src="https://s1.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLLOzz6n0AADPbqZQxVE640.jpg" alt="wKioL1jnLLOzz6n0AADPbqZQxVE640.jpg" title="image026.jpg"></a></p>
+<p>注：如果你使用的是centos6.5版本，则配置编译装的时候要这样写,如下图所示：</p>
+<p><a href="https://s5.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLLTT05AgAACmwUh0ouU884.jpg" target="_blank" rel="noopener"><img src="https://s5.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLLTT05AgAACmwUh0ouU884.jpg" alt="wKiom1jnLLTT05AgAACmwUh0ouU884.jpg" title="image027.jpg"></a></p>
+<p>3、执行make install操作之后，会自动生成/etc/init.d/keepalived脚本文件，但还需要手动添加为系统服务，这样就可以使用service、chkconfig工具来对keepalived服务程序进行管理了。</p>
+<p><a href="https://s5.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLLTDedvJAAESpUpb7XA654.jpg" target="_blank" rel="noopener"><img src="https://s5.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLLTDedvJAAESpUpb7XA654.jpg" alt="wKiom1jnLLTDedvJAAESpUpb7XA654.jpg" title="image028.jpg"></a></p>
+<p>4、若开启了防火墙，则需要关闭防火墙或者建富策略（现实生产环境中，都不允许关防火墙的，所以我们还是建富策略为第一选择）（两台mysql都需要操作）</p>
+<p><a href="https://s5.51cto.com/wyfs02/M02/8F/9F/wKioL1jnLLSA8xeUAACaeQKSKVM344.jpg" target="_blank" rel="noopener"><img src="https://s5.51cto.com/wyfs02/M02/8F/9F/wKioL1jnLLSA8xeUAACaeQKSKVM344.jpg" alt="wKioL1jnLLSA8xeUAACaeQKSKVM344.jpg" title="image029.jpg"></a></p>
+<p>5、修改keepalived的配置文件</p>
+<p>说明：keepalived只有一个配置文件keepalived.conf，里面主要包括以下几个配置区域，分别是：</p>
+<p>global_defs、vrrp_instance和virtual_server。</p>
+<ul>
+<li></li>
+</ul>
+<p>global_defs：主要是配置故障发生时的通知对象以及机器标识。</p>
+<ul>
+<li></li>
+</ul>
+<p>vrrp_instance：用来定义对外提供服务的VIP区域及其相关属性。</p>
+<ul>
+<li></li>
+</ul>
+<p>virtual_server：虚拟服务器定义</p>
+<p><a href="https://s5.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLLWCTZqjAAEhFi9071s627.jpg" target="_blank" rel="noopener"><img src="https://s5.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLLWCTZqjAAEhFi9071s627.jpg" alt="wKiom1jnLLWCTZqjAAEhFi9071s627.jpg" title="image030.jpg"></a></p>
+<p><a href="https://s5.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLLWzzwNCAAK3OBVf8iQ452.jpg" target="_blank" rel="noopener"><img src="https://s5.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLLWzzwNCAAK3OBVf8iQ452.jpg" alt="wKiom1jnLLWzzwNCAAK3OBVf8iQ452.jpg" title="image031.jpg"></a></p>
+<p>看不清截图的可以看下面的粘贴的文字：</p>
+<p>! Configuration File for keepalived</p>
+<p>global_defs {</p>
+<p>  router_id mysql-1</p>
+<p>}</p>
+<p>vrrp_instance VI_1 {</p>
+<p>   state BACKUP</p>
+<p>   interface eno16777736</p>
+<p>   virtual_router_id 51</p>
+<p>   priority 100</p>
+<p>   advert_int 1</p>
+<p>   nopreempt</p>
+<p>   authentication {</p>
+<pre><code>auth_type PASS
+
+auth_pass 1111
+</code></pre><p>   }</p>
+<p>   virtual_ipaddress {</p>
+<pre><code>192.168.1.150
+</code></pre><p>   }</p>
+<p>}</p>
+<p>virtual_server 192.168.1.150 3306 {</p>
+<p>   delay_loop 2</p>
+<p>   lb_algo rr</p>
+<p>   lb_kind DR</p>
+<p>   persistence_timeout 60</p>
+<p>   protocol TCP</p>
+<p>   real_server 192.168.1.100 3306 {</p>
+<pre><code>weight 3
+
+notify_down    /etc/keepalived/bin/mysql.sh
+
+TCP_CHECK {
+
+     connect_timeout 3
+
+     nb_get_retry 3
+
+     delay_before_retry 3
+
+     connect_port 3306
+
+}
+</code></pre><p>   }</p>
+<p>}</p>
+<p>每个配置项的解释如下：</p>
+<p><a href="https://s5.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLLbwBLWJAAND2YVoXRM716.jpg" target="_blank" rel="noopener"><img src="https://s5.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLLbwBLWJAAND2YVoXRM716.jpg" alt="wKioL1jnLLbwBLWJAAND2YVoXRM716.jpg" title="image032.jpg"></a></p>
+<p><a href="https://s5.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLODheqrjAANF2XgFeuc652.jpg" target="_blank" rel="noopener"><img src="https://s5.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLODheqrjAANF2XgFeuc652.jpg" alt="wKioL1jnLODheqrjAANF2XgFeuc652.jpg" title="image033.jpg"></a></p>
+<p>同样的也需要修改mysql2的keepalived配置文件（下图中绿色部分为和mysql1不一样的地方）</p>
+<p>可以使用scp命令把mysql1主机上配置好的keepalived.conf文件拷贝到server2主机，只需要改绿色部分即可:</p>
+<p><a href="https://s1.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLOGw8qmPAAH_RyWHGjY216.jpg" target="_blank" rel="noopener"><img src="https://s1.51cto.com/wyfs02/M01/8F/A1/wKiom1jnLOGw8qmPAAH_RyWHGjY216.jpg" alt="wKiom1jnLOGw8qmPAAH_RyWHGjY216.jpg" title="image034.jpg"></a></p>
+<p>6、启动keepalived服务（两台都要启动）</p>
+<p><a href="https://s1.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLOHhuzIkAACMRtWOZDE239.jpg" target="_blank" rel="noopener"><img src="https://s1.51cto.com/wyfs02/M01/8F/9F/wKioL1jnLOHhuzIkAACMRtWOZDE239.jpg" alt="wKioL1jnLOHhuzIkAACMRtWOZDE239.jpg" title="image035.jpg"></a></p>
+<p>7、mysql1和mysql2上都需要添加检测脚本</p>
+<p>作用：是当mysql停止工作时自动关闭本机的keeplived，从而实现将故障主机踢出热备组，因每台机器上keepalived只添加了本机为realserver，所以当mysqld正常启动后，我们还需要手动启动keepalived服务。</p>
+<p><a href="https://s2.51cto.com/wyfs02/M02/8F/9F/wKioL1jnLOHDYjlGAADV21Ou_V0874.jpg" target="_blank" rel="noopener"><img src="https://s2.51cto.com/wyfs02/M02/8F/9F/wKioL1jnLOHDYjlGAADV21Ou_V0874.jpg" alt="wKioL1jnLOHDYjlGAADV21Ou_V0874.jpg" title="image036.jpg"></a></p>
+<p><a href="https://s1.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLOKT0amfAADeX5kw9Nw004.jpg" target="_blank" rel="noopener"><img src="https://s1.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLOKT0amfAADeX5kw9Nw004.jpg" alt="wKiom1jnLOKT0amfAADeX5kw9Nw004.jpg" title="image037.jpg"></a></p>
+<p>8、给mysql.sh脚本赋予可执行权限（两台mysql都操作同样的步骤）</p>
+<p><a href="https://s2.51cto.com/wyfs02/M02/8F/9F/wKioL1jnLOLjBpjgAACjKpZRP_s633.jpg" target="_blank" rel="noopener"><img src="https://s2.51cto.com/wyfs02/M02/8F/9F/wKioL1jnLOLjBpjgAACjKpZRP_s633.jpg" alt="wKioL1jnLOLjBpjgAACjKpZRP_s633.jpg" title="image038.jpg"></a></p>
+<p>9、在mysql1和mysql2上分别执行ip addr show dev eno16777736命令查看mysql1和mysql2对VIP（群集虚拟IP）的控制权</p>
+<p><a href="https://s3.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLObRO7kAAAFZrDE0A4I304.jpg" target="_blank" rel="noopener"><img src="https://s3.51cto.com/wyfs02/M00/8F/9F/wKioL1jnLObRO7kAAAFZrDE0A4I304.jpg" alt="wKioL1jnLObRO7kAAAFZrDE0A4I304.jpg" title="image039.jpg"></a></p>
+<p><a href="https://s3.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLOijvuALAAEc-Tbq9lQ042.jpg" target="_blank" rel="noopener"><img src="https://s3.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLOijvuALAAEc-Tbq9lQ042.jpg" alt="wKiom1jnLOijvuALAAEc-Tbq9lQ042.jpg" title="image040.jpg"></a></p>
+<p>从上图可以看出mysql1是master，mysql2是slave。</p>
+<p>10、停止mysql1的mysql服务，看keepalived健康检查程序是否会触发了我们编写的脚本，进行自动故障切换</p>
+<p><a href="https://s1.51cto.com/wyfs02/M00/8F/A0/wKioL1jnLOryIVO7AAEMVrMAETs562.jpg" target="_blank" rel="noopener"><img src="https://s1.51cto.com/wyfs02/M00/8F/A0/wKioL1jnLOryIVO7AAEMVrMAETs562.jpg" alt="wKioL1jnLOryIVO7AAEMVrMAETs562.jpg" title="image041.jpg"></a></p>
+<p><a href="https://s3.51cto.com/wyfs02/M01/8F/A0/wKioL1jnLO6DeS-AAAFTTbamlgs692.jpg" target="_blank" rel="noopener"><img src="https://s3.51cto.com/wyfs02/M01/8F/A0/wKioL1jnLO6DeS-AAAFTTbamlgs692.jpg" alt="wKioL1jnLO6DeS-AAAFTTbamlgs692.jpg" title="image042.jpg"></a></p>
+<p>从上图可以说明在master服务器的mysql服务发生故障时，mysql1主机触发了我们编写的脚本，发生了自动故障切换。</p>
+<p>11、现在我们把mysql1的mysql服务开起来，并且keepalived的服务也需要手动开启</p>
+<p><a href="https://s4.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLPLg6lOkAAEIC75-c1Q029.jpg" target="_blank" rel="noopener"><img src="https://s4.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLPLg6lOkAAEIC75-c1Q029.jpg" alt="wKiom1jnLPLg6lOkAAEIC75-c1Q029.jpg" title="image043.jpg"></a></p>
+<p>12、我们再次在两台mysql服务器上用ip addr show dev eno16777736命令看一下</p>
+<p><a href="https://s1.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLPWAmum_AAErgsnHOm8188.jpg" target="_blank" rel="noopener"><img src="https://s1.51cto.com/wyfs02/M00/8F/A1/wKiom1jnLPWAmum_AAErgsnHOm8188.jpg" alt="wKiom1jnLPWAmum_AAErgsnHOm8188.jpg" title="image044.jpg"></a></p>
+<p><a href="https://s4.51cto.com/wyfs02/M01/8F/A0/wKioL1jnLPiQg3zqAAFep6K1b9E362.jpg" target="_blank" rel="noopener"><img src="https://s4.51cto.com/wyfs02/M01/8F/A0/wKioL1jnLPiQg3zqAAFep6K1b9E362.jpg" alt="wKioL1jnLPiQg3zqAAFep6K1b9E362.jpg" title="image045.jpg"></a></p>
+<p>从上面两张图可以看出，即便mysql1的mysql服务和keepalived服务都重新开启了，mysql2仍然是master了，mysql1抢不回去master的权利了，说明我们设置的nopreempt配置生效了，在生产环境中就需要添加不抢占配置，保证了群集稳定性，只有当mysql2的mysql服务坏掉的时候，mysql1才会再次成为master，否则它永远只能当mysql2的备份。（注：nopreempt一般是在优先级高的mysql上设置）</p>
+<p>13、我们找一台安装有MySQL客户端，然后登录VIP，看是否能登录，在登录之前两台MySQL服务器都要授权允许从远程登录</p>
+<p><a href="https://s2.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLPyR1HyPAAFujBaMMSk453.jpg" target="_blank" rel="noopener"><img src="https://s2.51cto.com/wyfs02/M02/8F/A1/wKiom1jnLPyR1HyPAAFujBaMMSk453.jpg" alt="wKiom1jnLPyR1HyPAAFujBaMMSk453.jpg" title="image046.jpg"></a></p>
+<p>在客户端上登陆：</p>
+<p><a href="https://s3.51cto.com/wyfs02/M02/8F/A0/wKioL1jnLQGhXoXFAAIy3pt7jiE132.jpg" target="_blank" rel="noopener"><img src="https://s3.51cto.com/wyfs02/M02/8F/A0/wKioL1jnLQGhXoXFAAIy3pt7jiE132.jpg" alt="wKioL1jnLQGhXoXFAAIy3pt7jiE132.jpg" title="image047.jpg"></a></p>
+<p>上图显示说明在客户端访问VIP地址，由mysql2主机提供响应的，因为mysql2当前是主服务器，将mysql2的mysql服务停止，在客户端执行show  variables like‘server_id’;</p>
+<p><a href="https://s4.51cto.com/wyfs02/M01/8F/A0/wKioL1jnLQOSpPe5AAD_D8pVJ78849.jpg" target="_blank" rel="noopener"><img src="https://s4.51cto.com/wyfs02/M01/8F/A0/wKioL1jnLQOSpPe5AAD_D8pVJ78849.jpg" alt="wKioL1jnLQOSpPe5AAD_D8pVJ78849.jpg" title="image048.jpg"></a></p>
+<p><a href="https://s1.51cto.com/wyfs02/M00/8F/A0/wKioL1jnLQqA5m4PAAIYqzox4XI257.jpg" target="_blank" rel="noopener"><img src="https://s1.51cto.com/wyfs02/M00/8F/A0/wKioL1jnLQqA5m4PAAIYqzox4XI257.jpg" alt="wKioL1jnLQqA5m4PAAIYqzox4XI257.jpg" title="image049.jpg"></a></p>
+<p>上图显示说明在客户端的查询请求是由mysql1主机响应的，故障切换成功。</p>
+<p>总结：</p>
+<p>Keepalived+mysql双主一般来说，中小型规模的时候，采用这种架构是最省事的。</p>
+<p>在master节点发生故障后，利用keepalived的高可用机制实现快速切换到备用节点。</p>
+<p>在这个方案里，有几个需要注意的地方：</p>
+<p>1.采用keepalived作为高可用方案时，两个节点最好都设置成BACKUP模式，避免因为意外情况下（比如脑裂）相互抢占导致往两个节点写入相同数据而引发冲突；</p>
+<p>2.把两个节点的auto_increment_increment（自增步长）和auto_increment_offset（自增起始值）设成不同值。其目的是为了避免master节点意外宕机时，可能会有部分binlog未能及时复制到slave上被应用，从而会导致slave新写入数据的自增值和原先master上冲突了，因此一开始就使其错开；当然了，如果有合适的容错机制能解决主从自增ID冲突的话，也可以不这么做；</p>
+<p>3.slave节点服务器配置不要太差，否则更容易导致复制延迟。作为热备节点的slave服务器，硬件配置不能低于master节点；</p>
+<p>4.如果对延迟问题很敏感的话，可考虑使用MariaDB分支版本，或者直接上线MySQL 5.7最新版本，利用多线程复制的方式可以很大程度降低复制延迟；</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CentOS/" rel="tag"># CentOS</a>
+          
+            <a href="/tags/keepalived/" rel="tag"># keepalived</a>
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+            <a href="/tags/高可用/" rel="tag"># 高可用</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/13/备份VMware虚拟磁盘文件 移植到其他虚拟机/" rel="next" title="备份VMware虚拟磁盘文件 移植到其他虚拟机">
+                <i class="fa fa-chevron-left"></i> 备份VMware虚拟磁盘文件 移植到其他虚拟机
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/18/centos 下 mysql+keepalived实现双主自由切换/" rel="prev" title="centos 下 mysql+keepalived实现双主自由切换">
+                centos 下 mysql+keepalived实现双主自由切换 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

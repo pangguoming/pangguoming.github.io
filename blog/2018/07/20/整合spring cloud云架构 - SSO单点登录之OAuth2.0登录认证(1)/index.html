@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="spring cloud,OAuth2.0,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="之前写了很多关于spring cloud的文章，今天我们对OAuth2.0的整合方式做一下笔记，首先我从网上找了一些关于OAuth2.0的一些基础知识点，帮助大家回顾一下知识点： 一、oauth中的角色client：调用资源服务器API的应用 Oauth 2.0 Provider：包括Authorization Server和Resource Server （1）Authorization Ser">
+<meta name="keywords" content="spring cloud,OAuth2.0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="整合spring cloud云架构 - SSO单点登录之OAuth2.0登录认证(1)">
+<meta property="og:url" content="http://pangguoming.com/blog/2018/07/20/整合spring cloud云架构 - SSO单点登录之OAuth2.0登录认证(1)/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="之前写了很多关于spring cloud的文章，今天我们对OAuth2.0的整合方式做一下笔记，首先我从网上找了一些关于OAuth2.0的一些基础知识点，帮助大家回顾一下知识点： 一、oauth中的角色client：调用资源服务器API的应用 Oauth 2.0 Provider：包括Authorization Server和Resource Server （1）Authorization Ser">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-26T14:39:35.281Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="整合spring cloud云架构 - SSO单点登录之OAuth2.0登录认证(1)">
+<meta name="twitter:description" content="之前写了很多关于spring cloud的文章，今天我们对OAuth2.0的整合方式做一下笔记，首先我从网上找了一些关于OAuth2.0的一些基础知识点，帮助大家回顾一下知识点： 一、oauth中的角色client：调用资源服务器API的应用 Oauth 2.0 Provider：包括Authorization Server和Resource Server （1）Authorization Ser">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2018/07/20/整合spring cloud云架构 - SSO单点登录之OAuth2.0登录认证(1)/">
+
+
+
+
+
+  <title>整合spring cloud云架构 - SSO单点登录之OAuth2.0登录认证(1) | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/2018/07/20/整合spring cloud云架构 - SSO单点登录之OAuth2.0登录认证(1)/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">整合spring cloud云架构 - SSO单点登录之OAuth2.0登录认证(1)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-20T10:59:00+08:00">
+                2018-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>之前写了很多关于spring cloud的文章，今天我们对OAuth2.0的整合方式做一下笔记，首先我从网上找了一些关于OAuth2.0的一些基础知识点，帮助大家回顾一下知识点：</p>
+<h2 id="一、oauth中的角色"><a href="#一、oauth中的角色" class="headerlink" title="一、oauth中的角色"></a>一、oauth中的角色</h2><p><strong>client</strong>：调用资源服务器API的应用</p>
+<p><strong>Oauth 2.0 Provider</strong>：包括Authorization Server和Resource Server</p>
+<p>（1）Authorization Server：认证服务器，进行认证和授权</p>
+<p>（2）Resource Server：资源服务器，保护受保护的资源<br><strong>user</strong>：资源的拥有者</p>
+<h2 id="二、下面详细介绍一下Oauth-2-0-Provider"><a href="#二、下面详细介绍一下Oauth-2-0-Provider" class="headerlink" title="二、下面详细介绍一下Oauth 2.0 Provider"></a>二、下面详细介绍一下Oauth 2.0 Provider</h2><h3 id="Authorization-Server"><a href="#Authorization-Server" class="headerlink" title="Authorization Server:"></a><strong>Authorization Server:</strong></h3><p>（1）<code>/oauth/authorize</code></p>
+<p>（2）<a href="http://docs.spring.io/spring-security/oauth/apidocs/org/springframework/security/oauth2/provider/endpoint/TokenEndpoint.html" title="TokenEndpoint" target="_blank" rel="noopener">TokenEndpoint</a>：获取token的服务，Default URL: <code>/oauth/token</code>  </p>
+<h3 id="Resource-Server"><a href="#Resource-Server" class="headerlink" title="Resource Server:"></a><strong>Resource Server:</strong></h3><p><a href="http://docs.spring.io/spring-security/oauth/apidocs/org/springframework/security/oauth2/provider/authentication/OAuth2AuthenticationProcessingFilter.html" title="OAuth2AuthenticationProcessingFilter" target="_blank" rel="noopener">OAuth2AuthenticationProcessingFilter</a>：给带有访问令牌的请求加载认证</p>
+<h2 id="三、下面再来详细介绍一下Authorization-Server"><a href="#三、下面再来详细介绍一下Authorization-Server" class="headerlink" title="三、下面再来详细介绍一下Authorization Server:"></a>三、下面再来详细介绍一下Authorization Server:</h2><p>一般情况下，创建两个配置类，一个继承AuthorizationServerConfigurerAdapter，一个继承WebSecurityConfigurerAdapter，再去复写里面的方法。</p>
+<h3 id="主要出现的两种注解："><a href="#主要出现的两种注解：" class="headerlink" title="主要出现的两种注解："></a>主要出现的两种注解：</h3><p>1、@EnableAuthorizationServer：声明一个认证服务器，当用此注解后，应用启动后将自动生成几个<a href="http://docs.spring.io/spring-security/oauth/apidocs/org/springframework/security/oauth2/provider/endpoint/AuthorizationEndpoint.html" title="AuthorizationEndpoint" target="_blank" rel="noopener">Endpoint</a>：（注：其实实现一个认证服务器就是这么简单，加一个注解就搞定，当然真正用到生产环境还是要进行一些配置和复写工作的。）</p>
+<p>/oauth/authorize：验证</p>
+<p>/oauth/token：获取token</p>
+<p>/oauth/confirm_access：用户授权</p>
+<p>/oauth/error：认证失败</p>
+<p>/oauth/check_token：资源服务器用来校验token</p>
+<p>/oauth/token_key：如果jwt模式则可以用此来从认证服务器获取公钥</p>
+<p>以上这些endpoint都在源码里的endpoint包里面。</p>
+<p>2、@Beans：需要实现AuthorizationServerConfigurer</p>
+<p>AuthorizationServerConfigurer包含三种配置：</p>
+<p>ClientDetailsServiceConfigurer：client客户端的信息配置，client信息包括：clientId、secret、scope、authorizedGrantTypes、authorities</p>
+<p>（1）scope：表示权限范围，可选项，用户授权页面时进行选择</p>
+<p>（2）authorizedGrantTypes：有四种授权方式 </p>
+<ul>
+<li>Authorization Code：用验证获取code，再用code去获取token（用的最多的方式，也是最安全的方式）</li>
+<li>Implicit: 隐式授权模式</li>
+<li>Client Credentials (用來取得 App Access Token)</li>
+<li>Resource Owner Password Credentials</li>
+</ul>
+<p>（3）authorities：授予client的权限</p>
+<p>这里的具体实现有多种，in-memory、JdbcClientDetailsService、jwt等。</p>
+<p>AuthorizationServerSecurityConfigurer：声明安全约束，哪些允许访问，哪些不允许访问</p>
+<p>AuthorizationServerEndpointsConfigurer：声明授权和token的端点以及token的服务的一些配置信息，比如采用什么存储方式、token的有效期等</p>
+<p>client的信息的读取：在ClientDetailsServiceConfigurer类里面进行配置，可以有in-memory、jdbc等多种读取方式。</p>
+<p>jdbc需要调用JdbcClientDetailsService类，此类需要传入相应的DataSource.</p>
+<h3 id="下面再介绍一下如何管理token"><a href="#下面再介绍一下如何管理token" class="headerlink" title="下面再介绍一下如何管理token:"></a>下面再介绍一下如何管理token:</h3><p><code>[AuthorizationServerTokenServices](http://docs.spring.io/spring-security/oauth/apidocs/org/springframework/security/oauth2/provider/token/AuthorizationServerTokenServices.html &quot;AuthorizationServerTokenServices&quot;)接口:声明必要的关于token的操作</code></p>
+<p>（1）当token创建后，保存起来，以便之后的接受访问令牌的资源可以引用它。</p>
+<p>（2）访问令牌用来加载认证</p>
+<p>接口的实现也有多种，<code>[DefaultTokenServices](http://docs.spring.io/spring-security/oauth/apidocs/org/springframework/security/oauth2/provider/token/DefaultTokenServices.html &quot;DefaultTokenServices&quot;)是其默认实现，他使用了默认的InMemoryTokenStore，不会持久化token；</code></p>
+<h3 id="token存储方式共有三种分别是："><a href="#token存储方式共有三种分别是：" class="headerlink" title="token存储方式共有三种分别是："></a>token存储方式共有三种分别是：</h3><p>（1）InMemoryTokenStore：存放内存中，不会持久化</p>
+<p>（2）JdbcTokenStore：存放数据库中</p>
+<p>（3）Jwt: json web token</p>
+<h3 id="授权类型："><a href="#授权类型：" class="headerlink" title="授权类型："></a>授权类型：</h3><p>可以通过AuthorizationServerEndpointsConfigurer来进行配置，默认情况下，支持除了密码外的所有授权类型。相关授权类型的一些类：</p>
+<p>（1）authenticationManager：直接注入一个AuthenticationManager，自动开启密码授权类型</p>
+<p>（2）userDetailsService：如果注入UserDetailsService，那么将会启动刷新token授权类型，会判断用户是否还是存活的</p>
+<p>（3）authorizationCodeServices：AuthorizationCodeServices的实例，auth code 授权类型的服务</p>
+<p>（4）implicitGrantService：imlpicit grant</p>
+<p>（5）tokenGranter：</p>
+<h3 id="endpoint的URL的配置："><a href="#endpoint的URL的配置：" class="headerlink" title="endpoint的URL的配置："></a>endpoint的URL的配置：</h3><p>（1）AuthorizationServerEndpointsConfigurer的pathMapping()方法，有两个参数，第一个是默认的URL路径，第二个是自定义的路径</p>
+<p>（2）WebSecurityConfigurer的实例，可以配置哪些路径不需要保护，哪些需要保护。默认全都保护。</p>
+<h3 id="自定义UI"><a href="#自定义UI" class="headerlink" title="自定义UI:"></a>自定义UI:</h3><p>（1）有时候，我们可能需要自定义的登录页面和认证页面。登陆页面的话，只需要创建一个login为前缀名的网页即可，在代码里，设置为允许访问，这样，系统会自动执行你的登陆页。此登陆页的action要注意一下，必须是跳转到认证的地址。</p>
+<p>（2）另外一个是授权页，让你勾选选项的页面。此页面可以参考源码里的实现，自己生成一个controller的类，再创建一个对应的web页面即可实现自定义的功能。</p>
+<h3 id="下面梳理一下授权获取token流程："><a href="#下面梳理一下授权获取token流程：" class="headerlink" title="下面梳理一下授权获取token流程："></a>下面梳理一下授权获取token流程：</h3><p>（1）端口号换成你自己的认证服务器的端口号，client_id也换成你自己的，response_type类型为code。</p>
+<p> localhost:8080/uaa/oauth/authorize?client_id=client&amp;response_type=code&amp;redirect_uri=<a href="http://www/" target="_blank" rel="noopener">http://www</a>.baidu.com<br>（2）这时候你将获得一个code值：<a href="http://www/" target="_blank" rel="noopener">http://www</a>.baidu.com/?code=G0C20Z</p>
+<p>（3）使用此code值来获取最终的token：</p>
+<p>curl -X POST -H “Cant-Type: application/x-www-form-urlencoded” -d ‘grant_type=authorization_code&amp;code=G0C20Z&amp;redirect_uri=<a href="http://www.baidu.com/" target="_blank" rel="noopener">http://www.baidu.com</a>‘ “<a href="http://client:secret@localhost:8080/oauth/token" target="_blank" rel="noopener">http://client:secret@localhost:8080/uaa/oauth/token</a>“</p>
+<p>返回值：</p>
+<p>{“access_token”:”b251b453-cc08-4520-9dd0-9aedf58e6ca3”,”token_type”:”bearer”,”expires_in”:2591324,”scope”:”app”}</p>
+<p>（4）用此token值来调用资源服务器内容（如果资源服务器和认证服务器在同一个应用中，那么资源服务器会自己解析token值，如果不在，那么你要自己去做处理）</p>
+<p>curl -H “Authorization: Bearer b251b453-cc08-4520-9dd0-9aedf58e6ca3” “localhost:8081/service2（此处换上你自己的url）”</p>
+<h2 id="四、Resource-Server：保护资源，需要令牌才能访问"><a href="#四、Resource-Server：保护资源，需要令牌才能访问" class="headerlink" title="四、Resource Server：保护资源，需要令牌才能访问"></a>四、Resource Server：保护资源，需要令牌才能访问</h2><p>在配置类上加上注解@EnableResourceServer即启动。使用ResourceServerConfigurer进行配置：</p>
+<p>（1）tokenServices：ResourceServerTokenServices的实例，声明了token的服务</p>
+<p>（2）resourceId：资源Id，由auth Server验证。</p>
+<p>（3）其它一些扩展点，比如可以从请求中提取token的tokenExtractor</p>
+<p>（4）一些自定义的资源保护配置，通过HttpSecurity来设置</p>
+<p>使用token的方式也有两种：</p>
+<p>（1）Bearer Token（https传输方式保证传输过程的安全）:主流</p>
+<p>（2）Mac（http+sign）</p>
+<p><strong>如何访问资源服务器中的API？</strong></p>
+<p>如果资源服务器和授权服务器在同一个应用程序中，并且您使用DefaultTokenServices，那么您不必太考虑这一点，因为它实现所有必要的接口，因此它是自动一致的。如果您的资源服务器是一个单独的应用程序，那么您必须确保您匹配授权服务器的功能，并提供知道如何正确解码令牌的ResourceServerTokenServices。与授权服务器一样，您可以经常使用DefaultTokenServices，并且选项大多通过TokenStore（后端存储或本地编码）表示。</p>
+<p>（1）在校验request中的token时，使用RemoteTokenServices去调用AuthServer中的/auth/check_token。</p>
+<p>（2）共享数据库，使用Jdbc存储和校验token，避免再去访问AuthServer。</p>
+<p>（3）使用JWT签名的方式，资源服务器自己直接进行校验，不借助任何中间媒介。</p>
+<h2 id="五、oauth-client"><a href="#五、oauth-client" class="headerlink" title="五、oauth client"></a>五、oauth client</h2><p>在客户端获取到token之后，想去调用下游服务API时，为了能将token进行传递，可以使用RestTemplate.然后使用restTemplate进行调用Api。</p>
+<p>注：</p>
+<p>scopes和authorities的区别：</p>
+<p>scopes是client权限，至少授予一个scope的权限，否则报错。</p>
+<p>authorities是用户权限。     </p>
+<p>以上是我从网上找到的一篇写的不错的博客，希望可以帮助大家快速了解OAuth2.0,下一篇文章我们正式介绍OAuth2.0在当前框架中的使用。 </p>
+<p>从现在开始，我这边会将近期研发的spring cloud微服务云架构的搭建过程和精髓记录下来，帮助更多有兴趣研发spring cloud框架的朋友，大家来一起探讨spring cloud架构的搭建过程及如何运用于企业项目。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring-cloud/" rel="tag"># spring cloud</a>
+          
+            <a href="/tags/OAuth2-0/" rel="tag"># OAuth2.0</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/17/Could not load file or assembly &#39;System.Data.SQLite&#39; or one of its dependencies. An attempt was made to load a program/" rel="next" title="Could not load file or assembly 'System.Data.SQLite' or one of its dependencies. An attempt was made to load a program">
+                <i class="fa fa-chevron-left"></i> Could not load file or assembly 'System.Data.SQLite' or one of its dependencies. An attempt was made to load a program
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/20/(十一) 整合spring cloud云架构 - SSO单点登录之OAuth2.0登录流程(2)/" rel="prev" title="(十一) 整合spring cloud云架构 - SSO单点登录之OAuth2.0登录流程(2)">
+                (十一) 整合spring cloud云架构 - SSO单点登录之OAuth2.0登录流程(2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、oauth中的角色"><span class="nav-number">1.</span> <span class="nav-text">一、oauth中的角色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、下面详细介绍一下Oauth-2-0-Provider"><span class="nav-number">2.</span> <span class="nav-text">二、下面详细介绍一下Oauth 2.0 Provider</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Authorization-Server"><span class="nav-number">2.1.</span> <span class="nav-text">Authorization Server:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resource-Server"><span class="nav-number">2.2.</span> <span class="nav-text">Resource Server:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、下面再来详细介绍一下Authorization-Server"><span class="nav-number">3.</span> <span class="nav-text">三、下面再来详细介绍一下Authorization Server:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主要出现的两种注解："><span class="nav-number">3.1.</span> <span class="nav-text">主要出现的两种注解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面再介绍一下如何管理token"><span class="nav-number">3.2.</span> <span class="nav-text">下面再介绍一下如何管理token:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#token存储方式共有三种分别是："><span class="nav-number">3.3.</span> <span class="nav-text">token存储方式共有三种分别是：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#授权类型："><span class="nav-number">3.4.</span> <span class="nav-text">授权类型：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#endpoint的URL的配置："><span class="nav-number">3.5.</span> <span class="nav-text">endpoint的URL的配置：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义UI"><span class="nav-number">3.6.</span> <span class="nav-text">自定义UI:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面梳理一下授权获取token流程："><span class="nav-number">3.7.</span> <span class="nav-text">下面梳理一下授权获取token流程：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、Resource-Server：保护资源，需要令牌才能访问"><span class="nav-number">4.</span> <span class="nav-text">四、Resource Server：保护资源，需要令牌才能访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、oauth-client"><span class="nav-number">5.</span> <span class="nav-text">五、oauth client</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
