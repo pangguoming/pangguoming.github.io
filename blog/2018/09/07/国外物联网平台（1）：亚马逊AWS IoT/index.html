@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="iot,物联网,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="# 国外物联网平台（1）——亚马逊AWS IoT马智## 平台定位   AWS IoT是一款托管的云平台，使互联设备可以轻松安全地与云应用程序及其他设备交互。    AWS IoT可支持数十亿台设备和数万亿条消息，并且可以对这些消息进行处理并将其安全可靠地路由至 AWS 终端节点和其他设备。应用程序可以随时跟踪所有设备并与其通信，即使这些设备未处于连接状态也不例外。   使用AWS Lambda、">
+<meta name="keywords" content="iot,物联网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="国外物联网平台（1）：亚马逊AWS IoT">
+<meta property="og:url" content="http://pangguoming.com/blog/2018/09/07/国外物联网平台（1）：亚马逊AWS IoT/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="# 国外物联网平台（1）——亚马逊AWS IoT马智## 平台定位   AWS IoT是一款托管的云平台，使互联设备可以轻松安全地与云应用程序及其他设备交互。    AWS IoT可支持数十亿台设备和数万亿条消息，并且可以对这些消息进行处理并将其安全可靠地路由至 AWS 终端节点和其他设备。应用程序可以随时跟踪所有设备并与其通信，即使这些设备未处于连接状态也不例外。   使用AWS Lambda、">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161301535-1388447176.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161302348-579382308.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161302707-296472430.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161303160-363760671.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161303691-1501596532.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161304332-455584251.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161304738-1884244201.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161305535-607359327.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161306441-1807135853.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161307160-2075057224.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161307738-1193011012.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161308441-1532312578.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161311519-1868505547.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161312613-881606128.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161315785-1653221780.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161318004-1269619604.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161319504-1096897209.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161320223-944916092.jpg">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161321301-336804418.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161323348-1200851458.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161325207-1525666936.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161326379-643547832.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161327816-1834260744.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161329129-1628274450.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161330644-1609308326.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161332723-1295417416.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161333988-1435344507.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161335019-1984698098.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161335738-726646887.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161336348-1603305802.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161337004-646557292.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161337551-1794933912.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161338176-1623116081.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161338988-688832545.png">
+<meta property="og:updated_time" content="2019-01-26T14:39:27.425Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="国外物联网平台（1）：亚马逊AWS IoT">
+<meta name="twitter:description" content="# 国外物联网平台（1）——亚马逊AWS IoT马智## 平台定位   AWS IoT是一款托管的云平台，使互联设备可以轻松安全地与云应用程序及其他设备交互。    AWS IoT可支持数十亿台设备和数万亿条消息，并且可以对这些消息进行处理并将其安全可靠地路由至 AWS 终端节点和其他设备。应用程序可以随时跟踪所有设备并与其通信，即使这些设备未处于连接状态也不例外。   使用AWS Lambda、">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161301535-1388447176.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2018/09/07/国外物联网平台（1）：亚马逊AWS IoT/">
+
+
+
+
+
+  <title>国外物联网平台（1）：亚马逊AWS IoT | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2018/09/07/国外物联网平台（1）：亚马逊AWS IoT/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">国外物联网平台（1）：亚马逊AWS IoT</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-07T14:43:00+08:00">
+                2018-09-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="cnblogs_post_body" class="blogpost-body"><br><br># 国外物联网平台（1）<br>——亚马逊AWS IoT<br><br>马智<br><br>## 平台定位<br><br><em>   AWS IoT是一款托管的云平台，使互联设备可以轻松安全地与云应用程序及其他设备交互。
+</em>   AWS IoT可支持数十亿台设备和数万亿条消息，并且可以对这些消息进行处理并将其安全可靠地路由至 AWS 终端节点和其他设备。应用程序可以随时跟踪所有设备并与其通信，即使这些设备未处于连接状态也不例外。<br><em>   使用AWS Lambda、Amazon Kinesis、Amazon S3、Amazon Machine Learning、Amazon DynamoDB、Amazon CloudWatch、AWS CloudTrail 和内置 Kibana 集成的 Amazon Elasticsearch Service 等AWS服务来构建IoT应用程序，以便收集、处理和分析互连设备生成的数据并对其执行操作，且无需管理任何基础设施。<br><br>## 架构<br><br><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161301535-1388447176.png" alt=""><br><br>## 与AWS IoT平台集成的AWS服务<br><br><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161302348-579382308.png" alt="">
+
+</em>   Amazon DynamoDB—托管NoSQL数据库<br><em>   Amazon Kinesis—大规模流式数据实时处理
+</em>   AWS Lambda—EC2云虚拟机运行代码响应事件<br><em>   Amazon Simple Storage Service（S3）—可扩展云存储
+</em>   Amazon Simple Notification—推送通知服务<br><em>   Amazon Simple Queue Service—消息队列服务<br><br>## 设备SDK<br><br><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161302707-296472430.png" alt="">
+
+</em>   AWS IoT 设备 SDK 使用 MQTT、HTTP 或 WebSockets 协议将硬件设备连接到 AWS IoT，硬件设备无缝安全地与 AWS IoT 提供的设备网关和设备影子协作。<br><em>   设备 SDK 支持 C、JavaScript 、Arduino、Java和Python。
+</em>   设备 SDK 包含开源库、带有示例的开发人员指南和移植指南，用户根据硬件平台构建 IoT 产品或解决方案。<br><br>## 设备网关<br><br><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161303160-363760671.png" alt=""><br><br><em>   AWS IoT 设备网关支持设备安全高效地与 AWS IoT 进行通信。设备网关可以使用发布/订阅模式交换消息，从而支持一对一和一对多的通信。凭借此一对多的通信模式，AWS IoT 将支持互连设备向多名给定主题的订阅者广播数据。
+</em>   设备网关支持 MQTT、WebSocket 和 HTTP 1.1 协议，也支持私有协议。<br><em>   设备网关可自动扩展，以支持 10 亿多台设备，而无需预配置基础设施。<br><br>## 认证和授权<br><br><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161303691-1501596532.png" alt="">
+
+</em>   AWS IoT 在所有连接点处提供相互身份验证和加密。AWS IoT 支持 AWS 身份验证方法（称为”SigV4”）以及基于身份验证的 X.509 证书。使用 HTTP 的连接可以使用任一方法，使用 MQTT 的连接可以使用基于证书的身份验证，使用 WebSockets 的连接可以使用 SigV4。<br><em>   使用 AWS IoT 生成的证书以及由首选证书颁发机构 (CA) 签署的证书，将所选的角色和/或策略映射到每个证书，以便授予设备或应用程序访问权限，或撤消访问权限。
+</em>   通过控制台或使用 API 创建、部署并管理设备的证书和策略。这些设备证书可以预配置、激活和与使用 AWS IAM 配置的相关策略关联。<br><em>   AWS IoT 还支持用户移动应用使用 Amazon Cognito 进行连接，Amazon Cognito 将负责执行必要的操作来为应用用户创建唯一标识符并获取临时的、权限受限的 AWS 凭证。<br><br>## 注册表
+
+</em>   注册表将创建设备标识并跟踪元数据，如设备的属性和功能。<br><em>   注册表向格式一致的每台设备分配唯一的标识，而不管设备的类型和连接方式为何。此外，它还支持描述设备功能的元数据，例如传感器是否报告温度，以及数据是华氏度还是摄氏度。
+</em>   注册表存储有关设备的元数据，无需支付额外费用；并且需要每隔 7 天至少访问或更新注册表条目一次，注册表中的元数据就不会过期。<br><br>以JSON格式存储的设备注册表信息<br><br><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161304332-455584251.png" alt=""><br><br>## 设备影子（Shadow）<br><br><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161304738-1884244201.png" alt=""><br><br><em>   设备影子保留每台设备的最后报告状态和期望的未来状态，即便设备处于离线状态。
+</em>   通过 API 或使用规则引擎，获取设备的最后报告状态或设置期望的未来状态。<br><em>   应用程序可以设置设备的期望未来状态，而无需说明设备的当前状态。AWS IoT 将比较期望未来状态和最后报告状态之间的差异，并命令设备”弥补差异”。
+</em>   设备 SDK 能够轻松地同步其状态及其影子，并响应通过影子设置的期望的未来状态。<br><em>   设备影子免费存储设备状态多达一年。如果至少每年更新一次状态，则设备影子将永久保留状态；否则状态将过期。<br><br>## 设备影子（Shadow）流程<br><br><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161305535-607359327.png" alt=""><br><br>## 设备影子（Shadow）格式<br><br><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161306441-1807135853.png" alt=""><br><br>## 设备影子（Shadow）服务<br><br>设备影子服务使用MQTT话题，便于应用和设备之间的通信，下面是相关的MQTT QoS 1话题：<br><br>$aws/things/{thingName}/shadow/update<br><br>$aws/things/{thingName}/shadow/get<br><br>$aws/things/{thingName}/shadow/delete<br><br>$aws/things/{thingName}/shadow/update/accepted<br><br>$aws/things/{thingName}/shadow/update/rejected<br><br>$aws/things/{thingName}/shadow/update/delta<br><br>$aws/things/{thingName}/shadow/get/accepted<br><br>$aws/things/{thingName}/shadow/get/rejected<br><br>$aws/things/{thingName}/shadow/delete/accepted<br><br>$aws/things/{thingName}/shadow/delete/rejected<br><br>设备SDK（C-SDK、JS-SDK）将影子功能内置在设备中，能够使设备与影子服务之间自动同步状态。<br><br>## 规则引擎<br><br><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161307160-2075057224.png" alt="">
+
+</em>   规则引擎验证发布到 AWS IoT 的入站消息，并根据定义的业务规则转换这些消息并将它们传输到另一台设备或云服务。规则可以应用至一台或多台设备中的数据，并且它可以并行执行一个或多 个操作。<br><em>   规则引擎还可以将消息路由到 AWS 终端节点，包括 AWS Lambda、Amazon Kinesis、Amazon S3、Amazon Machine Learning、Amazon DynamoDB、Amazon CloudWatch 和内置 Kibana 集成的 Amazon Elasticsearch Service。外部终端节点可以使用 AWS Lambda、Amazon Kinesis 和 Amazon Simple Notification Service (SNS) 进行连接。
+</em>   使用类似 SQL 的语句编写规则。例如：如果温度读数超出特定阈值，则它可以触发规则以便将数据传输到 AWS Lambda；如果此温度超出其他 5 台设备的平均值 15%，则应采取措施。<br><em>   规则引擎将提供数十个可用于转换数据的可用功能，并且可以通过 AWS Lambda 创建无限个功能。例如，如果正在处理各种不同的数值，则可以取传入数字的平均值。规则还会触发在 AWS Lambda 中执行 Java、Node.js 或 Python 代码，从而提供最高灵活度以及处理设备数据的能力。<br><br>## 规则引擎集成其它云服务<br><br><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161307738-1193011012.png" alt=""><br><br>规则引擎验证发布至AWS IoT的消息请求，基于业务规则转换消息请求并发布至其它服务，例如：
+
+</em>   富集化或过滤从设备收集的数据<br><em>   将设备数据写入一个亚马逊DynamoDBm数据库
+</em>   保存文件至亚马逊S3<br><em>   发送一个推送通知到所有亚马逊SNS用户
+</em>   向亚马逊SQS队列发布数据<br><em>   调用Lambda函数抽取数据
+</em>   使用亚马逊Kinesis处理大量的设备消息数据<br><em>   发送数据至亚马逊Elasticsearch服务
+</em>   捕获一条CloudWatch测量数据<br><em>   更新一条CloudWatch告警
+</em>   把一条MQTT消息数据发送至亚马逊机器学习服务，基于亚马逊机器学习模型进行预测<br><br>## 规则引擎&amp;实时流式数据处理<br><br><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161308441-1532312578.png" alt=""><br><br><strong>N:1 入站的传感器流式数据（数据降噪）</strong><br><br>规则引擎过滤、转换、汇总传感器数据后，发送至亚马逊Kinesis处理实时流式数据<br><br><strong>Kinesis流式数据共享至其它业务系统</strong><br><br>将流式数据的实时处理结果导入至数据库、应用或其它亚马逊服务<br><br>## 规则引擎&amp;推送通知服务<br><br><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161311519-1868505547.png" alt=""><br><br><strong>推送通知</strong><br><br>支持苹果APNS推送通知服务、谷歌GCM云消息服务、亚马逊ADM设备消息服务，微软WNS推送服务<br><br><strong>亚马逊SNS推送通知服务-&gt;HTTP协议终端（短信、邮件）</strong><br><br>通过亚马逊SNS推送通知服务，调用第三方HTTP协议终端，支持订阅和重试<br><br>## 规则引擎示例 – 使用机器学习预测函数<br><br><div><br><table border="0"><colgroup><col></colgroup><br><tbody valign="top"><br><tr><br><td><br><br>{ “sql”:<br><br>    “SELECT <em><br><br>    FROM ‘iot/test’<br><br>    where<br><br>        machinelearning_predict(‘my-model’, ‘arn:aws:iam::123456789012:role/my-iot-aml-role’, </em>).predictedLabel=1”,<br><br>    “ruleDisabled”: false,<br><br>    “awsIotSqlVersion”: “2016-03-23-beta”,<br><br>    “actions”:<br><br>        [{ “republish”:<br><br>            { “roleArn”: “arn:aws:iam::123456789012:role/my-iot-role”,                 “topic”: “my-mqtt-topic” }<br><br>        }]<br><br>}<br><br></td><br><br></tr><br><br></tbody><br><br></table><br><br>上面是使用亚马逊机器学习预测函数machinelearning_predict 的规则示例，其含义是：<br><br>如果机器学习预测函数处理MQTT消息后的结果是分类1，那么重新将此消息发布至一个话题。<br><br>## 设备管理<br><br><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161312613-881606128.png" alt=""><br><br><em>   支持全球或部分地区的固件升级
+</em>   规则引擎在DynamoDBm数据库跟踪升级状态和进度<br><em>   注册表存储设备的固件版本<br><br><strong>S3管理固件分发版本</strong><br><br>在S3中组织和保障和固件二进制文件<br><br><strong>消息代理使用话题模式通知设备分组</strong><br><br>通知设备分组固件更新信息，包括S3中的固件二进制文件URL地址<br><br>## AWS IoT平台接口
+
+</em>   <div>AWS Command Line Interface (AWS CLI)<br><br>    <em>   在Windows、Mac和Linux执行AWS IoT命令<br><br></em></div>
+   <div>AWS SDKs<br><br>    <em>   使用特定语言API开发IoT应用<br><br></em></div>
+   <div>AWS IoT API<br><br>    <em>   使用HTTP或者HTTPS请求开发IoT应用<br><br></em></div>
+   <div>AWS IoT Thing SDK for C<br><br>    *   在资源受限的设备上开发IoT应用，如MCU<br><br></div>
+
+<h2 id="AWS-IoT监控工具"><a href="#AWS-IoT监控工具" class="headerlink" title="AWS IoT监控工具"></a>AWS IoT监控工具</h2><p><strong>自动化监控工具</strong></p>
+<ul>
+<li>Amazon CloudWatch Alarms</li>
+<li>Amazon CloudWatch Logs</li>
+<li>Amazon CloudWatch Events</li>
+<li>AWS CloudTrail Log Monitoring</li>
+</ul>
+<p><strong>手工监控工具</strong></p>
+<ul>
+<li><p><div>AWS IoT 仪表盘</div></p>
+<ul>
+<li>证书</li>
+<li>策略</li>
+<li>规则</li>
+<li>设备</li>
+</ul>
+</li>
+</ul>
+<p></p></div><p></p>
+<ul>
+<li><p><div>CloudWatch首页</div></p>
+<ul>
+<li>当前告警和状态</li>
+<li>告警和资源图表</li>
+<li>服务健康度</li>
+</ul>
+</li>
+</ul>
+<p></p></div><p></p>
+<ul>
+<li>CloudWatch</li>
+<li>自定义仪表盘</li>
+<li>自定义图表进行排障和监控趋势</li>
+<li>搜索所有AWS资源指标</li>
+<li>创建和修改告警参数</li>
+</ul>
+<h2 id="AWS-IoT-初学者工具包"><a href="#AWS-IoT-初学者工具包" class="headerlink" title="AWS IoT 初学者工具包"></a>AWS IoT 初学者工具包</h2><ul>
+<li>AWS IoT 初学者工具包旨在帮助进行原型开发和安全地连接 AWS IoT。</li>
+<li>工具包内含开发微控制器开发板、传感器和执行器、AWS IoT 设备 SDK 以及入门指南。</li>
+</ul>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161315785-1653221780.png" alt=""></p>
+<h2 id="AWS-IoT-初学者工具包-支持的平台"><a href="#AWS-IoT-初学者工具包-支持的平台" class="headerlink" title="AWS IoT 初学者工具包 - 支持的平台"></a>AWS IoT 初学者工具包 - 支持的平台</h2><p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161318004-1269619604.png" alt=""></p>
+<h2 id="AWS-IoT生态"><a href="#AWS-IoT生态" class="headerlink" title="AWS IoT生态"></a>AWS IoT生态</h2><p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161319504-1096897209.png" alt=""></p>
+<h2 id="开发示例-AWS-IoT-按钮"><a href="#开发示例-AWS-IoT-按钮" class="headerlink" title="开发示例 - AWS IoT 按钮"></a>开发示例 - AWS IoT 按钮</h2><p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161320223-944916092.jpg" alt=""></p>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161321301-336804418.png" alt=""></p>
+<p>创建设备</p>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161323348-1200851458.png" alt=""></p>
+<p>设备属性</p>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161325207-1525666936.png" alt=""></p>
+<p>创建证书</p>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161326379-643547832.png" alt=""></p>
+<p>激活证书</p>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161327816-1834260744.png" alt=""></p>
+<p>创建策略</p>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161329129-1628274450.png" alt=""></p>
+<p>绑定证书与策略</p>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161330644-1609308326.png" alt=""></p>
+<p>绑定证书与设备</p>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161332723-1295417416.png" alt=""></p>
+<p>配置设备</p>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161333988-1435344507.png" alt=""></p>
+<p>使用MQTT客户端订阅设备消息</p>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161335019-1984698098.png" alt=""></p>
+<p>使用MQTT客户端查看设备消息</p>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161335738-726646887.png" alt=""></p>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161336348-1603305802.png" alt=""></p>
+<p>创建短信推送话题并订阅此话题</p>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161337004-646557292.png" alt=""></p>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161337551-1794933912.png" alt=""></p>
+<p>创建规则</p>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161338176-1623116081.png" alt=""></p>
+<p>创建规则的行为</p>
+<p><img src="https://images2015.cnblogs.com/blog/43267/201609/43267-20160907161338988-688832545.png" alt=""></p>
+<p>测试订阅是否成功</p>
+<div id="MySignature"><br>作者：马智<br><br>微信公众号：物联网那点事<br><br>如果你想及时得到相关资讯，可以关注个人公众号。<br><br>本文版权归作者和博客园共有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。</div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/iot/" rel="tag"># iot</a>
+          
+            <a href="/blog/tags/物联网/" rel="tag"># 物联网</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/08/29/mysql主从配置（清晰的思路）/" rel="next" title="mysql主从配置（清晰的思路）">
+                <i class="fa fa-chevron-left"></i> mysql主从配置（清晰的思路）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/09/07/开源飞控介绍/" rel="prev" title="开源飞控介绍">
+                开源飞控介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/blog/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AWS-IoT监控工具"><span class="nav-number">1.</span> <span class="nav-text">AWS IoT监控工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AWS-IoT-初学者工具包"><span class="nav-number">2.</span> <span class="nav-text">AWS IoT 初学者工具包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AWS-IoT-初学者工具包-支持的平台"><span class="nav-number">3.</span> <span class="nav-text">AWS IoT 初学者工具包 - 支持的平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AWS-IoT生态"><span class="nav-number">4.</span> <span class="nav-text">AWS IoT生态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发示例-AWS-IoT-按钮"><span class="nav-number">5.</span> <span class="nav-text">开发示例 - AWS IoT 按钮</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

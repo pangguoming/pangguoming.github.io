@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="CentOS,zip,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="1、安装zip、unzip应用。 1yum install zip unzip  2、压缩和解压文件  以下命令均在/home目录下操作 cd /home #进入/home目录 a、把/home目录下面的mydata目录压缩为mydata.zip zip -r mydata.zip mydata #压缩mydata目录 b、把/home目录下面的mydata.zip解压到mydatabak目录里面">
+<meta name="keywords" content="CentOS,zip">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS7下zip解压和unzip压缩文件">
+<meta property="og:url" content="http://pangguoming.com/blog/2018/06/01/CentOS7下zip解压和unzip压缩文件/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="1、安装zip、unzip应用。 1yum install zip unzip  2、压缩和解压文件  以下命令均在/home目录下操作 cd /home #进入/home目录 a、把/home目录下面的mydata目录压缩为mydata.zip zip -r mydata.zip mydata #压缩mydata目录 b、把/home目录下面的mydata.zip解压到mydatabak目录里面">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="data:image/png;base64,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">
+<meta property="og:updated_time" content="2019-01-26T14:39:43.777Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS7下zip解压和unzip压缩文件">
+<meta name="twitter:description" content="1、安装zip、unzip应用。 1yum install zip unzip  2、压缩和解压文件  以下命令均在/home目录下操作 cd /home #进入/home目录 a、把/home目录下面的mydata目录压缩为mydata.zip zip -r mydata.zip mydata #压缩mydata目录 b、把/home目录下面的mydata.zip解压到mydatabak目录里面">
+<meta name="twitter:image" content="data:image/png;base64,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">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2018/06/01/CentOS7下zip解压和unzip压缩文件/">
+
+
+
+
+
+  <title>CentOS7下zip解压和unzip压缩文件 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2018/06/01/CentOS7下zip解压和unzip压缩文件/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CentOS7下zip解压和unzip压缩文件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-01T08:43:00+08:00">
+                2018-06-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1、安装zip、unzip应用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install zip unzip</span><br></pre></td></tr></table></figure>
+<p><img src="data:image/png;base64,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" alt=""></p>
+<p>2、压缩和解压文件</p>
+<p> 以下命令均在/home目录下操作<br> cd /home #进入/home目录<br> a、把/home目录下面的mydata目录压缩为mydata.zip<br> zip -r mydata.zip mydata #压缩mydata目录<br> b、把/home目录下面的mydata.zip解压到mydatabak目录里面<br> unzip mydata.zip -d mydatabak<br> c、把/home目录下面的abc文件夹和123.txt压缩成为abc123.zip<br> zip -r abc123.zip abc 123.txt<br> d、把/home目录下面的wwwroot.zip直接解压到/home目录里面<br> unzip wwwroot.zip<br> e、把/home目录下面的abc12.zip、abc23.zip、abc34.zip同时解压到/home目录里面<br> unzip abc*.zip<br> f、查看把/home目录下面的wwwroot.zip里面的内容<br> unzip -v wwwroot.zip<br> g、验证/home目录下面的wwwroot.zip是否完整<br> unzip -t wwwroot.zip<br> h、把/home目录下面wwwroot.zip里面的所有文件解压到第一级目录<br> unzip -j wwwroot.zip</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/CentOS/" rel="tag"># CentOS</a>
+          
+            <a href="/blog/tags/zip/" rel="tag"># zip</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/05/31/ElasticSearch客户端注解使用介绍/" rel="next" title="ElasticSearch客户端注解使用介绍">
+                <i class="fa fa-chevron-left"></i> ElasticSearch客户端注解使用介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/06/01/免费桌面视频录像工具OBS的简单操作介绍/" rel="prev" title="免费桌面视频录像工具OBS的简单操作介绍">
+                免费桌面视频录像工具OBS的简单操作介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/blog/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="PowerDesigner,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="PowerDesigner安装方法: http://dev.firnow.com/course/3_program/java/javajs/20090908/174375.html安装完这2个软件了,接着就开始使用吧,还是和以前一样,先提出需求,再做实例,因为我们之所以使用它们,肯定是因为它们能巧妙的解决某种问题,不然我们干嘛花那么多时间和硬盘空间安装它们.好,我们现在的需求是:希望当接到一个新的">
+<meta name="keywords" content="PowerDesigner">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PowerDesigner使用教程|使用方法">
+<meta property="og:url" content="http://pangguoming.com/blog/2016/02/18/PowerDesigner使用教程-使用方法/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="PowerDesigner安装方法: http://dev.firnow.com/course/3_program/java/javajs/20090908/174375.html安装完这2个软件了,接着就开始使用吧,还是和以前一样,先提出需求,再做实例,因为我们之所以使用它们,肯定是因为它们能巧妙的解决某种问题,不然我们干嘛花那么多时间和硬盘空间安装它们.好,我们现在的需求是:希望当接到一个新的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319254251.jpg">
+<meta property="og:image" content="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319271315.jpg">
+<meta property="og:image" content="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319280022.jpg">
+<meta property="og:image" content="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319290087.jpg">
+<meta property="og:image" content="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319323261.jpg">
+<meta property="og:image" content="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319331732.jpg">
+<meta property="og:image" content="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319340273.jpg">
+<meta property="og:image" content="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319352984.jpg">
+<meta property="og:image" content="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319355841.jpg">
+<meta property="og:image" content="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319403798.jpg">
+<meta property="og:image" content="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319375910.jpg">
+<meta property="og:image" content="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319390593.jpg">
+<meta property="og:image" content="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319413214.jpg">
+<meta property="og:image" content="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif">
+<meta property="og:updated_time" content="2019-01-26T15:09:47.168Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PowerDesigner使用教程|使用方法">
+<meta name="twitter:description" content="PowerDesigner安装方法: http://dev.firnow.com/course/3_program/java/javajs/20090908/174375.html安装完这2个软件了,接着就开始使用吧,还是和以前一样,先提出需求,再做实例,因为我们之所以使用它们,肯定是因为它们能巧妙的解决某种问题,不然我们干嘛花那么多时间和硬盘空间安装它们.好,我们现在的需求是:希望当接到一个新的">
+<meta name="twitter:image" content="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319254251.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2016/02/18/PowerDesigner使用教程-使用方法/">
+
+
+
+
+
+  <title>PowerDesigner使用教程|使用方法 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/02/18/PowerDesigner使用教程-使用方法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PowerDesigner使用教程|使用方法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-02-18T16:42:00+08:00">
+                2016-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div><br><div><strong>PowerDesigner安装方法:</strong><br><br> <a href="http://dev.firnow.com/course/3_program/java/javajs/20090908/174375.html" target="_blank" rel="noopener">http://dev.firnow.com/course/3_program/java/javajs/20090908/174375.html</a><br><br>安装完这2个软件了,接着就开始使用吧,还是和以前一样,先提出需求,再做实例,因为我们之所以使用它们,肯定是因为它们能巧妙的解决某种问题,不然我们干嘛花那么多时间和硬盘空间安装它们.<br><br>好,我们现在的需求是:希望当接到一个新的工程项目时,程序员只需要根据项目需求,设计出数据库的结构(表,表的字段,表间关系),之后只要按<strong>一个按键</strong>,就能立刻得到基于该数据库的所有<strong>分层架构代码文件</strong>.也就是说,<strong>我们希望能在不敲一行代码的情况下获取所有我们想要的代码</strong>!而这就是这2个软件能做到的事情,也是我们安装它们的目的.<br><br>好了,角色已经介绍完了,接着看看它们是如何演绎这场精彩的演出的吧:<br><br>首先我们需要创建一个测试数据库,为了简单,我们在这个数据库中只创建一个<strong>Student**</strong>表<strong>和一个</strong>Major<strong>**表</strong>.其表结构和关系如下所示.<br><br><img src="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319254251.jpg" alt=""><br><br>看看怎样用PowerDesigner快速的创建出这个数据库吧.<br><br>1.现在开始使用PowerDesigner创建数据库,首先运行程序,进入主界面:<br><br><img src="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319271315.jpg" alt=""><br><br><strong>2.File—New Model—Physical Data Model—Physical Diagram—Model name</strong> 设置为<strong>test</strong>,DBMS属性设置为<strong>Microsoft SQL Server 2005</strong>:<br><br><img src="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319280022.jpg" alt=""><br><br>3.首先用表格工具创建一个表格模板:<br><br><img src="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319290087.jpg" alt=""><br><br>4.双击表格模板,设置属性,我们首先设置<strong>Major</strong>表:<br><br><img src="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319323261.jpg" alt=""><br><br>5.设置好表名,点击<strong>Columns</strong>标签,设置字段属性,设置如图所示:<br><br><img src="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319331732.jpg" alt=""><br><br>6.因为MajorID字段我们要设置为<strong>自动增长</strong>,所以要设置它的高级属性,选择MajorID字段,点击属性按钮,在General面板中勾选上Identity复选框:<br><br><img src="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319340273.jpg" alt=""><br><br>7.确定后我们再创建一个Student表,字段设置如图所示:<br><br><img src="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319352984.jpg" alt=""><br><br>8.接着是为Student创建一个MajorID外键,使用PowerDesigner可以很轻松的完成这个工作,选择关系设置工具,在Student表上按住左键不放,拖拽至Major表,便可为Student表添加一个MajorID的外键:<br><br><img src="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319355841.jpg" alt=""><br><br>9.哈哈,现在测试表已经设置好了,接着设置一下我们要生成的数据库吧,这些表都将被创建到该数据库中,我们在设计面板空白处<strong>右键**</strong>—Properties<strong>,在弹出的属性设置对话框设置如下:<br><br> <img src="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319403798.jpg" alt=""><br><br>10好了,在此我们对新数据库的设置已经完成,但是在SQL中还是空空如也啊,我们要怎么把这边设计好的结构移植到SQLServer 2005中呢?执行操作:</strong>Database—Generate Database*<em>,设置好存储过程导出目录和文件名,点击确定即可:<br><br><img src="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319375910.jpg" alt=""><br><br>11.到你的导出目录,就可以看见导出的数据库创建存储过程了,打开SQL,执行一下,你就会看到数据库被神奇的创建好了:<br><br><img src="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319390593.jpg" alt=""><br><br><img src="https://pic002.cnblogs.com/img/sd7087003/201006/2010061319413214.jpg" alt=""><br><br>12.好了,数据库的准备工作做好了,下一篇我们就将使用该数据库结合CodeSmith自动批量生成代码啦~<br><br>上述实践中生成的源代码:<br><br><div><img src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="">SQL.sql<br><div id="cnblogs_code_open_e5d1f72f-ed9a-45b0-8ebf-6f56f69faddb"><br><br>/</div></div></em>==============================================================<em>/<br><br>    /</em> Database name:  PD_test                                      <em>/<br><br>    /</em> DBMS name:      Microsoft SQL Server 2005                    <em>/<br><br>    /</em> Created on:     2010/6/13 星期日 17:27:17                       <em>/<br><br>    /</em>==============================================================<em>/<br><br>    drop database PD_test<br><br>    go<br><br>    /</em>==============================================================<em>/<br><br>    /</em> Database: PD_test                                            <em>/<br><br>    /</em>==============================================================<em>/<br><br>    create database PD_test<br><br>    go<br><br>    use PD_test<br><br>    go<br><br>    /</em>==============================================================<em>/<br><br>    /</em> Table: Major                                                 <em>/<br><br>    /</em>==============================================================<em>/<br><br>    create table Major (<br><br>    MajorID              int identity,<br><br>    Name                 nvarchar(20)         not null,<br><br>    Remark               nvarchar(Max)        null,<br><br>    constraint PK_MAJOR primary key (MajorID)<br><br>    )<br><br>    go<br><br>    /</em>==============================================================<em>/<br><br>    /</em> Table: Student                                               <em>/<br><br>    /</em>==============================================================*/<br><br>    create table Student (<br><br>    StudentID            nvarchar(20)         not null,<br><br>    MajorID              int null,<br><br>    Name                 nvarchar(20)         not null,<br><br>    Sex                  bit not null,<br><br>    Age                  int null,<br><br>    Remark               nvarchar(Max)        null,<br><br>    constraint PK_STUDENT primary key (StudentID)<br><br>    )<br><br>    go<br><br>    alter table Student<br><br>    add constraint FK_STUDENT_REFERENCE_MAJOR foreign key (MajorID)<br><br>    references Major (MajorID)<br><br>    go<code>`</code><br><br></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/PowerDesigner/" rel="tag"># PowerDesigner</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2016/02/18/使用ServiceStack构建Web服务/" rel="next" title="使用ServiceStack构建Web服务">
+                <i class="fa fa-chevron-left"></i> 使用ServiceStack构建Web服务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2016/02/23/制作ubuntu安装u盘/" rel="prev" title="制作ubuntu安装u盘">
+                制作ubuntu安装u盘 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/blog/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

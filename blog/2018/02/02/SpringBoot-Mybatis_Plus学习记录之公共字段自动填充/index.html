@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Mybatis Plus,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="一.应用场景 平时在建对象表的时候都会有最后修改时间，最后修改人这两个字段，对于这些大部分表都有的字段，每次在新增和修改的时候都要考虑到这几个字段有没有传进去，很麻烦。mybatisPlus有一个很好的解决方案。也就是公共字段自动填充的功能。一般满足下面条件的字段就可以使用此功能：    这个字段是大部分表都会有的。    这个字段的值是固定的，或则字段值是可以在后台动态获取的。    常用的就是">
+<meta name="keywords" content="Mybatis Plus">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot-Mybatis_Plus学习记录之公共字段自动填充">
+<meta property="og:url" content="http://pangguoming.com/blog/2018/02/02/SpringBoot-Mybatis_Plus学习记录之公共字段自动填充/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="一.应用场景 平时在建对象表的时候都会有最后修改时间，最后修改人这两个字段，对于这些大部分表都有的字段，每次在新增和修改的时候都要考虑到这几个字段有没有传进去，很麻烦。mybatisPlus有一个很好的解决方案。也就是公共字段自动填充的功能。一般满足下面条件的字段就可以使用此功能：    这个字段是大部分表都会有的。    这个字段的值是固定的，或则字段值是可以在后台动态获取的。    常用的就是">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-26T15:01:05.125Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot-Mybatis_Plus学习记录之公共字段自动填充">
+<meta name="twitter:description" content="一.应用场景 平时在建对象表的时候都会有最后修改时间，最后修改人这两个字段，对于这些大部分表都有的字段，每次在新增和修改的时候都要考虑到这几个字段有没有传进去，很麻烦。mybatisPlus有一个很好的解决方案。也就是公共字段自动填充的功能。一般满足下面条件的字段就可以使用此功能：    这个字段是大部分表都会有的。    这个字段的值是固定的，或则字段值是可以在后台动态获取的。    常用的就是">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2018/02/02/SpringBoot-Mybatis_Plus学习记录之公共字段自动填充/">
+
+
+
+
+
+  <title>SpringBoot-Mybatis_Plus学习记录之公共字段自动填充 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2018/02/02/SpringBoot-Mybatis_Plus学习记录之公共字段自动填充/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SpringBoot-Mybatis_Plus学习记录之公共字段自动填充</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-02T11:26:00+08:00">
+                2018-02-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一-应用场景"><a href="#一-应用场景" class="headerlink" title="一.应用场景"></a>一.应用场景</h2><hr>
+<p>平时在建对象表的时候都会有最后修改时间，最后修改人这两个字段，对于这些大部分表都有的字段，每次在新增和修改的时候都要考虑到这几个字段有没有传进去，很麻烦。mybatisPlus有一个很好的解决方案。也就是公共字段自动填充的功能。一般满足下面条件的字段就可以使用此功能：</p>
+<ul>
+<li></li>
+</ul>
+<p>这个字段是大部分表都会有的。</p>
+<ul>
+<li></li>
+</ul>
+<p>这个字段的值是固定的，或则字段值是可以在后台动态获取的。</p>
+<ul>
+<li></li>
+</ul>
+<p>常用的就是last_update_time，last_update_name这两个字段。</p>
+<h2 id="二-配置MybatisPlus"><a href="#二-配置MybatisPlus" class="headerlink" title="二.配置MybatisPlus"></a>二.配置MybatisPlus</h2><hr>
+<p><strong>导包：</strong>只需要注意的一点就是，mybatisPlus是在2.0.6版本才支持的更新数据公共字段自动填充，之前都是只支持新增数据的时候可以使用。</p>
+<p>如果是之前配置过MybatisPlus的同学只需要添加以下几个步骤：</p>
+<ol>
+<li>继承IMetaObjectHandler抽象类，实现<code>insertFill()</code>新增数据时需要填充的字段设置和<code>updateFill()</code>更新数据的时候需要填充的字段设置这两个方法：</li>
+</ol>
+<p><code class="language-java hljs  has-numbering"><span class="hljs-keyword">package io.z77z.util;</span></code></p>
+<pre><code>&lt;span class=&quot;hljs-keyword&quot;&gt;import java.util.Date;
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;import org.apache.ibatis.reflection.MetaObject;
+&lt;span class=&quot;hljs-keyword&quot;&gt;import org.apache.shiro.SecurityUtils;
+&lt;span class=&quot;hljs-keyword&quot;&gt;import org.springframework.stereotype.Component;
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;import com.baomidou.mybatisplus.mapper.MetaObjectHandler;
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;import io.z77z.entity.SysUser;
+
+&lt;span class=&quot;hljs-javadoc&quot;&gt;/** mybatisplus自定义填充公共字段 ,即没有传的字段自动填充*/
+&lt;span class=&quot;hljs-annotation&quot;&gt;@Component
+&lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class &lt;span class=&quot;hljs-title&quot;&gt;MyMetaObjectHandler &lt;span class=&quot;hljs-keyword&quot;&gt;extends &lt;span class=&quot;hljs-title&quot;&gt;MetaObjectHandler  {
+    &lt;span class=&quot;hljs-comment&quot;&gt;//新增填充
+    &lt;span class=&quot;hljs-annotation&quot;&gt;@Override
+    &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-keyword&quot;&gt;void &lt;span class=&quot;hljs-title&quot;&gt;insertFill(MetaObject metaObject) {
+        Object lastUpdateNameId = metaObject.getValue(&lt;span class=&quot;hljs-string&quot;&gt;&quot;lastUpdateNameId&quot;);
+        Object lastUpdateTime = metaObject.getValue(&lt;span class=&quot;hljs-string&quot;&gt;&quot;lastUpdateTime&quot;);
+        &lt;span class=&quot;hljs-comment&quot;&gt;//获取当前登录用户
+        SysUser user = (SysUser)SecurityUtils.getSubject().getPrincipal();
+        &lt;span class=&quot;hljs-keyword&quot;&gt;if (&lt;span class=&quot;hljs-keyword&quot;&gt;null == lastUpdateNameId) {
+            metaObject.setValue(&lt;span class=&quot;hljs-string&quot;&gt;&quot;lastUpdateNameId&quot;, user.getId());
+        }
+        &lt;span class=&quot;hljs-keyword&quot;&gt;if (&lt;span class=&quot;hljs-keyword&quot;&gt;null == lastUpdateTime) {
+            metaObject.setValue(&lt;span class=&quot;hljs-string&quot;&gt;&quot;lastUpdateTime&quot;, &lt;span class=&quot;hljs-keyword&quot;&gt;new Date());
+        }
+    }
+
+    &lt;span class=&quot;hljs-comment&quot;&gt;//更新填充
+    &lt;span class=&quot;hljs-annotation&quot;&gt;@Override
+    &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-keyword&quot;&gt;void &lt;span class=&quot;hljs-title&quot;&gt;updateFill(MetaObject metaObject) {
+        insertFill(metaObject);
+    }
+}
+
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">注意：getValue()方法的参数是pojo类里面的变量（驼峰的命名方式）。</span><br><span class="line"></span><br><span class="line">    1.  在mybatisplus的配置文件中公共字段生成类的bean：</span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;language-java hljs  has-numbering&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;// MP 全局配置，更多内容进入类看注释</span><br><span class="line">    GlobalConfiguration globalConfig = &lt;span class=&quot;hljs-keyword&quot;&gt;new GlobalConfiguration();</span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;//配置公共字段自动填写</span><br><span class="line">    globalConfig.setMetaObjectHandler(&lt;span class=&quot;hljs-keyword&quot;&gt;new MyMetaObjectHandler());&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>也就是将刚刚写的公共字段填充的设置设置到MP全局配置的对象中。</p>
+<pre><code>1.  填充的字段需要忽略验证，在表对象pojo类的对应属性上添加下面注解：
+&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;language-java hljs  has-numbering&quot;&gt;&lt;span class=&quot;hljs-javadoc&quot;&gt;/**
+  * 最后修改人Id
+  */
+&lt;span class=&quot;hljs-annotation&quot;&gt;@TableField(value=&lt;span class=&quot;hljs-string&quot;&gt;&quot;last_update_id&quot;,validate=FieldStrategy.NOT_EMPTY)
+&lt;span class=&quot;hljs-keyword&quot;&gt;private String lastUpdateNameId;
+&lt;span class=&quot;hljs-javadoc&quot;&gt;/**
+  * 最后修改时间
+  */
+&lt;span class=&quot;hljs-annotation&quot;&gt;@TableField(value=&lt;span class=&quot;hljs-string&quot;&gt;&quot;last_update_time&quot;,validate=FieldStrategy.NOT_EMPTY)
+&lt;span class=&quot;hljs-keyword&quot;&gt;private Date lastUpdateTime;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">原因：因为调用更新和插入的方法时，会验证你所传的属性是否为空，来判断是否该更新和插入这个属性，这个就和公共字段自动填充相冲突了，所以需要这个注解来标识此属性不需要验证。不然在插入的时候就会填充失败。</span><br><span class="line"></span><br><span class="line">如果之前没有使用过MbatisPlus，可以出门左转，链接：[之前写过的一个博文，里面涉及到MybatisPlus的基础使用配置](http://z77z.oschina.io/2017/01/23/SpringBoot+SpringMVC+MybatisPlus%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88%E7%BB%83%E4%B9%A0%E4%B9%8B%E3%80%90%E7%BE%8E%E5%A5%B3%E5%9B%BE%E7%89%87%E3%80%91%E7%88%AC%E8%99%AB---%E5%9B%BE%E6%96%87%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/)</span><br><span class="line"></span><br><span class="line">    ## 三.编写测试类</span><br><span class="line"></span><br><span class="line">    * * *</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;language-java hljs  has-numbering&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;//公共字段自动填充</span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;//1.在mybatisplus的配置文件中公共字段生成类的bean</span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;//2.实现IMetaObjectHandler类</span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;//3.忽略对应字段的为空检测，在pojo类的属性上添加@TableField(value=&quot;last_update_name_id&quot;,validate=FieldStrategy.IGNORED)</span><br><span class="line">    &lt;span class=&quot;hljs-annotation&quot;&gt;@Test</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-keyword&quot;&gt;void &lt;span class=&quot;hljs-title&quot;&gt;publicTest()&#123;</span><br><span class="line">        SysUser user = &lt;span class=&quot;hljs-keyword&quot;&gt;new SysUser();</span><br><span class="line">        user.setEmail(&lt;span class=&quot;hljs-string&quot;&gt;&quot;1093615728@qq.com&quot;);</span><br><span class="line">        user.setNickname(&lt;span class=&quot;hljs-string&quot;&gt;&quot;z77z&quot;);</span><br><span class="line">        user.setPswd(&lt;span class=&quot;hljs-string&quot;&gt;&quot;123123&quot;);</span><br><span class="line">        user.setStatus(&lt;span class=&quot;hljs-string&quot;&gt;&quot;1&quot;);</span><br><span class="line">        sysUserService.insert(user);</span><br><span class="line">        sysUserService.selectById(user.getId());</span><br><span class="line"></span><br><span class="line">        SysUser user1 = &lt;span class=&quot;hljs-keyword&quot;&gt;new SysUser();</span><br><span class="line">        user1.setPswd(&lt;span class=&quot;hljs-string&quot;&gt;&quot;123&quot;);</span><br><span class="line">        user1.setId(user.getId());</span><br><span class="line">        sysUserService.updateById(user1);</span><br><span class="line">        sysUserService.selectById(user.getId());</span><br><span class="line">    &#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+## 四.测试日志
+
+* * *
+
+&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs avrasm has-numbering&quot;&gt;&lt;span class=&quot;hljs-number&quot;&gt;2017/&lt;span class=&quot;hljs-number&quot;&gt;04/&lt;span class=&quot;hljs-number&quot;&gt;23-&lt;span class=&quot;hljs-number&quot;&gt;19:&lt;span class=&quot;hljs-number&quot;&gt;35:&lt;span class=&quot;hljs-number&quot;&gt;26 [main] DEBUG io&lt;span class=&quot;hljs-preprocessor&quot;&gt;.z77z&lt;span class=&quot;hljs-preprocessor&quot;&gt;.dao&lt;span class=&quot;hljs-preprocessor&quot;&gt;.SysUserMapper&lt;span class=&quot;hljs-preprocessor&quot;&gt;.insert- ==&gt;  Preparing: INSERT INTO sys_user ( id, nickname, email, pswd, `status`,last_update_name_id, last_update_time ) VALUES ( ?, ?, ?, ?, ?,?, ? ) 
+&lt;span class=&quot;hljs-number&quot;&gt;2017/&lt;span class=&quot;hljs-number&quot;&gt;04/&lt;span class=&quot;hljs-number&quot;&gt;23-&lt;span class=&quot;hljs-number&quot;&gt;19:&lt;span class=&quot;hljs-number&quot;&gt;35:&lt;span class=&quot;hljs-number&quot;&gt;26 [main] DEBUG io&lt;span class=&quot;hljs-preprocessor&quot;&gt;.z77z&lt;span class=&quot;hljs-preprocessor&quot;&gt;.dao&lt;span class=&quot;hljs-preprocessor&quot;&gt;.SysUserMapper&lt;span class=&quot;hljs-preprocessor&quot;&gt;.insert- ==&gt; Parameters: &lt;span class=&quot;hljs-number&quot;&gt;6634923de4a14b6ca3bac5fdf31563a8(String), z77z(String), &lt;span class=&quot;hljs-number&quot;&gt;1093615728@qq&lt;span class=&quot;hljs-preprocessor&quot;&gt;.com(String), &lt;span class=&quot;hljs-number&quot;&gt;123123(String), &lt;span class=&quot;hljs-number&quot;&gt;1(String), &lt;span class=&quot;hljs-number&quot;&gt;123(String), &lt;span class=&quot;hljs-number&quot;&gt;2017-&lt;span class=&quot;hljs-number&quot;&gt;04-&lt;span class=&quot;hljs-number&quot;&gt;23 &lt;span class=&quot;hljs-number&quot;&gt;19:&lt;span class=&quot;hljs-number&quot;&gt;35:&lt;span class=&quot;hljs-number&quot;&gt;26.58(Timestamp)
+&lt;span class=&quot;hljs-number&quot;&gt;2017/&lt;span class=&quot;hljs-number&quot;&gt;04/&lt;span class=&quot;hljs-number&quot;&gt;23-&lt;span class=&quot;hljs-number&quot;&gt;19:&lt;span class=&quot;hljs-number&quot;&gt;35:&lt;span class=&quot;hljs-number&quot;&gt;26 [main] DEBUG io&lt;span class=&quot;hljs-preprocessor&quot;&gt;.z77z&lt;span class=&quot;hljs-preprocessor&quot;&gt;.dao&lt;span class=&quot;hljs-preprocessor&quot;&gt;.SysUserMapper&lt;span class=&quot;hljs-preprocessor&quot;&gt;.insert- &lt;==    Updates: &lt;span class=&quot;hljs-number&quot;&gt;1
+&lt;span class=&quot;hljs-number&quot;&gt;2017/&lt;span class=&quot;hljs-number&quot;&gt;04/&lt;span class=&quot;hljs-number&quot;&gt;23-&lt;span class=&quot;hljs-number&quot;&gt;19:&lt;span class=&quot;hljs-number&quot;&gt;35:&lt;span class=&quot;hljs-number&quot;&gt;26 [main] DEBUG io&lt;span class=&quot;hljs-preprocessor&quot;&gt;.z77z&lt;span class=&quot;hljs-preprocessor&quot;&gt;.dao&lt;span class=&quot;hljs-preprocessor&quot;&gt;.SysUserMapper&lt;span class=&quot;hljs-preprocessor&quot;&gt;.selectById- ==&gt;  Preparing: SELECT id,nickname,email,pswd,last_login_time AS lastLoginTime,`status`,last_update_name_id AS lastUpdateNameId,create_name_id AS createNameId,last_update_time AS lastUpdateTime,create_time AS createTime FROM sys_user WHERE id=? 
+&lt;span class=&quot;hljs-number&quot;&gt;2017/&lt;span class=&quot;hljs-number&quot;&gt;04/&lt;span class=&quot;hljs-number&quot;&gt;23-&lt;span class=&quot;hljs-number&quot;&gt;19:&lt;span class=&quot;hljs-number&quot;&gt;35:&lt;span class=&quot;hljs-number&quot;&gt;26 [main] DEBUG io&lt;span class=&quot;hljs-preprocessor&quot;&gt;.z77z&lt;span class=&quot;hljs-preprocessor&quot;&gt;.dao&lt;span class=&quot;hljs-preprocessor&quot;&gt;.SysUserMapper&lt;span class=&quot;hljs-preprocessor&quot;&gt;.selectById- ==&gt; Parameters: &lt;span class=&quot;hljs-number&quot;&gt;6634923de4a14b6ca3bac5fdf31563a8(String)
+&lt;span class=&quot;hljs-number&quot;&gt;2017/&lt;span class=&quot;hljs-number&quot;&gt;04/&lt;span class=&quot;hljs-number&quot;&gt;23-&lt;span class=&quot;hljs-number&quot;&gt;19:&lt;span class=&quot;hljs-number&quot;&gt;35:&lt;span class=&quot;hljs-number&quot;&gt;26 [main] DEBUG io&lt;span class=&quot;hljs-preprocessor&quot;&gt;.z77z&lt;span class=&quot;hljs-preprocessor&quot;&gt;.dao&lt;span class=&quot;hljs-preprocessor&quot;&gt;.SysUserMapper&lt;span class=&quot;hljs-preprocessor&quot;&gt;.selectById- &lt;==      Total: &lt;span class=&quot;hljs-number&quot;&gt;1
+&lt;span class=&quot;hljs-number&quot;&gt;2017/&lt;span class=&quot;hljs-number&quot;&gt;04/&lt;span class=&quot;hljs-number&quot;&gt;23-&lt;span class=&quot;hljs-number&quot;&gt;19:&lt;span class=&quot;hljs-number&quot;&gt;35:&lt;span class=&quot;hljs-number&quot;&gt;26 [main] DEBUG io&lt;span class=&quot;hljs-preprocessor&quot;&gt;.z77z&lt;span class=&quot;hljs-preprocessor&quot;&gt;.dao&lt;span class=&quot;hljs-preprocessor&quot;&gt;.SysUserMapper&lt;span class=&quot;hljs-preprocessor&quot;&gt;.updateById- ==&gt;  Preparing: UPDATE sys_user &lt;span class=&quot;hljs-keyword&quot;&gt;SET pswd=?, last_update_name_id=?, last_update_time=? WHERE id=? 
+&lt;span class=&quot;hljs-number&quot;&gt;2017/&lt;span class=&quot;hljs-number&quot;&gt;04/&lt;span class=&quot;hljs-number&quot;&gt;23-&lt;span class=&quot;hljs-number&quot;&gt;19:&lt;span class=&quot;hljs-number&quot;&gt;35:&lt;span class=&quot;hljs-number&quot;&gt;26 [main] DEBUG io&lt;span class=&quot;hljs-preprocessor&quot;&gt;.z77z&lt;span class=&quot;hljs-preprocessor&quot;&gt;.dao&lt;span class=&quot;hljs-preprocessor&quot;&gt;.SysUserMapper&lt;span class=&quot;hljs-preprocessor&quot;&gt;.updateById- ==&gt; Parameters: &lt;span class=&quot;hljs-number&quot;&gt;123(String), &lt;span class=&quot;hljs-number&quot;&gt;123(String), &lt;span class=&quot;hljs-number&quot;&gt;2017-&lt;span class=&quot;hljs-number&quot;&gt;04-&lt;span class=&quot;hljs-number&quot;&gt;23 &lt;span class=&quot;hljs-number&quot;&gt;19:&lt;span class=&quot;hljs-number&quot;&gt;35:&lt;span class=&quot;hljs-number&quot;&gt;26.637(Timestamp), &lt;span class=&quot;hljs-number&quot;&gt;6634923de4a14b6ca3bac5fdf31563a8(String)
+&lt;span class=&quot;hljs-number&quot;&gt;2017/&lt;span class=&quot;hljs-number&quot;&gt;04/&lt;span class=&quot;hljs-number&quot;&gt;23-&lt;span class=&quot;hljs-number&quot;&gt;19:&lt;span class=&quot;hljs-number&quot;&gt;35:&lt;span class=&quot;hljs-number&quot;&gt;26 [main] DEBUG io&lt;span class=&quot;hljs-preprocessor&quot;&gt;.z77z&lt;span class=&quot;hljs-preprocessor&quot;&gt;.dao&lt;span class=&quot;hljs-preprocessor&quot;&gt;.SysUserMapper&lt;span class=&quot;hljs-preprocessor&quot;&gt;.updateById- &lt;==    Updates: &lt;span class=&quot;hljs-number&quot;&gt;1
+&lt;span class=&quot;hljs-number&quot;&gt;2017/&lt;span class=&quot;hljs-number&quot;&gt;04/&lt;span class=&quot;hljs-number&quot;&gt;23-&lt;span class=&quot;hljs-number&quot;&gt;19:&lt;span class=&quot;hljs-number&quot;&gt;35:&lt;span class=&quot;hljs-number&quot;&gt;26 [main] DEBUG io&lt;span class=&quot;hljs-preprocessor&quot;&gt;.z77z&lt;span class=&quot;hljs-preprocessor&quot;&gt;.dao&lt;span class=&quot;hljs-preprocessor&quot;&gt;.SysUserMapper&lt;span class=&quot;hljs-preprocessor&quot;&gt;.selectById- ==&gt;  Preparing: SELECT id,nickname,email,pswd,last_login_time AS lastLoginTime,`status`,last_update_name_id AS lastUpdateNameId,create_name_id AS createNameId,last_update_time AS lastUpdateTime,create_time AS createTime FROM sys_user WHERE id=? 
+&lt;span class=&quot;hljs-number&quot;&gt;2017/&lt;span class=&quot;hljs-number&quot;&gt;04/&lt;span class=&quot;hljs-number&quot;&gt;23-&lt;span class=&quot;hljs-number&quot;&gt;19:&lt;span class=&quot;hljs-number&quot;&gt;35:&lt;span class=&quot;hljs-number&quot;&gt;26 [main] DEBUG io&lt;span class=&quot;hljs-preprocessor&quot;&gt;.z77z&lt;span class=&quot;hljs-preprocessor&quot;&gt;.dao&lt;span class=&quot;hljs-preprocessor&quot;&gt;.SysUserMapper&lt;span class=&quot;hljs-preprocessor&quot;&gt;.selectById- ==&gt; Parameters: &lt;span class=&quot;hljs-number&quot;&gt;6634923de4a14b6ca3bac5fdf31563a8(String)
+&lt;span class=&quot;hljs-number&quot;&gt;2017/&lt;span class=&quot;hljs-number&quot;&gt;04/&lt;span class=&quot;hljs-number&quot;&gt;23-&lt;span class=&quot;hljs-number&quot;&gt;19:&lt;span class=&quot;hljs-number&quot;&gt;35:&lt;span class=&quot;hljs-number&quot;&gt;26 [main] DEBUG io&lt;span class=&quot;hljs-preprocessor&quot;&gt;.z77z&lt;span class=&quot;hljs-preprocessor&quot;&gt;.dao&lt;span class=&quot;hljs-preprocessor&quot;&gt;.SysUserMapper&lt;span class=&quot;hljs-preprocessor&quot;&gt;.selectById- &lt;==      Total: &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;```
+
+## 五.总结
+
+* * *
+</code></pre><p>本来是打算创建人和创建时间，也使用这种方法处理的，最后发现，如果将这两个字段也忽略为空的判断，也就是加上<code>validate=FieldStrategy.NOT_EMPTY</code>，在更新数据的时候会将创建人和创建时间一起更新了，不传的话就会更新为空。所以本人觉得这个mybatisPlus这个公共字段自动填充功能是不错，但是在正真用的上的需求上面使用的时候还不够完善。</p>
+<p>·······················································································································································</p>
+<p>个人博客：<a href="http://z77z.oschina.io/" target="_blank" rel="noopener">http://z77z.oschina.io/</a></p>
+<p>此项目下载地址：<a href="https://git.oschina.net/z77z/springboot_mybatisplus" target="_blank" rel="noopener">https://git.oschina.net/z77z/springboot_mybatisplus</a></p>
+<p>·······················································································································································<br></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Mybatis-Plus/" rel="tag"># Mybatis Plus</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/02/01/Sonar本地环境搭建/" rel="next" title="Sonar本地环境搭建">
+                <i class="fa fa-chevron-left"></i> Sonar本地环境搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/02/02/mybatis plus 主键生成 Twitter雪花算法 id 及修改id为字符型/" rel="prev" title="mybatis plus 主键生成 Twitter雪花算法 id 及修改id为字符型">
+                mybatis plus 主键生成 Twitter雪花算法 id 及修改id为字符型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/blog/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-应用场景"><span class="nav-number">1.</span> <span class="nav-text">一.应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-配置MybatisPlus"><span class="nav-number">2.</span> <span class="nav-text">二.配置MybatisPlus</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

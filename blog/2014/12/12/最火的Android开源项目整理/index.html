@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="一、代码库1、from  代码家整理比较好的源码连接***http://blog.zhan-dui.com/?page_id=60感谢 “代码家”整理## 一、兼容类库1.  ActionBarSherlock : Action Bar是Android 3.0后才开始支持的，ActionBarSherlock是让Action Bar功能支持2.X后的所有平台，而且他会自动的判断是调用原生Actio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最火的Android开源项目整理">
+<meta property="og:url" content="http://pangguoming.com/blog/2014/12/12/最火的Android开源项目整理/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="一、代码库1、from  代码家整理比较好的源码连接***http://blog.zhan-dui.com/?page_id=60感谢 “代码家”整理## 一、兼容类库1.  ActionBarSherlock : Action Bar是Android 3.0后才开始支持的，ActionBarSherlock是让Action Bar功能支持2.X后的所有平台，而且他会自动的判断是调用原生Actio">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/610dc034jw1e339o72tvqj.jpg">
+<meta property="og:image" content="https://secure.gravatar.com/avatar/e68309f117985270285ade8082f4877d?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png">
+<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/610dc034jw1e41vftrk4dj20bi05nq34.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/610dc034jw1e338zo31dtg.gif">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/610dc034jw1e33a1p5fvoj.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/610dc034jw1e33a938buij.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/610dc034jw1e33as029t3j.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/610dc034jw1e4fjx626s7j20b408c74o.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/610dc034jw1e58r1elr3jj20m80ao0uu.jpg">
+<meta property="og:image" content="http://static.oschina.net/uploads/img/201112/27000451_wNTI.png">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2011/1226/235228_qdmO_12.png">
+<meta property="og:updated_time" content="2019-01-26T15:13:45.812Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="最火的Android开源项目整理">
+<meta name="twitter:description" content="一、代码库1、from  代码家整理比较好的源码连接***http://blog.zhan-dui.com/?page_id=60感谢 “代码家”整理## 一、兼容类库1.  ActionBarSherlock : Action Bar是Android 3.0后才开始支持的，ActionBarSherlock是让Action Bar功能支持2.X后的所有平台，而且他会自动的判断是调用原生Actio">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/mw690/610dc034jw1e339o72tvqj.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2014/12/12/最火的Android开源项目整理/">
+
+
+
+
+
+  <title>最火的Android开源项目整理 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2014/12/12/最火的Android开源项目整理/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">最火的Android开源项目整理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-12-12T13:41:00+08:00">
+                2014-12-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、代码库"><a href="#一、代码库" class="headerlink" title="一、代码库"></a>一、代码库</h1><div><br><br>1、from  代码家<br><br><div>整理比较好的源码连接<br><div><br><div><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>***</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br><div><a href="http://blog.zhan-dui.com/?page_id=60" target="_blank" rel="noopener">http://blog.zhan-dui.com/?page_id=60</a><br><div><br><div>感谢 “代码家”整理<br><div><br><br>#<br><br># 一、兼容类库<br><br>1.  <span style="text-decoration: underline;">ActionBarSherlock</span> : Action Bar是Android 3.0后才开始支持的，ActionBarSherlock是让Action Bar功能支持2.X后的所有平台，而且他会自动的判断是调用原生Action Bar还是使用扩展ActionBar。在我的小熊词典里有用到这个库，而且很多非常知名的App也在使用这个库。<a href="https://github.com/JakeWharton/ActionBarSherlock" title="ActionBarSherlock" target="_blank" rel="noopener">GitHub</a> <span style="text-decoration: underline;"><a href="http://actionbarsherlock.com/" title="官方ActionBarSherlock" target="_blank" rel="noopener">Official</a> </span><a href="http://developer.android.com/guide/topics/ui/actionbar.html" title="ActionBar" target="_blank" rel="noopener">ActionBar科普</a><br>2.  <span style="text-decoration: underline;">Android-ViewPagerIndicator</span> : 这是与ViewPager兼容的一个分页指示器库。分页指示器（Friends 和 Suggested就是分页，而下面蓝色的小条就是指示器，ViewPagerIndicator支持多种样式的指示器。）：<a href="https://github.com/JakeWharton/Android-ViewPagerIndicator" title="分页指示器GitHub" target="_blank" rel="noopener">GitHub</a><img src="http://ww1.sinaimg.cn/mw690/610dc034jw1e339o72tvqj.jpg" alt="" title="分页指示器"><br>3.  <span style="text-decoration: underline;">NineOldAndroids</span>  : NineOldAndroids 将 <a href="http://developer.android.com/about/versions/android-3.0.html" target="_blank" rel="noopener">Honeycomb (Android 3.0) 的动画 API </a>扩展到了Android 1.0以上。这个库的作者即是<span style="text-decoration: underline;">ActionBarSherlock</span>的作者，也是<span style="text-decoration: underline;">Android-ViewPagerIndicator</span>的作者，<a href="https://github.com/JakeWharton" target="_blank" rel="noopener">Jake Wharton</a>， 非常厉害的一个人，Github关注量超过1.6K，如果你也做Android开发或者即将开始学习Android开发，一定要去Follow他，而且留意一下他每次的star和follow信息，经常会有很惊奇的发现。<a href="https://github.com/JakeWharton" target="_blank" rel="noopener"><img src="https://secure.gravatar.com/avatar/e68309f117985270285ade8082f4877d?s=420&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" alt="Jake Wharton" title="Jake Wharton真相"></a><br>4.  <span style="text-decoration: underline;">HoloEverywhere</span>：在Android 4.0时，Google引入了新的主题风格—<a href="http://developer.android.com/design/style/themes.html" target="_blank" rel="noopener">Holo</a>，多数厂商都想统一界面设计UI，因此更加具有兼容性的Holo主题库<span style="text-decoration: underline;">HoloEveryWhere</span>便成为很多开发者的选择。在Android的官方Blog中也对<span style="text-decoration: underline;">HoloEveryWhere</span>这个库有所推荐，<a href="http://android-developers.blogspot.com/2012/01/holo-everywhere.html" target="_blank" rel="noopener">点此查看</a>官方博客对<span style="text-decoration: underline;">HoloEveryWhere</span>的介绍。<span style="text-decoration: underline;">HoloEveryWhere</span>的<a href="https://github.com/Prototik/HoloEverywhere" target="_blank" rel="noopener">Github</a>。<br>5.  <span style="text-decoration: underline;">Android-Datepicker</span>: 兼容Android 4.0的<a href="http://developer.android.com/guide/topics/ui/controls/pickers.html" target="_blank" rel="noopener">datepicker</a>至Android 2.2。 <a href="https://github.com/SimonVT/android-datepicker" target="_blank" rel="noopener">GitHub</a><img src="http://ww2.sinaimg.cn/mw690/610dc034jw1e41vftrk4dj20bi05nq34.jpg" alt=""><br><br># 二、扩展功能库<br><br>1.  <span style="text-decoration: underline;">SlidingMenu</span> : SlidingMenu 能非常容易的让开发者实现程序的抽屉效果，所谓的抽屉效果如下图所示，通常被用作呼出菜单。而且SlidingMenu能很方便的与ActionBarSherlock融合，在官方GitHub上有关于如何融合的说明。 <a href="https://github.com/jfeinstein10/SlidingMenu" title="SlidingMenu" target="_blank" rel="noopener">GitHub</a><br><img src="http://ww1.sinaimg.cn/mw690/610dc034jw1e338zo31dtg.gif" alt="滑动效果演示" title="滑动效果"><br>2.  <span style="text-decoration: underline;">AppMsg</span> : 优雅的弹出类似Toast的消息提示，支持3种状态Alert,Confirm以及Info。<a href="https://github.com/johnkil/Android-AppMsg" title="AppMsg" target="_blank" rel="noopener">GitHub</a><img src="http://ww3.sinaimg.cn/mw690/610dc034jw1e33a1p5fvoj.jpg" alt="" title="AppMsg"><br>3.  <span style="text-decoration: underline;">Drag-Sort-ListView</span> : 很多人都用过在一个ListView中通过拖拽对已有的数据进行排序操作。Drag-Sort-Listview就是实现这一功能的开源库。<a href="https://github.com/bauerca/drag-sort-listview" title="drag-sort-listview" target="_blank" rel="noopener">GitHub</a><img src="http://ww3.sinaimg.cn/mw690/610dc034jw1e33a938buij.jpg" alt="" title="Drag-Sort-ListView"><br>4.  <span style="text-decoration: underline;">Android-Flip</span> : 轻松实现类似FlipBoard的翻页功能。 <a href="https://github.com/openaphid/android-flip" title="android-flip" target="_blank" rel="noopener">GitHub</a><img src="http://ww1.sinaimg.cn/mw690/610dc034jw1e33as029t3j.jpg" alt="" title="filpboard"><br>5.  <span style="text-decoration: underline;">Android-PullToRefresh</span> : Android下拉刷新组件。 <a href="https://github.com/johannilsson/android-pulltorefresh" target="_blank" rel="noopener">GitHub</a>    此外，该作者还有另外一个实用度和关注量极高的项目–另一种<span style="text-decoration: underline;">Android ActionBar</span>的实现：<a href="https://github.com/johannilsson/android-actionbar" target="_blank" rel="noopener">GitHub</a><br><img src="http://ww3.sinaimg.cn/mw690/610dc034jw1e4fjx626s7j20b408c74o.jpg" alt=""><br>6.  <span style="text-decoration: underline;">picasso: </span> 程序中经常面临加载网络图片的情况，成熟做法：异步下载-&gt;缓存-&gt;显示，Picasso一行代码就可这三步轻松完成。<a href="https://github.com/square/picasso" target="_blank" rel="noopener">GitHub</a> <a href="http://square.github.io/picasso/" target="_blank" rel="noopener">GitHubPage</a> ，GitHub上图片异步加载缓存类库很多，你也可尝试使用<a href="https://github.com/nostra13/Android-Universal-Image-Loader" target="_blank" rel="noopener">Android-Universal-Image-Loader</a> 或者 <a href="https://github.com/thest1/LazyList" target="_blank" rel="noopener">LazyList</a> 后面将介绍到的afinal(国人项目)也具有此功能。<img src="http://ww3.sinaimg.cn/mw690/610dc034jw1e58r1elr3jj20m80ao0uu.jpg" alt="" title="picasso"><br><br>#   三、工具类库：<br><br>#   首先，就我个人开发经验，总结一下平常用到的一些最常用的功能：<br><br>1.  下载，比如图片，文件。<br>2.  将下载的文件进行解压。<br>3.  请求服务器，比如说上传登陆信息，更新某些数据，又或者上传头像文件。<br>4.  从文件系统中选择要操作的文件。<br>5.  有时候也需要爬取某些网页数据。<br>6.  存储一些配置信息<br>7.  再有一个特殊需求就是关乎Android程序UI设计，图标是个很麻烦的问题。每次都难以找到合适的Android 设计UI。<br><br>随后，我将很有针对性的推荐一些功能库，来简化上面的问题。<br><br>1.  <span style="text-decoration: underline;">afinal</span>： <span style="text-decoration: underline;">afinal</span>是一个很方便的工具库。<a href="https://github.com/yangfuhai/afinal" target="_blank" rel="noopener">GitHub</a>  <a href="http://www.yangfuhai.com/" target="_blank" rel="noopener">作者博客</a>（注：国人项目哟）<br><br>    <em>   一行代码就可以对数据库进行增删改查。 
+    </em>   完全注解方式就可以进行UI绑定和事件绑定。无需findViewById和setClickListener等。<br>    <em>   轻松实现Android上传文件，POST数据，下载文件（支持断点续传，随时停止下载任务 或者 开始任务）。
+    </em>   一行代码加载网络图片。<br><br>2.  <span style="text-decoration: underline;">android-async-http</span>: Android下的异步HTTP库。<a href="https://github.com/loopj/android-async-http" target="_blank" rel="noopener">GitHub</a>   <a href="http://loopj.com/android-async-http/" target="_blank" rel="noopener">文档</a>  PS：作者的GitHub值得关注。<br><br>    <em>   发送异步http请求，并且可在回调函数中处理返回响应Response。
+    </em>   http请求在thread线程，不会阻塞UI线程。<br>    <em>   请求使用线程池（ThreadPool）实现，优化了并发的资源使用。
+    </em>   支持Multipart 文件上传。<br>    <em>   如果Request请求失败，会自动请求。
+    </em>   支持Json解码。<br>    <em>   支持存储Cookies到Preference中。
+    </em>   支持gzip处理Request以及Response。<br>    <em>   整个库只有19KB。<br><br>3.  <span style="text-decoration: underline;">async-http-client</span>: Android下的异步 Http 和 WebSocket 库。  <a href="https://github.com/AsyncHttpClient/async-http-client" target="_blank" rel="noopener">GitHub</a>
+
+    </em>   支持代理设置<br>    <em>   支持分片儿处理请求返回内容
+    </em>   支持WebSocket<br><br>4.  <span style="text-decoration: underline;">zt-zip:</span> 压缩和解压库。 <a href="https://github.com/zeroturnaround/zt-zip" target="_blank" rel="noopener">GitHub</a><br><br>    <em>   压缩和解压
+    </em>   单独操作文件压缩和解压。<br>    <em>   替换zip文件中的某个文件<br><br>5.  <span style="text-decoration: underline;">aFileChooser</span>：文件选择器,用于选择需要操作的文件 <a href="https://github.com/iPaulPro/aFileChooser" target="_blank" rel="noopener">GitHub</a><br>6.  <span style="text-decoration: underline;">jsoup:</span> HTML解析，并且能很好理解DOM，CSS，以及JQuery。<a href="https://github.com/jhy/jsoup" target="_blank" rel="noopener">GitHub</a> <a href="http://jsoup.org/" target="_blank" rel="noopener">官方 </a> PS：这是java库。做网页爬虫（Crawler,Robot）必备。<br>7.  <span style="text-decoration: underline;">toml:</span>这是个跨语言的配置信息存取方案。<a href="https://github.com/mojombo/toml" target="_blank" rel="noopener">GitHub</a><br>8.  <span style="text-decoration: underline;">Androiton-Action-Bar-Icons:</span>一个针对Android 优化过的ICON图标集。 <a href="https://github.com/svenkapudija/Androton-Action-Bar-Icons" target="_blank" rel="noopener">GitHub</a> <a href="https://a248.e.akamai.net/camo.github.com/13191b852f282fa929aad94cccc4d885c77e5d2a/687474703a2f2f692e696d6775722e636f6d2f576b654e496b522e706e67" target="_blank" rel="noopener">Demo</a><br><br>## 四、图标资源：<br><br><div>
+
+</div></em>   <a href="http://iconsparadise.com/" target="_blank" rel="noopener">http://iconsparadise.com/</a> 质量一般，但也是一种选择<br><em>   <a href="http://iconbench.com/" target="_blank" rel="noopener">http://iconbench.com/</a> 在线产生一些小图标
+</em>   <a href="http://www.androidicons.com/" title="Android图标" target="_blank" rel="noopener">http://www.androidicons.com/</a> 图标质量很不错，但是要付费($25刀)，如果有想合买的可以联系我~<br><em>   <a href="http://android-ui-utils.googlecode.com/hg/asset-studio/dist/index.html" title="android图标生成" target="_blank" rel="noopener">https://code.google.com/p/android-ui-utils/ </a> 用来在线生成符合Android Design风格的设计图标。 <a href="https://code.google.com/p/android-ui-utils/" title="android图标" target="_blank" rel="noopener">项目地址</a><br><br>## 五、一些手册<br><br><div>
+
+</div></em>   <a href="http://petrnohejl.github.io/Android-Cheatsheet-For-Graphic-Designers/#google-play-asset-dimensions" target="_blank" rel="noopener">Android图形界面设计手册</a>，可以用来快速查看图标的大小、ActionBar的Height等琐碎的<a href="http://developer.android.com/design/index.html" target="_blank" rel="noopener">Android Design</a>要求。<a href="https://github.com/petrnohejl/Android-Cheatsheet-For-Graphic-Designers" target="_blank" rel="noopener">GitHub</a><br><em>   Android 官方UI设计手册：<a href="http://s.yunio.com/Ea8jMb" title="Andorid设计手册" target="_blank" rel="noopener">下载</a><br><br>## 七、一些视频
+
+</em>   <a href="http://developer.android.com/sdk/installing/studio.html" target="_blank" rel="noopener">Android Studio</a> 的新特性官方讲解视频，我在官方技术博客上下载下来，上传到网盘，希望对大家有帮助。<a href="http://s.yunio.com/HpQzSd" target="_blank" rel="noopener">下载地址</a><br><br>## 八、高价值链接<br><br><em>   <a href="http://officialandroid.blogspot.com/" target="_blank" rel="noopener">Android官方博客</a> 提供一些跟Android相关的即时咨询。（需要梯子）
+</em>   <a href="http://android-developers.blogspot.com/" target="_blank" rel="noopener">Android官方技术博客</a> 主要提供一些新工具（如Android Studio），新技术（如每次更新带来新特性）的演示和讲解。（需要梯子）<br><em>   <a href="http://www.androidviews.net/" target="_blank" rel="noopener">AndroidViews</a> Android View组件收集站点。<br><br><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>**</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br><div><br><div><br><div><br><br># 二、（from os china） <a href="http://www.oschina.net/project" target="_blank" rel="noopener">http://www.oschina.net/project</a><br><br># 1、<a href="http://blog.csdn.net/p/afinal" target="_blank" rel="noopener">Android的快速开发框架 afinal</a><br><br><div><a href="http://www.oschina.net/p/afinal" target="_blank" rel="noopener">http://www.oschina.net/p/afinal</a><br><div>社区 <a href="http://www.afinal.org/forum.php" target="_blank" rel="noopener">http://www.afinal.org/forum.php</a><br><div>code ：<a href="https://github.com/yangfuhai/afinal/tree/master/src/net/tsz/afinal" target="_blank" rel="noopener">https://github.com/yangfuhai/afinal/tree/master/src/net/tsz/afinal</a><br><div><br><div><br><div><br><br>Afinal 是一个android的 orm 和 ioc 框架。而且封装了android中的httpClient，使其更加简单易用。使用finalBitmap，无需考虑bitmap在android中加载的时候oom的问题和快速滑动的时候图片加载位置错位等问题。<br><br>Afinal的宗旨是简洁，快速。约定大于配置的方式。尽量一行代码完成所有事情。<br><br>2、<strong><a href="http://blog.csdn.net/p/oschina-android-app" target="_blank" rel="noopener">OSCHINA Android 客户端</a></strong><br><div><br><div><a href="http://www.oschina.net/p/oschina-android-app" target="_blank" rel="noopener">http://www.oschina.net/p/oschina-android-app</a><br><div><br><div>code ： <a href="https://github.com/oschina/android-app" target="_blank" rel="noopener">https://github.com/oschina/android-app</a><br><div><br><div>3、<strong><a href="http://blog.csdn.net/p/androidannotations" target="_blank" rel="noopener">安卓开发框架 </a><a href="http://blog.csdn.net/p/androidannotations" target="_blank" rel="noopener">AndroidAnnotations</a></strong><br><div><br><div><a href="http://www.oschina.net/p/androidannotations" target="_blank" rel="noopener">http://www.oschina.net/p/androidannotations</a><br><div><br><div>homepage ： <a href="http://androidannotations.org/" target="_blank" rel="noopener">http://androidannotations.org/</a><br><div>code ： <a href="https://github.com/excilys/androidannotations" target="_blank" rel="noopener">https://github.com/excilys/androidannotations</a><br><div>Android Annotations 是一个开源的框架，用于加速 Android 应用的开发，可以让你把重点放在功能的实现上，简化了代码，提升了可维护性。<br><div>4、<strong><a href="http://blog.csdn.net/p/touchvg" target="_blank" rel="noopener">iOS/Android 矢量图形框架 TouchVG</a></strong><br><div>TouchVG 是一个通用的轻量级二维矢量图形框架，可用于开发交互式矢量绘图软件，适用于 iPad/iPhone、Android 等多点触摸设备，也适用于鼠标交互的桌面应用。<br><div><br><div><a href="http://www.oschina.net/p/touchvg" target="_blank" rel="noopener">http://www.oschina.net/p/touchvg</a><br><div><br><div>5、<strong><a href="http://blog.csdn.net/p/galhttprequest" target="_blank" rel="noopener">http请求及缓存框架 GalHttprequest</a></strong><br><div><a href="http://www.oschina.net/p/galhttprequest" target="_blank" rel="noopener">http://www.oschina.net/p/galhttprequest</a><br><div><br><div><br><br>GalHttprequest 是一个android平台上一个轻量级的http网络请求及缓存框架。<br><br>当前GalHttpRequest支持以下功能：
+
+</div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></em>   同步请求Stirng、InputStream、Bitmap；<br><em>   异步请求String、InputStream、Bitmap；支持回调接口；
+</em>   支持异步下载文件，提供监听进度回调接口；<br><em>   支持缓存参数设置；
+</em>   支持多线程及队列请求；<br><em>   自动适配移动、联通、电信wap代理;
+</em>   支持快捷post请求;<br><br><div>6、<strong><a href="http://blog.csdn.net/p/thinkandroid" target="_blank" rel="noopener">Android 快速开发框架 ThinkAndroid</a></strong><br><div><br><br># ThinkAndroid简介<br><br>ThinkAndroid是一个免费的开源的、简易的、遵循Apache2开源协议发布的Android开发框架，其开发宗旨是简单、快速的进行Android应用程序的开发，包含Android mvc、简易sqlite orm、ioc模块、封装Android httpclitent的http模块,具有快速构建文件缓存功能，无需考虑缓存文件的格式，都可以非常轻松的实现缓存，它还基于文件缓存模块实现了图片缓存功能，在android中加载的图片的时候，对oom的问题，和对加载图片错位的问题都轻易解决。他还包括了一个手机开发中经常应用的实用工具类，如日志管理，配置文件管理，android下载器模块，网络切换检测等等工具。<br><br><a href="http://www.oschina.net/p/thinkandroid" target="_blank" rel="noopener">http://www.oschina.net/p/thinkandroid</a><br><br><a href="https://github.com/white-cat/ThinkAndroid" target="_blank" rel="noopener">https://github.com/white-cat/ThinkAndroid</a><br><div><br><div>7、<a href="http://blog.csdn.net/p/android-vnc-viewer/" target="_blank" rel="noopener">android-vnc-viewer</a><br><div><br><div><a href="http://www.oschina.net/p/android-vnc-viewer" target="_blank" rel="noopener">http://www.oschina.net/p/android-vnc-viewer</a><br><div><a href="http://code.google.com/p/android-vnc-viewer/" target="_blank" rel="noopener">http://code.google.com/p/android-vnc-viewer/</a><br><div><br><div>8、<strong><a href="http://blog.csdn.net/p/android-wifi-tether" target="_blank" rel="noopener">Android网络共享软件 Android Wifi Tether</a></strong><br><div><a href="http://www.oschina.net/p/android-wifi-tether" target="_blank" rel="noopener">http://www.oschina.net/p/android-wifi-tether</a><br><div>Android Wifi Tether 是 Android 用来实现网络共享的软件<br><div><br><div><a href="http://code.google.com/p/android-wifi-tether/" target="_blank" rel="noopener">http://code.google.com/p/android-wifi-tether/</a><br><div><br><div>9、<strong><a href="http://blog.csdn.net/p/android-x86" target="_blank" rel="noopener">Android-x86</a></strong><br><div><a href="http://www.oschina.net/p/android-x86" target="_blank" rel="noopener">http://www.oschina.net/p/android-x86</a><br><div><br><br>你可能会熟悉 L<a href="http://www.oschina.net/p/liveandroid" target="_blank" rel="noopener">iveAndroid</a> 项目，不过该项目自从推出 <a href="http://www.oschina.net/news/4559" target="_blank" rel="noopener">0.3 版本</a>后 似乎就没什么动静了。相比 LiveAndroid “To provide a LiveCD(and LiveUSB) for common X86 platforms” 的目标，Android-x86 项目目标更为远大：“Port Android open source project to x86 platform”。<br><br>目前 Android X86 项目实现的功能有：<br><br><em>   Kernel 2.6.29 （包含 KMS）
+</em>   声音<br><em>   摄像头支持
+</em>   触摸屏<br><em>   鼠标（滚轮及指针）
+</em>   休眠及唤醒<br><em>   包含 Busybox 的 Debug 模式
+</em>   图形 WiFi 配置<br><em>   驱动固件热拔插
+</em>   外置 USB 键盘支持<br>*   模块驱动的自动检测<br><br>最近该项目推出了 Android 1.6 版本的 LiveCD(with Installer) 和 LiveUSB<br><br><a href="http://www.android-x86.org/" target="_blank" rel="noopener">http://www.android-x86.org/</a><br><div><br><div>10.<strong><a href="http://blog.csdn.net/p/slidingmenu" target="_blank" rel="noopener">Android滑动式菜单 SlidingMen</a></strong><br><div><a href="http://www.oschina.net/p/slidingmenu" target="_blank" rel="noopener">http://www.oschina.net/p/slidingmenu</a><br><div><a href="https://github.com/jfeinstein10/SlidingMenu" target="_blank" rel="noopener">https://github.com/jfeinstein10/SlidingMenu</a><br><div><br><div>11、<strong><a href="http://blog.csdn.net/p/android_waterfall" target="_blank" rel="noopener">Android瀑布流实例 android_waterfall</a></strong><br><div>实现了类似于迷尚android和蘑菇街android的瀑布流布局<br><div><a href="https://github.com/dodola/android_waterfall" target="_blank" rel="noopener">https://github.com/dodola/android_waterfall</a><br><div><a href="http://www.oschina.net/p/android_waterfall" target="_blank" rel="noopener">http://www.oschina.net/p/android_waterfall</a><br><div><br><div><br><div>12.<strong><a href="http://blog.csdn.net/p/windowsandroid" target="_blank" rel="noopener">WindowsAndroid</a></strong><br><div><a href="http://www.oschina.net/p/windowsandroid" target="_blank" rel="noopener">http://www.oschina.net/p/windowsandroid</a><br><div><br><div><a href="http://www.socketeq.com/" target="_blank" rel="noopener">http://www.socketeq.com/</a><br><div><br><br>WindowsAndroid 目前是基于 Android 4.03 开发，团队计划在不久后引入更多的Android版本供用户使用。它能提供完整的 Android4.0体验，其中还包含有原生的GApps（Google基础服务包），你可以直接通过浏览器浏览网页，收发邮件等……<br><br>开发者自称在操作系统、虚拟化和图形技术方面富有经验，在该项目上已经工作了数年。WindowsAndroid不是模拟器，提供了完整的Android功能，可以运行所有的 Andorid 应用，包括 3D 游戏。<br><br><div>13、<strong><a href="http://blog.csdn.net/p/android-viewflow" target="_blank" rel="noopener">android-viewflow</a></strong><br><div><br><br>android-viewflow 是 Android 平台上一个视图切换的效果库。<br><br>ViewFlow 相当于 Android UI 部件提供水平滚动的 ViewGroup，使用 Adapter 进行条目绑定。<br><br><a href="http://www.oschina.net/p/android-viewflow" target="_blank" rel="noopener">http://www.oschina.net/p/android-viewflow</a><br><div><a href="https://github.com/pakerfeldt/android-viewflow" target="_blank" rel="noopener">https://github.com/pakerfeldt/android-viewflow</a><br><div><br><div>14、<strong><a href="http://blog.csdn.net/p/pulltorefresh" target="_blank" rel="noopener">滑动刷新的ListView Android PullToRefresh</a></strong><br><div>该项目为 Android 应用提供一个向下滑动即刷新列表的功能<br><div><img src="http://static.oschina.net/uploads/img/201112/27000451_wNTI.png" alt="Screenshot"><br><div><a href="http://www.oschina.net/p/pulltorefresh" target="_blank" rel="noopener">http://www.oschina.net/p/pulltorefresh</a><br><div><br><div><a href="https://github.com/johannilsson/android-pulltorefresh" target="_blank" rel="noopener">https://github.com/johannilsson/android-pulltorefresh</a><br><div><br><div><br><div>15、<strong><a href="http://blog.csdn.net/p/haxe" target="_blank" rel="noopener">Web开发语言 haXe</a></strong><br><div>Haxe是一门新兴的开源编程语言，开发者称：“相比其他语言（Java的平台是 JVM，C#的平台是.Net，ActionScript的平台是Flash Player等等），Haxe才是真正的多平台语言。不管是开发原生iOS、Android应用，还是网页；不论是应用于服务器还是个人桌面，Haxe都 可以胜任。”<br><div><a href="http://www.oschina.net/p/haxe" target="_blank" rel="noopener">http://www.oschina.net/p/haxe</a><br><div><br><div><a href="http://haxe.org/" target="_blank" rel="noopener">http://haxe.org/</a><br><div><br><div>16.<strong><a href="http://blog.csdn.net/p/universal-androot" target="_blank" rel="noopener">Universal Androot</a></strong><br><div><br><div>最近台湾也有一个Android开发者研发了一款类似的一键root程序Universal Androot，同样操作和Easy Root一样简单，而且用户也可以再取得root权限后使用UnRoot功能来还原之前的系统状态，这意味着如果你哪天玩腻了rooted的手机想回到过 去，或者官方Android系统升级推出时也想凑凑热闹可以使用UnRoot功能。<br><div><a href="http://www.oschina.net/p/universal-androot" target="_blank" rel="noopener">http://www.oschina.net/p/universal-androot</a><br><div><br><div><br><div>17、<strong><a href="http://blog.csdn.net/p/android-gl" target="_blank" rel="noopener">Android的OpenGL编程实例 Android-GL</a></strong><br><div><a href="http://www.oschina.net/p/android-gl" target="_blank" rel="noopener">http://www.oschina.net/p/android-gl</a><br><div><a href="http://code.google.com/p/android-gl/downloads/list" target="_blank" rel="noopener">http://code.google.com/p/android-gl/downloads/list</a><br><div><br><div><br><div>18、<strong><a href="http://blog.csdn.net/p/videojs" target="_blank" rel="noopener">HTML5视频播放器 VideoJS</a></strong><br><div><a href="http://www.oschina.net/p/videojs" target="_blank" rel="noopener">VideoJS 是一个 HTML5 的视频播放器，兼容大量的平台，对于不支持的浏览器则自动使用 Flash 播放器来播放。</a><br><div><a href="http://www.oschina.net/p/videojs" target="_blank" rel="noopener">http://www.oschina.net/p/videojs</a><br><div><a href="http://www.videojs.com/" target="_blank" rel="noopener">http://www.videojs.com/</a><br><div><br><div>19、<strong><a href="http://blog.csdn.net/p/android-coverflow" target="_blank" rel="noopener">Android Coverflow</a></strong><br><div>Android Coverflow 是 Android 的 cover flow 窗口部件的简单实现。<br><div><br><img src="http://static.oschina.net/uploads/space/2011/1226/235228_qdmO_12.png" alt=""><br><div><a href="http://code.google.com/p/android-coverflow/" target="_blank" rel="noopener">http://code.google.com/p/android-coverflow/</a><br><div><a href="http://www.oschina.net/p/android-coverflow" target="_blank" rel="noopener">http://www.oschina.net/p/android-coverflow</a><br><div><br><div>20、<strong><a href="http://blog.csdn.net/p/android-bootstrap" target="_blank" rel="noopener">android-bootstrap</a></strong><br><div>Android Bootstrap 包含一个完整实现：Fragments, Fragment Pager, Account Manager, android-maven-plugin, Dagger, ActionBarSherlock 4, ViewPagerIndicator, http-request, GSON, Robotium for integration testing, API Consumption with an API on Parse.com and much more.<br><div><a href="http://www.oschina.net/p/android-bootstrap" target="_blank" rel="noopener">http://www.oschina.net/p/android-bootstrap</a><br><div><a href="http://www.androidbootstrap.com/" target="_blank" rel="noopener">http://www.androidbootstrap.com/</a><br><div>code：<br><div><a href="https://github.com/donnfelker/android-bootstrap" target="_blank" rel="noopener">https://github.com/donnfelker/android-bootstrap</a><br><div><br><br># 21、<strong><a href="http://blog.csdn.net/p/ipcamera-for-android" target="_blank" rel="noopener">ipcamera-for-android</a></strong><br><br><div>一款将Android手机变成IP Camera的软件，在同一个网路，你可以在任意的浏览器查看手机监控视频。<br><div><a href="http://www.oschina.net/p/ipcamera-for-android" target="_blank" rel="noopener">http://www.oschina.net/p/ipcamera-for-android</a><br><div><a href="http://code.google.com/p/ipcamera-for-android/" target="_blank" rel="noopener">http://code.google.com/p/ipcamera-for-android/</a><br><div><br><div>22、<strong><a href="http://blog.csdn.net/p/android-photo-view" target="_blank" rel="noopener">PhotoView</a></strong><br><div><br><br>PhotoView 是一款扩展自Android ImageView ，支持通过单点/多点触摸来进行图片缩放的智能控件。<br><br>特性：<br><br>1.  支持单点/多点触摸，即时缩放图片；<br>2.  支持平滑滚动；<br>3.  在滑动父控件下能够运行良好；（例如：ViewPager）<br><div><a href="http://www.oschina.net/p/android-photo-view" target="_blank" rel="noopener">http://www.oschina.net/p/android-photo-view</a><br><div><a href="https://github.com/chrisbanes/PhotoView" target="_blank" rel="noopener">https://github.com/chrisbanes/PhotoView</a><br><div><br><div><br><div>23、<strong><a href="http://blog.csdn.net/p/openhab" target="_blank" rel="noopener">开源的家庭自动化方案 openHAB</a></strong><br><div><br><br>openHAB全称为open Home Automation Bus，即开放式家庭自动化总线，该项目旨在为家庭自动化构建提供一个通用的集成平台。<br><br>openHAB是一个纯Java打造的开源项目，完全基于<a href="http://www.oschina.net/p/osgi" target="_blank" rel="noopener">OSGi（Open Service Gateway Initiative）</a>，并使用Jetty作为web服务器。Jetty和Equinox OSGi运行时一起构成了openHAB的核心基础。<br><br><div><a href="http://www.oschina.net/p/openhab" target="_blank" rel="noopener">http://www.oschina.net/p/openhab</a><br><div><br><div><a href="http://code.google.com/p/openhab/downloads/list" target="_blank" rel="noopener">http://code.google.com/p/openhab/downloads/list</a><br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2014/12/11/10款实用Android UI 开发框架/" rel="next" title="10款实用Android UI 开发框架">
+                <i class="fa fa-chevron-left"></i> 10款实用Android UI 开发框架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2014/12/31/Android利用V4包中的SwipeRefreshLayout实现上拉加载/" rel="prev" title="Android利用V4包中的SwipeRefreshLayout实现上拉加载">
+                Android利用V4包中的SwipeRefreshLayout实现上拉加载 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/blog/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、代码库"><span class="nav-number">1.</span> <span class="nav-text">一、代码库</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

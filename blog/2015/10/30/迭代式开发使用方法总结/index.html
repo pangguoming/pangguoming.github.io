@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="迭代式开发,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="为什么我在这里主要讨论迭代式软件开发？本文在此抛开千篇一律的理论，拟就根据多年的实践，总结出一套比较务实、可操作性强的方法，以期望在有限的资源下确保软件质量得到较大保证。一家之见，纰漏之处还请大家多多指正。 迭代式软件开发模式简要流程如下：  ![](https://images2015.cnblogs.com/blog/414908/201511/414908-20151116154148702">
+<meta name="keywords" content="迭代式开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="迭代式开发使用方法总结">
+<meta property="og:url" content="http://pangguoming.com/blog/2015/10/30/迭代式开发使用方法总结/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="为什么我在这里主要讨论迭代式软件开发？本文在此抛开千篇一律的理论，拟就根据多年的实践，总结出一套比较务实、可操作性强的方法，以期望在有限的资源下确保软件质量得到较大保证。一家之见，纰漏之处还请大家多多指正。 迭代式软件开发模式简要流程如下：  ![](https://images2015.cnblogs.com/blog/414908/201511/414908-20151116154148702">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-26T15:09:53.329Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="迭代式开发使用方法总结">
+<meta name="twitter:description" content="为什么我在这里主要讨论迭代式软件开发？本文在此抛开千篇一律的理论，拟就根据多年的实践，总结出一套比较务实、可操作性强的方法，以期望在有限的资源下确保软件质量得到较大保证。一家之见，纰漏之处还请大家多多指正。 迭代式软件开发模式简要流程如下：  ![](https://images2015.cnblogs.com/blog/414908/201511/414908-20151116154148702">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2015/10/30/迭代式开发使用方法总结/">
+
+
+
+
+
+  <title>迭代式开发使用方法总结 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2015/10/30/迭代式开发使用方法总结/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">迭代式开发使用方法总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-30T09:36:00+08:00">
+                2015-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <pre><code>为什么我在这里主要讨论迭代式软件开发？本文在此抛开千篇一律的理论，拟就根据多年的实践，总结出一套比较务实、可操作性强的方法，以期望在有限的资源下确保软件质量得到较大保证。一家之见，纰漏之处还请大家多多指正。
+</code></pre><p>迭代式软件开发模式简要流程如下：</p>
+<pre><code> ![](https://images2015.cnblogs.com/blog/414908/201511/414908-20151116154148702-1758253768.jpg)
+
+上图绿色大框内，我们就称之为一个迭代周期。每一个迭代，都可以形成一个可交付的小版本。事实上，每一个迭代周期内，对于编码和测试也可以进行多次迭代。通过快速发布测试构建的方式，验证开发完成的新功能，再通过测试发现问题来驱动开发人员对软件进行修改完善，循环往复。即：根据开发情况有针对性地组织测试，根据测试结果反作用于开发人员去完善软件质量。以这种小步快跑的方式，经过若干测试构建后，软件质量可以在较短时间内达到稳定状态。
+</code></pre><p>质量保证，需要系统性的方法。那么在迭代式开发的各个阶段，都需要怎样的措施呢？</p>
+<p><strong>1）需求</strong></p>
+<pre><code>这个阶段的主要工作是需求制定与评审。该阶段的工作分三步走：收集原始需求 -&gt;制定产品需求 -&gt; 产品需求评审。具体说来，首先我们通过各种渠道收集原始需求，由于原始需求多半是概念性的、模糊的，不能直接用来指导开发工作，所以需要进行归类、筛选，整合为产品需求。基本原则是，结合当前开发产品的特性，争取以最小的改动以及最大的可扩展性来制定产品需求。降低风险，同时提高灵活性。经验告诉我们，在需求没有考虑透彻的情况下，不要贸然开始设计并实现，可能导致大量返工，费时费力。产品需求制定好后，需要进行评审，一定不要觉得浪费时间而不去评审，磨刀不误砍柴工嘛！
+</code></pre><p><strong>2） 设计</strong></p>
+<pre><code>这个阶段的主要工作是将产品需求转化为设计需求，指导后续的编码工作。软件行业有一名老话是：软件质量是设计出来的，对于迭代式开发也是如此。设计的好坏直接决定了软件质量的高低。设计需求一般阐述了产品需求的详细设计方案，包括页面布局、数据结构、算法以及易用性、安全性、可扩展性、健壮性和性能等诸多方面的设计思路。即使让不同的开发人员根据设计需求来进行编码，开发出的功能也八九不离十。有此可见，设计需求是非常必要的。也就是说，我们在正式编码前，必须针对需求写出相应的设计文档来指导后续的编码工作。这样做有两大好处：一是在编码之前就充分预见到将来可能遇到的问题，可以尽早规避风险；二是为开发工作搭好框架，降低因开发人员的差异导致开发过程的不确定性，避免出现“一千个人心中有一千个对需求的理解”。
+</code></pre><p><strong>3） 编码</strong></p>
+<pre><code>这个阶段的主要工作是严格按照设计需求来完成编码，并组织进行代码评审。每一行代码都是软件大厦的一砖一瓦，我们拒绝豆腐渣工程，所以我们重视每一行代码。进行代码评审可以有效保证代码质量，借助一些IT管理工具可以轻松进行代码评审和代码管理。笔者曾经使用过青铜器RDM软件来做代码评审（CodeReview），十分方便。代码评审的重点应该是对程序结构的审查，发现深层次的软件错误，而不要停留在表面。同时，建议大家在做代码评审时，以代码的一个“提交”为单位进行评审。这样做的前提是，每个“提交”里包含相对完整的功能。对于迭代式开发，我们要尽量保证，每一个编码-测试迭代里，都要完成相对独立、可测试性强的功能点。
+</code></pre><p><strong>4） 测试</strong></p>
+<pre><code> 测试实质上是一种鉴定性的工作，是对软件质量的鉴定和最后一道把关。这个阶段的主要工作是，在每一个测试构建中，尽可能多地覆盖需求点，并根据轻重缓急合理安排测试优先级，尽可能将影响较大的缺陷提前暴露出来。测试优先级的安排应遵循以下原则：
+
+a、先测试经过变更的部分，然后测试没有变更的部分
+
+b、先测试程序的核心功能，然后测试一般功能
+
+c、先测试逻辑性的功能，然后测试业务性的功能
+
+d、先测试常规情况，然后测试异常情况
+
+e、先测试功能，然后测试性能
+
+按照上述原则进行测试，可以更快地发现更多软件中的严重错误，这是使软件能尽快稳定下来的一个关键因素。除此以外，在每一个迭代周期结束之前还要进行系统测试。
+
+编码-测试的不断迭代，保证了每个测试构建里的新功能没有问题，但整个软件系统的质量还没有得到充分验证，系统测试就是为此而生。在版本发布前的最后冲刺阶段，“车轮战”是很管用的一个手段，即：调集测试人员、开发人员等全面参与测试，将这些人员分为若干个小组，每个小组分别对系统进行测试。每个测试模块由多人进行测试，可以有效降低缺陷的遗漏率。但需要注意的是，开发人员应该避免测试自己开发的功能，即进行交叉测试。
+
+软件质量保证的实质是，使用一些流程、方法来管控软件开发过程，从而使最终交付的软件产品质量得到最大程度的保证。同时，相信大家可以看出，在整个产品开发过程中会产生很多数据，如需求、设计文档、代码、测试用例、缺陷等。使用IT管理工具可以有效提高工作效率，青铜器RDM全面实现CodeReview+Testlink + Mantis功能组合，可以管理需求、测试用例、缺陷、代码评审等，对于小规模团队，已经足够用了。
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/迭代式开发/" rel="tag"># 迭代式开发</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2015/10/22/Jade 模板引擎使用/" rel="next" title="Jade 模板引擎使用">
+                <i class="fa fa-chevron-left"></i> Jade 模板引擎使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2015/11/03/Android 使用dagger2进行依赖注入(基础篇）/" rel="prev" title="Android 使用dagger2进行依赖注入(基础篇）">
+                Android 使用dagger2进行依赖注入(基础篇） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/blog/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

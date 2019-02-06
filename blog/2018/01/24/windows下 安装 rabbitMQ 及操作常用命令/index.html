@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="RabbitMQ,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="rabbitMQ是一个在AMQP协议标准基础上完整的，可服用的企业消息系统。它遵循Mozilla Public License开源协议，采用 Erlang 实现的工业级的消息队列(MQ)服务器，Rabbit MQ 是建立在Erlang OTP平台上。## 1.安装Erlang所以在安装rabbitMQ之前，需要先安装Erlang 。小编使用的是otp_win64_18.1 ，需要其他版本或者32位">
+<meta name="keywords" content="RabbitMQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows下 安装 rabbitMQ 及操作常用命令">
+<meta property="og:url" content="http://pangguoming.com/blog/2018/01/24/windows下 安装 rabbitMQ 及操作常用命令/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="rabbitMQ是一个在AMQP协议标准基础上完整的，可服用的企业消息系统。它遵循Mozilla Public License开源协议，采用 Erlang 实现的工业级的消息队列(MQ)服务器，Rabbit MQ 是建立在Erlang OTP平台上。## 1.安装Erlang所以在安装rabbitMQ之前，需要先安装Erlang 。小编使用的是otp_win64_18.1 ，需要其他版本或者32位">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/784082/201609/784082-20160923235447637-1807926011.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924000520059-1488931520.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924001111465-1934628397.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924001344449-518927811.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924001810231-489339837.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924002317996-1750317042.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924002417481-667312419.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924003014246-2015422375.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924003047621-1862534375.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924005224668-1215172795.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924003352168-1350202979.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924003722731-332310837.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924004023387-110874920.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924004035121-53385779.png">
+<meta property="og:updated_time" content="2019-01-26T15:01:06.596Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="windows下 安装 rabbitMQ 及操作常用命令">
+<meta name="twitter:description" content="rabbitMQ是一个在AMQP协议标准基础上完整的，可服用的企业消息系统。它遵循Mozilla Public License开源协议，采用 Erlang 实现的工业级的消息队列(MQ)服务器，Rabbit MQ 是建立在Erlang OTP平台上。## 1.安装Erlang所以在安装rabbitMQ之前，需要先安装Erlang 。小编使用的是otp_win64_18.1 ，需要其他版本或者32位">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/784082/201609/784082-20160923235447637-1807926011.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2018/01/24/windows下 安装 rabbitMQ 及操作常用命令/">
+
+
+
+
+
+  <title>windows下 安装 rabbitMQ 及操作常用命令 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2018/01/24/windows下 安装 rabbitMQ 及操作常用命令/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">windows下 安装 rabbitMQ 及操作常用命令</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T14:03:00+08:00">
+                2018-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="cnblogs_post_body" class="blogpost-body"><br><br>rabbitMQ是一个在AMQP协议标准基础上完整的，可服用的企业消息系统。它遵循Mozilla Public License开源协议，采用 Erlang 实现的工业级的消息队列(MQ)服务器，Rabbit MQ 是建立在Erlang OTP平台上。<br><br>## 1.安装Erlang<br><br>所以在安装rabbitMQ之前，需要先安装Erlang 。<br><br>小编使用的是<a href="https://pan.baidu.com/s/1c2826rA" target="_blank" rel="noopener">otp_win64_18.1</a> ，需要其他版本或者32位系统的，可以去<a href="http://www.erlang.org/downloads" target="_blank" rel="noopener">官网</a>下载。<br><br>全部点击“下一步”就行。<br><br>有的选择其他的安装方式，可能需要添加一下系统环境变量（正常安装的也要检查下）：<br><br><img src="https://images2015.cnblogs.com/blog/784082/201609/784082-20160923235447637-1807926011.png" alt=""><br><br>有最好，没有的话就手动添加嘛。<br><br>## 2.安装RabbitMQ<br><br>下载运行<a href="https://pan.baidu.com/s/1cqpG0u" target="_blank" rel="noopener">rabbitmq-server-3.6.5</a> ，需要其他版本或者32位系统的，可以去<a href="http://www.rabbitmq.com/download.html" target="_blank" rel="noopener">官网</a>下载。<br><br>依旧可以不改变默认进行安装。<br><br>需要注意：默认安装的RabbitMQ 监听端口是5672<br><br>## 3.配置<br><br>### 激活 RabbitMQ’s Management Plugin<br><br>使用RabbitMQ 管理插件，可以更好的可视化方式查看Rabbit MQ 服务器实例的状态。<br><br>打开命令窗口：<br><br>输入命令：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files\RabbitMQ Server\rabbitmq_server-3.6.5\sbin\rabbitmq-plugins.bat&quot; enable rabbitmq_management</span><br></pre></td></tr></table></figure><br><br><img src="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924000520059-1488931520.png" alt=""><br><br>这样，就安装好插件了，是不是能使用了呢？别急，需要重启服务才行，使用命令：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net stop RabbitMQ &amp;&amp; net start RabbitMQ</span><br></pre></td></tr></table></figure><br><br>这时候的，也许会出现这种结果：<br><br><img src="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924001111465-1934628397.png" alt=""><br><br>“发生错误：发生系统错误<span lang="EN-US"> 5。<span lang="EN-US">  拒绝访问。”</span></span><br><br>这是什么鬼？查了下，原来，5代表的是：不是系统管理员权限。<br><br>问题解决方案：使用管理员打开<span lang="EN-US">cmd再执行此命令：</span><br><br><span lang="EN-US"><img src="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924001344449-518927811.png" alt=""></span><br><br>这样就结束了吗？当然没有。<br><br>### 创建用户，密码，绑定角色<br><br>使用<span lang="EN-US">rabbitmqctl控制台命令（位于<span lang="EN-US">C:\Program Files\RabbitMQ Server\rabbitmq_server-3.6.5\sbin&gt;）来创建用户，密码，绑定权限等。</span></span><br><br>注意：安装路径不同的请看仔细啊。<br><br>rabbitmq的用户管理包括增加用户，删除用户，查看用户列表，修改用户密码。<br><br>查看已有用户及用户的角色：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl.bat list_users</span><br></pre></td></tr></table></figure><br><br><img src="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924001810231-489339837.png" alt=""><br><br>新增一个用户：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl.bat add_user username password</span><br></pre></td></tr></table></figure><br><br><img src="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924002317996-1750317042.png" alt=""><br><br>此时来看下我们当前用户哈：<br><br><img src="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924002417481-667312419.png" alt=""><br><br>eric 后面没有“[administrator]”<br><br>这个administrator是干嘛用的呢？这就涉及到用户角色问题了：<br><br>按照我个人理解，rabbitmq用户角色可分为五类：超级管理员, 监控者, 策略制定者, 普通管理者以及其他。<br><br>(1) 超级管理员(administrator)<br><br>可登陆管理控制台(启用management plugin的情况下)，可查看所有的信息，并且可以对用户，策略(policy)进行操作。<br><br>(2) 监控者(monitoring)<br><br>可登陆管理控制台(启用management plugin的情况下)，同时可以查看rabbitmq节点的相关信息(进程数，内存使用情况，磁盘使用情况等)<br><br>(3) 策略制定者(policymaker)<br><br>可登陆管理控制台(启用management plugin的情况下), 同时可以对policy进行管理。<br><br>(4) 普通管理者(management)<br><br>仅可登陆管理控制台(启用management plugin的情况下)，无法看到节点信息，也无法对策略进行管理。<br><br>(5) 其他的<br><br>无法登陆管理控制台，通常就是普通的生产者和消费者。<br><br>好啦，我们也给 eric 变成 “超级管理员” 角色：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl.bat set_user_tags username administrator</span><br></pre></td></tr></table></figure><br><br><img src="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924003014246-2015422375.png" alt=""><br><br>再看下结果哈：<br><br><img src="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924003047621-1862534375.png" alt=""><br><br>当然，除了上面的administrator 还有 monitoring、policymaker、management、自定义名称 ，对应上面介绍到的不同的角色。<br><br>像我们人一样，我们角色除了是公司的员工，还是父母的孩子、子女的爸妈等，用户也可以同时具有多个角色,设置方式:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl.bat  set_user_tags  username tag1 tag2 ...</span><br></pre></td></tr></table></figure><br><br><img src="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924005224668-1215172795.png" alt=""><br><br>恩，现在总觉得guest 这个不安全（它的默认密码是guest）,想更改密码，好办：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl change_password userName newPassword</span><br></pre></td></tr></table></figure><br><br><img src="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924003352168-1350202979.png" alt=""><br><br>有的人也许会说，我就是看guest不爽，老子新增了administrator用户了，就是想干掉它，可以：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl.bat delete_user username</span><br></pre></td></tr></table></figure><br><br><img src="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924003722731-332310837.png" alt=""><br><br> 这时，可能有人就要问了：命令框是只有一个用户了，你怎么操作啊？怎么查看执行情况啊/<br><br> 当然有路子啦：<br><br>使用浏览器打开<a href="http://localhost:15672/" target="_blank" rel="noopener"> http://localhost:15672</a><a href="http://localhost:15672%C2%A0/" target="_blank" rel="noopener"> </a>访问Rabbit Mq的管理控制台，使用刚才创建的账号登陆系统：<br><br> <img src="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924004023387-110874920.png" alt=""><br><br><img src="https://images2015.cnblogs.com/blog/784082/201609/784082-20160924004035121-53385779.png" alt=""><br><br>其实，除了可查看所有的信息 ，上面的命令 增删改查、权限设置，都可以在这个页面完成，还可以依据业务需求设置策略(policy)，具体的就不在这里啰嗦了，大家可以看看网上的帖子。<br><br>### 权限设置<br><br>用户有了角色，那也需要权限设置啊，别急，慢慢来：<br><br>按照官方文档，用户权限指的是用户对exchange，queue的操作权限，包括配置权限，读写权限。<br><br>我们配置权限会影响到exchange、queue的声明和删除。<br><br>读写权限影响到从queue里取消息、向exchange发送消息以及queue和exchange的绑定(binding)操作。<br><br>例如： 将queue绑定到某exchange上，需要具有queue的可写权限，以及exchange的可读权限；向exchange发送消息需要具有exchange的可写权限；从queue里取数据需要具有queue的可读权限<br><br>权限相关命令为：<br><br>(1) 设置用户权限<br><br>rabbitmqctl  set_permissions  -p  VHostPath  User  ConfP  WriteP  ReadP<br><br>(2) 查看(指定hostpath)所有用户的权限信息<br><br>rabbitmqctl  list_permissions  [-p  VHostPath]<br><br>(3) 查看指定用户的权限信息<br><br>rabbitmqctl  list_user_permissions  User<br><br>(4)  清除用户的权限信息<br><br>rabbitmqctl  clear_permissions  [-p VHostPath]  User<br><br>现在环境搭好了，用户、角色、权限全部设置好，开始进行code（原理整理，及编码 待续）<br><br>## 参考：<br><br>安装参考 <a href="http://www.rabbitmq.com/install-windows-manual.html" target="_blank" rel="noopener">http://www.rabbitmq.com/install-windows-manual.html</a><br><br>权限内容参考 <a href="http://www.rabbitmq.com/man/rabbitmqctl.1.man.html" target="_blank" rel="noopener">http://www.rabbitmq.com/man/rabbitmqctl.1.man.html</a><br><br>权限命令摘自 <a href="https://my.oschina.net/hncscwc/blog/262246" target="_blank" rel="noopener">https://my.oschina.net/hncscwc/blog/262246</a><br><br><div id="MySignature"><br><br>作者：<a href="http://www.cnblogs.com/ericli-ericli/" target="_blank" rel="noopener">Eric Li</a><br>出处：<a href="http://www.cnblogs.com/ericli-ericli/" target="_blank" rel="noopener">http://www.cnblogs.com/ericli-ericli/</a><br>除转载文章外，随笔版权归作者和博客园所有，欢迎转载，转载请标明出处。<br>如果您觉得本篇博文对您有所收获，觉得作者还算用心，请点击右下角的 [推荐]，谢谢！<br><br></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/RabbitMQ/" rel="tag"># RabbitMQ</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/01/22/使用Spring Cloud Security OAuth2搭建授权服务/" rel="next" title="使用Spring Cloud Security OAuth2搭建授权服务">
+                <i class="fa fa-chevron-left"></i> 使用Spring Cloud Security OAuth2搭建授权服务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/01/24/CentOS7安装openjdk、tomcat和mysql流程介绍/" rel="prev" title="CentOS7安装openjdk、tomcat和mysql流程介绍">
+                CentOS7安装openjdk、tomcat和mysql流程介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/blog/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

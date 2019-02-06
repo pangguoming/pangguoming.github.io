@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="java,log,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="本文由 ImportNew - 赖 信涛 翻译自 takipiblog。欢迎加入翻译小组。转载请见文末要求。 Splunk vs. Sumo Logic vs. LogStash vs. GrayLog vs. Loggly vs. PaperTrails vs. Splunk&amp;gt;Storm日志管理工具有Splunk、Sumo Logic、LogStash、GrayLog、Loggly和Pap">
+<meta name="keywords" content="java,log">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java程序员须知的七个日志管理工具">
+<meta property="og:url" content="http://pangguoming.com/blog/2018/01/17/Java程序员须知的七个日志管理工具/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="本文由 ImportNew - 赖 信涛 翻译自 takipiblog。欢迎加入翻译小组。转载请见文末要求。 Splunk vs. Sumo Logic vs. LogStash vs. GrayLog vs. Loggly vs. PaperTrails vs. Splunk&amp;gt;Storm日志管理工具有Splunk、Sumo Logic、LogStash、GrayLog、Loggly和Pap">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://incdn1.b0.upaiyun.com/2014/07/549fc6dff2e42dff43acf67ee7587b2e.png">
+<meta property="og:image" content="http://incdn1.b0.upaiyun.com/2014/07/f0c5ca3b8a0fc39162eed8145866c3f0.png">
+<meta property="og:image" content="http://incdn1.b0.upaiyun.com/2014/07/ec9ab151ea877055c7347031e48f4e97.png">
+<meta property="og:image" content="http://incdn1.b0.upaiyun.com/2014/07/3872d0f5e06dc4ebe0c1cab36dc54e8b-1024x563.png">
+<meta property="og:image" content="http://incdn1.b0.upaiyun.com/2014/07/b3b186a5b0e9721db7cf58c861d90aac-1024x532.png">
+<meta property="og:updated_time" content="2019-01-26T15:01:07.415Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java程序员须知的七个日志管理工具">
+<meta name="twitter:description" content="本文由 ImportNew - 赖 信涛 翻译自 takipiblog。欢迎加入翻译小组。转载请见文末要求。 Splunk vs. Sumo Logic vs. LogStash vs. GrayLog vs. Loggly vs. PaperTrails vs. Splunk&amp;gt;Storm日志管理工具有Splunk、Sumo Logic、LogStash、GrayLog、Loggly和Pap">
+<meta name="twitter:image" content="http://incdn1.b0.upaiyun.com/2014/07/549fc6dff2e42dff43acf67ee7587b2e.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2018/01/17/Java程序员须知的七个日志管理工具/">
+
+
+
+
+
+  <title>Java程序员须知的七个日志管理工具 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2018/01/17/Java程序员须知的七个日志管理工具/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java程序员须知的七个日志管理工具</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T16:05:00+08:00">
+                2018-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文由 <a href="http://www.importnew.com/" target="_blank" rel="noopener">ImportNew</a> - <a href="http://www.importnew.com/author/laixintao" target="_blank" rel="noopener">赖 信涛</a> 翻译自 <a href="http://www.takipiblog.com/2014/04/23/the-7-log-management-tools-you-need-to-know/" target="_blank" rel="noopener">takipiblog</a>。欢迎加入<a href="http://group.jobbole.com/category/feedback/trans-team/" target="_blank" rel="noopener">翻译小组</a>。转载请见文末要求。</p>
+<div id="attachment_12386" class="wp-caption aligncenter"><a href="http://www.importnew.com/?attachment_id=12386" target="_blank" rel="noopener"><img src="http://incdn1.b0.upaiyun.com/2014/07/549fc6dff2e42dff43acf67ee7587b2e.png" alt="" title="blog_boat-1"></a><br><br>Splunk vs. Sumo Logic vs. LogStash vs. GrayLog vs. Loggly vs. PaperTrails vs. Splunk&gt;Storm<br><br>日志管理工具有Splunk、Sumo Logic、LogStash、GrayLog、Loggly和PaperTrails等等，数不胜数。日志就像石油，二十多年了我们一直想摆脱它，却一直没有做到。<br><br>为了处理日益增长的数据，近年来出现了一大批分析和管理日志的工具，开发和管理人员能够借助这些工具来了解增长的数据。在这篇文章中，我将站在开发者的角度，分析一下这些工具的特点。<br><br>## <a href="http://www.splunk.com/" target="_blank" rel="noopener">Splunk</a><br><br>作为这个领域中最大的工具，我决定将 Splunk 做一个单独的分类。并不是说这个工具是最好的，而是对这个产品给予肯定，因为它从本质上创造了一个新的领域。<br><br>#### 优点<br><br>在这个领域内功能最齐全的可能就是 Splunk 了。它有数百个来分析各种形式日志信息的程序（我计算的是<a href="https://apps.splunk.com/apps/#/" target="_blank" rel="noopener">537个</a>）——从安全领导到商业分析，再到底层监控。Splunk 的搜索和图表工具如此丰富，没有通过它（UI和API）得不到的数据。<br><br>#### 缺点<br><br>Splunk 主要有两个缺点。第一，这个因素可能有些主观，我觉得这个解决方案太复杂了。如果要在一个高度复杂的环境中部署，就需要安装和配置一个专用集群。作为一个开发者，通常会因为这点而不把这个方案作为第一选择。<br><br>第二个缺点是它太昂贵了。要支持一个真实世界的软件，你可能会花费一万多美金，这很可能就意味着你需要从其他地方削减预算，这样开发进程就慢了。如果你刚上架了一款 app，但是要得到高质量的日志分析却又不影响开发进程——请继续阅读。<br><br>更多企业级日志分析工具请点击<a href="http://devopsangle.com/2012/11/20/ask-devops-top-5-business-alternatives-to-splunk/" target="_blank" rel="noopener">这里</a>。<br><br>## SaaS日志分析工具<br><br>### <a href="http://www.sumologic.com/" target="_blank" rel="noopener">Sumo Logic</a><br><br>Sumo 是在 Splunk 的基础上建立的 SaaS 版本，它沿用了 Splunk 早期的一些特性和视觉效果。不得不说，SL 今天已经发展成了一个成熟的企业级日志管理工具。<br><br>#### 优点<br><br>SL 具备对数据简化、查找、制表等功能。可能是 SaaS 型的日志分析工具中功能最多的了。同样，作为 SaaS 型，SL 还具有安装简单，操作简单等优点。最吸引人的地方是，你可以建立一个基线，当一个事件（像是一个新版本首次上线或者恶意的请求等）使一些重要的指标发生了变化时，你可以收到动态通知。<br><br>#### 缺点<br><br>由于这是通过 SaaS 的方式进行日志分析的，所以你必须将大量的数据上传至服务器进行分析，这就可能产生一些问题：<br><br>1.  作为一个开发者，如果要分析的日志涉及到敏感信息或者 PII 你要确保做好了屏蔽。<br>2.  在日志生成的时间与日志上传至服务的时间之间可能存在一些冲突。<br>3.  在你的机器上回多出来几个 GB 的开销用于上传日志，不过这取决于你日志的吞吐量。<br><br>Sumo 服务的购买价格<a href="https://www.loggly.com/plans-and-pricing/" target="_blank" rel="noopener">不是透明的</a>，所以你要是想刷你团队的信用卡来购买的话会很麻烦。<br><br><strong>更新</strong>——SL 团队刚刚告诉我们，你可以直接用信用卡从免费版本中购买服务，虽然不像网页版那样方便，但是也蛮不错的。<br><br>### <a href="https://www.loggly.com/" target="_blank" rel="noopener">Loggly</a><br><br>Loggly 也是一个健壮的日志分析工具，强调简洁朴素让开发者用起来方便。<br><br><a href="http://www.importnew.com/?attachment_id=12387" target="_blank" rel="noopener"><img src="http://incdn1.b0.upaiyun.com/2014/07/f0c5ca3b8a0fc39162eed8145866c3f0.png" alt="" title="Loggly"></a><br><br>#### 优点<br><br>SL 注重的是企业级别的应用和安全性，而 Loggly 却将重点放在了帮助开发者查找和修复操作性的问题上。因为操作界面非常友好，自定义性能和开发者仪表盘这种东西非常简单。并且它的价格透明，入门方便。<br><br>#### 缺点<br><br>不要奢望 Loggly 具备成熟的架构、安全和分析解决方案。Loggly 不具备取证和监控基础架构，它仅仅是帮助开发者处理应用服务器数据的一个工具。除此之外的其他事情就需要你自己去做了。<br><br>### <a href="https://papertrailapp.com/" target="_blank" rel="noopener">PaperTrails</a><br><br>PaperTrails 擅长从多台机器上查找日志，并提供一个合并的窗口，使用起来很方便。鉴于你是从云端<a href="http://fc03.deviantart.net/fs70/i/2011/327/4/f/tails_and_konata_by_cycloniccyance-d4h1drr.jpg" target="_blank" rel="noopener">追踪</a>日志，所以你离他们不会太远。<br><br><a href="http://www.importnew.com/?attachment_id=12390" target="_blank" rel="noopener"><img src="http://incdn1.b0.upaiyun.com/2014/07/ec9ab151ea877055c7347031e48f4e97.png" alt="" title="PaperTrails"></a><br><br>#### 优点<br><br>PT 就是这么一个工具。通过它你可以从一个窗口轻松的查找多台机器上的日志。用户操作本身就像你机器上的日志，搜索命令也一样。它致力于将日志管理变得简单、易用，可以优雅地处理。而且它还<a href="https://papertrailapp.com/plans" target="_blank" rel="noopener">不算很贵</a>。<br><br>#### 缺点<br><br>PT 是基于文本格式的。如果需要支持先进的集成、预测和报告功能，就显得力不从心了。<br><br>### <a href="https://www.splunkstorm.com/" target="_blank" rel="noopener">Splunk&gt;Storm</a><br><br>这是 Splunk 的兄弟， Splunk 的服务器上提供托管。<br><br>#### 优点<br><br>Storm 让你无需安装软件，就能体验 Splunk 的完整版的功能。<br><br>#### 缺点<br><br>Storm 不是商业的，所以你的流量有限。你可以将其视作一个 Splunk 的限制版本，无需部署即可帮助新产品测试。最近有个叫 <a href="http://www.splunk.com/goto/cloud" target="_blank" rel="noopener">Splunk Cloud</a> 的新服务，致力于提供 Splunk SaaS 的完整体验。<br><br>## 开源的分析软件<br><br>### <a href="http://logstash.net/" target="_blank" rel="noopener">Logstash</a><br><br>Logstash 是一款收集和管理日志的开源工具。它用到了一些其他的开源的资源：使用 ElasticSearch 来索引和查找数据，使用 Kibana 制表和可视化处理。他们联合起来,组成一个强大的日志管理解决方案。<br><br><a href="http://www.importnew.com/?attachment_id=12389" target="_blank" rel="noopener"><img src="http://incdn1.b0.upaiyun.com/2014/07/3872d0f5e06dc4ebe0c1cab36dc54e8b-1024x563.png" alt="" title="Logstash"></a><br><br>#### 优点<br><br>作为一个开源的解决方案，Logstash 允许用户有更大的定制空间，而且很便宜。Logstash 用了三个成熟的开源部件——都受到了很好的维护——组成一个强大的<a href="http://cookbook.logstash.net/" target="_blank" rel="noopener">可扩展的</a>软件包。由于开源，安装和使用和非常方便。<br><br>#### 缺点<br><br>由于 Logstash 从本质上来说是三个部件的堆砌，所以你需要面对三个不同的产品。这就意味着扩展也变得很复杂。Logstash 的过滤器是用 Ruby 写的，Kibana 是用纯 Javascript 写的，而 ElasticSearch 也有自己的 REST 接口和 JSON 模板。<br><br>当你转向产品时，还需要将三个不同的工具部署到服务器上，无疑增加了复杂度。<br><br>### <a href="http://graylog2.org/" target="_blank" rel="noopener">Graylog2</a><br><br>最近出现的一颗新星——GL2，用 MongoDB 和 ElasticSearch 支持的用来存储与搜索日志错误的工具。它致力于帮助开发者找到并修复程序中的错误。<br><br>在这一方面，还有 <a href="http://fluentd.org/" target="_blank" rel="noopener">fluentd</a> 和 <a href="http://kafka.apache.org/" target="_blank" rel="noopener">Kafka</a> 也是专注于存储日志的。看！我们有这么多选择啊！<br><br>## Takipi for Logs<br><br><a href="http://www.importnew.com/?attachment_id=12388" target="_blank" rel="noopener"><img src="http://incdn1.b0.upaiyun.com/2014/07/b3b186a5b0e9721db7cf58c861d90aac-1024x532.png" alt="" title="logScreenshot"></a><br><br>虽然这篇文章不是关于 Takipi 的，但是它有一项特性，你也许会发现和日志有关。<br><br>对于日志分析工具来说，最大的缺点就是你必须要有日志可以分析。从集成开发环境的角度看，如果没有异常报告，或者没有错误信息的数据，你就没办法知道哪里出问题了，这样世界上任何工具都帮不了你了！Debug 就卡在这里了。:(<br><br>在 Takipi 的一项优势就是可以跳过日志文件，进入到调试信息中。这样你就能看到真实的源代码和错误范围的变量了。了解更多点击<a href="http://www.takipi.com/logs.html" target="_blank" rel="noopener">这里</a>。<br><br>Takipi 会报告所有的异常和错误，并且告诉你哪里出错了，即使是多线程或者是发生在多台机器上。1分钟之内就能安装，维护费用不足2%-部署<a href="https://app.takipi.com/account-tshirt.html" target="_blank" rel="noopener">Taikipi</a>。<br><br>原文链接： <a href="http://www.takipiblog.com/2014/04/23/the-7-log-management-tools-you-need-to-know/" target="_blank" rel="noopener">takipiblog</a> 翻译： <a href="http://www.importnew.com/" target="_blank" rel="noopener">ImportNew.com </a>- <a href="http://www.importnew.com/author/laixintao" target="_blank" rel="noopener">赖 信涛</a><br>译文链接： <a href="http://www.importnew.com/12383.html" target="_blank" rel="noopener">http://www.importnew.com/12383.html</a><br>[ <strong>转载请保留原文出处、译者和译文链接。</strong>]<br></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/java/" rel="tag"># java</a>
+          
+            <a href="/blog/tags/log/" rel="tag"># log</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/01/15/vue 2 使用Bus.js进行兄弟(非父子)组件通信 简单案例/" rel="next" title="vue 2 使用Bus.js进行兄弟(非父子)组件通信 简单案例">
+                <i class="fa fa-chevron-left"></i> vue 2 使用Bus.js进行兄弟(非父子)组件通信 简单案例
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/01/17/Spring Boot集成JasperReports生成PDF文档/" rel="prev" title="Spring Boot集成JasperReports生成PDF文档">
+                Spring Boot集成JasperReports生成PDF文档 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/blog/archives">
+            
+                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
