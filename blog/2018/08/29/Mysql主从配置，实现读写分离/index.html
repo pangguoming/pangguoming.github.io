@@ -103,14 +103,14 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="大型网站为了软解大量的并发访问，除了在网站实现分布式负载均衡，远远不够。到了数据业务层、数据访问层，如果还是传统的数据结构，或者只是单单靠一台服务器扛，如此多的数据库连接操作，数据库必然会崩溃，数据丢失的话，后果更是 不堪设想。这时候，我们会考虑如何减少数据库的联接，一方面采用优秀的代码框架，进行代码的优化，采用优秀的数据缓存技术如：memcached,如果资金丰厚的话，必然会想到假设服务器群，来">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://images0.cnblogs.com/blog/157872/201412/141051539312957.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/552370ca-a7b9-4533-ab42-0261b62c6b71.png">
 <meta property="og:image" content="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif">
-<meta property="og:image" content="https://images0.cnblogs.com/blog/157872/201412/141118216966295.png">
-<meta property="og:updated_time" content="2019-01-26T14:39:27.832Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/4e5a37a2-a046-4664-b271-4b0370cc298e.png">
+<meta property="og:updated_time" content="2019-02-07T11:06:39.561Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql主从配置，实现读写分离">
 <meta name="twitter:description" content="大型网站为了软解大量的并发访问，除了在网站实现分布式负载均衡，远远不够。到了数据业务层、数据访问层，如果还是传统的数据结构，或者只是单单靠一台服务器扛，如此多的数据库连接操作，数据库必然会崩溃，数据丢失的话，后果更是 不堪设想。这时候，我们会考虑如何减少数据库的联接，一方面采用优秀的代码框架，进行代码的优化，采用优秀的数据缓存技术如：memcached,如果资金丰厚的话，必然会想到假设服务器群，来">
-<meta name="twitter:image" content="https://images0.cnblogs.com/blog/157872/201412/141051539312957.png">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/552370ca-a7b9-4533-ab42-0261b62c6b71.png">
 
 
 
@@ -349,7 +349,7 @@
 <p>（1）如果您不是使用root用户登录，建议 su - root 切换到Root用户安装，那就不用老是 sudo 了。</p>
 <p>（2）存放解压的mysql 文件夹，文件夹名字最好改成mysql</p>
 <p>（3）在./support-files/mysql.server start 启动MySQL的时候，可能会出现一个警告，中文意思是启动服务运行读文件时，忽略了my.cnf文件，那是因为my.cnf的文件权限有问题，mysql会认为该文件有危险不会执行。但是mysql还会启动成功，但如果下面配置从服务器参数修改my.cnf文件的时候，你会发现文件改过了，但是重启服务时，修改过后的配置没有执行，而且您 list一下mysql的文件夹下会发现很多.my.cnf.swp等中间文件。这都是因为MySQL启动时没有读取my.cnf的原因。这时只要将my.cnf的文件权限改成my_new.cnf的权限一样就Ok，命令：chmod 644 my.cnf就Ok</p>
-<p><img src="https://images0.cnblogs.com/blog/157872/201412/141051539312957.png" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/552370ca-a7b9-4533-ab42-0261b62c6b71.png" alt=""></p>
 <p>（4）Ubuntu中修改文档内容没有Vim，最好把Vim 装上，apt-get install vim,不然估计会抓狂。</p>
 <p>这时候我相信MySQL应该安装上去了。</p>
 <p>2、配置Master主服务器</p>
@@ -371,7 +371,7 @@
 <p>start slave;</p>
 <p>4、Slave从服务器（Ubuntu）</p>
 <p>（1）找到MySQL安装文件夹修改my.cnf文件,vim my.cnf</p>
-<p><img src="https://images0.cnblogs.com/blog/157872/201412/141118216966295.png" alt=""> s</p>
+<p><img src="http://pangguoming.com/blog/images/4e5a37a2-a046-4664-b271-4b0370cc298e.png" alt=""> s</p>
 <p>（2） ./support-files/myql.server restart 重启MySQL服务  ,  ./bin/mysql 进入MySQL命令窗口 </p>
 <p>（3）连接Master</p>
 <p>change master to master_host=’192.168.0.104’, //Master 服务器Ip<br>master_port=3306,<br>master_user=’repl’,<br>master_password=’mysql’,<br>master_log_file=’master-bin.000001’,//Master服务器产生的日志<br>master_log_pos=0;</p>
@@ -554,7 +554,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -576,7 +576,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -103,12 +103,12 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="Spring Security OAuth2 Demo项目使用的是MySql存储, 需要先创建以下表结构:     CREATE SCHEMA IF NOT EXISTS `alan-oauth` DEFAULT CHARACTER SET utf8 ;     USE `alan-oauth` ;     -- ------------------------------------------">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://camo.githubusercontent.com/c13b0403b9b620be9e857955d7375889bc9170ed/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630393134313734373437393535">
-<meta property="og:updated_time" content="2019-01-26T15:01:16.060Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/9aa14cc9-26ea-4604-a5a0-76f6a4faf54e.jpg">
+<meta property="og:updated_time" content="2019-02-07T11:13:11.920Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Security OAuth2 Demo">
 <meta name="twitter:description" content="Spring Security OAuth2 Demo项目使用的是MySql存储, 需要先创建以下表结构:     CREATE SCHEMA IF NOT EXISTS `alan-oauth` DEFAULT CHARACTER SET utf8 ;     USE `alan-oauth` ;     -- ------------------------------------------">
-<meta name="twitter:image" content="https://camo.githubusercontent.com/c13b0403b9b620be9e857955d7375889bc9170ed/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630393134313734373437393535">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/9aa14cc9-26ea-4604-a5a0-76f6a4faf54e.jpg">
 
 
 
@@ -458,7 +458,7 @@
 <pre><code>&lt;pre&gt;
     localhost:8080/oauth/authorize?client_id=client&amp;response_type=code&amp;redirect_uri=http://www.baidu.com
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">此时浏览器会让你输入用户名密码，这是因为 Spring Security 在默认情况下会对所有URL添加Basic Auth认证。默认的用户名为`user`, 密码是随机生成的，在控制台日志中可以看到。</span><br><span class="line"></span><br><span class="line">[![oauth2](https://camo.githubusercontent.com/566f803d5110c37f7e75ee2527313d92a76bb4b9/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630393134313732323431323839)](https://camo.githubusercontent.com/566f803d5110c37f7e75ee2527313d92a76bb4b9/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630393134313732323431323839)</span><br><span class="line"></span><br><span class="line">画风虽然很简陋，但是基本功能都具备了。点击`Authorize`后，浏览器就会重定向到百度，并带上`code`参数：</span><br><span class="line"></span><br><span class="line">[![这里写图片描述](https://camo.githubusercontent.com/25d6fc681b352026a726501f444a041c43f00463/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630393134313732343132313930)](https://camo.githubusercontent.com/25d6fc681b352026a726501f444a041c43f00463/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630393134313732343132313930)</span><br><span class="line"></span><br><span class="line">拿到`code`以后，就可以调用</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;</span><br><span class="line">        POST/GET http://client:secret@localhost:8080/oauth/token</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">此时浏览器会让你输入用户名密码，这是因为 Spring Security 在默认情况下会对所有URL添加Basic Auth认证。默认的用户名为`user`, 密码是随机生成的，在控制台日志中可以看到。</span><br><span class="line"></span><br><span class="line">[![oauth2](http://pangguoming.com/blog/images/d143738c-2549-42fc-a019-85e10f4a1613.jpg)](http://pangguoming.com/blog/images/d143738c-2549-42fc-a019-85e10f4a1613.jpg)</span><br><span class="line"></span><br><span class="line">画风虽然很简陋，但是基本功能都具备了。点击`Authorize`后，浏览器就会重定向到百度，并带上`code`参数：</span><br><span class="line"></span><br><span class="line">[![这里写图片描述](http://pangguoming.com/blog/images/faa26090-75f7-4ec9-8354-67c8e5de5497.jpg)](http://pangguoming.com/blog/images/faa26090-75f7-4ec9-8354-67c8e5de5497.jpg)</span><br><span class="line"></span><br><span class="line">拿到`code`以后，就可以调用</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;</span><br><span class="line">        POST/GET http://client:secret@localhost:8080/oauth/token</span><br></pre></td></tr></table></figure>
 </code></pre><p>来换取<code>access_token</code>了：</p>
 <pre><code>&lt;pre&gt;
     curl -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -d &apos;grant_type=authorization_code&amp;code=Li4NZo&amp;redirect_uri=http://www.baidu.com&apos; &quot;http://client:secret@localhost:8080/oauth/token&quot;
@@ -502,7 +502,7 @@
         }
 
 ```
-</code></pre><p>完成这些后，框架就会将中间产生的数据写到mysql中了。<code>oauth_client_details</code>是client表，可以直接在该表中添加记录来添加client: <a href="https://camo.githubusercontent.com/c13b0403b9b620be9e857955d7375889bc9170ed/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630393134313734373437393535" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/c13b0403b9b620be9e857955d7375889bc9170ed/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630393134313734373437393535" alt="这里写图片描述"></a></p>
+</code></pre><p>完成这些后，框架就会将中间产生的数据写到mysql中了。<code>oauth_client_details</code>是client表，可以直接在该表中添加记录来添加client: <a href="http://pangguoming.com/blog/images/9aa14cc9-26ea-4604-a5a0-76f6a4faf54e.jpg"><img src="http://pangguoming.com/blog/images/9aa14cc9-26ea-4604-a5a0-76f6a4faf54e.jpg" alt="这里写图片描述"></a></p>
 <pre><code>### [](https://github.com/wanghongfei/spring-security-oauth2-example#44-需要注意的地方)4.4 需要注意的地方
 </code></pre><p>这里不得不说 Spring 设计有一个奇葩地的方。注意看<code>oauth_access_token</code>表是存放访问令牌的，但是并没有直接在字段中存放token。Spring 使用<code>OAuth2AccessToken</code>来抽象与令牌有关的所有属性，在写入到数据库时，Spring将该对象通过JDK自带的序列化机制序列成字节 直接保存到了该表的<code>token</code>字段中。也就是说，如果只看数据表你是看不出<code>access_token</code>的值是多少，过期时间等信息的。这就给资源服务器的实现带来了麻烦。我们的资源提供方并没有使用Spring Security，也不想引入 Spring Security 的任何依赖，这时候就只能将 <code>DefaultOAuth2AccessToken</code>的源码copy到资源提供方的项目中，然后读取<code>token</code>字段并反序列化还原对象来获取token信息。但是如果这样做还会遇到反序列化兼容性的问题，具体解决方法参考我另一篇博文: <a href="http://blog.csdn.net/neosmith/article/details/52539614" target="_blank" rel="noopener">http://blog.csdn.net/neosmith/article/details/52539614</a></p>
 <pre><code>## [](https://github.com/wanghongfei/spring-security-oauth2-example#5-总结)5. 总结
@@ -694,7 +694,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -716,7 +716,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

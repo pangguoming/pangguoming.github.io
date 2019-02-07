@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="CentOS,防火墙,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="CentOS6.5查看防火墙的状态： 1[linuxidc@localhost ~]$service iptable status 显示结果：12345[linuxidc@localhost ~]$service iptable statusRedirecting to /bin/systemctl status  iptable.service● iptable.service   Loaded">
+<meta name="keywords" content="CentOS,防火墙">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS 6和CentOS 7防火墙的关闭">
+<meta property="og:url" content="http://pangguoming.com/blog/2018/05/19/CentOS 6和CentOS 7防火墙的关闭/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="CentOS6.5查看防火墙的状态： 1[linuxidc@localhost ~]$service iptable status 显示结果：12345[linuxidc@localhost ~]$service iptable statusRedirecting to /bin/systemctl status  iptable.service● iptable.service   Loaded">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-07T11:06:50.535Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS 6和CentOS 7防火墙的关闭">
+<meta name="twitter:description" content="CentOS6.5查看防火墙的状态： 1[linuxidc@localhost ~]$service iptable status 显示结果：12345[linuxidc@localhost ~]$service iptable statusRedirecting to /bin/systemctl status  iptable.service● iptable.service   Loaded">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2018/05/19/CentOS 6和CentOS 7防火墙的关闭/">
+
+
+
+
+
+  <title>CentOS 6和CentOS 7防火墙的关闭 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2018/05/19/CentOS 6和CentOS 7防火墙的关闭/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CentOS 6和CentOS 7防火墙的关闭</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-19T11:30:00+08:00">
+                2018-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://www.linuxidc.com/topicnews.aspx?tid=14" title="CentOS" target="_blank" rel="noopener">CentOS</a>6.5查看防火墙的状态：</p>
+<div class="linuxidc_Highlighter sh-gutter"><br><div><br><div id="highlighter_858967" class="syntaxhighlighter  sql ie"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="sql plain">[linuxidc@localhost ~]$service iptable status</code><br><br></div></div></td><br></tr><br></tbody><br></table><br><br> 显示结果：<br><br><div class="linuxidc_Highlighter sh-gutter"><br><div><br><div id="highlighter_503081" class="syntaxhighlighter  sql ie"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><div class="line number3 index2 alt2">3<br><div class="line number4 index3 alt1">4<br><div class="line number5 index4 alt2">5<br></div></div></div></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="sql plain">[linuxidc@localhost ~]$service iptable status</code><br><div class="line number2 index1 alt1"><code class="sql plain">Redirecting </code><code class="sql keyword">to</code> <code class="sql plain">/bin/systemctl status  iptable.service</code><br><div class="line number3 index2 alt2"><code class="sql plain">● iptable.service</code><br><div class="line number4 index3 alt1"><code class="sql spaces">   </code><code class="sql plain">Loaded: </code><code class="sql color1">not</code><code class="sql plain">-found (Reason: </code><code class="sql keyword">No</code> <code class="sql plain">such file </code><code class="sql color1">or</code> <code class="sql plain">directory)</code><br><div class="line number5 index4 alt2"><code class="sql spaces">   </code><code class="sql plain">Active: inactive (dead)  </code><code class="sql comments">–表示防火墙已经关闭</code><br><br></div></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>    CentOS 6.5关闭防火墙<br><br><div class="linuxidc_Highlighter sh-gutter"><br><div><br><div id="highlighter_289173" class="syntaxhighlighter  sql ie"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="sql plain">[root@localhost ~]#servcie iptables stop                    </code><code class="sql comments">–临时关闭防火墙</code><br><div class="line number2 index1 alt1"><code class="sql plain">[root@localhost ~]#chkconfig iptables </code><code class="sql keyword">off</code>                    <code class="sql comments">–永久关闭防火墙</code><br><br></div></div></div></td><br></tr><br></tbody><br></table><br><br>    CentOS 7.2关闭防火墙<br><br>CentOS 7.0默认使用的是firewall作为防火墙，这里改为iptables防火墙步骤。<br><br>firewall-cmd –state #查看默认防火墙状态（关闭后显示notrunning，开启后显示running）<br><br><div class="linuxidc_Highlighter sh-gutter"><br><div><br><div id="highlighter_277208" class="syntaxhighlighter  sql ie"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><br></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="sql plain">[root@localhost ~]#firewall-cmd </code><code class="sql comments">–state</code><br><div class="line number2 index1 alt1"><code class="sql color1">not</code> <code class="sql plain">running</code><br><br></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br>   检查防火墙的状态：<br><br>从centos7开始使用systemctl来管理服务和程序，包括了service和chkconfig。<br><br><div class="linuxidc_Highlighter sh-gutter"><br><div><br><div id="highlighter_15283" class="syntaxhighlighter  sql ie"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><br></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="sql plain">[root@localhost ~]#systemctl list-unit-files|grep firewalld.service            </code><code class="sql comments">–防火墙处于关闭状态</code><br><div class="line number2 index1 alt1"><code class="sql plain">firewalld.service                          disabled</code><br><br></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br> 或者<br><br><div class="linuxidc_Highlighter sh-gutter"><br><div><br><div id="highlighter_973037" class="syntaxhighlighter  sql ie"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><div class="line number3 index2 alt2">3<br><div class="line number4 index3 alt1">4<br><br></div></div></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="sql plain">[root@localhost ~]#systemctl status firewalld.service</code><br><div class="line number2 index1 alt1"><code class="sql plain">● firewalld.service - firewalld - </code><code class="sql keyword">dynamic</code> <code class="sql plain">firewall daemon</code><br><div class="line number3 index2 alt2"><code class="sql spaces">   </code><code class="sql plain">Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)</code><br><div class="line number4 index3 alt1"><code class="sql spaces">   </code><code class="sql plain">Active: inactive (dead)</code><br><br></div></div></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br>   关闭防火墙：<br><br>systemctl stop firewalld.service #停止firewall<br>systemctl disable firewalld.service #禁止firewall开机启动<br><br><div class="linuxidc_Highlighter sh-gutter"><br><div><br><div id="highlighter_797084" class="syntaxhighlighter  sql ie"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><br></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="sql plain">[root@localhost ~]#systemctl stop firewalld.service</code><br><div class="line number2 index1 alt1"><code class="sql plain">[root@localhost ~]#systemctl disable firewalld.service</code><br><br></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="linuxidc_Highlighter sh-gutter"><br><div><br><div id="highlighter_949894" class="syntaxhighlighter  sql ie"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><div class="line number3 index2 alt2">3<br><div class="line number4 index3 alt1">4<br><div class="line number5 index4 alt2">5<br><div class="line number6 index5 alt1">6<br><div class="line number7 index6 alt2">7<br><div class="line number8 index7 alt1">8<br><br></div></div></div></div></div></div></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="sql plain">启动一个服务：systemctl start firewalld.service</code><br><div class="line number2 index1 alt1"><code class="sql plain">关闭一个服务：systemctl stop firewalld.service</code><br><div class="line number3 index2 alt2"><code class="sql plain">重启一个服务：systemctl restart firewalld.service</code><br><div class="line number4 index3 alt1"><code class="sql plain">显示一个服务的状态：systemctl status firewalld.service</code><br><div class="line number5 index4 alt2"><code class="sql plain">在开机时启用一个服务：systemctl enable firewalld.service</code><br><div class="line number6 index5 alt1"><code class="sql plain">在开机时禁用一个服务：systemctl disable firewalld.service</code><br><div class="line number7 index6 alt2"><code class="sql plain">查看服务是否开机启动：systemctl </code><code class="sql keyword">is</code><code class="sql plain">-enabled firewalld.service;echo $?</code><br><div class="line number8 index7 alt1"><code class="sql plain">查看已启动的服务列表：systemctl list-unit-files|grep enabled</code><br><br></div></div></div></div></div></div></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br>## Centos 7 firewall 命令：<br><br>查看已经开放的端口：<br><br><code class="hljs lasso has-numbering">firewall<span class="hljs-attribute">-cmd <span class="hljs-subst">–<span class="hljs-built_in">list<span class="hljs-attribute">-ports</span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">开启端口</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs brainfuck has-numbering&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;firewall&lt;span class=&quot;hljs-literal&quot;&gt;-&lt;span class=&quot;hljs-comment&quot;&gt;cmd &lt;span class=&quot;hljs-literal&quot;&gt;-&lt;span class=&quot;hljs-literal&quot;&gt;-&lt;span class=&quot;hljs-comment&quot;&gt;zone=public &lt;span class=&quot;hljs-literal&quot;&gt;-&lt;span class=&quot;hljs-literal&quot;&gt;-&lt;span class=&quot;hljs-comment&quot;&gt;add&lt;span class=&quot;hljs-literal&quot;&gt;-&lt;span class=&quot;hljs-comment&quot;&gt;port=80/tcp &lt;span class=&quot;hljs-literal&quot;&gt;-&lt;span class=&quot;hljs-literal&quot;&gt;-&lt;span class=&quot;hljs-comment&quot;&gt;permanent&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>命令含义：<br><br>–zone #作用域<br><br>–add-port=80/tcp #添加端口，格式为：端口/通讯协议<br><br>–permanent #永久生效，没有此参数重启后失效<br><br>重启防火墙<br><br>    <pre class="prettyprint"><code class="hljs avrasm has-numbering">firewall-cmd –reload <span class="hljs-preprocessor">#重启firewall<br>    systemctl stop firewalld<span class="hljs-preprocessor">.service <span class="hljs-preprocessor">#停止firewall<br>    systemctl disable firewalld<span class="hljs-preprocessor">.service <span class="hljs-preprocessor">#禁止firewall开机启动</span></span></span></span></span></code><br><strong>firewall-cmd –state</strong> #查看默认防火墙状态（关闭后显示notrunning，开启后显示running）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ## CentOS 7 以下版本 iptables 命令</span><br><span class="line"></span><br><span class="line">如要开放80，22，8080 端口，输入以下命令即可</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs lasso has-numbering&quot;&gt;/sbin/iptables &lt;span class=&quot;hljs-attribute&quot;&gt;-I INPUT &lt;span class=&quot;hljs-attribute&quot;&gt;-p tcp &lt;span class=&quot;hljs-subst&quot;&gt;--dport &lt;span class=&quot;hljs-number&quot;&gt;80 &lt;span class=&quot;hljs-attribute&quot;&gt;-j ACCEPT</span><br><span class="line">    /sbin/iptables &lt;span class=&quot;hljs-attribute&quot;&gt;-I INPUT &lt;span class=&quot;hljs-attribute&quot;&gt;-p tcp &lt;span class=&quot;hljs-subst&quot;&gt;--dport &lt;span class=&quot;hljs-number&quot;&gt;22 &lt;span class=&quot;hljs-attribute&quot;&gt;-j ACCEPT</span><br><span class="line">    /sbin/iptables &lt;span class=&quot;hljs-attribute&quot;&gt;-I INPUT &lt;span class=&quot;hljs-attribute&quot;&gt;-p tcp &lt;span class=&quot;hljs-subst&quot;&gt;--dport &lt;span class=&quot;hljs-number&quot;&gt;8080 &lt;span class=&quot;hljs-attribute&quot;&gt;-j ACCEPT&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>然后保存：<br><br>    <pre class="prettyprint"><code class="hljs avrasm has-numbering">/etc/rc<span class="hljs-preprocessor">.d/init<span class="hljs-preprocessor">.d/iptables save</span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">查看打开的端口：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs avrasm has-numbering&quot;&gt;/etc/init&lt;span class=&quot;hljs-preprocessor&quot;&gt;.d/iptables status&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>关闭防火墙<br>1） 永久性生效，重启后不会复原<br><br>开启： chkconfig iptables on<br><br>关闭： chkconfig iptables off<br><br>2） 即时生效，重启后复原<br><br>开启： service iptables start<br><br>关闭： service iptables stop<br><br>查看防火墙状态： service iptables status<br><br><strong>下面说下CentOS7和6的默认防火墙的区别</strong><br><br>CentOS 7默认使用的是firewall作为防火墙，使用iptables必须重新设置一下<br><br>1、直接关闭防火墙<br><br>systemctl stop firewalld.service #停止firewall<br><br>systemctl disable firewalld.service #禁止firewall开机启动<br><br>2、设置 iptables service<br><br>yum -y install iptables-services<br><br>如果要修改防火墙配置，如增加防火墙端口3306<br><br>vi /etc/sysconfig/iptables<br><br>增加规则<br><br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT<br><br>保存退出后<br><br>systemctl restart iptables.service #重启防火墙使配置生效<br><br>systemctl enable iptables.service #设置防火墙开机启动<br><br>最后重启系统使设置生效即可。<br><br>systemctl start iptables.service #打开防火墙<br><br>systemctl stop iptables.service #关闭防火墙<br><br>    ### 解决主机不能访问虚拟机CentOS中的站点<br><br>    <div>前阵子在虚拟机上装好了CentOS6.2，并配好了apache+php+mysql，但是本机就是无法访问。一直就没去折腾了。<br>    <div><br>    <div>具体情况如下<br><br>&gt; <div>1. 本机能ping通虚拟机<br>&gt;     <div>2. 虚拟机也能ping通本机<br>&gt;     <div>3.虚拟机能访问自己的web<br>&gt;     <div>4.本机无法访问虚拟机的web<br>&gt;<br>&gt;     </div></div></div></div>
+
+<pre><code>&lt;div&gt; 
+&lt;div&gt;后来发现是**防火墙将80端口屏蔽了的缘故。** 
+&lt;div&gt; 
+&lt;div&gt;检查是不是服务器的80端口被防火墙堵了，可以通过命令：telnet server_ip 80 来测试。 
+&lt;div&gt; 
+&lt;div&gt;解决方法如下： 
+</code></pre><blockquote>
+<p>/sbin/iptables -I INPUT -p tcp –dport 80 -j ACCEPT </p>
+</blockquote>
+<pre><code>&lt;div&gt;然后保存： 
+</code></pre><blockquote>
+<p>/etc/rc.d/init.d/iptables save </p>
+</blockquote>
+<pre><code>&lt;div&gt;重启防火墙 
+</code></pre><blockquote>
+<p>/etc/init.d/iptables restart </p>
+</blockquote>
+<pre><code>&lt;div&gt; 
+&lt;div&gt;CentOS防火墙的关闭，关闭其服务即可： 
+</code></pre><blockquote>
+<div>查看CentOS防火墙信息：/etc/init.d/iptables status<br>    <div>关闭CentOS防火墙服务：/etc/init.d/iptables stop<br><br>    </div></div>
+</blockquote>
+<p></p></div></div></div></pre></pre></div></div></div></div></div></div></div></div></div></div><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div><p></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/CentOS/" rel="tag"># CentOS</a>
+          
+            <a href="/blog/tags/防火墙/" rel="tag"># 防火墙</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/05/19/Centos后台运行jar/" rel="next" title="Centos后台运行jar">
+                <i class="fa fa-chevron-left"></i> Centos后台运行jar
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/05/23/axios post提交的Content-Type/" rel="prev" title="axios post提交的Content-Type">
+                axios post提交的Content-Type <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/blog/archives">
+            
+                <span class="site-state-item-count">420</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">267</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

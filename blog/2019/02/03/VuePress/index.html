@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Vuepress,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="VuePress这篇文章主要是记录自己在使用VuePress过程中所遇到的问题以及如何一步一步的解决问题。  安装vuepress前，请确保你的 Node.js 版本 &amp;gt;= 8  全局安装# 安装    yarn global add vuepress 或者：npm install -g vuepress &amp;lt;span class=&amp;quot;hljs-comment&amp;quot;&amp;gt;">
+<meta name="keywords" content="Vuepress">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VuePress">
+<meta property="og:url" content="http://pangguoming.com/blog/2019/02/03/VuePress/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="VuePress这篇文章主要是记录自己在使用VuePress过程中所遇到的问题以及如何一步一步的解决问题。  安装vuepress前，请确保你的 Node.js 版本 &amp;gt;= 8  全局安装# 安装    yarn global add vuepress 或者：npm install -g vuepress &amp;lt;span class=&amp;quot;hljs-comment&amp;quot;&amp;gt;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pangguoming.com/blog/images/2fa32dba-305a-40d1-aa10-e42f7f4c00e5.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/644e33bb-7479-4e29-9d53-7ca5a1bfe4d1.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/1d52dc2f-7fe7-4f62-8865-92a887822b72.jpg">
+<meta property="og:updated_time" content="2019-02-07T11:05:16.833Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VuePress">
+<meta name="twitter:description" content="VuePress这篇文章主要是记录自己在使用VuePress过程中所遇到的问题以及如何一步一步的解决问题。  安装vuepress前，请确保你的 Node.js 版本 &amp;gt;= 8  全局安装# 安装    yarn global add vuepress 或者：npm install -g vuepress &amp;lt;span class=&amp;quot;hljs-comment&amp;quot;&amp;gt;">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/2fa32dba-305a-40d1-aa10-e42f7f4c00e5.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2019/02/03/VuePress/">
+
+
+
+
+
+  <title>VuePress | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2019/02/03/VuePress/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">VuePress</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-03T17:35:00+08:00">
+                2019-02-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="VuePress"><a href="#VuePress" class="headerlink" title="VuePress"></a>VuePress</h1><p>这篇文章主要是记录自己在使用VuePress过程中所遇到的问题以及如何一步一步的解决问题。</p>
+<blockquote>
+<p>安装vuepress前，请确保你的 Node.js 版本 &gt;= 8</p>
+</blockquote>
+<h2 id="全局安装"><a href="#全局安装" class="headerlink" title="全局安装"></a>全局安装</h2><p><code class="hljs dockerfile"><span class="hljs-comment"># 安装<br>    yarn global <span class="hljs-keyword">add<span class="bash"> vuepress 或者：npm install -g vuepress</span></span></span></code></p>
+<pre><code>&lt;span class=&quot;hljs-comment&quot;&gt;# 新建一个 markdown 文件
+echo &lt;span class=&quot;hljs-string&quot;&gt;&apos;# Hello VuePress!&apos; &gt; README.md
+
+&lt;span class=&quot;hljs-comment&quot;&gt;# 开始写作
+vuepress dev .
+
+&lt;span class=&quot;hljs-comment&quot;&gt;# 构建静态文件
+vuepress build .&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">注意 ：`vuepress dev .`和`vuepress build .`后面的`.`。</span><br><span class="line"></span><br><span class="line">    ## 在现有项目中安装</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs dockerfile&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# 将 vuepress 作为一个本地依赖安装</span><br><span class="line">    yarn &lt;span class=&quot;hljs-keyword&quot;&gt;add&lt;span class=&quot;bash&quot;&gt; -D vuepress 或者：npm install -D vuepress</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;# 新建一个 docs 文件夹</span><br><span class="line">    mkdir docs</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;# 新建一个 markdown 文件</span><br><span class="line">    echo &lt;span class=&quot;hljs-string&quot;&gt;&apos;# Hello VuePress!&apos; &gt; docs/README.md</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;# 开始写作</span><br><span class="line">    npx vuepress dev docs&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>接着，在 <code>package.json</code> 里加一些脚本:</p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;hljs json&quot;&gt;{
+  &lt;span class=&quot;hljs-attr&quot;&gt;&quot;scripts&quot;: {
+    &lt;span class=&quot;hljs-attr&quot;&gt;&quot;docs:dev&quot;: &lt;span class=&quot;hljs-string&quot;&gt;&quot;vuepress dev docs&quot;,
+    &lt;span class=&quot;hljs-attr&quot;&gt;&quot;docs:build&quot;: &lt;span class=&quot;hljs-string&quot;&gt;&quot;vuepress build docs&quot;
+  }
+}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">开始写作</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs less&quot;&gt;&lt;span class=&quot;hljs-selector-tag&quot;&gt;yarn &lt;span class=&quot;hljs-selector-tag&quot;&gt;docs&lt;span class=&quot;hljs-selector-pseudo&quot;&gt;:dev 或者：&lt;span class=&quot;hljs-selector-tag&quot;&gt;npm &lt;span class=&quot;hljs-selector-tag&quot;&gt;run &lt;span class=&quot;hljs-selector-tag&quot;&gt;docs&lt;span class=&quot;hljs-selector-pseudo&quot;&gt;:dev&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>第一个坑：我的项目就是依赖<code>webpack 3.6.0</code>同时也是用npm安装依赖，然后继续使用npm安装vuepress，然后执行<code>npx vuepress dev docs</code>的时候报错了，上网查了好久也没有解决问题，最后使用yarn安装vuepress成功了。</p>
+<p>如果你的现有项目依赖了 webpack 3.x，推荐使用 yarn而不是 npm 来安装 vuepress。</p>
+<p>要生成静态的 HTML 文件，运行：</p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;hljs less&quot;&gt;&lt;span class=&quot;hljs-selector-tag&quot;&gt;yarn &lt;span class=&quot;hljs-selector-tag&quot;&gt;docs&lt;span class=&quot;hljs-selector-pseudo&quot;&gt;:build 或者：&lt;span class=&quot;hljs-selector-tag&quot;&gt;npm &lt;span class=&quot;hljs-selector-tag&quot;&gt;run &lt;span class=&quot;hljs-selector-tag&quot;&gt;docs&lt;span class=&quot;hljs-selector-pseudo&quot;&gt;:build&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">默认情况下，文件将会被生成在 `.vuepress/dist`，也可以通过 `.vuepress/config.js` 中的 `dest` 字段来修改.</span><br><span class="line"></span><br><span class="line">以上步骤都成功以后，就可以在浏览器总看到页面了，接下来就是对页面进行布局</span><br><span class="line"></span><br><span class="line">    ## 主题配置</span><br><span class="line"></span><br><span class="line">本文是根据VuePress默认主题配置</span><br><span class="line"></span><br><span class="line">    ### 1.首页</span><br><span class="line"></span><br><span class="line">在docs文件夹下创建`.vuepress文件夹`和`README.md文件`。(如果以及有了就不要再新建)  </span><br><span class="line">根目录下的README.md文件可以当作首页，在文件中加入下面文字：</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs yaml&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;---</span><br><span class="line">    &lt;span class=&quot;hljs-attr&quot;&gt;home: &lt;span class=&quot;hljs-literal&quot;&gt;true</span><br><span class="line">    &lt;span class=&quot;hljs-attr&quot;&gt;actionText: &lt;span class=&quot;hljs-string&quot;&gt;快速上手 &lt;span class=&quot;hljs-string&quot;&gt;→</span><br><span class="line">    &lt;span class=&quot;hljs-attr&quot;&gt;actionLink: &lt;span class=&quot;hljs-string&quot;&gt;/guide/install/install</span><br><span class="line">    &lt;span class=&quot;hljs-meta&quot;&gt;---&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>可以根据自己的需要添加、删除、修改，这就完成了首页的布局<br><code>actionLink: /guide/install/install</code>就是首页后要显示的下一个页面</p>
+<p>接下来在docs文件夹中创建<code>guide文件夹</code>(根据自己的需要命名)。这个文件夹中放的是<code>markdown</code>文件，每一个<code>markdown</code>文件对应一个页面。至于页面之间的跳转和页面导航栏和侧边栏布局在<code>config.js</code>文件中设置。<br>VuePress 网站必要的配置文件是 <code>.vuepress/config.js</code>，它应该导出一个 JavaScript 对象：</p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;hljs java&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;module.&lt;span class=&quot;hljs-keyword&quot;&gt;exports = {
+    title: &lt;span class=&quot;hljs-string&quot;&gt;&apos;VuePress&apos;,
+    description: &lt;span class=&quot;hljs-string&quot;&gt;&apos;VuePress&apos;,
+}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">对于上述的配置，运行`yarn docs:dev`，你应该能看到一个页面，它包含一个页头，里面包含一个标题和一个搜索框。</span><br><span class="line"></span><br><span class="line">    ### 2.导航栏</span><br><span class="line"></span><br><span class="line">可以通过 `themeConfig.nav` 增加一些导航栏链接:</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs groovy&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;// .vuepress/config.js</span><br><span class="line">    module.exports = &#123;</span><br><span class="line">    &lt;span class=&quot;hljs-symbol&quot;&gt;  themeConfig: &#123;</span><br><span class="line">    &lt;span class=&quot;hljs-symbol&quot;&gt;    nav: [       </span><br><span class="line">               &#123;&lt;span class=&quot;hljs-string&quot;&gt;text: &lt;span class=&quot;hljs-string&quot;&gt;&apos;指南&apos;,&lt;span class=&quot;hljs-string&quot;&gt;link:&lt;span class=&quot;hljs-string&quot;&gt;&apos;/guide/install/install&apos;&#125;</span><br><span class="line">            ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>当你提供了一个 <code>items</code> 数组而不是一个单一的 <code>link</code> 时，它将显示为一个 <code>下拉列表</code> ：</p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;hljs groovy&quot;&gt;module.exports = {
+&lt;span class=&quot;hljs-symbol&quot;&gt;  themeConfig: {
+&lt;span class=&quot;hljs-symbol&quot;&gt;    nav: [
+      {
+&lt;span class=&quot;hljs-symbol&quot;&gt;        text: &lt;span class=&quot;hljs-string&quot;&gt;&apos;Languages&apos;,
+&lt;span class=&quot;hljs-symbol&quot;&gt;        items: [
+          { &lt;span class=&quot;hljs-string&quot;&gt;text: &lt;span class=&quot;hljs-string&quot;&gt;&apos;Chinese&apos;, &lt;span class=&quot;hljs-string&quot;&gt;link: &lt;span class=&quot;hljs-string&quot;&gt;&apos;/language/chinese/&apos; },
+          { &lt;span class=&quot;hljs-string&quot;&gt;text: &lt;span class=&quot;hljs-string&quot;&gt;&apos;Japanese&apos;, &lt;span class=&quot;hljs-string&quot;&gt;link: &lt;span class=&quot;hljs-string&quot;&gt;&apos;/language/japanese/&apos; }
+        ]
+      }
+    ]
+  }
+}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ### 3.侧边栏</span><br><span class="line"></span><br><span class="line">想要使侧边栏（Sidebar）生效，需要配置 `themeConfig.sidebar`</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs java&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;// .vuepress/config.js</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;module.&lt;span class=&quot;hljs-keyword&quot;&gt;exports = &#123;</span><br><span class="line">      themeConfig: &#123;</span><br><span class="line">        sidebar: [</span><br><span class="line">            &#123;</span><br><span class="line">                title: &lt;span class=&quot;hljs-string&quot;&gt;&apos;开发指南&apos;,</span><br><span class="line">                collapsable: &lt;span class=&quot;hljs-keyword&quot;&gt;false, &lt;span class=&quot;hljs-comment&quot;&gt;//是否展开</span><br><span class="line">            &#125;,</span><br><span class="line">            [&lt;span class=&quot;hljs-string&quot;&gt;&apos;./guide/install/install&apos;,&lt;span class=&quot;hljs-string&quot;&gt;&apos;安装&apos;],</span><br><span class="line">            [&lt;span class=&quot;hljs-string&quot;&gt;&apos;./guide/started/started&apos;,&lt;span class=&quot;hljs-string&quot;&gt;&apos;快速上手&apos;],</span><br><span class="line">            &#123;</span><br><span class="line">                title: &lt;span class=&quot;hljs-string&quot;&gt;&apos;组件&apos;,</span><br><span class="line">                collapsable: &lt;span class=&quot;hljs-keyword&quot;&gt;false</span><br><span class="line">            &#125;,</span><br><span class="line">            [&lt;span class=&quot;hljs-string&quot;&gt;&apos;./guide/icon/icon&apos;,&lt;span class=&quot;hljs-string&quot;&gt;&apos;icon&apos;],</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>可以省略 <code>.md</code> 拓展名，同时以 <code>/</code> 结尾的路径将会被视为 <code>*/README.md</code><br>如果想要显示地指定链接的文字，使用一个格式为 <code>[link, text]</code> 的数组。<br>具体配置可以根据官网配置：<a href="https://vuepress.vuejs.org/zh/theme/default-theme-config.html#%E4%BE%A7%E8%BE%B9%E6%A0%8F" target="_blank" rel="noopener">默认主题配置</a></p>
+<p>这是浏览器显示效果：</p>
+<p><img src="http://pangguoming.com/blog/images/2fa32dba-305a-40d1-aa10-e42f7f4c00e5.jpg" alt="1.png"></p>
+<p>现在页面基本也搭建完成，可以在页面之间进行切换。下一步是如何在<code>markdown</code>中使用vue组件，也就是在页面中展示自己的项目。</p>
+<pre><code>## 在markdown中使用Vue
+</code></pre><p>在<code>.vuepress</code>中创建<code>components</code>文件夹。<br>所有在 <code>.vuepress/components</code> 中找到的 <code>*.vue</code> 文件将会自动地被注册为全局的异步组件。</p>
+<p>如果需要引入静态文件，可以在<code>.vuepress</code>下新建<code>public</code>文件夹，里面可以放静态文件。</p>
+<p>因为本文的案例是展示Icon图标，所有引入了<code>svg.js</code>，<code>svg.js</code>可以在<a href="http://www.iconfont.cn/" target="_blank" rel="noopener">http://www.iconfont.cn/</a>中获取，本文使用<code>## symbol引用</code>具体方法请访问官网。放在<code>public</code>文件夹中，可以在<code>components</code>文件夹中的组件引入。</p>
+<p>这是docs文件夹目录结构</p>
+<p><img src="http://pangguoming.com/blog/images/644e33bb-7479-4e29-9d53-7ca5a1bfe4d1.jpg" alt="2.png"></p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;hljs css&quot;&gt;.
+└─ &lt;span class=&quot;hljs-selector-class&quot;&gt;.vuepress
+   └─ &lt;span class=&quot;hljs-selector-tag&quot;&gt;components
+      ├─ &lt;span class=&quot;hljs-selector-tag&quot;&gt;demo-1&lt;span class=&quot;hljs-selector-class&quot;&gt;.vue
+      └─ &lt;span class=&quot;hljs-selector-tag&quot;&gt;Icon
+         └─ &lt;span class=&quot;hljs-selector-tag&quot;&gt;vi-icon&lt;span class=&quot;hljs-selector-class&quot;&gt;.vue&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可以直接使用这些组件在任意的 Markdown 文件中（组件名是通过文件名取到的）：</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs javascript&quot;&gt;&lt;demo&lt;span class=&quot;hljs-number&quot;&gt;-1/&gt;</span><br><span class="line">    &lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-name&quot;&gt;Icon-vi-icon/&gt; &lt;span class=&quot;hljs-comment&quot;&gt;//文件名和组件名之间同`-`连接&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>完成这一步以后就可以在页面中看到自己的组件在页面中展示了，但是在运行下面命令进行打包的时候会报错：<br>报错原因参考官网文档：<a href="https://vuepress.vuejs.org/zh/guide/using-vue.html#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84-api-%E8%AE%BF%E9%97%AE%E9%99%90%E5%88%B6" target="_blank" rel="noopener">浏览器的 API 访问限制</a></p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;hljs less&quot;&gt;&lt;span class=&quot;hljs-selector-tag&quot;&gt;yarn &lt;span class=&quot;hljs-selector-tag&quot;&gt;docs&lt;span class=&quot;hljs-selector-pseudo&quot;&gt;:build 或者：&lt;span class=&quot;hljs-selector-tag&quot;&gt;npm &lt;span class=&quot;hljs-selector-tag&quot;&gt;run &lt;span class=&quot;hljs-selector-tag&quot;&gt;docs&lt;span class=&quot;hljs-selector-pseudo&quot;&gt;:build&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">解决这个问题只需要在使用Vue组件的`markdown`文件中使用`&lt;ClientOnly&gt;&lt;/ClientOnly&gt;`将组件包裹起来。如：</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-name&quot;&gt;ClientOnly&gt;</span><br><span class="line">      &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-name&quot;&gt;Icon-vi-icon/&gt;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-name&quot;&gt;ClientOnly&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>注意：在markdown文件中如果需要给组件名缩进，不要用<code>tab</code>键，会被当做<code>markdown</code>语法解析。</p>
+<p>浏览器效果图</p>
+<p><img src="http://pangguoming.com/blog/images/1d52dc2f-7fe7-4f62-8865-92a887822b72.jpg" alt="3.png"></p>
+<p>到这一步，基本上可以在页面中展示自己的组件。下一篇将继续写如何通过Vue组件实现跟：<a href="http://element-cn.eleme.io/#/zh-CN/component/icon" target="_blank" rel="noopener">Element</a>相似的效果。<br><a href="https://segmentfault.com/a/1190000017265894" target="_blank" rel="noopener">通过VuePress管理项目文档(二)</a></p>
+<p></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Vuepress/" rel="tag"># Vuepress</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/02/01/Docker Compose安装以及入门/" rel="next" title="Docker Compose安装以及入门">
+                <i class="fa fa-chevron-left"></i> Docker Compose安装以及入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2019/02/05/primary-eureka/" rel="prev" title="微服务Spring cloud经验总结系列(初级），第三篇：服务注册与发现 Eureka">
+                微服务Spring cloud经验总结系列(初级），第三篇：服务注册与发现 Eureka <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/blog/archives">
+            
+                <span class="site-state-item-count">420</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">267</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VuePress"><span class="nav-number">1.</span> <span class="nav-text">VuePress</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#全局安装"><span class="nav-number">1.1.</span> <span class="nav-text">全局安装</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

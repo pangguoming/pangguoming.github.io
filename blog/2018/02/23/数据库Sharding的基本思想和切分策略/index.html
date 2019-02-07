@@ -103,14 +103,14 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="本文着重介绍sharding的基本思想和理论上的切分策略，关于更加细致的实施策略和参考事例请参考我的另一篇博文：数据库分库分表(sharding)系列(一) 拆分实施策略和示例演示  一、基本思想 Sharding的基本思想就要把一个数据库切分成多个部分放到不同的数据库(server)上，从而缓解单一数据库的性能问题。不太严格的讲，对于海量数据的数据库，如果是因为表多而数据多，这时候适合使用垂直切">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://hi.csdn.net/attachment/201101/24/0_12958577041KqK.gif">
-<meta property="og:image" content="http://hi.csdn.net/attachment/201101/24/0_1295857710BUth.gif">
-<meta property="og:image" content="http://hi.csdn.net/attachment/201101/24/0_1295857852VJcX.gif">
-<meta property="og:updated_time" content="2019-01-26T15:01:01.730Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/3de39afb-e14b-4376-84cc-f65cbf6e4782.gif">
+<meta property="og:image" content="http://pangguoming.com/blog/images/48bde1c6-3518-4900-a43f-0a9ed94a511b.gif">
+<meta property="og:image" content="http://pangguoming.com/blog/images/f218b699-26fb-4fd9-8a2a-1ff65f8c7ab7.gif">
+<meta property="og:updated_time" content="2019-02-07T11:07:21.147Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库Sharding的基本思想和切分策略">
 <meta name="twitter:description" content="本文着重介绍sharding的基本思想和理论上的切分策略，关于更加细致的实施策略和参考事例请参考我的另一篇博文：数据库分库分表(sharding)系列(一) 拆分实施策略和示例演示  一、基本思想 Sharding的基本思想就要把一个数据库切分成多个部分放到不同的数据库(server)上，从而缓解单一数据库的性能问题。不太严格的讲，对于海量数据的数据库，如果是因为表多而数据多，这时候适合使用垂直切">
-<meta name="twitter:image" content="http://hi.csdn.net/attachment/201101/24/0_12958577041KqK.gif">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/3de39afb-e14b-4376-84cc-f65cbf6e4782.gif">
 
 
 
@@ -346,12 +346,12 @@
 
 垂直切分的最大特点就是规则简单，实施也更为方便，尤其适合各业务之间的耦合度非  
 </code></pre><p>常低，相互影响很小，业务逻辑非常清晰的系统。在这种系统中，可以很容易做到将不同业<br>务模块所使用的表分拆到不同的数据库中。根据不同的表来进行拆分，对应用程序的影响也<br>更小，拆分规则也会比较简单清晰。（这也就是所谓的”share nothing”）。</p>
-<p><img src="http://hi.csdn.net/attachment/201101/24/0_12958577041KqK.gif" alt="">  </p>
+<p><img src="http://pangguoming.com/blog/images/3de39afb-e14b-4376-84cc-f65cbf6e4782.gif" alt="">  </p>
 <pre><code>水平切分于垂直切分相比，相对来说稍微复杂一些。因为要将同一个表中的不同数据拆  
 </code></pre><p>分到不同的数据库中，对于应用程序来说，拆分规则本身就较根据表名来拆分更为复杂，后<br>期的数据维护也会更为复杂一些。</p>
-<p><img src="http://hi.csdn.net/attachment/201101/24/0_1295857710BUth.gif" alt="">  </p>
+<p><img src="http://pangguoming.com/blog/images/48bde1c6-3518-4900-a43f-0a9ed94a511b.gif" alt="">  </p>
 <pre><code>让我们从普遍的情况来考虑数据的切分：一方面，一个库的所有表通常不可能由某一张表全部串联起来，这句话暗含的意思是，水平切分几乎都是针对一小搓一小搓（实际上就是垂直切分出来的块）关系紧密的表进行的，而不可能是针对所有表进行的。另一方面，一些负载非常高的系统，即使仅仅只是单个表都无法通过单台数据库主机来承担其负载，这意味着单单是垂直切分也不能完全解决问明。因此多数系统会将垂直切分和水平切分联合使用，先对系统做垂直切分，再针对每一小搓表的情况选择性地做水平切分。从而将整个数据库切分成一个分布式矩阵。
-</code></pre><p><img src="http://hi.csdn.net/attachment/201101/24/0_1295857852VJcX.gif" alt=""></p>
+</code></pre><p><img src="http://pangguoming.com/blog/images/f218b699-26fb-4fd9-8a2a-1ff65f8c7ab7.gif" alt=""></p>
 <p>二、切分策略</p>
 <pre><code>如前面所提到的，切分是按先垂直切分再水平切分的步骤进行的。垂直切分的结果正好为水平切分做好了铺垫。垂直切分的思路就是分析表间的聚合关系，把关系紧密的表放在一起。多数情况下可能是同一个模块，或者是同一“聚集”。这里的“聚集”正是领域驱动设计里所说的聚集。在垂直切分出的表聚集内，找出“根元素”（这里的“根元素”就是领域驱动设计里的“聚合根”），按“根元素”进行水平切分，也就是从“根元素”开始，把所有和它直接与间接关联的数据放入一个shard里。这样出现跨shard关联的可能性就非常的小。应用程序就不必打断既有的表间关联。比如：对于社交网站，几乎所有数据最终都会关联到某个用户上，基于用户进行切分就是最好的选择。再比如论坛系统，用户和论坛两个模块应该在垂直切分时被分在了两个shard里，对于论坛模块来说，Forum显然是聚合根，因此按Forum进行水平切分，把Forum里所有的帖子和回帖都随Forum放在一个shard里是很自然的。  
 
@@ -558,7 +558,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -580,7 +580,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

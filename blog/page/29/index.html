@@ -268,7 +268,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/03/02/C# 版dll 程序集合并工具/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/04/12/C#使用RSA证书文件加密和解密示例/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -287,7 +287,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2017/03/02/C# 版dll 程序集合并工具/" itemprop="url">C# 版dll 程序集合并工具</a></h1>
+                <a class="post-title-link" href="/blog/2017/04/12/C#使用RSA证书文件加密和解密示例/" itemprop="url">C#使用RSA证书文件加密和解密示例</a></h1>
         
 
         <div class="post-meta">
@@ -299,8 +299,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-02T09:16:00+08:00">
-                2017-03-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-12T17:17:00+08:00">
+                2017-04-12
               </time>
             
 
@@ -339,13 +339,13 @@
       
         
           
-          最近要开发一个控件给同事用，开发中会引用一些第三方DLL，这样交给用户很不方便，希望的效果是直接交付一个DLL文件。网上找了一些资料。
-
-使用 Costura.Fody ,这个强大之处是可以在build阶段直接将依赖的DLL合并在目标EXE中，支持非托管DLL进行mixed mode 打包，不足之处
+          修改MSDN上的示例，使之可以通过RSA证书文件加密和解密，中间遇到一个小问题。
+Q:执行ExportParameters()方法时，回报CryptographicException:该项不适于在指定状态下使用(Key not valid for use in specified state)。
+A
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/03/02/C# 版dll 程序集合并工具/#more" rel="contents">
+            <a class="btn" href="/blog/2017/04/12/C#使用RSA证书文件加密和解密示例/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -396,7 +396,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/02/25/CentOS开启和关闭防火墙/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/04/12/C# 中使用 RSA加解密算法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -415,7 +415,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2017/02/25/CentOS开启和关闭防火墙/" itemprop="url">CentOS开启和关闭防火墙</a></h1>
+                <a class="post-title-link" href="/blog/2017/04/12/C# 中使用 RSA加解密算法/" itemprop="url">C# 中使用 RSA加解密算法</a></h1>
         
 
         <div class="post-meta">
@@ -427,8 +427,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-25T11:29:00+08:00">
-                2017-02-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-12T17:14:00+08:00">
+                2017-04-12
               </time>
             
 
@@ -467,11 +467,12 @@
       
         
           
-          CentOS Linux开启和关闭防火墙命令有两种，一种是临时的，重启即复原；另外一种是永久性的，重启不会复原。1） 临时生效，重启后复原开启： service iptables start关闭： service iptables stop2） 永久性生效，重启后不会复原开启： chkconfig 
+          一、什么是RSA RSA公开密钥密码体制。所谓的公开密钥密码体制就是使用不同的加密密钥与解密密钥，是一种“由已知加密密钥推导出解密密钥在计算上是不可行的”密码体制。 
+ 在公开密钥密码体制中，加密密钥（即公开密钥）PK是公开信息，而解密密钥（即秘密密钥）SK是需要保密的。加密算法E和解密算法D也都是
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/02/25/CentOS开启和关闭防火墙/#more" rel="contents">
+            <a class="btn" href="/blog/2017/04/12/C# 中使用 RSA加解密算法/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -522,7 +523,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/02/24/20个代码生成框架 （.NET JAVA）/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/04/12/对称加密与非对称加密/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -541,7 +542,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2017/02/24/20个代码生成框架 （.NET JAVA）/" itemprop="url">20个代码生成框架 （.NET JAVA）</a></h1>
+                <a class="post-title-link" href="/blog/2017/04/12/对称加密与非对称加密/" itemprop="url">对称加密与非对称加密</a></h1>
         
 
         <div class="post-meta">
@@ -553,8 +554,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-24T16:37:00+08:00">
-                2017-02-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-12T17:12:00+08:00">
+                2017-04-12
               </time>
             
 
@@ -593,16 +594,12 @@
       
         
           
-          1.1 CodeSmith一款人气很旺国外的基于模板的dotnet代码生成器
-官方网站：http：//www.codesmithtools.com
-官方论坛：http：//forum.codesmithtools.com/default.aspx
-版权形式：30天试用
-开源：否
-需要先注册确认后才能
+          原创地址：http://www.cnblogs.com/jfzhu/p/4020928.html
+转载请注明出处## （一）对称加密（Symmetric Cryptography）对称加密是最快速、最简单的一种加密方式，加密（encryption）与解密（decryption）用的是同样的密钥（se
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/02/24/20个代码生成框架 （.NET JAVA）/#more" rel="contents">
+            <a class="btn" href="/blog/2017/04/12/对称加密与非对称加密/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -653,7 +650,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/02/24/Java主流Web Service框架介绍：CXF和Axis2/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/04/01/理解闭包 js回收机制/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -672,7 +669,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2017/02/24/Java主流Web Service框架介绍：CXF和Axis2/" itemprop="url">Java主流Web Service框架介绍：CXF和Axis2</a></h1>
+                <a class="post-title-link" href="/blog/2017/04/01/理解闭包 js回收机制/" itemprop="url">理解闭包 js回收机制</a></h1>
         
 
         <div class="post-meta">
@@ -684,8 +681,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-24T14:19:00+08:00">
-                2017-02-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-01T13:12:00+08:00">
+                2017-04-01
               </time>
             
 
@@ -724,11 +721,12 @@
       
         
           
-          CXF和Axis2是目前java平台上最主流的两个框架，虽然两个项目都隶属ASF，但却是基于不同思想和风格实现的，因此也各有所长。　　CXF：http://cxf.apache.org/&gt; &gt; 是由过去的Celtix和XFire两个框架合并而来，CXF在java社区有广泛的接受度是得益于
+          为什么要有回收机制？why？
+打个比方，我有一个内存卡，这个内存是8G的，我把文件，视频，音乐，都保存到了这个内存卡，随着我的储存的内容越来越多，这个内存卡已经保存不了了，如果我还想再把其他的文件保存到这个内存卡就需要删除一些文件，但是这些被删除的文件是我们自己手动删除的对吧，手动删除就相当于js中
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/02/24/Java主流Web Service框架介绍：CXF和Axis2/#more" rel="contents">
+            <a class="btn" href="/blog/2017/04/01/理解闭包 js回收机制/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -779,7 +777,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/02/24/tomcat 用AXIS2发布WebService 网站的方法/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/03/31/理解js中的new/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -798,7 +796,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2017/02/24/tomcat 用AXIS2发布WebService 网站的方法/" itemprop="url">tomcat 用AXIS2发布WebService 网站的方法</a></h1>
+                <a class="post-title-link" href="/blog/2017/03/31/理解js中的new/" itemprop="url">理解js中的new</a></h1>
         
 
         <div class="post-meta">
@@ -810,8 +808,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-24T11:39:00+08:00">
-                2017-02-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-31T16:14:00+08:00">
+                2017-03-31
               </time>
             
 
@@ -850,15 +848,12 @@
       
         
           
-          Axis2+tomcat7.0 实现webService 服务端发布与客户端的调用。  
-Aixs2开发webService的方法有很多，在此只介绍一种比较简单的实现方法。
-第一步：首先要下载开发所需要的jar包   
-下载：
-axis2-1.6.2-war.zip  http://www.apac
+          new 操作符在有上面的基础概念的介绍之后，在加上new操作符，我们就能完成传统面向对象的class + new的方式创建对象，在Javascript中，我们将这类方式成为Pseudoclassical。基于上面的例子，我们执行如下代码
+ var obj = new Base();这样代码的结果是什
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/02/24/tomcat 用AXIS2发布WebService 网站的方法/#more" rel="contents">
+            <a class="btn" href="/blog/2017/03/31/理解js中的new/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -909,7 +904,7 @@ axis2-1.6.2-war.zip  http://www.apac
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/02/24/eclipse+webservice开发实例/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/03/31/Javascript 严格模式详解/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -928,7 +923,7 @@ axis2-1.6.2-war.zip  http://www.apac
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2017/02/24/eclipse+webservice开发实例/" itemprop="url">eclipse+webservice开发实例</a></h1>
+                <a class="post-title-link" href="/blog/2017/03/31/Javascript 严格模式详解/" itemprop="url">Javascript 严格模式详解</a></h1>
         
 
         <div class="post-meta">
@@ -940,8 +935,8 @@ axis2-1.6.2-war.zip  http://www.apac
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-24T10:40:00+08:00">
-                2017-02-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-31T15:26:00+08:00">
+                2017-03-31
               </time>
             
 
@@ -980,12 +975,13 @@ axis2-1.6.2-war.zip  http://www.apac
       
         
           
-          1.参考文献：1.利用Java编写简单的WebService实例  http://nopainnogain.iteye.com/blog/791525
-2.Axis2与Eclipse整合开发Web Service  http://tech.ddvip.com/2009-05/124296864212
+          作者： 阮一峰
+日期： 2013年1月14日
+一、概述除了正常运行模式，ECMAscript 5添加了第二种运行模式：“严格模式”（strict mode）。顾名思义，这种模式使得Javascript在更严格的条件下运行。设立”严格模式”的目的，主要有以下几个：&gt; - 消除Javascript
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/02/24/eclipse+webservice开发实例/#more" rel="contents">
+            <a class="btn" href="/blog/2017/03/31/Javascript 严格模式详解/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1036,7 +1032,7 @@ axis2-1.6.2-war.zip  http://www.apac
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/02/22/Android Data Binding（数据绑定）用户指南/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/03/29/Javascript面向对象编程（二）：构造函数的继承/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1055,7 +1051,7 @@ axis2-1.6.2-war.zip  http://www.apac
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2017/02/22/Android Data Binding（数据绑定）用户指南/" itemprop="url">Android Data Binding（数据绑定）用户指南</a></h1>
+                <a class="post-title-link" href="/blog/2017/03/29/Javascript面向对象编程（二）：构造函数的继承/" itemprop="url">Javascript面向对象编程（二）：构造函数的继承</a></h1>
         
 
         <div class="post-meta">
@@ -1067,8 +1063,8 @@ axis2-1.6.2-war.zip  http://www.apac
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-22T20:03:00+08:00">
-                2017-02-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-29T10:13:00+08:00">
+                2017-03-29
               </time>
             
 
@@ -1107,12 +1103,13 @@ axis2-1.6.2-war.zip  http://www.apac
       
         
           
-          1）介绍这篇文章介绍了如何使用Data Binding库来写声明的layouts文件，并且用最少的代码来绑定你的app逻辑和layouts文件。
-Data Binding库不仅灵活而且广泛兼容- 它是一个support库，因此你可以在所有的Android平台最低能到Android 2.1（API等级
+          作者： 阮一峰
+日期： 2010年5月23日
+这个系列的第一部分，主要介绍了如何”封装”数据和方法，以及如何从原型对象生成实例。今天要介绍的是，对象之间的”继承”的五种方法。比如，现在有一个”动物”对象的构造函数。&gt; function Animal(){&gt;&gt;  this.speci
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/02/22/Android Data Binding（数据绑定）用户指南/#more" rel="contents">
+            <a class="btn" href="/blog/2017/03/29/Javascript面向对象编程（二）：构造函数的继承/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1163,7 +1160,7 @@ Data Binding库不仅灵活而且广泛兼容- 它是一个support库，因此�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/02/22/完全掌握Android Data Binding/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/03/29/Javascript面向对象编程（三）：非构造函数的继承/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1182,7 +1179,7 @@ Data Binding库不仅灵活而且广泛兼容- 它是一个support库，因此�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2017/02/22/完全掌握Android Data Binding/" itemprop="url">完全掌握Android Data Binding</a></h1>
+                <a class="post-title-link" href="/blog/2017/03/29/Javascript面向对象编程（三）：非构造函数的继承/" itemprop="url">Javascript面向对象编程（三）：非构造函数的继承</a></h1>
         
 
         <div class="post-meta">
@@ -1194,8 +1191,8 @@ Data Binding库不仅灵活而且广泛兼容- 它是一个support库，因此�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-22T19:59:00+08:00">
-                2017-02-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-29T10:13:00+08:00">
+                2017-03-29
               </time>
             
 
@@ -1234,12 +1231,13 @@ Data Binding库不仅灵活而且广泛兼容- 它是一个support库，因此�
       
         
           
-          编辑推荐：稀土掘金，这是一个针对技术开发者的一个应用，你可以在掘金上获取最新最优质的技术干货，不仅仅是Android知识、前端、后端以至于产品和设计都有涉猎，想成为全栈工程师的朋友不要错过！
-本教程是跟着 Data Binding Guide 学习过程中得出的一些实践经验，同时修改了官方教程的一些错
+          作者： 阮一峰
+日期： 2010年5月24日
+这个系列的第一部分介绍了”封装”，第二部分介绍了使用构造函数实现”继承”。今天是最后一个部分，介绍不使用构造函数实现”继承”。一、什么是”非构造函数”的继承？比如，现在有一个对象，叫做”中国人”。&gt; var Chinese = {&gt;  nat
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/02/22/完全掌握Android Data Binding/#more" rel="contents">
+            <a class="btn" href="/blog/2017/03/29/Javascript面向对象编程（三）：非构造函数的继承/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1290,7 +1288,7 @@ Data Binding库不仅灵活而且广泛兼容- 它是一个support库，因此�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/02/14/eclipse无法解析导入 java.util/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/03/29/Javascript 面向对象编程（一）：封装/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1309,7 +1307,7 @@ Data Binding库不仅灵活而且广泛兼容- 它是一个support库，因此�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2017/02/14/eclipse无法解析导入 java.util/" itemprop="url">eclipse无法解析导入 java.util</a></h1>
+                <a class="post-title-link" href="/blog/2017/03/29/Javascript 面向对象编程（一）：封装/" itemprop="url">Javascript 面向对象编程（一）：封装</a></h1>
         
 
         <div class="post-meta">
@@ -1321,8 +1319,8 @@ Data Binding库不仅灵活而且广泛兼容- 它是一个support库，因此�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-14T13:42:00+08:00">
-                2017-02-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-29T10:12:00+08:00">
+                2017-03-29
               </time>
             
 
@@ -1361,16 +1359,13 @@ Data Binding库不仅灵活而且广泛兼容- 它是一个support库，因此�
       
         
           
-          eclipse无法解析导入 java.util是因为jre配置错误。
-1、点击需要导入jar的项目，右击项目属性（properties）,进入到如下图界面：
-
-2、选择Java Build Path选项，然后选择右边红框内的jre，之后点击【edit】,如图：
-
-3、选择红色框内的“installe
+          作者：阮一峰
+Javascript是一种基于对象（object-based）的语言，你遇到的所有东西几乎都是对象。但是，它又不是一种真正的面向对象编程（OOP）语言，因为它的语法中没有class（类）。
+那么，如果我们要把”属性”（property）和”方法”（method），封装成一个对象，甚至要
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/02/14/eclipse无法解析导入 java.util/#more" rel="contents">
+            <a class="btn" href="/blog/2017/03/29/Javascript 面向对象编程（一）：封装/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1421,7 +1416,7 @@ Data Binding库不仅灵活而且广泛兼容- 它是一个support库，因此�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/02/12/JSP 中EL表达式用法详解/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2017/03/28/Hibernate 不同数据库的连接及SQL方言/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1440,7 +1435,7 @@ Data Binding库不仅灵活而且广泛兼容- 它是一个support库，因此�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2017/02/12/JSP 中EL表达式用法详解/" itemprop="url">JSP 中EL表达式用法详解</a></h1>
+                <a class="post-title-link" href="/blog/2017/03/28/Hibernate 不同数据库的连接及SQL方言/" itemprop="url">Hibernate 不同数据库的连接及SQL方言</a></h1>
         
 
         <div class="post-meta">
@@ -1452,8 +1447,8 @@ Data Binding库不仅灵活而且广泛兼容- 它是一个support库，因此�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-12T12:24:00+08:00">
-                2017-02-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T10:04:00+08:00">
+                2017-03-28
               </time>
             
 
@@ -1492,15 +1487,21 @@ Data Binding库不仅灵活而且广泛兼容- 它是一个support库，因此�
       
         
           
-          EL 全名为Expression Language
-EL 语法很简单，它最大的特点就是使用上很方便。接下来介绍EL主要的语法结构：
-${sessionScope.user.sex}
-所有EL都是以${为起始、以}为结尾的。上述EL范例的意思是：从Session的范围中，取得
-用户的性别。假若依照之前
+            
+  org.hibernate.dialect.MySQLDialect  com.mysql.jdbc.Driver
+
+    
+  jdbc:mysql://localhost/dbname?characterEncoding=gb2312
+
+    
+  root
+
+    
+  roo
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/02/12/JSP 中EL表达式用法详解/#more" rel="contents">
+            <a class="btn" href="/blog/2017/03/28/Hibernate 不同数据库的连接及SQL方言/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1542,7 +1543,7 @@ ${sessionScope.user.sex}
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blog/page/28/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/blog/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/40/">40</a><a class="extend next" rel="next" href="/blog/page/30/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/blog/page/28/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/blog/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/42/">42</a><a class="extend next" rel="next" href="/blog/page/30/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1589,7 +1590,7 @@ ${sessionScope.user.sex}
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1611,7 +1612,7 @@ ${sessionScope.user.sex}
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

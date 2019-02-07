@@ -103,16 +103,16 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="无论是安装Windows还是Linux操作系统，硬盘分区都是整个系统安装过程中最为棘手的环节，网上的一些Ubuntu Linux安装教程一般都是自动分区，给初学者带来很大的不便，下面我就根据多年来在合肥上门装系统的经验谈谈安装Ubuntu Linux系统时硬盘分区最合理的方法。 在讲硬盘分区之前，我先来普及一下硬盘的相关分类，硬盘一般分为IDE硬盘、SCSI硬盘和SATA硬盘三种，在Linux系统">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.ah168.com/uploads/allimg/916/3.png">
-<meta property="og:image" content="http://www.ah168.com/uploads/allimg/916/4.png">
-<meta property="og:image" content="http://www.ah168.com/uploads/allimg/916/6.png">
-<meta property="og:image" content="http://www.ah168.com/uploads/allimg/916/7.png">
-<meta property="og:image" content="http://www.ah168.com/uploads/allimg/916/8.png">
-<meta property="og:updated_time" content="2019-01-26T15:11:01.544Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/2f66eddb-6547-4a36-80d9-581f356a3305.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/c85da089-3fae-4933-a8fe-c423bd1fd900.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/9d3434d1-2c8e-4a9e-864f-43a1925534f1.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/8d69a0bc-4243-4e35-9e1a-607a2b303a76.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/8031f120-f414-4e47-b3ae-eade79eee437.png">
+<meta property="og:updated_time" content="2019-02-07T11:25:15.076Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装Ubuntu Linux系统时硬盘分区最合理的方法">
 <meta name="twitter:description" content="无论是安装Windows还是Linux操作系统，硬盘分区都是整个系统安装过程中最为棘手的环节，网上的一些Ubuntu Linux安装教程一般都是自动分区，给初学者带来很大的不便，下面我就根据多年来在合肥上门装系统的经验谈谈安装Ubuntu Linux系统时硬盘分区最合理的方法。 在讲硬盘分区之前，我先来普及一下硬盘的相关分类，硬盘一般分为IDE硬盘、SCSI硬盘和SATA硬盘三种，在Linux系统">
-<meta name="twitter:image" content="http://www.ah168.com/uploads/allimg/916/3.png">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/2f66eddb-6547-4a36-80d9-581f356a3305.png">
 
 
 
@@ -351,8 +351,8 @@
 
 <p>接下来<a href="http://www.ah168.com/" target="_blank" rel="noopener">合肥电脑维修</a>网就以Ubuntu Linux 12.04.3为例来为大家图文讲解手动对硬盘进行分区的方法。</p>
 <p>在如图1所示的分区界面中有两个选项可供选择。最简单的莫过于“清除整个硬盘并安装Ubuntu”选项，单击“继续”按钮，安装向导将根据原有的分区信息自动选择合理的分区方式。</p>
-<p><img src="http://www.ah168.com/uploads/allimg/916/3.png" alt="Ubuntu Linux分区向导"></p>
-<div class="c">图1：Ubuntu Linux分区向导<br><br>如果希望对分区过程进行完全控制，可以使用“其它”选项。单击“继续”按钮，安装向导将把用户带至手动分区界面，如图2所示。<br><br><img src="http://www.ah168.com/uploads/allimg/916/4.png" alt="手动分区模式"><br><br><div class="c">图2：手动分区模式<br><br>在这里可以看到当前硬盘的分区信息，由于我使用的是虚拟机为大家进行演示，因此，只能看到一块没有使用过的硬盘，硬盘容量为20GB。<br><br>第一步：选中空闲的磁盘空间，点击“添加”按钮，弹出“创建新分区”对话框，新分区的类型为主分区，挂载点为/boot，新建分区容量为128MB，最后点击“确定”按钮，如下图所示。<br><br><img src="http://www.ah168.com/uploads/allimg/916/6.png" alt="建立启动分区"><br><br><div class="c">图3：建立启动分区<br><br>这个挂载点包含了操作系统的内核和在启动系统过程中所要用到的文件，接下来要新建一个交换分区。<br><br>第二步：选中空闲的磁盘空间，点击“添加”按钮，弹出“创建新分区”对话框，新分区的类型为逻辑分区，“用于”选择“交换空间”，新建分区容量为1024M，最后点击“确定”按钮，如下图所示。<br><br><img src="http://www.ah168.com/uploads/allimg/916/7.png" alt="建立交换分区"><br><br><div class="c">图4：建立交换分区<br><br>交换分区相当于Windows中的“虚拟内存”，如果物理内存小于或等于512MB，建议分配交换分区的大小为物理内存容量的2倍；如果物理内存大于512MB，建议分配交换分区的大小等于物理内存容量；如果您的内存够大也可以不建立交换分区。<br><br>按同样的方法依次建立/var、/tmp、/home等挂载点，最终分区结果如下图所示。<br><br><img src="http://www.ah168.com/uploads/allimg/916/8.png" alt="最终硬盘分区结果"><br><br><div class="c">图4：最终硬盘分区结果<br><div class="c"><br><div class="c">引自：<a href="http://www.ah168.com/jishuwenzhang/xitong/Ubuntu-916.html" target="_blank" rel="noopener">http://www.ah168.com/jishuwenzhang/xitong/Ubuntu-916.html</a></div></div></div></div></div></div></div>
+<p><img src="http://pangguoming.com/blog/images/2f66eddb-6547-4a36-80d9-581f356a3305.png" alt="Ubuntu Linux分区向导"></p>
+<div class="c">图1：Ubuntu Linux分区向导<br><br>如果希望对分区过程进行完全控制，可以使用“其它”选项。单击“继续”按钮，安装向导将把用户带至手动分区界面，如图2所示。<br><br><img src="http://pangguoming.com/blog/images/c85da089-3fae-4933-a8fe-c423bd1fd900.png" alt="手动分区模式"><br><br><div class="c">图2：手动分区模式<br><br>在这里可以看到当前硬盘的分区信息，由于我使用的是虚拟机为大家进行演示，因此，只能看到一块没有使用过的硬盘，硬盘容量为20GB。<br><br>第一步：选中空闲的磁盘空间，点击“添加”按钮，弹出“创建新分区”对话框，新分区的类型为主分区，挂载点为/boot，新建分区容量为128MB，最后点击“确定”按钮，如下图所示。<br><br><img src="http://pangguoming.com/blog/images/9d3434d1-2c8e-4a9e-864f-43a1925534f1.png" alt="建立启动分区"><br><br><div class="c">图3：建立启动分区<br><br>这个挂载点包含了操作系统的内核和在启动系统过程中所要用到的文件，接下来要新建一个交换分区。<br><br>第二步：选中空闲的磁盘空间，点击“添加”按钮，弹出“创建新分区”对话框，新分区的类型为逻辑分区，“用于”选择“交换空间”，新建分区容量为1024M，最后点击“确定”按钮，如下图所示。<br><br><img src="http://pangguoming.com/blog/images/8d69a0bc-4243-4e35-9e1a-607a2b303a76.png" alt="建立交换分区"><br><br><div class="c">图4：建立交换分区<br><br>交换分区相当于Windows中的“虚拟内存”，如果物理内存小于或等于512MB，建议分配交换分区的大小为物理内存容量的2倍；如果物理内存大于512MB，建议分配交换分区的大小等于物理内存容量；如果您的内存够大也可以不建立交换分区。<br><br>按同样的方法依次建立/var、/tmp、/home等挂载点，最终分区结果如下图所示。<br><br><img src="http://pangguoming.com/blog/images/8031f120-f414-4e47-b3ae-eade79eee437.png" alt="最终硬盘分区结果"><br><br><div class="c">图4：最终硬盘分区结果<br><div class="c"><br><div class="c">引自：<a href="http://www.ah168.com/jishuwenzhang/xitong/Ubuntu-916.html" target="_blank" rel="noopener">http://www.ah168.com/jishuwenzhang/xitong/Ubuntu-916.html</a></div></div></div></div></div></div></div>
       
     </div>
     
@@ -528,7 +528,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -550,7 +550,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

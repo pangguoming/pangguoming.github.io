@@ -103,20 +103,20 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="一、安装ant到官方主页http://ant.apache.org下载新版（目前为Ant1.8.1）的ant，得到的是一个apache-ant-1.8.1-bin.zip的压缩包。将其解压到你的硬盘上，例如：C:\apache-ant-1.8.1。二、配置环境变量window中设置ant环境变量：ANT_HOME    C:/ apache-ant-1.8.1path             C:">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201211/12/1352718174_5230.png">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201211/12/1352718184_3525.png">
-<meta property="og:image" content="http://www.cnitblog.com/Images/OutliningIndicators/None.gif">
-<meta property="og:image" content="http://www.cnitblog.com/Images/OutliningIndicators/None.gif">
-<meta property="og:image" content="http://www.cnitblog.com/Images/OutliningIndicators/None.gif">
-<meta property="og:image" content="http://www.cnitblog.com/Images/OutliningIndicators/None.gif">
-<meta property="og:image" content="http://www.cnitblog.com/Images/OutliningIndicators/None.gif">
-<meta property="og:image" content="http://www.cnitblog.com/Images/OutliningIndicators/None.gif">
-<meta property="og:image" content="http://www.cnitblog.com/images/cnitblog_com/intrl/1.jpg">
-<meta property="og:updated_time" content="2019-01-26T15:09:27.403Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/6c5c2d17-1832-4f19-816a-38b2a766806a.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/a812dcdd-7c7b-4189-a90a-00482a181ede.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/e55994d9-de7f-4b8f-998a-d8490fefeb1f.gif">
+<meta property="og:image" content="http://pangguoming.com/blog/images/e55994d9-de7f-4b8f-998a-d8490fefeb1f.gif">
+<meta property="og:image" content="http://pangguoming.com/blog/images/e55994d9-de7f-4b8f-998a-d8490fefeb1f.gif">
+<meta property="og:image" content="http://pangguoming.com/blog/images/e55994d9-de7f-4b8f-998a-d8490fefeb1f.gif">
+<meta property="og:image" content="http://pangguoming.com/blog/images/e55994d9-de7f-4b8f-998a-d8490fefeb1f.gif">
+<meta property="og:image" content="http://pangguoming.com/blog/images/e55994d9-de7f-4b8f-998a-d8490fefeb1f.gif">
+<meta property="og:image" content="http://pangguoming.com/blog/images/02316f1b-e466-4b19-ab0f-0375935f8dfa.jpg">
+<meta property="og:updated_time" content="2019-02-07T11:18:38.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ant安装、环境变量配置及验证">
 <meta name="twitter:description" content="一、安装ant到官方主页http://ant.apache.org下载新版（目前为Ant1.8.1）的ant，得到的是一个apache-ant-1.8.1-bin.zip的压缩包。将其解压到你的硬盘上，例如：C:\apache-ant-1.8.1。二、配置环境变量window中设置ant环境变量：ANT_HOME    C:/ apache-ant-1.8.1path             C:">
-<meta name="twitter:image" content="http://img.my.csdn.net/uploads/201211/12/1352718174_5230.png">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/6c5c2d17-1832-4f19-816a-38b2a766806a.png">
 
 
 
@@ -346,7 +346,7 @@
       
 
       
-        <div id="article_content" class="article_content">一、安装ant<br><br>到官方主页<a href="http://ant.apache.org下载新版（目前为Ant1.8.1）的ant，得到的是一个apache-ant-1.8.1-bin.zip的压缩包。将其解压到你的硬盘上，例如：C:\apache-ant-1.8.1。" target="_blank" rel="noopener">http://ant.apache.org下载新版（目前为Ant1.8.1）的ant，得到的是一个apache-ant-1.8.1-bin.zip的压缩包。将其解压到你的硬盘上，例如：C:\apache-ant-1.8.1。</a><br><br>二、配置环境变量<br><br><strong>window中设置ant环境变量：</strong><br><br>ANT_HOME    C:/ apache-ant-1.8.1<br><br>path             C:/ apache-ant-1.8.1/bin<br><br>classpath      C:/apache-ant-1.8.1/lib<br><br><strong>注意：【</strong><br><div class="article_content"><strong>　　配置环境变量：我的电脑—-属性—–高级—-环境变量</strong><br><strong>      如：ANT_HOME：C:\apache-ant-1.8.1</strong><br><strong>      PATH：%ANT_HOME%\bin （为了方便在dos环境下操作）</strong><br><div class="article_content"><strong>     实验了总是失败，没办法换成地址 C:/ apache-ant-1.8.1/bin，而不再使用变量。。。成功了。。</strong><br><div class="article_content"><strong>】</strong><br><br>三、验证ant<br><br>为了验证ant是否成功安装，可以进行如下操作：<br><br>依次选择：开始-&gt;运行-&gt;cmd，输入如下命令：ant<br><br>如果出现如下内容，说明安装成功：<br><br>Buildfile: build.xml does not exist!<br><br>Build failed<br><br><img src="http://img.my.csdn.net/uploads/201211/12/1352718174_5230.png" alt=""><br><br>【说明ant安装成功！因为ant默认运行build.xml文件，这个文件需要我们建立。】<br><br>查看版本：ant  -version<br><br><img src="http://img.my.csdn.net/uploads/201211/12/1352718184_3525.png" alt=""><br><br>但如果出现如下内容，说明安装失败：（可以重复前述步骤，直至安装成功。）<br><br>‘ant’ 不是内部或外部命令，也不是可运行的程序或批处理文件。<br><br>从别处移动过来的：<br><br>使用：<br>(1)在D盘根目录下建立build.xml<br><br><div>1<img src="http://www.cnitblog.com/Images/OutliningIndicators/None.gif" alt="">&lt;?xml version=”1.0” encoding=”GBK”?&gt;<br>2<img src="http://www.cnitblog.com/Images/OutliningIndicators/None.gif" alt=""><project name="测试脚本" default="copyfile" basedir="."><br>3<img src="http://www.cnitblog.com/Images/OutliningIndicators/None.gif" alt="">   <target name="copyfile"><br>4<img src="http://www.cnitblog.com/Images/OutliningIndicators/None.gif" alt="">      <copy file="d:/a.txt" todir="e:/Temp" overwrite="true"><br>5<img src="http://www.cnitblog.com/Images/OutliningIndicators/None.gif" alt="">   </copy></target><br>6<img src="http://www.cnitblog.com/Images/OutliningIndicators/None.gif" alt=""></project><br><br>（2）在D盘根目录下建立文件a.txt。<br>（3）进入dos，<br>         d:<br>         ant<br>         <img src="http://www.cnitblog.com/images/cnitblog_com/intrl/1.jpg" alt=""><br>         此时可在E:/Temp目录下见到文件aa.txt，内容与a.txt一样，即拷贝成功！<br><br></div></div></div></div></div>
+        <div id="article_content" class="article_content">一、安装ant<br><br>到官方主页<a href="http://ant.apache.org下载新版（目前为Ant1.8.1）的ant，得到的是一个apache-ant-1.8.1-bin.zip的压缩包。将其解压到你的硬盘上，例如：C:\apache-ant-1.8.1。" target="_blank" rel="noopener">http://ant.apache.org下载新版（目前为Ant1.8.1）的ant，得到的是一个apache-ant-1.8.1-bin.zip的压缩包。将其解压到你的硬盘上，例如：C:\apache-ant-1.8.1。</a><br><br>二、配置环境变量<br><br><strong>window中设置ant环境变量：</strong><br><br>ANT_HOME    C:/ apache-ant-1.8.1<br><br>path             C:/ apache-ant-1.8.1/bin<br><br>classpath      C:/apache-ant-1.8.1/lib<br><br><strong>注意：【</strong><br><div class="article_content"><strong>　　配置环境变量：我的电脑—-属性—–高级—-环境变量</strong><br><strong>      如：ANT_HOME：C:\apache-ant-1.8.1</strong><br><strong>      PATH：%ANT_HOME%\bin （为了方便在dos环境下操作）</strong><br><div class="article_content"><strong>     实验了总是失败，没办法换成地址 C:/ apache-ant-1.8.1/bin，而不再使用变量。。。成功了。。</strong><br><div class="article_content"><strong>】</strong><br><br>三、验证ant<br><br>为了验证ant是否成功安装，可以进行如下操作：<br><br>依次选择：开始-&gt;运行-&gt;cmd，输入如下命令：ant<br><br>如果出现如下内容，说明安装成功：<br><br>Buildfile: build.xml does not exist!<br><br>Build failed<br><br><img src="http://pangguoming.com/blog/images/6c5c2d17-1832-4f19-816a-38b2a766806a.png" alt=""><br><br>【说明ant安装成功！因为ant默认运行build.xml文件，这个文件需要我们建立。】<br><br>查看版本：ant  -version<br><br><img src="http://pangguoming.com/blog/images/a812dcdd-7c7b-4189-a90a-00482a181ede.png" alt=""><br><br>但如果出现如下内容，说明安装失败：（可以重复前述步骤，直至安装成功。）<br><br>‘ant’ 不是内部或外部命令，也不是可运行的程序或批处理文件。<br><br>从别处移动过来的：<br><br>使用：<br>(1)在D盘根目录下建立build.xml<br><br><div>1<img src="http://pangguoming.com/blog/images/e55994d9-de7f-4b8f-998a-d8490fefeb1f.gif" alt="">&lt;?xml version=”1.0” encoding=”GBK”?&gt;<br>2<img src="http://pangguoming.com/blog/images/e55994d9-de7f-4b8f-998a-d8490fefeb1f.gif" alt=""><project name="测试脚本" default="copyfile" basedir="."><br>3<img src="http://pangguoming.com/blog/images/e55994d9-de7f-4b8f-998a-d8490fefeb1f.gif" alt="">   <target name="copyfile"><br>4<img src="http://pangguoming.com/blog/images/e55994d9-de7f-4b8f-998a-d8490fefeb1f.gif" alt="">      <copy file="d:/a.txt" todir="e:/Temp" overwrite="true"><br>5<img src="http://pangguoming.com/blog/images/e55994d9-de7f-4b8f-998a-d8490fefeb1f.gif" alt="">   </copy></target><br>6<img src="http://pangguoming.com/blog/images/e55994d9-de7f-4b8f-998a-d8490fefeb1f.gif" alt=""></project><br><br>（2）在D盘根目录下建立文件a.txt。<br>（3）进入dos，<br>         d:<br>         ant<br>         <img src="http://pangguoming.com/blog/images/02316f1b-e466-4b19-ab0f-0375935f8dfa.jpg" alt=""><br>         此时可在E:/Temp目录下见到文件aa.txt，内容与a.txt一样，即拷贝成功！<br><br></div></div></div></div></div>
       
     </div>
     
@@ -522,7 +522,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -544,7 +544,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

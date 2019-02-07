@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="最近在CentOS系统中（主机A）读数据。由于A主机只是作为数据读取，具体的Deep Learning 实验，需要在主机B（ CentOS ）中进行，需要将主机A上的数据传输。由于主机A并不是一直开着CentOS系统，且数据量比较（40G+），所以用优盘copy的方法有点不现实，经过查找资料，发现了两种方法。 注意：两台主机都是CentOS 6.5 版本的系统，主机A：IP 192.168.1.1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-26T14:39:37.681Z">
+<meta property="og:updated_time" content="2019-02-07T11:06:45.194Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="两台centos之间传送文件">
 <meta name="twitter:description" content="最近在CentOS系统中（主机A）读数据。由于A主机只是作为数据读取，具体的Deep Learning 实验，需要在主机B（ CentOS ）中进行，需要将主机A上的数据传输。由于主机A并不是一直开着CentOS系统，且数据量比较（40G+），所以用优盘copy的方法有点不现实，经过查找资料，发现了两种方法。 注意：两台主机都是CentOS 6.5 版本的系统，主机A：IP 192.168.1.1">
@@ -378,7 +378,7 @@
 ## 客户端的配置（主机B）
 </code></pre><p>（1）安装nfs所需的软件包（和服务器的安装方式一样）</p>
 <p>（2）查看服务器共享了哪些目录</p>
-<pre><code>&lt;pre&gt;&lt;code class=&quot;language-html hljs xml&quot;&gt;showmount -e 192.168.1.102&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">会提示如下错误</span><br><span class="line"></span><br><span class="line">![](https://img-blog.csdn.net/20160314185847569?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)</span><br><span class="line"></span><br><span class="line">在网上查找，发现是防火墻的问题 介绍网址 [NFS错误：clnt_create: RPC: Port mapper failure - Unable to receive: errno 113 (No route to host)](http://www.cnblogs.com/jankie/archive/2012/11/14/2769585.html)</span><br><span class="line"></span><br><span class="line">被访问的NFS服务器上的防火墙没有添加规则，我所做的处理是直接将防火墙关闭，需在服务器配置</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;language-html hljs xml&quot;&gt; service iptables stop&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;language-html hljs xml&quot;&gt;showmount -e 192.168.1.102&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">会提示如下错误</span><br><span class="line"></span><br><span class="line">![](http://pangguoming.com/blog/images/e316d79a-ca1c-41c6-ac63-41a9ed1899b5.jpg)</span><br><span class="line"></span><br><span class="line">在网上查找，发现是防火墻的问题 介绍网址 [NFS错误：clnt_create: RPC: Port mapper failure - Unable to receive: errno 113 (No route to host)](http://www.cnblogs.com/jankie/archive/2012/11/14/2769585.html)</span><br><span class="line"></span><br><span class="line">被访问的NFS服务器上的防火墙没有添加规则，我所做的处理是直接将防火墙关闭，需在服务器配置</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;language-html hljs xml&quot;&gt; service iptables stop&lt;/code&gt;</span><br></pre></td></tr></table></figure>
 </code></pre><p>服务器配置完后，再查看共享目录就没问题了。</p>
 <p>（3）客户端mount nfs</p>
 <pre><code>&lt;pre&gt;&lt;code class=&quot;language-ruby hljs&quot;&gt;mount -t nfs &lt;span class=&quot;hljs-number&quot;&gt;192.168.&lt;span class=&quot;hljs-number&quot;&gt;1.102&lt;span class=&quot;hljs-symbol&quot;&gt;:/home /mnt/new_data&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;```
@@ -566,7 +566,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -588,7 +588,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

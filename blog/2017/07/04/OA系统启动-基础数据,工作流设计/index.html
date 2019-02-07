@@ -103,13 +103,13 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="自从开源OA系统启动:系统概览放 出来后。园友们反馈了一些不错的建议。主要集中在工作流部分。本来是先不考虑工作流部分。这些天的交流和思考。决定把工作流部分作为系统基础结构贯穿整个 系统。所以先考虑了这个部分的设计，因为这部分的设计是否合理关系到整个系统是否可以继续和是否有实际价值的问题。自己不敢独断专行。特放出来。让大家拍 拍砖。期待各位园友一如即往提供专业意见！   本来打算用尝试用MindMa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://images.cnblogs.com/cnblogs_com/kwklover/OA/OA%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.gif">
-<meta property="og:image" content="https://images.cnblogs.com/cnblogs_com/kwklover/OA/OA%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.gif">
-<meta property="og:updated_time" content="2019-01-26T15:01:38.503Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/e55caad4-e969-40d9-9474-17ddd023deb7.gif">
+<meta property="og:image" content="http://pangguoming.com/blog/images/b451388c-0fb4-43a5-ab68-59669d33ad42.gif">
+<meta property="og:updated_time" content="2019-02-07T11:13:31.325Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OA系统启动:基础数据,工作流设计">
 <meta name="twitter:description" content="自从开源OA系统启动:系统概览放 出来后。园友们反馈了一些不错的建议。主要集中在工作流部分。本来是先不考虑工作流部分。这些天的交流和思考。决定把工作流部分作为系统基础结构贯穿整个 系统。所以先考虑了这个部分的设计，因为这部分的设计是否合理关系到整个系统是否可以继续和是否有实际价值的问题。自己不敢独断专行。特放出来。让大家拍 拍砖。期待各位园友一如即往提供专业意见！   本来打算用尝试用MindMa">
-<meta name="twitter:image" content="https://images.cnblogs.com/cnblogs_com/kwklover/OA/OA%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.gif">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/e55caad4-e969-40d9-9474-17ddd023deb7.gif">
 
 
 
@@ -340,9 +340,9 @@
 
       
         <p>自从<a href="http://www.cnblogs.com/kwklover/archive/2007/01/06/BPowerOA_01_SystemPreview.html" target="_blank" rel="noopener">开源OA系统启动:系统概览</a>放 出来后。园友们反馈了一些不错的建议。主要集中在工作流部分。本来是先不考虑工作流部分。这些天的交流和思考。决定把工作流部分作为系统基础结构贯穿整个 系统。所以先考虑了这个部分的设计，因为这部分的设计是否合理关系到整个系统是否可以继续和是否有实际价值的问题。自己不敢独断专行。特放出来。让大家拍 拍砖。期待各位园友一如即往提供专业意见！  </p>
-<p>本来打算用尝试用MindManager画个思维导向图的，不过down了N久都没down下来，也就做罢了。<br>1，基础部分数据库设计。<br>  <img src="https://images.cnblogs.com/cnblogs_com/kwklover/OA/OA%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.gif" alt="OA基础部分数据库设计.gif"><br>下面说一下”页面(功能项)表”的设计，因为其他的比较简单。通过关系图已经可以完整表达我的设计意图：<br>我这样设计是希望系统具有一定的自定义组装能力，所以把设计的权限控制粒度细到页面级的添，删，改，查的和局部的用户级，抽出页面(功能项)表解释下，<br>   1)，启用审批流程：页面(基本等同于一个具体功能项，或者代表某项业务需求，下同)，这个功能项是否需要进入审批流程；如果设置“是”则需要自定义相应的工作流程(下面会讲到)；<br>   2)，启用填加控制：这个设置决定在配置用户权限的时候的细化程度。如果为“启用”，则在配置用户权限的时候，可以控制改功能项那些用户可以填加，那些不 可以。反之。则所有用户均可以。当然该用户必须具有功能项级的权限。其他的。启用修改，版本控制，浏览，删除等类似；<br>   3)，仅自己：这个选项对启用填加，修改，浏览，删除控制均有影响。如果为“是”，则在配置用户权限的时候，可以附加选项“仅自己”，如果配置用户权限的时候“仅自己”为“是”，那么该用户只能修改，编辑，删除，浏览自己填加的数据，反之。则无限制。  </p>
+<p>本来打算用尝试用MindManager画个思维导向图的，不过down了N久都没down下来，也就做罢了。<br>1，基础部分数据库设计。<br>  <img src="http://pangguoming.com/blog/images/e55caad4-e969-40d9-9474-17ddd023deb7.gif" alt="OA基础部分数据库设计.gif"><br>下面说一下”页面(功能项)表”的设计，因为其他的比较简单。通过关系图已经可以完整表达我的设计意图：<br>我这样设计是希望系统具有一定的自定义组装能力，所以把设计的权限控制粒度细到页面级的添，删，改，查的和局部的用户级，抽出页面(功能项)表解释下，<br>   1)，启用审批流程：页面(基本等同于一个具体功能项，或者代表某项业务需求，下同)，这个功能项是否需要进入审批流程；如果设置“是”则需要自定义相应的工作流程(下面会讲到)；<br>   2)，启用填加控制：这个设置决定在配置用户权限的时候的细化程度。如果为“启用”，则在配置用户权限的时候，可以控制改功能项那些用户可以填加，那些不 可以。反之。则所有用户均可以。当然该用户必须具有功能项级的权限。其他的。启用修改，版本控制，浏览，删除等类似；<br>   3)，仅自己：这个选项对启用填加，修改，浏览，删除控制均有影响。如果为“是”，则在配置用户权限的时候，可以附加选项“仅自己”，如果配置用户权限的时候“仅自己”为“是”，那么该用户只能修改，编辑，删除，浏览自己填加的数据，反之。则无限制。  </p>
 <p>页面(功能项)表为用户权限配置的时候提供可选参数，为系统配置提供服务。而权限表是具体的用户权限设置。为控制用户权限服务；  </p>
-<p>2,工作流数据库设计：<br>也就是说，系统自身实现简单实用的工作流引擎而非采用比如wwf等的workflow enginee：<br><img src="https://images.cnblogs.com/cnblogs_com/kwklover/OA/OA%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.gif" alt="OA工作流数据库设计.gif"><br>工 作流部分基于功能项和节点的组合。如果功能项(页面)被配置为启用审批流程。那么需要设置相应的自定义流程。多个“节点”构成一个完整的流程。节点的前后 顺序结构在数据库设计中以“树结构”来体现。每个“节点”可配置多个相关人员。通过“是否需全体通过”来控制该流程节点等待所有人员都审批通过才进入下一 节点。还是只需要其中审批通过就进入下一节点。  </p>
+<p>2,工作流数据库设计：<br>也就是说，系统自身实现简单实用的工作流引擎而非采用比如wwf等的workflow enginee：<br><img src="http://pangguoming.com/blog/images/b451388c-0fb4-43a5-ab68-59669d33ad42.gif" alt="OA工作流数据库设计.gif"><br>工 作流部分基于功能项和节点的组合。如果功能项(页面)被配置为启用审批流程。那么需要设置相应的自定义流程。多个“节点”构成一个完整的流程。节点的前后 顺序结构在数据库设计中以“树结构”来体现。每个“节点”可配置多个相关人员。通过“是否需全体通过”来控制该流程节点等待所有人员都审批通过才进入下一 节点。还是只需要其中审批通过就进入下一节点。  </p>
 <p>考虑到系统的定位。没有采用基于“岗位流转”的工作流设计，而采用了基于“人员流转”的工作流设计。</p>
 
       
@@ -518,7 +518,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -540,7 +540,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

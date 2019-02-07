@@ -103,20 +103,20 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="MySql 5.7安装（随机密码，修改默认密 下载了MySql 最新版本，安装的过程中，发现了很多新特性1.data目录不见了在进行my-default.ini配置的时候（需要配置 # basedir = C:/Program Files/MySQL/MySQL Server 5.7.11# datadir = C:/Program Files/MySQL/MySQL Server 5.7.11/">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.th7.cn/d/file/p/2016/02/13/8f835bbdfc395558796a4517a576829b.jpg">
-<meta property="og:image" content="http://www.th7.cn/d/file/p/2016/02/13/ba49688cb8f4212a9a17382091630d6e.jpg">
-<meta property="og:image" content="http://www.th7.cn/d/file/p/2016/02/13/8f835bbdfc395558796a4517a576829b.jpg">
-<meta property="og:image" content="http://www.th7.cn/d/file/p/2016/02/13/91d45ceaceeb7aa6ff306f44ac99d004.jpg">
-<meta property="og:image" content="http://www.th7.cn/d/file/p/2016/02/13/1780b53efcdc6e595682584fe2077a87.jpg">
-<meta property="og:image" content="http://www.th7.cn/d/file/p/2016/02/13/8f835bbdfc395558796a4517a576829b.jpg">
-<meta property="og:image" content="http://www.th7.cn/d/file/p/2016/02/13/8f835bbdfc395558796a4517a576829b.jpg">
-<meta property="og:image" content="http://www.th7.cn/d/file/p/2016/02/13/d708fe85949a3dc7c0d8b4cae0827c9d.jpg">
-<meta property="og:image" content="http://www.th7.cn/d/file/p/2016/02/13/1360c1c69d2f43fffd60a0e6c98dff31.jpg">
-<meta property="og:updated_time" content="2019-01-26T15:00:55.038Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/b36a115e-61c4-4a63-bcc2-59371d249ef9.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/90783f54-d5a1-4de7-a9a8-4c7cd978c3e1.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/b36a115e-61c4-4a63-bcc2-59371d249ef9.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/17fc1002-5cb5-4c25-ab52-fd6378f8e961.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/9a93ea3b-deae-408e-8da6-c507e3cee82d.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/b36a115e-61c4-4a63-bcc2-59371d249ef9.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/b36a115e-61c4-4a63-bcc2-59371d249ef9.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/a2ff951b-a135-4315-836a-390d28de66f8.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/a21bbd91-07c5-4a39-88c9-25d77016b793.jpg">
+<meta property="og:updated_time" content="2019-02-07T11:06:58.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySql 5.7安装（随机密码，修改默认密码）两个坑">
 <meta name="twitter:description" content="MySql 5.7安装（随机密码，修改默认密 下载了MySql 最新版本，安装的过程中，发现了很多新特性1.data目录不见了在进行my-default.ini配置的时候（需要配置 # basedir = C:/Program Files/MySQL/MySQL Server 5.7.11# datadir = C:/Program Files/MySQL/MySQL Server 5.7.11/">
-<meta name="twitter:image" content="http://www.th7.cn/d/file/p/2016/02/13/8f835bbdfc395558796a4517a576829b.jpg">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/b36a115e-61c4-4a63-bcc2-59371d249ef9.jpg">
 
 
 
@@ -347,7 +347,7 @@
 
       
         <p>MySql 5.7安装（随机密码，修改默认密</p>
-<div id="article_content" class="article_content clearfix csdn-tracking-statistics" data-pid="blog" data-mod="popu_307" data-dsm="post"><br><div class="htmledit_views"><br><br>下载了MySql 最新版本，安装的过程中，发现了很多新特性<br><br>1.data目录不见了<br><br><img src="http://www.th7.cn/d/file/p/2016/02/13/8f835bbdfc395558796a4517a576829b.jpg" alt=""><br><br>在进行my-default.ini配置的时候<br><br>（需要配置 # basedir = C:/Program Files/MySQL/MySQL Server 5.7.11<br><br># datadir = C:/Program Files/MySQL/MySQL Server 5.7.11/data）<br><br>细心的同学会发现，/data这个目录不存在，但是这个data目录可不是我们手动创建的，根据官方指南<br><br>C:/&gt;<code>bin/mysqld --initialize</code><br><br>C:/&gt;<code>bin/mysqld --initialize-insecure</code><br><br>cmd中输入这两个代码中的一个就可以自动在对应的目录下生成啦<br><br>（前提是你的path配置正确，比如mysql的路径，如果提示net命令不是内部命令，就在path中增加“C:/Windows/System32”即可）<br><br><img src="http://www.th7.cn/d/file/p/2016/02/13/ba49688cb8f4212a9a17382091630d6e.jpg" alt=""><br><br>2.随机生成了一个random string 作为密码<br><br>在没有启动前，root的密码是ABC123xyz<br><br>随机生成的密码在日志文件中可以查看，没错就是在initialize命令下生成的那个data文件<br><br><img src="http://www.th7.cn/d/file/p/2016/02/13/8f835bbdfc395558796a4517a576829b.jpg" alt=""><img src="http://www.th7.cn/d/file/p/2016/02/13/91d45ceaceeb7aa6ff306f44ac99d004.jpg" alt=""><br><br>使用记事本打开Acer.err<br><br><img src="http://www.th7.cn/d/file/p/2016/02/13/1780b53efcdc6e595682584fe2077a87.jpg" alt=""><br><br><img src="http://www.th7.cn/d/file/p/2016/02/13/8f835bbdfc395558796a4517a576829b.jpg" alt=""><br><br>找到<br><br>“2016-02-12T15:35:00.026880Z 1 [Note] A temporary password is generated for root@localhost: Ux&lt;&lt;lCbrr8&amp;d”<br><br>Ux&lt;&lt;lCbrr8&amp;d<br><br>这个就是我们要找的密码了<br><br>登陆成功：<br><br><img src="http://www.th7.cn/d/file/p/2016/02/13/8f835bbdfc395558796a4517a576829b.jpg" alt=""><img src="http://www.th7.cn/d/file/p/2016/02/13/d708fe85949a3dc7c0d8b4cae0827c9d.jpg" alt=""><br><br>3.修改密码的指令<br><br>果然新版本中修改密码的指令也不是那么好找的。。<br><br>在成功连接之后，使用sql语句修改，以往未登录状态下的修改方法已经不能使用啦~~<br><br>mysql&gt; <code>new_password&#39;</code>;<code>`</code><br><br>修改成功：<br><br><img src="http://www.th7.cn/d/file/p/2016/02/13/1360c1c69d2f43fffd60a0e6c98dff31.jpg" alt=""><br><br>    <div class="article-bar-bottom"><br>    <div class="article-copyright">版权声明：本文为博主原创文章，未经博主允许不得转载。 <a href="https://blog.csdn.net/quentain/article/details/51543991" target="_blank" rel="noopener">https://blog.csdn.net/quentain/article/details/51543991</a><br><br>码）两个坑<br></div></div><br></div></div>
+<div id="article_content" class="article_content clearfix csdn-tracking-statistics" data-pid="blog" data-mod="popu_307" data-dsm="post"><br><div class="htmledit_views"><br><br>下载了MySql 最新版本，安装的过程中，发现了很多新特性<br><br>1.data目录不见了<br><br><img src="http://pangguoming.com/blog/images/b36a115e-61c4-4a63-bcc2-59371d249ef9.jpg" alt=""><br><br>在进行my-default.ini配置的时候<br><br>（需要配置 # basedir = C:/Program Files/MySQL/MySQL Server 5.7.11<br><br># datadir = C:/Program Files/MySQL/MySQL Server 5.7.11/data）<br><br>细心的同学会发现，/data这个目录不存在，但是这个data目录可不是我们手动创建的，根据官方指南<br><br>C:/&gt;<code>bin/mysqld --initialize</code><br><br>C:/&gt;<code>bin/mysqld --initialize-insecure</code><br><br>cmd中输入这两个代码中的一个就可以自动在对应的目录下生成啦<br><br>（前提是你的path配置正确，比如mysql的路径，如果提示net命令不是内部命令，就在path中增加“C:/Windows/System32”即可）<br><br><img src="http://pangguoming.com/blog/images/90783f54-d5a1-4de7-a9a8-4c7cd978c3e1.jpg" alt=""><br><br>2.随机生成了一个random string 作为密码<br><br>在没有启动前，root的密码是ABC123xyz<br><br>随机生成的密码在日志文件中可以查看，没错就是在initialize命令下生成的那个data文件<br><br><img src="http://pangguoming.com/blog/images/b36a115e-61c4-4a63-bcc2-59371d249ef9.jpg" alt=""><img src="http://pangguoming.com/blog/images/17fc1002-5cb5-4c25-ab52-fd6378f8e961.jpg" alt=""><br><br>使用记事本打开Acer.err<br><br><img src="http://pangguoming.com/blog/images/9a93ea3b-deae-408e-8da6-c507e3cee82d.jpg" alt=""><br><br><img src="http://pangguoming.com/blog/images/b36a115e-61c4-4a63-bcc2-59371d249ef9.jpg" alt=""><br><br>找到<br><br>“2016-02-12T15:35:00.026880Z 1 [Note] A temporary password is generated for root@localhost: Ux&lt;&lt;lCbrr8&amp;d”<br><br>Ux&lt;&lt;lCbrr8&amp;d<br><br>这个就是我们要找的密码了<br><br>登陆成功：<br><br><img src="http://pangguoming.com/blog/images/b36a115e-61c4-4a63-bcc2-59371d249ef9.jpg" alt=""><img src="http://pangguoming.com/blog/images/a2ff951b-a135-4315-836a-390d28de66f8.jpg" alt=""><br><br>3.修改密码的指令<br><br>果然新版本中修改密码的指令也不是那么好找的。。<br><br>在成功连接之后，使用sql语句修改，以往未登录状态下的修改方法已经不能使用啦~~<br><br>mysql&gt; <code>new_password&#39;</code>;<code>`</code><br><br>修改成功：<br><br><img src="http://pangguoming.com/blog/images/a21bbd91-07c5-4a39-88c9-25d77016b793.jpg" alt=""><br><br>    <div class="article-bar-bottom"><br>    <div class="article-copyright">版权声明：本文为博主原创文章，未经博主允许不得转载。 <a href="https://blog.csdn.net/quentain/article/details/51543991" target="_blank" rel="noopener">https://blog.csdn.net/quentain/article/details/51543991</a><br><br>码）两个坑<br></div></div><br></div></div>
       
     </div>
     
@@ -521,7 +521,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -543,7 +543,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

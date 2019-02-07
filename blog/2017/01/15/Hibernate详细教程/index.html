@@ -103,14 +103,14 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="一、搭建Hibernate环境1.在src目录下创建hibernate.cfg.xml配置文件 PS:文件的名字不能改！ 123456789101112131415161718192021222324252627&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&amp;lt;!DOCTYPE hibernate-configu">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://images0.cnblogs.com/blog2015/694841/201505/292221575013944.png">
-<meta property="og:image" content="https://images0.cnblogs.com/blog2015/694841/201505/300909488917038.png">
-<meta property="og:image" content="https://images0.cnblogs.com/blog2015/694841/201505/301038240325176.png">
-<meta property="og:updated_time" content="2019-01-26T15:06:32.292Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/7ab57ae4-e934-445c-bf35-20d29cd5de46.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/2097fd1b-e755-4be4-bd58-2ae2b53fb892.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/24adf51d-18ae-4a7d-b6a3-ff81d14ae3b7.png">
+<meta property="og:updated_time" content="2019-02-07T11:13:53.213Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hibernate详细教程">
 <meta name="twitter:description" content="一、搭建Hibernate环境1.在src目录下创建hibernate.cfg.xml配置文件 PS:文件的名字不能改！ 123456789101112131415161718192021222324252627&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&amp;lt;!DOCTYPE hibernate-configu">
-<meta name="twitter:image" content="https://images0.cnblogs.com/blog2015/694841/201505/292221575013944.png">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/7ab57ae4-e934-445c-bf35-20d29cd5de46.png">
 
 
 
@@ -375,7 +375,7 @@
 <p>2.many to many的时候由一方维护，所以一方要设置inverse=false，但是inverse=true的另一方直接删除会出错，这个时候可以用casecade完成级联删除</p>
 <p>3.inverse=false只用于set等集合属性，在one to one关系中可以用casecade完成级联删除</p>
 <h2 id="五、使用C3P0连接池"><a href="#五、使用C3P0连接池" class="headerlink" title="五、使用C3P0连接池"></a><strong>五、使用C3P0连接池</strong></h2><p>1.需要额外导入3个jar包</p>
-<p><img src="https://images0.cnblogs.com/blog2015/694841/201505/292221575013944.png" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/7ab57ae4-e934-445c-bf35-20d29cd5de46.png" alt=""></p>
 <p>2.在hibernate.cfg.xml中加入C3P0配置信息</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- C3P0连接池设定--&gt;</span><br><span class="line">&lt;!-- 使用c3p0连接池  配置连接池提供的供应商--&gt;</span><br><span class="line">&lt;property name=&quot;connection.provider_class&quot;&gt;org.hibernate.connection.C3P0ConnectionProvider&lt;/property&gt;</span><br><span class="line">&lt;!--在连接池中可用的数据库连接的最少数目 --&gt;</span><br><span class="line">&lt;property name=&quot;c3p0.min_size&quot;&gt;5&lt;/property&gt;</span><br><span class="line">&lt;!--在连接池中所有数据库连接的最大数目  --&gt;</span><br><span class="line">&lt;property name=&quot;c3p0.max_size&quot;&gt;20&lt;/property&gt;</span><br><span class="line">&lt;!--设定数据库连接的过期时间,以秒为单位,</span><br><span class="line">如果连接池中的某个数据库连接处于空闲状态的时间超过了timeout时间,就会从连接池中清除 --&gt;</span><br><span class="line">&lt;property name=&quot;c3p0.timeout&quot;&gt;120&lt;/property&gt;</span><br><span class="line"> &lt;!--每3000秒检查所有连接池中的空闲连接 以秒为单位--&gt;</span><br><span class="line">&lt;property name=&quot;c3p0.idle_test_period&quot;&gt;3000&lt;/property&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="六、HQL语句"><a href="#六、HQL语句" class="headerlink" title="六、HQL语句"></a>六、HQL语句</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void HQLSearch()&#123;</span><br><span class="line">        Session session = SessionFactory.getSession();</span><br><span class="line">        Transaction tr = session.beginTransaction();</span><br><span class="line">        //-----------------------------------------</span><br><span class="line"></span><br><span class="line">        //common search with where</span><br><span class="line">//        String hql= &quot;select e.id,e.name from User e where e.id&gt;=5 and e.id&lt;=9&quot;;</span><br><span class="line">//        Query query = session.createQuery(hql);</span><br><span class="line">//        List list = query.list();        </span><br><span class="line">//        for(Object o : list)&#123;            </span><br><span class="line">//            System.out.println(Arrays.toString((Object[])o));</span><br><span class="line">//        &#125;</span><br><span class="line"></span><br><span class="line">        //paging search</span><br><span class="line">//        String hql= &quot;select e.id,e.name from User e&quot;;</span><br><span class="line">//        Query query = session.createQuery(hql);</span><br><span class="line">//        query.setFirstResult(0);</span><br><span class="line">//        query.setMaxResults(10);</span><br><span class="line">//        List list = query.list();        </span><br><span class="line">//        for(Object o : list)&#123;            </span><br><span class="line">//            System.out.println(Arrays.toString((Object[])o));</span><br><span class="line">//        &#125;</span><br><span class="line"></span><br><span class="line">        //search with parameters</span><br><span class="line">//        String hql= &quot;select e.id,e.name from User e where id&gt;=? and id&lt;=?&quot;;</span><br><span class="line">//        Query query = session.createQuery(hql)</span><br><span class="line">//                .setParameter(0, 1)</span><br><span class="line">//                .setParameter(1, 3);</span><br><span class="line">//        List list = query.list();        </span><br><span class="line">//        for(Object o : list)&#123;            </span><br><span class="line">//            System.out.println(Arrays.toString((Object[])o));</span><br><span class="line">//        &#125;</span><br><span class="line"></span><br><span class="line">        //search with parameters whose type is collection</span><br><span class="line">//        String hql= &quot;select e.id,e.name from User e where id in (:ids)&quot;;</span><br><span class="line">//        Query query = session.createQuery(hql)</span><br><span class="line">//                .setParameterList(&quot;ids&quot;,new Object[]&#123;1,2,3,8&#125; );</span><br><span class="line">//        List list = query.list();    </span><br><span class="line">//        for(Object o : list)&#123;            </span><br><span class="line">//            System.out.println(Arrays.toString((Object[])o));</span><br><span class="line">//        &#125;</span><br><span class="line"></span><br><span class="line">        //-----------------------------------------</span><br><span class="line">        tr.commit();</span><br><span class="line">        SessionFactory.closeSession();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
@@ -383,10 +383,10 @@
 <h2 id="八、开启二级缓存"><a href="#八、开启二级缓存" class="headerlink" title=" 八、开启二级缓存"></a><strong> 八、开启二级缓存</strong></h2><ol>
 <li>需要导入以下jar包</li>
 </ol>
-<p><img src="https://images0.cnblogs.com/blog2015/694841/201505/300909488917038.png" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/2097fd1b-e755-4be4-bd58-2ae2b53fb892.png" alt=""></p>
 <p>2.在hibernate.cfg.xml中加入以下配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 使用二级缓存，默认是未打开的。 --&gt;</span><br><span class="line">&lt;!-- 指定要使用的缓存的提供商，这也就打开了二级缓存--&gt; </span><br><span class="line">&lt;property name=&quot;hibernate.cache.use_second_level_cache&quot;&gt;true&lt;/property&gt;  </span><br><span class="line">&lt;property name=&quot;hibernate.cache.region.factory_class&quot;&gt;org.hibernate.cache.ehcache.EhCacheRegionFactory&lt;/property&gt;</span><br><span class="line">&lt;!-- 开启使用查询缓存 --&gt;</span><br><span class="line">&lt;property name=&quot;cache.use_query_cache&quot;&gt;true&lt;/property&gt;</span><br><span class="line">&lt;!-- 指定要使用二级缓存的实体类 --&gt;</span><br><span class="line">&lt;class-cache usage=&quot;read-write&quot; class=&quot;test.Hibernate.model.Person&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="九、Hibernate对象状态及转化"><a href="#九、Hibernate对象状态及转化" class="headerlink" title="九、Hibernate对象状态及转化"></a>九、Hibernate对象状态及转化</h2><p><img src="https://images0.cnblogs.com/blog2015/694841/201505/301038240325176.png" alt=""></p>
+<h2 id="九、Hibernate对象状态及转化"><a href="#九、Hibernate对象状态及转化" class="headerlink" title="九、Hibernate对象状态及转化"></a>九、Hibernate对象状态及转化</h2><p><img src="http://pangguoming.com/blog/images/24adf51d-18ae-4a7d-b6a3-ff81d14ae3b7.png" alt=""></p>
 <h1 id="Hibernate详细教程"><a href="#Hibernate详细教程" class="headerlink" title="Hibernate详细教程"></a><a href="http://www.cnblogs.com/sunniest/p/4539817.html" target="_blank" rel="noopener">Hibernate详细教程</a></h1>
       
     </div>
@@ -570,7 +570,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -592,7 +592,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

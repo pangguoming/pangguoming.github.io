@@ -103,13 +103,13 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="MongoDB数据备份在Mongodb中我们使用mongodump命令来备份MongoDB数据。该命令可以导出所有数据到指定目录中。 mongodump命令可以通过参数指定导出的数据量级转存的服务器。 语法mongodump命令脚本语法如下：  mongodump -h dbhost -d dbname -o dbdirectory    123456789101112131415161718">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2013/12/mongodump.png">
-<meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2013/12/mongorestore.png">
-<meta property="og:updated_time" content="2019-01-26T15:07:41.763Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/79e597f5-0a01-43d8-8741-e7d020ee2df6.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/25a6d157-192a-4a75-9d55-eda3b965be1a.png">
+<meta property="og:updated_time" content="2019-02-07T11:13:56.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB 备份(mongodump)与恢复(mongorestore)">
 <meta name="twitter:description" content="MongoDB数据备份在Mongodb中我们使用mongodump命令来备份MongoDB数据。该命令可以导出所有数据到指定目录中。 mongodump命令可以通过参数指定导出的数据量级转存的服务器。 语法mongodump命令脚本语法如下：  mongodump -h dbhost -d dbname -o dbdirectory    123456789101112131415161718">
-<meta name="twitter:image" content="http://www.runoob.com/wp-content/uploads/2013/12/mongodump.png">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/79e597f5-0a01-43d8-8741-e7d020ee2df6.png">
 
 
 
@@ -346,7 +346,7 @@
 <p>mongodump -h dbhost -d dbname -o dbdirectory<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    *   **-h：**</span><br><span class="line"></span><br><span class="line">MongDB所在服务器地址，例如：127.0.0.1，当然也可以指定端口号：127.0.0.1:27017</span><br><span class="line"></span><br><span class="line">    *   **-d：**</span><br><span class="line"></span><br><span class="line">需要备份的数据库实例，例如：test</span><br><span class="line"></span><br><span class="line">    *   **-o：**</span><br><span class="line"></span><br><span class="line">备份的数据存放位置，例如：c:\data\dump，当然该目录需要提前建立，在备份完成后，系统自动在dump目录下建立一个test目录，这个目录里面存放该数据库实例的备份数据。</span><br><span class="line"></span><br><span class="line">    ### 实例</span><br><span class="line"></span><br><span class="line">在本地使用 27017 启动你的mongod服务。打开命令提示符窗口，进入MongoDB安装目录的bin目录输入命令mongodump:</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&gt;mongodump</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <p>执行以上命令后，客户端会连接到ip为 127.0.0.1 端口号为 27017 的MongoDB服务上，并备份所有数据到 bin/dump/ 目录中。命令输出结果如下：</p>
-<p><img src="http://www.runoob.com/wp-content/uploads/2013/12/mongodump.png" alt="MongoDB数据备份"></p>
+<p><img src="http://pangguoming.com/blog/images/79e597f5-0a01-43d8-8741-e7d020ee2df6.png" alt="MongoDB数据备份"></p>
 <p>mongodump 命令可选参数列表如下所示：</p>
 <pre><code>&lt;table class=&quot;reference&quot;&gt;
 &lt;tbody&gt;
@@ -378,7 +378,7 @@
 <pre><code>&lt;pre class=&quot;prettyprint&quot;&gt;&gt;mongorestore -h dbhost -d dbname --directoryperdb dbdirectory
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    *   **-h：**</span><br><span class="line"></span><br><span class="line">MongoDB所在服务器地址</span><br><span class="line"></span><br><span class="line">    *   **-d：**</span><br><span class="line"></span><br><span class="line">需要恢复的数据库实例，例如：test，当然这个名称也可以和备份时候的不一样，比如test2</span><br><span class="line"></span><br><span class="line">    *   **--directoryperdb：**</span><br><span class="line"></span><br><span class="line">备份数据所在位置，例如：c:\data\dump\test，这里为什么要多加一个test，而不是备份时候的dump，读者自己查看提示吧！</span><br><span class="line"></span><br><span class="line">    *   **--drop：**</span><br><span class="line"></span><br><span class="line">恢复的时候，先删除当前数据，然后恢复备份的数据。就是说，恢复后，备份后添加修改的数据都会被删除，慎用哦！</span><br><span class="line"></span><br><span class="line">接下来我们执行以下命令:</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&gt;mongorestore</span><br></pre></td></tr></table></figure>
 </code></pre><p>执行以上命令输出结果如下：</p>
-<p><img src="http://www.runoob.com/wp-content/uploads/2013/12/mongorestore.png" alt="MongoDB数据恢复"><br></p>
+<p><img src="http://pangguoming.com/blog/images/25a6d157-192a-4a75-9d55-eda3b965be1a.png" alt="MongoDB数据恢复"><br></p>
 
       
     </div>
@@ -562,7 +562,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -584,7 +584,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

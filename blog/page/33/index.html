@@ -268,7 +268,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/10/13/Centos 安装 neo4j/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/12/21/Centos系统下Lamp环境的快速搭建/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -287,7 +287,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2016/10/13/Centos 安装 neo4j/" itemprop="url">Centos 安装 neo4j</a></h1>
+                <a class="post-title-link" href="/blog/2016/12/21/Centos系统下Lamp环境的快速搭建/" itemprop="url">Centos系统下Lamp环境的快速搭建</a></h1>
         
 
         <div class="post-meta">
@@ -299,8 +299,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-13T12:34:00+08:00">
-                2016-10-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-21T10:18:00+08:00">
+                2016-12-21
               </time>
             
 
@@ -339,12 +339,17 @@
       
         
           
-          This is experimental and not considered safe for production. You have been warned.
-Please note that this repo contains pre-release as well as release 
+          
+
+
+
+
+首先为了搭建一个稳定的lamp的练习环境,确保你的虚拟机可以连网,这里我们使用的yum安装,它可以帮助我们解决软件自己的依赖关系.我还在后面加了postgresql数据库如果不需要的话可以去掉和postgresql的参数.命令如下
+yum -y install httpd mysql my
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/10/13/Centos 安装 neo4j/#more" rel="contents">
+            <a class="btn" href="/blog/2016/12/21/Centos系统下Lamp环境的快速搭建/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -395,7 +400,7 @@ Please note that this repo contains pre-release as well as release
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/10/13/使用 nvm 管理不同版本的 node 与 npm/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/12/21/CentOS下设置MySQL的root密码/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -414,7 +419,7 @@ Please note that this repo contains pre-release as well as release
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2016/10/13/使用 nvm 管理不同版本的 node 与 npm/" itemprop="url">使用 nvm 管理不同版本的 node 与 npm</a></h1>
+                <a class="post-title-link" href="/blog/2016/12/21/CentOS下设置MySQL的root密码/" itemprop="url">CentOS下设置MySQL的root密码</a></h1>
         
 
         <div class="post-meta">
@@ -426,8 +431,8 @@ Please note that this repo contains pre-release as well as release
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-13T12:31:00+08:00">
-                2016-10-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-21T10:17:00+08:00">
+                2016-12-21
               </time>
             
 
@@ -466,11 +471,12 @@ Please note that this repo contains pre-release as well as release
       
         
           
-          # 使用 nvm 管理不同版本的 node 与 npm补充说明：Mac 下通过 brew install nvm 所安装的 nvm ，由于安装路径不同，无法正确启用。建议使用 brew uninstall nvm 卸载掉之后，通过本文的方案重新安装一次。—最近 NodeJS 的版本更新速度有点 Ch
+          CentOS刚装的MySQL一般需要重设MySQL密码，可以用以下方法重设。方法一、Js代码    
+/etc/init.d/mysqld stopmysqld_safe –user=mysql –skip-grant-tables –skip-networking &amp;mysql -u ro
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/10/13/使用 nvm 管理不同版本的 node 与 npm/#more" rel="contents">
+            <a class="btn" href="/blog/2016/12/21/CentOS下设置MySQL的root密码/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -521,7 +527,7 @@ Please note that this repo contains pre-release as well as release
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/10/13/CentOS 6 使用 yum 安装MongoDB及服务器端配置/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/12/21/centos mysql 安装及配置/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -540,7 +546,7 @@ Please note that this repo contains pre-release as well as release
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2016/10/13/CentOS 6 使用 yum 安装MongoDB及服务器端配置/" itemprop="url">CentOS 6 使用 yum 安装MongoDB及服务器端配置</a></h1>
+                <a class="post-title-link" href="/blog/2016/12/21/centos mysql 安装及配置/" itemprop="url">centos mysql 安装及配置</a></h1>
         
 
         <div class="post-meta">
@@ -552,8 +558,8 @@ Please note that this repo contains pre-release as well as release
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-13T12:11:00+08:00">
-                2016-10-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-21T10:06:00+08:00">
+                2016-12-21
               </time>
             
 
@@ -592,13 +598,13 @@ Please note that this repo contains pre-release as well as release
       
         
           
-          安装MongoDB的方法有很多种，可以源代码安装，在Centos也可以用yum源安装的方法。由于MongoDB更新得比较快，我比较喜欢用yum源安装的方法。64位Centos下的安装步骤如下：
-1、准备工作
-运行yum命令查看MongoDB的包信息 [root@localhost~]# yum in
+          ## 安装Mysql1.  1Centos 6.6下安装Mysql很简单，yum list mysql-server2.  2当只有一个时候就可以直接yum install mysql-server进行安装3.  3过程中选择Y继续安装，最后安装成功END
+
+## 设置Mysql的服务1.  1先启
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/10/13/CentOS 6 使用 yum 安装MongoDB及服务器端配置/#more" rel="contents">
+            <a class="btn" href="/blog/2016/12/21/centos mysql 安装及配置/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -649,7 +655,7 @@ Please note that this repo contains pre-release as well as release
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/10/08/横向滑动的HorizontalListView滑动指定位置的解决方法/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/12/21/No package mysql-server available./">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -668,7 +674,7 @@ Please note that this repo contains pre-release as well as release
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2016/10/08/横向滑动的HorizontalListView滑动指定位置的解决方法/" itemprop="url">横向滑动的HorizontalListView滑动指定位置的解决方法</a></h1>
+                <a class="post-title-link" href="/blog/2016/12/21/No package mysql-server available./" itemprop="url">No package mysql-server available.</a></h1>
         
 
         <div class="post-meta">
@@ -680,8 +686,8 @@ Please note that this repo contains pre-release as well as release
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-08T15:10:00+08:00">
-                2016-10-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-21T09:59:00+08:00">
+                2016-12-21
               </time>
             
 
@@ -720,12 +726,11 @@ Please note that this repo contains pre-release as well as release
       
         
           
-          项目中用到了自定义横向滑动的控件：HorizontalListView，点击其中一项，跳转到另外一个大图界面，大图界面也是HorizontalListView，想使用setSelection方法设定
-项目中用到了自定义横向滑动的控件：HorizontalListView，点击其中一项，跳转到另外一个
+          Centos 7 comes with MariaDB instead of MySQL. MariaDb is a open source equivalent to MySQL and can be installed with yum -y install mariadb-server mar
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/10/08/横向滑动的HorizontalListView滑动指定位置的解决方法/#more" rel="contents">
+            <a class="btn" href="/blog/2016/12/21/No package mysql-server available./#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -776,7 +781,7 @@ Please note that this repo contains pre-release as well as release
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/06/21/Android 禁止Viewpager左右滑动功能/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/12/21/chrome 跨域设置/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -795,7 +800,7 @@ Please note that this repo contains pre-release as well as release
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2016/06/21/Android 禁止Viewpager左右滑动功能/" itemprop="url">Android 禁止Viewpager左右滑动功能</a></h1>
+                <a class="post-title-link" href="/blog/2016/12/21/chrome 跨域设置/" itemprop="url">chrome 跨域设置</a></h1>
         
 
         <div class="post-meta">
@@ -807,8 +812,8 @@ Please note that this repo contains pre-release as well as release
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-21T15:32:00+08:00">
-                2016-06-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-21T09:20:00+08:00">
+                2016-12-21
               </time>
             
 
@@ -847,16 +852,12 @@ Please note that this repo contains pre-release as well as release
       
         
           
-          首先自定义一个 继承自 ViewPager的自定义 类
-1 
-&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;package com.yourcompany;
-
-import android.content.Context;
-import a
+          右击chrome快捷方式，在启动指令后面添加–disable-web-security，然后保存。如下：
+“C:\Program Files (x86)\Google\Chrome\Application\chrome.exe”–user-data-dir=”C:/Chrome dev sessio
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/06/21/Android 禁止Viewpager左右滑动功能/#more" rel="contents">
+            <a class="btn" href="/blog/2016/12/21/chrome 跨域设置/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -907,7 +908,7 @@ import a
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/06/15/ant安装、环境变量配置及验证/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/12/12/Android TabWidget底部显示/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -926,7 +927,7 @@ import a
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2016/06/15/ant安装、环境变量配置及验证/" itemprop="url">ant安装、环境变量配置及验证</a></h1>
+                <a class="post-title-link" href="/blog/2016/12/12/Android TabWidget底部显示/" itemprop="url">Android TabWidget底部显示</a></h1>
         
 
         <div class="post-meta">
@@ -938,8 +939,8 @@ import a
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-15T14:20:00+08:00">
-                2016-06-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-12T15:50:00+08:00">
+                2016-12-12
               </time>
             
 
@@ -978,11 +979,12 @@ import a
       
         
           
-          一、安装ant到官方主页http://ant.apache.org下载新版（目前为Ant1.8.1）的ant，得到的是一个apache-ant-1.8.1-bin.zip的压缩包。将其解压到你的硬盘上，例如：C:\apache-ant-1.8.1。二、配置环境变量window中设置ant环境变量：A
+          TabHost控件默认使用LinearLayout包裹TabWidget和FrameLayout，布局文件如下：
+[html] view plain copy 1.  &lt;TabHost xmlns:android=“http://schemas.android.com/apk/res/andr
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/06/15/ant安装、环境变量配置及验证/#more" rel="contents">
+            <a class="btn" href="/blog/2016/12/12/Android TabWidget底部显示/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1033,7 +1035,7 @@ import a
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/06/08/创建GitHub技术博客全攻略/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/12/01/只需一点小修改，HTC Vive画面会更清晰锐利/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1052,7 +1054,7 @@ import a
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2016/06/08/创建GitHub技术博客全攻略/" itemprop="url">创建GitHub技术博客全攻略</a></h1>
+                <a class="post-title-link" href="/blog/2016/12/01/只需一点小修改，HTC Vive画面会更清晰锐利/" itemprop="url">只需一点小修改，HTC Vive画面会更清晰锐利</a></h1>
         
 
         <div class="post-meta">
@@ -1064,8 +1066,8 @@ import a
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-08T10:39:00+08:00">
-                2016-06-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-01T11:08:00+08:00">
+                2016-12-01
               </time>
             
 
@@ -1104,15 +1106,11 @@ import a
       
         
           
-          说明: 首先,你需要注册一个 github 账号,最好取一个有意义的名字,比如姓名全拼,昵称全拼,如果被占用,可以加上有意义的数字.本文中假设用户名为 **tiemaocsdn  
-
-注册账号:**地址: https://github.com/输入账号、邮箱、密码,然后点击注册按钮.
-
-图1 第1步
+          这里要先谢谢@NB81rkd0qB，他的那个帖子里其实很多碰到的问题都可以解决，但是目前有点乱，所以我这里斗胆整理一下，希望能帮助一下朋友们。第一步：我们要找到【steamvr.vrsettings】这个文件，可能系统不一样，他的位置也不一样，有可能在Program Files/Steam/Conf
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/06/08/创建GitHub技术博客全攻略/#more" rel="contents">
+            <a class="btn" href="/blog/2016/12/01/只需一点小修改，HTC Vive画面会更清晰锐利/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1163,7 +1161,7 @@ import a
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/05/02/简单的Hibernate入门简介/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/11/24/Neo4j 3.0 存储过程/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1182,7 +1180,7 @@ import a
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2016/05/02/简单的Hibernate入门简介/" itemprop="url">简单的Hibernate入门简介</a></h1>
+                <a class="post-title-link" href="/blog/2016/11/24/Neo4j 3.0 存储过程/" itemprop="url">Neo4j 3.0 存储过程</a></h1>
         
 
         <div class="post-meta">
@@ -1194,8 +1192,8 @@ import a
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-02T14:59:00+08:00">
-                2016-05-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-24T20:02:00+08:00">
+                2016-11-24
               </time>
             
 
@@ -1234,11 +1232,11 @@ import a
       
         
           
-          其实Hibernate本身是个独立的框架，它不需要任何web server或application server的支持。然而，大多数的Hibernate入门介绍都加入了很多非Hibernate的东西，比如: Tomcat, Eclipse, Log4J,Struts, XDoclet, 甚至JBos
+          Neo4j 3.0 提供一个新的功能“存储过程”，该功能并不是Neo4j-Server的扩展，而是可以直接运行的。在写这篇文章的时候，只能通过预备好的语句去执行1CALL package.procedure(params)但是接下来他会被完全集成到Cypher语句当中。这样我梦就可以通过CALL这个
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/05/02/简单的Hibernate入门简介/#more" rel="contents">
+            <a class="btn" href="/blog/2016/11/24/Neo4j 3.0 存储过程/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1289,7 +1287,7 @@ import a
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/04/27/Java开发Maven环境配置和介绍/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/11/22/Centos 与本地终端 上传、下载 文件/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1308,7 +1306,7 @@ import a
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2016/04/27/Java开发Maven环境配置和介绍/" itemprop="url">Java开发Maven环境配置和介绍</a></h1>
+                <a class="post-title-link" href="/blog/2016/11/22/Centos 与本地终端 上传、下载 文件/" itemprop="url">Centos 与本地终端 上传、下载 文件</a></h1>
         
 
         <div class="post-meta">
@@ -1320,8 +1318,8 @@ import a
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-27T16:48:00+08:00">
-                2016-04-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-22T10:56:00+08:00">
+                2016-11-22
               </time>
             
 
@@ -1360,11 +1358,14 @@ import a
       
         
           
-          &gt; 最近很火热的12306的订票软件go-home,我也下载了一份下来了，使用了一下，也从svn中把代码down下来了，但是在eclipse中竟然出错了，依赖的jar包都没有找到，后来才知道人家是用maven来管理依赖的，所以就去看了下maven，发现还真是很强大很方便的一个工具，特记录一下简
+           首先安装lrzsz   
+yum -y install lrzsz 1.上传文件，执行命令rz，会跳出文件选择窗口，选择好文件，点击确认即可。
+rz运行rz命令后弹出选择文件窗口，找到要上传的文件后确认，文件会被上传到Centos当前目录下2.下载文件，执行命令sz  
+sz 文件名运行 sz命令
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/04/27/Java开发Maven环境配置和介绍/#more" rel="contents">
+            <a class="btn" href="/blog/2016/11/22/Centos 与本地终端 上传、下载 文件/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1415,7 +1416,7 @@ import a
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/04/19/Android 子activity关闭 向父activity传值/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/11/08/Neo4j中文社区/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1434,7 +1435,7 @@ import a
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2016/04/19/Android 子activity关闭 向父activity传值/" itemprop="url">Android 子activity关闭 向父activity传值</a></h1>
+                <a class="post-title-link" href="/blog/2016/11/08/Neo4j中文社区/" itemprop="url">Neo4j中文社区</a></h1>
         
 
         <div class="post-meta">
@@ -1446,8 +1447,8 @@ import a
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-19T15:35:00+08:00">
-                2016-04-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-08T15:27:00+08:00">
+                2016-11-08
               </time>
             
 
@@ -1486,12 +1487,12 @@ import a
       
         
           
-          使用startActivity方式启动的Activity和它的父Activity无关，当它关闭时也不会提供任何反馈。
-可变通的，你可以启动一个Activity作为子Activity，它与父Activity有内在的联系。当子Activity关闭时，它会触发父Activity中的一个事件处理函数。子Ac
+          关于Neo4j中文社区官网：http://neo4j.com.cn/Neo4j 社区为国内具影响力的 Neo4j技术社区，致力于 Neo4j 的技术研究。
+Neo4j 社区由一批热爱 Neo4j 技术的工程师发起，目前已经吸引了互联网各个公司的专业技术人员加入，我们非常欢迎更多对 Neo4j 感兴趣
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/04/19/Android 子activity关闭 向父activity传值/#more" rel="contents">
+            <a class="btn" href="/blog/2016/11/08/Neo4j中文社区/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1533,7 +1534,7 @@ import a
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blog/page/32/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/32/">32</a><span class="page-number current">33</span><a class="page-number" href="/blog/page/34/">34</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/40/">40</a><a class="extend next" rel="next" href="/blog/page/34/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/blog/page/32/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/32/">32</a><span class="page-number current">33</span><a class="page-number" href="/blog/page/34/">34</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/42/">42</a><a class="extend next" rel="next" href="/blog/page/34/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1580,7 +1581,7 @@ import a
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1602,7 +1603,7 @@ import a
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

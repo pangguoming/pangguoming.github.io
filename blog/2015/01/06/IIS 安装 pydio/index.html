@@ -102,22 +102,22 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="IntroductionIn this how-to, we’ll see the installation of Pydio (Put Your Data In Orbit), which is a good alternative to Dropbox, Drive, or ownCloud. In this case, the installation will be carried on">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen1-300x288.png">
-<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen2-300x260.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/1cc9c990-21ab-474f-a05d-a93aafff4abd.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/26dcba34-e040-4c0b-8459-be58dcb4dfce.png">
 <meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen3.png">
-<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen4-300x233.png">
-<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen5-236x300.png">
-<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen6-300x35.jpg">
-<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen7-300x239.png">
-<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen8-300x176.png">
-<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen9-300x221.png">
-<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen11-300x203.png">
-<meta property="og:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen13-227x300.png">
-<meta property="og:updated_time" content="2019-01-26T15:13:31.638Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/e7fdf10c-e781-49e6-bf25-c9933002f09f.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/8a2600d1-55bd-46ca-b217-f3478b3722f9.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/0f97bcef-4edc-410c-8850-9b6c799ca008.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/828803cf-1bfb-4cdd-893c-4c4544cadd33.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/1f4cce9c-c1a6-40c5-aa22-88c37223d972.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/30f9e733-784a-4270-805b-8e1c2864cdc7.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/344a93ff-19a9-4237-aafd-82f70fbb8810.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/880f6349-f536-42ed-8306-2288d98fae77.png">
+<meta property="og:updated_time" content="2019-02-07T11:28:17.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IIS 安装 pydio">
 <meta name="twitter:description" content="IntroductionIn this how-to, we’ll see the installation of Pydio (Put Your Data In Orbit), which is a good alternative to Dropbox, Drive, or ownCloud. In this case, the installation will be carried on">
-<meta name="twitter:image" content="https://pyd.io/wp-content/uploads/2014/02/pydioiisen1-300x288.png">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/1cc9c990-21ab-474f-a05d-a93aafff4abd.png">
 
 
 
@@ -367,7 +367,7 @@
 <p>Pydio : You must <a href="https://pyd.io/download/" target="_blank" rel="noopener">download the Pydio source</a> before starting this how-to.</p>
 <h2 id="Prepare-your-IIS-webserver"><a href="#Prepare-your-IIS-webserver" class="headerlink" title="Prepare your IIS webserver"></a><span id="Prepare_your_IIS_webserver">Prepare your IIS webserver</span></h2><p>First off, we will prepare the IIS webserver to have the proper configuration to serve Pydio. Open the IIS manager on your server.</p>
 <h3 id="Prepare-the-site"><a href="#Prepare-the-site" class="headerlink" title="Prepare the site"></a><span id="Prepare_the_site"><strong>Prepare the site</strong></span></h3><p>Do a right click on « <strong>Sites</strong> » then « <strong>Add Website</strong> », you will obtain the form present in the screenshot below.</p>
-<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen1.png" target="_blank" rel="noopener"><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen1-300x288.png" alt="pydioiisen1"></a>Add website in IIS manager</p>
+<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen1.png" target="_blank" rel="noopener"><img src="http://pangguoming.com/blog/images/1cc9c990-21ab-474f-a05d-a93aafff4abd.png" alt="pydioiisen1"></a>Add website in IIS manager</p>
 <p>Complete the different fields :</p>
 <ul>
 <li></li>
@@ -387,11 +387,11 @@
 <p><strong>Port</strong> : Indicate 80 for HTTP, 443 for HTTPS, or another port if you’d prefer.</p>
 <p>Complete the other fields if necessary. Once the configuration is complete, click on “<strong>OK</strong>” to finish the creation.</p>
 <p>Now, open the Pydio archive that you previously downloaded. Then, unzip the contents of the pydio-core-5.x.x directory to the root of your website. Example:</p>
-<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen2.png" target="_blank" rel="noopener"><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen2-300x260.png" alt="pydioiisen2"></a>Pydio distribution unzipped</p>
+<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen2.png" target="_blank" rel="noopener"><img src="http://pangguoming.com/blog/images/26dcba34-e040-4c0b-8459-be58dcb4dfce.png" alt="pydioiisen2"></a>Pydio distribution unzipped</p>
 <h3 id="Requests-Filtering"><a href="#Requests-Filtering" class="headerlink" title="Requests Filtering"></a><span id="Requests_Filtering"><span style="color: inherit; font-family: inherit; font-size: 24.5px;">Requests Filtering</span></span></h3><p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen3.png" target="_blank" rel="noopener"> <img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen3.png" alt="pydioiisen3"></a>For security reason, it’s necessary to prohibit access to the “<strong>data</strong>” directory of Pydio. To do this, you can either place the data directory out of the Pydio website’s root, or you can create an IIS rule to prevent access, we will do the latter. For this, you must have the “<strong>Request Filtering</strong>” functionality in IIS (the name of this functionality is dependent on the version). Once in the Pydio site, click on the icon which is presented to the left of this tutorial, and click on “<strong>Add hidden segment</strong>” on the right in the IIS window, shown below. Fill the field “<strong>data</strong>”, then confirm to create the protection rule.</p>
-<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen4.png" target="_blank" rel="noopener"><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen4-300x233.png" alt="pydioiisen4"></a>Adding a hidden segment</p>
+<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen4.png" target="_blank" rel="noopener"><img src="http://pangguoming.com/blog/images/e7fdf10c-e781-49e6-bf25-c9933002f09f.png" alt="pydioiisen4"></a>Adding a hidden segment</p>
 <p>If not already accessible, you may have to add this module to IIS. To do this, activate the “<strong>Request Filtering</strong>” by “adding features”.</p>
-<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen5.png" target="_blank" rel="noopener"><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen5-236x300.png" alt="pydioiisen5"></a>Enable Request Filtering feature</p>
+<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen5.png" target="_blank" rel="noopener"><img src="http://pangguoming.com/blog/images/8a2600d1-55bd-46ca-b217-f3478b3722f9.png" alt="pydioiisen5"></a>Enable Request Filtering feature</p>
 <p>Once the addition is complete, you can perform the operation described previously.</p>
 <h3 id="Authorization-Rules"><a href="#Authorization-Rules" class="headerlink" title="Authorization Rules"></a><span id="Authorization_Rules">Authorization Rules</span></h3><p>Using Request Filtering keeps the public folder from working in its default location.  We can use <strong>Authorization Rules</strong> to disallow access to certain subfolders, which allows overriding at a lower level.  Thus, let’s “deny all” at the data folder, and “allow all” at the public folder.  See below for as sample <strong><em>web.config</em></strong> files and their location using <strong>\</strong> as the root installation location of Pydio.</p>
 <ul>
@@ -453,7 +453,7 @@
 <p>When doing an upgrade, add Modify rights at the root level and then remove it after you finish the in-Pydio upgrade.</p>
 <pre><code>### &lt;span id=&quot;PHP_configuration&quot;&gt;PHP configuration&lt;/span&gt;
 </code></pre><p>Now, we will configure PHP to prevent Pydio’s “<strong>PHP Output Buffer disabled</strong>” warning on the diagnostic page. Click on “<strong>PHP Manager</strong>” then “<strong>Manage all parameters</strong>”.</p>
-<p><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen6-300x35.jpg" alt="pydioiisen6">Disabling output_buffering</p>
+<p><img src="http://pangguoming.com/blog/images/0f97bcef-4edc-410c-8850-9b6c799ca008.jpg" alt="pydioiisen6">Disabling output_buffering</p>
 <p>Use the search area to find the parameter “<strong>output_buffering</strong>”. Double click on the parameter and write the value to “<strong>off</strong>”. The website php.net indicates:</p>
 <p>“<em>You can enable output buffering for all files by setting this directive to ‘On’. If you wish to limit the size of the buffer to a certain size – you can use a maximum number of bytes instead of ‘On’, as a value for this directive (e.g., output_buffering=4096). As of PHP 4.3.5, this directive is always Off in PHP-CLI.”</em></p>
 <pre><code>## &lt;span id=&quot;Installing_the_application&quot;&gt;Installing the application&lt;/span&gt;
@@ -463,28 +463,28 @@
 <p>If you want to activate the automatic redirection to HTTPS on your site, modify the file “<strong>conf/bootstrap_conf.php</strong>” of Pydio and remove comment:</p>
 <p>define(“AJXP_FORCE_SSL_REDIRECT”, true);</p>
 <p>Start the setup with the area “<strong>Admin access</strong>”, set a name for the Administrator account, a display name for this account, and enter a passphrase.</p>
-<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen7.png" target="_blank" rel="noopener"><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen7-300x239.png" alt="pydioiisen7"></a>Pydio Install : Administrator user</p>
+<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen7.png" target="_blank" rel="noopener"><img src="http://pangguoming.com/blog/images/828803cf-1bfb-4cdd-893c-4c4544cadd33.png" alt="pydioiisen7"></a>Pydio Install : Administrator user</p>
 <p>Go to “<strong>Global options</strong>” and choose “<strong>English</strong>” for the “<strong>Default Language</strong>”.</p>
-<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen8.png" target="_blank" rel="noopener"><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen8-300x176.png" alt="pydioiisen8"></a>Pydio Install: Global Options</p>
+<p><a href="https://pyd.io/wp-content/uploads/2014/02/pydioiisen8.png" target="_blank" rel="noopener"><img src="http://pangguoming.com/blog/images/1f4cce9c-c1a6-40c5-aa22-88c37223d972.png" alt="pydioiisen8"></a>Pydio Install: Global Options</p>
 <p>This next step is the trickiest. Indeed, to store data, Pydio can use a database but it isn’t an obligation. If you want to do an installation without database, go to step 1 below. If you want to do an installation with a database, go to step 2.</p>
 <pre><code>1.  **Without a database**
 </code></pre><p>Without a database, no configuration is necessary, you must only select “<strong>No Database (Quick Start)</strong>” and continue.</p>
-<p><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen9-300x221.png" alt="pydioiisen9">Installing with or without DB</p>
+<p><img src="http://pangguoming.com/blog/images/30f9e733-784a-4270-805b-8e1c2864cdc7.png" alt="pydioiisen9">Installing with or without DB</p>
 <pre><code>1.  
 </code></pre><p><strong>With database</strong></p>
 <p>You should already have a MySQL Server installed on your machine if you followed the prerequisites. If so, Open a CMD to establish a connection with the MySQL Server (make sure you cd to the bin directory of MySQL). Run the following command:</p>
-<pre><code>&lt;pre&gt;mysql.exe –u root –p<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">You get this :</span><br><span class="line"></span><br><span class="line">[![pydioiisen10](https://pyd.io/wp-content/uploads/2014/02/pydioiisen10-300x151.png)](https://pyd.io/wp-content/uploads/2014/02/pydioiisen10.png)Accessing Mysql server from command line</span><br><span class="line"></span><br><span class="line">Then, for example I have decided to create a database named “**itconnectpydio**” for Pydio only, with a user named “**pydio**”, which has “password” as its passphrase. This is just an example. You should change these defaults in your environment.</span><br><span class="line"></span><br><span class="line">The user “**pydio**” must have all privileges on tables in the database because it must manage the data stored in it. Enter the following commands:</span><br><span class="line"></span><br><span class="line">**# Create the database**</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;CREATE DATABASE itconnectpydio;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;pre&gt;mysql.exe –u root –p<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">You get this :</span><br><span class="line"></span><br><span class="line">[![pydioiisen10](http://pangguoming.com/blog/images/6bc65932-20f2-471f-bf78-ff08974efb1f.png)](https://pyd.io/wp-content/uploads/2014/02/pydioiisen10.png)Accessing Mysql server from command line</span><br><span class="line"></span><br><span class="line">Then, for example I have decided to create a database named “**itconnectpydio**” for Pydio only, with a user named “**pydio**”, which has “password” as its passphrase. This is just an example. You should change these defaults in your environment.</span><br><span class="line"></span><br><span class="line">The user “**pydio**” must have all privileges on tables in the database because it must manage the data stored in it. Enter the following commands:</span><br><span class="line"></span><br><span class="line">**# Create the database**</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;CREATE DATABASE itconnectpydio;</span><br></pre></td></tr></table></figure>
 </code></pre><p><strong># Create the user</strong></p>
 <pre><code>&lt;pre&gt;CREATE USER &quot;pydio&quot;@&quot;localhost&quot; IDENTIFIED BY &quot;password&quot;;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**# Assign rights**</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;GRANT ALL PRIVILEGES ON itconnectpydio.* TO &quot;pydio&quot;@&quot;localhost&quot;;</span><br></pre></td></tr></table></figure>
 </code></pre><p>Then, go to the webpage of Pydio configuration, choose “Database” for “Storage Type” and “MySQL” for “Database”. After, complete the fields to establish a connection with the MySQL server.</p>
 <p>Once that is complete, click on “Try connecting to the database” to verify the connection between Pydio and the SQL server.</p>
 <p>If the configuration is correct, you will have this message: “<strong>Connection established</strong>!”</p>
-<p><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen11-300x203.png" alt="pydioiisen11">Testing connection parameters</p>
+<p><img src="http://pangguoming.com/blog/images/344a93ff-19a9-4237-aafd-82f70fbb8810.png" alt="pydioiisen11">Testing connection parameters</p>
 <p>This is the last step, create one or many users different of the account “Administrator” (optional). Then, click on “<strong>Install Pydio Now!”</strong></p>
 <pre><code>1.  
 </code></pre><p><span style="font-size: large;"><strong>First connection</strong></span></p>
 <p>When the installation is complete, you will be redirected on the login page of Pydio. Use the account “<strong>Administrator</strong>”, or another account that you created in the previous step.</p>
-<p><img src="https://pyd.io/wp-content/uploads/2014/02/pydioiisen13-227x300.png" alt="pydioiisen13">Login screen: install successfull!</p>
+<p><img src="http://pangguoming.com/blog/images/880f6349-f536-42ed-8306-2288d98fae77.png" alt="pydioiisen13">Login screen: install successfull!</p>
 <p>You are now connected and ready to use Pydio!<br></p>
 
       
@@ -663,7 +663,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -685,7 +685,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

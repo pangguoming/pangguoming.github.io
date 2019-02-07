@@ -103,16 +103,16 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="1.Windows下安装RabbitMQ需要以下几个步骤    (1)：下载erlang，原因在于RabbitMQ服务端代码是使用并发式语言erlang编写的，下载地址：http://www.erlang.org/downloads，双击.exe文件进行安装就好，安装完成之后创建一个名为ERLANG_HOME的环境变量，其值指向erlang的安装目录，同时将%ERLANG_HOME%\bin加入到">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://img.blog.csdn.net/20161114102829877?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20161114102833642?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20161114102957378?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20161114103039540">
-<meta property="og:image" content="http://img.blog.csdn.net/20161114105133920">
-<meta property="og:updated_time" content="2019-01-26T15:01:16.943Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/fa2f9af2-832a-4b19-9c3e-b0f3147f7882.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/e70ad789-c7ec-4196-993c-8e064d3e6ed4.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/4473fe69-e80a-4672-a618-ba551488b87b.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/a359284c-0b35-4743-8964-d4e46bee0817.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/8acc3259-6d99-492a-b2e2-96e58c768e2c.jpg">
+<meta property="og:updated_time" content="2019-02-07T11:13:12.982Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="：Windows下RabbitMQ安装及入门">
 <meta name="twitter:description" content="1.Windows下安装RabbitMQ需要以下几个步骤    (1)：下载erlang，原因在于RabbitMQ服务端代码是使用并发式语言erlang编写的，下载地址：http://www.erlang.org/downloads，双击.exe文件进行安装就好，安装完成之后创建一个名为ERLANG_HOME的环境变量，其值指向erlang的安装目录，同时将%ERLANG_HOME%\bin加入到">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20161114102829877?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/fa2f9af2-832a-4b19-9c3e-b0f3147f7882.jpg">
 
 
 
@@ -344,14 +344,14 @@
       
         <p>1.Windows下安装RabbitMQ需要以下几个步骤</p>
 <p>   (1)：下载erlang，原因在于RabbitMQ服务端代码是使用并发式语言erlang编写的，下载地址：<a href="http://www.erlang.org/downloads，双击.exe文件进行安装就好，安装完成之后创建一个名为ERLANG_HOME的环境变量，其值指向erlang的安装目录，同时将%ERLANG_HOME%\bin加入到Path中，最后打开命令行，输入erl，如果出现erlang的版本信息就表示erlang语言环境安装成功；" target="_blank" rel="noopener">http://www.erlang.org/downloads，双击.exe文件进行安装就好，安装完成之后创建一个名为ERLANG_HOME的环境变量，其值指向erlang的安装目录，同时将%ERLANG_HOME%\bin加入到Path中，最后打开命令行，输入erl，如果出现erlang的版本信息就表示erlang语言环境安装成功；</a></p>
-<p><img src="http://img.blog.csdn.net/20161114102829877?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">                      </p>
-<p> <img src="http://img.blog.csdn.net/20161114102833642?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/fa2f9af2-832a-4b19-9c3e-b0f3147f7882.jpg" alt="">                      </p>
+<p> <img src="http://pangguoming.com/blog/images/e70ad789-c7ec-4196-993c-8e064d3e6ed4.jpg" alt=""></p>
 <p>   (2)：下载RabbitMQ，下载地址：<a href="http://www.rabbitmq.com/，同样双击.exe进行安装就好" target="_blank" rel="noopener">http://www.rabbitmq.com/，同样双击.exe进行安装就好</a>(这里需要注意一点，默认的安装目录是C:/Program Files/….，这个目录中是存在空格符的，我们需要改变安装目录，貌似RabbitMQ安装目录中是不允许有空格的，我之前踩过这个大坑)；</p>
 <p>   (3)：安装RabbitMQ-Plugins，这个相当于是一个管理界面，方便我们在浏览器界面查看RabbitMQ各个消息队列以及exchange的工作情况，安装方法是：打开命令行cd进入rabbitmq的sbin目录(我的目录是：E:\software\rabbitmq\rabbitmq_server-3.6.5\sbin)，输入：rabbitmq-plugins enable rabbitmq_management命令，稍等会会发现出现plugins安装成功的提示，默认是安装6个插件，如果你在安装插件的过程中出现了下面的错误：        </p>
-<p><img src="http://img.blog.csdn.net/20161114102957378?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/4473fe69-e80a-4672-a618-ba551488b87b.jpg" alt=""></p>
 <p>   解决方法是：首先在命令行输入：rabbitmq-service stop，接着输入rabbitmq-service remove，再接着输入rabbitmq-service install，接着输入rabbitmq-service start，最后重新输入rabbitmq-plugins enable rabbitmq_management试试，我是这样解决的；</p>
 <p>   (4)：插件安装完之后，在浏览器输入<a href="http://localhost:15672进行验证，你会看到下面界面，输入用户名：guest，密码：guest你就可以进入管理界面，当然用户名密码你都可以变的；" target="_blank" rel="noopener">http://localhost:15672进行验证，你会看到下面界面，输入用户名：guest，密码：guest你就可以进入管理界面，当然用户名密码你都可以变的；</a></p>
-<p><img src="http://img.blog.csdn.net/20161114103039540" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/a359284c-0b35-4743-8964-d4e46bee0817.jpg" alt=""></p>
 <p>2.安装完RabbitMQ之后，我们先来简单了解下RabbitMQ中涉及到的几个概念</p>
 <pre><code>producer：消息生产者
 
@@ -366,7 +366,7 @@ consumer：消息消费者
  queue：消息队列，用于存放消息，他接收exchange路由过来的消息，我们可以对队列内容进行持久化操作，那么queue到底接收那个exchange路由的消息呢？这个时候就要用到binding key(绑定键)了，绑定键会将队列和exchange进行绑定，至于绑定方式，RabbitMQ提供了多种方式，大家可以看看鸿洋大神的RabbitMQ博客系列([点击查看](http://blog.csdn.net/lmj623565791/article/category/2386657))；
 
  以上就是RabbitMQ涉及到的一些概念了，用一张图表示这些概念之间的关系就是：
-</code></pre><p><img src="http://img.blog.csdn.net/20161114105133920" alt=""></p>
+</code></pre><p><img src="http://pangguoming.com/blog/images/8acc3259-6d99-492a-b2e2-96e58c768e2c.jpg" alt=""></p>
 <p>3.RabbitMQ简单使用</p>
 <p>   producer(生产者)端步骤：</p>
 <pre><code>(1)：创建ConnectionFactory，并且设置一些参数，比如hostname,portNumber等等
@@ -556,7 +556,7 @@ consumer：消息消费者
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -578,7 +578,7 @@ consumer：消息消费者
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -103,14 +103,14 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="SpringMVC的工作原理图：  SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。 2、  DispatcherServlet收到请求调用HandlerMapping处理器映射器。 3、  处理器映射器找到具体的处理器(可以根据xml配置、注解进行查找)，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet。 4、">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/249993/201612/249993-20161212142542042-2117679195.jpg">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/249993/201702/249993-20170207135959401-404841652.png">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/249993/201702/249993-20170207140151791-1932120070.png">
-<meta property="og:updated_time" content="2019-01-26T14:39:33.918Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/0dac8a8f-ac12-41fd-88c6-3ec5cc982903.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/8b7b6655-b2c6-4e2a-a726-23d95687c861.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/9434718d-bd27-49b9-8aab-673ff00e17db.png">
+<meta property="og:updated_time" content="2019-02-07T11:06:43.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringMVC工作原理">
 <meta name="twitter:description" content="SpringMVC的工作原理图：  SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。 2、  DispatcherServlet收到请求调用HandlerMapping处理器映射器。 3、  处理器映射器找到具体的处理器(可以根据xml配置、注解进行查找)，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet。 4、">
-<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/249993/201612/249993-20161212142542042-2117679195.jpg">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/0dac8a8f-ac12-41fd-88c6-3ec5cc982903.jpg">
 
 
 
@@ -341,7 +341,7 @@
 
       
         <p>SpringMVC的工作原理图：</p>
-<p><img src="https://images2015.cnblogs.com/blog/249993/201612/249993-20161212142542042-2117679195.jpg" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/0dac8a8f-ac12-41fd-88c6-3ec5cc982903.jpg" alt=""></p>
 <h3 id="SpringMVC流程"><a href="#SpringMVC流程" class="headerlink" title="SpringMVC流程"></a>SpringMVC流程</h3><p>1、  用户发送请求至前端控制器DispatcherServlet。</p>
 <p>2、  DispatcherServlet收到请求调用HandlerMapping处理器映射器。</p>
 <p>3、  处理器映射器找到具体的处理器(可以根据xml配置、注解进行查找)，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet。</p>
@@ -371,7 +371,7 @@
 <p><strong>在将SpringMVC之前我们先来看一下什么是MVC模式</strong></p>
 <p>MVC：MVC是一种设计模式</p>
 <p>MVC的原理图：</p>
-<p><img src="https://images2015.cnblogs.com/blog/249993/201702/249993-20170207135959401-404841652.png" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/8b7b6655-b2c6-4e2a-a726-23d95687c861.png" alt=""></p>
 <p><strong>分析：</strong></p>
 <p>M-Model 模型（完成业务逻辑：有javaBean构成，service+dao+entity）</p>
 <p>V-View 视图（做界面的展示  jsp，html……）</p>
@@ -379,7 +379,7 @@
 <p><strong>springMVC是什么：</strong> </p>
 <p><strong> </strong>springMVC是一个MVC的开源框架，springMVC=struts2+spring，springMVC就相当于是Struts2加上sring的整合，但是这里有一个疑惑就是，springMVC和spring是什么样的关系呢？这个在百度百科上有一个很好的解释：意思是说，springMVC是spring的一个后续产品，其实就是spring在原有基础上，又提供了web应用的MVC模块，可以简单的把springMVC理解为是spring的一个模块（类似AOP，IOC这样的模块），网络上经常会说springMVC和spring无缝集成，其实springMVC就是spring的一个子模块，所以根本不需要同spring进行整合。</p>
 <p><strong>SpringMVC的原理图：</strong></p>
-<p><strong><img src="https://images2015.cnblogs.com/blog/249993/201702/249993-20170207140151791-1932120070.png" alt=""></strong></p>
+<p><strong><img src="http://pangguoming.com/blog/images/9434718d-bd27-49b9-8aab-673ff00e17db.png" alt=""></strong></p>
 <p><strong>看到这个图大家可能会有很多的疑惑，现在我们来看一下这个图的步骤：（可以对比MVC的原理图进行理解）</strong></p>
 <p>第一步:用户发起请求到前端控制器（DispatcherServlet）</p>
 <p>第二步：前端控制器请求处理器映射器（HandlerMappering）去查找处理器（Handle）：通过xml配置或者注解进行查找</p>
@@ -581,7 +581,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -603,7 +603,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

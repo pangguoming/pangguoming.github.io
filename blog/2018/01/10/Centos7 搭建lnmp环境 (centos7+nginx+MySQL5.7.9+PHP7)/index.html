@@ -103,16 +103,16 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="阿里云一台服务器出现问题！ 我估计是一键安装包环境的原因，所以打算重新搭建下环境！ 首先，当然是先做好快照！安全第一！ 对系统盘做更换系统操作，装上纯净版的centos。  装好后，进入系统 一、挂载数据盘 1df -h  只有系统盘了，挂载上原来的数据盘 1fdisk -l  看到数据盘了/dev/vdb1 挂载上这个数据盘， 123mkdir /data0mount /dev/vdb1 /da">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/882728/201703/882728-20170302164615970-950808316.jpg">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/882728/201703/882728-20170302164812313-839534952.jpg">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/882728/201703/882728-20170302165022329-141671912.jpg">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/882728/201703/882728-20170302222425751-35413248.jpg">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/882728/201703/882728-20170302230249657-1868847485.jpg">
-<meta property="og:updated_time" content="2019-01-26T15:01:08.319Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/48f38d23-810d-4734-a1f4-1c60d8bfbd35.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/03a18a5e-18b3-495c-bf20-9313ec24f83d.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/9dec8c8c-c17c-4101-a1ff-3c41fedc1119.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/32d2bf0e-4d8c-4cb7-93c4-46cf33a680d8.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/d595594a-032a-426c-b40b-dde94b80e6db.jpg">
+<meta property="og:updated_time" content="2019-02-07T11:12:02.015Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos7 搭建lnmp环境 (centos7+nginx+MySQL5.7.9+PHP7)">
 <meta name="twitter:description" content="阿里云一台服务器出现问题！ 我估计是一键安装包环境的原因，所以打算重新搭建下环境！ 首先，当然是先做好快照！安全第一！ 对系统盘做更换系统操作，装上纯净版的centos。  装好后，进入系统 一、挂载数据盘 1df -h  只有系统盘了，挂载上原来的数据盘 1fdisk -l  看到数据盘了/dev/vdb1 挂载上这个数据盘， 123mkdir /data0mount /dev/vdb1 /da">
-<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/882728/201703/882728-20170302164615970-950808316.jpg">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/48f38d23-810d-4734-a1f4-1c60d8bfbd35.jpg">
 
 
 
@@ -349,14 +349,14 @@
 <p> 装好后，进入系统</p>
 <p><strong>一、挂载数据盘</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
-<p><img src="https://images2015.cnblogs.com/blog/882728/201703/882728-20170302164615970-950808316.jpg" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/48f38d23-810d-4734-a1f4-1c60d8bfbd35.jpg" alt=""></p>
 <p>只有系统盘了，挂载上原来的数据盘</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure>
-<p><img src="https://images2015.cnblogs.com/blog/882728/201703/882728-20170302164812313-839534952.jpg" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/03a18a5e-18b3-495c-bf20-9313ec24f83d.jpg" alt=""></p>
 <p>看到数据盘了/dev/vdb1</p>
 <p>挂载上这个数据盘，</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir /data0</span><br><span class="line"></span><br><span class="line">mount /dev/vdb1 /data0</span><br></pre></td></tr></table></figure>
-<p><img src="https://images2015.cnblogs.com/blog/882728/201703/882728-20170302165022329-141671912.jpg" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/9dec8c8c-c17c-4101-a1ff-3c41fedc1119.jpg" alt=""></p>
 <p>然后写入分区：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &apos;/dev/vdb1  /data0 ext4    defaults    0  0&apos; &gt;&gt; /etc/fstab</span><br></pre></td></tr></table></figure>
 <p>不写入分区表，重启后又要挂载的。</p>
@@ -376,7 +376,7 @@
 <p>Redirecting to /bin/systemctl start  nginx.service</p>
 <p>4.访问http://你的ip/</p>
 <p>如果成功安装会出来nginx默认的欢迎界面</p>
-<p><img src="https://images2015.cnblogs.com/blog/882728/201703/882728-20170302222425751-35413248.jpg" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/32d2bf0e-4d8c-4cb7-93c4-46cf33a680d8.jpg" alt=""></p>
 <p><strong>三、安装MySQL5.7.*</strong></p>
 <p>1.安装mysql源</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># yum localinstall  http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm</span><br></pre></td></tr></table></figure>
@@ -393,7 +393,7 @@
 <p>证明启动成功</p>
 <p>6.获取mysql默认生成的密码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># grep &apos;temporary password&apos; /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
-<p><img src="https://images2015.cnblogs.com/blog/882728/201703/882728-20170302230249657-1868847485.jpg" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/d595594a-032a-426c-b40b-dde94b80e6db.jpg" alt=""></p>
 <p> 选中的就是密码。</p>
 <p>7.换成自己的密码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mysql -uroot -p</span><br></pre></td></tr></table></figure>
@@ -583,7 +583,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -605,7 +605,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -103,13 +103,13 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="在执行完以上代码后，我们就成功地创建了一个消息框实例，在Chrome下面它最终会显示成这样：  到这里我们已经成功了一半，但能不能正确地显示出这个消息框，最终还取决于用户的授权。鉴于浏览器的安全机制，只有用户同意网页弹出消息通知框，消息通知才能够真正的显示出来。所以现在我们要做的就是申请用户授权。 Notification类提供了一个requestPermission方法，用来请求用户授权，代码如">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/876694/201612/876694-20161207171125319-1314582193.png">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/876694/201612/876694-20161207171125319-1314582193.png">
-<meta property="og:updated_time" content="2019-01-26T14:39:06.283Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/c240fd42-1404-4203-8e94-2ede9a5bf5d0.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/c240fd42-1404-4203-8e94-2ede9a5bf5d0.png">
+<meta property="og:updated_time" content="2019-02-07T11:06:19.183Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML5新特性[ Notifications ] 桌面消息">
 <meta name="twitter:description" content="在执行完以上代码后，我们就成功地创建了一个消息框实例，在Chrome下面它最终会显示成这样：  到这里我们已经成功了一半，但能不能正确地显示出这个消息框，最终还取决于用户的授权。鉴于浏览器的安全机制，只有用户同意网页弹出消息通知框，消息通知才能够真正的显示出来。所以现在我们要做的就是申请用户授权。 Notification类提供了一个requestPermission方法，用来请求用户授权，代码如">
-<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/876694/201612/876694-20161207171125319-1314582193.png">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/c240fd42-1404-4203-8e94-2ede9a5bf5d0.png">
 
 
 
@@ -340,11 +340,11 @@
 
       
         <p>在执行完以上代码后，我们就成功地创建了一个消息框实例，在Chrome下面它最终会显示成这样：</p>
-<p><img src="https://images2015.cnblogs.com/blog/876694/201612/876694-20161207171125319-1314582193.png" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/c240fd42-1404-4203-8e94-2ede9a5bf5d0.png" alt=""></p>
 <p>到这里我们已经成功了一半，但能不能正确地显示出这个消息框，最终还取决于用户的授权。鉴于浏览器的安全机制，只有用户同意网页弹出消息通知框，消息通知才能够真正的显示出来。所以现在我们要做的就是申请用户授权。</p>
 <p>Notification类提供了一个requestPermission方法，用来请求用户授权，代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Notification.requestPermission(function (permission) &#123;</span><br><span class="line">　　console.log(permission);</span><br><span class="line">　　popNotice();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p><img src="https://images2015.cnblogs.com/blog/876694/201612/876694-20161207171125319-1314582193.png" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/c240fd42-1404-4203-8e94-2ede9a5bf5d0.png" alt=""></p>
 <p>温馨提示：用户一旦没有授权，拒绝，以上方法将不再执行！</p>
 <h3 id="示例demo"><a href="#示例demo" class="headerlink" title="示例demo"></a>示例demo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head lang=&quot;en&quot;&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;桌面消息&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;!--JS代码：--&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    // 判断是否支持Notification</span><br><span class="line">    if (window.Notification) &#123;</span><br><span class="line">        //Notification 方法</span><br><span class="line">        var popNotice = function () &#123;</span><br><span class="line">            var notification = new Notification(&quot;Hi，帅哥：&quot;, &#123;</span><br><span class="line">                body: &apos;可以加你为好友吗？&apos;, //显示消息的内容</span><br><span class="line">                icon: &apos;http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg&apos; //显示消息的缩略图</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            //消息框被点击时被调用</span><br><span class="line">            //可以打开相关的视图，同时关闭该消息框等操作</span><br><span class="line">            notification.onclick = function () &#123;</span><br><span class="line">                notification.close();</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            //5秒后关闭消息框</span><br><span class="line">            notification.onshow = function () &#123;</span><br><span class="line">                setTimeout(function () &#123;</span><br><span class="line">                    notification.close();</span><br><span class="line">                &#125;, 5000);</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        if (Notification.permission == &quot;granted&quot;) &#123; //授权</span><br><span class="line">            popNotice();</span><br><span class="line">        &#125; else if (Notification.permission != &quot;denied&quot;) &#123; //没有授权时询问</span><br><span class="line">            Notification.requestPermission(function (permission) &#123;</span><br><span class="line">                console.log(permission);</span><br><span class="line">                popNotice();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        alert(&apos;浏览器不支持Notification&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
       
@@ -529,7 +529,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -551,7 +551,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

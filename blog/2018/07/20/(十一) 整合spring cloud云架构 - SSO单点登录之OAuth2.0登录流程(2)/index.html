@@ -103,12 +103,12 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="上一篇是站在巨人的肩膀上去研究OAuth2.0，也是为了快速帮助大家认识OAuth2.0，闲话少说，我根据框架中OAuth2.0的使用总结，画了一个简单的流程图（根据用户名+密码实现OAuth2.0的登录认证）：  上面的图很清楚的描述了当前登录login的流程，现在我们针对于login做成相关的微服务，解析如下： 请求方式：POST服务URL： http://localhost:8080/use">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://dl2.iteye.com/upload/attachment/0127/4424/abcc9efb-8ea1-30c2-ba32-43a2edf552f0.png">
-<meta property="og:updated_time" content="2019-01-26T14:39:35.154Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/eccaed60-b6e1-4b96-a656-88f8587b5869.png">
+<meta property="og:updated_time" content="2019-02-07T11:06:44.298Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="(十一) 整合spring cloud云架构 - SSO单点登录之OAuth2.0登录流程(2)">
 <meta name="twitter:description" content="上一篇是站在巨人的肩膀上去研究OAuth2.0，也是为了快速帮助大家认识OAuth2.0，闲话少说，我根据框架中OAuth2.0的使用总结，画了一个简单的流程图（根据用户名+密码实现OAuth2.0的登录认证）：  上面的图很清楚的描述了当前登录login的流程，现在我们针对于login做成相关的微服务，解析如下： 请求方式：POST服务URL： http://localhost:8080/use">
-<meta name="twitter:image" content="http://dl2.iteye.com/upload/attachment/0127/4424/abcc9efb-8ea1-30c2-ba32-43a2edf552f0.png">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/eccaed60-b6e1-4b96-a656-88f8587b5869.png">
 
 
 
@@ -339,7 +339,7 @@
 
       
         <p>上一篇是站在巨人的肩膀上去研究OAuth2.0，也是为了快速帮助大家认识OAuth2.0，闲话少说，我根据框架中OAuth2.0的使用总结，画了一个简单的流程图（根据用户名+密码实现OAuth2.0的登录认证）：</p>
-<p><img src="http://dl2.iteye.com/upload/attachment/0127/4424/abcc9efb-8ea1-30c2-ba32-43a2edf552f0.png" alt=""><br> 上面的图很清楚的描述了当前登录login的流程，现在我们针对于login做成相关的微服务，解析如下：</p>
+<p><img src="http://pangguoming.com/blog/images/eccaed60-b6e1-4b96-a656-88f8587b5869.png" alt=""><br> 上面的图很清楚的描述了当前登录login的流程，现在我们针对于login做成相关的微服务，解析如下：</p>
 <div>请求方式：POST<br>服务URL： <a href="http://localhost:8080/user/login" target="_blank" rel="noopener">http://localhost:8080/user/login</a><br>参数类型:application/json<br>Headers: Content-Type: application/json<br><div>             Authorization: Basic QXkjkdkYkhfeyKOKKHUM67ejfjeSfnrRdk5nPT0=<br>Body:{<br><br>       “userName”:”admin”,  —也可以是手机号码等<br><br>      “password”: “e10adc3949ba59abbe56e057f20f883e”<br><br><div>}<br><br>返回值类型: application/json<br><br>返回的结果集： {<br><br> “code”: “200”,<br><br> “message”: “Success”,<br><br> “version”: “v1.0”,<br><br> “data”: {<br><br>   “userInfo”: {<br><br>     “userId”: “00001”,<br><br>     “pwd”: “e10adc3949ba59abbe56e057f20f883e”,<br><br>     “userName”: “admin”,<br><br>     “mobile”: “15875500000”,<br><br>     “telephone”: “”,<br><br>     “wechat”: “”,<br><br>     “email”: “<a href="mailto:xxx@qq.com" target="_blank" rel="noopener">xxx@qq.com</a>“,<br><br>     “status”: “1”,<br><br>     “createTime”: “2017-06-26”<br><br>    },<br><br>   “roleIds”: “100”,<br><br>   “tokenInfo”: {<br><br>     “accessToken”:”4de55a69-e372-4766-acd3-1c419d6f2fda”,<br><br>     “tokenType”: “bearer”,<br><br>     “webTokent”:”uHSLjfJoQwU4t4PAqCzH1SN0fp7PUWKluPNS+x1dZ8R9Gx+NJkBI7w==”,<br><br>     “refreshToken”:”d3d71594-5c3f-4a68-a7e5-b8d21c4fa73b”,<br><br>     “expiresIn”: 34644,<br><br>     “scope”: “read write”<br><br>    }<br><br>  }<br><br>}<br>备注： 可以使用Postman工具进行测试<br>框架设计思想： 提供独立的commonservice-sso的微服务、提供component-sso的依赖组件、提供针对于用户登录的微服务客户端user-service微服务接口。<br><br>整个执行的流程如下：user-service  —&gt;   commonservice-sso  —&gt; component-sso<br>这里还没有讲解到服务网关，后面会涉及到服务网关和sso单点登录之间如何实现服务认证和鉴权。<br><div><br><div>从现在开始，我这边会将近期研发的spring cloud微服务云架构的搭建过程和精髓记录下来，帮助更多有兴趣研发spring cloud框架的朋友，大家来一起探讨spring cloud架构的搭建过程及如何运用于企业项目。</div></div></div></div></div>
       
     </div>
@@ -516,7 +516,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -538,7 +538,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

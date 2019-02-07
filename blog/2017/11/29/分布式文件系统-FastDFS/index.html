@@ -103,14 +103,14 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="一、FastDFS简介 一、FastDFS简介 FastDFS是由国人余庆所开发，其项目地址：https://github.com/happyfish100 FastDFS是一个轻量级的开源分布式文件系统，主要解决了大容量的文件存储和高并发访问的问题，文件存取时实现了负载均衡。 支持存储服务器在线扩容,支持相同的文件只保存一份,节约磁盘。 FastDFS只能通过Client API访问，不支持PO">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://obbogqhb1.bkt.clouddn.com/fastdfs2.png">
-<meta property="og:image" content="http://obbogqhb1.bkt.clouddn.com/fastdfs1.png">
-<meta property="og:image" content="http://obbogqhb1.bkt.clouddn.com/fastdfs3.png">
-<meta property="og:updated_time" content="2019-01-26T15:01:15.896Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/f118238b-f529-4821-b26f-2c5e90889633.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/571f959c-0614-4537-9520-a281090d4f90.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/ba471ae7-79ad-4523-85f2-9bead3e19818.png">
+<meta property="og:updated_time" content="2019-02-07T11:13:07.499Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式文件系统-FastDFS">
 <meta name="twitter:description" content="一、FastDFS简介 一、FastDFS简介 FastDFS是由国人余庆所开发，其项目地址：https://github.com/happyfish100 FastDFS是一个轻量级的开源分布式文件系统，主要解决了大容量的文件存储和高并发访问的问题，文件存取时实现了负载均衡。 支持存储服务器在线扩容,支持相同的文件只保存一份,节约磁盘。 FastDFS只能通过Client API访问，不支持PO">
-<meta name="twitter:image" content="http://obbogqhb1.bkt.clouddn.com/fastdfs2.png">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/f118238b-f529-4821-b26f-2c5e90889633.png">
 
 
 
@@ -354,8 +354,8 @@
 <h3 id="三、FastDFS同步机制"><a href="#三、FastDFS同步机制" class="headerlink" title="三、FastDFS同步机制"></a>三、FastDFS同步机制</h3><blockquote>
 <p>1、同一组内的storage server之间是对等的，文件上传、删除等操作可以在任意一台storage server上进行；<br> 2、文件同步只在同组内的storage server之间进行，采用push方式，即源服务器同步给目标服务器；<br> 3、源头数据才需要同步，备份数据不需要再次同步，否则就构成环路了；<br> 上述第二条规则有个例外，就是新增加一台storage server时，由已有的一台storage server将已有的所有数据（包括源头数据和备份数据）同步给该新增服务器。</p>
 </blockquote>
-<h3 id="四、FastDFS与集中存储方式对比"><a href="#四、FastDFS与集中存储方式对比" class="headerlink" title="四、FastDFS与集中存储方式对比"></a>四、FastDFS与集中存储方式对比</h3><p><a href="http://obbogqhb1.bkt.clouddn.com/fastdfs2.png" target="_blank" rel="noopener"><img src="http://obbogqhb1.bkt.clouddn.com/fastdfs2.png" alt="fastdfs2.png"></a></p>
-<h3 id="五、FastDFS和mogileFS对比"><a href="#五、FastDFS和mogileFS对比" class="headerlink" title="五、FastDFS和mogileFS对比"></a>五、FastDFS和mogileFS对比</h3><p><a href="http://obbogqhb1.bkt.clouddn.com/fastdfs1.png" target="_blank" rel="noopener"><img src="http://obbogqhb1.bkt.clouddn.com/fastdfs1.png" alt="fastdfs1.png"></a></p>
+<h3 id="四、FastDFS与集中存储方式对比"><a href="#四、FastDFS与集中存储方式对比" class="headerlink" title="四、FastDFS与集中存储方式对比"></a>四、FastDFS与集中存储方式对比</h3><p><a href="http://pangguoming.com/blog/images/f118238b-f529-4821-b26f-2c5e90889633.png"><img src="http://pangguoming.com/blog/images/f118238b-f529-4821-b26f-2c5e90889633.png" alt="fastdfs2.png"></a></p>
+<h3 id="五、FastDFS和mogileFS对比"><a href="#五、FastDFS和mogileFS对比" class="headerlink" title="五、FastDFS和mogileFS对比"></a>五、FastDFS和mogileFS对比</h3><p><a href="http://pangguoming.com/blog/images/571f959c-0614-4537-9520-a281090d4f90.png"><img src="http://pangguoming.com/blog/images/571f959c-0614-4537-9520-a281090d4f90.png" alt="fastdfs1.png"></a></p>
 <h3 id="六、FastDFS安装配置"><a href="#六、FastDFS安装配置" class="headerlink" title="六、FastDFS安装配置"></a>六、FastDFS安装配置</h3><h4 id="1、安装开发环境"><a href="#1、安装开发环境" class="headerlink" title="1、安装开发环境"></a>1、安装开发环境</h4><p><code class="hljs autoit"><span class="hljs-preprocessor"># yum groupinstall <span class="hljs-string">“Development Tools” <span class="hljs-string">“Server platform Development”<br></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #### 2、安装libfastcommon</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs vala&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# git clone https://github.com/happyfish100/libfastcommon.git  </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# cd libfastcommon/  </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# ./make.sh   </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# ./make.sh install  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
 <pre><code>#### 3、安装fastdfs
 
@@ -411,7 +411,7 @@
 </code></pre><p><span class="hljs-preprocessor"># nginx -t<br><span class="hljs-preprocessor"># nginx<br><span class="hljs-preprocessor"># /etc/init.d/fdfs_storaged restart<br><span class="hljs-preprocessor"># ss -tnl|grep -E <span class="hljs-string">“(80|23000)”<br>LISTEN     <span class="hljs-number">0      <span class="hljs-number">128          <em>:<span class="hljs-number">80                       </span></em>:<em><br>LISTEN     <span class="hljs-number">0      <span class="hljs-number">128          </span></span></em>:<span class="hljs-number">23000                    <em>:</em>    </span></span></span></span></span></span></span></span></p>
 <p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**上传文件**</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs gradle&quot;&gt;# fdfs_upload_file &lt;span class=&quot;hljs-regexp&quot;&gt;/etc/fdfs&lt;span class=&quot;hljs-regexp&quot;&gt;/client.conf /usr&lt;span class=&quot;hljs-regexp&quot;&gt;/share/wallpapers&lt;span class=&quot;hljs-regexp&quot;&gt;/CentOS7/contents&lt;span class=&quot;hljs-regexp&quot;&gt;/images/&lt;span class=&quot;hljs-number&quot;&gt;2560x1600.jpg  </span><br><span class="line">mage1&lt;span class=&quot;hljs-regexp&quot;&gt;/M00/&lt;span class=&quot;hljs-number&quot;&gt;00&lt;span class=&quot;hljs-regexp&quot;&gt;/00/CgEOx1ehc2eATt6RAA6q2wjnW8s035.jpg  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
 <p><strong>查看测试</strong></p>
-<p><a href="http://obbogqhb1.bkt.clouddn.com/fastdfs3.png" target="_blank" rel="noopener"><img src="http://obbogqhb1.bkt.clouddn.com/fastdfs3.png" alt="fastdfs3.png"></a></p>
+<p><a href="http://pangguoming.com/blog/images/ba471ae7-79ad-4523-85f2-9bead3e19818.png"><img src="http://pangguoming.com/blog/images/ba471ae7-79ad-4523-85f2-9bead3e19818.png" alt="fastdfs3.png"></a></p>
 <blockquote>
 <p> 作者：<code>Antony</code> <code>WX&amp;QQ：1257465991</code><br> Q/A：如有问题请慷慨提出</p>
 <p>如有格式问题请访问：<br><a href="http://zantony.top/2016/08/02/%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F-FastDFS/" target="_blank" rel="noopener">http://zantony.top/2016/08/02/%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F-FastDFS/</a></p>
@@ -600,7 +600,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -622,7 +622,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

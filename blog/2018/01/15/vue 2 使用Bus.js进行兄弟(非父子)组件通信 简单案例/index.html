@@ -103,15 +103,15 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="vue2中废弃了$dispatch和$broadcast广播和分发事件的方法。父子组件中可以用props和$emit()。如何实现非父子组件间的通信，可以通过实例一个vue实例Bus作为媒介，要相互通信的兄弟组件之中，都引入Bus，之后通过分别调用Bus事件触发和监听来实现组件之间的通信和参数传递。   首先需要在任意地方添加一个bus.js  在bus.js里面 写入下面信息 121 impo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://images2017.cnblogs.com/blog/1141849/201709/1141849-20170924112543384-1557519414.png">
-<meta property="og:image" content="https://images2017.cnblogs.com/blog/1141849/201709/1141849-20170924112904259-634223572.png">
-<meta property="og:image" content="https://images2017.cnblogs.com/blog/1141849/201709/1141849-20170924114753462-1951207460.png">
-<meta property="og:image" content="https://images2017.cnblogs.com/blog/1141849/201709/1141849-20170924113422446-1600281280.png">
-<meta property="og:updated_time" content="2019-01-26T15:01:07.494Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/1cd1362b-3819-4662-b0a3-ec0991e85569.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/816922f1-dd71-42e4-85b5-e5c65a5fc213.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/bb4669f5-40d8-48bb-bc93-7c389154ef34.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/51b80b33-6a7e-4304-8dfc-4d20b229fab6.png">
+<meta property="og:updated_time" content="2019-02-07T11:11:39.068Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue 2 使用Bus.js进行兄弟(非父子)组件通信 简单案例">
 <meta name="twitter:description" content="vue2中废弃了$dispatch和$broadcast广播和分发事件的方法。父子组件中可以用props和$emit()。如何实现非父子组件间的通信，可以通过实例一个vue实例Bus作为媒介，要相互通信的兄弟组件之中，都引入Bus，之后通过分别调用Bus事件触发和监听来实现组件之间的通信和参数传递。   首先需要在任意地方添加一个bus.js  在bus.js里面 写入下面信息 121 impo">
-<meta name="twitter:image" content="https://images2017.cnblogs.com/blog/1141849/201709/1141849-20170924112543384-1557519414.png">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/1cd1362b-3819-4662-b0a3-ec0991e85569.png">
 
 
 
@@ -343,19 +343,19 @@
       
         <p> vue2中废弃了$dispatch和$broadcast广播和分发事件的方法。父子组件中可以用props和$emit()。如何实现非父子组件间的通信，可以通过实例一个vue实例Bus作为媒介，要相互通信的兄弟组件之中，都引入Bus，之后通过分别调用Bus事件触发和监听来实现组件之间的通信和参数传递。  </p>
 <p>首先需要在任意地方添加一个bus.js</p>
-<p><img src="https://images2017.cnblogs.com/blog/1141849/201709/1141849-20170924112543384-1557519414.png" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/1cd1362b-3819-4662-b0a3-ec0991e85569.png" alt=""></p>
 <p>在bus.js里面 写入下面信息</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 import Vue from &apos;vue&apos;</span><br><span class="line">2 export default new Vue;</span><br></pre></td></tr></table></figure>
-<p><img src="https://images2017.cnblogs.com/blog/1141849/201709/1141849-20170924112904259-634223572.png" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/816922f1-dd71-42e4-85b5-e5c65a5fc213.png" alt=""></p>
 <p> 在需要通信的组件都引入Bus.js    </p>
 <p>如果你的bus.js是自定义一个bus的文件那from后面就改成你的所放的位置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 import Bus from &apos;./bus.js&apos;</span><br></pre></td></tr></table></figure>
-<p><img src="https://images2017.cnblogs.com/blog/1141849/201709/1141849-20170924114753462-1951207460.png" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/bb4669f5-40d8-48bb-bc93-7c389154ef34.png" alt=""></p>
 <p> 接下来就是要组件通信了</p>
 <p> 添加一个 触发 #emit的事件按钮</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div id=&quot;emit&quot;&gt;</span><br></pre></td></tr></table></figure>
 <p>打开要和$emit通信的另外一个组件  添加</p>
-<p><img src="https://images2017.cnblogs.com/blog/1141849/201709/1141849-20170924113422446-1600281280.png" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/51b80b33-6a7e-4304-8dfc-4d20b229fab6.png" alt=""></p>
 <p> 在钩子函数中监听msg事件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div id=&quot;on&quot;&gt;</span><br><span class="line">            &lt;p&gt;&#123;&#123;message&#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">import Bus from &apos;./bus.js&apos;</span><br><span class="line">export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        message:  &apos;&apos;&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted() &#123;</span><br><span class="line">       Bus.$on(&apos;msg&apos;, (e) =&gt; &#123;</span><br><span class="line">         this.message = msg</span><br><span class="line">       &#125;)</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p>最后p会显示来自$emit传来的信息</p>
@@ -535,7 +535,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -557,7 +557,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

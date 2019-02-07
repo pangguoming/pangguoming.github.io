@@ -103,13 +103,13 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="一、服务端（192.168.8.81）： 安装软件：  yum  -y  install  rsync12342.  创建需同步的目录：&amp;lt;code class=&amp;quot;hljs nginx&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;hljs-attribute&amp;quot;&amp;gt;mkdir  -p  /home/root/rsync&amp;lt;/span&amp;gt;&amp;lt;/c">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://i2.51cto.com/images/blog/201802/06/32d076bbfe8d85250bee5fff70c4bf0b.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
-<meta property="og:image" content="http://i2.51cto.com/images/blog/201805/20/f122abbfb9a34aceadc78af5afb5a8c7.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
-<meta property="og:updated_time" content="2019-01-26T14:39:10.523Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/44518769-9455-4b64-a9ce-9c3b9b16b502.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/9c6f8251-8fa7-4c0c-9107-fc531bf0c1b0.jpg">
+<meta property="og:updated_time" content="2019-02-07T11:06:23.609Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos7 使用rsync 实现文件同步">
 <meta name="twitter:description" content="一、服务端（192.168.8.81）： 安装软件：  yum  -y  install  rsync12342.  创建需同步的目录：&amp;lt;code class=&amp;quot;hljs nginx&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;hljs-attribute&amp;quot;&amp;gt;mkdir  -p  /home/root/rsync&amp;lt;/span&amp;gt;&amp;lt;/c">
-<meta name="twitter:image" content="http://i2.51cto.com/images/blog/201802/06/32d076bbfe8d85250bee5fff70c4bf0b.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/44518769-9455-4b64-a9ce-9c3b9b16b502.jpg">
 
 
 
@@ -360,11 +360,11 @@
 3.  创建密码文件（免输入密码）：
 &lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;echo  &lt;span class=&quot;hljs-string&quot;&gt;&quot;123456&quot;  &gt;  /root/passwd
 chmod  600  /root/passwd&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;/pre&gt;</span><br><span class="line">4.  拉取（在客户端（192.168.8.82））：</span><br><span class="line">&lt;pre&gt;&lt;code class=&quot;hljs ruby&quot;&gt;rsync  -avz  --password-file=&lt;span class=&quot;hljs-regexp&quot;&gt;/root/passwd  root@192.&lt;span class=&quot;hljs-number&quot;&gt;168.8.&lt;span class=&quot;hljs-number&quot;&gt;81&lt;span class=&quot;hljs-symbol&quot;&gt;:&lt;span class=&quot;hljs-symbol&quot;&gt;:common  /home/root/rsync/&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
-</code></pre><p><img src="http://i2.51cto.com/images/blog/201802/06/32d076bbfe8d85250bee5fff70c4bf0b.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="centos7安装配置rsync"></p>
+</code></pre><p><img src="http://pangguoming.com/blog/images/44518769-9455-4b64-a9ce-9c3b9b16b502.jpg" alt="centos7安装配置rsync"></p>
 <pre><code>&lt;/pre&gt;
 5.  推送（在服务端（192.168.8.81））：
 &lt;pre&gt;&lt;code class=&quot;hljs ruby&quot;&gt;rsync  -avz  --password-file=&lt;span class=&quot;hljs-regexp&quot;&gt;/root/passwd  /home/root/rsync/  root@192.&lt;span class=&quot;hljs-number&quot;&gt;168.8.&lt;span class=&quot;hljs-number&quot;&gt;81&lt;span class=&quot;hljs-symbol&quot;&gt;:&lt;span class=&quot;hljs-symbol&quot;&gt;:common&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;```
-</code></pre><p><img src="http://i2.51cto.com/images/blog/201805/20/f122abbfb9a34aceadc78af5afb5a8c7.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="centos7安装配置rsync"></p>
+</code></pre><p><img src="http://pangguoming.com/blog/images/9c6f8251-8fa7-4c0c-9107-fc531bf0c1b0.jpg" alt="centos7安装配置rsync"></p>
 <pre><code>&lt;/pre&gt;
 &lt;div&gt;
 &lt;div&gt; 
@@ -373,11 +373,11 @@ chmod  600  /root/passwd&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="hi
 
 &lt;div&gt;　　　　创建一个需要定时执行的脚本文件，如：rsyncd.sh脚本：vi  /etc/rsyncd.sh
 &lt;div&gt;            (路径自己设置的)，在此脚本中添加如下内容
-&lt;div&gt;            ![](https://img-blog.csdn.net/20170925144141206) 
+&lt;div&gt;            ![](http://pangguoming.com/blog/images/cdc781f8-0bb6-4a3a-bd0f-3b93b0d0c43e.jpg) 
 
 &lt;div&gt; 
 &lt;div&gt;　　　　设置脚本执行的时间：crontab –e，添加如下内容  
-&lt;div&gt;            ![](https://img-blog.csdn.net/20170925144146221)&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div&gt;            ![](http://pangguoming.com/blog/images/e68c8f90-5b28-439e-b467-d87131226256.jpg)&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
 </code></pre>
       
     </div>
@@ -563,7 +563,7 @@ chmod  600  /root/passwd&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="hi
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -585,7 +585,7 @@ chmod  600  /root/passwd&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="hi
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

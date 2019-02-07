@@ -103,14 +103,14 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="随着不同终端(Pad/Mobile/PC)的兴起，对开发人员的要求越来越高，纯浏览器端的响应式已经不能满足用户体验的高要求，我们往往需要针对不同的终端开发定制的版本。为了提升开发效率，前后端分离的需求越来越被重视，后端负责业务/数据接口，前端负责展现/交互逻辑，同一份数据接口，我们可以定制开发多个版本。  这个话题最近被讨论得比较多，阿里有些BU也在进行一些尝试。讨论了很久之后，我们团队决定探索一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://s3.51cto.com/wyfs02/M00/24/7D/wKioL1NQiXiyajQtAAA5yCPtcx0199.jpg">
-<meta property="og:image" content="http://s8.51cto.com/wyfs02/M02/24/7D/wKiom1NQiaHwf0xWAACMPoN-wc0497.jpg">
-<meta property="og:image" content="http://s5.51cto.com/wyfs02/M00/24/7D/wKioL1NQiXiCWUmQAACln1uoInM835.jpg">
-<meta property="og:updated_time" content="2019-01-26T15:11:07.051Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/0b6d009d-a5a9-4a2d-a40b-34419815f1c9.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/c9c5640e-a367-459b-a08a-c03b112d4ba0.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/96fb386d-8b8e-4257-9a5b-0e638c4bd4c8.jpg">
+<meta property="og:updated_time" content="2019-02-07T11:26:25.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于NodeJS的全栈式开发">
 <meta name="twitter:description" content="随着不同终端(Pad/Mobile/PC)的兴起，对开发人员的要求越来越高，纯浏览器端的响应式已经不能满足用户体验的高要求，我们往往需要针对不同的终端开发定制的版本。为了提升开发效率，前后端分离的需求越来越被重视，后端负责业务/数据接口，前端负责展现/交互逻辑，同一份数据接口，我们可以定制开发多个版本。  这个话题最近被讨论得比较多，阿里有些BU也在进行一些尝试。讨论了很久之后，我们团队决定探索一">
-<meta name="twitter:image" content="http://s3.51cto.com/wyfs02/M00/24/7D/wKioL1NQiXiyajQtAAA5yCPtcx0199.jpg">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/0b6d009d-a5a9-4a2d-a40b-34419815f1c9.jpg">
 
 
 
@@ -373,11 +373,11 @@
 <p> 怎么做前后端分离，其实第一节中已经有了答案：</p>
 <p> 前端：负责View和Controller层。</p>
 <p> 后端：负责Model层，业务处理/数据等。</p>
-<p><img src="http://s3.51cto.com/wyfs02/M00/24/7D/wKioL1NQiXiyajQtAAA5yCPtcx0199.jpg" alt="MVC分"></p>
+<p><img src="http://pangguoming.com/blog/images/0b6d009d-a5a9-4a2d-a40b-34419815f1c9.jpg" alt="MVC分"></p>
 <p> 试想一下，如果前端掌握了Controller，我们可以做url design，我们可以根据场景决定在服务端同步渲染，还是根据view层数据输出json数据，我们还可以根据表现层需求很容易的做Bigpipe,Comet,Socket等等，完全是需求决定使用方式。</p>
 <p> 3.1 基于NodeJS“全栈”式开发</p>
 <p> 如果想实现上图的分层，就必然需要一种web服务帮我们实现以前后端做的事情，于是就有了标题提到的“基于NodeJS的全栈式开发”</p>
-<p><img src="http://s8.51cto.com/wyfs02/M02/24/7D/wKiom1NQiaHwf0xWAACMPoN-wc0497.jpg" alt="Node 带来的全栈时代"></p>
+<p><img src="http://pangguoming.com/blog/images/c9c5640e-a367-459b-a08a-c03b112d4ba0.jpg" alt="Node 带来的全栈时代"></p>
 <p> 这张图看起来简单而且很好理解，但没尝试过，会有很多疑问。</p>
 <p> SPA模式中，后端已供了所需的数据接口，view前端已经可以控制，为什么要多加NodeJS这一层？</p>
 <p> 多加一层，性能怎么样？</p>
@@ -406,7 +406,7 @@
 <p> 3.6 Node什么都能做，为什么还要JAVA？</p>
 <p> 我们的初衷是做前后端分离，如果考虑这个问题就有点违背我们的初衷了。即使用Node替代Java，我们也没办法保证不出现今天遇到的种种问题，比如职责不清。我们的目的是分层开发，专业的人，专注做专业的事。基于JAVA的基础架构已经非常强大而且稳定，而且更适合做现在架构的事情。</p>
 <p> 四、淘宝基于Node的前后端分离</p>
-<p><img src="http://s5.51cto.com/wyfs02/M00/24/7D/wKioL1NQiXiCWUmQAACln1uoInM835.jpg" alt="淘宝基于NodeJS的前后端分离"></p>
+<p><img src="http://pangguoming.com/blog/images/96fb386d-8b8e-4257-9a5b-0e638c4bd4c8.jpg" alt="淘宝基于NodeJS的前后端分离"></p>
 <p> 上图是我理解的淘宝基于Node的前后端分离分层，以及Node的职责范围。简单解释下：</p>
 <p> 最上端是服务端，就是我们常说的后端。后端对于我们来说，就是一个接口的集合，服务端提供各种各样的接口供我们使用。因为有Node层，也不用局限是什么形式的服务。对于后端开发来说，他们只用关心业务代码的接口实现。</p>
 <p> 服务端下面是Node应用。</p>
@@ -605,7 +605,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -627,7 +627,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

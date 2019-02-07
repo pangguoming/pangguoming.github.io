@@ -102,13 +102,13 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="一、Restful安全认证常用方式1.Session+Cookie传统的Web认证方式。需要解决会话共享及跨域请求的问题。2.JWTJSON Web Token。3.OAuth支持两方和三方认证，是目前使用比较广泛的安全认证方式，但对于不使用第三方登录的认证的方式不太适用。    二、JWT简介JWT由三部分组成，包括Header、Payload和Signature。       JSON Web">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://dl2.iteye.com/upload/attachment/0117/9609/fa3d6630-6366-372b-938b-b31c8ca70b88.jpeg">
-<meta property="og:image" content="http://dl2.iteye.com/upload/attachment/0117/9611/16f3fafa-d9eb-399e-a8ab-e36ef0624e38.jpg">
-<meta property="og:updated_time" content="2019-01-26T15:01:38.988Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/d571d4c9-9e6c-4579-888d-193c58d337bf.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/8465822a-727a-4eaf-975c-8d55e7ed5178.jpg">
+<meta property="og:updated_time" content="2019-02-07T11:13:32.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Restful安全认证及权限的解决方案">
 <meta name="twitter:description" content="一、Restful安全认证常用方式1.Session+Cookie传统的Web认证方式。需要解决会话共享及跨域请求的问题。2.JWTJSON Web Token。3.OAuth支持两方和三方认证，是目前使用比较广泛的安全认证方式，但对于不使用第三方登录的认证的方式不太适用。    二、JWT简介JWT由三部分组成，包括Header、Payload和Signature。       JSON Web">
-<meta name="twitter:image" content="http://dl2.iteye.com/upload/attachment/0117/9609/fa3d6630-6366-372b-938b-b31c8ca70b88.jpeg">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/d571d4c9-9e6c-4579-888d-193c58d337bf.jpg">
 
 
 
@@ -340,7 +340,7 @@
       
         <p>一、Restful安全认证常用方式<br>1.Session+Cookie<br>传统的Web认证方式。需要解决会话共享及跨域请求的问题。<br>2.JWT<br>JSON Web Token。<br>3.OAuth<br>支持两方和三方认证，是目前使用比较广泛的安全认证方式，但对于不使用第三方登录的认证的方式不太适用。   </p>
 <p>二、JWT简介<br>JWT由三部分组成，包括Header、Payload和Signature。   </p>
-<p><img src="http://dl2.iteye.com/upload/attachment/0117/9609/fa3d6630-6366-372b-938b-b31c8ca70b88.jpeg" alt="">  </p>
+<p><img src="http://pangguoming.com/blog/images/d571d4c9-9e6c-4579-888d-193c58d337bf.jpg" alt="">  </p>
 <p>JSON Web Token example:<br>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.<br>eyJpc3MiOiJ0b3B0YWwuY29tIiwiZXhwIjoxNDI2NDIwODAwLCJodHRwOi8vdG9wdGFsLmNvbS9qd3RfY2xhaW1zL2lzX2FkbWluIjp0cnVlLCJjb21wYW55IjoiVG9wdGFsIiwiYXdlc29tZSI6dHJ1ZX0.<br>yRQYnWzskCZUxPwaQupWkiUzKELZ49eM7oWxAQK_ZXw   </p>
 <p>Example Header：<br>{<br>  “alg”: “HS256”,<br>  “typ”: “JWT”<br>}<br>通过加密后得到：eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9   </p>
 <p>一般Payload包括以下几方面内容：<br> iss: The issuer of the token<br> sub: The subject of the token<br> aud: The audience of the token<br> exp: Token expiration time defined in Unix time<br> nbf: “Not before” time that identifies the time before which the JWT must not be accepted for processing<br> iat: “Issued at” time, in Unix time, at which the token was issued<br> jti: JWT ID claim provides a unique identifier for the JWT   </p>
@@ -348,7 +348,7 @@
 <p>Example Signature：<br>通过密钥对Header和Payload生成签名。   </p>
 <p>JWT的优势：<br>无状态，可以无限水平扩展<br>可重用，可以在多语言多平台多域中使用<br>安全性高，由于没有使用Cookie，因此可以防止跨站请求伪造（CSRF）攻击<br>性能好，只验证令牌并解析其内容   </p>
 <p>三、JWT认证方式的实现方式<br>1.客户端不需要持有密钥，由服务端通过密钥生成Token。<br>2.客户端登录时通过账号和密码到服务端进行认证，认证通过后，服务端通过持有的密钥生成Token，Token中一般包含失效时长和用户唯一标识，如用户ID，服务端返回Token给客户端。<br>3.客户端保存服务端返回的Token。<br>4.客户端进行业务请求时在Head的Authorization字段里面放置Token，如：<br>Authorization: Bearer Token<br>5.服务端对请求的Token进行校验，并通过Redis查找Token是否存在，主要是为了解决用户注销，但Token还在时效内的问题，如果Token在Redis中存在，则说明用户已注销；如果Token不存在，则校验通过。<br>6.服务端可以通过从Token取得的用户唯一标识进行相关权限的校验，并把此用户标识赋予到请求参数中，业务可通过此用户标识进行业务处理。<br>7.用户注销时，服务端需要把还在时效内的Token保存到Redis中，并设置正确的失效时长。   </p>
-<p><img src="http://dl2.iteye.com/upload/attachment/0117/9611/16f3fafa-d9eb-399e-a8ab-e36ef0624e38.jpg" alt="">   </p>
+<p><img src="http://pangguoming.com/blog/images/8465822a-727a-4eaf-975c-8d55e7ed5178.jpg" alt="">   </p>
 <p>四、在实际环境中如何使用JWT<br>1.Web应用程序<br>在令牌过期前刷新令牌。如设置令牌的过期时间为一个星期，每次用户打开Web应用程序，服务端每隔一小时生成一个新令牌。如果用户一个多星期没有打开应用，他们将不得不再次登录。<br>2.移动应用程序<br>大多数移动应用程序用户只进行一次登录，定期刷新令牌可以使用户长期不用登录。<br>但如果用户的手机丢失，则可提供一种方式由用户决定撤销哪个设备的令牌。当然，这就需要服务端记录设备的名称，例如“maryo的iPad”。然后用户可以去申请并撤销获得“maryo的iPad”。当用户修改密码时需要服务端把原Token保存到Redis上，使其失效。   </p>
 <p>为了防止Token被窃取，最好把JWT和HTTPS结合起来使用。   </p>
 <p>五、如何实现安全认证与权限的结合<br>服务端生成的Token中需要包含用户唯一标识，这样用户进行业务请求时，服务端通过附带的Token获取用户唯一标识，通过此标识进行权限检查。   </p>
@@ -525,7 +525,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -547,7 +547,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

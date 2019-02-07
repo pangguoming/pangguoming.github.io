@@ -103,12 +103,12 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950# -*- coding: UTF-8 -*-    import numpy as np    import cv2    ## 图片旋转    def rotate_bound(image, angle):">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img2018.cnblogs.com/blog/414908/201901/414908-20190110174830975-1801322649.png">
-<meta property="og:updated_time" content="2019-01-26T14:39:05.163Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/ed381e1a-19ba-490b-8558-0818e53636fc.png">
+<meta property="og:updated_time" content="2019-02-07T11:06:17.879Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="opencv+python-图片文本倾斜校正">
 <meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950# -*- coding: UTF-8 -*-    import numpy as np    import cv2    ## 图片旋转    def rotate_bound(image, angle):">
-<meta name="twitter:image" content="https://img2018.cnblogs.com/blog/414908/201901/414908-20190110174830975-1801322649.png">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/ed381e1a-19ba-490b-8558-0818e53636fc.png">
 
 
 
@@ -340,7 +340,7 @@
       
         <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># -*- coding: UTF-8 -*-</span><br><span class="line"></span><br><span class="line">    import numpy as np</span><br><span class="line">    import cv2</span><br><span class="line"></span><br><span class="line">    ## 图片旋转</span><br><span class="line">    def rotate_bound(image, angle):</span><br><span class="line">        #获取宽高</span><br><span class="line">        (h, w) = image.shape[:2]</span><br><span class="line">        (cX, cY) = (w // 2, h // 2)</span><br><span class="line"></span><br><span class="line">        # 提取旋转矩阵 sin cos </span><br><span class="line">        M = cv2.getRotationMatrix2D((cX, cY), -angle, 1.0)</span><br><span class="line">        cos = np.abs(M[0, 0])</span><br><span class="line">        sin = np.abs(M[0, 1])</span><br><span class="line"></span><br><span class="line">        # 计算图像的新边界尺寸</span><br><span class="line">        nW = int((h * sin) + (w * cos))</span><br><span class="line">    #     nH = int((h * cos) + (w * sin))</span><br><span class="line">        nH = h</span><br><span class="line"></span><br><span class="line">        # 调整旋转矩阵</span><br><span class="line">        M[0, 2] += (nW / 2) - cX</span><br><span class="line">        M[1, 2] += (nH / 2) - cY</span><br><span class="line"></span><br><span class="line">        return cv2.warpAffine(image, M, (nW, nH),flags=cv2.INTER_CUBIC, borderMode=cv2.BORDER_REPLICATE)</span><br><span class="line"></span><br><span class="line">    ## 获取图片旋转角度</span><br><span class="line">    def get_minAreaRect(image):</span><br><span class="line">        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</span><br><span class="line">        gray = cv2.bitwise_not(gray)</span><br><span class="line">        thresh = cv2.threshold(gray, 0, 255,</span><br><span class="line">            cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]</span><br><span class="line">        coords = np.column_stack(np.where(thresh &gt; 0))</span><br><span class="line">        return cv2.minAreaRect(coords)</span><br><span class="line"></span><br><span class="line">    image_path = &quot;54321.png&quot;</span><br><span class="line">    image = cv2.imread(image_path)</span><br><span class="line">    angle = get_minAreaRect(image)[-1]</span><br><span class="line">    rotated = rotate_bound(image, angle)</span><br><span class="line"></span><br><span class="line">    cv2.putText(rotated, &quot;angle: &#123;:.2f&#125; &quot;.format(angle),</span><br><span class="line">        (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)</span><br><span class="line"></span><br><span class="line">    # show the output image</span><br><span class="line">    print(&quot;[INFO] angle: &#123;:.3f&#125;&quot;.format(angle))</span><br><span class="line">    cv2.imshow(&quot;imput&quot;, image)</span><br><span class="line">    cv2.imshow(&quot;output&quot;, rotated)</span><br><span class="line">    cv2.waitKey(0)</span><br></pre></td></tr></table></figure>
 <p> 可矫正所有 图片格式包括 png jpg tif等</p>
-<p><img src="https://img2018.cnblogs.com/blog/414908/201901/414908-20190110174830975-1801322649.png" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/ed381e1a-19ba-490b-8558-0818e53636fc.png" alt=""></p>
 
       
     </div>
@@ -515,7 +515,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -537,7 +537,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

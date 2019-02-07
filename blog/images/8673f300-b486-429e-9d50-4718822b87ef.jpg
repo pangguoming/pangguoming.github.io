@@ -1,0 +1,1129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+     
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>   
+    
+     
+    <script type="text/javascript" src="http://c.csdnimg.cn/pubfooter/js/tracking.js" charset="utf-8"></script>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script>
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+
+    <title>wxyfennie的博客
+        - 博客频道 - CSDN.NET</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <script src="http://static.blog.csdn.net/scripts/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://static.blog.csdn.net/scripts/ad.js?v=1.1"></script>
+        <!--new top-->
+               <link rel="stylesheet" href="http://c.csdnimg.cn/public/common/toolbar/css/index.css">        <!--new top-->
+
+    <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/default/css/style.css?v=1.1" />
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/wxyfennie/rss/list" />
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/default.css" />
+ 
+
+
+</head>
+<body>
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="http://c.csdnimg.cn/public/common/toolbar/js/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/wxyfennie">wxyfennie的博客</a></h2>
+            <h3></h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+            
+                <li id="btnContents"><a href="http://blog.csdn.net/wxyfennie?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/wxyfennie?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/wxyfennie/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>                
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "wxyfennie";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/wxyfennie";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod='popu_3' > 
+
+<a href="http://huiyi.csdn.net/activity/product/goods_list?project_id=2741">
+<font color=red>2016软考项目经理实战班
+</font></a>
+&nbsp;&nbsp;&nbsp;
+
+<a href="http://edu.csdn.net/yearPromotion">
+<font color=blue>学院周年礼-顶尖课程钜惠呈现
+</font></a>
+&nbsp;&nbsp;&nbsp;
+<a href="http://blog.csdn.net/dba_huangzj/article/details/50469185">
+<font color=red>【博客专家】有奖试读—Windows PowerShell实战指南
+</font></a>
+
+</div>                        </div>
+                        
+<div class="list_item_new">
+
+        <div id="article_toplist" class="list">
+
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/50656457">
+        <font color="red">[置顶]</font>
+        MySql 5.7安装（随机密码，修改默认密码）            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+下载了MySql 最新版本，安装的过程中，发现了很多新特性
+1.data目录不见了
+
+
+在进行my-default.ini配置的时候
+（需要配置 # basedir = C:\Program Files\MySQL\MySQL Server 5.7.11
+# datadir = C:\Program Files\MySQL\MySQL Server 5.7.11\data）
+细心的同...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2016-02-13 00:37</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/50656457" title="阅读次数">阅读</a>(16)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/50656457#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+        </div>
+
+    <div id="article_list" class="list">
+
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/49721013">
+        HDU 1856 More is better            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+题意：1&#215;10^7个男孩，找出互相之间是朋友关系的人数最多的集合的人数，如果N = 0 ，输出1；
+值得一提的是，用C++交怎么也是CE（因为数组过大），G++交就是没事
+&#160;
+#include
+#include
+using namespace std;
+int father[10000005];
+int c[10000005];
+void init(int n)//初始化
+{
+...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-11-08 20:17</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/49721013" title="阅读次数">阅读</a>(15)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/49721013#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/49719357">
+        HDU3635 Dragon Balls            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+并查集初级题目
+题目链接：点击打开链接
+题意：
+1、每个城市初始有一个龙珠，father[i] = i初始化数组，
+2、每个城市的龙珠可以移动，T A B 包含A龙珠的城市的所有龙珠都转移到包含B龙珠的城市中去
+3、Q X，输出X龙珠所在城市、所在城市拥有的龙珠数量、X龙珠被移动过的次数
+思路：
+简单并查集，但是考虑到路径压缩会造成X龙珠移动次数计算错误（详见百度并查集路径压缩原理）...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-11-08 16:29</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/49719357" title="阅读次数">阅读</a>(9)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/49719357#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/49691855">
+        再学一次并查集            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+再学一次并查集，感觉原来学过的太水了， = = 、 自从CCPC国赛被打回原形以后……
+废话不多说，重新系统地学习一下这个数据结构
+
+
+并查集：本质是一颗树，也就是一种数据结构，主要为了解决的问题就是是不是一个集合的问题，尤其是一些具有传递性质的问题；
+
+
+三个功能
+初始化：把所有结点的father都指向它自身
+合 &#160; 并：把应该在一个集合的点连接到一起
+查 &#160; 找：查找某个点...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-11-07 00:22</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/49691855" title="阅读次数">阅读</a>(27)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/49691855#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/49685791">
+        POJ 2418 Hardwood Species【字典树 / map】            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+题意：统计树的种类出现的百分率，给你树木的名字（可能有重复，最多100W个数据，种类不超过1W），数目名字的长度不超过30，但是可能包含空格，也可能包含别的字符（所以需要把struct 开到 ch[130]， RE被坑了多次，最终AC）
+用字典树做或者是用map，目前只做了字典树版本的，以后map填坑。。
+
+
+Hardwood Species
+
+
+
+
+Time Limit:&#160;10...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-11-06 17:28</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/49685791" title="阅读次数">阅读</a>(9)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/49685791#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/49670967">
+        POJ 2001 Shortest Prefixes            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+一个比较差不多点很水的字典树，并不难。。细节没有处理好WA了N次之后终于发现了
+测试输入数据：
+ababa
+abab
+aa
+a
+正确输出
+ababa ababa
+abab abab
+aa aa
+a
+代码注释部分是我错的地方。。想太多了
+#include
+#include
+#include
+struct node
+{
+    int size;
+    node *ch[26...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-11-06 00:20</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/49670967" title="阅读次数">阅读</a>(18)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/49670967#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/49669739">
+        HDU 2072 单词数【STL】            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+看字典树的时候看到的，然而队友看了一眼说用 STL 容器做。。。嗯。。给跪了
+#include
+#include
+#include
+#include
+#include
+#include
+using namespace std;
+int main()
+{
+    char c[10000];
+    string word=&quot;&quot;;
+    while(gets(c))
+    {...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-11-05 23:24</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/49669739" title="阅读次数">阅读</a>(13)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/49669739#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/49669431">
+        统计难题【字典树】            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+字典树题目，上题，输入字典，输入字符串，给出对应字符串为前缀的数量，
+
+
+统计难题
+Time Limit: 4000/2000 MS (Java/Others)&#160;&#160;&#160;&#160;Memory Limit: 131070/65535 K (Java/Others)
+Total Submission(s): 26391&#160;&#160;&#160;&#160;Accepted Submission(s): 10701
+
+
+
+P...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-11-05 23:04</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/49669431" title="阅读次数">阅读</a>(20)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/49669431#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/49642349">
+        Problem 2118 分蛋糕 FZU【博弈】            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+这题其实特别坑，五分钟想出公式
+1-1/2+1/3-1/4……1/n
+尝试各种姿势解这个值（总觉得是一个有极值的函数（虽然事实是确实是有的）），各种精度近似值 感觉快要疯了……
+两小时后，通过百度发现上面那个公式果然是有极值 的，ln2
+通过各种简单高数就能推导出来。。 = = 、嗯 &#160;已经完全还给老师的高数
+代码就不贴了，题目见下……至于是怎么推出那个公式的。。。嗯 &#160;就是靠感觉……据...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-11-04 19:37</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/49642349" title="阅读次数">阅读</a>(38)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/49642349#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/49642281">
+        HDU5536 chip factory 【01字典树】            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+HDU5536 第一道字典树。2015 长春站ACM-ICPC的一道题 据说现场赛O（n^3）可以过
+看了网上大牛代码以后顿悟了自己敲的。。。感觉好腻害。花了两小时弄懂代码。。第一次敲这么复杂的树 &#160;留个纪念
+#include
+#include
+#include
+#include
+#include
+int a[1010];
+using namespace std;
+int root ;
+int...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-11-04 19:30</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/49642281" title="阅读次数">阅读</a>(18)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/49642281#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/49559747">
+        hdu5510-沈阳区域赛 Bazinga【KMP】            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+题意：1~n个字符串，输出那个不包含前面所有字串的最大的编号，KMP+剪枝就能解决，主要是判断前一个和后一个的关系，如果可以包含，就不需要重复判断，否则容易超时
+
+
+
+
+
+Bazinga
+
+Time Limit: 2000/1000 MS (Java/Others)&#160;&#160;&#160;&#160;Memory Limit: 65536/65536 K (Java/Others)
+Total Submis...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-11-01 17:01</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/49559747" title="阅读次数">阅读</a>(50)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/49559747#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/49473531">
+        偶数个3【递推公式】            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+偶数个3
+时间限制：1000 ms  |  内存限制：65535 KB
+难度：1
+描述
+在所有的N位数中，有多少个数中有偶数个数字3？
+
+ 
+
+输入
+第一行为一个整数T，代表有T组数据。（T&lt;10000）
+接下来T行，每行一个正整数N。（1&lt;=N&lt;=1000）
+输出
+每行输出一个整数，即方案数(由于结果可能很大，你只需要输出这个答案mod 12345的值。)。
+样例输入
+1
+2
+样例输出
+73...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-10-28 20:55</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/49473531" title="阅读次数">阅读</a>(22)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/49473531#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/49474151">
+        【BFS、二分图判断】二部图NYOJ1015            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+一个模板，使用BFS
+BFS（队列）
+DFS（递归）
+偶数个3
+时间限制：1000 ms  |  内存限制：65535 KB
+难度：1
+描述
+在所有的N位数中，有多少个数中有偶数个数字3？
+
+ 
+
+输入
+第一行为一个整数T，代表有T组数据。（T&lt;10000）
+接下来T行，每行一个正整数N。（1&lt;=N&lt;=1000）
+输出
+每行输出一个整数，即方案数(由于结果可能很大，你只需要输出这个答案mod...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-10-28 20:55</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/49474151" title="阅读次数">阅读</a>(13)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/49474151#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/49359377">
+        nyistOJ-多边形重心问题(数学题)            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+会用公式就行
+#include
+#include
+#include
+struct point
+{
+    double x;
+    double y;
+};
+point p[100005];
+using namespace std;
+char s[10005];
+int dp[10005];
+int main()
+{
+    int n,T;
+    cin&gt;&gt;T;
+    while(T--...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-10-23 11:42</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/49359377" title="阅读次数">阅读</a>(17)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/49359377#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/48765521">
+        next_permutation            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+下一个排列组合，核心思想就是next_permutation(a,a+strlen(a),cmp) 函数的使用，水题
+
+
+#include
+#include
+#include
+#include
+#include
+bool cmp(char a, char b)
+{
+    int x,y;
+    if(a&gt;=&#39;a&#39;&amp;&amp;a&lt;=&#39;z&#39;)
+        x = (a-&#39;a&#39;)*2+1;
+   ...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-09-27 10:46</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/48765521" title="阅读次数">阅读</a>(16)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/48765521#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/48713373">
+        一笔画问题            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+nyoj&#160;题目42&#160;一笔画问题
+一个图是否可以画成一笔画
+1.没有独立的点（使用并查集验证）
+2.度为奇数的点只能是0或者2
+
+#include
+#include
+#include
+#include
+using namespace std;
+int father[1005];
+int degree[1005];
+/*并查集判断图是否联通*/
+int find(int x)
+{
+    i...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-09-24 16:52</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/48713373" title="阅读次数">阅读</a>(15)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/48713373#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/48667343">
+        BFS 队列等            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+#include 
+
+#include 
+using namespace std;
+class T
+{
+public:
+int x, y, z;
+T(int a, int b, int c):x(a), y(b), z(c)
+{
+}
+};
+bool operator 
+{
+return t1.z 
+}
+main()
+{
+priority_queue q;
+q....        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-09-23 00:28</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/48667343" title="阅读次数">阅读</a>(17)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/48667343#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/48662595">
+        基础DFS-Lake Counting            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+题目大意：找坑，八连通（八个方向都可以认为坑是连通的），求解有几个坑解题思路：基本DFS，遍历每个坑，递归把（遍历找每个连通的坑）每个联通的‘W’变成‘.’，DFS调用几次就是有几个坑#include
+#include
+using namespace std;
+int N,M;
+char field[1000][1000];
+void dfs(int x, int y)
+{
+    field[x...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-09-22 21:59</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/48662595" title="阅读次数">阅读</a>(19)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/48662595#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/48572329">
+        动态规划入门            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+个人的几点理解：
+1. 判断一个问题是否可以使用动态规划解决，主要判断其问题是否可以找到一个解决的角度，是的策略无后效性和具有最优子结构性质。
+2. 直接判断上述两种性质比较困难，只有多做题
+3. 灵活处理状态方程和状态转移方程...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-09-19 09:12</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/48572329" title="阅读次数">阅读</a>(35)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/48572329#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="list_item article_item">
+        <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/wxyfennie/article/details/48437065">
+        codeforces #319 DIV2 577B Modulo Sum            
+        </a></span>
+    </h1>
+</div>
+
+        <div class="article_description">
+思路：
+考虑n&gt;=m的时候：
+根据鸽巢原理
+N = 6&#160; ， m = 5
+R0 R1 R2 R3 R4 （Ri: I = sumi%5）
+Sum1 = (a)%m
+Sum2 = (a+ b)%m
+Sum3 = (a+b+c)%m
+Sum4 = (a+b+c+d)%m
+Sum5 = (a+b+c+d+e)%m
+Sum6 = (a+b+c+d+e+f)%m
+根据鸽巢原理 六个和放...        </div>
+            <div class="article_manage">
+             <span class="link_postdate">2015-09-14 11:32</span>
+    
+   
+        <span class="link_view" title="阅读次数"><a href="/wxyfennie/article/details/48437065" title="阅读次数">阅读</a>(30)</span>
+        <span class="link_comments" title="评论次数"><a href="/wxyfennie/article/details/48437065#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+
+    </div>
+
+        <div class="clear"></div>
+    </div>
+    </div>
+
+    <!--显示分页-->
+
+
+</div>
+<script  type="text/ecmascript">
+    $(function () {
+        setTimeout(function () {
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({ "position": "absolute", "left": "50%" });
+        }, 300);
+    });    
+</script>
+ 
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/wxyfennie" target="_blank">
+    <img src="http://avatar.csdn.net/D/8/E/1_wxyfennie.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/wxyfennie" class="user_name" target="_blank">wxyfennie</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter"  title="[发私信]" onclick="window.open('http://msg.csdn.net/letters/model?receiver=wxyfennie','_blank','height=350,width=700');_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+                                            <a  target="_blank">
+                                                    <img src="http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="2" >
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>411次</span></li>
+    <li>积分：<span>200</span> </li>    
+    <li >等级： <span style="position:relative;display:inline-block;z-index:1" >
+            <img src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog2.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：200 </div>
+        </span>  </li>
+    <li>排名：<span>千里之外</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>20篇</span></li>
+    <li>转载：<span>0篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>0条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字" /></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog" />
+        <input type="hidden" name="q" id="inputQ" />
+        <input type="hidden" name="t" value="blog" />
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="/wxyfennie/article/category/5813259" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">ACM</a><span>(12)</span>
+                </li>
+                 <li>
+                    <a href="/wxyfennie/article/category/5813261" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">动态规划</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/wxyfennie/article/category/5834959" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">DFS</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/wxyfennie/article/category/5920089" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">KMP</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="/wxyfennie/article/category/5928273" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">字典树</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/wxyfennie/article/category/5931549" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">博弈</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/wxyfennie/article/category/5933497" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">STL</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="/wxyfennie/article/category/5933499" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">并查集</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/wxyfennie/article/category/5936635" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">最小生成树</a><span>(0)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="/wxyfennie/article/month/2016/02">2016年02月</a><span>(1)</span></li><li><a href="/wxyfennie/article/month/2015/11">2015年11月</a><span>(10)</span></li><li><a href="/wxyfennie/article/month/2015/10">2015年10月</a><span>(3)</span></li><li><a href="/wxyfennie/article/month/2015/09">2015年09月</a><span>(6)</span></li>
+</div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="/wxyfennie/article/details/49559747" title="hdu5510-沈阳区域赛 Bazinga【KMP】">hdu5510-沈阳区域赛 Bazinga【KMP】</a><span>(48)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/49642349" title="Problem 2118 分蛋糕 FZU【博弈】">Problem 2118 分蛋糕 FZU【博弈】</a><span>(36)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/48572329" title="动态规划入门">动态规划入门</a><span>(33)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/48437065" title="codeforces #319 DIV2 577B Modulo Sum">codeforces #319 DIV2 577B Modulo Sum</a><span>(28)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/49691855" title="再学一次并查集">再学一次并查集</a><span>(25)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/49473531" title="偶数个3【递推公式】">偶数个3【递推公式】</a><span>(20)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/49669431" title="统计难题【字典树】">统计难题【字典树】</a><span>(18)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/48662595" title="基础DFS-Lake Counting">基础DFS-Lake Counting</a><span>(17)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/49670967" title="POJ 2001 Shortest Prefixes">POJ 2001 Shortest Prefixes</a><span>(16)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/49642281" title="HDU5536 chip factory 【01字典树】">HDU5536 chip factory 【01字典树】</a><span>(16)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="/wxyfennie/article/details/50656457" title="MySql 5.7安装（随机密码，修改默认密码）">MySql 5.7安装（随机密码，修改默认密码）</a><span>(0)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/49559747" title="hdu5510-沈阳区域赛 Bazinga【KMP】">hdu5510-沈阳区域赛 Bazinga【KMP】</a><span>(0)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/49474151" title="【BFS、二分图判断】二部图NYOJ1015">【BFS、二分图判断】二部图NYOJ1015</a><span>(0)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/49473531" title="偶数个3【递推公式】">偶数个3【递推公式】</a><span>(0)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/49359377" title="nyistOJ-多边形重心问题(数学题)">nyistOJ-多边形重心问题(数学题)</a><span>(0)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/48765521" title="next_permutation">next_permutation</a><span>(0)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/48713373" title="一笔画问题">一笔画问题</a><span>(0)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/48667343" title="BFS 队列等">BFS 队列等</a><span>(0)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/48662595" title="基础DFS-Lake Counting">基础DFS-Lake Counting</a><span>(0)</span>
+</li>
+<li>
+<a href="/wxyfennie/article/details/48572329" title="动态规划入门">动态规划入门</a><span>(0)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/jiangwei0910410003/article/details/50628894" 
+
+target="_blank">*Android逆向之旅---解析编译之后的Resource.arsc文件格式</a></li>
+<li><a href="http://blog.csdn.net/Pwiling/article/details/50573650" 
+
+target="_blank">*21行python代码实现拼写检查器</a></li>
+<li><a href="http://blog.csdn.net/u011225629/article/details/50492403" 
+
+target="_blank">*数据库性能优化之SQL语句优化</a></li>
+<li><a 
+
+href="http://blog.csdn.net/bluecloudmatrix/article/details/50525225"target="_blank">*拉开大变革序幕（下）：分布式计算框架与大数据</a></li>
+<li><a href="http://blog.csdn.net/luoshengyang/article/details/50527574" 
+
+target="_blank">*Chromium网页URL加载过程分析</a></li>
+<li><a href="http://blog.csdn.net/androidlushangderen/article/details/50571584"  
+
+target="_blank">*Hadoop中止下线操作后大量剩余复制块的解决方案</a></li>
+
+</ul></ul>
+</div>
+
+
+    </div>
+    <div class="clear">
+    </div>
+ </div>   
+            <div class="clear">
+            </div>
+        </div>
+        
+
+<script type="text/javascript" src="http://c.csdnimg.cn/rabbit/cnick/cnick.js"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/newblog.min.js"></script>
+
+
+<script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=5144221"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/JavaScript1.js"></script>
+
+    <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=26 border=0 width=0 height=0>");</script>
+<script type="text/javascript" src="http://www.csdn.net/ui/scripts/Csdn/counter.js"></script>
+<script type="text/javascript" src="http://ad.csdn.net/scripts/ad-blog.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+    </div>
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnId="header_notice_num" wrapId="note1" count="5" subCount="5" type="text/javascript" src="http://c.csdnimg.cn/public/common/toolbar/js/toolbar.js"></script>     <!--new top-->
+   
+    <link href="http://c.csdnimg.cn/comm_ask/css/ask_float_block.css" type="text/css" rel="stylesheet" />
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/wmd.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/showdown.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/prettify.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/apps/ask_float_block.js'></script>
+   
+</body>
+</html>   
+ 

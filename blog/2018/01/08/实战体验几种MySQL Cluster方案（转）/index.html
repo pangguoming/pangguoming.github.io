@@ -103,48 +103,48 @@
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="1.背景MySQL的cluster方案有很多官方和第三方的选择，选择多就是一种烦恼，因此，我们考虑MySQL数据库满足下三点需求，考察市面上可行的解决方案：  高可用性：主服务器故障后可自动切换到后备服务器 可伸缩性：可方便通过脚本增加DB服务器 负载均衡：支持手动把某公司的数据请求切换到另外的服务器，可配置哪些公司的数据服务访问哪个服务器 需要选用一种方案满足以上需求。在MySQL官方网站上参考">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://img.blog.csdn.net/20150331212940767?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401093641689?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401093700643?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401093710783?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401093710193?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401093806085?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401093736698?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401093823245?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401102545585?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401102552855?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401102520426?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401102606786?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401102615818?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401102623072?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401102632276?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401102640045?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401102647783?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401102616274?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401102623762?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401102637053?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401102649970?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401102702185?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401102712028?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401103546264?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401103518047?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401111626483?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401103806977?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401103744875?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401103835868?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401103807557?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401103816652?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401103906522?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401103838570?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401104123615?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401104132959?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401104143115?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20150401104113821?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:updated_time" content="2019-01-26T15:01:08.884Z">
+<meta property="og:image" content="http://pangguoming.com/blog/images/a0cdcb8d-aff8-4b46-9d29-4a8624fc7223.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/24683c63-55f2-4fc6-96c0-c3d44a406616.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/70f91ee1-336c-4351-9bc6-7b746669143d.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/f7a7fee9-6dc9-4b19-bf6a-38cbcac85253.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/2137cb58-4236-4255-9f43-f91204a4d586.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/55e09098-15f7-44c2-b0fd-04b8d85cf39e.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/e0a7548b-db2a-4a9f-ac16-2c518a0b4d11.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/fc206902-1d1e-4be9-bf8c-f8e5bd89703a.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/9171df72-654c-4ae4-b40c-260b937dee23.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/9bc5419e-84c0-425d-8673-cfb1a5f919b3.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/dc5ffe32-6a0e-400c-80c6-b8c27e1e662d.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/84ad436c-5a83-43f1-bc62-1d3b7eb35b8b.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/d7a78261-acbb-45a0-9b49-129ccfa95e98.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/ff1dc4c6-0b5a-46c2-8adf-e68022f1db49.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/16407758-e15f-4923-bdce-b62502cdf154.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/be6e9bd3-5ffb-4082-ada1-9f3634194efb.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/c17565e4-9a51-4bf4-99f8-e902ea5e44f4.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/f8e1b6a4-3890-423c-8c5d-e089744c89d8.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/98f58609-f4b9-4338-9af8-2fdcc621bc89.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/e9530d3d-713f-442c-af6d-1decc90c7731.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/f5649f61-517a-4202-aa87-33801ca57d3d.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/ab5a364d-545b-4ebd-8d7e-8f9937208b94.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/1444bc4c-08ed-4a77-992c-dd41c86e3076.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/50bd84e2-413e-421d-b1e0-de819c019638.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/a162a2bc-a39c-4bd5-a9e1-aa561763c971.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/ecad04c0-aebc-419f-b86f-b64278a19892.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/33d93828-ca88-4ffe-bbcf-86874433baaa.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/712f29ca-252c-48ee-9971-e458ffe3c8c2.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/e777f3ad-0bcf-4013-87b0-faed7f743218.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/e2654aa5-bbcb-4473-bf1e-47b2834bca70.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/a1934637-5a4f-4cc4-97c0-6101fbcd6aa1.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/8482891f-ebed-4248-b110-cc0c268139f1.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/41625c11-02c7-4942-baf7-32f3d33398d0.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/57c33365-08de-4b6a-84ff-1d7da5c7186e.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/c210d89b-0d23-43bf-b429-198ff75337d2.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/b5ba35df-a5fc-4521-b8cc-43b2b5adf777.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/4aefa66b-6124-4bdb-86a5-be7c46a4bb67.jpg">
+<meta property="og:updated_time" content="2019-02-07T11:12:16.944Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实战体验几种MySQL Cluster方案（转）">
 <meta name="twitter:description" content="1.背景MySQL的cluster方案有很多官方和第三方的选择，选择多就是一种烦恼，因此，我们考虑MySQL数据库满足下三点需求，考察市面上可行的解决方案：  高可用性：主服务器故障后可自动切换到后备服务器 可伸缩性：可方便通过脚本增加DB服务器 负载均衡：支持手动把某公司的数据请求切换到另外的服务器，可配置哪些公司的数据服务访问哪个服务器 需要选用一种方案满足以上需求。在MySQL官方网站上参考">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20150331212940767?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/a0cdcb8d-aff8-4b46-9d29-4a8624fc7223.jpg">
 
 
 
@@ -382,12 +382,12 @@
 <p>需要选用一种方案满足以上需求。在MySQL官方网站上参考了几种解决方案的优缺点：</p>
 </li>
 </ul>
-<p><img src="http://img.blog.csdn.net/20150331212940767?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/a0cdcb8d-aff8-4b46-9d29-4a8624fc7223.jpg" alt=""></p>
 <p>综合考虑，决定采用MySQL Fabric和MySQL Cluster方案，以及另外一种较成熟的集群方案Galera Cluster进行预研。</p>
 <h2 id="2-MySQLCluster"><a href="#2-MySQLCluster" class="headerlink" title="2.MySQLCluster"></a>2.MySQLCluster</h2><p><strong>简介：</strong></p>
 <p>MySQL Cluster 是MySQL 官方集群部署方案，它的历史较久。支持通过自动分片支持读写扩展，通过实时备份冗余数据，是可用性最高的方案，声称可做到99.999%的可用性。</p>
 <p> 架构及实现原理：</p>
-<p><strong><img src="http://img.blog.csdn.net/20150401093641689?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">  
+<p><strong><img src="http://pangguoming.com/blog/images/24683c63-55f2-4fc6-96c0-c3d44a406616.jpg" alt="">  
 </strong></p>
 <p>MySQL cluster主要由三种类型的服务组成：</p>
 <ul>
@@ -395,7 +395,7 @@
 <li>SQL Node：在MySQL Cluster中，一个SQL Node就是一个使用NDB引擎的mysql server进程，用于供外部应用提供集群数据的访问入口。</li>
 <li>Data Node：用于存储集群数据；系统会尽量将数据放在内存中。</li>
 </ul>
-<p><strong><img src="http://img.blog.csdn.net/20150401093700643?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><img src="http://img.blog.csdn.net/20150401093710783?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">  
+<p><strong><img src="http://pangguoming.com/blog/images/70f91ee1-336c-4351-9bc6-7b746669143d.jpg" alt=""><img src="http://pangguoming.com/blog/images/f7a7fee9-6dc9-4b19-bf6a-38cbcac85253.jpg" alt="">  
 </strong></p>
 <p>缺点及限制：</p>
 <ul>
@@ -411,18 +411,18 @@
 <p>应用案例：由于该方案在去年才推出，目前在网上暂时没搜索到有大公司的应用案例。</p>
 <p>架构及实现原理：</p>
 <p>Fabric支持实现高可用性的架构图如下：</p>
-<p><img src="http://img.blog.csdn.net/20150401093710193?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/2137cb58-4236-4255-9f43-f91204a4d586.jpg" alt=""></p>
 <p>Fabric使用HA组实现高可用性，其中一台是主服务器，其他是备份服务器， 备份服务器通过同步复制实现数据冗余。应用程序使用特定的驱动，连接到Fabric 的Connector组件，当主服务器发生故障后，Connector自动升级其中一个备份服务器为主服务器，应用程序无需修改。  </p>
 <p>Fabric支持可扩展性及负载均衡的架构如下：</p>
-<p><img src="http://img.blog.csdn.net/20150401093806085?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p><img src="http://img.blog.csdn.net/20150401093736698?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/55e09098-15f7-44c2-b0fd-04b8d85cf39e.jpg" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/e0a7548b-db2a-4a9f-ac16-2c518a0b4d11.jpg" alt=""></p>
 <p>使用多个HA 组实现分片，每个组之间分担不同的分片数据（组内的数据是冗余的，这个在高可用性中已经提到）<br>应用程序只需向connector发送query和insert等语句，Connector通过MasterGroup自动分配这些数据到各个组，或从各个组中组合符合条件的数据，返回给应用程序。  </p>
 <p>缺点及限制：<br>影响比较大的两个限制是：</p>
 <ul>
 <li>自增长键不能作为分片的键；</li>
 <li>事务及查询只支持在同一个分片内，事务中更新的数据不能跨分片，查询语句返回的数据也不能跨分片。</li>
 </ul>
-<p><img src="http://img.blog.csdn.net/20150401093823245?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/fc206902-1d1e-4be9-bf8c-f8e5bd89703a.jpg" alt=""></p>
 <p><strong>测试高可用性</strong></p>
 <p>服务器架构：</p>
 <table><br><tbody><br><tr><br><td valign="top"><br><br>功能<br><br></td><br><td valign="top"><br><br>IP<br><br></td><br><td valign="top"><br><br>Port<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>Backing store(保存各服务器配置信息)<br><br></td><br><td valign="top"><br><br>200.200.168.24<br><br></td><br><td valign="top"><br><br>3306<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>Fabric 管理进程（Connector）<br><br></td><br><td valign="top"><br><br>200.200.168.24<br><br></td><br><td valign="top"><br><br>32274<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>HA Group 1 – Master<br><br></td><br><td valign="top"><br><br>200.200.168.23<br><br></td><br><td valign="top"><br><br>3306<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>HA Group 1 – Slave<br><br></td><br><td valign="top"><br><br>200.200.168.25<br><br></td><br><td valign="top"><br><br>3306<br><br></td><br><br></tr><br><br></tbody><br><br></table>
@@ -434,22 +434,22 @@
 <p>mysqlfabric group add group_id-1 200.200.168.25:3306</p>
 <p>mysqlfabric group add group_id-1 200.200.168.23:3306</p>
 <p>然后查看组内机器状态：</p>
-<p><img src="http://img.blog.csdn.net/20150401102545585?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/9171df72-654c-4ae4-b40c-260b937dee23.jpg" alt=""></p>
 <p>由于未设置主服务器，两个服务的状态都是SECONDARY<br>提升其中一个为主服务器：<br>mysqlfabric group promote group_id-1 –slave_id 00f9831f-d602-11e3-b65e-0800271119cb<br>然后再查看状态：</p>
-<p><img src="http://img.blog.csdn.net/20150401102552855?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/9bc5419e-84c0-425d-8673-cfb1a5f919b3.jpg" alt=""></p>
 <p>设置成主服务器的服务已经变成Primary。<br>另外，mode属性表示该服务器是可读写（READ_WRITE)，或只读(READ_ONLY)，只读表示可以分摊查询数据的压力；只有主服务器能设置成可读写（READ_WRITE)。<br>这时检查25服务器的slave状态：</p>
-<p><img src="http://img.blog.csdn.net/20150401102520426?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/dc5ffe32-6a0e-400c-80c6-b8c27e1e662d.jpg" alt=""></p>
 <p>可以看到它的主服务器已经指向23  </p>
 <p>然后激活故障自动切换功能：<br>mysqlfabric group activate group_id-1<br>激活后即可测试服务的高可以性<br>首先，进行状态测试：<br>停止主服务器23</p>
-<p><img src="http://img.blog.csdn.net/20150401102606786?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/84ad436c-5a83-43f1-bc62-1d3b7eb35b8b.jpg" alt=""></p>
 <p>然后查看状态：</p>
-<p><img src="http://img.blog.csdn.net/20150401102615818?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/d7a78261-acbb-45a0-9b49-129ccfa95e98.jpg" alt=""></p>
 <p>可以看到，这时将25自动提升为主服务器。<br>但如果将23恢复起来后，需要手动重新设置23为主服务器。  </p>
 <p><strong>实时性测试：</strong><br>目的：测试在主服务更新数据后，备份服务器多久才显示这些数据<br>测试案例：使用java代码建连接，往某张表插入100条记录，看备份服务器多久才能同步这100条数据<br>测试结果：<br>表中原来有101条数据，运行程序后，查看主服务器的数据条数：</p>
-<p><img src="http://img.blog.csdn.net/20150401102623072?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/ff1dc4c6-0b5a-46c2-8adf-e68022f1db49.jpg" alt=""></p>
 <p>可见主服务器当然立即得到更新。  </p>
 <p>查看备份服务器的数据条数：</p>
-<p><img src="http://img.blog.csdn.net/20150401102632276?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/16407758-e15f-4923-bdce-b62502cdf154.jpg" alt=""></p>
 <p>但备份服务器等待了1-2分钟才同步完成（可以看到fabric使用的是异步复制，这是默认方式，性能较好，主服务器不用等待备份服务器返回，但同步速度较慢）</p>
 <p>对于从服务器同步数据稳定性问题，有以下解决方案：</p>
 <ul>
@@ -459,22 +459,22 @@
 </li>
 </ul>
 <p><strong>稳定性测试：</strong><br>测试案例：使用java代码建连接，往某张表插入1w条记录，插入过程中将其中的master服务器停了，看备份服务器是否有这1w笔记录<br>测试结果，停止主服务器后，java程序抛出异常：</p>
-<p><img src="http://img.blog.csdn.net/20150401102640045?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/be6e9bd3-5ffb-4082-ada1-9f3634194efb.jpg" alt=""></p>
 <p>但这时再次发送sql命令，可以成功返回。证明只是当时的事务失败了。连接切换到了备份服务器，仍然可用。<br>翻阅了mysql文档，有章节说明了这个问题：</p>
-<p><img src="http://img.blog.csdn.net/20150401102647783?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/c17565e4-9a51-4bf4-99f8-e902ea5e44f4.jpg" alt=""></p>
 <p>里面提到：当主服务器当机时，我们的应用程序虽然是不需做任何修改的，但在主服务器被备份服务器替换前，某些事务会丢失，这些可以作为正常的mysql错误来处理。  </p>
 <p><strong>数据完整性校验：</strong><br>测试主服务器停止后，备份服务器是否能够同步所有数据。<br>重启了刚才停止主服务器后，查看记录数</p>
-<p><img src="http://img.blog.csdn.net/20150401102616274?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/f8e1b6a4-3890-423c-8c5d-e089744c89d8.jpg" alt=""></p>
 <p>可以看到在插入1059条记录后被停止了。</p>
 <p>现在看看备份服务器的记录数是多少，看看在主服务器当机后是否所有数据都能同步过来</p>
-<p><img src="http://img.blog.csdn.net/20150401102623762?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/98f58609-f4b9-4338-9af8-2fdcc621bc89.jpg" alt=""></p>
 <p>大约经过了几十秒，才同步完，数据虽然不是立即同步过来，但没有丢失。</p>
 <p><strong>1.2、分片：如何支持可扩展性和负载均衡</strong></p>
 <p>fabric分片简介：当一台机器或一个组承受不了服务压力后，可以添加服务器分摊读写压力，通过Fabirc的分片功能可以将某些表中数据分散存储到不同服务器。我们可以设定分配数据存储的规则，通过在表中设置分片key设置分配的规则。另外，有些表的数据可能并不需要分片存储，需要将整张表存储在同一个服务器中，可以将设置一个全局组（Global Group）用于存储这些数据，存储到全局组的数据会自动拷贝到其他所有的分片组中。</p>
-<p><img src="http://img.blog.csdn.net/20150401102637053?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/e9530d3d-713f-442c-af6d-1decc90c7731.jpg" alt=""></p>
 <h2 id="4-Galera-Cluster"><a href="#4-Galera-Cluster" class="headerlink" title="4.Galera Cluster"></a>4.Galera Cluster</h2><p>简介：</p>
 <p>Galera Cluster号称是世界上最先进的开源数据库集群方案</p>
-<p><img src="http://img.blog.csdn.net/20150401102649970?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/f5649f61-517a-4202-aa87-33801ca57d3d.jpg" alt=""></p>
 <p>主要优点及特性：</p>
 <ul>
 <li>真正的多主服务模式：多个服务能同时被读写，不像Fabric那样某些服务只能作备份用</li>
@@ -484,12 +484,12 @@
 <li>支持InnoDB引擎</li>
 <li>对应用程序透明：应用程序不需作修改</li>
 </ul>
-<p><img src="http://img.blog.csdn.net/20150401102702185?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/ab5a364d-545b-4ebd-8d7e-8f9937208b94.jpg" alt=""></p>
 <p><strong>架构及实现原理：</strong><br>首先，我们看看传统的基于mysql Replication（复制）的架构图：</p>
-<p><img src="http://img.blog.csdn.net/20150401102712028?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/1444bc4c-08ed-4a77-992c-dd41c86e3076.jpg" alt=""></p>
 <p>Replication方式是通过启动复制线程从主服务器上拷贝更新日志，让后传送到备份服务器上执行，这种方式存在事务丢失及同步不及时的风险。Fabric以及传统的主从复制都是使用这种实现方式。</p>
 <p>而Galera则采用以下架构保证事务在所有机器的一致性：</p>
-<p><img src="http://img.blog.csdn.net/20150401103546264?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/50bd84e2-413e-421d-b1e0-de819c019638.jpg" alt=""></p>
 <p>客户端通过Galera Load Balancer访问数据库，提交的每个事务都会通过wsrep API 在所有服务器中执行，要不所有服务器都执行成功，要不就所有都回滚，保证所有服务的数据一致性，而且所有服务器同步实时更新。  </p>
 <p>缺点及限制：</p>
 <ul>
@@ -500,39 +500,39 @@
 <li>不支持XA Transaction</li>
 </ul>
 <p>目前基于Galera Cluster的实现方案有三种：Galera Cluster for MySQL、Percona XtraDB Cluster、MariaDB Galera Cluster。<br>我们采用较成熟、应用案例较多的Percona XtraDB Cluster。<br>应用案例：<br>超过2000多家外国企业使用：</p>
-<p><img src="http://img.blog.csdn.net/20150401103518047?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/a162a2bc-a39c-4bd5-a9e1-aa561763c971.jpg" alt=""></p>
 <p>包括：</p>
-<p> <img src="http://img.blog.csdn.net/20150401111626483?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p> <img src="http://pangguoming.com/blog/images/ecad04c0-aebc-419f-b86f-b64278a19892.jpg" alt=""></p>
 <p>集群部署架构：</p>
 <table><br><tbody><br><tr><br><td valign="top"><br><br>功能<br><br></td><br><td valign="top"><br><br>IP<br><br></td><br><td valign="top"><br><br>Port<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>Backing store(保存各服务器配置信息)<br><br></td><br><td valign="top"><br><br>200.200.168.24<br><br></td><br><td valign="top"><br><br>3306<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>Fabric 管理进程（Connector）<br><br></td><br><td valign="top"><br><br>200.200.168.24<br><br></td><br><td valign="top"><br><br>32274<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>HA Master 1<br><br></td><br><td valign="top"><br><br>200.200.168.24<br><br></td><br><td valign="top"><br><br>3306<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>HA Master 2<br><br></td><br><td valign="top"><br><br>200.200.168.25<br><br></td><br><td valign="top"><br><br>3306<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>HA Master 3<br><br></td><br><td valign="top"><br><br>200.200.168.23<br><br></td><br><td valign="top"><br><br>3306<br><br></td><br><br></tr><br><br></tbody><br><br></table>
 
 <p><strong>4.1、测试数据同步</strong></p>
 <p>在机器24上创建一个表：</p>
-<p><img src="http://img.blog.csdn.net/20150401103806977?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/33d93828-ca88-4ffe-bbcf-86874433baaa.jpg" alt=""></p>
 <p>立即在25 中查看，可见已被同步创建</p>
-<p><img src="http://img.blog.csdn.net/20150401103744875?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/712f29ca-252c-48ee-9971-e458ffe3c8c2.jpg" alt=""></p>
 <p>使用Java代码在24服务器上插入100条记录</p>
-<p><img src="http://img.blog.csdn.net/20150401103835868?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/e777f3ad-0bcf-4013-87b0-faed7f743218.jpg" alt=""></p>
 <p>立即在25服务器上查看记录数</p>
-<p><img src="http://img.blog.csdn.net/20150401103807557?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/e2654aa5-bbcb-4473-bf1e-47b2834bca70.jpg" alt=""></p>
 <p>可见数据同步是立即生效的。  </p>
 <p><strong>4.2、测试添加集群节点</strong><br>添加一个集群节点的步骤很简单，只要在新加入的机器上部署好Percona XtraDB Cluster，然后启动，系统将自动将现存集群中的数据同步到新的机器上。  </p>
 <p>现在为了测试，先将其中一个节点服务停止：</p>
-<p><img src="http://img.blog.csdn.net/20150401103816652?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/a1934637-5a4f-4cc4-97c0-6101fbcd6aa1.jpg" alt=""></p>
 <p>然后使用java代码在集群上插入100W数据</p>
-<p><img src="http://img.blog.csdn.net/20150401103906522?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/8482891f-ebed-4248-b110-cc0c268139f1.jpg" alt=""></p>
 <p>查看100w数据的数据库大小：</p>
-<p><img src="http://img.blog.csdn.net/20150401103838570?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/41625c11-02c7-4942-baf7-32f3d33398d0.jpg" alt=""></p>
 <p>这时启动另外一个节点，启动时即会自动同步集群的数据：</p>
-<p><img src="http://img.blog.csdn.net/20150401104123615?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/57c33365-08de-4b6a-84ff-1d7da5c7186e.jpg" alt=""></p>
 <p>启动只需20秒左右，查看数据大小一致，查看表记录数，也已经同步过来</p>
-<p><img src="http://img.blog.csdn.net/20150401104132959?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/c210d89b-0d23-43bf-b429-198ff75337d2.jpg" alt=""></p>
 <h2 id="5-对比总结"><a href="#5-对比总结" class="headerlink" title="5.对比总结"></a>5.对比总结</h2><table><br><tbody><br><tr><br><td valign="top"> </td><br><td valign="top"><br><br>MySQL Fabric<br><br></td><br><td valign="top"><br><br>Galera Cluster<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>使用案例<br><br></td><br><td valign="top"><br><br>2014年5月才推出，目前在网上暂时没搜索到有大公司的应用案例<br><br></td><br><td valign="top"><br><br>方案较成熟，外国多家互联网公司使用<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>数据备份的实时性<br><br></td><br><td valign="top"><br><br>由于使用异步复制，一般延时几十秒，但数据不会丢失。<br><br></td><br><td valign="top"><br><br>实时同步，数据不会丢失<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>数据冗余<br><br></td><br><td valign="top"><br><br>使用分片，通过设置分片key规则可以将同一张表的不同数据分散在多台机器中<br><br></td><br><td valign="top"><br><br>每个节点全冗余，没有分片<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>高可用性<br><br></td><br><td valign="top"><br><br>通过Fabric Connector实现主服务器当机后的自动切换，但由于备份延迟，切换后可能不能立即查询数据<br><br></td><br><td valign="top"><br><br>使用HAProxy实现。由于实时同步，切换的可用性更高。<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>可伸缩性<br><br></td><br><td valign="top"><br><br>添加节点后，需要先手工复制集群数据<br><br></td><br><td valign="top"><br><br>扩展节点十分方便，启动节点时自动同步集群数据，100w数据（100M）只需20秒左右<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>负载均衡<br><br></td><br><td valign="top"><br><br>通过HASharding实现<br><br></td><br><td valign="top"><br><br>使用HAProxy实现负载均衡<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>程序修改<br><br></td><br><td valign="top"><br><br>需要切换成jdbc:mysql:fabric的jdbc类和url<br><br></td><br><td valign="top"><br><br>程序无需修改<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>性能对比<br><br></td><br><td valign="top"><br><br>使用java直接用jdbc插入100条记录，大概2000+ms<br><br></td><br><td valign="top"><br><br>跟直接操作mysql一样，直接用jdbc插入100条记录，大概600ms<br><br></td><br><br></tr><br><br></tbody><br><br></table>
 
 <h2 id="6-实践应用"><a href="#6-实践应用" class="headerlink" title="6.实践应用"></a>6.实践应用</h2><p>综合考虑上面方案的优缺点，我们比较偏向选择Galera 如果只有两台数据库服务器，考虑采用以下数据库架构实现高可用性、负载均衡和动态扩展：</p>
-<p><img src="http://img.blog.csdn.net/20150401104143115?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/b5ba35df-a5fc-4521-b8cc-43b2b5adf777.jpg" alt=""></p>
 <p>如果三台机器可以考虑：</p>
-<p><img src="http://img.blog.csdn.net/20150401104113821?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2luZ29md29ybGQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/4aefa66b-6124-4bdb-86a5-be7c46a4bb67.jpg" alt=""></p>
 <h2 id="7-参考文档"><a href="#7-参考文档" class="headerlink" title="7.参考文档"></a>7.参考文档</h2><p>MySQL各种集群解决方案的对比：<a href="https://www.acquia.com/blog/high-availability-database-tools" target="_blank" rel="noopener">https://www.acquia.com/blog/high-availability-database-tools</a>  </p>
 <p>Percona XtraDB Cluster 搭配 HAProxy：<a href="http://itindex.net/detail/47688-percona-xtradb-cluster" target="_blank" rel="noopener">http://itindex.net/detail/47688-percona-xtradb-cluster</a></p>
 <p>MySQL Fabric : <a href="http://dev.mysql.com/doc/mysql-utilities/1.6/en/fabric.html" target="_blank" rel="noopener">http://dev.mysql.com/doc/mysql-utilities/1.6/en/fabric.html</a></p>
@@ -721,7 +721,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -743,7 +743,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

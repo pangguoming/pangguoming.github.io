@@ -79,7 +79,7 @@
 <link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="github,git,git bash,">
+  <meta name="keywords" content="git,github,git bash,">
 
 
 
@@ -96,23 +96,23 @@
 
 
 <meta name="description" content="最近需要将课设代码上传到Github上，之前只是用来fork别人的代码。 这篇文章写得是windows下的使用方法。 第一步：创建Github新账户 第二步：新建仓库  第三部：填写名称，简介（可选），勾选Initialize this repository with a README选项，这是自动创建REAMDE.md文件，省的你再创建。  第四步：安装Github shell程序，地址：htt">
-<meta name="keywords" content="github,git,git bash">
+<meta name="keywords" content="git,github,git bash">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git入门及上传项目到github中">
 <meta property="og:url" content="http://pangguoming.com/blog/2015/09/08/Git入门及上传项目到github中/index.html">
 <meta property="og:site_name" content="庞国明-博客">
 <meta property="og:description" content="最近需要将课设代码上传到Github上，之前只是用来fork别人的代码。 这篇文章写得是windows下的使用方法。 第一步：创建Github新账户 第二步：新建仓库  第三部：填写名称，简介（可选），勾选Initialize this repository with a README选项，这是自动创建REAMDE.md文件，省的你再创建。  第四步：安装Github shell程序，地址：htt">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://lazynight.me/wp-content/uploads/2013/05/newgithub.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/bab124f3-f717-43b3-8c13-57409bd51af4.png">
 <meta property="og:image" content="http://lazynight.me/wp-content/uploads/2013/05/createdemo.png">
 <meta property="og:image" content="http://lazynight.me/wp-content/uploads/2013/05/desk.png">
 <meta property="og:image" content="http://lazynight.me/wp-content/uploads/2013/05/code.png">
 <meta property="og:image" content="http://lazynight.me/wp-content/uploads/2013/05/cmd.png">
-<meta property="og:updated_time" content="2019-01-26T15:10:59.192Z">
+<meta property="og:updated_time" content="2019-02-07T11:25:04.803Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git入门及上传项目到github中">
 <meta name="twitter:description" content="最近需要将课设代码上传到Github上，之前只是用来fork别人的代码。 这篇文章写得是windows下的使用方法。 第一步：创建Github新账户 第二步：新建仓库  第三部：填写名称，简介（可选），勾选Initialize this repository with a README选项，这是自动创建REAMDE.md文件，省的你再创建。  第四步：安装Github shell程序，地址：htt">
-<meta name="twitter:image" content="http://lazynight.me/wp-content/uploads/2013/05/newgithub.png">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/bab124f3-f717-43b3-8c13-57409bd51af4.png">
 
 
 
@@ -346,7 +346,7 @@
 <p>这篇文章写得是windows下的使用方法。</p>
 <p>第一步：创建Github新账户</p>
 <p>第二步：新建仓库</p>
-<p><a href="http://lazynight.me/wp-content/uploads/2013/05/newgithub.png" target="_blank" rel="noopener"><img src="http://lazynight.me/wp-content/uploads/2013/05/newgithub.png" alt="newgithub"></a></p>
+<p><a href="http://pangguoming.com/blog/images/bab124f3-f717-43b3-8c13-57409bd51af4.png"><img src="http://pangguoming.com/blog/images/bab124f3-f717-43b3-8c13-57409bd51af4.png" alt="newgithub"></a></p>
 <p>第三部：填写名称，简介（可选），勾选Initialize this repository with a README选项，这是自动创建REAMDE.md文件，省的你再创建。</p>
 <p><a href="http://lazynight.me/wp-content/uploads/2013/05/createdemo.png" target="_blank" rel="noopener"><img src="http://lazynight.me/wp-content/uploads/2013/05/createdemo.png" alt="createdemo"></a></p>
 <p>第四步：安装Github shell程序，地址：<a href="http://windows.github.com/" target="_blank" rel="noopener">http://windows.github.com/</a></p>
@@ -354,7 +354,7 @@
 <p>ssh-keygen -C <a href="mailto:&#39;your@email.address" target="_blank" rel="noopener">&#39;your@email.address</a>‘ -t rsa<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">连续三个回车之后会在windows当前用户目录下生成.ssh文件夹，和linux一样。</span><br><span class="line"></span><br><span class="line">[![ssh3](http://lazynight.me/wp-content/uploads/2013/05/ssh3.gif)](http://lazynight.me/wp-content/uploads/2013/05/ssh3.gif)</span><br><span class="line"></span><br><span class="line">把文件夹下的id_rsa.pub文件内容全部复制。</span><br><span class="line"></span><br><span class="line">然后打开github账户设置，如图</span><br><span class="line"></span><br><span class="line">[![setting](http://lazynight.me/wp-content/uploads/2013/05/setting.png)](http://lazynight.me/wp-content/uploads/2013/05/setting.png)</span><br><span class="line"></span><br><span class="line">打开ssh keys</span><br><span class="line"></span><br><span class="line">[![ssh](http://lazynight.me/wp-content/uploads/2013/05/ssh.png)](http://lazynight.me/wp-content/uploads/2013/05/ssh.png)  </span><br><span class="line">右上角点击add ssh key</span><br><span class="line"></span><br><span class="line">[![ssh2](http://lazynight.me/wp-content/uploads/2013/05/ssh2.png)](http://lazynight.me/wp-content/uploads/2013/05/ssh2.png)</span><br><span class="line"></span><br><span class="line">然后在title随便输入，key栏粘贴刚才的密钥。</span><br><span class="line"></span><br><span class="line">第六步：在Git Shell下输入命令测试刚才的公钥是否认证正确。</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;ssh -T git@github.com</span><br></pre></td></tr></table></figure></p>
 <p>正确结果会显示：</p>
 <pre><code>&lt;pre&gt;Warning:Permanently added &apos;github.com,207.97.227.239&apos; (RSA) to the list of known hosts.
-　　Hi Flowerowl! You&apos;ve successfully authenticated, but GitHub does not provide shell access.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">warning 不用理会。</span><br><span class="line"></span><br><span class="line">第七步：clone刚才新建的repository 到本地，输入命令：</span><br><span class="line"></span><br><span class="line">[![link](http://lazynight.me/wp-content/uploads/2013/05/link.png)](http://lazynight.me/wp-content/uploads/2013/05/link.png)</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;　git clone https://github.com/Flowerowl/stumansys.git</span><br></pre></td></tr></table></figure>
+　　Hi Flowerowl! You&apos;ve successfully authenticated, but GitHub does not provide shell access.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">warning 不用理会。</span><br><span class="line"></span><br><span class="line">第七步：clone刚才新建的repository 到本地，输入命令：</span><br><span class="line"></span><br><span class="line">[![link](http://pangguoming.com/blog/images/7e102513-c7c7-4f81-b3c7-cd17b6e86084.png)](http://pangguoming.com/blog/images/7e102513-c7c7-4f81-b3c7-cd17b6e86084.png)</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;　git clone https://github.com/Flowerowl/stumansys.git</span><br></pre></td></tr></table></figure>
 </code></pre><p>这时会在目录下生成：</p>
 <p><a href="http://lazynight.me/wp-content/uploads/2013/05/desk.png" target="_blank" rel="noopener"><img src="http://lazynight.me/wp-content/uploads/2013/05/desk.png" alt="desk"></a></p>
 <p>第八步：将想上传的代码目录拷贝到此文件夹下：</p>
@@ -419,9 +419,9 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/github/" rel="tag"># github</a>
-          
             <a href="/blog/tags/git/" rel="tag"># git</a>
+          
+            <a href="/blog/tags/github/" rel="tag"># github</a>
           
             <a href="/blog/tags/git-bash/" rel="tag"># git bash</a>
           
@@ -551,7 +551,7 @@
             
               <a href="/blog/archives">
             
-                <span class="site-state-item-count">396</span>
+                <span class="site-state-item-count">420</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -573,7 +573,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">260</span>
+                <span class="site-state-item-count">267</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

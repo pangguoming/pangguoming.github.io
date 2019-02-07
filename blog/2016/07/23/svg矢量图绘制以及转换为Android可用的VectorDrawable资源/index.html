@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="项目需要 要在快速设置面板里显示一个VoWiFi图标（为了能够区分出来图形，我把透明的背景填充为黑色了）  由于普通图片放大后容易失真，这里我们最好用矢量图（SVG(Scalable Vector Graphics)）来做图标，而系统状态栏图标多是用vectorDrawable绘制，所以我们的最终目的就是绘制一个上图中样式的Android VectorDrawable xml图标。尤其是这种资源文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="svg矢量图绘制以及转换为Android可用的VectorDrawable资源">
+<meta property="og:url" content="http://pangguoming.com/blog/2016/07/23/svg矢量图绘制以及转换为Android可用的VectorDrawable资源/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="项目需要 要在快速设置面板里显示一个VoWiFi图标（为了能够区分出来图形，我把透明的背景填充为黑色了）  由于普通图片放大后容易失真，这里我们最好用矢量图（SVG(Scalable Vector Graphics)）来做图标，而系统状态栏图标多是用vectorDrawable绘制，所以我们的最终目的就是绘制一个上图中样式的Android VectorDrawable xml图标。尤其是这种资源文">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pangguoming.com/blog/images/7cebe32c-4d4c-4734-be84-3251b9e2300d.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/ad25f94d-6d83-4e44-8b4f-47ddac01df4c.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/c215fb3a-ee9d-4d9f-9cf6-f1a8650e6bd5.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/cc89d578-5056-4ad7-867e-47c61f1b1081.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/db0bc4e3-02ee-4cb5-8066-ae617e0615aa.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/ab7a7fee-188e-4645-95a3-7b18542b29a7.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/0f13af27-50f5-49ed-9968-536476425e2e.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/6bf5947a-fde2-4178-a90f-65cd17bc164f.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/e3f30565-43ca-4a04-b3b3-cd2fa2f72273.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/1273b1ed-1fb9-48b2-a3df-767feefd4e37.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/b802ba02-6ac0-4ce0-b3a0-dca32e348413.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/7926a2d9-7dc8-44cb-825b-4e2f8f3fdcae.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/1a83bd95-04b1-4296-9f10-5741cc5387e9.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/93fa5f04-99b9-4e06-8a82-3a61e8517f7a.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/ea6df5ec-c3a7-4d3e-b3e4-e2a341880b5d.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/ebc9f7e2-d38e-464f-812b-5b3dec80ec80.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/8e2a3944-6f64-4366-95ac-d90bdc5f1585.png">
+<meta property="og:updated_time" content="2019-02-07T11:18:37.637Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="svg矢量图绘制以及转换为Android可用的VectorDrawable资源">
+<meta name="twitter:description" content="项目需要 要在快速设置面板里显示一个VoWiFi图标（为了能够区分出来图形，我把透明的背景填充为黑色了）  由于普通图片放大后容易失真，这里我们最好用矢量图（SVG(Scalable Vector Graphics)）来做图标，而系统状态栏图标多是用vectorDrawable绘制，所以我们的最终目的就是绘制一个上图中样式的Android VectorDrawable xml图标。尤其是这种资源文">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/7cebe32c-4d4c-4734-be84-3251b9e2300d.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/blog/2016/07/23/svg矢量图绘制以及转换为Android可用的VectorDrawable资源/">
+
+
+
+
+
+  <title>svg矢量图绘制以及转换为Android可用的VectorDrawable资源 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/blog/blog/2016/07/23/svg矢量图绘制以及转换为Android可用的VectorDrawable资源/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">svg矢量图绘制以及转换为Android可用的VectorDrawable资源</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-23T14:31:00+08:00">
+                2016-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>项目需要 要在快速设置面板里显示一个VoWiFi图标（为了能够区分出来图形，我把透明的背景填充为黑色了）</p>
+<p><img src="http://pangguoming.com/blog/images/7cebe32c-4d4c-4734-be84-3251b9e2300d.png" alt=""><img src="http://pangguoming.com/blog/images/ad25f94d-6d83-4e44-8b4f-47ddac01df4c.jpg" alt=""></p>
+<div><img src="http://pangguoming.com/blog/images/c215fb3a-ee9d-4d9f-9cf6-f1a8650e6bd5.png" alt="vowifi_black.png"><br><br>由于普通图片放大后容易失真，这里我们最好用矢量图（SVG(Scalable Vector Graphics)）来做图标，而系统状态栏图标多是用vectorDrawable绘制，所以我们的最终目的就是绘制一个上图中样式的<a href="http://lib.csdn.net/base/15" title="undefined" target="_blank" rel="noopener">Android</a> VectorDrawable xml图标。尤其是这种资源文件体积小放大又不失真，干嘛不用呢。<br><br># VectorDrawable<br><br><div>Android L开始提供了新的API VectorDrawable 可以使用SVG类型的资源，也就是矢量图。在xml文件中的标签是<vector><br><div>google官方API介绍：<br><div><a href="https://developer.android.com/reference/android/graphics/drawable/VectorDrawable.html" target="_blank" rel="noopener">https://developer.android.com/reference/android/graphics/drawable/VectorDrawable.html</a><br><div><br><div><br><br>This lets you create a drawable based on an XML vector graphic. It can be defined in an XML file with the <vector> element.<br><br>The vector drawable has the following elements:<br><br>具体属性和方法请参考官方说明<br><br>下面是一个官方例子：<br><br><div><br><div class="linenums"><br><div class="L0"><code class="language-java"><span class="pln"> <span class="pun">&lt;<span class="pln">vector xmlns<span class="pun">:<span class="pln">android<span class="pun">=<span class="str">“<a href="http://schemas.android.com/apk/res/android&quot;" target="_blank" rel="noopener">http://schemas.android.com/apk/res/android&quot;</a></span></span></span></span></span></span></span></code><br><div class="L1"><code class="language-java"><span class="pln"> android<span class="pun">:<span class="pln">height<span class="pun">=<span class="str">“64dp”</span></span></span></span></span></code><br><div class="L2"><code class="language-java"><span class="pln"> android<span class="pun">:<span class="pln">width<span class="pun">=<span class="str">“64dp”</span></span></span></span></span></code><br><div class="L3"><code class="language-java"><span class="pln"> android<span class="pun">:<span class="pln">viewportHeight<span class="pun">=<span class="str">“600”</span></span></span></span></span></code><br><div class="L4"><code class="language-java"><span class="pln"> android<span class="pun">:<span class="pln">viewportWidth<span class="pun">=<span class="str">“600”<span class="pln"> <span class="pun">&gt;</span></span></span></span></span></span></span></code><br><div class="L5"><code class="language-java"><span class="pln"> <span class="pun">&lt;<span class="pln">group</span></span></span></code><br><div class="L6"><code class="language-java"><span class="pln"> android<span class="pun">:<span class="pln">name<span class="pun">=<span class="str">“rotationGroup”</span></span></span></span></span></code><br><div class="L7"><code class="language-java"><span class="pln"> android<span class="pun">:<span class="pln">pivotX<span class="pun">=<span class="str">“300.0”</span></span></span></span></span></code><br><div class="L8"><code class="language-java"><span class="pln"> android<span class="pun">:<span class="pln">pivotY<span class="pun">=<span class="str">“300.0”</span></span></span></span></span></code><br><div class="L9"><code class="language-java"><span class="pln"> android<span class="pun">:<span class="pln">rotation<span class="pun">=<span class="str">“45.0”<span class="pln"> <span class="pun">&gt;</span></span></span></span></span></span></span></code><br><div class="L0"><code class="language-java"><span class="pln"> <span class="pun">&lt;<span class="pln">path</span></span></span></code><br><div class="L1"><code class="language-java"><span class="pln"> android<span class="pun">:<span class="pln">name<span class="pun">=<span class="str">“v”</span></span></span></span></span></code><br><div class="L2"><code class="language-java"><span class="pln"> android<span class="pun">:<span class="pln">fillColor<span class="pun">=<span class="str">“#000000”</span></span></span></span></span></code><br><div class="L3"><code class="language-java"><span class="pln"> android<span class="pun">:<span class="pln">pathData<span class="pun">=<span class="str">“M300,70 l 0,-70 70,70 0,0 -70,70z”<span class="pln"> <span class="pun">/&gt;</span></span></span></span></span></span></span></code><br><div class="L4"><code class="language-java"><span class="pln"> <span class="pun">&lt;/<span class="pln">group<span class="pun">&gt;</span></span></span></span></code><br><div class="L5"><code class="language-java"><span class="pln"> <span class="pun">&lt;/<span class="pln">vector<span class="pun">&gt;</span></span></span></span></code><br><div class="L6"><br><br><div>显示效果（背景色应为透明）<br><br><img src="http://pangguoming.com/blog/images/cc89d578-5056-4ad7-867e-47c61f1b1081.jpg" alt=""><br><br># 绘制svg图<br><br><div>如果想了解绘制原理，调至请调至文末点击W3C的连接。<br><div><br><div>接下来介绍一些常用的svg绘图工具<br><br>## 1.Inkscape<br><br><div>开源的多平台矢量图绘图工具，支持windows OS X Linux。支持导出为svg等格式图片，功能强大，与后面两个将要介绍的比较就是体积有点大，安装包就接近百兆了。<br><div>另外用这个生成的SVG文件，会带一些默认的属性，转化成VectorDrawable以后xml文件里也会有一些默认的属性，虽不影响显示效果，但会多出一些不必要的代码。<br><div>工作界面：<br><div><img src="http://pangguoming.com/blog/images/db0bc4e3-02ee-4cb5-8066-ae617e0615aa.jpg" alt=""><br><div><img src="http://pangguoming.com/blog/images/ab7a7fee-188e-4645-95a3-7b18542b29a7.png" alt=""><br><div>官网：<a href="https://inkscape.org/" target="_blank" rel="noopener">https://inkscape.org/</a><br><div><br><br>## 2.Boxy SVG<br><br><div>是一个Chrome应用（推荐）。支持导入，另存为，可以选中单个控件调整属性等。可能不好的地方就是你得安装Chrome浏览器吧，还有下载这个应用的时候得FQ。<br><div><img src="http://pangguoming.com/blog/images/0f13af27-50f5-49ed-9968-536476425e2e.png" alt=""><img src="http://pangguoming.com/blog/images/6bf5947a-fde2-4178-a90f-65cd17bc164f.jpg" alt=""><br><br>## 3.Janvas - The Online Vector Graphics Editor<br><br><div>也是Chrome应用，不过其实就是一个链接，打开后指向下面的地址<br><div><a href="http://www.janvas.com/XOSYSTEM/PROJECTS/janvas_apps_suite_3.0_public/janvas_application.php" target="_blank" rel="noopener">http://www.janvas.com/XOSYSTEM/PROJECTS/janvas_apps_suite_3.0_public/janvas_application.php</a><br><div>但是这个在线编辑器好像只能打开和保存文件到google driver，不推荐<br><div><img src="http://pangguoming.com/blog/images/e3f30565-43ca-4a04-b3b3-cd2fa2f72273.jpg" alt=""><br><div><img src="http://pangguoming.com/blog/images/1273b1ed-1fb9-48b2-a3df-767feefd4e37.jpg" alt=""><br><br>## 4.？？<br><br><div>这个东西没找到名字，点击下面的连接试用。添加到收藏夹，随时可用。便捷。<br><div><a href="http://www.yyyweb.com/ctools/demo.php?t=http%3A%2F%2Feditor.method.ac%2F&amp;h=2000&amp;c=&amp;n" target="_blank" rel="noopener">http://www.yyyweb.com/ctools/demo.php?t=http%3A%2F%2Feditor.method.ac%2F&amp;h=2000&amp;c=&amp;n</a><br><div><br><br># 转换为VectorDrawable<br><br><div>找到两个在线转换的工具，都是Github上的开源项目。<br><br>## 1.Android SVG to VectorDrawable<br><br><div>Convert SVG to Android VectorDrawable XML resource file.<br><div>可能是这个工具开发比较早，有很多Star，基本的<strong>图形转换</strong>是可以的，但是，<strong>不支持文字！</strong>也就是说上面的图，如果我们转换的话，得到的结果只是一个椭圆，文字会丢失。<br><div><img src="http://pangguoming.com/blog/images/b802ba02-6ac0-4ce0-b3a0-dca32e348413.jpg" alt=""><br><div>在线工具：<a href="http://inloop.github.io/svg2android/" target="_blank" rel="noopener">http://inloop.github.io/svg2android/</a><br><div>源码地址：<a href="https://github.com/inloop/svg2android" target="_blank" rel="noopener">https://github.com/inloop/svg2android</a><br><div><img src="http://pangguoming.com/blog/images/7926a2d9-7dc8-44cb-825b-4e2f8f3fdcae.png" alt=""><br><br>## 2.SvgToVectorDrawableConverter.Web<br><br><div>Batch converter of SVG images to Android VectorDrawable XML resource files.<br><div>这个就比较好了，<strong>支持文本转换</strong>。<br><div><img src="http://pangguoming.com/blog/images/1a83bd95-04b1-4296-9f10-5741cc5387e9.jpg" alt=""><br><div><br><div>在线工具：<a href="http://a-student.github.io/SvgToVectorDrawableConverter.Web/" target="_blank" rel="noopener">http://a-student.github.io/SvgToVectorDrawableConverter.Web/</a><br><div>源码地址：<a href="https://github.com/a-student/SvgToVectorDrawableConverter" target="_blank" rel="noopener">https://github.com/a-student/SvgToVectorDrawableConverter</a><br><img src="http://pangguoming.com/blog/images/93fa5f04-99b9-4e06-8a82-3a61e8517f7a.png" alt=""><br><br># 效果图<br><br><div>这里我把颜色改回了白色。使用的是Boxy SVG绘制，SvgToVectorDrawableConverter.Web转换。<br><div>Android Studio支持直接预览VectorDrawable矢量图，有了实时预览，也方便进行一些简单的修改。<br><div><img src="http://pangguoming.com/blog/images/ea6df5ec-c3a7-4d3e-b3e4-e2a341880b5d.jpg" alt=""><br><div><img src="http://pangguoming.com/blog/images/ebc9f7e2-d38e-464f-812b-5b3dec80ec80.png" alt=""><br><div>这个图标最后应用到下拉的快速设置里面，在手机上的效果图就不上了。<br><div>展示一张少复杂的图吧：<br><div><img src="http://pangguoming.com/blog/images/8e2a3944-6f64-4366-95ac-d90bdc5f1585.png" alt=""><br><div><br><br># 总结<br><br><div>本文简单介绍了几款工具，目的能让新手快速的了解一下如何制作出自己需要的矢量图资源文件，在有需要做一张应用到Android应用/系统的矢量图时不至于措手不及。当然如过你牛逼到直接用记事本“绘图”的话，本文应该不适合你。<br><div>我发现我特别喜欢发掘一些能够提高生产力的小工具啊，哈哈哈。<br><br># 其他<br><br><div>知其然不知其所以然？想要了解的原理，跳转到W3C查看Scalable Vector Graphics (SVG) 1.1 (Second Edition)<br><div><a href="https://www.w3.org/TR/SVG11/Overview.html" target="_blank" rel="noopener">https://www.w3.org/TR/SVG11/Overview.html</a><br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></vector></div></div></div></div></vector></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2016/07/22/div 自适应高度 自动填充剩余高度/" rel="next" title="div 自适应高度 自动填充剩余高度">
+                <i class="fa fa-chevron-left"></i> div 自适应高度 自动填充剩余高度
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2016/07/28/android AutoCompleteTextView 自定义BaseAdapter/" rel="prev" title="android AutoCompleteTextView 自定义BaseAdapter">
+                android AutoCompleteTextView 自定义BaseAdapter <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/blog/archives">
+            
+                <span class="site-state-item-count">420</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">267</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
