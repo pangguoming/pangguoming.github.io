@@ -1989,7 +1989,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fff;
+  background: #de5773;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3154,4 +3154,96 @@ pre .javascript .function {
 }
 .footer {
   bottom: auto;
+}
+#header,
+#main {
+  margin-top: 75px;
+}
+#topnavbar {
+  width: 100%;
+  background: #6cacf5;
+  position: fixed;
+  z-index: 1000;
+  font-family: Arial;
+  line-height: normal;
+}
+#topnavbar a {
+  border-bottom: 0;
+}
+.tophead {
+  width: 75%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.tophead .toplogo {
+  float: left;
+  overflow: hidden;
+  font-size: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.tophead .toplogo a {
+  color: #333;
+}
+#mnav {
+  display: none;
+  width: 100%;
+}
+#mnav h2 {
+  text-align: right;
+  color: #fff;
+  font-size: 18px;
+  height: 52px;
+  line-height: 52px;
+  padding-left: 10px;
+  width: 100%;
+}
+#mnav ul {
+  display: none;
+  background: rgba(1,1,1,0.8);
+  width: 100%;
+  padding-bottom: 40px;
+}
+#mnav li {
+  height: 40px;
+  line-height: 40px;
+  vertical-align: top;
+  font-size: 16px;
+  display: block;
+  overflow: hidden;
+  text-align: center;
+}
+.topnav {
+  overflow: hidden;
+  margin: 10px 0;
+}
+.tophead nav {
+  color: #999;
+  line-height: 32px;
+}
+.tophead nav ul {
+  margin: 0;
+  text-align: right;
+  list-style: none;
+}
+.tophead nav ul li {
+  display: inline;
+  font-size: 16px;
+  padding: 10px 20px;
+  height: 46px;
+  line-height: 46px;
+}
+#topnavbar #topnav #topnav_current {
+  color: #000;
+  border-bottom: #333 2px solid;
+  padding-bottom: 10px;
+}
+@media only screen and (max-width: 359px) {
+  #topnavbar {
+    display: none;
+  }
+  #header,
+  #main {
+    margin-top: 0;
+  }
 }
