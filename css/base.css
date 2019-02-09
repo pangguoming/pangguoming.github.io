@@ -15,9 +15,9 @@ a { text-decoration: none; color: #555 }
 header { width: 100%; background: #6cacf5; position:fixed;z-index: 1000;}
 article { overflow: hidden ;min-height: 1024px;}
 .tophead { width: 75%; margin: 0 auto; overflow: hidden; }
-.blogs  .classbar { padding:0; }
+.blogs  .classbar { margin-top:20px; padding:0; }
 .blogs  .classbar h1{ padding:0;}
-.blogs  .more { padding:0; text-align: center;}
+.blogs  .more { padding:10px; text-align: center;}
 .blogs  .more a { padding:0;color: #096;}
 /* nav */
 .logo { float: left; overflow: hidden; font-size: 30px; margin-top: 10px; margin-left: 10px }

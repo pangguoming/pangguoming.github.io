@@ -14,9 +14,13 @@
 article { width: 75%; margin: auto ;min-height: 1000px;}
 /* rightbox */
 .blogs { float: left; width: 78%; overflow: hidden; margin-top:76px;}
-.blogs li { margin-bottom: 10px; overflow: hidden; padding: 20px; background: #fff }
-h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
-.blogpic { overflow: hidden; width: 16%; display: block; float: left; margin-right: 20px; border-radius: 5px; ; }
+.blogs li { overflow: hidden; padding: 10px; background: #fff; }
+ .blogs li ul {}
+ .blogs li ul li{ width:45%;  float: left;}
+ .blogs li ul li .blogpic {width:27%;  float: left;margin-top: 20px}
+ .blogs li ul li .bloginfo {width:70%;  float: right;}
+ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
+.blogpic { overflow: hidden; width: 16%; display: block; float: left; margin-right: 10px; border-radius: 5px; ; }
 .autor { width: 100%; overflow: hidden; clear: both; margin: 20px 0 0 0; display: inline-block; color: #838383; font-size: 12px }
 .autor span { margin-right: 10px; padding-left: 20px }
 .autor span a { color: #096; }
@@ -60,7 +64,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 .cloud ul a:first-child { background: #036564 }
 .cloud ul a:last-child { background: #3299BB }
 .cloud ul a:hover { border-radius: 0; text-shadow: #000 1px 1px 1px }
-.hometitle { padding: 0 10px; line-height: 50px; height: 50px; font-size: 18px; border-bottom: 1px solid #e5e5e5; color: #333; position: relative }
+.hometitle {padding: 0 10px; line-height: 50px; height: 50px; font-size: 18px; border-bottom: 1px solid #e5e5e5; color: #333; position: relative }
 .hometitle:after { content: ''; position: absolute; height: 2px; width: 0; right: inherit; top: inherit; left: 0; bottom: -1px; background: #333; transition: 2s ease all; }
 .hometitle:hover:after { width: 100%; transition: 2s ease all; }
 .paihang { background: #FFF; overflow: hidden; margin-bottom: 20px }
