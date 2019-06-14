@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="事件（Event） 基本上说是一个用户操作，如按键、点击、鼠标移动等等，或者是一些出现，如系统生成的通知。应用程序需要在事件发生时响应事件。例如，中断。事件是用于进程间通信。## 通过事件使用委托事件在类中声明且生成，且通过使用同一个类或其他类中的委托与事件处理程序关联。包含事件的类用于发布事件。这被称为 发布器（publisher） 类。其他接受该事件的类被称为 订阅器（subscriber）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C# 事件（Event）">
+<meta property="og:url" content="http://pangguoming.com/2017/03/02/C# 事件（Event）/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="事件（Event） 基本上说是一个用户操作，如按键、点击、鼠标移动等等，或者是一些出现，如系统生成的通知。应用程序需要在事件发生时响应事件。例如，中断。事件是用于进程间通信。## 通过事件使用委托事件在类中声明且生成，且通过使用同一个类或其他类中的委托与事件处理程序关联。包含事件的类用于发布事件。这被称为 发布器（publisher） 类。其他接受该事件的类被称为 订阅器（subscriber）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-07T11:13:45.199Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C# 事件（Event）">
+<meta name="twitter:description" content="事件（Event） 基本上说是一个用户操作，如按键、点击、鼠标移动等等，或者是一些出现，如系统生成的通知。应用程序需要在事件发生时响应事件。例如，中断。事件是用于进程间通信。## 通过事件使用委托事件在类中声明且生成，且通过使用同一个类或其他类中的委托与事件处理程序关联。包含事件的类用于发布事件。这被称为 发布器（publisher） 类。其他接受该事件的类被称为 订阅器（subscriber）">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2017/03/02/C# 事件（Event）/">
+
+
+
+
+
+  <title>C# 事件（Event） | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+	<div id="topnavbar">
+  <div class="tophead">
+    <div class="toplogo"><a href="/">庞国明-博客</a></div>
+    <div id="mnav">
+      <h2><span class="navicon"></span></h2>
+      <ul>
+        <li><a href="/">博客</a></li>
+        <li><a href="/course.html">文档教程</a></li>
+        <li><a href="/video.html">视频教程</a></li>
+        <li><a href="/code.html">源码分享</a></li>
+        <li><a href="/about.html">关于我</a></li>
+      </ul>
+    </div>
+    <nav class="topnav" id="topnav">
+      <ul>
+        <li><a href="/">博客</a></li>
+        <li><a href="/course.html">文档教程</a></li>
+        <li><a href="/video.html">视频教程</a></li>
+        <li><a href="/code.html">源码分享</a></li>
+        <li><a href="/about.html">关于我</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/03/02/C# 事件（Event）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C# 事件（Event）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-02T13:22:00+08:00">
+                2017-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div class="tutintro"><br><br><strong>事件（Event）</strong> 基本上说是一个用户操作，如按键、点击、鼠标移动等等，或者是一些出现，如系统生成的通知。应用程序需要在事件发生时响应事件。例如，中断。事件是用于进程间通信。<br><br>## 通过事件使用委托<br><br>事件在类中声明且生成，且通过使用同一个类或其他类中的委托与事件处理程序关联。包含事件的类用于发布事件。这被称为 <strong>发布器（publisher）</strong> 类。其他接受该事件的类被称为 <strong>订阅器（subscriber）</strong> 类。事件使用 <strong>发布-订阅（publisher-subscriber）</strong> 模型。<br><br><strong>发布器（publisher）</strong> 是一个包含事件和委托定义的对象。事件和委托之间的联系也定义在这个对象中。发布器（publisher）类的对象调用这个事件，并通知其他的对象。<br><br><strong>订阅器（subscriber）</strong> 是一个接受事件并提供事件处理程序的对象。在发布器（publisher）类中的委托调用订阅器（subscriber）类中的方法（事件处理程序）。<br><br>## 声明事件（Event）<br><br>在类的内部声明事件，首先必须声明该事件的委托类型。例如：<br><br><span class="kwd">public<span class="pln"> <span class="kwd">delegate<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">BoilerLogHandler<span class="pun">(<span class="kwd">string<span class="pln"> status<span class="pun">);</span></span></span></span></span></span></span></span></span></span></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">然后，声明事件本身，使用 **event** 关键字：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint prettyprinted&quot;&gt;&lt;span class=&quot;com&quot;&gt;// 基于上面的委托定义事件&lt;span class=&quot;pln&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;kwd&quot;&gt;public&lt;span class=&quot;pln&quot;&gt; &lt;span class=&quot;kwd&quot;&gt;event&lt;span class=&quot;pln&quot;&gt; &lt;span class=&quot;typ&quot;&gt;BoilerLogHandler&lt;span class=&quot;pln&quot;&gt; &lt;span class=&quot;typ&quot;&gt;BoilerEventLog&lt;span class=&quot;pun&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</span><br></pre></td></tr></table></figure><br><br>上面的代码定义了一个名为 <em>BoilerLogHandler</em> 的委托和一个名为 <em>BoilerEventLog</em> 的事件，该事件在生成的时候会调用委托。<br><br>    ## 实例 1<br><br>    <pre class="prettyprint prettyprinted"><span class="kwd">using<span class="pln"> <span class="typ">System<span class="pun">;<span class="pln"><br>    <span class="kwd">namespace<span class="pln"> <span class="typ">SimpleEvent<span class="pln"><br>    <span class="pun">{<span class="pln"><br>       <span class="kwd">using<span class="pln"> <span class="typ">System<span class="pun">;<span class="pln"><br><br>       <span class="kwd">public<span class="pln"> <span class="kwd">class<span class="pln"> <span class="typ">EventTest<span class="pln"><br>       <span class="pun">{<span class="pln"><br>          <span class="kwd">private<span class="pln"> <span class="kwd">int<span class="pln"> value<span class="pun">;<span class="pln"><br><br>          <span class="kwd">public<span class="pln"> <span class="kwd">delegate<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">NumManipulationHandler<span class="pun">();<span class="pln"><br><br>          <span class="kwd">public<span class="pln"> <span class="kwd">event<span class="pln"> <span class="typ">NumManipulationHandler<span class="pln"> <span class="typ">ChangeNum<span class="pun">;<span class="pln"><br><br>          <span class="kwd">protected<span class="pln"> <span class="kwd">virtual<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">OnNumChanged<span class="pun">()<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="kwd">if<span class="pln"> <span class="pun">(<span class="typ">ChangeNum<span class="pln"> <span class="pun">!=<span class="pln"> <span class="kwd">null<span class="pun">)<span class="pln"><br>             <span class="pun">{<span class="pln"><br>                <span class="typ">ChangeNum<span class="pun">();<span class="pln"><br>             <span class="pun">}<span class="pln"><br>             <span class="kwd">else<span class="pln"><br>             <span class="pun">{<span class="pln"><br>                <span class="typ">Console<span class="pun">.<span class="typ">WriteLine<span class="pun">(<span class="str">“Event fired!”<span class="pun">);<span class="pln"><br>             <span class="pun">}<span class="pln"><br><br>          <span class="pun">}<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="typ">EventTest<span class="pun">(<span class="kwd">int<span class="pln"> n <span class="pun">)<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="typ">SetValue<span class="pun">(<span class="pln">n<span class="pun">);<span class="pln"><br>          <span class="pun">}<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">SetValue<span class="pun">(<span class="kwd">int<span class="pln"> n<span class="pun">)<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="kwd">if<span class="pln"> <span class="pun">(<span class="pln">value <span class="pun">!=<span class="pln"> n<span class="pun">)<span class="pln"><br>             <span class="pun">{<span class="pln"><br>                value <span class="pun">=<span class="pln"> n<span class="pun">;<span class="pln"><br>                <span class="typ">OnNumChanged<span class="pun">();<span class="pln"><br>             <span class="pun">}<span class="pln"><br>          <span class="pun">}<span class="pln"><br>       <span class="pun">}<span class="pln"><br>       <span class="kwd">public<span class="pln"> <span class="kwd">class<span class="pln"> <span class="typ">MainClass<span class="pln"><br>       <span class="pun">{<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="kwd">static<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">Main<span class="pun">()<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="typ">EventTest<span class="pln"> e <span class="pun">=<span class="pln"> <span class="kwd">new<span class="pln"> <span class="typ">EventTest<span class="pun">(<span class="lit">5<span class="pun">);<span class="pln"><br>             e<span class="pun">.<span class="typ">SetValue<span class="pun">(<span class="lit">7<span class="pun">);<span class="pln"><br>             e<span class="pun">.<span class="typ">SetValue<span class="pun">(<span class="lit">11<span class="pun">);<span class="pln"><br>             <span class="typ">Console<span class="pun">.<span class="typ">ReadKey<span class="pun">();<span class="pln"><br>          <span class="pun">}<span class="pln"><br>       <span class="pun">}<span class="pln"><br>    <span class="pun">}</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">当上面的代码被编译和执行时，它会产生下列结果：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;result&quot;&gt;Event Fired!</span><br><span class="line">    Event Fired!</span><br><span class="line">    Event Fired!</span><br></pre></td></tr></table></figure><br><br>    ## 实例 2<br><br>本实例提供一个简单的用于热水锅炉系统故障排除的应用程序。当维修工程师检查锅炉时，锅炉的温度和压力会随着维修工程师的备注自动记录到日志文件中。<br><br>    <pre class="prettyprint prettyprinted"><span class="kwd">using<span class="pln"> <span class="typ">System<span class="pun">;<span class="pln"><br>    <span class="kwd">using<span class="pln"> <span class="typ">System<span class="pun">.<span class="pln">IO<span class="pun">;<span class="pln"><br><br>    <span class="kwd">namespace<span class="pln"> <span class="typ">BoilerEventAppl<span class="pln"><br>    <span class="pun">{<span class="pln"><br><br>       <span class="com">// boiler 类<span class="pln"><br>       <span class="kwd">class<span class="pln"> <span class="typ">Boiler<span class="pln"><br>       <span class="pun">{<span class="pln"><br>          <span class="kwd">private<span class="pln"> <span class="kwd">int<span class="pln"> temp<span class="pun">;<span class="pln"><br>          <span class="kwd">private<span class="pln"> <span class="kwd">int<span class="pln"> pressure<span class="pun">;<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="typ">Boiler<span class="pun">(<span class="kwd">int<span class="pln"> t<span class="pun">,<span class="pln"> <span class="kwd">int<span class="pln"> p<span class="pun">)<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             temp <span class="pun">=<span class="pln"> t<span class="pun">;<span class="pln"><br>             pressure <span class="pun">=<span class="pln"> p<span class="pun">;<span class="pln"><br>          <span class="pun">}<span class="pln"><br><br>          <span class="kwd">public<span class="pln"> <span class="kwd">int<span class="pln"> getTemp<span class="pun">()<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="kwd">return<span class="pln"> temp<span class="pun">;<span class="pln"><br>          <span class="pun">}<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="kwd">int<span class="pln"> getPressure<span class="pun">()<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="kwd">return<span class="pln"> pressure<span class="pun">;<span class="pln"><br>          <span class="pun">}<span class="pln"><br>       <span class="pun">}<span class="pln"><br>       <span class="com">// 事件发布器<span class="pln"><br>       <span class="kwd">class<span class="pln"> <span class="typ">DelegateBoilerEvent<span class="pln"><br>       <span class="pun">{<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="kwd">delegate<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">BoilerLogHandler<span class="pun">(<span class="kwd">string<span class="pln"> status<span class="pun">);<span class="pln"><br><br>          <span class="com">// 基于上面的委托定义事件<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="kwd">event<span class="pln"> <span class="typ">BoilerLogHandler<span class="pln"> <span class="typ">BoilerEventLog<span class="pun">;<span class="pln"><br><br>          <span class="kwd">public<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">LogProcess<span class="pun">()<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="kwd">string<span class="pln"> remarks <span class="pun">=<span class="pln"> <span class="str">“O. K”<span class="pun">;<span class="pln"><br>             <span class="typ">Boiler<span class="pln"> b <span class="pun">=<span class="pln"> <span class="kwd">new<span class="pln"> <span class="typ">Boiler<span class="pun">(<span class="lit">100<span class="pun">,<span class="pln"> <span class="lit">12<span class="pun">);<span class="pln"><br>             <span class="kwd">int<span class="pln"> t <span class="pun">=<span class="pln"> b<span class="pun">.<span class="pln">getTemp<span class="pun">();<span class="pln"><br>             <span class="kwd">int<span class="pln"> p <span class="pun">=<span class="pln"> b<span class="pun">.<span class="pln">getPressure<span class="pun">();<span class="pln"><br>             <span class="kwd">if<span class="pun">(<span class="pln">t <span class="pun">&gt;<span class="pln"> <span class="lit">150<span class="pln"> <span class="pun">||<span class="pln"> t <span class="pun">&lt;<span class="pln"> <span class="lit">80<span class="pln"> <span class="pun">||<span class="pln"> p <span class="pun">&lt;<span class="pln"> <span class="lit">12<span class="pln"> <span class="pun">||<span class="pln"> p <span class="pun">&gt;<span class="pln"> <span class="lit">15<span class="pun">)<span class="pln"><br>             <span class="pun">{<span class="pln"><br>                remarks <span class="pun">=<span class="pln"> <span class="str">“Need Maintenance”<span class="pun">;<span class="pln"><br>             <span class="pun">}<span class="pln"><br>             <span class="typ">OnBoilerEventLog<span class="pun">(<span class="str">“Logging Info:\n”<span class="pun">);<span class="pln"><br>             <span class="typ">OnBoilerEventLog<span class="pun">(<span class="str">“Temparature “<span class="pln"> <span class="pun">+<span class="pln"> t <span class="pun">+<span class="pln"> <span class="str">“\nPressure: “<span class="pln"> <span class="pun">+<span class="pln"> p<span class="pun">);<span class="pln"><br>             <span class="typ">OnBoilerEventLog<span class="pun">(<span class="str">“\nMessage: “<span class="pln"> <span class="pun">+<span class="pln"> remarks<span class="pun">);<span class="pln"><br>          <span class="pun">}<span class="pln"><br><br>          <span class="kwd">protected<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">OnBoilerEventLog<span class="pun">(<span class="kwd">string<span class="pln"> message<span class="pun">)<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="kwd">if<span class="pln"> <span class="pun">(<span class="typ">BoilerEventLog<span class="pln"> <span class="pun">!=<span class="pln"> <span class="kwd">null<span class="pun">)<span class="pln"><br>             <span class="pun">{<span class="pln"><br>                <span class="typ">BoilerEventLog<span class="pun">(<span class="pln">message<span class="pun">);<span class="pln"><br>             <span class="pun">}<span class="pln"><br>          <span class="pun">}<span class="pln"><br>       <span class="pun">}<span class="pln"><br>       <span class="com">// 该类保留写入日志文件的条款<span class="pln"><br>       <span class="kwd">class<span class="pln"> <span class="typ">BoilerInfoLogger<span class="pln"><br>       <span class="pun">{<span class="pln"><br>          <span class="typ">FileStream<span class="pln"> fs<span class="pun">;<span class="pln"><br>          <span class="typ">StreamWriter<span class="pln"> sw<span class="pun">;<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="typ">BoilerInfoLogger<span class="pun">(<span class="kwd">string<span class="pln"> filename<span class="pun">)<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             fs <span class="pun">=<span class="pln"> <span class="kwd">new<span class="pln"> <span class="typ">FileStream<span class="pun">(<span class="pln">filename<span class="pun">,<span class="pln"> <span class="typ">FileMode<span class="pun">.<span class="typ">Append<span class="pun">,<span class="pln"> <span class="typ">FileAccess<span class="pun">.<span class="typ">Write<span class="pun">);<span class="pln"><br>             sw <span class="pun">=<span class="pln"> <span class="kwd">new<span class="pln"> <span class="typ">StreamWriter<span class="pun">(<span class="pln">fs<span class="pun">);<span class="pln"><br>          <span class="pun">}<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">Logger<span class="pun">(<span class="kwd">string<span class="pln"> info<span class="pun">)<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             sw<span class="pun">.<span class="typ">WriteLine<span class="pun">(<span class="pln">info<span class="pun">);<span class="pln"><br>          <span class="pun">}<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">Close<span class="pun">()<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             sw<span class="pun">.<span class="typ">Close<span class="pun">();<span class="pln"><br>             fs<span class="pun">.<span class="typ">Close<span class="pun">();<span class="pln"><br>          <span class="pun">}<span class="pln"><br>       <span class="pun">}<span class="pln"><br>       <span class="com">// 事件订阅器<span class="pln"><br>       <span class="kwd">public<span class="pln"> <span class="kwd">class<span class="pln"> <span class="typ">RecordBoilerInfo<span class="pln"><br>       <span class="pun">{<span class="pln"><br>          <span class="kwd">static<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">Logger<span class="pun">(<span class="kwd">string<span class="pln"> info<span class="pun">)<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="typ">Console<span class="pun">.<span class="typ">WriteLine<span class="pun">(<span class="pln">info<span class="pun">);<span class="pln"><br>          <span class="pun">}<span class="com">//end of Logger<span class="pln"><br><br>          <span class="kwd">static<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">Main<span class="pun">(<span class="kwd">string<span class="pun">[]<span class="pln"> args<span class="pun">)<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="typ">BoilerInfoLogger<span class="pln"> filelog <span class="pun">=<span class="pln"> <span class="kwd">new<span class="pln"> <span class="typ">BoilerInfoLogger<span class="pun">(<span class="str">“e:\boiler.txt”<span class="pun">);<span class="pln"><br>             <span class="typ">DelegateBoilerEvent<span class="pln"> boilerEvent <span class="pun">=<span class="pln"> <span class="kwd">new<span class="pln"> <span class="typ">DelegateBoilerEvent<span class="pun">();<span class="pln"><br>             boilerEvent<span class="pun">.<span class="typ">BoilerEventLog<span class="pln"> <span class="pun">+=<span class="pln"> <span class="kwd">new<span class="pln"><br>             <span class="typ">DelegateBoilerEvent<span class="pun">.<span class="typ">BoilerLogHandler<span class="pun">(<span class="typ">Logger<span class="pun">);<span class="pln"><br>             boilerEvent<span class="pun">.<span class="typ">BoilerEventLog<span class="pln"> <span class="pun">+=<span class="pln"> <span class="kwd">new<span class="pln"><br>             <span class="typ">DelegateBoilerEvent<span class="pun">.<span class="typ">BoilerLogHandler<span class="pun">(<span class="pln">filelog<span class="pun">.<span class="typ">Logger<span class="pun">);<span class="pln"><br>             boilerEvent<span class="pun">.<span class="typ">LogProcess<span class="pun">();<span class="pln"><br>             <span class="typ">Console<span class="pun">.<span class="typ">ReadLine<span class="pun">();<span class="pln"><br>             filelog<span class="pun">.<span class="typ">Close<span class="pun">();<span class="pln"><br>          <span class="pun">}<span class="com">//end of main<span class="pln"><br><br>       <span class="pun">}<span class="com">//end of RecordBoilerInfo<span class="pln"><br>    <span class="pun">}</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><code>当上面的代码被编译和执行时，它会产生下列结果：
+
+    &lt;pre class=&quot;result&quot;&gt;Logging info:
+
+    Temperature 100
+    Pressure 12
+
+    Message: O. K</code></pre></pre><br></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/02/Java 与 JavaScript 对websocket的使用/" rel="next" title="Java 与 JavaScript 对websocket的使用">
+                <i class="fa fa-chevron-left"></i> Java 与 JavaScript 对websocket的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/06/理解js中的原型链，prototype与__proto__的关系/" rel="prev" title="理解js中的原型链，prototype与__proto__的关系">
+                理解js中的原型链，prototype与__proto__的关系 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">420</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">267</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

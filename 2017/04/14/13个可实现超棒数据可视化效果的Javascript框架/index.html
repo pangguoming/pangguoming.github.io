@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="可视化,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="随着商业及其相关需求的发展，数据成为越来越重要的元素之一，为了更加直观和明显的展示商业潜在的趋势和内在的特性，我们需要使用图表和图形的方式来直观动态的展示数据内在秘密，在今天的这篇文章中我们推荐12款最棒的数据可视化的Javascript框架，希望能够帮助大家在项目中更好的实现数据可视化效果。 ECharts提起ECharts，经常使用开源软件的朋友应该很熟悉，当然，如果你不知道也没关系。但是你">
+<meta name="keywords" content="可视化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="13个可实现超棒数据可视化效果的Javascript框架">
+<meta property="og:url" content="http://pangguoming.com/2017/04/14/13个可实现超棒数据可视化效果的Javascript框架/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="随着商业及其相关需求的发展，数据成为越来越重要的元素之一，为了更加直观和明显的展示商业潜在的趋势和内在的特性，我们需要使用图表和图形的方式来直观动态的展示数据内在秘密，在今天的这篇文章中我们推荐12款最棒的数据可视化的Javascript框架，希望能够帮助大家在项目中更好的实现数据可视化效果。 ECharts提起ECharts，经常使用开源软件的朋友应该很熟悉，当然，如果你不知道也没关系。但是你">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.36dsj.com/wp-content/uploads/2014/12/1819-600x318.jpg">
+<meta property="og:updated_time" content="2019-02-07T11:13:36.465Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="13个可实现超棒数据可视化效果的Javascript框架">
+<meta name="twitter:description" content="随着商业及其相关需求的发展，数据成为越来越重要的元素之一，为了更加直观和明显的展示商业潜在的趋势和内在的特性，我们需要使用图表和图形的方式来直观动态的展示数据内在秘密，在今天的这篇文章中我们推荐12款最棒的数据可视化的Javascript框架，希望能够帮助大家在项目中更好的实现数据可视化效果。 ECharts提起ECharts，经常使用开源软件的朋友应该很熟悉，当然，如果你不知道也没关系。但是你">
+<meta name="twitter:image" content="http://www.36dsj.com/wp-content/uploads/2014/12/1819-600x318.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2017/04/14/13个可实现超棒数据可视化效果的Javascript框架/">
+
+
+
+
+
+  <title>13个可实现超棒数据可视化效果的Javascript框架 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+	<div id="topnavbar">
+  <div class="tophead">
+    <div class="toplogo"><a href="/">庞国明-博客</a></div>
+    <div id="mnav">
+      <h2><span class="navicon"></span></h2>
+      <ul>
+        <li><a href="/">博客</a></li>
+        <li><a href="/course.html">文档教程</a></li>
+        <li><a href="/video.html">视频教程</a></li>
+        <li><a href="/code.html">源码分享</a></li>
+        <li><a href="/about.html">关于我</a></li>
+      </ul>
+    </div>
+    <nav class="topnav" id="topnav">
+      <ul>
+        <li><a href="/">博客</a></li>
+        <li><a href="/course.html">文档教程</a></li>
+        <li><a href="/video.html">视频教程</a></li>
+        <li><a href="/code.html">源码分享</a></li>
+        <li><a href="/about.html">关于我</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/04/14/13个可实现超棒数据可视化效果的Javascript框架/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">13个可实现超棒数据可视化效果的Javascript框架</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-14T09:18:00+08:00">
+                2017-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://www.36dsj.com/wp-content/uploads/2014/12/1819-600x318.jpg" alt="数据可视化"></p>
+<p>随着商业及其相关需求的发展，数据成为越来越重要的元素之一，为了更加直观和明显的展示商业潜在的趋势和内在的特性，我们需要使用图表和图形的方式来直观动态的展示数据内在秘密，在今天的这篇文章中我们推荐12款最棒的数据可视化的Javascript框架，希望能够帮助大家在项目中更好的实现数据可视化效果。</p>
+<h2 id="ECharts"><a href="#ECharts" class="headerlink" title="ECharts"></a><strong>ECharts</strong></h2><p>提起ECharts，经常使用开源软件的朋友应该很熟悉，当然，如果你不知道也没关系。但是你肯定知道去年春节以及近期央视大规划报道的百度大数据产品，如百度迁徙、百度司南、百度大数据预测等等，这些产品的数据可视化均是通过ECharts来实现的。</p>
+<p>ECharts是一款数据可视化的纯JavaScript图标库，其拥有混搭图表、拖拽重计算、制作数据视图、动态类型切换、图例开关、数据区域选择、值域漫游、多维度堆积等非常丰富的功能。</p>
+<p>ECharts (Enterprise Charts 商业产品图表库)是基于HTML5 Canvas的一个纯Javascript图表库，提供直观，生动，可交互，可个性化定制的数据可视化图表。创新的拖拽重计算、数据视图、值域漫游等特性大大增强了用户体验，赋予了用户对数据进行挖掘、整合的能力。</p>
+<ul>
+<li><a href="http://echarts.baidu.com/doc/example.html" target="_blank" rel="noopener">ECharts在线演示&gt;&gt;&gt;</a></li>
+<li><a href="http://echarts.baidu.com/doc/doc.html" target="_blank" rel="noopener">ECharts使用文档&gt;&gt;&gt;</a></li>
+</ul>
+<h2 id="Dygraphs-js"><a href="#Dygraphs-js" class="headerlink" title="Dygraphs.js"></a><strong>Dygraphs.js</strong></h2><p>Dygraphs是一款允许开发人员创建互动图表的JS类库。数据越多，图表功能越强大。也就是说Dyrgaphs是基于视觉化来包含大量的视图。可以分开的分析和展示数据不同部分，例如指定月份。同时这个类库兼容主要的浏览器，并且支持触摸，使得它成为一个完整健壮的视觉化框架.</p>
+<ul>
+<li><a href="http://dygraphs.com/gallery/#g/resize" target="_blank" rel="noopener">Dygraphs.js Resize演示</a></li>
+<li><a href="http://dygraphs.com/options.html" target="_blank" rel="noopener">Dygraph.js Options文档</a></li>
+</ul>
+<h2 id="D3-js"><a href="#D3-js" class="headerlink" title="D3.js"></a><strong>D3.js</strong></h2><p>最后成为了<a href="http://mbostock.github.io/protovis/" target="_blank" rel="noopener">Protovis.js</a>的继承者，D3能够帮助你通过动态更新DOM来创建令人赞叹的图形。D3.js使用链式方法来创建可视化，并且代码可重用。因为基于DOM，D3支持w3c的web标准，所以能够正确的在web浏览器中正确的渲染。最后，D3的路径生成方法（d3.svg.line()），给予了开发人员通过定义不同路径和属性来创建实用SVG的方法</p>
+<ul>
+<li><a href="http://www.gbtags.com/gb/linkviewer/3545.htm" target="_blank" rel="noopener">Wimbledon Interactive Circle SVG</a></li>
+<li><a href="https://github.com/mbostock/d3/wiki/" target="_blank" rel="noopener">D3.js文档</a></li>
+</ul>
+<h2 id="InfoVis"><a href="#InfoVis" class="headerlink" title="InfoVis"></a><strong>InfoVis</strong></h2><p>infoVis是Javascript infovis toolkit(JIT)，同样也提供了数据可视化的功能。支持<a href="http://en.wikipedia.org/wiki/WebGL" target="_blank" rel="noopener">WebGL</a>，infovis被很多的组织例如，Mozilla，Aljazeera认可。和D3框架配合，infovis也提供了链式方法来操作DOM，使得它也成为了一个非常可靠的JS类库。</p>
+<ul>
+<li><a href="http://www.whitehouse.gov/winning-the-future/interactive-budget" target="_blank" rel="noopener">President Obama Budget TreeMap</a></li>
+<li><a href="http://philogb.github.io/jit/static/v20/Docs/files/Core/Core-js.html" target="_blank" rel="noopener">InfoVis文档</a></li>
+</ul>
+<h2 id="The-Google-Visualization-API"><a href="#The-Google-Visualization-API" class="headerlink" title="The Google Visualization API"></a><strong>The Google Visualization API</strong></h2><p>来自Google developers console(GDC)，google的可视化API。除了非常容易使用的DOM修改，这个Google API使得定义定制的方法非常简单。而且界面可用性，及其来自GDC的开源网络支持，使得它也成为了顶级的可视化功能。</p>
+<ul>
+<li><a href="https://developers.google.com/chart/interactive/docs/reference" target="_blank" rel="noopener">GDC Visualization API Documentation</a></li>
+<li><a href="http://thematicmapping.org/api/prism.php" target="_blank" rel="noopener">Visualization API – Google Spreadsheet – Google Earth API</a></li>
+</ul>
+<h2 id="Springy-js"><a href="#Springy-js" class="headerlink" title="Springy.js"></a><strong>Springy.js</strong></h2><p>Spring.js是一个使用特定算法来实现<a href="http://en.wikipedia.org/wiki/Force-directed_graph_drawing" target="_blank" rel="noopener">force-directed graphs</a>的Javascript类库，在web页面成类似喷泉样式的节点。虽然它包含了预先定义的算法，我们仍旧可以传入一些参数例如，斜率及其减幅。Springy.js由Dennis Hotson开发。</p>
+<ul>
+<li><a href="http://getspringy.com/demo.html" target="_blank" rel="noopener">Springy.js Node-Drag Demo</a></li>
+<li><a href="https://github.com/dhotson/springy/" target="_blank" rel="noopener">Springy.js GitHub Repo</a></li>
+</ul>
+<h2 id="Polymaps-js"><a href="#Polymaps-js" class="headerlink" title="Polymaps.js"></a><strong>Polymaps.js</strong></h2><p>使用SVG来生成互动的web地图，并且兼容浏览器。核心是矢量的片段，帮助确保加载速度和缩放功能。虽然可能需要配置组件，Polymaps很容备定制，能够处理数据为矢量几何，<a href="http://geojson.org/geojson-spec.html" target="_blank" rel="noopener">GeoJSON Files</a>及其其它。</p>
+<ul>
+<li><a href="http://polymaps.org/ex/unemployment.html" target="_blank" rel="noopener">Census Borough Unemployment Map</a></li>
+<li><a href="http://polymaps.org/docs/" target="_blank" rel="noopener">Polymaps.js文档 Documentation</a></li>
+</ul>
+<h2 id="Dimple"><a href="#Dimple" class="headerlink" title="Dimple"></a><strong>Dimple</strong></h2><p>Dimple API可以帮助分析师不需要了解太多技术内容而开发强大的数据可视化效果，简单的说，Dimple是的任何人都能够开发令人惊叹的三维图形效果，不需要掌握任何的JS知识。 而且<a href="http://www.gbtags.com/gb/linkviewer/3529.htm" target="_blank" rel="noopener">dimplejs.org</a>包含了几个超棒的演示，可以很简单的使用用户自己数据来生成效果。如果你不希望了解太深入的JS效果的话，这些例子是你开始使用的必备工具</p>
+<ul>
+<li><a href="http://dimplejs.org/examples_index.html" target="_blank" rel="noopener">Dimple API演示</a></li>
+<li><a href="https://github.com/PMSI-AlignAlytics/dimple/wiki" target="_blank" rel="noopener">Dimple API文档</a></li>
+</ul>
+<h2 id="Sigma-js"><a href="#Sigma-js" class="headerlink" title="Sigma.js"></a><strong>Sigma.js</strong></h2><p>如果你需要开发高级特性的线型图，Sigma.js在它的类库和插件中提供了一个超棒的互动设置。使用Sigma.js感觉就想使用一个可靠地类库。然而，Sigma鼓励开发人员去重新的配置类库创建插件，这样导致了大量的开源。 Sigma让人使用非常的舒服，是我个人比较喜欢的用来创建图形效果的Javascript类库</p>
+<ul>
+<li><a href="http://www.gbtags.com/gb/linkviewer/3546.htm" target="_blank" rel="noopener">Sigma.js翻转效果</a></li>
+<li><a href="https://github.com/jacomyal/sigma.js" target="_blank" rel="noopener">Sigma.js文档</a></li>
+</ul>
+<h2 id="Raphael-js"><a href="#Raphael-js" class="headerlink" title="Raphael.js"></a><strong>Raphael.js</strong></h2><p>Raphael.js类库专注于浏览器的兼容性。 这个框架遵循了SVG W3C推荐，使用一套标准来保证图片完全缩放并且没有像素损失。除了使用SVG，Rapheal.js在IE9之前使用Vector Model Language（VML）。虽然VML不在广泛使用，这个支持使得Raphael.js拥有最好的兼容性。</p>
+<ul>
+<li><a href="http://raphaeljs.com/pie.html" target="_blank" rel="noopener">Raphael.js饼图演示</a></li>
+<li><a href="http://raphaeljs.com/reference.html" target="_blank" rel="noopener">Raphael.js文档</a></li>
+</ul>
+<h2 id="gRaphael"><a href="#gRaphael" class="headerlink" title="gRaphaël"></a><strong>gRaphaël</strong></h2><p>虽然Raphael.js是一个用来创建SVG的类库，它并不是用来处理大量数据集的。相反gRaphaë是用来处理这样类型数据的。对于一个10KB数据，gRaphaël被证明是一个非常不错的Raphael扩展。虽然它没有使用forece-driven算法来开发，也没有包含任何物理属性，gRaphaël仍旧是一个在跨SVG结构兼容解决方案中非常值得尊重的类库，而且使用简单。只要对于项目来说它合适，就应该作为完整项目中的一个可行的资源来看待。</p>
+<ul>
+<li><a href="http://g.raphaeljs.com/linechart.html" target="_blank" rel="noopener">gRaphael.js直线图效果</a></li>
+<li><a href="http://g.raphaeljs.com/reference.html" target="_blank" rel="noopener">gRaphael.js文档</a></li>
+</ul>
+<h2 id="Leaflet"><a href="#Leaflet" class="headerlink" title="Leaflet"></a><strong>Leaflet</strong></h2><p>无论开发智能手机，平板或者桌面，Leaflet的Javascript类库绝对是一个互动类库中排名比较高的。 以下是几点原因：由MapBox的创世人Vladimir Agafonkin所领导，整个团队尝试开发简单，高性能，高用户体验的类库。Leaflet通过vector tiles分享渲染SVG的能力。</p>
+<p>然而，只有leaflet支持Retina显示。而且能够解析数据形式例如，<a href="http://geojson.org/geojson-spec.html" target="_blank" rel="noopener">GeoJSON</a>。</p>
+<ul>
+<li><a href="http://codepen.io/leemark/pen/vcbuf" target="_blank" rel="noopener">Leaflet API Manhattan Geolocation</a></li>
+<li><a href="http://leafletjs.com/features.html" target="_blank" rel="noopener">Leaflet特性</a></li>
+</ul>
+<h2 id="Ember-Charts"><a href="#Ember-Charts" class="headerlink" title="Ember Charts"></a><strong>Ember Charts</strong></h2><p>如果你使用<a href="http://emberjs.com/" target="_blank" rel="noopener">Ember.js</a>，那么来自<a href="http://addepar.github.io/" target="_blank" rel="noopener">Addepar Open Source</a>的开发人员创建了一些附属组件来扩展ember的体验：</p>
+<p>Ember table，Ember Widget和Ember图表。它使用Ember.js和D3.js来实现，包含了扁平化设计属性。包含了一系列的实用的选项，例如，颜色和尺寸，是的非常简单实现一些令人印象深刻的视觉效果。</p>
+<ul>
+<li><a href="http://addepar.github.io/#/ember-charts/time_series" target="_blank" rel="noopener">Ember Charts Time-Series Chart</a></li>
+<li><a href="http://addepar.github.io/#/ember-charts/time_series" target="_blank" rel="noopener">Ember Charts文档</a></li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>如果你也有一些没有包含到此篇文章中的Javascript类库，请给我们留言。目前的大数据趋势使得数据可视化成为未来大家所推崇的一种互动展示模式。如果你早一些了解或者掌握相信对于你未来将会非常有帮助！<br>End.</p>
+<p>转载请注明来自36大数据（36dsj.com)：<a href="http://www.36dsj.com/" target="_blank" rel="noopener">36大数据</a> » <a href="http://www.36dsj.com/archives/19522" target="_blank" rel="noopener">13个可实现超棒数据可视化效果的Javascript框架</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/可视化/" rel="tag"># 可视化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/12/C#创建数字证书并导出为pfx，并使用pfx进行非对称加解密/" rel="next" title="C#创建数字证书并导出为pfx，并使用pfx进行非对称加解密">
+                <i class="fa fa-chevron-left"></i> C#创建数字证书并导出为pfx，并使用pfx进行非对称加解密
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/14/SQL语句大小写是否区分的问题，批量修改整个数据库所有表所有字段大小写/" rel="prev" title="SQL语句大小写是否区分的问题，批量修改整个数据库所有表所有字段大小写">
+                SQL语句大小写是否区分的问题，批量修改整个数据库所有表所有字段大小写 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">420</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">267</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ECharts"><span class="nav-number">1.</span> <span class="nav-text">ECharts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dygraphs-js"><span class="nav-number">2.</span> <span class="nav-text">Dygraphs.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D3-js"><span class="nav-number">3.</span> <span class="nav-text">D3.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#InfoVis"><span class="nav-number">4.</span> <span class="nav-text">InfoVis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Google-Visualization-API"><span class="nav-number">5.</span> <span class="nav-text">The Google Visualization API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Springy-js"><span class="nav-number">6.</span> <span class="nav-text">Springy.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polymaps-js"><span class="nav-number">7.</span> <span class="nav-text">Polymaps.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dimple"><span class="nav-number">8.</span> <span class="nav-text">Dimple</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sigma-js"><span class="nav-number">9.</span> <span class="nav-text">Sigma.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Raphael-js"><span class="nav-number">10.</span> <span class="nav-text">Raphael.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gRaphael"><span class="nav-number">11.</span> <span class="nav-text">gRaphaël</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Leaflet"><span class="nav-number">12.</span> <span class="nav-text">Leaflet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ember-Charts"><span class="nav-number">13.</span> <span class="nav-text">Ember Charts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">14.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

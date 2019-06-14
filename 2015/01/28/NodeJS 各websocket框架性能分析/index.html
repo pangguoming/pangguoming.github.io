@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="nodejs,websocket,socket,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="For a current project at WhoScored, I needed to learn JavaScript, Node.js and WebSocket channel, after seven years of writing web applications with Java and Spring framework. We wanted an application">
+<meta name="keywords" content="nodejs,websocket,socket">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NodeJS 各websocket框架性能分析">
+<meta property="og:url" content="http://pangguoming.com/2015/01/28/NodeJS 各websocket框架性能分析/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="For a current project at WhoScored, I needed to learn JavaScript, Node.js and WebSocket channel, after seven years of writing web applications with Java and Spring framework. We wanted an application">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/782/1*NF1K_nSf9f18SMvJWzKsDQ.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/765/1*dzS6cW-11XxS3sKwi5TH8A.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/800/1*ho2lGmulhn-ElpN-km49vw.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/700/1*LoD0vHyf--qeo_6_yT73tw.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/800/1*Tj6lWTMf_dWl993x9eGZhw.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/800/1*XKFMQnM3r07Zt4sia2OsWg.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/800/1*1cDuBI9hO8rWvPphpwTWEA.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/700/1*WAVyS8_ODWQL0r9uYG0UJw.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/800/1*QU1hX4iLJrmtG__MCnaurA.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/783/1*VSpub4TEOxu4RRnOtJ0uXg.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/700/1*pMFOD0TlXv0aiq2VbdnDOQ.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/800/1*uqQLvLCtsaADgJbWGxay_Q.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/935/1*bpiyQzS3nXssOps_RXG9QQ.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/700/1*sAStZUaDk2kbVs8_7g3P2A.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/800/1*gRssPL3bttWdamv3oLd9SA.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/700/1*VmsuyauLLwN_uDOmcop6Vw.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/800/1*45gGF8eycV9Q1MwWBsBnBg.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/716/1*0vgMgH7VO7tAtG5z_m_UoQ.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/700/1*UA6v1l5csnkmGJQ2B4x46A.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/800/1*HvoLp6qUWXItPtXC3JYlwg.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/700/1*Y7qKnDCQYAuDmFobs4xHUg.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/800/1*e0d2NB7dIRexSSagezudPw.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/724/1*OlkZJXDjJ62aelM9Zlc_Dg.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/700/1*beMMwc93qJV0rX1qwhoYxQ.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/700/1*mYnz2FhmPkLXTJWLDf9EoQ.png">
+<meta property="og:image" content="https://d262ilb51hltx0.cloudfront.net/max/700/1*Y91GPYv2Mg6FYiOqDq2TKQ.png">
+<meta property="og:updated_time" content="2019-02-07T11:27:26.598Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NodeJS 各websocket框架性能分析">
+<meta name="twitter:description" content="For a current project at WhoScored, I needed to learn JavaScript, Node.js and WebSocket channel, after seven years of writing web applications with Java and Spring framework. We wanted an application">
+<meta name="twitter:image" content="https://d262ilb51hltx0.cloudfront.net/max/782/1*NF1K_nSf9f18SMvJWzKsDQ.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2015/01/28/NodeJS 各websocket框架性能分析/">
+
+
+
+
+
+  <title>NodeJS 各websocket框架性能分析 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+	<div id="topnavbar">
+  <div class="tophead">
+    <div class="toplogo"><a href="/">庞国明-博客</a></div>
+    <div id="mnav">
+      <h2><span class="navicon"></span></h2>
+      <ul>
+        <li><a href="/">博客</a></li>
+        <li><a href="/course.html">文档教程</a></li>
+        <li><a href="/video.html">视频教程</a></li>
+        <li><a href="/code.html">源码分享</a></li>
+        <li><a href="/about.html">关于我</a></li>
+      </ul>
+    </div>
+    <nav class="topnav" id="topnav">
+      <ul>
+        <li><a href="/">博客</a></li>
+        <li><a href="/course.html">文档教程</a></li>
+        <li><a href="/video.html">视频教程</a></li>
+        <li><a href="/code.html">源码分享</a></li>
+        <li><a href="/about.html">关于我</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2015/01/28/NodeJS 各websocket框架性能分析/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NodeJS 各websocket框架性能分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-28T21:43:00+08:00">
+                2015-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div class="section-content"><br><div class="section-inner layoutSingleColumn"><br><br>For a current project at <a href="http://www.whoscored.com/" target="_blank" rel="noopener">WhoScored</a>, I needed to learn JavaScript, Node.js and WebSocket channel, after seven years of writing web applications with Java and Spring framework. We wanted an application that can send data to thousands of concurrent users, and <a href="http://www.toptal.com/nodejs/why-the-hell-would-i-use-node-js" target="_blank" rel="noopener">Node.js appeared to be the right way of doing it</a> with its event-driven, non-blocking I/O model that can scale up easily.<br><br>Firstly, to learn JavaScript I started doing the tutorials in <a href="http://www.codecademy.com/" target="_blank" rel="noopener">Code Academy</a> and reading D. Crockford’s <a href="http://shop.oreilly.com/product/9780596517748.do" target="_blank" rel="noopener">JavaScript: The Good Parts</a> book. In parallel, I read J. R. Wilson’s <a href="http://pragprog.com/book/jwnode/node-js-the-right-way" target="_blank" rel="noopener">Node.js the Right Way</a> as well. It was a great read: by using some great modules like async, Q, ZMQ, Express, and methods like Promises and Generators, the book explains how to build scalable Node applications. It also covers sockets with Pub/Sub, Req/Res and Push/Pull patterns which shaped the WebSocket applications that I wrote.<br><br>### System structure<br><br>After some trials, errors, and brainstorming sessions, the final structure looks like this:<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 440px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/782/1*NF1K_nSf9f18SMvJWzKsDQ.png" alt=""><br><br>A client connects for a specific key/resource, let’s say “matchesfeed/8/matchcentre”. WebSocket server’s responsibility is to return some JSON data for this key. If it doesn’t have data for this key in its memory, it requests it from “Fetcher” via a Push socket implemented with <a href="https://npmjs.org/package/zmq" target="_blank" rel="noopener">ZMQ library</a> over a TCP connection. Fetcher receives this request, and adds it to a queue of jobs. Worker processes (implemented with <a href="http://nodejs.org/api/cluster.html#cluster_cluster_fork_env" target="_blank" rel="noopener">Node.js clusters</a>) check this queue constantly, get a job, and make an HTTP call to an API that has the actual JSON data for this key. When response is received by a worker, it passes the data to master process, which sends it to WebSocket server, and puts the job back into queue. When WebSocket server receives data, it publishes to clients who are connected for that key. All applications are open source, and you can find web socket server <a href="https://github.com/denizozger/node-websocket" target="_blank" rel="noopener">here</a>, fetcher <a href="https://github.com/denizozger/node-fetcher" target="_blank" rel="noopener">here</a> and the data provider <a href="https://github.com/denizozger/node-dataprovider" target="_blank" rel="noopener">here</a>. Node.js version used in all applications are 0.10.<br><br>### einaros / ws (v 0.4)<br><br>Based on <a href="https://github.com/heroku-examples/node-ws-test" target="_blank" rel="noopener">Heroku’s WebSocket demo</a>, I began with <a href="https://github.com/einaros/ws" target="_blank" rel="noopener">einaros/ws</a> implementation. It didn’t have as much as documentation that other frameworks had, but the development went smooth and I had something working in a short time.<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 104px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/765/1*dzS6cW-11XxS3sKwi5TH8A.png" alt=""><br>Client beautifully connects via WebSockets<br><br>Then I wrote <a href="https://github.com/denizozger/node-websocket/blob/master/loadtest.js" target="_blank" rel="noopener">a load tes</a>t to see the performance. The test basically connects clients every half a second, all requesting the same data. Data is <strong class="markup--strong markup--p-strong">165KB<strong>, and is sent <strong class="markup--strong markup--p-strong">every second.</strong> With <strong class="markup--strong markup--p-strong">120 concurrent clients<strong>, the application allocates around 210MB of RAM, and data sent appears to be around 35 MB/second. The test machine is a 3.4 Ghz Intel i7 (8 processors) with 16GB of RAM, running OSX v10.9.<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 366px; max-height: 106px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/800/1*ho2lGmulhn-ElpN-km49vw.png" alt=""><br><br>I monitored the process with <a href="https://npmjs.org/package/strong-agent" target="_blank" rel="noopener">Strongloop’s agent</a>, I find it pretty impressive.<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 832px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/700/1*LoD0vHyf--qeo_6_yT73tw.png" alt=""><br><br>At this point, the biggest drawback for me was it being a pure WebSocket implementation: if the client browser did not support WebSockets, it would not work. This made me try <a href="http://socket.io/" target="_blank" rel="noopener">Socket.IO</a>.<br><br>### Socket.IO (v. 0.9)<br><br>Socket.IO seemed like the perfect solution, as it selects the most capable transport at runtime: it tries to connect to server via WebSockets first, if it doesn’t work, it <strong class="markup--strong markup--p-strong">downgrades</strong> by trying XHR-polling, if it doesn’t work, continues with flash sockets etc. Moreover, it would try to <strong class="markup--strong markup--p-strong">reconnect<strong> sockets if connection fails, and it supports <strong class="markup--strong markup--p-strong">rooms</strong> so that I could cluster connections based on what information they asked for, without any custom implementation. So I re-implemented the application by keeping everything the same but web socket framework.<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 548px; max-height: 198px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/800/1*Tj6lWTMf_dWl993x9eGZhw.png" alt=""><br>Client connects to Socket.IO server<br><br>Indeed, when the server is down, Socket.IO tries to connect back with decreasing frequency.<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 554px; max-height: 246px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/800/1*XKFMQnM3r07Zt4sia2OsWg.png" alt=""><br><br>And when the server is up, WebSocket connection is re-established:<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 550px; max-height: 130px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/800/1*1cDuBI9hO8rWvPphpwTWEA.png" alt=""><br><br>Load test results are below, it is the same test I executed for ws/einaros implementation with the same data:<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 826px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/700/1*WAVyS8_ODWQL0r9uYG0UJw.png" alt=""><br><br>The data output looks like:<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 367px; max-height: 98px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/800/1*QU1hX4iLJrmtG__MCnaurA.png" alt=""><br>In WS, average load was 35 MBs<br><br>#### Performance limit<br><br>However, when I connect <strong class="markup--strong markup--p-strong">140<strong> <strong class="markup--strong markup--p-strong">clients</strong>, the memory usage starts to increment without the number of clients or the data size changing. Garbage Collector kicks in very frequently and gets more aggressive over time (sometimes a couple of times per second), eating up CPU time and desperately trying to free memory. Memory usage would reach ~1GB, then heartbeats would fail and clients would start to lose connection.<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 125px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/783/1*VSpub4TEOxu4RRnOtJ0uXg.png" alt=""><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 829px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/700/1*pMFOD0TlXv0aiq2VbdnDOQ.png" alt=""><br>Heap size stops increasing when connections start dropping, and keeps stable as Socket.IO clients tries to connect back. Also notice the very low event loop latency.<br><div class="aspectRatioPlaceholder is-locked" style="max-width: 366px; max-height: 97px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/800/1*uqQLvLCtsaADgJbWGxay_Q.png" alt=""><br><br>It’s time to debug!<br><br>I used <a href="https://hacks.mozilla.org/2012/11/tracking-down-memory-leaks-in-node-js-a-node-js-holiday-season/" target="_blank" rel="noopener">Mozilla’s memwatch module</a> to detect memory leaks and take heap dumps to inspect the data. I found out that somehow 10MB Buffer objects would stack up constantly, you can find more details in <a href="http://stackoverflow.com/questions/20566673/memory-leak-when-emitting-messages-with-socket-io-node-js-zmq" target="_blank" rel="noopener">my Stackoverflow Question</a>. I couldn’t figure out why this would happen, but I think due to some cumulative CPU intensive operations, event loop response slows down and operations (sending messages) stack up in the queue. Being stuck, I decided to try out <a href="https://github.com/sockjs/sockjs-client" target="_blank" rel="noopener">Sock.</a>js.<br><br>I must admit my Sock.js adventure didn’t last long after discovering that Sock.js does not support connection query strings. This would mean that I’d need to amend my code so that after clients connect, they’d need to send a seperate message to pass the parameter(s), and this was a bit turn off. Next, I decided to give <a href="https://github.com/LearnBoost/engine.io" target="_blank" rel="noopener">Engine.IO</a> a try.<br><br>### Engine.IO (v 0.7.12)<br><br>As far as I’ve seen, both Engine.IO and Socket.IO are mainly developed by <a href="https://github.com/guille" target="_blank" rel="noopener">Guillermo Rauch</a>, and Engine.IO is a lower level library. Socket.IO v0.9 appears to be somewhat outdated and Engine.IO is the interim successor until Socket.IO v1.0 is released — which will use Engine.IO. One major difference is that Engine.IO always establishes a long-polling connection first, then tries to <strong class="markup--strong markup--p-strong">upgrade<strong> to better transports. This makes it resilient to firewalls and proxies, gives more predictable results and less frequent reconnecting. All other differences are very well listed on <a href="https://github.com/LearnBoost/engine.io#goals" target="_blank" rel="noopener">project’s readme</a>. As you see, Engine.IO first started to connect via long-polling, then connected via WebSockets:<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 212px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/935/1*bpiyQzS3nXssOps_RXG9QQ.png" alt=""><br>Notice the ‘transport’ parameter<br><br>However its client library <strong class="markup--strong markup--p-strong">does not try to reconnect</strong> when connection terminates.<br><br>Same load test with same values (<strong class="markup--strong markup--p-strong">160KB sent every second to 120 clients)<strong> looks like:<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 833px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/700/1*sAStZUaDk2kbVs8_7g3P2A.png" alt=""><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 371px; max-height: 97px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/800/1*gRssPL3bttWdamv3oLd9SA.png" alt=""><br><br>#### Performance limit<br><br>Let’s see what happens when we increase connection size. Engine.IO’s performance proved to be better for my application: I could load test with <strong class="markup--strong markup--p-strong">230 concurrent connections</strong>, with (again) each one sent 165KB of data every second. Any number above 230 connections resulted in the application using massive amounts of data — up to 2GB (the same issue with Socket.IO implementation). Then connections would start dropping until 160 connections are remaining, and obviously this results in less resource usage. You can see this drop in the charts below. Remember in Engine.IO client implementation, clients don’t reconnect once they are disconnected.<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 830px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/700/1*VmsuyauLLwN_uDOmcop6Vw.png" alt=""><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 369px; max-height: 103px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/800/1*45gGF8eycV9Q1MwWBsBnBg.png" alt=""><br><br>### Primus (v 1.5.0)<br><br>When I was about to end my research and development, I came across <a href="http://primus.io/" target="_blank" rel="noopener">Primus</a>. It is developed by <a href="https://github.com/3rd-Eden" target="_blank" rel="noopener">Arnout Kazemier</a> who is an active collabrator in some of the projects mentioned above. Primus actually lets you do what I have done all this time (changing WebSocket technologies for the business logic) dead easy: only with a single line of code. It has a similar syntax with all of the other frameworks, reconnects clients when connection terminates, and has lots of cool methods and structures — like rooms.<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 156px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/716/1*0vgMgH7VO7tAtG5z_m_UoQ.png" alt=""><br>Primus connects<br><br>Here are the test results for <strong class="markup--strong markup--p-strong">einaros/ws<strong> library with Primus (<strong class="markup--strong markup--p-strong">160KB sent every second to 120 clients)</strong>:<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 831px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/700/1*UA6v1l5csnkmGJQ2B4x46A.png" alt=""><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 372px; max-height: 101px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/800/1*HvoLp6qUWXItPtXC3JYlwg.png" alt=""><br><br>Compared to native implementation, it has a higher CPU usage and event loop latency, but a bit lower memory consumption. However, something unexpected happens after 10 minutes pass:<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 841px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/700/1*Y7qKnDCQYAuDmFobs4xHUg.png" alt=""><br><br>Event loop average drops to almost 0ms, but memory allocation starts to stack up, reaching GBs in minutes. This happened twice in two of my tries. I decided to leave this instead of digging deeper. (<em class="markup--em markup--p-em">Please see Arnout’s comment about this issue on the right hand side<em>)<br><br>As Primus is a wrapper for socket libraries, I decided to use a native library just to have things on a lower level.<br><br>### <strong class="markup--strong markup--h3-strong">Looking back: Performance limit of einaros/ws**<br><br>At this point, I wanted to look back and see at what rate <em class="markup--em markup--p-em">einaros/ws</em> implementation (which I ditched as it doesn’t support other connection types) would crash.<br><br>By handling <strong class="markup--strong markup--p-strong">410<strong> concurrent connections, sending 165KB data to each every second, <em class="markup--em markup--p-em">einaros/ws*’s performance was far more superior than any other framework I tried. Compare it with Socket.IO’s max <strong class="markup--strong markup--p-strong">140</strong> connections and Engine.IO’s max <strong class="markup--strong markup--p-strong">230<strong> connections. <em class="markup--em markup--p-em">einaros/ws<em> would fail at 415 connections in the same way with other implementations: memory usage would stack up seemingly almost indefinitely (I waited until 8GB consumption before killing the process).<br><br><div class="aspectRatioPlaceholder">![](<a href="https://d262ilb51hltx0.cloudfront.net/max/800/1" target="_blank" rel="noopener">https://d262ilb51hltx0.cloudfront.net/max/800/1</a></div></em>0V-fb_dFkoxsBAneeIG–w.png)<br><div class="aspectRatioPlaceholder is-locked" style="max-width: 369px; max-height: 97px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/800/1*e0d2NB7dIRexSSagezudPw.png" alt=""><br><br>### Final decision on the framework<br><br>In summary, these test results showed that <strong class="markup--strong markup--p-strong">Engine.IO</strong> looks like the better choice for my application. It supports different connection types apart from WebSockets, and has a significantly better memory usage compared to others.<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 129px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/724/1*OlkZJXDjJ62aelM9Zlc_Dg.png" alt=""><br><br>The difference in memory seems like a good trade of for losing the functionality of clients not reconnecting in a connection failure. At least, until Socket.IO 1.0 is released.<br><br>### Changing the flow based on limitations<br><br>The aim when starting this project was to have a system that can support thousands, even 10 thousand concurrent users. It seems, with 165KB of data sent every second, this won’t be possible. This made me decide to decrease the data size, and introduce a delta model, in which the application would send only the new JSON content instead of the whole object each time.<br><br>### Test 1: The impact of data size<br><br>I ran the a load test that uses <strong class="markup--strong markup--p-strong">5KB of data, sent to 4000 users every second<strong>. 5KB of JSON makes around 200 lines of data with reasonable string length. I’ve also modified the test so that 10 new clients connect every second. The data throughput is equivalent to 20MB sent per second.<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 828px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/700/1*beMMwc93qJV0rX1qwhoYxQ.png" alt=""><br><br>We will take these values as a base and see what happens when we keep throughput same and change some variables.<br><br>### Test 2: The impact of concurrent connection size<br><br>In this test, <strong class="markup--strong markup--p-strong">2000 users</strong> connected to the server, and received <strong class="markup--strong markup--p-strong">10KBs<strong> <strong class="markup--strong markup--p-strong">of data every second</strong>. Again in this case, 20MB is sent every second.<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 833px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/700/1*mYnz2FhmPkLXTJWLDf9EoQ.png" alt=""><br><br>Compare these results with test one. As you see, <strong class="markup--strong markup--p-strong">doubling the data size and decreasing the connection size by half ended up in 20% lower memory consumption, 35% lower CPU usage and 75% less event loop latency<strong>.<br><br>### Test 3: The impact of data broadcasting frequency<br><br>In this test, <strong class="markup--strong markup--p-strong">4000</strong> <strong class="markup--strong markup--p-strong">users<strong> connected to the server, and received <strong class="markup--strong markup--p-strong">10KB of data every 2 seconds</strong>. Again, this equals to 20MB sent every second.<br><br><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 833px;"><img src="https://d262ilb51hltx0.cloudfront.net/max/700/1*Y91GPYv2Mg6FYiOqDq2TKQ.png" alt=""><br><br>Compare these results with the first test. It seems <strong class="markup--strong markup--p-strong">doubling data size and decreasing frequency of data sent by half results in 25% lower CPU usage, but more or less the same memory consumption and event loop latency.<strong><br><br>### Conclusion<br><br>We do not really have a direct control over how many connections the application will have <strong class="markup--strong markup--p-strong">if we have one server</strong>, thus it seems we can only play around with the size of data sent, and how frequent we send this data. These tests show that <strong class="markup--strong markup--p-strong">for a constant throughput, (at least) for Engine.IO,<strong> <strong class="markup--strong markup--p-strong">the number of connections have the biggest impact on performance</strong>, <strong class="markup--strong markup--p-strong">then comes reducing size of data, and lastly reducing frequency of data sent<strong>. Sending larger data in less frequency appears to yield better performance. It’s a double-sided sword though: increasing size of data packets was what made my applications crash as well.<br><br>So I think the best way of balancing it is to estimate the max number of concurrent users in the long run (at least a couple of years forward), finding the maximum data size that can be used with that number, and then decrease the frequency of sending data if possible — but as said this is not that critical. After this point, as connection number has the biggest impact on the performance, by using a load balancer, adding <strong class="markup--strong markup--p-strong">more application instances</strong> should increase the performance more than any other method.<br><br><div class="section-divider layoutSingleColumn"><br><br><em> </em> <em><br><br><div class="section-content"><br><div class="section-inner layoutSingleColumn"><br><br><a href="https://news.ycombinator.com/item?id=7030100" target="_blank" rel="noopener">Discuss this on Hacker News</a><br><br><em class="markup--em markup--p-em">Acknowledgements: </em><a href="https://github.com/kkoopa" target="_blank" rel="noopener"><em class="markup--em markup--p-em">Benjamin Byholm*</em></a><em class="markup--em markup--p-em">for reviewing and commenting on this article with his insights on caching, multiple servers, and V8 memory usage. <em>[<em class="markup--em markup--p-em">Arnout Kazemier</em></em>](<a href="https://medium.com/@3rdEden" target="_blank" rel="noopener">https://medium.com/@3rdEden</a> “Go to the profile of Arnout Kazemier”)<em class="markup--em markup--p-em"> for his helpful comments, <em>[<em class="markup--em markup--p-em">Nico Kaiser</em></em>](<a href="https://github.com/nicokaiser" target="_blank" rel="noopener">https://github.com/nicokaiser</a>)<em class="markup--em markup--p-em"> for his feedback, <em>[<em class="markup--em markup--p-em">Guillermo Rauch</em></em>](<a href="https://github.com/guille" target="_blank" rel="noopener">https://github.com/guille</a>)<em class="markup--em markup--p-em"> and <em>[<em class="markup--em markup--p-em">David Halls</em></em>](<a href="https://github.com/davedoesdev" target="_blank" rel="noopener">https://github.com/davedoesdev</a>)<em class="markup--em markup--p-em"> for taking the time to read the draft.*<br><br></em></em></em></em></em></div></div></em></div></strong></strong></strong></strong></strong></strong></div></strong></strong></strong></strong></div></strong></strong></div></strong></strong></div></div></em></strong></strong></em></strong></strong></strong></em></em></div></div></div></strong></strong></div></div></div></div></div></strong></strong></div></strong></strong></div></div></div></strong></strong></div></div></div></div></div></strong></strong></div></div></strong></strong></strong></strong></div></div></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nodejs/" rel="tag"># nodejs</a>
+          
+            <a href="/tags/websocket/" rel="tag"># websocket</a>
+          
+            <a href="/tags/socket/" rel="tag"># socket</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/01/23/PHP 启动 cURL模块以及启动失败的解决方案/" rel="next" title="PHP 启动 cURL模块以及启动失败的解决方案">
+                <i class="fa fa-chevron-left"></i> PHP 启动 cURL模块以及启动失败的解决方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/01/31/使用AndroidStudio编译NDK的方法及错误解决方案/" rel="prev" title="使用AndroidStudio编译NDK的方法及错误解决方案">
+                使用AndroidStudio编译NDK的方法及错误解决方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">420</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">267</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

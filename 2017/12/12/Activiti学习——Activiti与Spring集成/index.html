@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Activiti,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="与Spring集成基础准备目录结构 相关jar包Activiti的相关jar包Activiti依赖的相关jar包Spring的相关jar包Spring依赖的相关jar包本示例相关jar包截图 配置文件设置web.xml&amp;lt;?xml version=”1.0” encoding=”UTF-8”?&amp;gt;    &amp;lt;web-app xmlns:xsi=“http://www.w3.org/20">
+<meta name="keywords" content="Activiti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Activiti学习——Activiti与Spring集成">
+<meta property="og:url" content="http://pangguoming.com/2017/12/12/Activiti学习——Activiti与Spring集成/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="与Spring集成基础准备目录结构 相关jar包Activiti的相关jar包Activiti依赖的相关jar包Spring的相关jar包Spring依赖的相关jar包本示例相关jar包截图 配置文件设置web.xml&amp;lt;?xml version=”1.0” encoding=”UTF-8”?&amp;gt;    &amp;lt;web-app xmlns:xsi=“http://www.w3.org/20">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i.imgur.com/0CfoqXp.png">
+<meta property="og:image" content="http://i.imgur.com/FPpXrFY.png">
+<meta property="og:image" content="http://i.imgur.com/C0cLW1R.png">
+<meta property="og:image" content="http://i.imgur.com/sKeow7G.png">
+<meta property="og:image" content="http://i.imgur.com/QXiShq2.png">
+<meta property="og:image" content="http://i.imgur.com/YQMBXcy.png">
+<meta property="og:updated_time" content="2019-02-07T11:13:03.449Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Activiti学习——Activiti与Spring集成">
+<meta name="twitter:description" content="与Spring集成基础准备目录结构 相关jar包Activiti的相关jar包Activiti依赖的相关jar包Spring的相关jar包Spring依赖的相关jar包本示例相关jar包截图 配置文件设置web.xml&amp;lt;?xml version=”1.0” encoding=”UTF-8”?&amp;gt;    &amp;lt;web-app xmlns:xsi=“http://www.w3.org/20">
+<meta name="twitter:image" content="http://i.imgur.com/0CfoqXp.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2017/12/12/Activiti学习——Activiti与Spring集成/">
+
+
+
+
+
+  <title>Activiti学习——Activiti与Spring集成 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+	<div id="topnavbar">
+  <div class="tophead">
+    <div class="toplogo"><a href="/">庞国明-博客</a></div>
+    <div id="mnav">
+      <h2><span class="navicon"></span></h2>
+      <ul>
+        <li><a href="/">博客</a></li>
+        <li><a href="/course.html">文档教程</a></li>
+        <li><a href="/video.html">视频教程</a></li>
+        <li><a href="/code.html">源码分享</a></li>
+        <li><a href="/about.html">关于我</a></li>
+      </ul>
+    </div>
+    <nav class="topnav" id="topnav">
+      <ul>
+        <li><a href="/">博客</a></li>
+        <li><a href="/course.html">文档教程</a></li>
+        <li><a href="/video.html">视频教程</a></li>
+        <li><a href="/code.html">源码分享</a></li>
+        <li><a href="/about.html">关于我</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/12/12/Activiti学习——Activiti与Spring集成/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Activiti学习——Activiti与Spring集成</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-12T15:20:00+08:00">
+                2017-12-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="与Spring集成"><a href="#与Spring集成" class="headerlink" title="与Spring集成"></a>与Spring集成</h1><h2 id="基础准备"><a href="#基础准备" class="headerlink" title="基础准备"></a>基础准备</h2><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p><img src="http://i.imgur.com/0CfoqXp.png" alt=""></p>
+<h3 id="相关jar包"><a href="#相关jar包" class="headerlink" title="相关jar包"></a>相关jar包</h3><p>Activiti的相关jar包<br>Activiti依赖的相关jar包<br>Spring的相关jar包<br>Spring依赖的相关jar包<br>本示例相关jar包截图<br><img src="http://i.imgur.com/FPpXrFY.png" alt=""><br><img src="http://i.imgur.com/C0cLW1R.png" alt=""></p>
+<h2 id="配置文件设置"><a href="#配置文件设置" class="headerlink" title="配置文件设置"></a>配置文件设置</h2><h3 id="web-xml"><a href="#web-xml" class="headerlink" title="web.xml"></a>web.xml</h3><p><code class="language-xml hljs  has-numbering"><span class="hljs-pi">&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;<br>    <span class="hljs-tag">&lt;<span class="hljs-title">web-app <span class="hljs-attribute">xmlns:xsi=<span class="hljs-value">“<a href="http://www.w3.org/2001/XMLSchema-instance&quot;" target="_blank" rel="noopener">http://www.w3.org/2001/XMLSchema-instance&quot;</a><br>        <span class="hljs-attribute">xmlns=<span class="hljs-value">“<a href="http://java.sun.com/xml/ns/javaee&quot;" target="_blank" rel="noopener">http://java.sun.com/xml/ns/javaee&quot;</a> <span class="hljs-attribute">xmlns:web=<span class="hljs-value">“<a href="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;" target="_blank" rel="noopener">http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</a><br>        <span class="hljs-attribute">xsi:schemaLocation=<span class="hljs-value">“<a href="http://java.sun.com/xml/ns/javaee" target="_blank" rel="noopener">http://java.sun.com/xml/ns/javaee</a><br>        <a href="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;" target="_blank" rel="noopener">http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</a><br>        <span class="hljs-attribute">id=<span class="hljs-value">“WebApp_ActivitiDemo2” <span class="hljs-attribute">version=<span class="hljs-value">“2.5”&gt;<br>        <span class="hljs-tag">&lt;<span class="hljs-title">display-name&gt;ActivitiDemo2<span class="hljs-tag">&lt;/<span class="hljs-title">display-name&gt;</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code></p>
+<pre><code>    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 监听： 在启动Web 容器时，自动装配Spring applicationContext.xml 的配置信息 --&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;listener&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;listener-class&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;listener&gt;
+    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 加载spring主配置文件 --&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;context-param&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;param-name&gt;contextConfigLocation&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;param-name&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;param-value&gt;classpath:config/applicationContext.xml&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;param-value&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;context-param&gt;
+    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 配置spring拦截器 --&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;servlet&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;servlet-name&gt;springMvc&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;servlet-name&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;servlet-class&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;init-param&gt;
+            &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;param-name&gt;contextConfigLocation&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;param-name&gt;
+            &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 配置请求路径 --&gt;
+            &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;param-value&gt;classpath:config/spring-servlet.xml&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;param-value&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;init-param&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;load-on-startup&gt;1&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;load-on-startup&gt;&lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- load-on-startup必须放在最后 --&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;servlet&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;servlet-mapping&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;servlet-name&gt;springMvc&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;servlet-name&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;url-pattern&gt;/&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;url-pattern&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;servlet-mapping&gt;
+    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 转换为UTF-8编码 --&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;filter&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;filter-name&gt;itxxzEncoding&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;filter-name&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;filter-class&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;init-param&gt;
+            &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;param-name&gt;encoding&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;param-name&gt;
+            &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;param-value&gt;UTF-8&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;param-value&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;init-param&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;init-param&gt;
+            &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;param-name&gt;forceEncoding&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;param-name&gt;
+            &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;param-value&gt;true&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;param-value&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;init-param&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;filter&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;filter-mapping&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;filter-name&gt;itxxzEncoding&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;filter-name&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;url-pattern&gt;/*&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;url-pattern&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;filter-mapping&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;web-app&gt;  &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### spring-servlet.xml</span><br><span class="line"></span><br><span class="line">&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;language-xml hljs  has-numbering&quot;&gt;&lt;span class=&quot;hljs-pi&quot;&gt;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;beans &lt;span class=&quot;hljs-attribute&quot;&gt;xmlns=&lt;span class=&quot;hljs-value&quot;&gt;&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">    &lt;span class=&quot;hljs-attribute&quot;&gt;xmlns:xsi=&lt;span class=&quot;hljs-value&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;xmlns:mvc=&lt;span class=&quot;hljs-value&quot;&gt;&quot;http://www.springframework.org/schema/mvc&quot;</span><br><span class="line">    &lt;span class=&quot;hljs-attribute&quot;&gt;xmlns:context=&lt;span class=&quot;hljs-value&quot;&gt;&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line">    &lt;span class=&quot;hljs-attribute&quot;&gt;xsi:schemaLocation=&lt;span class=&quot;hljs-value&quot;&gt;&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd</span><br><span class="line">        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 启用spring mvc 注解 --&gt;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;context:annotation-config /&gt;</span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 设置使用注解的类所在的jar包 controller扫描路径 --&gt;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;context:component-scan &lt;span class=&quot;hljs-attribute&quot;&gt;base-package=&lt;span class=&quot;hljs-value&quot;&gt;&quot;com.pzr.demo2.web.controller&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;context:component-scan&gt;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;mvc:annotation-driven&gt;</span><br><span class="line">        &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 消息转换器，配置字符集解决乱码问题 --&gt;</span><br><span class="line">        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;mvc:message-converters &lt;span class=&quot;hljs-attribute&quot;&gt;register-defaults=&lt;span class=&quot;hljs-value&quot;&gt;&quot;true&quot;&gt;</span><br><span class="line">            &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;bean &lt;span class=&quot;hljs-attribute&quot;&gt;class=&lt;span class=&quot;hljs-value&quot;&gt;&quot;org.springframework.http.converter.StringHttpMessageConverter&quot;&gt;</span><br><span class="line">                &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;property &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;supportedMediaTypes&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;value=&lt;span class=&quot;hljs-value&quot;&gt;&quot;text/html;charset=UTF-8&quot; /&gt;</span><br><span class="line">            &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;bean&gt;</span><br><span class="line">        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;mvc:message-converters&gt;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;mvc:annotation-driven&gt;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 使用jsp作为视图 --&gt;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;bean &lt;span class=&quot;hljs-attribute&quot;&gt;id=&lt;span class=&quot;hljs-value&quot;&gt;&quot;viewResolver&quot;</span><br><span class="line">        &lt;span class=&quot;hljs-attribute&quot;&gt;class=&lt;span class=&quot;hljs-value&quot;&gt;&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;</span><br><span class="line">        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;property &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;viewClass&quot;</span><br><span class="line">            &lt;span class=&quot;hljs-attribute&quot;&gt;value=&lt;span class=&quot;hljs-value&quot;&gt;&quot;org.springframework.web.servlet.view.JstlView&quot; /&gt;</span><br><span class="line">        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;property &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;prefix&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;value=&lt;span class=&quot;hljs-value&quot;&gt;&quot;/WEB-INF/views/&quot; /&gt;</span><br><span class="line">        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;property &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;suffix&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;value=&lt;span class=&quot;hljs-value&quot;&gt;&quot;.jsp&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;property&gt;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;bean&gt;</span><br><span class="line">&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;beans&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+### applicationContext.xml
+
+&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;language-xml hljs  has-numbering&quot;&gt;&lt;span class=&quot;hljs-pi&quot;&gt;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;beans &lt;span class=&quot;hljs-attribute&quot;&gt;xmlns=&lt;span class=&quot;hljs-value&quot;&gt;&quot;http://www.springframework.org/schema/beans&quot;
+    &lt;span class=&quot;hljs-attribute&quot;&gt;xmlns:xsi=&lt;span class=&quot;hljs-value&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;xmlns:context=&lt;span class=&quot;hljs-value&quot;&gt;&quot;http://www.springframework.org/schema/context&quot;
+    &lt;span class=&quot;hljs-attribute&quot;&gt;xmlns:aop=&lt;span class=&quot;hljs-value&quot;&gt;&quot;http://www.springframework.org/schema/aop&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;xmlns:tx=&lt;span class=&quot;hljs-value&quot;&gt;&quot;http://www.springframework.org/schema/tx&quot;
+    &lt;span class=&quot;hljs-attribute&quot;&gt;xsi:schemaLocation=&lt;span class=&quot;hljs-value&quot;&gt;&quot;
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+            http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd&quot;&gt;
+
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;bean &lt;span class=&quot;hljs-attribute&quot;&gt;id=&lt;span class=&quot;hljs-value&quot;&gt;&quot;dataSource&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;class=&lt;span class=&quot;hljs-value&quot;&gt;&quot;org.apache.commons.dbcp.BasicDataSource&quot;
+        &lt;span class=&quot;hljs-attribute&quot;&gt;destroy-method=&lt;span class=&quot;hljs-value&quot;&gt;&quot;close&quot;&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;property &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;driverClassName&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;value=&lt;span class=&quot;hljs-value&quot;&gt;&quot;com.mysql.jdbc.Driver&quot;&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;property&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;property &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;url&quot;&gt;
+            &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;value&gt;jdbc:mysql://localhost:3306/actdemo1?useUnicode=true&amp;amp;characterEncoding=utf-8&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;value&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;property&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;property &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;username&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;value=&lt;span class=&quot;hljs-value&quot;&gt;&quot;root&quot;&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;property&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;property &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;password&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;value=&lt;span class=&quot;hljs-value&quot;&gt;&quot;&quot;&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;property&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;bean&gt;
+
+    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 配置事务 --&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;bean &lt;span class=&quot;hljs-attribute&quot;&gt;id=&lt;span class=&quot;hljs-value&quot;&gt;&quot;txManager&quot;
+        &lt;span class=&quot;hljs-attribute&quot;&gt;class=&lt;span class=&quot;hljs-value&quot;&gt;&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;property &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;dataSource&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;ref=&lt;span class=&quot;hljs-value&quot;&gt;&quot;dataSource&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;property&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;bean&gt;
+
+    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!--使用基于注解方式配置事务 --&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;tx:annotation-driven &lt;span class=&quot;hljs-attribute&quot;&gt;transaction-manager=&lt;span class=&quot;hljs-value&quot;&gt;&quot;txManager&quot; /&gt;
+
+    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- activiti事务管理 --&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;bean &lt;span class=&quot;hljs-attribute&quot;&gt;id=&lt;span class=&quot;hljs-value&quot;&gt;&quot;transactionManager&quot;
+        &lt;span class=&quot;hljs-attribute&quot;&gt;class=&lt;span class=&quot;hljs-value&quot;&gt;&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;property &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;dataSource&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;ref=&lt;span class=&quot;hljs-value&quot;&gt;&quot;dataSource&quot; /&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;bean&gt;
+
+    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 加载activiti引擎 --&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;bean &lt;span class=&quot;hljs-attribute&quot;&gt;id=&lt;span class=&quot;hljs-value&quot;&gt;&quot;processEngine&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;class=&lt;span class=&quot;hljs-value&quot;&gt;&quot;org.activiti.spring.ProcessEngineFactoryBean&quot;&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;property &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;processEngineConfiguration&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;ref=&lt;span class=&quot;hljs-value&quot;&gt;&quot;processEngineConfiguration&quot; /&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;bean&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;bean &lt;span class=&quot;hljs-attribute&quot;&gt;id=&lt;span class=&quot;hljs-value&quot;&gt;&quot;processEngineConfiguration&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;class=&lt;span class=&quot;hljs-value&quot;&gt;&quot;org.activiti.spring.SpringProcessEngineConfiguration&quot;&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;property &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;dataSource&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;ref=&lt;span class=&quot;hljs-value&quot;&gt;&quot;dataSource&quot; /&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;property &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;transactionManager&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;ref=&lt;span class=&quot;hljs-value&quot;&gt;&quot;transactionManager&quot; /&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;property &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;databaseSchemaUpdate&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;value=&lt;span class=&quot;hljs-value&quot;&gt;&quot;true&quot; /&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;property &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;jobExecutorActivate&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;value=&lt;span class=&quot;hljs-value&quot;&gt;&quot;false&quot; /&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;bean&gt;
+
+    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- activiti的各种服务接口 --&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;bean &lt;span class=&quot;hljs-attribute&quot;&gt;id=&lt;span class=&quot;hljs-value&quot;&gt;&quot;repositoryService&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;factory-bean=&lt;span class=&quot;hljs-value&quot;&gt;&quot;processEngine&quot;
+        &lt;span class=&quot;hljs-attribute&quot;&gt;factory-method=&lt;span class=&quot;hljs-value&quot;&gt;&quot;getRepositoryService&quot; /&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;bean &lt;span class=&quot;hljs-attribute&quot;&gt;id=&lt;span class=&quot;hljs-value&quot;&gt;&quot;runtimeService&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;factory-bean=&lt;span class=&quot;hljs-value&quot;&gt;&quot;processEngine&quot;
+        &lt;span class=&quot;hljs-attribute&quot;&gt;factory-method=&lt;span class=&quot;hljs-value&quot;&gt;&quot;getRuntimeService&quot; /&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;bean &lt;span class=&quot;hljs-attribute&quot;&gt;id=&lt;span class=&quot;hljs-value&quot;&gt;&quot;taskService&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;factory-bean=&lt;span class=&quot;hljs-value&quot;&gt;&quot;processEngine&quot;
+        &lt;span class=&quot;hljs-attribute&quot;&gt;factory-method=&lt;span class=&quot;hljs-value&quot;&gt;&quot;getTaskService&quot; /&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;bean &lt;span class=&quot;hljs-attribute&quot;&gt;id=&lt;span class=&quot;hljs-value&quot;&gt;&quot;historyService&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;factory-bean=&lt;span class=&quot;hljs-value&quot;&gt;&quot;processEngine&quot;
+        &lt;span class=&quot;hljs-attribute&quot;&gt;factory-method=&lt;span class=&quot;hljs-value&quot;&gt;&quot;getHistoryService&quot; /&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;bean &lt;span class=&quot;hljs-attribute&quot;&gt;id=&lt;span class=&quot;hljs-value&quot;&gt;&quot;managementService&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;factory-bean=&lt;span class=&quot;hljs-value&quot;&gt;&quot;processEngine&quot;
+        &lt;span class=&quot;hljs-attribute&quot;&gt;factory-method=&lt;span class=&quot;hljs-value&quot;&gt;&quot;getManagementService&quot; /&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;beans&gt;  &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ## 示例代码</span><br><span class="line"></span><br><span class="line">编写一个controller来调用接口</span><br><span class="line"></span><br><span class="line">    ### FirstController.java</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;language-java hljs  has-numbering&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;package com.pzr.demo2.web.controller;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import java.util.List;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.activiti.engine.ProcessEngine;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.activiti.engine.ProcessEngines;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.activiti.engine.RepositoryService;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.activiti.engine.RuntimeService;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.activiti.engine.TaskService;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.activiti.engine.task.Task;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.springframework.stereotype.Controller;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-annotation&quot;&gt;@Controller</span><br><span class="line">    &lt;span class=&quot;hljs-annotation&quot;&gt;@RequestMapping(value = &lt;span class=&quot;hljs-string&quot;&gt;&quot;/first&quot;)</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class &lt;span class=&quot;hljs-title&quot;&gt;FirstController &#123;</span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@RequestMapping(value = &lt;span class=&quot;hljs-string&quot;&gt;&quot;/test1&quot;)</span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@ResponseBody</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public String &lt;span class=&quot;hljs-title&quot;&gt;test()&#123;</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 加载配置文件activiti.cfg.xml，创建引擎，如果出现null，可能原因</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;//1.加载路径不是根目录。</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;//2.依赖包不完全</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 获取配置文件后，引擎开始创建数据库。</span><br><span class="line">            ProcessEngine engine = ProcessEngines.getDefaultProcessEngine();</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 获取流程储存服务组件</span><br><span class="line">            RepositoryService rs = engine.getRepositoryService();</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 获取运行时服务组件</span><br><span class="line">            RuntimeService rse = engine.getRuntimeService();</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 获取流程中的任务TASK组件</span><br><span class="line">            TaskService ts = engine.getTaskService();</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 部署流程，只要是符合BPMN2规范的XML文件，理论上都可以被ACTIVITI部署</span><br><span class="line">            rs.createDeployment().addClasspathResource(&lt;span class=&quot;hljs-string&quot;&gt;&quot;com/pzr/demo2/diagrams/MyProcess.bpmn&quot;).deploy();</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 开启流程，myprocess是流程的ID</span><br><span class="line">            rse.startProcessInstanceByKey(&lt;span class=&quot;hljs-string&quot;&gt;&quot;myProcess&quot;);</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 查询历史表中的Task</span><br><span class="line">            List&lt;Task&gt; task = ts.createTaskQuery().list();</span><br><span class="line">            Task task1 = task.get(task.size()-&lt;span class=&quot;hljs-number&quot;&gt;1);</span><br><span class="line">            System.out.println(&lt;span class=&quot;hljs-string&quot;&gt;&quot;第一环节：&quot;+task1);</span><br><span class="line">            System.out.println(&lt;span class=&quot;hljs-string&quot;&gt;&quot;推动流程到下一环节：&quot;+task1);</span><br><span class="line">            ts.complete(task1.getId());</span><br><span class="line">            task1 = ts.createTaskQuery().executionId(task1.getExecutionId()).singleResult();</span><br><span class="line">            System.out.println(&lt;span class=&quot;hljs-string&quot;&gt;&quot;第二环节：&quot; + task1);</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;return &lt;span class=&quot;hljs-string&quot;&gt;&quot;测试成功&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@Autowired</span><br><span class="line">        RepositoryService repositoryService;</span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@Autowired</span><br><span class="line">        RuntimeService runtimeService;</span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@Autowired</span><br><span class="line">        TaskService taskService;</span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@RequestMapping(value = &lt;span class=&quot;hljs-string&quot;&gt;&quot;/test2&quot;)</span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@ResponseBody</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public String &lt;span class=&quot;hljs-title&quot;&gt;test2()&#123;</span><br><span class="line">            StringBuffer sb = &lt;span class=&quot;hljs-keyword&quot;&gt;new StringBuffer();</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 部署流程，只要是符合BPMN2规范的XML文件，理论上都可以被ACTIVITI部署</span><br><span class="line">            repositoryService.createDeployment().addClasspathResource(&lt;span class=&quot;hljs-string&quot;&gt;&quot;com/pzr/demo2/diagrams/MyProcess.bpmn&quot;).deploy();</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 开启流程，myprocess是流程的ID</span><br><span class="line">            runtimeService.startProcessInstanceByKey(&lt;span class=&quot;hljs-string&quot;&gt;&quot;myProcess&quot;);</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 查询历史表中的Task</span><br><span class="line">            List&lt;Task&gt; task = taskService.createTaskQuery().list();</span><br><span class="line">            Task task1 = task.get(task.size()-&lt;span class=&quot;hljs-number&quot;&gt;1);</span><br><span class="line">            sb.append(&lt;span class=&quot;hljs-string&quot;&gt;&quot;第一环节：&quot;+task1 +&lt;span class=&quot;hljs-string&quot;&gt;&quot;&lt;br/&gt;&quot;);</span><br><span class="line">            sb.append(&lt;span class=&quot;hljs-string&quot;&gt;&quot;推动流程到下一环节：&quot;+task1+&lt;span class=&quot;hljs-string&quot;&gt;&quot;&lt;br/&gt;&quot;);</span><br><span class="line">            taskService.complete(task1.getId());</span><br><span class="line">            task1 = taskService.createTaskQuery().executionId(task1.getExecutionId()).singleResult();</span><br><span class="line">            sb.append(&lt;span class=&quot;hljs-string&quot;&gt;&quot;第二环节：&quot; + task1+&lt;span class=&quot;hljs-string&quot;&gt;&quot;&lt;br/&gt;&quot;);</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;return sb.toString();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>其中test1()和test2()是作为对比的，test2()中接口全是用注入的方式使用的 </p>
+<p>把项目部署到tomcat中<br>启动项目，会自动建表<br>在浏览器运行<a href="http://localhost:8080/ActivitiDemo2/first/test2" target="_blank" rel="noopener">http://localhost:8080/ActivitiDemo2/first/test2</a><br>结果如下图：<br><img src="http://i.imgur.com/sKeow7G.png" alt=""></p>
+<pre><code>## 示例下载
+</code></pre><p><a href="http://pan.baidu.com/s/1o8D3H5S" target="_blank" rel="noopener">点击下载</a></p>
+<pre><code>## 出现问题
+
+### Cannot create PoolableConnectionFactory (Unsupported character encoding ‘utf-8’.)
+</code></pre><p>出现原因，将xml格式化化后，导致数据库配置部分出现换行<br>正常样子：<br><img src="http://i.imgur.com/QXiShq2.png" alt=""><br>格式化后（错误）样子：<br><img src="http://i.imgur.com/YQMBXcy.png" alt=""><br>还原成正常样子即可解决问题<br></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Activiti/" rel="tag"># Activiti</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/11/Quzrtz的使用/" rel="next" title="Quzrtz的使用">
+                <i class="fa fa-chevron-left"></i> Quzrtz的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/12/当spring 容器初始化完成后执行某个方法/" rel="prev" title="当spring 容器初始化完成后执行某个方法">
+                当spring 容器初始化完成后执行某个方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">420</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">267</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#与Spring集成"><span class="nav-number">1.</span> <span class="nav-text">与Spring集成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础准备"><span class="nav-number">1.1.</span> <span class="nav-text">基础准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构"><span class="nav-number">1.1.1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关jar包"><span class="nav-number">1.1.2.</span> <span class="nav-text">相关jar包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件设置"><span class="nav-number">1.2.</span> <span class="nav-text">配置文件设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#web-xml"><span class="nav-number">1.2.1.</span> <span class="nav-text">web.xml</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

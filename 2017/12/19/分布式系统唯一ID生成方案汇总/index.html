@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="分布式,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="系统唯一ID是我们在设计一个系统的时候常常会遇见的问题，也常常为这个问题而纠结。生成ID的方法有很多，适应不同的场景、需求以及性能要求。所以有些比较复杂的系统会有多个ID生成的策略。下面就介绍一些常见的ID生成策略。 1. 数据库自增长序列或字段 最常见的方式。利用数据库，全数据库唯一。 优点： 1）简单，代码方便，性能可以接受。 2）数字ID天然排序，对分页或者需要排序的结果很有帮助。 缺点：">
+<meta name="keywords" content="分布式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式系统唯一ID生成方案汇总">
+<meta property="og:url" content="http://pangguoming.com/2017/12/19/分布式系统唯一ID生成方案汇总/index.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="系统唯一ID是我们在设计一个系统的时候常常会遇见的问题，也常常为这个问题而纠结。生成ID的方法有很多，适应不同的场景、需求以及性能要求。所以有些比较复杂的系统会有多个ID生成的策略。下面就介绍一些常见的ID生成策略。 1. 数据库自增长序列或字段 最常见的方式。利用数据库，全数据库唯一。 优点： 1）简单，代码方便，性能可以接受。 2）数字ID天然排序，对分页或者需要排序的结果很有帮助。 缺点：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pangguoming.com/blog/images/246e6853-dae0-4fa2-a14d-f277cfc8c9f1.PNG">
+<meta property="og:updated_time" content="2019-02-07T11:13:01.902Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分布式系统唯一ID生成方案汇总">
+<meta name="twitter:description" content="系统唯一ID是我们在设计一个系统的时候常常会遇见的问题，也常常为这个问题而纠结。生成ID的方法有很多，适应不同的场景、需求以及性能要求。所以有些比较复杂的系统会有多个ID生成的策略。下面就介绍一些常见的ID生成策略。 1. 数据库自增长序列或字段 最常见的方式。利用数据库，全数据库唯一。 优点： 1）简单，代码方便，性能可以接受。 2）数字ID天然排序，对分页或者需要排序的结果很有帮助。 缺点：">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/246e6853-dae0-4fa2-a14d-f277cfc8c9f1.PNG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/2017/12/19/分布式系统唯一ID生成方案汇总/">
+
+
+
+
+
+  <title>分布式系统唯一ID生成方案汇总 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+	<div id="topnavbar">
+  <div class="tophead">
+    <div class="toplogo"><a href="/">庞国明-博客</a></div>
+    <div id="mnav">
+      <h2><span class="navicon"></span></h2>
+      <ul>
+        <li><a href="/">博客</a></li>
+        <li><a href="/course.html">文档教程</a></li>
+        <li><a href="/video.html">视频教程</a></li>
+        <li><a href="/code.html">源码分享</a></li>
+        <li><a href="/about.html">关于我</a></li>
+      </ul>
+    </div>
+    <nav class="topnav" id="topnav">
+      <ul>
+        <li><a href="/">博客</a></li>
+        <li><a href="/course.html">文档教程</a></li>
+        <li><a href="/video.html">视频教程</a></li>
+        <li><a href="/code.html">源码分享</a></li>
+        <li><a href="/about.html">关于我</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/12/19/分布式系统唯一ID生成方案汇总/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">分布式系统唯一ID生成方案汇总</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T11:14:00+08:00">
+                2017-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>系统唯一ID是我们在设计一个系统的时候常常会遇见的问题，也常常为这个问题而纠结。生成ID的方法有很多，适应不同的场景、需求以及性能要求。所以有些比较复杂的系统会有多个ID生成的策略。下面就介绍一些常见的ID生成策略。</p>
+<p><strong>1. 数据库自增长序列或字段</strong></p>
+<p>最常见的方式。利用数据库，全数据库唯一。</p>
+<p>优点：</p>
+<p>1）简单，代码方便，性能可以接受。</p>
+<p>2）数字ID天然排序，对分页或者需要排序的结果很有帮助。</p>
+<p>缺点：</p>
+<p>1）不同数据库语法和实现不同，数据库迁移的时候或多数据库版本支持的时候需要处理。</p>
+<p>2）在单个数据库或读写分离或一主多从的情况下，只有一个主库可以生成。有单点故障的风险。</p>
+<p>3）在性能达不到要求的情况下，比较难于扩展。</p>
+<p>4）如果遇见多个系统需要合并或者涉及到数据迁移会相当痛苦。</p>
+<p>5）分表分库的时候会有麻烦。</p>
+<p>优化方案：</p>
+<p>1）针对主库单点，如果有多个Master库，则每个Master库设置的起始数字不一样，步长一样，可以是Master的个数。比如：Master1 生成的是 1，4，7，10，Master2生成的是2,5,8,11 Master3生成的是 3,6,9,12。这样就可以有效生成集群中的唯一ID，也可以大大降低ID生成数据库操作的负载。</p>
+<p><strong>2. UUID</strong></p>
+<p>常见的方式。可以利用数据库也可以利用程序生成，一般来说全球唯一。</p>
+<p>优点：</p>
+<p>1）简单，代码方便。</p>
+<p>2）生成ID性能非常好，基本不会有性能问题。</p>
+<p>3）全球唯一，在遇见数据迁移，系统数据合并，或者数据库变更等情况下，可以从容应对。</p>
+<p>缺点：</p>
+<p>1）没有排序，无法保证趋势递增。</p>
+<p>2）UUID往往是使用字符串存储，查询的效率比较低。</p>
+<p>3）存储空间比较大，如果是海量数据库，就需要考虑存储量的问题。</p>
+<p>4）传输数据量大</p>
+<p>5）不可读。</p>
+<p><strong>3. UUID的变种</strong></p>
+<p>1）为了解决UUID不可读，可以使用UUID to Int64的方法。及</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 根据GUID获取唯一数字序列</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">public static long GuidToInt64()</span><br><span class="line">&#123;</span><br><span class="line">    byte[] bytes = Guid.NewGuid().ToByteArray();</span><br><span class="line">    return BitConverter.ToInt64(bytes, 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div><br><div id="highlighter_490677" class="syntaxhighlighter  csharp"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="csharp spaces"> </code><br><br></div></div></td><br></tr><br></tbody><br></table><br><br>2）为了解决UUID无序的问题，NHibernate在其主键生成方式中提供了Comb算法（combined guid/timestamp）。保留GUID的10个字节，用另6个字节表示GUID生成的时间（DateTime）。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt; </span><br><span class="line">/// Generate a new &lt;see cref=&quot;Guid&quot;/&gt; using the comb algorithm. </span><br><span class="line">/// &lt;/summary&gt; </span><br><span class="line">private Guid GenerateComb()</span><br><span class="line">&#123;</span><br><span class="line">    byte[] guidArray = Guid.NewGuid().ToByteArray();</span><br><span class="line"></span><br><span class="line">    DateTime baseDate = new DateTime(1900, 1, 1);</span><br><span class="line">    DateTime now = DateTime.Now;</span><br><span class="line"></span><br><span class="line">    // Get the days and milliseconds which will be used to build    </span><br><span class="line">    //the byte string    </span><br><span class="line">    TimeSpan days = new TimeSpan(now.Ticks - baseDate.Ticks);</span><br><span class="line">    TimeSpan msecs = now.TimeOfDay;</span><br><span class="line"></span><br><span class="line">    // Convert to a byte array        </span><br><span class="line">    // Note that SQL Server is accurate to 1/300th of a    </span><br><span class="line">    // millisecond so we divide by 3.333333    </span><br><span class="line">    byte[] daysArray = BitConverter.GetBytes(days.Days);</span><br><span class="line">    byte[] msecsArray = BitConverter.GetBytes((long)</span><br><span class="line">      (msecs.TotalMilliseconds / 3.333333));</span><br><span class="line"></span><br><span class="line">    // Reverse the bytes to match SQL Servers ordering    </span><br><span class="line">    Array.Reverse(daysArray);</span><br><span class="line">    Array.Reverse(msecsArray);</span><br><span class="line"></span><br><span class="line">    // Copy the bytes into the guid    </span><br><span class="line">    Array.Copy(daysArray, daysArray.Length - 2, guidArray,</span><br><span class="line">      guidArray.Length - 6, 2);</span><br><span class="line">    Array.Copy(msecsArray, msecsArray.Length - 4, guidArray,</span><br><span class="line">      guidArray.Length - 4, 4);</span><br><span class="line"></span><br><span class="line">    return new Guid(guidArray);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">用上面的算法测试一下，得到如下的结果：作为比较，前面3个是使用COMB算法得出的结果，最后12个字符串是时间序（统一毫秒生成的3个UUID），过段时间如果再次生成，则12个字符串会比图示的要大。后面3个是直接生成的GUID。</span><br><span class="line"></span><br><span class="line">[![ODX&#125;_`4N5X$F93OAS~`8Z)C](https://images2015.cnblogs.com/blog/15700/201602/15700-20160227213048721-177386520.png &quot;ODX&#125;_`4N5X$F93OAS~`8Z)C&quot;)](http://images2015.cnblogs.com/blog/15700/201602/15700-20160227213048174-1443183768.png)</span><br><span class="line"></span><br><span class="line">如果想把时间序放在前面，可以生成后改变12个字符串的位置，也可以修改算法类的最后两个Array.Copy。</span><br><span class="line"></span><br><span class="line">**4. Redis生成ID**</span><br><span class="line"></span><br><span class="line">当使用数据库来生成ID性能不够要求的时候，我们可以尝试使用Redis来生成ID。这主要依赖于Redis是单线程的，所以也可以用生成全局唯一的ID。可以用Redis的原子操作 INCR和INCRBY来实现。</span><br><span class="line"></span><br><span class="line">可以使用Redis集群来获取更高的吞吐量。假如一个集群中有5台Redis。可以初始化每台Redis的值分别是1,2,3,4,5，然后步长都是5。各个Redis生成的ID为：</span><br><span class="line"></span><br><span class="line">A：1,6,11,16,21</span><br><span class="line"></span><br><span class="line">B：2,7,12,17,22</span><br><span class="line"></span><br><span class="line">C：3,8,13,18,23</span><br><span class="line"></span><br><span class="line">D：4,9,14,19,24</span><br><span class="line"></span><br><span class="line">E：5,10,15,20,25</span><br><span class="line"></span><br><span class="line">这个，随便负载到哪个机确定好，未来很难做修改。但是3-5台服务器基本能够满足器上，都可以获得不同的ID。但是步长和初始值一定需要事先需要了。使用Redis集群也可以方式单点故障的问题。</span><br><span class="line"></span><br><span class="line">另外，比较适合使用Redis来生成每天从0开始的流水号。比如订单号=日期+当日自增长号。可以每天在Redis中生成一个Key，使用INCR进行累加。</span><br><span class="line"></span><br><span class="line">优点：</span><br><span class="line"></span><br><span class="line">1）不依赖于数据库，灵活方便，且性能优于数据库。</span><br><span class="line"></span><br><span class="line">2）数字ID天然排序，对分页或者需要排序的结果很有帮助。</span><br><span class="line"></span><br><span class="line">缺点：</span><br><span class="line"></span><br><span class="line">1）如果系统中没有Redis，还需要引入新的组件，增加系统复杂度。</span><br><span class="line"></span><br><span class="line">2）需要编码和配置的工作量比较大。</span><br><span class="line"></span><br><span class="line">**5. Twitter的snowflake算法**</span><br><span class="line"></span><br><span class="line">snowflake是Twitter开源的分布式ID生成算法，结果是一个long型的ID。其核心思想是：使用41bit作为毫秒数，10bit作为机器的ID（5个bit是数据中心，5个bit的机器ID），12bit作为毫秒内的流水号（意味着每个节点在每毫秒可以产生 4096 个 ID），最后还有一个符号位，永远是0。具体实现的代码可以参看[https://github.com/twitter/snowflake](https://github.com/twitter/snowflake)。</span><br><span class="line"></span><br><span class="line">C#代码如下：</span><br></pre></td></tr></table></figure><br><br>    /// <summary><br>        /// From: <a href="https://github.com/twitter/snowflake" target="_blank" rel="noopener">https://github.com/twitter/snowflake</a><br>        /// An object that generates IDs.<br>        /// This is broken into a separate class in case<br>        /// we ever want to support multiple worker threads<br>        /// per process<br>        /// </summary><br>        public class IdWorker<br>        {<br>            private long workerId;<br>            private long datacenterId;<br>            private long sequence = 0L;<br><br>            private static long twepoch = 1288834974657L;<br><br>            private static long workerIdBits = 5L;<br>            private static long datacenterIdBits = 5L;<br>            private static long maxWorkerId = -1L ^ (-1L &lt;&lt; (int)workerIdBits);<br>            private static long maxDatacenterId = -1L ^ (-1L &lt;&lt; (int)datacenterIdBits);<br>            private static long sequenceBits = 12L;<br><br>            private long workerIdShift = sequenceBits;<br>            private long datacenterIdShift = sequenceBits + workerIdBits;<br>            private long timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits;<br>            private long sequenceMask = -1L ^ (-1L &lt;&lt; (int)sequenceBits);<br><br>            private long lastTimestamp = -1L;<br>            private static object syncRoot = new object();<br><br>            public IdWorker(long workerId, long datacenterId)<br>            {<br><br>                // sanity check for workerId<br>                if (workerId &gt; maxWorkerId || workerId &lt; 0)<br>                {<br>                    throw new ArgumentException(string.Format(“worker Id can’t be greater than %d or less than 0”, maxWorkerId));<br>                }<br>                if (datacenterId &gt; maxDatacenterId || datacenterId &lt; 0)<br>                {<br>                    throw new ArgumentException(string.Format(“datacenter Id can’t be greater than %d or less than 0”, maxDatacenterId));<br>                }<br>                this.workerId = workerId;<br>                this.datacenterId = datacenterId;<br>            }<br><br>            public long nextId()<br>            {<br>                lock (syncRoot)<br>                {<br>                    long timestamp = timeGen();<br><br>                    if (timestamp &lt; lastTimestamp)<br>                    {<br>                        throw new ApplicationException(string.Format(“Clock moved backwards.  Refusing to generate id for %d milliseconds”, lastTimestamp - timestamp));<br>                    }<br><br>                    if (lastTimestamp == timestamp)<br>                    {<br>                        sequence = (sequence + 1) &amp; sequenceMask;<br>                        if (sequence == 0)<br>                        {<br>                            timestamp = tilNextMillis(lastTimestamp);<br>                        }<br>                    }<br>                    else<br>                    {<br>                        sequence = 0L;<br>                    }<br><br>                    lastTimestamp = timestamp;<br><br>                    return ((timestamp - twepoch) &lt;&lt; (int)timestampLeftShift) | (datacenterId &lt;&lt; (int)datacenterIdShift) | (workerId &lt;&lt; (int)workerIdShift) | sequence;<br>                }<br>            }<br><br>            protected long tilNextMillis(long lastTimestamp)<br>            {<br>                long timestamp = timeGen();<br>                while (timestamp &lt;= lastTimestamp)<br>                {<br>                    timestamp = timeGen();<br>                }<br>                return timestamp;<br>            }<br><br>            protected long timeGen()<br>            {<br>                return (long)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;<br>            }<br>        }<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">测试代码如下：</span><br></pre></td></tr></table></figure><br><br>    private static void TestIdWorker()<br>            {<br>                HashSet<long> set = new HashSet<long>();<br>                IdWorker idWorker1 = new IdWorker(0, 0);<br>                IdWorker idWorker2 = new IdWorker(1, 0);<br>                Thread t1 = new Thread(() =&gt; DoTestIdWoker(idWorker1, set));<br>                Thread t2 = new Thread(() =&gt; DoTestIdWoker(idWorker2, set));<br>                t1.IsBackground = true;<br>                t2.IsBackground = true;<br><br>                t1.Start();<br>                t2.Start();<br>                try<br>                {<br>                    Thread.Sleep(30000);<br>                    t1.Abort();<br>                    t2.Abort();<br>                }<br>                catch (Exception e)<br>                {<br>                }<br><br>                Console.WriteLine(“done”);<br>            }<br><br>            private static void DoTestIdWoker(IdWorker idWorker, HashSet<long> set)<br>            {<br>                while (true)<br>                {<br>                    long id = idWorker.nextId();<br>                    if (!set.Add(id))<br>                    {<br>                        Console.WriteLine(“duplicate:” + id);<br>                    }<br><br>                    Thread.Sleep(1);<br>                }<br>            }<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">snowflake算法可以根据自身项目的需要进行一定的修改。比如估算未来的数据中心个数，每个数据中心的机器数以及统一毫秒可以能的并发数来调整在算法中所需要的bit数。</span><br><span class="line"></span><br><span class="line">优点：</span><br><span class="line"></span><br><span class="line">1）不依赖于数据库，灵活方便，且性能优于数据库。</span><br><span class="line"></span><br><span class="line">2）ID按照时间在单机上是递增的。</span><br><span class="line"></span><br><span class="line">缺点：</span><br><span class="line"></span><br><span class="line">1）在单机上是递增的，但是由于涉及到分布式环境，每台机器上的时钟不可能完全同步，也许有时候也会出现不是全局递增的情况。</span><br><span class="line"></span><br><span class="line">**6. 利用zookeeper生成唯一ID**</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;brush: csharp; auto-links: true; collapse: true; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: false; tab-size: 4; toolbar: true;&quot;&gt;zookeeper主要通过其znode数据版本来生成序列号，可以生成32位和64位的数据版本号，客户端可以使用这个版本号来作为唯一的序列号。</span><br></pre></td></tr></table></figure><br><br>    <pre class="brush: csharp; auto-links: true; collapse: true; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: false; tab-size: 4; toolbar: true;">很少会使用zookeeper来生成唯一ID。主要是由于需要依赖zookeeper，并且是多步调用API，如果在竞争较大的情况下，需要考虑使用分布式锁。因此，性能在高并发的分布式环境下，也不甚理想。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush: csharp; auto-links: true; collapse: true; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: false; tab-size: 4; toolbar: true;&quot;&gt;</span><br></pre></td></tr></table></figure><br><br>    <pre class="brush: csharp; auto-links: true; collapse: true; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: false; tab-size: 4; toolbar: true;"><strong>7. MongoDB的ObjectId</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush: csharp; auto-links: true; collapse: true; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: false; tab-size: 4; toolbar: true;&quot;&gt;MongoDB的ObjectId和snowflake算法类似。它设计成轻量型的，不同的机器都能用全局唯一的同种方法方便地生成它。MongoDB 从一开始就设计用来作为分布式数据库，处理多个节点是一个核心要求。使其在分片环境中要容易生成得多。</span><br></pre></td></tr></table></figure><br><br>其格式如下：<br><br><img src="http://pangguoming.com/blog/images/246e6853-dae0-4fa2-a14d-f277cfc8c9f1.PNG" alt=""><br><br>前4 个字节是从标准纪元开始的时间戳，单位为秒。时间戳，与随后的5 个字节组合起来，提供了秒级别的唯一性。由于时间戳在前，这意味着ObjectId 大致会按照插入的顺序排列。这对于某些方面很有用，如将其作为索引提高效率。这4 个字节也隐含了文档创建的时间。绝大多数客户端类库都会公开一个方法从ObjectId 获取这个信息。<br>接下来的3 字节是所在主机的唯一标识符。通常是机器主机名的散列值。这样就可以确保不同主机生成不同的ObjectId，不产生冲突。<br>为了确保在同一台机器上并发的多个进程产生的ObjectId 是唯一的，接下来的两字节来自产生ObjectId 的进程标识符（PID）。<br>前9 字节保证了同一秒钟不同机器不同进程产生的ObjectId 是唯一的。后3 字节就是一个自动增加的计数器，确保相同进程同一秒产生的ObjectId 也是不一样的。同一秒钟最多允许每个进程拥有2563（16 777 216）个不同的ObjectId。<br><br>实现的源码可以到MongoDB官方网站下载。<br><br><strong>8. 来自Flicker的解决方案</strong><br>因为MySQL本身支持auto_increment操作，很自然地，我们会想到借助这个特性来实现这个功能。<br>Flicker在解决全局ID生成方案里就采用了MySQL自增长ID的机制（auto_increment + replace into + MyISAM）。一个生成64位ID方案具体就是这样的：<br>先创建单独的数据库(eg:ticket)，然后创建一个表：<br><br>    <div class="cnblogs_Highlighter sh-gutter"><br>    <div><br>    <div id="highlighter_974323" class="syntaxhighlighter  sql"><br>    <table border="0" cellspacing="0" cellpadding="0"><br>    <tbody><br>    <tr><br>    <td class="gutter"><br>    <div class="line number1 index0 alt2">1<br>    <div class="line number2 index1 alt1">2<br>    <div class="line number3 index2 alt2">3<br>    <div class="line number4 index3 alt1">4<br>    <div class="line number5 index4 alt2">5<br>    <div class="line number6 index5 alt1">6<br><br>    </div></div></div></div></div></div></td><br>    <td class="code"><br>    <div class="container"><br>    <div class="line number1 index0 alt2"><code class="sql keyword">CREATE</code> <code class="sql keyword">TABLE</code> <code class="sql plain">Tickets64 (</code><br>    <div class="line number2 index1 alt1"><code class="sql plain">id </code><code class="sql keyword">bigint</code><code class="sql plain">(20) unsigned </code><code class="sql color1">NOT</code> <code class="sql color1">NULL</code> <code class="sql plain">auto_increment,</code><br>    <div class="line number3 index2 alt2"><code class="sql plain">stub </code><code class="sql keyword">char</code><code class="sql plain">(1) </code><code class="sql color1">NOT</code> <code class="sql color1">NULL</code> <code class="sql keyword">default</code> <code class="sql string">‘’</code><code class="sql plain">,</code><br>    <div class="line number4 index3 alt1"><code class="sql keyword">PRIMARY</code> <code class="sql keyword">KEY</code> <code class="sql plain">(id),</code><br>    <div class="line number5 index4 alt2"><code class="sql keyword">UNIQUE</code> <code class="sql keyword">KEY</code> <code class="sql plain">stub (stub)</code><br>    <div class="line number6 index5 alt1"><code class="sql plain">) ENGINE=MyISAM</code><br><br>    </div></div></div></div></div></div></div></td><br><br>    </tr><br><br>    </tbody><br><br>    </table><br><br>当我们插入记录后，执行SELECT * from Tickets64，查询结果就是这样的：<br><br>+——————-+——+<br>| id | stub |<br>+——————-+——+<br>| 72157623227190423 | a |<br>+——————-+——+<br>在我们的应用端需要做下面这两个操作，在一个事务会话里提交：<br><br>    <div class="cnblogs_Highlighter sh-gutter"><br>    <div><br>    <div id="highlighter_547028" class="syntaxhighlighter  sql"><br>    <table border="0" cellspacing="0" cellpadding="0"><br>    <tbody><br>    <tr><br>    <td class="gutter"><br>    <div class="line number1 index0 alt2">1<br>    <div class="line number2 index1 alt1">2<br><br>    </div></div></td><br>    <td class="code"><br>    <div class="container"><br>    <div class="line number1 index0 alt2"><code class="sql color2">REPLACE</code> <code class="sql keyword">INTO</code> <code class="sql plain">Tickets64 (stub) </code><code class="sql keyword">VALUES</code> <code class="sql plain">(</code><code class="sql string">‘a’</code><code class="sql plain">);</code><br>    <div class="line number2 index1 alt1"><code class="sql keyword">SELECT</code> <code class="sql plain">LAST_INSERT_ID();</code><br><br>    </div></div></div></td><br><br>    </tr><br><br>    </tbody><br><br>    </table><br><br>这样我们就能拿到不断增长且不重复的ID了。<br>到上面为止，我们只是在单台数据库上生成ID，从高可用角度考虑，接下来就要解决单点故障问题：Flicker启用了两台数据库服务器来生成ID，通过区分auto_increment的起始值和步长来生成奇偶数的ID。<br><br>    <div class="cnblogs_Highlighter sh-gutter"><br>    <div><br>    <div id="highlighter_349251" class="syntaxhighlighter  sql"><br>    <table border="0" cellspacing="0" cellpadding="0"><br>    <tbody><br>    <tr><br>    <td class="gutter"><br>    <div class="line number1 index0 alt2">1<br>    <div class="line number2 index1 alt1">2<br>    <div class="line number3 index2 alt2">3<br>    <div class="line number4 index3 alt1">4<br>    <div class="line number5 index4 alt2">5<br>    <div class="line number6 index5 alt1">6<br>    <div class="line number7 index6 alt2">7<br><br>    </div></div></div></div></div></div></div></td><br>    <td class="code"><br>    <div class="container"><br>    <div class="line number1 index0 alt2"><code class="sql plain">TicketServer1:</code><br>    <div class="line number2 index1 alt1"><code class="sql plain">auto-increment-increment = 2</code><br>    <div class="line number3 index2 alt2"><code class="sql plain">auto-increment-offset = 1</code><br>    <div class="line number4 index3 alt1"><br>    <div class="line number5 index4 alt2"><code class="sql plain">TicketServer2:</code><br>    <div class="line number6 index5 alt1"><code class="sql plain">auto-increment-increment = 2</code><br>    <div class="line number7 index6 alt2"><code class="sql plain">auto-increment-offset = 2</code><br><br>    </div></div></div></div></div></div></div></div></td><br><br>    </tr><br><br>    </tbody><br><br>    </table><br><br>最后，在客户端只需要通过轮询方式取ID就可以了。<br><br>优点：充分借助数据库的自增ID机制，提供高可靠性，生成的ID有序。<br>缺点：占用两个独立的MySQL实例，有些浪费资源，成本较高。<br></div></div></div></div></div></div></div></div></div></pre></pre><br></long></long></long></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分布式/" rel="tag"># 分布式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/18/Spring Boot 集成Shiro和CAS/" rel="next" title="Spring Boot 集成Shiro和CAS">
+                <i class="fa fa-chevron-left"></i> Spring Boot 集成Shiro和CAS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/20/彻底搞清楚javascript中的require、import和export/" rel="prev" title="彻底搞清楚javascript中的require、import和export">
+                彻底搞清楚javascript中的require、import和export <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'pangguoming',
+      repo: 'pangguoming.github.io',
+      oauth: {
+        client_id: '1e9770fed2b4d227cd0a',
+        client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+          
+            <p class="site-author-name" itemprop="name">庞国明</p>
+            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">420</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">267</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
