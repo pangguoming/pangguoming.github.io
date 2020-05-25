@@ -1,0 +1,24 @@
+1、安装rpm包，次序
+fuse-libs-2.9.2-10.el7.x86_64
+fuse-2.9.2-10.el7.x86_64
+fuse-sshfs-2.10-1.el7.x86_64
+
+rpm -ivh 包名
+
+2、创建虚拟目录
+mkdir /aaa
+
+3、挂载远程/home目录到本地/aaa目录
+sshfs  root@192.168.62.132:/home  /aaa
+
+
+
+可以使用 mount命令查看挂载情况
+mount -l
+
+卸载
+umount /aaa
+
+
+
+想要开机自动挂载目录，可以crond定时30秒执行一次 sshfs.sh

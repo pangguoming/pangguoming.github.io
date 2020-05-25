@@ -1,0 +1,4 @@
+
+crontab -e
+一分钟执行一次脚本
+*/1 * * * *  /home/tomcat_corn.sh

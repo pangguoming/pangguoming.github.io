@@ -1,0 +1,3 @@
+crontab -e
+
+0 2 * * * cd /usr/sbin/ && ./bakmysql.sh

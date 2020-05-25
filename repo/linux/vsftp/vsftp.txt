@@ -1,0 +1,33 @@
+1.安装rpm包
+
+rpm -ivh 包名
+
+
+2、编辑ftp配置文件
+
+vi /etc/vsftpd/vsftpd.conf
+
+
+3、创建chroot_list 文件
+
+touch /etc/vsftpd/chroot_list 
+
+
+4、设置开机启动ftp
+
+chkconfig vsftpd on
+
+
+5、建立ftp账号
+
+useradd -d /path（你的ftp文件夹） -s /sbin/nologin ftpname（用户名）
+useradd -d /home/ftpfile -s /sbin/nologin ftpuser
+
+
+6、修改密码
+
+passwd ftpuser
+
+
+7、重新启动vsftp
+systemctl restart vsftpd.service

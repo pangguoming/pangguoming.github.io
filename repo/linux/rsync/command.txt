@@ -1,0 +1,14 @@
+# crontab –e
+0 1 * * * root /etc/rsync.sh
+
+这将会在每天早上1点运行 /root/bin/backup.sh
+
+
+
+#!/bin/bash
+rsync -avz --password-file=/etc/rsyncd.secrets  root@172.20.201.21::backup /dangan
+
+
+systemctl start  crond.service
+
+chmod +x /etc/rsync.sh
