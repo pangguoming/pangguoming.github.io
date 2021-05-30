@@ -45,38 +45,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT">
@@ -84,11 +73,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
 
 
 
@@ -113,11 +97,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -153,30 +137,6 @@
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-	<div id="topnavbar">
-  <div class="tophead">
-    <div class="toplogo"><a href="/">庞国明-博客</a></div>
-    <div id="mnav">
-      <h2><span class="navicon"></span></h2>
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </div>
-    <nav class="topnav" id="topnav">
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
 
   
   
@@ -230,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -250,12 +220,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            关于
+            归档
           </a>
         </li>
       
@@ -278,20 +248,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -324,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/19/Spring Boot 直接用jar运行项目/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/ecb008c0.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -343,7 +319,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/19/Spring Boot 直接用jar运行项目/" itemprop="url">Spring Boot 直接用jar运行项目</a></h1>
+                <a class="post-title-link" href="/post/ecb008c0.html" itemprop="url">Spring Boot 直接用jar运行项目</a></h1>
         
 
         <div class="post-meta">
@@ -395,19 +371,55 @@
       
         
           
-          概述
-在Spring Boot 开篇-创建和运行一文中,介绍了如何创建一个Sprint Boot项目并且运行起来。但是运行的方式是在IDEA中直接Run起来的。还有另一中方式可以可以把Spring Boot程序运行起来，就是直接在命令行中执行jar包。
+            <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><hr>
+<p>在<a href="http://blog.csdn.net/linsongbin1/article/details/79240357" target="_blank" rel="noopener">Spring Boot 开篇-创建和运行</a>一文中,介绍了如何创建一个Sprint Boot项目并且运行起来。但是运行的方式是在IDEA中直接Run起来的。还有另一中方式可以可以把Spring Boot程序运行起来，就是直接在命令行中执行jar包。</p>
+<hr>
+<h1 id="打成jar包"><a href="#打成jar包" class="headerlink" title="打成jar包"></a>打成jar包</h1><hr>
+<p>以往的WEB程序需要打成WAR包,部署到Tomcat上,而Spring Boot支持打包成JAR的形式，就算是JAR里面包含图片、页面等，也是支持的。另外使用JAR包的方式也方便部署到Docker上。</p>
+<p>要想把Spring Boot打包成JAR的形式，需要在POM.xml文件中加入如下代码：</p>
+<p><code class="hljs xml has-numbering"><span class="hljs-tag">&lt;<span class="hljs-title">groupId&gt;com.springboot<span class="hljs-tag">&lt;/<span class="hljs-title">groupId&gt;<br>    <span class="hljs-tag">&lt;<span class="hljs-title">artifactId&gt;study<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId&gt;<br>    <span class="hljs-tag">&lt;<span class="hljs-title">version&gt;0.0.1-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-title">version&gt;<br>    <span class="hljs-tag">&lt;<span class="hljs-title">packaging&gt;jar<span class="hljs-tag">&lt;/<span class="hljs-title">packaging&gt;</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    *   1</span><br><span class="line">    *   2</span><br><span class="line">    *   3</span><br><span class="line">    *   4</span><br><span class="line"></span><br><span class="line">把packaging改成jar的方式。另外还需要一个Maven插件。</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs xml has-numbering&quot;&gt;    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;build&gt;</span><br><span class="line">            &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;plugins&gt;</span><br><span class="line">                &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;plugin&gt;</span><br><span class="line">                    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;groupId&gt;org.springframework.boot&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;groupId&gt;</span><br><span class="line">                    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;artifactId&gt;spring-boot-maven-plugin&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;artifactId&gt;</span><br><span class="line">                &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;plugin&gt;</span><br><span class="line">            &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;plugins&gt;</span><br><span class="line">        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;build&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>*   1
+*   2
+*   3
+*   4
+*   5
+*   6
+*   7
+*   8
+</code></pre><p>可以IDEA中如下操作便可以打成一个JAR包。</p>
+<p><img src="https://img-blog.csdn.net/20180205130849013?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGluc29uZ2JpbjE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>点击IDEA右边的Maven Projects,在弹出的窗口中点击红色部分,执行Maven命令。</p>
+<p><img src="https://img-blog.csdn.net/20180205131100077?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGluc29uZ2JpbjE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>点击后会出现执行Maven命令的窗口,输入</p>
+<blockquote>
+<p>clean package</p>
+</blockquote>
+<p>即可执行打包的操作。</p>
+<p><img src="https://img-blog.csdn.net/20180205131251078?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGluc29uZ2JpbjE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>执行成功后可以在工程目录中的target目录下找到对应的JAR包。</p>
+<blockquote>
+<p>study-0.0.1-SNAPSHOT.jar</p>
+</blockquote>
+<pre><code>* * *
 
-打成jar包
-以往的WEB程序需要打成WAR
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/19/Spring Boot 直接用jar运行项目/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+# 执行JAR包
+
+* * *
+</code></pre><p>启动一个CMD或者其他命令行工具,执行如下命令,便大功告成。</p>
+<blockquote>
+<p>java -jar study-0.0.1-SNAPSHOT.jar</p>
+</blockquote>
+<p>下面就可以直接在浏览器中输入</p>
+<blockquote>
+<p><a href="http://localhost:8080/hello" target="_blank" rel="noopener">http://localhost:8080/hello</a></p>
+</blockquote>
+<p>浏览器便会输出</p>
+<blockquote>
+<p>hello,Spring Boot</p>
+</blockquote>
+<p>具体的代码请参看之前的<a href="http://blog.csdn.net/linsongbin1/article/details/79240357" target="_blank" rel="noopener">Spring Boot 开篇-创建和运行</a> 。<br></p>
+
+          
         
       
     </div>
@@ -454,7 +466,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/19/Spring Boot Maven Plugin打包异常及三种解决方法：Unable to find main class/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/8cd8df4c.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -473,7 +485,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/19/Spring Boot Maven Plugin打包异常及三种解决方法：Unable to find main class/" itemprop="url">Spring Boot Maven Plugin打包异常及三种解决方法：Unable to find main class</a></h1>
+                <a class="post-title-link" href="/post/8cd8df4c.html" itemprop="url">Spring Boot Maven Plugin打包异常及三种解决方法：Unable to find main class</a></h1>
         
 
         <div class="post-meta">
@@ -525,16 +537,60 @@
       
         
           
-          【背景】spring-boot项目，打包成可执行jar，项目内有两个带有main方法的类并且都使用了@SpringBootApplication注解（或者另一种情形：你有两个main方法并且所在类都没有使用@SpringBootApplication注解），pom.xml如下
-12345678910
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/19/Spring Boot Maven Plugin打包异常及三种解决方法：Unable to find main class/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>【背景】spring-boot项目，打包成可执行jar，项目内有两个带有main方法的类并且都使用了@SpringBootApplication注解（或者另一种情形：你有两个main方法并且所在类都没有使用@SpringBootApplication注解），pom.xml如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;</span><br><span class="line">    &lt;executions&gt;</span><br><span class="line">        &lt;execution&gt;</span><br><span class="line">            &lt;goals&gt;</span><br><span class="line">                &lt;goal&gt;repackage&lt;/goal&gt;</span><br><span class="line">            &lt;/goals&gt;</span><br><span class="line">        &lt;/execution&gt;</span><br><span class="line">    &lt;/executions&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
+<p>【问题】</p>
+<ul>
+<li><p>执行mvn clean package，报错如下（说点不相关的，使用install同理。因为spring-boot:repackage目标（goal）（下文会说）被绑定在package构建阶段（phases），而package阶段在install阶段之前，指定构建阶段之前的阶段都会执行。详细参见：<a href="http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html" title="Introduction to the Build Lifecycle" target="_blank" rel="noopener">Introduction to the Build Lifecycle</a>）</p>
+<p>[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:1.5.3.RELEASE:repackage (default) on project webapps-api-bid: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:1.5.3.RELEASE:repackage failed: Unable to find a single main class from the following candidates [com.xx.api.main.ApiBidMain, com.xx.webapps.api.main.WebappsApiBidMain]</p>
+</li>
+<li><p>执行mvn clean package spring-boot:repackage，报错如下，不如上面日志详细</p>
+<p>[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:1.5.3.RELEASE:repackage (default) on project webapps-api-bid: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:1.5.3.RELEASE:repackage failed: Unable to find main class</p>
+</li>
+</ul>
+<p>【解决】</p>
+<p> Note：参考<a href="https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#build-tool-plugins-maven-packaging" title="官网描述" target="_blank" rel="noopener">官网描述</a>，没有指定<mainclass>或者继承了spring-boot-starter-parent并且<start-class>属性未配置时，会自动寻找签名是<code class="literal">public static void main(String[] args)</code>的方法… 所以插件懵逼了，两个妹子和谁在一起呢…</start-class></mainclass></p>
+<ul>
+<li><strong>[推荐] 通用解决方法</strong>：<strong><configuration></configuration></strong>下配置mainClass，指定程序入口。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">        &lt;mainClass&gt;com.xx.webapps.api.main.WebappsApiBidMain&lt;/mainClass&gt;</span><br><span class="line">    &lt;/configuration&gt;</span><br><span class="line">    &lt;executions&gt;</span><br><span class="line">        &lt;execution&gt;</span><br><span class="line">            &lt;goals&gt;</span><br><span class="line">                &lt;goal&gt;repackage&lt;/goal&gt;</span><br><span class="line">            &lt;/goals&gt;</span><br><span class="line">        &lt;/execution&gt;</span><br><span class="line">    &lt;/executions&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
+<p> Spring Boot Maven Plugin提供了几个目标（goal），我们在<executions>标签里配置的<goal>repackage</goal>对应spring-boot:repackage这个目标。</executions></p>
+<blockquote>
+<ul>
+<li><strong><tt>repackage</tt></strong>: create a jar or war file that is auto-executable. It can replace the regular artifact or can be attached to the build lifecyle with a separate <strong>classifier</strong>.</li>
+<li><strong><tt>run</tt></strong>: run your Spring Boot application with several options to pass parameters to it.</li>
+<li><strong><tt>start</tt> </strong>and <strong><tt>stop</tt></strong>: integrate your Spring Boot application to the <tt>integration-test</tt> phase so that the application starts before it.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>The plugin rewrites your manifest, and in particular it manages the <strong>Main-Class</strong> and <strong>Start-Class</strong>entries, so if the defaults don’t work you have to configure those there (not in the jar plugin). The <strong>Main-Class</strong> in the manifest is actually controlled by the <strong>layout</strong> property of the boot plugin</p>
+<p> [译] 该插件重写了清单文件（MANIFEST.MF，也就是jar里面的清单文件），此文件管理着主类（Main-Class）和开始类（Start-Class）入口。清单文件中的Main-Class由layout控制</p>
+</blockquote>
+<p> 这里的Start-Class就是我们配置的<mainclass>，而Main-Class受layout属性的控制，别被名字搞乱了（是不是很诡异？看看解决方法二就明白为啥如此诡异了）…. 来张图直观的感受下，对应使用上面xml配置打包后的清单文件（MANIFEST.MF）：</mainclass></p>
+<p> <img src="http://pangguoming.com/blog/images/a30b8643-9729-42d3-be15-d727f0db60c0.png" alt=""></p>
+<p> layout属性默认不需要配置，插件会自动推断。不同的layout属性清单文件里面的Main-Class也会相应的不同。比如layout不配置或者配置为JAR对应的Main-Class是JarLauncher，layout配置为WAR对应的Main-Class是WarLauncher。</p>
+<ul>
+<li>[有限制条件] <strong>解决方法二</strong>：<strong>如果你的pom继承自<span class="comment-copy">spring-boot-starter-parent（注意此前提）</span></strong>，也可以直接在<properties>配置<start-class>（其实这里的start-class直接对应清单文件里的Start-Class）：</start-class></properties></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;properties&gt;</span><br><span class="line">    &lt;start-class&gt;com.xx.webapps.api.main.WebappsApiBidMain&lt;/start-class&gt;  </span><br><span class="line">&lt;/properties&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>解决方法三：</strong>打包的的时候注释掉其他的@SpringBootApplication… 或者你有两处main方法并且都没有使用@SpringBootApplication注解，注释掉一个main方法….. 这就是第三种解决方法233333</li>
+</ul>
+<p>【随便说说】</p>
+<p> 说说spring-boot:repackage这个目标。Spring Boot Maven Plugin这个插件包含一系列目标（goal），我们在<executions>标签里配置的<goal>repackage</goal>对应spring-boot:repackage这个目标，看下<a href="https://docs.spring.io/spring-boot/docs/2.0.0.BUILD-SNAPSHOT/maven-plugin//repackage-mojo.html" title="官方介绍" target="_blank" rel="noopener">官方介绍</a>：</executions></p>
+<blockquote>
+<p>spring-boot:repackage repackages your jar/war to be executable.</p>
+<p> Repackages existing JAR and WAR archives so that they can be executed from the command line using java -jar. With <tt>layout=NONE</tt> can also be used simply to package a JAR with nested dependencies (and no main class, so not executable).</p>
+</blockquote>
+<p> 简单点说，这货重新打包个可执行的jar/war，可以在命令行使用-jar执行。如果指定layout为NONE那就没有主类只是打个普通的jar（不可执行），一般不会这么做。</p>
+<p> 一般情况，这个目标会打一个新的jar/war，并把maven默认打的jar/war添加.original后缀，在target目录下可以看到：</p>
+<p> <img src="http://pangguoming.com/blog/images/779647e6-917a-4e4a-9552-c9e4feb3e76f.png" alt=""></p>
+<p> 【参考】</p>
+<p>1.<a href="https://stackoverflow.com/questions/23217002/how-do-i-tell-spring-boot-which-main-class-to-use-for-the-executable-jar" target="_blank" rel="noopener">https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#build-tool-plugins-maven-packaging</a></p>
+<p>2.<a href="https://docs.spring.io/spring-boot/docs/2.0.0.BUILD-SNAPSHOT/maven-plugin//repackage-mojo.html" target="_blank" rel="noopener">https://docs.spring.io/spring-boot/docs/2.0.0.BUILD-SNAPSHOT/maven-plugin//repackage-mojo.html</a></p>
+<p>3.<a href="https://stackoverflow.com/questions/23217002/how-do-i-tell-spring-boot-which-main-class-to-use-for-the-executable-jar" target="_blank" rel="noopener">https://stackoverflow.com/questions/23217002/how-do-i-tell-spring-boot-which-main-class-to-use-for-the-executable-jar</a></p>
+
+          
         
       
     </div>
@@ -581,7 +637,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/17/Angular CLI 使用教程指南参考/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/9df05fce.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -600,7 +656,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/17/Angular CLI 使用教程指南参考/" itemprop="url">Angular CLI 使用教程指南参考</a></h1>
+                <a class="post-title-link" href="/post/9df05fce.html" itemprop="url">Angular CLI 使用教程指南参考</a></h1>
         
 
         <div class="post-meta">
@@ -652,18 +708,378 @@
       
         
           
-          Angular CLI 现在虽然可以正常使用但仍然处于测试阶段. Angular CLI 依赖 Node 4 和 NPM 3 或更高版本.
-安装要安装Angular CLI你需要先安装node和npm，然后运行以下命令来安装最新的Angular CLI：
+            <p>Angular CLI 现在虽然可以正常使用但仍然处于测试阶段. Angular CLI 依赖 Node 4 和 NPM 3 或更高版本.</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>要安装Angular CLI你需要先安装node和npm，然后运行以下命令来安装最新的Angular CLI：</p>
+<blockquote>
+<p>注意：Angular CLI 需要Node 4.X 和 NPM 3.X 以上的版本支持。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; 在 Mac 或 Linux 平台上，你可能需要添加`sudo`前缀提权进行全局安装：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs coffeescript&quot;&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>## 基本用法
+</code></pre><p>你可以通过 Angular CLI 的 <code>help</code> 命令来获取相关的命令信息.</p>
+<pre><code>&lt;pre class=&quot;hljs sql&quot;&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; Angular CLI的命令关键字为 `ng`</span><br><span class="line"></span><br><span class="line">    ## ng new</span><br><span class="line"></span><br><span class="line">    &lt;table&gt;</span><br><span class="line">    &lt;thead&gt;</span><br><span class="line">    &lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;</span><br><span class="line">    &lt;/thead&gt;</span><br><span class="line">    &lt;tbody&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;`ng new &lt;project-name&gt; [options]`&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;创建一个新的 Angular 项目,默认在当前所在目录下&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;/tbody&gt;</span><br><span class="line">    &lt;/table&gt;</span><br><span class="line">    &lt;table&gt;</span><br><span class="line">    &lt;thead&gt;</span><br><span class="line">    &lt;tr&gt;&lt;th&gt;参数&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;</span><br><span class="line">    &lt;/thead&gt;</span><br><span class="line">    &lt;tbody&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;`--dry-run` `-d`&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;只输出要创建的文件和执行的操作，实际上并没有创建项目&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;`--verbose` `-v`&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;输出详细信息&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;`--skip-npm`&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;在项目第一次创建时不执行任何npm命令&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;`--name`&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;指定创建项目的名称&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;/tbody&gt;</span><br><span class="line">    &lt;/table&gt;</span><br><span class="line"></span><br><span class="line">    ## ng serve</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs coffeescript&quot;&gt;&lt;code&gt;ng &lt;span class=&quot;hljs-keyword&quot;&gt;new PROJECT_NAME</span><br><span class="line">    cd PROJECT_NAME</span><br><span class="line">    ng serve&lt;/span&gt;&lt;/code&gt;```</span><br><span class="line"></span><br><span class="line">将会自动在浏览器中打开默认地址 `http://localhost:4200/`. 运行之后如果你修改了程序源代码.应用将会自动重载.</span><br><span class="line"></span><br><span class="line">你也可以自定义配置 IP, 端口和实时重载端口号</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs nginx&quot;&gt;</span><br></pre></td></tr></table></figure>
 
-注意：Angular CLI 需要Node
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/17/Angular CLI 使用教程指南参考/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+## ng init
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng init &lt;project-name&gt; [options]`&lt;/td&gt;
+&lt;td&gt;在当前所在目录下初始化一个新的 Angular 项目&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;参数&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`--dry-run` `-d`&lt;/td&gt;
+&lt;td&gt;只输出要创建的文件和执行的操作，实际上并没有创建项目&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--verbose` `-v`&lt;/td&gt;
+&lt;td&gt;输出详细信息&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--skip-npm`&lt;/td&gt;
+&lt;td&gt;在项目第一次创建时不执行任何npm命令&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--name`&lt;/td&gt;
+&lt;td&gt;指定创建项目的名称&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng completion
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng completion`&lt;/td&gt;
+&lt;td&gt;将自动完成功能添加到ng命令的shell中&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng doc
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng doc &lt;keyword&gt;`&lt;/td&gt;
+&lt;td&gt;在浏览器中打开Angular文档并搜索当前关键字&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng e2e
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng e2e`&lt;/td&gt;
+&lt;td&gt;使用`protractor`在当前应用中运行e2e测试&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng format
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng format`&lt;/td&gt;
+&lt;td&gt;使用`clang-format`格式化当前项目代码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng generate
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng generate &lt;type&gt; [options]`&lt;/td&gt;
+&lt;td&gt;在项目中构建新代码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng g &lt;type&gt; [options]`&lt;/td&gt;
+&lt;td&gt;简写&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;支持的类型&lt;/th&gt;&lt;th&gt;用法&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Component&lt;/td&gt;
+&lt;td&gt;ng g component my-new-component&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Directive&lt;/td&gt;
+&lt;td&gt;ng g directive my-new-directive&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Pipe&lt;/td&gt;
+&lt;td&gt;ng g pipe my-new-pipe&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Service&lt;/td&gt;
+&lt;td&gt;ng g service my-new-service&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Class&lt;/td&gt;
+&lt;td&gt;ng g class my-new-class&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Interface&lt;/td&gt;
+&lt;td&gt;ng g interface my-new-interface&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Enum&lt;/td&gt;
+&lt;td&gt;ng g enum my-new-enum&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Module&lt;/td&gt;
+&lt;td&gt;ng g module my-module&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Route&lt;/td&gt;
+&lt;td&gt;ng g route my-route`当前已禁用`&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre><p>构建的组件都会使用自用目录,除非 <code>--flat</code> 单独指定.</p>
+<pre><code>&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;参数&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`--flat`&lt;/td&gt;
+&lt;td&gt;不在自用目录内创建代码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--route=&lt;route&gt;`&lt;/td&gt;
+&lt;td&gt;指定父路由.仅用于生成组件和路由.默认为指定的路径.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--skip-router-generation`&lt;/td&gt;
+&lt;td&gt;跳过生成父路由配置。只能用于路由命令。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--default`&lt;/td&gt;
+&lt;td&gt;指定路由应为默认路由。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--lazy`&lt;/td&gt;
+&lt;td&gt;指定路由是延迟的。 默认为true。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng get
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng get &lt;path1, path2, ...pathN&gt; [options]`&lt;/td&gt;
+&lt;td&gt;从Angular CLI配置获取值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre><p>pathN是一个有效的JavaScript参数路径，例如“users[1].userName”。 如果未设置该值，将显示“undefined”。 此命令默认情况下仅在项目目录中工作。</p>
+<pre><code>&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;参数&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`--global`&lt;/td&gt;
+&lt;td&gt;返回全局配置值，而不是本地配置值（如果都设置）. 此选项还可以使命令在项目目录外工作&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng set
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng get &lt;path1=value1, path2=value2, ...pathN=valueN&gt; [options]`&lt;/td&gt;
+&lt;td&gt;在Angular CLI配置中设置值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre><p>默认情况下，如果在项目内部运行，则设置项目配置中的值，如果不在项目内部，则失败。 pathN参数是一个有效的JavaScript路径，如“users [1] .userName”。 该值将被强制转换为正确的类型，或者如果类型无法强制，则会抛出错误。</p>
+<pre><code>&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;参数&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`--global`&lt;/td&gt;
+&lt;td&gt;设置全局配置值，而不是本地配置值。 这也使`ng set`可以在项目之外工作。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng build
+</code></pre><p>构建工件将存储在<code>/dist</code>目录中。</p>
+<p>ng build可以指定构建目标（–target = production或–target = development）和要与该构建一起使用的环境文件（–environment = dev或–environment = prod）。 默认情况下，使用开发构建目标和环境。</p>
+<pre><code>&lt;pre class=&quot;hljs sql&quot;&gt;&lt;code&gt;# 这是生产构建
+ng build &lt;span class=&quot;hljs-comment&quot;&gt;--target=production --environment=prod
+ng build &lt;span class=&quot;hljs-comment&quot;&gt;--prod --env=prod
+ng build &lt;span class=&quot;hljs-comment&quot;&gt;--prod
+
+# 这是开发构建
+ng build &lt;span class=&quot;hljs-comment&quot;&gt;--target=development --environment=dev
+ng build &lt;span class=&quot;hljs-comment&quot;&gt;--dev --e=dev
+ng build &lt;span class=&quot;hljs-comment&quot;&gt;--dev
+ng build&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;```
+
+## ng github-pages:deploy
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng github-pages:deploy [options]`&lt;/td&gt;
+&lt;td&gt;构建生产应用程序，设置GitHub存储库，然后发布应用程序。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;参数&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`--message=&lt;message&gt;`&lt;/td&gt;
+&lt;td&gt;构建并提交信息.默认为 &quot;new gh-pages version&quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--environment=&lt;env&gt;`&lt;/td&gt;
+&lt;td&gt;angular 环境构建。 默认为“production”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--branch=&lt;branch-name&gt;`&lt;/td&gt;
+&lt;td&gt;推送页面的git分支。 默认为“gh-branch”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--skip-build`&lt;/td&gt;
+&lt;td&gt;在发布之前跳过构建项目&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--gh-token=&lt;token&gt;`&lt;/td&gt;
+&lt;td&gt;用于部署的API令牌,必须.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--gh-username=&lt;username&gt;`&lt;/td&gt;
+&lt;td&gt;使用的Github用户名,必须.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng lint
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng lint`&lt;/td&gt;
+&lt;td&gt;在项目上运行codelyzer linter&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng test
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng test [options]`&lt;/td&gt;
+&lt;td&gt;使用 `karma` 运行单元测试&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;参数&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`--watch`&lt;/td&gt;
+&lt;td&gt;继续运行测试. 默认为true&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`--browsers`, `--colors`, `--reporters`, `--port`, `--log-level`&lt;/td&gt;
+&lt;td&gt;这些参数直接传递给karma&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+## ng version
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;命令&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`ng version`&lt;/td&gt;
+&lt;td&gt;输出cli版本, node 版本和操作系统信息&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th&gt;参数&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`--watch`&lt;/td&gt;
+&lt;td&gt;继续运行测试. 默认为true&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;
+</code></pre>
+          
         
       
     </div>
@@ -710,7 +1126,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/17/java 反射机制--根据属性名获取属性值/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/6f42ccb3.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -729,7 +1145,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/17/java 反射机制--根据属性名获取属性值/" itemprop="url">java 反射机制--根据属性名获取属性值</a></h1>
+                <a class="post-title-link" href="/post/6f42ccb3.html" itemprop="url">java 反射机制--根据属性名获取属性值</a></h1>
         
 
         <div class="post-meta">
@@ -781,15 +1197,8 @@
       
         
           
-          1.考虑安全访问范围内的属性，没有权限访问到的属性不读取[java] view plain copy1.  / 2.       根据属性名获取属性值 3.        4.       @param fieldName 5.       @param object 6.       @retur
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/17/java 反射机制--根据属性名获取属性值/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div>1.考虑安全访问范围内的属性，没有权限访问到的属性不读取<br><div class="dp-highlighter bg_java"><br><div class="bar"><br><div class="tools"><strong>[java]</strong> <a href="https://blog.csdn.net/jiao_zg/article/details/77897748#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="https://blog.csdn.net/jiao_zg/article/details/77897748#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="comment">/<strong> </strong></span><br>2.  <span class="comment">    <em> 根据属性名获取属性值 </em></span><br>3.  <span class="comment">      </span><br>4.  <span class="comment">    <em> @param fieldName </em></span><br>5.  <span class="comment">     @param object </span><br>6.  <span class="comment">    <em> @return </em></span><br>7.  <span class="comment">    /  </span><br>8.     <span class="keyword">private String getFieldValueByFieldName(String fieldName, Object object) {  </span><br>9.         <span class="keyword">try {  </span><br>10.             Field field = object.getClass().getField(fieldName);<br>11.             <span class="comment">//设置对象的访问权限，保证对private的属性的访问  </span><br>12.<br>13.             <span class="keyword">return  (String)field.get(object);  </span><br>14.         } <span class="keyword">catch (Exception e) {  </span><br>15.<br>16.             <span class="keyword">return <span class="keyword">null;  </span></span><br>17.         }<br>18.     }<br><br><div>2.不考虑从祖先类继承的属性，只获取当前类属性，包括四类访问权限，private，protect，default，public<br><div class="dp-highlighter bg_java"><br><div class="bar"><br><div class="tools">[java]<strong> <a href="https://blog.csdn.net/jiao_zg/article/details/77897748#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="https://blog.csdn.net/jiao_zg/article/details/77897748#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="comment">/</span></div></strong> <br>2.  <span class="comment">   <em> 根据属性名获取属性值 </em></span><br>3.  <span class="comment">     </span><br>4.  <span class="comment">   <em> @param fieldName </em></span><br>5.  <span class="comment">    @param object </span><br>6.  <span class="comment">   <em> @return </em></span><br>7.  <span class="comment">   /  </span><br>8.    <span class="keyword">private String getFieldValueByFieldName(String fieldName, Object object) {  </span><br>9.        <span class="keyword">try {  </span><br>10.            Field field = object.getClass().getDeclaredField(fieldName);<br>11.            <span class="comment">//设置对象的访问权限，保证对private的属性的访问  </span><br>12.            field.setAccessible(<span class="keyword">true);  </span><br>13.            <span class="keyword">return  (String)field.get(object);  </span><br>14.        } <span class="keyword">catch (Exception e) {  </span><br>15.<br>16.            <span class="keyword">return <span class="keyword">null;  </span></span><br>17.        }<br>18.    }<br><br> 3.考虑父类继承过来的属性，包括四类访问权限，private，protect，default，public<br><br><div class="dp-highlighter bg_java"><br><div class="bar"><br><div class="tools"><strong>[java]</strong> <a href="https://blog.csdn.net/jiao_zg/article/details/77897748#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="https://blog.csdn.net/jiao_zg/article/details/77897748#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  1.  <span class="comment">/*<em> </em></span><br>    2.  <span class="comment">  根据属性名获取属性元素，包括各种安全范围和所有父类 </span><br>    3.  <span class="comment"> <em>  </em></span><br>    4.  <span class="comment">  @param fieldName </span><br>    5.  <span class="comment"> <em> @param object </em></span><br>    6.  <span class="comment">  @return </span><br>    7.  <span class="comment"> */  </span><br>    8.  <span class="keyword">private Field getFieldByClasss(String fieldName, Object object) {  </span><br>    9.      Field field = <span class="keyword">null;  </span><br>    10.      Class&lt;?&gt; clazz = object.getClass();<br>    11.<br>    12.      <span class="keyword">for (; clazz != Object.<span class="keyword">class; clazz = clazz.getSuperclass()) {  </span></span><br>    13.          <span class="keyword">try {  </span><br>    14.              field = clazz.getDeclaredField(fieldName);<br>    15.          } <span class="keyword">catch (Exception e) {  </span><br>    16.              <span class="comment">// 这里甚么都不能抛出去。  </span><br>    17.              <span class="comment">// 如果这里的异常打印或者往外抛，则就不会进入  </span><br>    18.<br>    19.          }<br>    20.      }<br>    21.      <span class="keyword">return field;  </span><br>    22.<br>    23.  }  </div></div></div></div></div></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -836,7 +1245,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/15/springboot 项目mybatis plus 设置 jdbcTypeForNull （oracle数据库需配置JdbcType.NULL, 默认是Other）/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/505cfe8.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -855,7 +1264,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/15/springboot 项目mybatis plus 设置 jdbcTypeForNull （oracle数据库需配置JdbcType.NULL, 默认是Other）/" itemprop="url">springboot 项目mybatis plus 设置 jdbcTypeForNull （oracle数据库需配置JdbcType.NULL, 默认是Other）</a></h1>
+                <a class="post-title-link" href="/post/505cfe8.html" itemprop="url">springboot 项目mybatis plus 设置 jdbcTypeForNull （oracle数据库需配置JdbcType.NULL, 默认是Other）</a></h1>
         
 
         <div class="post-meta">
@@ -907,15 +1316,15 @@
       
         
           
-          方法1：application.ymlmybatis-plus:      configuration:        jdbc-type-for-null: ‘null’ #注意：单引号    12345678910111213141516171819    ## 方法2：查看mp-starter
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/15/springboot 项目mybatis plus 设置 jdbcTypeForNull （oracle数据库需配置JdbcType.NULL, 默认是Other）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h2 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h2><h2 id="application-yml"><a href="#application-yml" class="headerlink" title="application.yml"></a>application.yml</h2><p><code class="hljs vhdl">mybatis-plus:<br>      <span class="hljs-keyword">configuration:<br>        jdbc-<span class="hljs-keyword">type-<span class="hljs-keyword">for-<span class="hljs-keyword">null: <span class="hljs-attribute">‘null’ #注意：单引号<br>    </span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ## 方法2：</span><br><span class="line"></span><br><span class="line">查看mp-starter-源码， [MybatisPlusAutoConfiguration](https://gitee.com/baomidou/mybatisplus-boot-starter/blob/master/src/main/java/com/baomidou/mybatisplus/spring/boot/starter/MybatisPlusAutoConfiguration.java)， 可以发现，第119行有一个configurationCustomizers，可以修改configuration</span><br><span class="line"></span><br><span class="line">自定义一个，配上就完工</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs java&quot;&gt;    &lt;span class=&quot;hljs-annotation&quot;&gt;@Bean</span><br><span class="line">        &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;span class=&quot;hljs-function&quot;&gt; ConfigurationCustomizer &lt;span class=&quot;hljs-title&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;configurationCustomizer&lt;span class=&quot;hljs-params&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&#123;</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;return &lt;span class=&quot;hljs-keyword&quot;&gt;new MybatisPlusCustomizers();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;span class=&quot;hljs-class&quot;&gt; &lt;span class=&quot;hljs-title&quot;&gt;&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;MybatisPlusCustomizers&lt;span class=&quot;hljs-class&quot;&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;implements&lt;span class=&quot;hljs-class&quot;&gt; &lt;span class=&quot;hljs-title&quot;&gt;&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;ConfigurationCustomizer&lt;span class=&quot;hljs-class&quot;&gt; &#123;</span><br><span class="line"></span><br><span class="line">            &lt;span class=&quot;hljs-annotation&quot;&gt;@Override</span><br><span class="line">            &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;span class=&quot;hljs-function&quot;&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;void&lt;span class=&quot;hljs-function&quot;&gt; &lt;span class=&quot;hljs-title&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;customize&lt;span class=&quot;hljs-params&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;(org.apache.ibatis.session.Configuration configuration)&lt;span class=&quot;hljs-function&quot;&gt; &#123;</span><br><span class="line">                configuration.setJdbcTypeForNull(JdbcType.NULL);</span><br><span class="line">            &#125;  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>## 方法3：
+</code></pre><p>第一步：把 可更新为空的 javabean 属性前加上注解：@TableField(el = “username, jdbcType=VARCHAR”)</p>
+<p>@Email<br> @TableField(el = “email, jdbcType=VARCHAR”)<br> private String email;</p>
+<pre><code>&lt;div&gt; 第二步： 使用updateAllColumnById方法，而不是updateById.    如：
+&lt;div&gt; this.baseMapper.updateAllColumnById(user); 
+&lt;pre&gt;&lt;code class=&quot;hljs java&quot;&gt;&lt;span class=&quot;hljs-annotation&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-annotation&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;```&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;
+</code></pre>
+          
         
       
     </div>
@@ -962,7 +1371,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/15/vue使用watch 观察路由变化，重新获取内容/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/7b0de6d5.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -981,7 +1390,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/15/vue使用watch 观察路由变化，重新获取内容/" itemprop="url">vue使用watch 观察路由变化，重新获取内容</a></h1>
+                <a class="post-title-link" href="/post/7b0de6d5.html" itemprop="url">vue使用watch 观察路由变化，重新获取内容</a></h1>
         
 
         <div class="post-meta">
@@ -1033,15 +1442,9 @@
       
         
           
-          watch: {            $route(to) {                console.log(to)                if (to.path.indexOf(‘index’) != -1) {                    //路由变化后重新获取帖子列
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/15/vue使用watch 观察路由变化，重新获取内容/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p><code>watch: {<br>            $route(<span class="hljs-keyword">to) {<br>                console.<span class="hljs-keyword">log(<span class="hljs-keyword">to)<br>                <span class="hljs-keyword">if (<span class="hljs-keyword">to.path.indexOf(<span class="hljs-string">‘index’) != <span class="hljs-number">-1) {<br>                    <span class="hljs-comment">//路由变化后重新获取帖子列表<br>                    this.$http.get(<span class="hljs-string">‘/api/communityList’).then((res) =&gt; {<br>                        <span class="hljs-keyword">if (res.<span class="hljs-built_in">data.errCode === <span class="hljs-number">0) {<br>                            <span class="hljs-keyword">let getRes = res.<span class="hljs-built_in">data.<span class="hljs-built_in">data.hotList<br>                            this.postList = getRes<br>                        }<br>                    })<br>                }<br>            }<br>        }</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><code>`</code></p>
+
+          
         
       
     </div>
@@ -1088,7 +1491,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/05/axios delete请求 参数/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/b29b726a.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1107,7 +1510,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/05/axios delete请求 参数/" itemprop="url">axios delete请求 参数</a></h1>
+                <a class="post-title-link" href="/post/b29b726a.html" itemprop="url">axios delete请求 参数</a></h1>
         
 
         <div class="post-meta">
@@ -1159,16 +1562,13 @@
       
         
           
-          如果服务端将参数当做 java对象来封装接收则 参数格式为：{data: param}
-123456var param=&#123;name:&apos;jack&apos;,age:20&#125;    axios              .delete(&quot;/ehrReferralO
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/05/axios delete请求 参数/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>如果服务端将参数当做 java对象来封装接收则 参数格式为：{data: param}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var param=&#123;name:&apos;jack&apos;,age:20&#125;</span><br><span class="line">    axios</span><br><span class="line">              .delete(&quot;/ehrReferralObjPro&quot;, &#123;data: param&#125;)</span><br><span class="line">              .then(function(response) &#123;</span><br><span class="line">                &#125;</span><br></pre></td></tr></table></figure>
+<p>如果服务端将参数当做url 参数 接收，则格式为：{params: param}，这样发送的url将变为http:<a href="http://www.XXX.com?a=..&amp;b=." target="_blank" rel="noopener">www.XXX.com?a=..&amp;b=.</a>.</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:javascript;gutter:true;&quot;&gt;var param=&#123;name:&apos;jack&apos;,age:20&#125;</span><br><span class="line">axios</span><br><span class="line">          .delete(&quot;/ehrReferralObjPro&quot;, &#123;params: param&#125;)</span><br><span class="line">          .then(function(response) &#123;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p></p>
+
+          
         
       
     </div>
@@ -1215,7 +1615,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/04/28/在Spring MVC中使用注解的方式校验RequestParams/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/65435eaa.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1234,7 +1634,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/28/在Spring MVC中使用注解的方式校验RequestParams/" itemprop="url">在Spring MVC中使用注解的方式校验RequestParams</a></h1>
+                <a class="post-title-link" href="/post/65435eaa.html" itemprop="url">在Spring MVC中使用注解的方式校验RequestParams</a></h1>
         
 
         <div class="post-meta">
@@ -1286,15 +1686,82 @@
       
         
           
-          概述  Spring MVC支持Bean Validation，通过这个验证技术，可以通过注解方式，很方便的对输入参数进行验证，之前使用的校验方式，都是基于Bean对象的，但是在@RequestParam中，没有Bean对象，这样使得校验无法进行，可以通过使用@Validated注解，使得校验可以进
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/28/在Spring MVC中使用注解的方式校验RequestParams/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>  Spring MVC支持Bean Validation，通过这个验证技术，可以通过注解方式，很方便的对输入参数进行验证，之前使用的校验方式，都是基于Bean对象的，<a href="mailto:%E4%BD%86%E6%98%AF%E5%9C%A8@RequestParam%E4%B8%AD" target="_blank" rel="noopener">但是在@RequestParam中</a>，没有Bean对象，这样使得校验无法进行，<a href="mailto:%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E4%BD%BF%E7%94%A8@Validated%E6%B3%A8%E8%A7%A3" target="_blank" rel="noopener">可以通过使用@Validated注解</a>，使得校验可以进行。</p>
+<h2 id="校验bean对象"><a href="#校验bean对象" class="headerlink" title="校验bean对象"></a>校验bean对象</h2><p>  一般校验bean对象，为了可以自动的校验属性，可以通过两步解决：</p>
+<h4 id="一、声明对象"><a href="#一、声明对象" class="headerlink" title="一、声明对象"></a>一、声明对象</h4><p><code class="hljs java"><span class="hljs-keyword">package com.github.yongzhizhan.draftbox.model;</span></code></p>
+<pre><code>&lt;span class=&quot;hljs-keyword&quot;&gt;import javax.validation.constraints.Size;
+
+&lt;span class=&quot;hljs-comment&quot;&gt;/**
+ * 带验证的对象
+ * &lt;span class=&quot;hljs-doctag&quot;&gt;@author zhanyongzhi
+ */
+&lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class &lt;span class=&quot;hljs-title&quot;&gt;Foo {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;private String validString;
+
+    &lt;span class=&quot;hljs-meta&quot;&gt;@Size(min = &lt;span class=&quot;hljs-number&quot;&gt;1, max = &lt;span class=&quot;hljs-number&quot;&gt;5)
+    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public String &lt;span class=&quot;hljs-title&quot;&gt;getValidString&lt;span class=&quot;hljs-params&quot;&gt;() {
+        &lt;span class=&quot;hljs-keyword&quot;&gt;return validString;
+    }
+
+    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-keyword&quot;&gt;void &lt;span class=&quot;hljs-title&quot;&gt;setValidString&lt;span class=&quot;hljs-params&quot;&gt;(&lt;span class=&quot;hljs-keyword&quot;&gt;final String vValidString) {
+        validString = vValidString;
+    }
+}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 二、[通过@Valid注解使用对象](mailto:%E9%80%9A%E8%BF%87@Valid%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8%E5%AF%B9%E8%B1%A1)</span><br><span class="line"></span><br><span class="line">&lt;pre&gt;&lt;code class=&quot;hljs groovy&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;@ResponseBody</span><br><span class="line">&lt;span class=&quot;hljs-meta&quot;&gt;@RequestMapping(value = &lt;span class=&quot;hljs-string&quot;&gt;&quot;validObject&quot;, method = RequestMethod.POST)</span><br><span class="line">&lt;span class=&quot;hljs-meta&quot;&gt;@ResponseStatus(HttpStatus.OK)</span><br><span class="line">&lt;span class=&quot;hljs-keyword&quot;&gt;public String validObject(</span><br><span class="line">        &lt;span class=&quot;hljs-meta&quot;&gt;@RequestBody()</span><br><span class="line">        &lt;span class=&quot;hljs-meta&quot;&gt;@Valid Foo vFoo, BindingResult vBindingResult)&#123;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;return vFoo.getValidString();</span><br><span class="line">&#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+## 校验RequestParams
+</code></pre><p>  使用校验bean的方式，没有办法校验RequestParam的内容，一般在处理Get请求的时候，会使用下面这样的代码：</p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;hljs groovy&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;@ResponseBody
+&lt;span class=&quot;hljs-meta&quot;&gt;@RequestMapping(value = &lt;span class=&quot;hljs-string&quot;&gt;&quot;validString&quot;, method = RequestMethod.GET)
+&lt;span class=&quot;hljs-meta&quot;&gt;@ResponseStatus(HttpStatus.OK)
+&lt;span class=&quot;hljs-keyword&quot;&gt;public String validString(
+        &lt;span class=&quot;hljs-meta&quot;&gt;@RequestParam(value = &lt;span class=&quot;hljs-string&quot;&gt;&quot;str&quot;, defaultValue = &lt;span class=&quot;hljs-string&quot;&gt;&quot;&quot;)
+        String vStr){
+
+    &lt;span class=&quot;hljs-keyword&quot;&gt;return vStr;
+}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  [使用@Valid注解](mailto:%E4%BD%BF%E7%94%A8@Valid%E6%B3%A8%E8%A7%A3)，对RequestParam对应的参数进行注解，是无效的，[需要使用@Validated注解来使得验证生效](mailto:%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8@Validated%E6%B3%A8%E8%A7%A3%E6%9D%A5%E4%BD%BF%E5%BE%97%E9%AA%8C%E8%AF%81%E7%94%9F%E6%95%88)。操作步骤如下：</span><br><span class="line"></span><br><span class="line">#### 一、声明错误处理类</span><br><span class="line"></span><br><span class="line">&lt;pre&gt;&lt;code class=&quot;hljs css&quot;&gt;&lt;span class=&quot;hljs-selector-tag&quot;&gt;package &lt;span class=&quot;hljs-selector-tag&quot;&gt;com&lt;span class=&quot;hljs-selector-class&quot;&gt;.github&lt;span class=&quot;hljs-selector-class&quot;&gt;.yongzhizhan&lt;span class=&quot;hljs-selector-class&quot;&gt;.draftbox&lt;span class=&quot;hljs-selector-class&quot;&gt;.controller;</span><br><span class="line"></span><br><span class="line">&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.context&lt;span class=&quot;hljs-selector-class&quot;&gt;.annotation&lt;span class=&quot;hljs-selector-class&quot;&gt;.Bean;</span><br><span class="line">&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.http&lt;span class=&quot;hljs-selector-class&quot;&gt;.HttpStatus;</span><br><span class="line">&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.stereotype&lt;span class=&quot;hljs-selector-class&quot;&gt;.Component;</span><br><span class="line">&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.validation&lt;span class=&quot;hljs-selector-class&quot;&gt;.beanvalidation&lt;span class=&quot;hljs-selector-class&quot;&gt;.MethodValidationPostProcessor;</span><br><span class="line">&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.web&lt;span class=&quot;hljs-selector-class&quot;&gt;.bind&lt;span class=&quot;hljs-selector-class&quot;&gt;.annotation&lt;span class=&quot;hljs-selector-class&quot;&gt;.ControllerAdvice;</span><br><span class="line">&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.web&lt;span class=&quot;hljs-selector-class&quot;&gt;.bind&lt;span class=&quot;hljs-selector-class&quot;&gt;.annotation&lt;span class=&quot;hljs-selector-class&quot;&gt;.ExceptionHandler;</span><br><span class="line">&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.web&lt;span class=&quot;hljs-selector-class&quot;&gt;.bind&lt;span class=&quot;hljs-selector-class&quot;&gt;.annotation&lt;span class=&quot;hljs-selector-class&quot;&gt;.ResponseBody;</span><br><span class="line">&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.web&lt;span class=&quot;hljs-selector-class&quot;&gt;.bind&lt;span class=&quot;hljs-selector-class&quot;&gt;.annotation&lt;span class=&quot;hljs-selector-class&quot;&gt;.ResponseStatus;</span><br><span class="line"></span><br><span class="line">&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;javax&lt;span class=&quot;hljs-selector-class&quot;&gt;.validation&lt;span class=&quot;hljs-selector-class&quot;&gt;.ValidationException;</span><br><span class="line"></span><br><span class="line">@&lt;span class=&quot;hljs-keyword&quot;&gt;ControllerAdvice</span><br><span class="line">@Component</span><br><span class="line">public class GlobalExceptionHandler &#123;</span><br><span class="line">    @&lt;span class=&quot;hljs-keyword&quot;&gt;Bean</span><br><span class="line">    public MethodValidationPostProcessor methodValidationPostProcessor() &#123;</span><br><span class="line">        &lt;span class=&quot;hljs-selector-tag&quot;&gt;return &lt;span class=&quot;hljs-selector-tag&quot;&gt;new &lt;span class=&quot;hljs-selector-tag&quot;&gt;MethodValidationPostProcessor();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @&lt;span class=&quot;hljs-keyword&quot;&gt;ExceptionHandler</span><br><span class="line">    @ResponseBody</span><br><span class="line">    @ResponseStatus(HttpStatus.BAD_REQUEST)</span><br><span class="line">    public String handle(ValidationException exception) &#123;</span><br><span class="line">        &lt;span class=&quot;hljs-selector-tag&quot;&gt;System&lt;span class=&quot;hljs-selector-class&quot;&gt;.out&lt;span class=&quot;hljs-selector-class&quot;&gt;.println(&quot;&lt;span class=&quot;hljs-selector-tag&quot;&gt;bad &lt;span class=&quot;hljs-selector-tag&quot;&gt;request, &quot; + &lt;span class=&quot;hljs-selector-tag&quot;&gt;exception&lt;span class=&quot;hljs-selector-class&quot;&gt;.getMessage());</span><br><span class="line">        &lt;span class=&quot;hljs-selector-tag&quot;&gt;return &quot;&lt;span class=&quot;hljs-selector-tag&quot;&gt;bad &lt;span class=&quot;hljs-selector-tag&quot;&gt;request, &quot; + &lt;span class=&quot;hljs-selector-tag&quot;&gt;exception&lt;span class=&quot;hljs-selector-class&quot;&gt;.getMessage();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+#### 二、[声明@Validated并加上校验注解](mailto:%E5%A3%B0%E6%98%8E@Validated%E5%B9%B6%E5%8A%A0%E4%B8%8A%E6%A0%A1%E9%AA%8C%E6%B3%A8%E8%A7%A3)
+
+&lt;pre&gt;&lt;code class=&quot;hljs css&quot;&gt;&lt;span class=&quot;hljs-selector-tag&quot;&gt;package &lt;span class=&quot;hljs-selector-tag&quot;&gt;com&lt;span class=&quot;hljs-selector-class&quot;&gt;.github&lt;span class=&quot;hljs-selector-class&quot;&gt;.yongzhizhan&lt;span class=&quot;hljs-selector-class&quot;&gt;.draftbox&lt;span class=&quot;hljs-selector-class&quot;&gt;.controller;
+
+&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;com&lt;span class=&quot;hljs-selector-class&quot;&gt;.github&lt;span class=&quot;hljs-selector-class&quot;&gt;.yongzhizhan&lt;span class=&quot;hljs-selector-class&quot;&gt;.draftbox&lt;span class=&quot;hljs-selector-class&quot;&gt;.model&lt;span class=&quot;hljs-selector-class&quot;&gt;.Foo;
+&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.beans&lt;span class=&quot;hljs-selector-class&quot;&gt;.factory&lt;span class=&quot;hljs-selector-class&quot;&gt;.annotation&lt;span class=&quot;hljs-selector-class&quot;&gt;.Value;
+&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.http&lt;span class=&quot;hljs-selector-class&quot;&gt;.HttpStatus;
+&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.validation&lt;span class=&quot;hljs-selector-class&quot;&gt;.BindingResult;
+&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.validation&lt;span class=&quot;hljs-selector-class&quot;&gt;.annotation&lt;span class=&quot;hljs-selector-class&quot;&gt;.Validated;
+&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.web&lt;span class=&quot;hljs-selector-class&quot;&gt;.bind&lt;span class=&quot;hljs-selector-class&quot;&gt;.annotation&lt;span class=&quot;hljs-selector-class&quot;&gt;.RequestBody;
+&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.web&lt;span class=&quot;hljs-selector-class&quot;&gt;.bind&lt;span class=&quot;hljs-selector-class&quot;&gt;.annotation&lt;span class=&quot;hljs-selector-class&quot;&gt;.RequestMapping;
+&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.web&lt;span class=&quot;hljs-selector-class&quot;&gt;.bind&lt;span class=&quot;hljs-selector-class&quot;&gt;.annotation&lt;span class=&quot;hljs-selector-class&quot;&gt;.RequestMethod;
+&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.web&lt;span class=&quot;hljs-selector-class&quot;&gt;.bind&lt;span class=&quot;hljs-selector-class&quot;&gt;.annotation&lt;span class=&quot;hljs-selector-class&quot;&gt;.RequestParam;
+&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.web&lt;span class=&quot;hljs-selector-class&quot;&gt;.bind&lt;span class=&quot;hljs-selector-class&quot;&gt;.annotation&lt;span class=&quot;hljs-selector-class&quot;&gt;.ResponseBody;
+&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.web&lt;span class=&quot;hljs-selector-class&quot;&gt;.bind&lt;span class=&quot;hljs-selector-class&quot;&gt;.annotation&lt;span class=&quot;hljs-selector-class&quot;&gt;.ResponseStatus;
+&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;org&lt;span class=&quot;hljs-selector-class&quot;&gt;.springframework&lt;span class=&quot;hljs-selector-class&quot;&gt;.web&lt;span class=&quot;hljs-selector-class&quot;&gt;.bind&lt;span class=&quot;hljs-selector-class&quot;&gt;.annotation&lt;span class=&quot;hljs-selector-class&quot;&gt;.RestController;
+
+&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;javax&lt;span class=&quot;hljs-selector-class&quot;&gt;.validation&lt;span class=&quot;hljs-selector-class&quot;&gt;.Valid;
+&lt;span class=&quot;hljs-selector-tag&quot;&gt;import &lt;span class=&quot;hljs-selector-tag&quot;&gt;javax&lt;span class=&quot;hljs-selector-class&quot;&gt;.validation&lt;span class=&quot;hljs-selector-class&quot;&gt;.constraints&lt;span class=&quot;hljs-selector-class&quot;&gt;.Size;
+
+@&lt;span class=&quot;hljs-keyword&quot;&gt;RestController
+@SuppressWarnings(&lt;span class=&quot;hljs-string&quot;&gt;&quot;UnusedDeclaration&quot;)
+@Validated
+public class IndexController {
+    @&lt;span class=&quot;hljs-keyword&quot;&gt;ResponseBody
+    @RequestMapping(value = &lt;span class=&quot;hljs-string&quot;&gt;&quot;validString&quot;, method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public String validString(
+            @RequestParam(value = &lt;span class=&quot;hljs-string&quot;&gt;&quot;str&quot;, defaultValue = &lt;span class=&quot;hljs-string&quot;&gt;&quot;&quot;)
+            @Size(min = &lt;span class=&quot;hljs-number&quot;&gt;1, max = &lt;span class=&quot;hljs-number&quot;&gt;3)
+            String vStr){
+
+        &lt;span class=&quot;hljs-selector-tag&quot;&gt;return &lt;span class=&quot;hljs-selector-tag&quot;&gt;vStr;
+    }
+}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;```
+
+## 代码
+</code></pre><p><a href="https://github.com/yongzhizhan/draftbox/tree/master/java/spring-mvc-validator" target="_blank" rel="noopener">在github中查看完整代码</a></p>
+<pre><code>## 参考
+</code></pre><p><a href="http://www.ibm.com/developerworks/cn/java/j-lo-beanvalid/" target="_blank" rel="noopener">Bean Validation 技术规范特性概述</a><br><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/validation.html" target="_blank" rel="noopener">Validation, Data Binding, and Type Conversion</a><br></p>
+
+          
         
       
     </div>
@@ -1341,7 +1808,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/04/26/MySQL命名、设计及使用规范--------来自标点符的《MySQL命名、设计及使用规范》/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/c0b733cc.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1360,7 +1827,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/26/MySQL命名、设计及使用规范--------来自标点符的《MySQL命名、设计及使用规范》/" itemprop="url">MySQL命名、设计及使用规范--------来自标点符的《MySQL命名、设计及使用规范》</a></h1>
+                <a class="post-title-link" href="/post/c0b733cc.html" itemprop="url">MySQL命名、设计及使用规范--------来自标点符的《MySQL命名、设计及使用规范》</a></h1>
         
 
         <div class="post-meta">
@@ -1412,18 +1879,343 @@
       
         
           
-          数据库环境
-dev：开发环境，开发可读写，可修改表结构。开发人员可以修改表结构，可以随意修改其中的数据但是需要保证不影响其他开发同事。
-qa：测试环境，开发可读写，开发人员可以通过工具修改表结构。
-sim：模拟环境，开发可读写，发起上线请求时，会先在这个环境上进行预执行，这个环境也可供部署上线演练或
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/26/MySQL命名、设计及使用规范--------来自标点符的《MySQL命名、设计及使用规范》/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h2 id="数据库环境"><a href="#数据库环境" class="headerlink" title="数据库环境"></a>数据库环境</h2><ul>
+<li>dev：开发环境，开发可读写，可修改表结构。开发人员可以修改表结构，可以随意修改其中的数据但是需要保证不影响其他开发同事。</li>
+<li>qa：测试环境，开发可读写，开发人员可以通过工具修改表结构。</li>
+<li>sim：模拟环境，开发可读写，发起上线请求时，会先在这个环境上进行预执行，这个环境也可供部署上线演练或压力测试使用。</li>
+<li>real：生产数据库从库（准实时同步），只读环境，不允许修改数据，不允许修改表结构，供线上问题查找，数据查询等使用。</li>
+<li>online：线上环境，开发人员不允许直接在线上环境进行数据库操作，如果需要操作必须找DBA进行操作并进行相应记录，禁止进行压力测试。</li>
+</ul>
+<p>这些环境的机器，一定要做到权限划分明确，读写帐号分离，并且有辨识度，能区分具体业务。例如用户名w_account，r_ account 分别代表读、写账号，account是读写账号。</p>
+<h2 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h2><p><strong>基本命名原则</strong></p>
+<ul>
+<li>使用有意义的英文词汇，词汇中间以下划线分隔。（不要用拼音）</li>
+<li>只能使用英文字母，数字，下划线，并以英文字母开头。</li>
+<li>库、表、字段全部采用小写，不要使用驼峰式命名。</li>
+<li>避免用ORACLE、MySQL的保留字，如desc，关键字如index。</li>
+<li>命名禁止超过32个字符，须见名之意，建议使用名词不是动词</li>
+<li><p>数据库，数据表一律使用前缀</p>
+<ul>
+<li>临时库、表名必须以tmp为前缀，并以日期为后缀</li>
+<li>备份库、表必须以bak为前缀，并以日期为后缀</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>为什么库、表、字段全部采用小写？</strong></p>
+<p>在 MySQL 中，数据库和表对就于那些目录下的目录和文件。因而，操作系统的敏感性决定数据库和表命名的大小写敏感。</p>
+<ul>
+<li>Windows下是不区分大小写的。</li>
+<li><p>Linux下大小写规则：</p>
+<ul>
+<li>数据库名与表名是严格区分大小写的；</li>
+<li>表的别名是严格区分大小写的；</li>
+<li>列名与列的别名在所有的情况下均是忽略大小写的；</li>
+<li>变量名也是严格区分大小写的；</li>
+</ul>
+</li>
+</ul>
+<p>如果已经设置了驼峰式的命名如何解决？需要在MySQL的配置文件my.ini中增加 lower_case_table_names = 1即可。</p>
+</blockquote>
+<p><strong>表命名</strong></p>
+<ul>
+<li>同一个模块的表尽可能使用相同的前缀，表名称尽可能表达含义。所有日志表均以 log_ 开头</li>
+</ul>
+<p><strong>字段命名</strong></p>
+<ul>
+<li>表达其实际含义的英文单词或简写。布尔意义的字段以“is_”作为前缀，后接动词过去分词。</li>
+<li>各表之间相同意义的字段应同名。各表之间相同意义的字段，以去掉模块前缀的表名_字段名命名。</li>
+<li>外键字段用表名_字段名表示其关联关系。</li>
+<li>表的主键一般都约定成为id，自增类型，是别的表的外键均使用xxx_id的方式来表明。</li>
+</ul>
+<p><strong>索引命名</strong></p>
+<ul>
+<li>非唯一索引必须按照“idx_字段名称<em>字段名称[</em>字段名]”进行命名</li>
+<li>唯一索引必须按照“uniq_字段名称<em>字段名称[</em>字段名]”进行命名</li>
+</ul>
+<p><strong>约束命名</strong></p>
+<ul>
+<li>主键约束：pk_表名称。</li>
+<li>唯一约束：uk_表名称_字段名。（应用中需要同时有唯一性检查逻辑。）</li>
+</ul>
+<p><strong>触发器命名</strong></p>
+<ul>
+<li>trg_表名_操作。</li>
+</ul>
+<p><strong>函数过程命名</strong></p>
+<ul>
+<li>采用动词+名词的形式表达其含义。</li>
+</ul>
+<p><strong>序列命名</strong></p>
+<ul>
+<li>seq_表名</li>
+</ul>
+<h2 id="表设计规范"><a href="#表设计规范" class="headerlink" title="表设计规范"></a>表设计规范</h2><p>1、表引擎取决于实际应用场景；日志及报表类表建议用myisam，与交易，审核，金额相关的表建议用innodb引擎。如无说明，建表时一律采用innodb引擎。<a href="http://www.biaodianfu.com/mysql-myisam-innodb.html" target="_blank" rel="noopener">myisam与innodb的区别</a></p>
+<p>2、默认使用utf8mb4字符集，数据库排序规则使用utf8mb4_general_ci，（由于数据库定义使用了默认，数据表可以不再定义，但为保险起见，建议都写上）。</p>
+<blockquote>
+<p><strong>为什么字符集不选择utf8，排序规则不使用utf8_general_ci？</strong></p>
+<p>采用utf8编码的MySQL无法保存占位是4个字节的Emoji表情。为了使后端的项目，全面支持客户端输入的Emoji表情，升级编码为utf8mb4是最佳解决方案。对于JDBC连接串设置了characterEncoding为utf8或者做了上述配置仍旧无法正常插入emoji数据的情况，需要在代码中指定连接的字符集为utf8mb4。</p>
+</blockquote>
+<p>3、所有表、字段均应用 comment 列属性来描述此表、字段所代表的真正含义，如枚举值则建议将该字段中使用的内容都定义出来。</p>
+<p>4、如无说明，表中的第一个id字段一定是主键且为自动增长，禁止在非事务内作为上下文作为条件进行数据传递。禁止使用varchar类型作为主键语句设计。</p>
+<p>5、如无说明，表必须包含create_time和modify_time字段，即表必须包含记录创建时间和修改时间的字段</p>
+<p>6、如无说明，表必须包含is_del，用来标示数据是否被删除，原则上数据库数据不允许物理删除。</p>
+<p>7、用尽量少的存储空间来存数一个字段的数据</p>
+<ul>
+<li>能用int的就不用char或者varchar</li>
+<li>能用tinyint的就不用int</li>
+<li>使用UNSIGNED存储非负数值。</li>
+<li>不建议使用ENUM、SET类型，使用TINYINT来代替</li>
+<li>使用短数据类型，比如取值范围为0-80时，使用TINYINT UNSIGNED</li>
+<li>存储精确浮点数必须使用DECIMAL替代FLOAT和DOUBLE</li>
+<li><p>时间字段，除特殊情况一律采用int来记录unix_timestamp</p>
+<ul>
+<li>存储年使用YEAR类型。</li>
+<li>存储日期使用DATE类型。</li>
+<li>存储时间（精确到秒）建议使用TIMESTAMP类型，因为TIMESTAMP使用4字节，DATETIME使用8个字节。</li>
+</ul>
+</li>
+<li><p>建议使用INT UNSIGNED存储IPV4。</p>
+</li>
+<li>尽可能不使用TEXT、BLOB类型</li>
+<li>禁止在数据库中使用VARBINARY、BLOB存储图片、文件等。建议使用其他方式存储（TFS/SFS），MySQL只保存指针信息。</li>
+<li>单条记录大小禁止超过8k（列长度(中文)<em>3(UTF8)+列长度(英文)</em>1）</li>
+</ul>
+<blockquote>
+<p><strong>datetime与timestamp有什么不同？</strong></p>
+<p>相同点：TIMESTAMP列的显示格式与DATETIME列相同。显示宽度固定在19字符，并且格式为YYYY-MM-DD HH:MM:SS。<br>不同点：</p>
+<ul>
+<li><p>TIMESTAMP</p>
+<ul>
+<li>4个字节储存，时间范围：1970-01-01 08:00:01 ~ 2038-01-19 11:14:07</li>
+<li>值以UTC格式保存，涉及时区转化 ，存储时对当前的时区进行转换，检索时再转换回当前的时区。</li>
+</ul>
+</li>
+<li><p>datetime</p>
+<ul>
+<li>8个字节储存，时间范围：1000-01-01 00:00:00 ~ 9999-12-31 23:59:59</li>
+<li>实际格式储存，与时区无关</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>如何使用TIMESTAMP的自动赋值属性？</strong></p>
+<ul>
+<li>将当前时间作为ts的默认值：ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP。</li>
+<li>当行更新时，更新ts的值：ts TIMESTAMP DEFAULT 0 ON UPDATE CURRENT_TIMESTAMP。</li>
+<li>可以将1和2结合起来：ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>如何使用INT UNSIGNED存储ip？</strong></p>
+<p>使用INT UNSIGNED而不是char(15)来存储ipv4地址，通过MySQL函数inet_ntoa和inet_aton来进行转化。Ipv6地址目前没有转化函数，需要使用DECIMAL或者两个bigINT来存储。</p>
+</blockquote>
+<p>8、如无备注，所有字段都设置NOT NULL，并设置默认值；</p>
+<p>9、禁止在数据库中存储明文密码</p>
+<p>10、如无备注，所有的布尔值字段，如is_hot、is_deleted，都必须设置一个默认值，并设为0；</p>
+<p>11、如无备注，排序字段order_id在程序中默认使用降序排列；</p>
+<p>12、整形定义中不添加长度，比如使用INT，而不是INT[4]</p>
+<blockquote>
+<p><strong>INT[M]**</strong>，M值代表什么含义？**</p>
+<p>注意数值类型括号后面的数字只是表示宽度而跟存储范围没有关系。很多人他们认为INT(4)和INT(10)其取值范围分别是 (-9999到9999)和(-9999999999到9999999999)，这种理解是错误的。其实对整型中的 M值与 ZEROFILL 属性结合使用时可以实现列值等宽。不管INT[M]中M值是多少，其取值范围还是 (-2147483648到2147483647 有符号时)，(0到4294967295无符号时)。</p>
+<p>显示宽度并不限制可以在列内保存的值的范围，也不限制超过列的指定宽度的值的显示。当结合可选扩展属性ZEROFILL使用时默认补充的空格用零代替。例如：对于声明为INT(5) ZEROFILL的列，值4检索为00004。请注意如果在整数列保存超过显示宽度的一个值，当MySQL为复杂联接生成临时表时会遇到问题，因为在这些情况下MySQL相信数据适合原列宽度，如果为一个数值列指定ZEROFILL, MySQL自动为该列添加UNSIGNED属性。</p>
+</blockquote>
+<p>13、使用VARBINARY存储大小写敏感的变长字符串</p>
+<blockquote>
+<p><strong>什么时候用CHAR，什么时候用VARCHAR？</strong></p>
+<p>CHAR和VARCHAR类型类似，但它们保存和检索的方式不同。它们的最大长度和是否尾部空格被保留等方面也不同。CHAR和VARCHAR类型声明的长度表示你想要保存的最大字符数。例如，CHAR(30)可以占用30个字符。</p>
+<ul>
+<li>CHAR列的长度固定为创建表时声明的长度。长度可以为从0到255的任何值。当保存CHAR值时，在它们的右边填充空格以达到指定的长度。当检索到CHAR值时，尾部的空格被删除掉。在存储或检索过程中不进行大小写转换。</li>
+<li>VARCHAR列中的值为可变长字符串。长度可以指定为0到65,535之间的值。(VARCHAR的最大有效长度由最大行大小和使用的字符集确定。整体最大长度是65,532字节）。</li>
+</ul>
+<p>同CHAR对比，VARCHAR值保存时只保存需要的字符数，另加一个字节来记录长度(如果列声明的长度超过255，则使用两个字节)。VARCHAR值保存时不进行填充。当值保存和检索时尾部的空格仍保留，符合标准SQL。</p>
+<p>char适合存储用户密码的MD5哈希值，它的长度总是一样的。对于经常改变的值，char也好于varchar,因为固定长度的行不容易产生碎片，对于很短的列，char的效率也高于varchar。char(1)字符串对于单字节字符集只会占用一个字节，但是varchar(1)则会占用2个字节，因为1个字节用来存储长度信息。</p>
+</blockquote>
+<h2 id="索引设计规范"><a href="#索引设计规范" class="headerlink" title="索引设计规范"></a>索引设计规范</h2><p>MySQL的查询速度依赖良好的索引设计，因此索引对于高性能至关重要。合理的索引会加快查询速度（包括UPDATE和DELETE的速度，MySQL会将包含该行的page加载到内存中，然后进行UPDATE或者DELETE操作），不合理的索引会降低速度。MySQL索引查找类似于新华字典的拼音和部首查找，当拼音和部首索引不存在时，只能通过一页一页的翻页来查找。当MySQL查询不能使用索引时，MySQL会进行全表扫描，会消耗大量的IO。索引的用途：去重、加速定位、避免排序、覆盖索引。</p>
+<blockquote>
+<p><strong>什么是覆盖索引？</strong></p>
+<p>InnoDB存储引擎中，secondary index（非主键索引）中没有直接存储行地址，存储主键值。如果用户需要查询secondary index中所不包含的数据列时，需要先通过secondary index查找到主键值，然后再通过主键查询到其他数据列，因此需要查询两次。覆盖索引的概念就是查询可以通过在一个索引中完成，覆盖索引效率会比较高，主键查询是天然的覆盖索引。合理的创建索引以及合理的使用查询语句，当使用到覆盖索引时可以获得性能提升。比如SELECT email,uid FROM user_email WHERE uid=xx，如果uid不是主键，适当时候可以将索引添加为index(uid,email)，以获得性能提升。</p>
+</blockquote>
+<p><strong>索引的基本规范</strong></p>
+<p>1、索引数量控制，单张表中索引数量不超过5个，单个索引中的字段数不超过5个。</p>
+<ul>
+<li>综合评估数据密度和分布</li>
+<li>考虑查询和更新比例</li>
+</ul>
+<blockquote>
+<p><strong>为什么一张表中不能存在过多的索引？</strong></p>
+<p>InnoDB的secondary index使用b+tree来存储，因此在UPDATE、DELETE、INSERT的时候需要对b+tree进行调整，过多的索引会减慢更新的速度。</p>
+</blockquote>
+<p>2、对字符串使用前缀索引，前缀索引长度不超过8个字符，建议优先考虑前缀索引，必要时可添加伪列并建立索引。</p>
+<ul>
+<li>不要索引blob/text等字段,不要索引大型字段,这样做会让索引占用太多的存储空间</li>
+</ul>
+<blockquote>
+<p><strong>什么是前缀索引？</strong></p>
+<p>前缀索引说白了就是对文本的前几个字符（具体是几个字符在建立索引时指定）建立索引，这样建立起来的索引更小，所以查询更快。 前缀索引能有效减小索引文件的大小，提高索引的速度。但是前缀索引也有它的坏处：MySQL 不能在 ORDER BY 或 GROUP BY 中使用前缀索引，也不能把它们用作覆盖索引(Covering Index)。</p>
+<p>建立前缀索引的语法：ALTER TABLE table_name ADD KEY(column_name(prefix_length));</p>
+</blockquote>
+<p>3、主键准则</p>
+<ul>
+<li>表必须有主键</li>
+<li>不使用更新频繁的列</li>
+<li>尽量不选择字符串列</li>
+<li>不使用UUID MD5 HASH</li>
+<li>默认使用非空的唯一键</li>
+<li>建议选择自增或发号器</li>
+</ul>
+<p>4、 重要的SQL必须被索引，核心SQL优先考虑覆盖索索引</p>
+<ul>
+<li>UPDATE、DELETE语句的WHERE条件列</li>
+<li>ORDER BY、GROUP BY、DISTINCT的字段</li>
+<li>多表JOIN的字段</li>
+</ul>
+<p>5、区分度最大的字段放在前面</p>
+<ul>
+<li>选择筛选性更优的字段放在最前面，比如单号、userid等，type，status等筛选性一般不建议放在最前面</li>
+<li>索引根据左前缀原则，当建立一个联合索引(a,b,c)，则查询条件里面只有包含(a)或(a,b)或(a,b,c)的时候才能走索引,(a,c)作为条件的时候只能使用到a列索引,所以这个时候要确定a的返回列一定不能太多，不然语句设计就不合理,(b,c)则不能走索引</li>
+<li>合理创建联合索引（避免冗余），(a,b,c) 相当于 (a) 、(a,b) 、(a,b,c)</li>
+</ul>
+<p>6、索引禁忌</p>
+<ul>
+<li>不在低基数列上建立索引，例如“性别”</li>
+<li>不在索引列进行数学运算和函数运算</li>
+<li>不要索引常用的小型表</li>
+</ul>
+<p>7、 尽量不使用外键</p>
+<ul>
+<li>外键用来保护参照完整性，可在业务端实现</li>
+<li>对父表和子表的操作会相互影响，降低可用性</li>
+<li>INNODB本身对online DDL的限制</li>
+</ul>
+<p><strong>MYSQL 中索引的限制</strong></p>
+<ul>
+<li>MYISAM 存储引擎索引长度的总和不能超过 1000 字节</li>
+<li>BLOB 和 TEXT 类型的列只能创建前缀索引</li>
+<li>MYSQL 目前不支持函数索引</li>
+<li>使用不等于 (!= 或者 &lt;&gt;) 的时候, MYSQL 无法使用索引。</li>
+<li>过滤字段使用函数运算 (如 abs (column)) 后, MYSQL无法使用索引。</li>
+<li>join语句中join条件字段类型不一致的时候MYSQL无法使用索引</li>
+<li>使用 LIKE 操作的时候如果条件以通配符开始 (如 ‘%abc…’)时, MYSQL无法使用索引。</li>
+<li>使用非等值查询的时候, MYSQL 无法使用 Hash 索引。</li>
+</ul>
+<h2 id="语句设计规范"><a href="#语句设计规范" class="headerlink" title="语句设计规范"></a>语句设计规范</h2><p>1、使用预编译语句</p>
+<ul>
+<li>只传参数，比传递SQL语句更高效</li>
+<li>一次解析，多次使用</li>
+<li>降低SQL注入概率</li>
+</ul>
+<p>2、避免隐式转换</p>
+<ul>
+<li>会导致索引失效</li>
+</ul>
+<p>3、充分利用前缀索引</p>
+<ul>
+<li>必须是最左前缀</li>
+<li>不可能同时用到两个范围条件</li>
+<li>不使用%前导的查询，如like “%ab”</li>
+</ul>
+<p>4、不使用负向查询，如not in/like</p>
+<ul>
+<li>无法使用索引，导致全表扫描</li>
+<li>全表扫描导致buffer pool利用率降低</li>
+</ul>
+<p>5、避免使用存储过程、触发器、UDF、events等</p>
+<ul>
+<li>让数据库做最擅长的事</li>
+<li>降低业务耦合度，为sacle out、sharding留有余地</li>
+<li>避开BUG</li>
+</ul>
+<p>6、避免使用大表的JOIN</p>
+<ul>
+<li>MySQL最擅长的是单表的主键/二级索引查询</li>
+<li>JOIN消耗较多内存，产生临时表</li>
+</ul>
+<p>7、避免在数据库中进行数学运算</p>
+<ul>
+<li>MySQL不擅长数学运算和逻辑判断</li>
+<li>无法使用索引</li>
+</ul>
+<p>7、减少与数据库的交互次数</p>
+<ul>
+<li>INSERT … ON DUPLICATE KEY UPDATE</li>
+<li>REPLACE INTO、INSERT IGNORE 、INSERT INTO VALUES(),(),()</li>
+<li>UPDATE … WHERE ID IN(10,20,50,…)</li>
+</ul>
+<p>8、合理的使用分页</p>
+<ul>
+<li>限制分页展示的页数</li>
+<li>只能点击上一页、下一页</li>
+<li>采用延迟关联</li>
+</ul>
+<blockquote>
+<p><strong>如何正确的使用分页？</strong></p>
+<p>假如有类似下面分页语句：SELECT * FROM table  ORDER BY id LIMIT 10000, 10</p>
+<p>由于MySQL里对LIMIT OFFSET的处理方式是取出OFFSET+LIMIT的所有数据，然后去掉OFFSET，返回底部的LIMIT。所以，在OFFSET数值较大时，MySQL的查询性能会非常低。可以使用id &gt; n 的方式进行解决：</p>
+<p>使用id &gt; n 的方式有局限性，对于id不连续的问题，可以通过翻页的时候同时传入最后一个id方式来解决。</p>
+<div id="crayon-57abd2445b7b6245506286" class="crayon-syntax crayon-theme-github crayon-font-courier-new crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-57abd2445b7b6245506286-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-57abd2445b7b6245506286-2">2<br><div class="crayon-num" data-line="crayon-57abd2445b7b6245506286-3">3<br><div class="crayon-num crayon-striped-num" data-line="crayon-57abd2445b7b6245506286-4">4<br><div class="crayon-num" data-line="crayon-57abd2445b7b6245506286-5">5<br><div class="crayon-num crayon-striped-num" data-line="crayon-57abd2445b7b6245506286-6">6<br><div class="crayon-num" data-line="crayon-57abd2445b7b6245506286-7">7<br><br></div></div></div></div></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-57abd2445b7b6245506286-1" class="crayon-line"><span class="crayon-c">//输出时，找出当前结果集中的最大最小id</span><br><div id="crayon-57abd2445b7b6245506286-2" class="crayon-line crayon-striped-line"><span class="crayon-c">//下一页</span><br><div id="crayon-57abd2445b7b6245506286-3" class="crayon-line"><span class="crayon-v">http<span class="crayon-o">:<span class="crayon-c">//example.com/page.php?last=100</span></span></span><br><div id="crayon-57abd2445b7b6245506286-4" class="crayon-line crayon-striped-line"><span class="crayon-e ">select <em><span class="crayon-h"> <span class="crayon-e">from <span class="crayon-e">table <span class="crayon-e">where <span class="crayon-v">id<span class="crayon-o">&lt;<span class="crayon-cn">100<span class="crayon-h"> <span class="crayon-e">order <span class="crayon-e">by <span class="crayon-e">id <span class="crayon-e">desc <span class="crayon-i">limit<span class="crayon-h"> <span class="crayon-cn">10</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></em></span><br><div id="crayon-57abd2445b7b6245506286-5" class="crayon-line"><span class="crayon-c">//上一页</span><br><div id="crayon-57abd2445b7b6245506286-6" class="crayon-line crayon-striped-line"><span class="crayon-v">http<span class="crayon-o">:<span class="crayon-c">//example.com/page.php?first=110</span></span></span><br><div id="crayon-57abd2445b7b6245506286-7" class="crayon-line"><span class="crayon-e ">select <span class="crayon-h"> <span class="crayon-e">from <span class="crayon-e">table <span class="crayon-e">where <span class="crayon-v">id<span class="crayon-o">&gt;<span class="crayon-cn">110<span class="crayon-h"> <span class="crayon-e">order <span class="crayon-e">by <span class="crayon-e">id <span class="crayon-e">desc <span class="crayon-i">limit<span class="crayon-h"> <span class="crayon-cn">10</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><br></div></div></div></div></div></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br>这种方式比较大的缺点是，如果在浏览中有插入/删除操作，翻页不会更新，而总页数可能仍然是根据新的count(<em>) 来计算，最终可能会产生某些记录访问不到。为了修补这个问题，可以继续引入当前页码以及在上次翻页以后是否有插入/删除等影响总记录数的操作并进行缓存<br><br>其他变种方式：<br><br><div id="crayon-57abd2445b7d5698391248" class="crayon-syntax crayon-theme-github crayon-font-courier-new crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-57abd2445b7d5698391248-1">1<br><br></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-57abd2445b7d5698391248-1" class="crayon-line"><span class="crayon-e ">select </span></div></div></td></tr></tbody></table></div></div></div></div></em><span class="crayon-h"> <span class="crayon-e">from <span class="crayon-e">table <span class="crayon-e">where <span class="crayon-v">id<span class="crayon-h"> <span class="crayon-o">&gt;=<span class="crayon-h"> <span class="crayon-sy">(<span class="crayon-e">select <span class="crayon-e">id <span class="crayon-e">from <span class="crayon-e">table <span class="crayon-e">order <span class="crayon-e">by <span class="crayon-e">id <span class="crayon-v">limit<span class="crayon-h"> <span class="crayon-p">#offset#, 1)</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><br></div></div><br><br><br><br><br><br><br><br><br><br></div></div>
+</blockquote>
+<p>9、拒绝大SQL，拆分成小SQL</p>
+<ul>
+<li>充分利用QUERY CACHE</li>
+<li>充分利用多核CPU</li>
+</ul>
+<p>10、使用in代替or，in的值不超过1000个</p>
+<p>11、禁止使用order by rand()</p>
+<p>12、使用EXPLAIN诊断，避免生成临时表</p>
+<blockquote>
+<p>EXPLAIN语句（在MySQL客户端中执行）可以获得MySQL如何执行SELECT语句的信息。通过对SELECT语句执行EXPLAIN，可以知晓MySQL执行该SELECT语句时是否使用了索引、全表扫描、临时表、排序等信息。尽量避免MySQL进行全表扫描、使用临时表、排序等。详见官方文档。</p>
+</blockquote>
+<p>13、用union all而不是union</p>
+<blockquote>
+<p><strong>union all与 union有什么区别？</strong></p>
+<p>union和union all关键字都是将两个结果集合并为一个，但这两者从使用和效率上来说都有所不同。</p>
+<p>union在进行表链接后会筛选掉重复的记录，所以在表链接后会对所产生的结果集进行排序运算，删除重复的记录再返回结果。如：</p>
+<div id="crayon-57abd2445b7dd513309139" class="crayon-syntax crayon-theme-github crayon-font-courier-new crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-57abd2445b7dd513309139-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-57abd2445b7dd513309139-2">2<br><div class="crayon-num" data-line="crayon-57abd2445b7dd513309139-3">3<br><br></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-57abd2445b7dd513309139-1" class="crayon-line"><span class="crayon-e ">select <em><span class="crayon-h"> <span class="crayon-e">from <span class="crayon-e">test_union1</span></span></span></em></span><br><div id="crayon-57abd2445b7dd513309139-2" class="crayon-line crayon-striped-line"><span class="crayon-e">union</span><br><div id="crayon-57abd2445b7dd513309139-3" class="crayon-line"><span class="crayon-e ">select <span class="crayon-h"> <span class="crayon-e">from <span class="crayon-v">test_union2</span></span></span></span><br><br></div></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br>这个SQL在运行时先取出两个表的结果，再用排序空间进行排序删除重复的记录，最后返回结果集，如果表数据量大的话可能会导致用磁盘进行排序。<br><br>而union all只是简单的将两个结果合并后就返回。这样，如果返回的两个结果集中有重复的数据，那么返回的结果集就会包含重复的数据了。<br><br>从效率上说，union all要比union快很多，所以，如果可以确认合并的两个结果集中不包含重复的数据的话，那么就使用union all，如下：<br><br><div id="crayon-57abd2445b7e3378267317" class="crayon-syntax crayon-theme-github crayon-font-courier-new crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-57abd2445b7e3378267317-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-57abd2445b7e3378267317-2">2<br><div class="crayon-num" data-line="crayon-57abd2445b7e3378267317-3">3<br><br></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-57abd2445b7e3378267317-1" class="crayon-line"><span class="crayon-e ">select <em><span class="crayon-h"> <span class="crayon-e">from <span class="crayon-e">test_union1</span></span></span></em></span><br><div id="crayon-57abd2445b7e3378267317-2" class="crayon-line crayon-striped-line"><span class="crayon-e">union <span class="crayon-e">all</span></span><br><div id="crayon-57abd2445b7e3378267317-3" class="crayon-line"><span class="crayon-e ">select <span class="crayon-h"> <span class="crayon-e">from <span class="crayon-v">test_union2</span></span></span></span><br><br></div></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br><br><br></div></div></div></div></div></div></div></div>
+</blockquote>
+<p>14、程序应有捕获SQL异常的处理机制</p>
+<p>15、禁止单条SQL语句同时更新多个表</p>
+<p>16、不使用select * ，SELECT语句只获取需要的字段</p>
+<ul>
+<li>消耗CPU和IO、消耗网络带宽</li>
+<li>无法使用覆盖索引</li>
+<li>减少表结构变更带来的影响</li>
+<li>因为大，select/join 可能生成临时表</li>
+</ul>
+<p>17、UPDATE、DELETE语句不使用LIMIT</p>
+<p>18、INSERT语句必须显式的指明字段名称，不使用INSERT INTO table()</p>
+<p>19、INSERT语句使用batch提交（INSERT INTO table VALUES(),(),()……），values的个数不超过500</p>
+<p>20、统计表中记录数时使用COUNT(*)，而不是COUNT(primary_key)和COUNT(1) 备注：仅针对Myisam</p>
+<p>21、数据更新建议使用二级索引先查询出主键，再根据主键进行数据更新</p>
+<p>22、禁止使用跨库查询</p>
+<p>23、禁止使用子查询，建议将子查询转换成关联查询</p>
+<p>24、针对varchar类型字段的程序处理，请验证用户输入，不要超出其预设的长度；</p>
+<h2 id="分表规范"><a href="#分表规范" class="headerlink" title="分表规范"></a>分表规范</h2><p>单表一到两年内数据量超过500w或数据容量超过10G考虑分表，需提前考虑历史数据迁移或应用自行删除历史数据，采用等量均衡分表或根据业务规则分表均可。要分表的数据表必须与DBA商量分表策略</p>
+<ul>
+<li>用HASH进行散表，表名后缀使用十进制数，下标从0开始</li>
+<li>按日期时间分表需符合YYYY[MM][DD][HH]格式</li>
+<li>采用合适的分库分表策略。例如千库十表、十库百表等</li>
+<li>禁止使用分区表，分区表对分区键有严格要，分区表在表变大后执行DDL、SHARDING、单表恢复等都变得更加困难。</li>
+<li>拆分大字段和访问频率低的字段，分离冷热数据</li>
+</ul>
+<h2 id="行为规范"><a href="#行为规范" class="headerlink" title="行为规范"></a>行为规范</h2><ul>
+<li>批量导入、导出数据必须提前通知DBA协助观察</li>
+<li>禁止在线上从库执行后台管理和统计类查询</li>
+<li>禁止有super权限的应用程序账号存在</li>
+<li>产品出现非数据库导致的故障时及时通知DBA协助排查</li>
+<li>推广活动或上线新功能必须提前通知DBA进行流量评估</li>
+<li>数据库数据丢失，及时联系DBA进行恢复</li>
+<li>对单表的多次alter操作必须合并为一次操作</li>
+<li>不在MySQL数据库中存放业务逻辑</li>
+<li>重大项目的数据库方案选型和设计必须提前通知DBA参与</li>
+<li>对特别重要的库表，提前与DBA沟通确定维护和备份优先级</li>
+<li>不在业务高峰期批量更新、查询数据库其他规范</li>
+<li>提交线上建表改表需求，必须详细注明所有相关SQL语句</li>
+</ul>
+<h2 id="其他规范"><a href="#其他规范" class="headerlink" title="其他规范"></a>其他规范</h2><p>日志类数据不建议存储在MySQL上，优先考虑<a href="http://hbase/" target="_blank" rel="noopener">Hbase</a>或OceanBase，如需要存储请找DBA评估使用压缩表存储。</p>
+
+          
         
       
     </div>
@@ -1470,7 +2262,7 @@ sim：模拟环境，开发可读写，发起上线请求时，会先在这个�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/04/19/Mybatis 在 insert 之后想获取自增的主键 id/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/f4205b95.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1489,7 +2281,7 @@ sim：模拟环境，开发可读写，发起上线请求时，会先在这个�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/19/Mybatis 在 insert 之后想获取自增的主键 id/" itemprop="url">Mybatis 在 insert 之后想获取自增的主键 id</a></h1>
+                <a class="post-title-link" href="/post/f4205b95.html" itemprop="url">Mybatis 在 insert 之后想获取自增的主键 id</a></h1>
         
 
         <div class="post-meta">
@@ -1541,15 +2333,10 @@ sim：模拟环境，开发可读写，发起上线请求时，会先在这个�
       
         
           
-          123456&lt;insert id=&quot;add&quot;            useGeneratedKeys=&quot;true&quot; keyColumn=&quot;id&quot; keyProperty=&quot;id&quot;            parame
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/19/Mybatis 在 insert 之后想获取自增的主键 id/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;insert id=&quot;add&quot;</span><br><span class="line">            useGeneratedKeys=&quot;true&quot; keyColumn=&quot;id&quot; keyProperty=&quot;id&quot;</span><br><span class="line">            parameterType=&quot;user&quot;&gt;</span><br><span class="line">        INSERT INTO `user` (`name`,sex,register_ts) VALUES (#&#123;name&#125;,#&#123;sex&#125;,#&#123;registerTs&#125;)</span><br><span class="line">    &lt;/insert&gt;</span><br></pre></td></tr></table></figure>
+<p> 返回的插入成功的行数；自增id直接映射到你的对象里了，直接输出 xxx.getId()就可以了</p>
+
+          
         
       
     </div>
@@ -1612,105 +2399,108 @@ sim：模拟环境，开发可读写，发起上线请求时，会先在这个�
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
-            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+
           
-            <p class="site-author-name" itemprop="name">庞国明</p>
-            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives">
-            
-                <span class="site-state-item-count">420</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">267</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>GitHub</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
-                  
-                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -1727,12 +2517,9 @@ sim：模拟环境，开发可读写，发起上线请求时，会先在这个�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">庞国明</span>
 
@@ -1740,11 +2527,17 @@ sim：模拟环境，开发可读写，发起上线请求时，会先在这个�
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
@@ -1764,6 +2557,8 @@ sim：模拟环境，开发可读写，发起上线请求时，会先在这个�
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -1798,53 +2593,61 @@ sim：模拟环境，开发可读写，发起上线请求时，会先在这个�
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
 
-
-
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1870,6 +2673,23 @@ sim：模拟环境，开发可读写，发起上线请求时，会先在这个�
 
   
 
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
 
 
 
@@ -2199,11 +3019,27 @@ sim：模拟环境，开发可读写，发起上线请求时，会先在这个�
 
 
 
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
 
   
 
   
 
+  
+
+  
   
 
   

@@ -45,38 +45,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT">
@@ -84,11 +73,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
 
 
 
@@ -113,11 +97,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -153,30 +137,6 @@
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-	<div id="topnavbar">
-  <div class="tophead">
-    <div class="toplogo"><a href="/">庞国明-博客</a></div>
-    <div id="mnav">
-      <h2><span class="navicon"></span></h2>
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </div>
-    <nav class="topnav" id="topnav">
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
 
   
   
@@ -230,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -250,12 +220,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            关于
+            归档
           </a>
         </li>
       
@@ -278,20 +248,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -324,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/02/01/Twitter雪花算法 SnowFlake算法 的java实现/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/1441367f.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -343,7 +319,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/01/Twitter雪花算法 SnowFlake算法 的java实现/" itemprop="url">Twitter雪花算法 SnowFlake算法 的java实现</a></h1>
+                <a class="post-title-link" href="/post/1441367f.html" itemprop="url">Twitter雪花算法 SnowFlake算法 的java实现</a></h1>
         
 
         <div class="post-meta">
@@ -395,15 +371,8 @@
       
         
           
-          概述SnowFlake算法是Twitter设计的一个可以在分布式系统中生成唯一的ID的算法，它可以满足Twitter每秒上万条消息ID分配的请求，这些消息ID是唯一的且有大致的递增顺序。    原理    SnowFlake算法产生的ID是一个64位的整型，结构如下（每一部分用“-”符号分隔）：  
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/01/Twitter雪花算法 SnowFlake算法 的java实现/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div><strong>概述</strong><br><div>SnowFlake算法是Twitter设计的一个可以在分布式系统中生成唯一的ID的算法，它可以满足Twitter每秒上万条消息ID分配的请求，这些消息ID是唯一的且有大致的递增顺序。<br><div><br><br><div><br>    <strong>原理</strong><br><br><div><br>    SnowFlake算法产生的ID是一个64位的整型，结构如下（每一部分用“-”符号分隔）：<br><br><div><br><br><div><br>    <strong>0 - 0000000000 0000000000 0000000000 0000000000 0 - 00000 - 00000 - 000000000000</strong><br><br><div><br><br><div><br>    <strong>1位标识部分</strong>，在java中由于long的最高位是符号位，正数是0，负数是1，一般生成的ID为正数，所以为0；<br><br><div><br>    <strong>41位时间戳部分</strong>，这个是毫秒级的时间，一般实现上不会存储当前的时间戳，而是时间戳的差值（当前时间-固定的开始时间），这样可以使产生的ID从更小值开始；41位的时间戳可以使用69年，(1L<br> &lt;&lt; 41) / (1000L <em> 60 </em> 60 <em> 24 </em> 365) = 69年；<br><br><div><br>    <strong>10位节点部分</strong>，Twitter实现中使用前5位作为数据中心标识，后5位作为机器标识，可以部署1024个节点；<br><br><div><br>    <strong>12位序列号部分</strong>，支持同一毫秒内同一个节点可以生成4096个ID；<br><br><div><br><br><div><br><br>SnowFlake算法生成的ID大致上是按照时间递增的，用在分布式系统中时，需要注意数据中心标识和机器标识必须唯一，这样就能保证每个节点生成的ID都是唯一的。或许我们不一定都需要像上面那样使用5位作为数据中心标识，5位作为机器标识，可以根据我们业务的需要，灵活分配节点部分，如：若不需要数据中心，完全可以使用全部10位作为机器标识；若数据中心不多，也可以只使用3位作为数据中心，7位作为机器标识。<br><br><div><br><br><div><br><br><strong>源码</strong><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">    * twitter的snowflake算法 -- java实现</span><br><span class="line">    *</span><br><span class="line">    * @author rock</span><br><span class="line">    * @date 2016/11/26</span><br><span class="line">    */</span><br><span class="line">    public class SnowFlake &#123;</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">        * 起始的时间戳</span><br><span class="line">        */</span><br><span class="line">        private final static long START_STMP = 1480166465631L;</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">        * 每一部分占用的位数</span><br><span class="line">        */</span><br><span class="line">        private final static long SEQUENCE_BIT = 12; //序列号占用的位数</span><br><span class="line">        private final static long MACHINE_BIT = 5;  //机器标识占用的位数</span><br><span class="line">        private final static long DATACENTER_BIT = 5;//数据中心占用的位数</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">        * 每一部分的最大值</span><br><span class="line">        */</span><br><span class="line">        private final static long MAX_DATACENTER_NUM = -1L ^ (-1L &lt;&lt; DATACENTER_BIT);</span><br><span class="line">        private final static long MAX_MACHINE_NUM = -1L ^ (-1L &lt;&lt; MACHINE_BIT);</span><br><span class="line">        private final static long MAX_SEQUENCE = -1L ^ (-1L &lt;&lt; SEQUENCE_BIT);</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">        * 每一部分向左的位移</span><br><span class="line">        */</span><br><span class="line">        private final static long MACHINE_LEFT = SEQUENCE_BIT;</span><br><span class="line">        private final static long DATACENTER_LEFT = SEQUENCE_BIT + MACHINE_BIT;</span><br><span class="line">        private final static long TIMESTMP_LEFT = DATACENTER_LEFT + DATACENTER_BIT;</span><br><span class="line"></span><br><span class="line">        private long datacenterId;  //数据中心</span><br><span class="line">        private long machineId;    //机器标识</span><br><span class="line">        private long sequence = 0L; //序列号</span><br><span class="line">        private long lastStmp = -1L;//上一次时间戳</span><br><span class="line"></span><br><span class="line">        public SnowFlake(long datacenterId, long machineId) &#123;</span><br><span class="line">            if (datacenterId &gt; MAX_DATACENTER_NUM || datacenterId &lt; 0) &#123;</span><br><span class="line">                throw new IllegalArgumentException(&quot;datacenterId can&apos;t be greater than MAX_DATACENTER_NUM or less than 0&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            if (machineId &gt; MAX_MACHINE_NUM || machineId &lt; 0) &#123;</span><br><span class="line">                throw new IllegalArgumentException(&quot;machineId can&apos;t be greater than MAX_MACHINE_NUM or less than 0&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            this.datacenterId = datacenterId;</span><br><span class="line">            this.machineId = machineId;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">        * 产生下一个ID</span><br><span class="line">        *</span><br><span class="line">        * @return</span><br><span class="line">        */</span><br><span class="line">        public synchronized long nextId() &#123;</span><br><span class="line">            long currStmp = getNewstmp();</span><br><span class="line">            if (currStmp &lt; lastStmp) &#123;</span><br><span class="line">                throw new RuntimeException(&quot;Clock moved backwards.  Refusing to generate id&quot;);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (currStmp == lastStmp) &#123;</span><br><span class="line">                //相同毫秒内，序列号自增</span><br><span class="line">                sequence = (sequence + 1) &amp; MAX_SEQUENCE;</span><br><span class="line">                //同一毫秒的序列数已经达到最大</span><br><span class="line">                if (sequence == 0L) &#123;</span><br><span class="line">                    currStmp = getNextMill();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                //不同毫秒内，序列号置为0</span><br><span class="line">                sequence = 0L;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            lastStmp = currStmp;</span><br><span class="line"></span><br><span class="line">            return (currStmp - START_STMP) &lt;&lt; TIMESTMP_LEFT //时间戳部分</span><br><span class="line">                    | datacenterId &lt;&lt; DATACENTER_LEFT      //数据中心部分</span><br><span class="line">                    | machineId &lt;&lt; MACHINE_LEFT            //机器标识部分</span><br><span class="line">                    | sequence;                            //序列号部分</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private long getNextMill() &#123;</span><br><span class="line">            long mill = getNewstmp();</span><br><span class="line">            while (mill &lt;= lastStmp) &#123;</span><br><span class="line">                mill = getNewstmp();</span><br><span class="line">            &#125;</span><br><span class="line">            return mill;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private long getNewstmp() &#123;</span><br><span class="line">            return System.currentTimeMillis();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br><br> 可以写一代码测试一下，如下所示：<br><br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;public static void main(String[] args) &#123;</span><br><span class="line">        SnowFlake snowFlake = new SnowFlake(2, 3);</span><br><span class="line">        for (int i = 0; i &lt; (1 &lt;&lt; 12); i++) &#123;</span><br><span class="line">            System.out.println(snowFlake.nextId());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br><br> 循环生成2^12个ID，运行结果如下：<br><br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;...</span><br><span class="line">2099698216995</span><br><span class="line">2099698216996</span><br><span class="line">2099698216997</span><br><span class="line">2099698216998</span><br><span class="line">2099698216999</span><br><span class="line">2099698217000</span><br><span class="line">2099698217001</span><br><span class="line">2099698217002</span><br><span class="line">2099698217003</span><br><span class="line">2099698217004</span><br><span class="line">2099698217005</span><br><span class="line">2099698217006</span><br><span class="line">2099698217007</span><br><span class="line">2099698217008</span><br><span class="line">2099698217009</span><br><span class="line">2099698217010</span><br><span class="line">2099698217011</span><br><span class="line">2099698217012</span><br><span class="line">2099698217013</span><br><span class="line">2099698217014</span><br><span class="line">2099698217015</span><br><span class="line">2099698217016</span><br><span class="line">2099698217017</span><br><span class="line">2099698217018</span><br><span class="line">2099698217019</span><br><span class="line">2099698217020</span><br><span class="line">2099698217021</span><br><span class="line">2099698217022</span><br><span class="line">2099698217023</span><br><span class="line">2099698217024</span><br><span class="line">2099698217025</span><br><span class="line">2099698217026</span><br><span class="line">2099698217027</span><br><span class="line">2099698217028</span><br><span class="line">2099698217029</span><br><span class="line">2099698217030</span><br><span class="line">2099698217031</span><br><span class="line">2099702411264</span><br><span class="line">2099702411265</span><br><span class="line">2099702411266</span><br><span class="line">2099702411267</span><br><span class="line">2099702411268</span><br><span class="line">2099702411269</span><br><span class="line">2099702411270</span><br><span class="line">2099702411271</span><br><span class="line">2099702411272</span><br><span class="line">2099702411273</span><br><span class="line">2099702411274</span><br><span class="line">2099702411275</span><br><span class="line">2099702411276</span><br><span class="line">2099702411277</span><br><span class="line">...</span><br></pre></td></tr></table></figure><br><br>    <div>可以看到生成的ID都是递增的，而且都是唯一的。<br>    <div><br><br>    服务器的实现可以参考：<a href="http://www.wolfbe.com/detail/201701/386.html" target="_blank" rel="noopener">基于twitter雪花算法的分布式ID —— 服务器篇</a><br><br>    <div><br>            源码已经提交在GitHub：<a href="https://github.com/beyondfengyu/SnowFlake" target="_blank" rel="noopener"><strong>https://github.com/beyondfengyu/SnowFlake</strong></a><br><br>    <div><br><br>    <div><br>            <strong>参考<br><br>    <a href="https://github.com/beyondfengyu/SnowFlake" target="_blank" rel="noopener">https://github.com/beyondfengyu/SnowFlake<br><br>    http://www.wolfbe.com/detail/201701/386.html</a></strong><br><br>    <div><br>            <a href="https://github.com/twitter/snowflake" target="_blank" rel="noopener"><strong>https://github.com/twitter/snowflake</strong></a><br>        </div></div></div></div></div></div><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -450,7 +419,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/26/Centos的yum源更换为国内的阿里云源/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/374630b7.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -469,7 +438,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/26/Centos的yum源更换为国内的阿里云源/" itemprop="url">Centos的yum源更换为国内的阿里云源</a></h1>
+                <a class="post-title-link" href="/post/374630b7.html" itemprop="url">Centos的yum源更换为国内的阿里云源</a></h1>
         
 
         <div class="post-meta">
@@ -521,16 +490,18 @@
       
         
           
-          1、备份mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-2、下载新的CentOS-Base.repo 到/etc/yum.repos.d/CentOS 5wget -O /etc/yum.re
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/26/Centos的yum源更换为国内的阿里云源/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h3 id="1、备份"><a href="#1、备份" class="headerlink" title="1、备份"></a>1、备份</h3><p><code>mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</code></p>
+<h3 id="2、下载新的CentOS-Base-repo-到-etc-yum-repos-d"><a href="#2、下载新的CentOS-Base-repo-到-etc-yum-repos-d" class="headerlink" title="2、下载新的CentOS-Base.repo 到/etc/yum.repos.d/"></a>2、下载新的CentOS-Base.repo 到/etc/yum.repos.d/</h3><h4 id="CentOS-5"><a href="#CentOS-5" class="headerlink" title="CentOS 5"></a>CentOS 5</h4><p><code>wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-5.repo</code></p>
+<p><code>或者</code></p>
+<p><code>curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-5.repo</code></p>
+<h4 id="CentOS-6"><a href="#CentOS-6" class="headerlink" title="CentOS 6"></a>CentOS 6</h4><p><code>wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</code></p>
+<p><code>或者</code></p>
+<p><code>curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</code></p>
+<h4 id="CentOS-7"><a href="#CentOS-7" class="headerlink" title="CentOS 7"></a>CentOS 7</h4><p><code>wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</code></p>
+<p><code>或者</code></p>
+<p><code>curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</code></p>
+<h3 id="3、之后运行yum-makecache生成缓存"><a href="#3、之后运行yum-makecache生成缓存" class="headerlink" title="3、之后运行yum makecache生成缓存"></a>3、之后运行yum makecache生成缓存</h3>
+          
         
       
     </div>
@@ -577,7 +548,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/26/MySQL读写分离技术/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/5acf83bb.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -596,7 +567,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/26/MySQL读写分离技术/" itemprop="url">MySQL读写分离技术</a></h1>
+                <a class="post-title-link" href="/post/5acf83bb.html" itemprop="url">MySQL读写分离技术</a></h1>
         
 
         <div class="post-meta">
@@ -648,19 +619,17 @@
       
         
           
-          阅读目录   1、简介
-   2、基本环境   3、配置主从复制
-   4、MySQL读写分离配置   　　4.1、安装lua
-   　　4.2、安装mysql-proxy   5、MySQL读写分离测试
-   　　1）、修改rw-splitting.lua文件   　　2）、修改完成后，启动mys
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/26/MySQL读写分离技术/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div id="navCategory"><br><br><strong>阅读目录</strong><br><br><em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_label0" target="_blank" rel="noopener">1、简介</a>
+</em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_label1" target="_blank" rel="noopener">2、基本环境</a><br><em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_label2" target="_blank" rel="noopener">3、配置主从复制</a>
+</em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_label3" target="_blank" rel="noopener">4、MySQL读写分离配置</a><br><em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_label4" target="_blank" rel="noopener">　　4.1、安装lua</a>
+</em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_label5" target="_blank" rel="noopener">　　4.2、安装mysql-proxy</a><br><em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_label6" target="_blank" rel="noopener">5、MySQL读写分离测试</a>
+</em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_label7" target="_blank" rel="noopener">　　1）、修改rw-splitting.lua文件</a><br><em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_label8" target="_blank" rel="noopener">　　2）、修改完成后，启动mysql-proxy</a>
+</em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_label9" target="_blank" rel="noopener">　　3）、创建用于读写分离的数据库连接用户</a><br><em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_label10" target="_blank" rel="noopener">　　4）、测试登陆账号proxy1@192.168.95.13进行添加数据</a>
+</em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_label11" target="_blank" rel="noopener">　　5）、关闭12mysql的从复制</a><br><em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_label12" target="_blank" rel="noopener">　　6）、证明写分离</a>
+</em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_label13" target="_blank" rel="noopener">　　7）、证明读分离</a><br><em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_label14" target="_blank" rel="noopener">6、建议</a><br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 1、简介<br><br> 当今MySQL使用相当广泛，随着用户的增多以及数据量的增大，高并发随之而来。然而我们有很多办法可以缓解数据库的压力。分布式数据库、负载均衡、读写分离、增加缓存服务器等等。这里我们将采用读写分离技术进展缓解数据库的压力。<br><br> 其中实现读写分离的技术有很多方法，这里我们将采用mysql-proxy这个中间软件来实现。这个软件中含有一个读写分离的lua文件，这也是我们使用mysql-proxy实现读写分离必用的文件，它需要lua解析器进行解析。因此我们还需要安装一个lua解析器。<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 2、基本环境<br><br> 三台linux虚拟主机<br><br> Linux版本CentOS6.6、MySQL 5.5<br><br> mysql-proxy-0.8.5<br><br> lua-5.1.4<br><br> ip：192.168.95.11（写）、192.168.95.12（读）、192.168.95.13（mysql-proxy）<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 3、配置主从复制<br><br>详细可以参考：<a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html" target="_blank" rel="noopener">mysql主从复制与主主复制</a><br><br><a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label2" target="_blank" rel="noopener">http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label2</a><br><br>粗略介绍一下数据库的主从复制的配置：<br><br><strong>第一步：</strong><br><br>在192.168.95.11中创建一个192.168.95.12主机中可以登录的MySQL用户<br><br>用户：mysql12<br><br>密码：mysql12<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;GRANT REPLICATION SLAVE ON *.* TO ‘mysql12’@’192.168.95.12’ IDENTIFIED BY ‘mysql12’;</span><br><span class="line"></span><br><span class="line">mysql&gt;FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure><br><br><strong>第二步：</strong><br><br>查看192.168.95.11MySQL服务器二进制文件名与位置<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;SHOW MASTER STATUS;</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/0e61c136-7a8a-49e2-9421-286ab71f78da.jpg" alt=""><br><br><strong>第三步：</strong><br><br>告知二进制文件名与位置<br><br>在192.168.95.12中执行：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; change master to</span><br><span class="line">    -&gt; master_host=&apos;192.168.95.11&apos;,</span><br><span class="line">    -&gt; master_user=&apos;mysql12&apos;,</span><br><span class="line">    -&gt;  master_password=&apos;mysql12&apos;,</span><br><span class="line">    -&gt;  master_log_file=&apos;mysql-bin.000124&apos;,</span><br><span class="line">    -&gt; master_log_pos=586;</span><br></pre></td></tr></table></figure><br><br><strong>第四步：</strong><br><br>在192.168.95.12中<br><br>mysql&gt;SLAVE START;   #开启复制<br><br>mysql&gt;SHOW SLAVE STATUS\G   #查看主从复制是否配置成功<br><br><img src="http://pangguoming.com/blog/images/5cef20d2-fd2a-4bcd-ba48-00c9473471e6.jpg" alt=""><br><br>主从复制配置成功！<br><br>（注意：上面Relicate_Do_DB:aa表示主从复制只针对数据库aa【这是我之前设置的就没改了】，这里就不讲这个了，要想去了解学医这个的话可以参考文章<a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label7" target="_blank" rel="noopener">http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label7</a>）<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 4、MySQL读写分离配置<br><br>百度云下载：链接：<a href="http://pan.baidu.com/s/1slTl18L" target="_blank" rel="noopener">http://pan.baidu.com/s/1slTl18L</a> 密码：9j0m<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### <strong>　　4.1**</strong>、安装lua<strong><br><br> 官网下载：<a href="http://www.lua.org/download.html" target="_blank" rel="noopener">http://www.lua.org/download.html</a><br><br> Lua 是一个小巧的脚本语言。Lua由标准C编写而成，代码简洁优美，几乎在所有操作系统和平台上都可以编译，运行。<br><br> 一个完整的Lua解释器不过200k，在目前所有脚本引擎中，Lua的速度是最快的。这一切都决定了Lua是作为嵌入式脚本的最佳选择。
+
+</strong> 1<strong><strong>）、安装lua</strong></strong>需要依赖很多软件包。**<br><br> 可以通过rpm -qa | grep name检查以下软件是否安装：<br><br> gcc</div></div></div></div></div></em>、gcc-c++<em>、autoconf</em>、automake<em>、zlib</em>、libxml<em>、ncurses-devel</em>、libmcrypt<em>、libtool</em>、flex<em>、pkgconfig</em>、libevent<em>、glib</em><br><br> 若缺少相关的软件包，可通过yum -y install方式在线安装，或直接从系统安装光盘中找到并通过rpm -ivh方式安装。（我的话一般是直接在系统光盘软件库中找到直接rpm安装的，有些找不到，则先在网上下载然后在ftp传给linux再进行安装）<br><br><strong> 2**</strong>）、依赖软件安装完毕后则进行编译安装lua<strong><br><br> MySQL-Proxy的读写分离主要是通过rw-splitting.lua脚本实现的，因此需要安装lua。<br><br> 官网下载：<a href="http://www.lua.org/download.html" target="_blank" rel="noopener">http://www.lua.org/download.html</a>（下载源码包）<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># wget http://www.lua.org/ftp/lua-5.1.4.tar.gz  </span><br><span class="line"># tar zxvf lua-5.1.4.tar.gz </span><br><span class="line"># cd lua-5.1.4  </span><br><span class="line"># make linux</span><br><span class="line"># make install</span><br><span class="line"># export LUA_CFLAGS=&quot;-I/usr/local/include&quot; LUA_LIBS=&quot;-L/usr/local/lib -llua -ldl&quot; LDFLAGS=&quot;-lm&quot; </span><br><span class="line">（我安装的时候是直接在光盘软件库中找到，直接rpm安装）</span><br></pre></td></tr></table></figure><br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### </div></strong>　　4.2<strong>**、安装mysql-proxy</strong><br><br> <strong>1）、首先查看linux版本确认是32位还是64为系统</strong><br><br> 查看linux内核版本<br><br> # cat /etc/issue<br><br> 查看linux版本<br><br> # cat /proc/version<br><br> <strong>2）、按系统位数下载（上面百度云链接64位的文件）</strong><br><br> <strong>3）、安装</strong><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># tar –zxvf mysql-proxy-0.8.5- linux-rhel5-x86-64bit.tar.gz</span><br><span class="line"># mkdir /usr/local/mysql-proxy</span><br><span class="line"># cp ./ mysql-proxy-0.8.5-linux-rhel5-x86-64bit/* /usr/local/mysql-proxy</span><br><span class="line"># cd /usr/local/mysql-proxy</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/82cea9e9-109c-4878-ac94-626daf464413.jpg" alt=""><br><br>安装成功<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 5、MySQL读写分离测试<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### <strong>　　1）**</strong>、修改rw-splitting.lua<strong>**文件</strong><br><br> 修改默认连接，进行快速测试，不修改的话要达到连接数为4时才启用读写分离<br><br> #cp /usr/local/mysql-proxy/share/doc/mysql-proxy/rw-splitting.lua ./<br><br><img src="http://pangguoming.com/blog/images/8b1620fd-f634-4204-9a9f-ccc7f89ea0f0.jpg" alt=""><br><br> # vi rw-splitting.lua<br><br><img src="http://pangguoming.com/blog/images/3734038b-14fe-415e-9bc4-5772cb66e7b2.jpg" alt=""><br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### <strong>　　2）**</strong>、<strong><strong>修改完成后，启动</strong></strong>mysql-proxy<strong><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd /usr/local/mysql/bin</span><br><span class="line"># ./mysql-proxy --proxy-read-only-backend-addresses=192.168.95.12:3306 --proxy-backend-addresses=192.168.95.11:3306 --proxy-lua-script=/usr/local/mysql-proxy/rw-splitting.lua &amp;</span><br></pre></td></tr></table></figure><br><br>参数：<br><br> –proxy-read-only-backend-addresses #只读服务器地址（ip）<br><br> –proxy-backend-addresses #服务器地址（主服务器）<br><br> –proxy-lua-script #lua脚本路劲<br><br> &amp; #表示后台执行<br><br><img src="http://pangguoming.com/blog/images/bda7c49c-644b-4d31-9e6c-60e7bf9dcf8e.jpg" alt=""><br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### </div></strong>　　3）<strong>**、创建用于读写分离的数据库连接用户</strong><br><br> 用户名：proxy1<br><br> 密  码：321<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;grant all on *.* to &apos;proxy1&apos;@&apos;192.168.95.13&apos; identified by &apos;321&apos;;</span><br><span class="line">mysql&gt;use aa;</span><br><span class="line">mysql&gt;create table tab1(id int auto_increment,name varchar(32) not null,primary key(id));</span><br></pre></td></tr></table></figure><br><br>【因为已经开启了主从复制所以，11、12主机mysql中都创建了这个用户】<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### <strong>　　4）**</strong>、测试登陆账号<a href="mailto:proxy1@192.168.95.13" target="_blank" rel="noopener">proxy1@192.168.95.13</a><strong>**进行添加数据</strong><br><br> 可以使用任意ip客户端登陆这个账号<br><br> 在192.168.95.13登陆：<br><br> # ./mysql -u proxy1 -P4040 -h192.168.95.13 –p<br><br><img src="http://pangguoming.com/blog/images/107ea060-5cf0-4b18-8271-617fbc8d1143.jpg" alt=""><br><br>在两个mysql中查看结果：一致<br><br><img src="http://pangguoming.com/blog/images/855eab5d-62ce-4a06-ba16-f8bcd66d1f7d.jpg" alt=""><br><br>结果表明：账号使用<br><br>(ps：id是自增长，之前高主主复制的时候更改了配置文件，还没更改回来，就将就用着先吧)<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### <strong>　　5）**</strong>、关闭12mysql<strong>**的从复制</strong><br><br> mysql&gt; stop slave;<br><br><img src="http://pangguoming.com/blog/images/b5a30f4c-ce95-478d-b7f9-5c648ad18e49.jpg" alt=""><br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### <strong>　　6）**</strong>、证明写分离<strong><br><br> 使用<a href="mailto:proxy1@192.168.95.13" target="_blank" rel="noopener">proxy1@192.168.95.13</a>账号打开多个客户端进行插入数据<br><br> 打开三个mysql客户端分别插入2条数据：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; insert into tab1 (name) values(&apos;stop_slave11111&apos;);</span><br><span class="line"></span><br><span class="line">….</span><br><span class="line"></span><br><span class="line">mysql&gt; insert into tab1 (name) values(&apos;stop_slave6666’);</span><br></pre></td></tr></table></figure><br><br> 查看：<br><br> 分别登陆11mysql与12mysql查看aa.tab1中的数据<br><br> 主数据库：<br><br><img src="http://pangguoming.com/blog/images/33f6d318-91e8-4a3d-b68a-4426b8c623a4.jpg" alt=""><br><br>从数据库：<br><br><img src="http://pangguoming.com/blog/images/2c355d9a-89b7-4b45-8b3e-b396d3199085.jpg" alt=""><br><br>结果中显示插入的数据存在与主数据库，而从数据库没有，所以证明写能够分离。<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### </div></strong>　　<strong>**7）、证明读分离</strong><br><br> 使用<a href="mailto:proxy1@192.168.95.13" target="_blank" rel="noopener">proxy1@192.168.95.13</a>账号登陆mysql，查看aa.tab1中的数据<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;use aa;</span><br><span class="line">mysql&gt;select*from tab1;</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/cfc5c85b-540f-47e9-b4cc-0437a0d47ec7.jpg" alt=""><br><br>结果中显示只有从数据库的数据，结合上面的测试，可以证明读分离。<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 6、建议<br><br>为了方便启动与管理mysql-proxy可以创建mysql-proxy服务管理脚本<br><br>下面这个管理脚本仅适合以上我给出的安装路径位置<br><br>【此管理脚本需要按照自己的安装路径做出相应的修改方可使用】<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"> 1 #!/bin/sh</span><br><span class="line"> 2 </span><br><span class="line"> 3 #</span><br><span class="line"> 4 # mysql-proxy This script starts and stops the mysql-proxy daemon</span><br><span class="line"> 5 #</span><br><span class="line"> 6 # chkconfig: - 78 30</span><br><span class="line"> 7 # processname: mysql-proxy</span><br><span class="line"> 8 # description: mysql-proxy is a proxy daemon to mysql</span><br><span class="line"> 9 </span><br><span class="line">10 # Source function library.</span><br><span class="line">11 . /etc/rc.d/init.d/functions</span><br><span class="line">12 </span><br><span class="line">13 #PROXY_PATH=/usr/local/bin</span><br><span class="line">14 PROXY_PATH=/usr/local/mysql-proxy/bin</span><br><span class="line">15 </span><br><span class="line">16 prog=&quot;mysql-proxy&quot;</span><br><span class="line">17 </span><br><span class="line">18 # Source networking configuration.</span><br><span class="line">19 . /etc/sysconfig/network</span><br><span class="line">20 </span><br><span class="line">21 # Check that networking is up.</span><br><span class="line">22 [ $&#123;NETWORKING&#125; = &quot;no&quot; ] &amp;&amp; exit 0</span><br><span class="line">23 </span><br><span class="line">24 # Set default mysql-proxy configuration.</span><br><span class="line">25 #PROXY_OPTIONS=&quot;--daemon&quot;</span><br><span class="line">26 </span><br><span class="line">27 PROXY_OPTIONS=&quot;--proxy-read-only-backend-addresses=192.168.95.12:3306 --proxy-backend-addresses=192.168.95.11:3306 --proxy-lua-script=/usr/local/mysql-proxy/rw-splitting.lua&quot;</span><br><span class="line">28 </span><br><span class="line">29 PROXY_PID=/usr/local/mysql-proxy/run/mysql-proxy.pid</span><br><span class="line">30 </span><br><span class="line">31 # Source mysql-proxy configuration.</span><br><span class="line">32 if [ -f /etc/sysconfig/mysql-proxy ]; then</span><br><span class="line">33         . /etc/sysconfig/mysql-proxy</span><br><span class="line">34 fi</span><br><span class="line">35 </span><br><span class="line">36 PATH=$PATH:/usr/bin:/usr/local/bin:$PROXY_PATH</span><br><span class="line">37 # By default it&apos;s all good</span><br><span class="line">38 RETVAL=0</span><br><span class="line">39 </span><br><span class="line">40 # See how we were called.</span><br><span class="line">41 case &quot;$1&quot; in</span><br><span class="line">42   start)</span><br><span class="line">43         # Start daemon.</span><br><span class="line">44         echo -n $&quot;Starting $prog: &quot;</span><br><span class="line">45         $NICELEVEL $PROXY_PATH/mysql-proxy $PROXY_OPTIONS --daemon --pid-file=$PROXY_PID --user=root --log-level=debug --log-file=/usr/local/mysql-proxy/log/mysql-proxy.log</span><br><span class="line">46         RETVAL=$?</span><br><span class="line">47         echo</span><br><span class="line">48         if [ $RETVAL = 0 ]; then</span><br><span class="line">49                 touch /var/lock/subsys/mysql-proxy]</span><br><span class="line">50                 echo &quot;ok&quot;</span><br><span class="line">51         fi</span><br><span class="line">52        ;;</span><br><span class="line">53   stop)</span><br><span class="line">54         # Stop daemons.</span><br><span class="line">55         echo -n $&quot;Stopping $prog: &quot;</span><br><span class="line">56         killproc $prog</span><br><span class="line">57         RETVAL=$?</span><br><span class="line">58         echo</span><br><span class="line">59         if [ $RETVAL = 0 ]; then</span><br><span class="line">60                 rm -f /var/lock/subsys/mysql-proxy</span><br><span class="line">61                 rm -f $PROXY_PID</span><br><span class="line">62         fi</span><br><span class="line">63        ;;</span><br><span class="line">64   restart)</span><br><span class="line">65         $0 stop</span><br><span class="line">66         sleep 3</span><br><span class="line">67         $0 start</span><br><span class="line">68        ;;</span><br><span class="line">69   condrestart)</span><br><span class="line">70        [ -e /var/lock/subsys/mysql-proxy ] &amp;&amp; $0 restart</span><br><span class="line">71       ;;</span><br><span class="line">72   status)</span><br><span class="line">73         status mysql-proxy</span><br><span class="line">74         RETVAL=$?</span><br><span class="line">75        ;;</span><br><span class="line">76   *)</span><br><span class="line">77         echo &quot;Usage: $0 &#123;start|stop|restart|status|condrestart&#125;&quot;</span><br><span class="line">78         RETVAL=1</span><br><span class="line">79        ;;</span><br><span class="line">80 esac</span><br><span class="line">81 exit $RETVAL</span><br></pre></td></tr></table></figure><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#---我将mysql-proxy服务管理脚本放在了/usr/local/mysql-proxy/init.d/文件夹里  </span><br><span class="line">#---给执行权限，建立相应目录</span><br><span class="line">#chmod +x /usr/local/mysql-proxy/init.d/mysql-proxy</span><br><span class="line">#mkdir /usr/local/mysql-proxy/run</span><br><span class="line">#mkdir /usr/local/mysql-proxy/log  </span><br><span class="line"></span><br><span class="line">#cd /usr/local/mysql-proxy/init.d/  </span><br><span class="line">#---启动mysql-proxy  </span><br><span class="line">#./mysql-proxy start  </span><br><span class="line">#---停止mysql-proxy  </span><br><span class="line">#./mysql-proxy stop  </span><br><span class="line">#---重启mysql-proxy  </span><br><span class="line">#./mysql-proxy restart</span><br></pre></td></tr></table></figure><br><br>一些相关参数：<br><br>PROXY_PATH=/usr/local/mysql-proxy/bin //定义mysql-proxy服务二进制文件路径<br><br>–proxy-read-only-backend-addresses=192.168.95.12:3306   //定义后端只读从服务器地址<br>–proxy-backend-addresses=192.168.95.11:3306   //定义后端主服务器地址<br>–proxy-lua-script=/usr/local/mysql-proxy/rw-splitting.lua   //定义lua读写分离脚本路径<br><br>PROXY_PID=/usr/local/mysql-proxy/run/mysql-proxy.pid   //定义mysql-proxy PID文件路径<br><br>–daemon   //定义以守护进程模式启动<br>–keepalive   //使进程在异常关闭后能够自动恢复【上面的管理脚本没有加上此参数】<br>–user=root   //以root用户身份启动服务<br>–log-level=debug   //定义log日志级别，由高到低分别有(error|warning|info|message|debug)<br>–log-file=/usr/local/mysql-proxy/log/mysql-proxy.log   //定义log日志文件路径<br><br>（以上是自己的一些见解与总结，若有不足或者错误的地方请各位指出）<br><br>作者：<a href="http://www.cnblogs.com/phpstudy2015-6/" target="_blank" rel="noopener">那一叶随风</a><br><br>声明：以上只代表本人在工作学习中某一时间内总结的观点或结论。转载时请在文章页面明显位置给出原文链接<a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html" target="_blank" rel="noopener">http://www.cnblogs.com/phpstudy2015-6/p/6687480.html</a><br></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -707,7 +676,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/26/MySQL主从复制与主主复制/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/6c84a4a3.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -726,7 +695,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/26/MySQL主从复制与主主复制/" itemprop="url">MySQL主从复制与主主复制</a></h1>
+                <a class="post-title-link" href="/post/6c84a4a3.html" itemprop="url">MySQL主从复制与主主复制</a></h1>
         
 
         <div class="post-meta">
@@ -778,20 +747,14 @@
       
         
           
-          阅读目录   1、简介
-   2、环境说明   3、主从复制
-        3.1、MySQL        3.2、配置文件
-       3.3、开始构建主从复制         3.4、测试主从复制
-   4、MySql主主复制        4.1、实现原理
-        4.2、配置文
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/26/MySQL主从复制与主主复制/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div id="navCategory"><br><br><strong>阅读目录</strong><br><br><em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label0" target="_blank" rel="noopener">1、简介</a>
+</em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label1" target="_blank" rel="noopener">2、环境说明</a><br><em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label2" target="_blank" rel="noopener">3、主从复制</a>
+</em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label3" target="_blank" rel="noopener">     3.1、MySQL</a><br><em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label4" target="_blank" rel="noopener">     3.2、配置文件</a>
+</em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label5" target="_blank" rel="noopener">    3.3、开始构建主从复制</a><br><em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label6" target="_blank" rel="noopener">      3.4、测试主从复制</a>
+</em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label7" target="_blank" rel="noopener">4、MySql主主复制</a><br><em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label8" target="_blank" rel="noopener">     4.1、实现原理</a>
+</em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label9" target="_blank" rel="noopener">     4.2、配置文件</a><br><em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label10" target="_blank" rel="noopener">    4.3、开始构建主主复制</a>
+</em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label11" target="_blank" rel="noopener">    4.4、测试主主复制</a><br><em>   <a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label12" target="_blank" rel="noopener">5、注意事项</a><br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 1、简介<br><br>      MySQL作为世界上使用最为广泛的数据库之一，免费是其原因之一。但不可忽略的是它本身的功能的确很强大。随着技术的发展，在实际的生产环境中，由单台MySQL数据库服务器不能满足实际的需求。此时数据库集群就很好的解决了这个问题了。采用MySQL分布式集群，能够搭建一个高并发、负载均衡的集群服务器（这篇博客暂时不涉及）。在此之前我们必须要保证每台MySQL服务器里的数据同步。数据同步我们可以通过MySQL内部配置就可以轻松完成，主要有主从复制和主主复制。<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 2、环境说明<br><br>     两台linux虚拟主机<br><br>     Linux版本CentOS6.6、MySQL 5.5<br><br>     ip：192.168.95.11、192.168.95.12<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 3、主从复制<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>####      3.1、MySQL<br><br>            已经安装好，并且没有任何数据<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>####      3.2、配置文件<br><br>            一般Linux中的MySQL配置文件都在/etc/my.cnf(windows中的配置文件为mysql.ini)<br><br>            log-bin=mysql-bin 开启二进制日志<br><br>           注意：二进制日志必须开启，因为数据的同步实质上就是其他的MySQL数据库服务器将这个数据变更的二进制日志在本机上再执行一遍。<br><br>           192.168.95.11  为主数据库服务器<br><br>           192.168.95.12  为从数据库服务器<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>####     3.3、开始构建主从复制<br><br>            第一步：<br><br>            在192.168.95.11中创建一个192.168.95.12主机中可以登录的MySQL用户<br><br>            用户：mysql12<br><br>            密码：mysql12<br><br>            mysql&gt;GRANT REPLICATION SLAVE ON </div></div></div></div></div></div></em>.<em> TO ‘mysql12’@’192.168.95.12’ IDENTIFIED BY ‘mysql12’;<br><br>            mysql&gt;FLUSH PRIVILEGES;<br><br>            第二步：<br><br>            查看192.168.95.11MySQL服务器二进制文件名与位置<br><br>            mysql&gt;SHOW MASTER STATUS;<br><br>            <img src="http://pangguoming.com/blog/images/0e50d38a-c61d-4587-b8d3-f5888d1443d7.jpg" alt=""><br><br>            第三步：<br><br>            告知二进制文件名与位置<br><br>            在192.168.95.12中执行：<br><br>            mysql&gt;CHANGE MASTER TO<br><br>                     &gt;MASTER_HOST=’192.168.95.11’,<br><br>                     &gt;MASTER_USER=’mysql12’,<br><br>                     &gt;MASTER_PASSWORD=’mysql12’,<br><br>                     &gt;MASTER_LOG_FILE=’mysql-bin.000048’,<br><br>                     &gt;MASTER_LOG_POS=432;<br><br>            <img src="http://pangguoming.com/blog/images/679f5741-1a27-4de5-a8c9-42e921e87ae0.jpg" alt=""><br><br>            完成主从复制配置<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>####       3.4、测试主从复制<br><br>            在192.168.95.12中<br><br>            mysql&gt;SLAVE START;   #开启复制<br><br>            mysql&gt;SHOW SLAVE STATUS\G   #查看主从复制是否配置成功<br><br>            <img src="http://pangguoming.com/blog/images/f0f9e7a6-62f1-4f66-b0f2-040bf3281588.jpg" alt=""><br><br>            当看到Slave_IO_Running: YES、Slave_SQL_Running: YES才表明状态正常<br><br>            实际测试：<br><br>            –登陆192.168.95.11主MySQL<br><br>            mysql&gt;SHOW DATABASES;<br><br>            <img src="http://pangguoming.com/blog/images/8c4dfbc2-02e0-47ec-8757-c3916af839fb.jpg" alt=""><br><br>            –登陆192.168.95.12从MySQL<br><br>            mysql&gt;SHOW DATABASES;<br><br>            <img src="http://pangguoming.com/blog/images/16a4d6eb-d6ac-47a8-b963-dc809223b1a2.jpg" alt=""><br><br>            —————————————————–<br><br>            192.168.95.11主MySQL操作：<br><br>            mysql&gt;create database aa;<br><br>            mysql&gt;use aa;<br><br>            mysql&gt;create table tab1(id int auto_increment,name varchar(10),primary key(id));<br><br>            mysql&gt;show databases;<br><br>            mysql&gt;show tables;<br><br>            <img src="http://pangguoming.com/blog/images/c11e7e4c-d75c-4d14-ab6c-770ada1670c6.jpg" alt=""><br><br>            192.168.95.12从MySQL操作：<br><br>            mysql&gt;show databases;<br><br>            mysql&gt;show tables;<br><br>            <img src="http://pangguoming.com/blog/images/74854937-e474-4f7b-b8f8-fd2360981c3a.jpg" alt=""><br><br>            由上面两个结果图可得知，两主机达到了数据同步。主从复制的配置就是如此的简单。<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 4、MySql主主复制<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>####      4.1、实现原理<br><br>            主主复制即在两台MySQL主机内都可以变更数据，而且另外一台主机也会做出相应的变更。聪明的你也许已经想到该怎么实现了。对，就是将两个主从复制有机合并起来就好了。只不过在配置的时候我们需要注意一些问题，例如，主键重复，server-id不能重复等等。<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>####      4.2、配置文件<br><br>            –192.168.95.11<br><br>            server-id=11   #任意自然数n，只要保证两台MySQL主机不重复就可以了。<br><br>           log-bin=mysql-bin   #开启二进制日志<br><br>           auto_increment_increment=2   #步进值auto_imcrement。一般有n台主MySQL就填n<br><br>           auto_increment_offset=1   #起始值。一般填第n台主MySQL。此时为第一台主MySQL<br><br>           binlog-ignore=mysql   #忽略mysql库【我一般都不写】<br><br>           binlog-ignore=information_schema   #忽略information_schema库【我一般都不写】<br><br>           replicate-do-db=aa   #要同步的数据库，默认所有库<br><br>           –192.168.95.12<br><br>           server-id=12<br><br>           log-bin=mysql-bin<br><br>           auto_increment_increment=2<br><br>           auto_increment_offset=2<br><br>           replicate-do-db=aa<br><br>           配置好后重启MySQL<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>####     4.3、开始构建主主复制<br><br>           因为主主复制是两个主从复制组合一起，所以我就接着上面主从复制接着配置。<br><br>           第一步：<br><br>           在192.168.95.12中创建一个192.168.95.11主机中可以登录的MySQL用户<br><br>           用户：mysql11<br><br>           密码：mysql11<br><br>           mysql&gt;GRANT REPLICATION SLAVE ON </div></div></div></div></div></em>.<em> TO ‘mysql11’@’192.168.95.11’ IDENTIFIED BY ‘mysql11’;<br><br>           mysql&gt;FLUSH PRIVILEGES;<br><br>           第二步：<br><br>           在192.168.95.12查看二进制日志名和位置<br><br>           mysql&gt;show master status;<br><br>           <img src="http://pangguoming.com/blog/images/513d3194-b25d-4549-8279-3474aad97f74.jpg" alt=""><br><br>           第三步：<br><br>           告知二进制文件名与位置<br><br>           在192.168.95.11中执行：<br><br>           mysql&gt;CHANGE MASTER TO<br><br>           MASTER_HOST=’192.168.95.12’,<br><br>           MASTER_USER=’mysql11’,<br><br>           MASTER_PASSWORD=’mysql11’,<br><br>           MASTER_LOG_FILE=’mysql-bin.000084’,<br><br>           MASTER_LOG_POS=107;<br><br>           <img src="http://pangguoming.com/blog/images/45d5450d-0b95-4988-9749-731810c91200.jpg" alt=""><br><br>           完成主主复制配置<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>####     4.4、测试主主复制<br><br>           分别开启slave start；<br><br>           mysql&gt;SHOW SLAVE STATUS\G   #查看主从复制是否配置成功<br><br>           192.168.95.11<br><br><img src="http://pangguoming.com/blog/images/f686ff0c-923b-4bf2-a50b-ce333f5dc287.jpg" alt=""><br><br>           192.168.95.12<br><br> <img src="http://pangguoming.com/blog/images/b1355fd1-c2b1-40a1-9900-5647e883b6e1.jpg" alt=""><br><br>           当看到Slave_IO_Running: YES、Slave_SQL_Running: YES才表明状态正常<br><br>           测试：<br><br>           –192.168.95.11<br><br>           mysql&gt;use aa;<br><br>           mysql&gt;select</div></em>from tab1;<br><br>           tab1无数据<br><br>           –192.168.95.12<br><br>           mysql&gt;use aa;<br><br>           mysql&gt;select*from tab1;<br><br>           tab1无数据<br><br>           –192.168.95.11插入数据<br><br>           mysql&gt;insert into tab1 (name) value(‘11’),(‘11’),(‘11’);<br><br>           –192.168.95.12插入数据<br><br>           mysql&gt;insert into tab1 (name) value(‘22’),(‘22’),(‘22’);<br><br>           查看数据：<br><br>           两个主机数据结果一样！<br><br>           <img src="http://pangguoming.com/blog/images/529ffb85-2e68-419d-a6a4-68c5b7f6458f.jpg" alt=""><br><br>           主主复制配置成功！<br><br><div><a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 5、注意事项<br><br>     1、主主复制配置文件中auto_increment_increment和auto_increment_offset只能保证主键不重复，却不能保证主键有序。<br><br>     2、当配置完成Slave_IO_Running、Slave_SQL_Running不全为YES时，show slave status\G信息中有错误提示，可根据错误提示进行更正。<br><br>     3、Slave_IO_Running、Slave_SQL_Running不全为YES时，大多数问题都是数据不统一导致。<br><br>     常见出错点：<br><br>     1、两台数据库都存在db数据库，而第一台MySQL db中有tab1，第二台MySQL db中没有tab1，那肯定不能成功。<br><br>     2、已经获取了数据的二进制日志名和位置，又进行了数据操作，导致POS发生变更。在配置CHANGE MASTER时还是用到之前的POS。<br><br>     3、stop slave后，数据变更，再start slave。出错。<br><br>     终极更正法：重新执行一遍CHANGE MASTER就好了。<br></div></div>
+          
         
       
     </div>
@@ -838,7 +801,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/26/搭建MySQL高可用负载均衡集群/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/1d216ff9.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -857,7 +820,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/26/搭建MySQL高可用负载均衡集群/" itemprop="url">搭建MySQL高可用负载均衡集群</a></h1>
+                <a class="post-title-link" href="/post/1d216ff9.html" itemprop="url">搭建MySQL高可用负载均衡集群</a></h1>
         
 
         <div class="post-meta">
@@ -909,19 +872,39 @@
       
         
           
-          阅读目录   1、简介
-   2、基本环境   3、配置MySQL主主复制
-   4、中间件简述   　　4.1、Haproxy介绍
-   　　4.2、keepalived介绍   5、中间件的安装与配置（haproxy、keepalived）
-   　　5.1、安装haproxy   　　1）、编
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/26/搭建MySQL高可用负载均衡集群/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div id="navCategory"><br><br><strong>阅读目录</strong><br><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label0" target="_blank" rel="noopener">1、简介</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label1" target="_blank" rel="noopener">2、基本环境</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label2" target="_blank" rel="noopener">3、配置MySQL主主复制</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label3" target="_blank" rel="noopener">4、中间件简述</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label4" target="_blank" rel="noopener">　　4.1、Haproxy介绍</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label5" target="_blank" rel="noopener">　　4.2、keepalived介绍</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label6" target="_blank" rel="noopener">5、中间件的安装与配置（haproxy、keepalived）</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label7" target="_blank" rel="noopener">　　5.1、安装haproxy</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label8" target="_blank" rel="noopener">　　1）、编译安装haproxy</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label9" target="_blank" rel="noopener">　　2）、提供启动脚本</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label10" target="_blank" rel="noopener">　　3）、提供配置文件</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label11" target="_blank" rel="noopener">　　4）、启动日志</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label12" target="_blank" rel="noopener">　　5）、启动haproxy</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label13" target="_blank" rel="noopener">　　6）、测试haproxy</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label14" target="_blank" rel="noopener">　　5.2、安装keepalived</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label15" target="_blank" rel="noopener">　　1）、解决缺少的软件库文件</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label16" target="_blank" rel="noopener">　　2）、编译安装keepalived软件</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label17" target="_blank" rel="noopener">　　3）、创建配置文件</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label18" target="_blank" rel="noopener">　　4）、创建脚本文件</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label19" target="_blank" rel="noopener">6、功能测试</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label20" target="_blank" rel="noopener">　　6.1、流程简述</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label21" target="_blank" rel="noopener">　　6.2、测试haproxy监听前端端口3306</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label22" target="_blank" rel="noopener">　　6.3、测试高可用+keepalived不抢占vip</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label23" target="_blank" rel="noopener">　　6.4、测试负载均衡</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label24" target="_blank" rel="noopener">7、总结与建议</a><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 1、简介<br><br> 使用MySQL时随着时间的增长，用户量以及数据量的逐渐增加，访问量更是剧增，最终将会使MySQL达到某个瓶颈，那么MySQL的性能将会大大降低。这一结果也不利于软件的推广。<br><br> 那么如何跨过这个瓶颈，提高MySQL的并发量呢？方法有很多，分布式数据库、读写分离、高可用负载均衡、增加缓存服务器等等。之前的文章里已经介绍了读写分离的方案了，接下来我将讲解MySQL高可用负载均衡这一方法。<br><br> 其中实现高可用负载均衡的方法有很多，例如LVS+keepalived组合实现、haproxy+keepalived组合实现等等，这里我们采用haproxy+keepalived组合实现MySQL高可用负载均衡这一技术。<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 2、基本环境<br><br>四台linux虚拟主机<br><br>Linux版本CentOS6.6<br><br>MySQL 5.5（已安装好）<br><br>haproxy-1.5.14<br><br>keepalived-1.2.19<br><br>IP：192.168.95.11（mysql1）、192.168.95.12（mysql2）、192.168.95.13（haproxy+keepalived）、192.168.95.14（haproxy+keepalived）、192.168.95.55（vip）<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 3、配置MySQL主主复制<br><br>详细配置步骤可以参考这篇文章：<br><br><a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label7" target="_blank" rel="noopener">http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label7</a><br><br>以下简要介绍一下mysql的主主复制：<br><br>何为主主复制？就是两个mysql都能读能写，数据记录通过二进制传达给对方从而保持数据的一致性。<br><br><strong>（192.168.95.11**</strong>主从复制+192.168.95.12<strong><strong>主从复制==192.168.95.11</strong></strong>、192.168.95.12<strong>**主主复制）</strong><br><br> 因此主主复制中必须要解决的事情就是自增主键的问题。如果mysql1主键id增加到12了，此时二进制数据还没到达mysql2，那么mysql2恰好要插入数据，那么新数据主键id也是12，那不就是乱套了么！解决这一问题我们可以直接更改MySQL中的配置文件即可。<br><br><strong>1**</strong>）、更改配置文件<strong><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">--192.168.95.11：MySQL</span><br><span class="line">server-id=11   #任意自然数n，只要保证两台MySQL主机不重复就可以了。</span><br><span class="line">log-bin=mysql-bin   #开启二进制日志</span><br><span class="line">auto_increment_increment=2   #步进值auto_imcrement。一般有n台主MySQL就填n</span><br><span class="line">auto_increment_offset=1   #起始值。一般填第n台主MySQL。此时为第一台主MySQL</span><br><span class="line">binlog-ignore=mysql   #忽略mysql库【我一般都不写】</span><br><span class="line">binlog-ignore=information_schema   #忽略information_schema库【我一般都不写】</span><br><span class="line">replicate-do-db=aa   #要同步的数据库，默认所有库</span><br><span class="line">--192.168.95.12：MySQL</span><br><span class="line">server-id=12</span><br><span class="line">log-bin=mysql-bin</span><br><span class="line">auto_increment_increment=2</span><br><span class="line">auto_increment_offset=2</span><br><span class="line">replicate-do-db=aa</span><br></pre></td></tr></table></figure><br><br>配置好后重启MySQL
+
+</strong>2<strong><strong>）、配置192.168.95.11</strong></strong>主从复制<strong><br><br> 1、在192.168.95.12中创建一个192.168.95.11主机中可以登录的MySQL用户<br><br>      用户：mysql11<br><br>      密码：mysql11<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;GRANT REPLICATION SLAVE ON *.* TO ‘mysql11’@’192.168.95.11’ IDENTIFIED BY ’mysql11’;</span><br><span class="line">mysql&gt;FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure><br><br> 2、查看192.168.95.12二进制日志<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show master status;</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/b1383d39-cfbe-4b81-a2b6-36a26dae04b9.jpg" alt=""><br><br> 3、告知二进制文件名与位置<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; change master to</span><br><span class="line">    -&gt; master_host=&apos;192.168.95.11&apos;,</span><br><span class="line">    -&gt; master_user=&apos;mysql11&apos;,</span><br><span class="line">    -&gt;master_password=&apos;mysql11&apos;,</span><br><span class="line">    -&gt;master_log_file=&apos;mysql-bin.000097&apos;,</span><br><span class="line">    -&gt; master_log_pos=107;</span><br></pre></td></tr></table></figure><br><br> 4、查看结果<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; slave start;</span><br><span class="line">mysql&gt; show slave status\G</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/bddb537c-4e66-4c3f-905d-49f1e8838841.jpg" alt=""><br><br>配置主从复制成功
+
+</strong>3<strong><strong>）、配置192.168.95.12</strong></strong>主从复制<strong><br><br>同上<br><br><img src="http://pangguoming.com/blog/images/19a8962e-b8ab-4f45-b57b-b8d8d83c65e5.jpg" alt=""><br><br>配置主从复制成功。<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 4、中间件简述<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### </div></div></strong>　　4.1<strong><strong>、Haproxy</strong></strong>介绍<strong><br><br>Haproxy是一个开源的高性能的反向代理或者说是负载均衡服务软件之一，它支持双机热备、虚拟主机、基于TCP和HTTP应用代理等功能。其配置简单，而且拥有很好的对服务器节点的健康检查功能（相当于keepalived健康检查），当其代理的后端服务器出现故障时，Haproxy会自动的将该故障服务器摘除，当服务器的故障恢复后Haproxy还会自动将RS服务器。<br><br>HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。HAProxy运行在当前的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上。<br><br>Haproxy软件引入了frontend，backend的功能，frontend（acl规则匹配）可以根据任意HTTP请求头做规则匹配，然后把请求定向到相关的backend（server pools等待前端把请求转过来的服务器组）。通过frontend和backup，我们可以很容易的实现haproxy的7层代理功能，haproxy是一款不可多得的优秀代理服务软件。<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### </div></strong>　　4.2<strong><strong>、keepalived</strong></strong>介绍<strong><br><br>keepalived是以VRRP协议为实现基础的，VRRP全称Virtual Router Redundancy Protocol，即虚拟路由冗余协议。<br><br>虚拟路由冗余协议，可以认为是实现路由器高可用的协议，即将N台提供相同功能的路由器组成一个路由器组，这个组里面有一个master和多个backup，master上面有一个对外提供服务的vip（该路由器所在局域网内其他机器的默认路由为该vip），master会发组播，当backup收不到vrrp包时就认为master宕掉了，这时就需要根据VRRP的优先级来选举一个backup当master。这样的话就可以保证路由器的高可用了。<br><br>keepalived主要有三个模块，分别是core、check和vrrp。core模块为keepalived的核心，负责主进程的启动、维护以及全局配置文件的加载和解析。check负责健康检查，包括常见的各种检查方式。vrrp模块是来实现VRRP协议的。<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 5、中间件的安装与配置（haproxy、keepalived）<br><br>百度云下载：<a href="http://pan.baidu.com/s/1qYoCjDE" target="_blank" rel="noopener">http://pan.baidu.com/s/1qYoCjDE</a>  密码：7cef<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　5.1、安装haproxy<br><br>在192.168.95.13、192.168.95.14安装haproxy（一模一样安装）<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　1）、编译安装haproxy<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># tar -zxvf haproxy-1.5.14.tar.gz</span><br><span class="line"># cd haproxy-1.5.14</span><br><span class="line"># make TARGET=linux26 ARCH=x86_64 </span><br><span class="line"># make install SBINDIR=/usr/sbin/ MANDIR=/usr/share/man/ DOCDIR=/usr/share/doc/</span><br></pre></td></tr></table></figure><br><br>注意：<br><br>1、为什么不用configure，请看下图。haproxy-1.5.14已经存在Makefile文件了。<br><br>2、make的时候，target以及arch需要根据自己的linux主机设置<br><br>3、make install的时候我增加了一些额外选项。这可加可不加由自己配置，不加的话将会按默认路径安装，请看下图。<br><br><img src="http://pangguoming.com/blog/images/ae5e684c-f666-4bee-afe7-bc39e1b46162.jpg" alt=""><br><br><img src="http://pangguoming.com/blog/images/38ea541d-d48d-4b2f-a641-ab6cd2f6b668.jpg" alt=""><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　2）、提供启动脚本<br><br>将haproxy这个启动脚本放在/etc/init.d/文件夹下，以便我们可以直接service启动它<br><br>【注意】：此启动脚本仅仅适合我以上的安装路径。假若安装路径不同，则需要进行相应的修改方可使用。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#给执行权力</span><br><span class="line">#chmod +x /etc/init.d/haproxy</span><br></pre></td></tr></table></figure><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　3）、提供配置文件<br><br>根据上面的启动脚本建立相应的目录以及配置文件<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># mkdir /etc/haproxy</span><br><span class="line"># mkdir /var/lib/haproxy</span><br><span class="line"># useradd -r haproxy       #建立脚本启动用户</span><br><span class="line"># vi /etc/haproxy/haproxy.cfg</span><br></pre></td></tr></table></figure><br><br>【配置文件】<br><br>#这里的配置文件仅仅只是贴出来进行解析说明。<br><br>#如果需要这个配置文件最好将注释解析全部删除掉，因为我在使用的过程中，正是因为存在注释解析而导致出错，删除后就能正常运行。<br><br>#可以下载这个配置文件进行使用，与下面贴出来的配置文件一致，只是不存在注释解析<br><br>#百度云下载该配置文件（不含注释）：链接：<a href="http://pan.baidu.com/s/1gfOMtKB" target="_blank" rel="noopener">http://pan.baidu.com/s/1gfOMtKB</a>  密码：zl9o<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">global</span><br><span class="line"></span><br><span class="line">    log         127.0.0.1 local2         //日志定义级别</span><br><span class="line">    chroot      /var/lib/haproxy         //当前工作目录</span><br><span class="line">    pidfile     /var/run/haproxy.pid     //进程id</span><br><span class="line">    maxconn     4000                     //最大连接数</span><br><span class="line">    user        haproxy                  //运行改程序的用户</span><br><span class="line">    group       haproxy</span><br><span class="line">    daemon                               //后台形式运行</span><br><span class="line">    stats socket /var/lib/haproxy/stats</span><br><span class="line"></span><br><span class="line">defaults</span><br><span class="line">    mode                    tcp            //haproxy运行模式（http | tcp | health）</span><br><span class="line">    log                     global</span><br><span class="line">    option                  dontlognull</span><br><span class="line">    option                  redispatch     //serverId对应的服务器挂掉后,强制定向到其他健康的服务器</span><br><span class="line">    retries                 3              //三次连接失败则服务器不用</span><br><span class="line">    timeout http-request    10s</span><br><span class="line">    timeout queue           1m</span><br><span class="line">    timeout connect         10s            //连接超时</span><br><span class="line">    timeout client          1m             //客户端超时</span><br><span class="line">    timeout server          1m             //服务器超时</span><br><span class="line">    timeout http-keep-alive 10s</span><br><span class="line">    timeout check           10s            //心跳检测</span><br><span class="line">    maxconn                 600            //最大连接数</span><br><span class="line"></span><br><span class="line">listen stats                               //配置haproxy状态页（用来查看的页面）</span><br><span class="line">    mode http</span><br><span class="line">    bind :8888</span><br><span class="line">    stats enable</span><br><span class="line">    stats hide-version                    //隐藏haproxy版本号</span><br><span class="line">stats uri     /haproxyadmin?stats     //一会用于打开状态页的uri</span><br><span class="line">    stats realm   Haproxy\ Statistics     //输入账户密码时的提示文字</span><br><span class="line">    stats auth    admin:admin             //用户名:密码</span><br><span class="line"></span><br><span class="line">frontend  main </span><br><span class="line">bind 0.0.0.0:3306                     //使用3306端口。监听前端端口【表示任何ip访问3306端口都会将数据轮番转发到mysql服务器群组中】</span><br><span class="line">    default_backend             mysql     //后端服务器组名</span><br><span class="line"></span><br><span class="line">backend mysql</span><br><span class="line">    balance     leastconn                 //使用最少连接方式调度</span><br><span class="line">    server mysql1 192.168.95.11:3306 check port 3306 maxconn 300</span><br><span class="line">    server mysql2 192.168.95.12:3306 check port 3306 maxconn 300</span><br></pre></td></tr></table></figure><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　4）、启动日志<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/rsyslog.conf</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/e9ee6551-0a48-4da5-8663-72cc77704b67.jpg" alt=""><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#service rsyslog restart</span><br></pre></td></tr></table></figure><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　5）、启动haproxy<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># service haproxy start</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/addc47f0-d135-40c8-8629-1678dedc262b.jpg" alt=""><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　6）、测试haproxy<br><br>安照配置文件进行相应的测试<br><br><img src="http://pangguoming.com/blog/images/e097ebf9-02a7-4c7c-ae9f-6d7f33e0c548.jpg" alt=""><br><br>打开浏览器输入192.168.95.13:8888/haproxyadmin?stats<br><br><img src="http://pangguoming.com/blog/images/6ed0eaea-3204-4e2e-bb74-c0f325088c61.jpg" alt=""><br><br>登陆后如下如所示，表明安装haproxy成功。<br><br><img src="http://pangguoming.com/blog/images/b143c7c2-3107-4536-af15-1dd739c25606.jpg" alt=""><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　5.2、安装keepalived<br><br>官网下载：<a href="http://www.keepalived.org/download.html" target="_blank" rel="noopener">http://www.keepalived.org/download.html</a><br><br>在192.168.95.13、192.168.95.14安装keepalived<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　1）、解决缺少的软件库文件<br><br>【这一步骤视具体的linux版本而定，有些已经安装openssl了。具体情况可以执行./configure就能够确定缺不缺少软件库文件了】<br><br>首先我们先将keepalived-1.2.19.tar.gz解压，然后进入目录./configure查看<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># tar -zxvf keepalived-1.2.19.tar.gz</span><br><span class="line"># ./configure --prefix=/usr/local/keepalived  --sbindir=/usr/sbin/ --sysconfdir=/etc/ --mandir=/usr/local/share/man/ --with-kernel-dir=/usr/src/kernels/2.6.32-504.el6.x86_64/</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/6e24382b-5a17-4da5-b561-69f96b934091.jpg" alt=""><br><br><img src="http://pangguoming.com/blog/images/8d2bad7c-2a17-4f56-ac8a-26c7cf046fae.jpg" alt=""><br><br> 由上图可见keepalived的安装需要先安装软件OpenSSL<br><br>缺少头文件，只需要安装openssl和openssl-devel即可<br><br>最简单的方法是：yum -y install openssl openssl-devel<br><br>没网的朋友也不用怕，接下来将介绍的是</div></div></div></div></div></div></div></div></div></div></strong>rpm方法安装：<strong><br><br>#挂载光盘，在光盘中查找软件。若光盘找不到就直接下载，再传入linux进行安装<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># mount /dev/cdrom  /home/suifeng2/rom/</span><br><span class="line"># cd rom/</span><br><span class="line"># cd Packages/</span><br><span class="line"># ls |grep openssl</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/38958394-0d84-44fd-bb06-f34881b299c3.jpg" alt=""><br><br>安装keepalived软件时存在各种依赖，下图是我安装软件后整理的依赖关系图：<br><br><img src="http://pangguoming.com/blog/images/a6e3f7ad-bb34-4f99-a026-f07f8425996f.jpg" alt=""><br><br>既然已经知道各软件依赖，则可按最后面的软件开始安装：<br><br>（你也可以从前面开始进行安装，一步一步的查看各个依赖关系）
+
+</strong>1<strong>**、安装openssl</strong><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh openssl-1.0.1e-30.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/531ca21e-ed26-4e71-adec-49070bf558ae.jpg" alt=""><br><br>安装openssl成功<br><br><strong>2**</strong>、安装openssl-devel<strong>**  
+</strong><br><br>**</div></div></div></em>安装libsepol-devel：<strong><em><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh libsepol-devel-2.0.41-4.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/960e5ee8-32f4-4c4a-a900-83585923e1d1.jpg" alt="">
+
+</em></strong>安装pkgconfig(libsepol)：<strong><em><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh pkgconfig-0.23-9.1.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/260eeb66-7f19-4494-9775-3a35caa7b1e5.jpg" alt="">
+
+</em></strong>安装libselinux-devel：<strong><em><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh libselinux-devel-2.0.94-5.8.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/fa82ba4c-55be-4381-8563-479f4c6330d2.jpg" alt="">
+
+</em></strong>安装keyutils-libs-devel：<strong><em><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh keyutils-libs-devel-1.4-5.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/e1cf1428-5166-4e5e-9828-b931488feb20.jpg" alt=""><br><br>安装libcom_err-devel：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh libcom_err-devel-141.12-21.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/eec7de68-bc79-4557-a47c-94b1c2aac19d.jpg" alt="">
+
+</em></strong>安装krb5-devel：<strong><em><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh krb5-devel-1.10.3-33.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/fcd33fad-fbe4-4622-b301-53ef4ba343eb.jpg" alt="">
+
+</em></strong>安装zlib-devel：<strong>*<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh zlib-devel-1.2.3-29.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/17b8bc91-7ad5-43fa-9eb4-a667e97bc335.jpg" alt="">
+
+</strong>安装openssl-devel<strong>**：</strong><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh openssl-devel-1.0.1e-30.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/366d8620-4e97-4d04-9d4d-4bfa260e5ee0.jpg" alt=""><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　2）、编译安装keepalived软件<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># cd keepalived-1.2.19</span><br><span class="line"># ./configure --prefix=/usr/local/keepalived  --sbindir=/usr/sbin/ --sysconfdir=/etc/ --mandir=/usr/local/share/man/ --with-kernel-dir=/usr/src/kernels/2.6.32-504.el6.x86_64/</span><br><span class="line"># make &amp;&amp; make install  </span><br><span class="line"></span><br><span class="line"># chkconfig --add keepalived  #添加开机自启（我暂时没添加）</span><br><span class="line"># chkconfig keepalived on</span><br></pre></td></tr></table></figure><br><br>【注意】：<br><br>1、安装时./configure中的—prefix后的几个选择可选可不选，选了就可以采用service直接启动了。建议最好都加上吧<br><br>2、–with-kernel-dir这个选项根据自己的linux版本进行填写（在linux中使用命令uname –a可以查到）<br><br><img src="http://pangguoming.com/blog/images/374c642a-9552-44ca-aa5f-74a2b06e2435.jpg" alt=""><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　3）、创建配置文件<br><br>/etc/keepalived/文件夹已存在keepalived.conf文件，我们将它改名为keepalived.conf.back，再建立一个我们自己keepalived.conf配置文件。<br><br><img src="http://pangguoming.com/blog/images/b17bb29b-5e11-4a69-9def-51e3c2877872.jpg" alt=""><br><br>vi /etc/keepalived/keepalived.conf（13与14配置文件路径一致）<br><br>【以下是简单的配置文件，使用时最好去掉注释】<br><br>配置文件下载（不含注释）：<br><br><strong><em>192.168.95.13配置文件:</em></strong><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">! Configuration File for keepalived</span><br><span class="line">#简单的头部，这里主要可以做邮件通知报警等的设置，此处就暂不配置了；</span><br><span class="line">global_defs &#123;</span><br><span class="line">        notificationd LVS_DEVEL</span><br><span class="line">&#125;</span><br><span class="line">#预先定义一个脚本，方便后面调用，也可以定义多个，方便选择；</span><br><span class="line">vrrp_script chk_haproxy &#123;</span><br><span class="line">    script &quot;/etc/keepalived/chk.sh&quot;  #具体脚本路径</span><br><span class="line">    interval 2  #脚本循环运行间隔</span><br><span class="line">&#125;</span><br><span class="line">#VRRP虚拟路由冗余协议配置</span><br><span class="line">vrrp_instance VI_1 &#123;   #VI_1 是自定义的名称；</span><br><span class="line">    state BACKUP    #MASTER表示是一台主设备，BACKUP表示为备用设备【我们这里因为设置为开启不抢占，所以都设置为备用】</span><br><span class="line">    nopreempt      #开启不抢占</span><br><span class="line">    interface eth0   #指定VIP需要绑定的物理网卡</span><br><span class="line">    virtual_router_id 11   #VRID虚拟路由标识，也叫做分组名称，该组内的设备需要相同</span><br><span class="line">    priority 130   #定义这台设备的优先级 1-254；开启了不抢占，所以此处优先级必须高于另一台</span><br><span class="line"></span><br><span class="line">    advert_int 1   #生存检测时的组播信息发送间隔，组内一致</span><br><span class="line">    authentication &#123;    #设置验证信息，组内一致</span><br><span class="line">        auth_type PASS   #有PASS 和 AH 两种，常用 PASS</span><br><span class="line">        auth_pass asd    #密码</span><br><span class="line">    &#125;</span><br><span class="line">    virtual_ipaddress &#123;</span><br><span class="line">        192.168.95.55    #指定VIP地址，组内一致，可以设置多个IP</span><br><span class="line">    &#125;</span><br><span class="line">    track_script &#123;    #使用在这个域中使用预先定义的脚本，上面定义的</span><br><span class="line">        chk_haproxy   </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    notify_backup &quot;/etc/init.d/haproxy restart&quot;   #表示当切换到backup状态时,要执行的脚本</span><br><span class="line">    notify_fault &quot;/etc/init.d/haproxy stop&quot;     #故障时执行的脚本</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br><strong><em>192.168.95.14配置文件:</em></strong><br><br>配置文件与上面的几乎一样，仅仅改变priority 120【只需要比上面的小即可】<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　4）、创建脚本文件<br><br>创建上面配置文件所需的脚本文件（13、14一样）<br><br>（检测haproxy有没有发生故障，发生故障则将keepalived停掉，让出vip）<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/keepalived/chk.sh#!/bin/bash</span><br><span class="line">#</span><br><span class="line">if [ $(ps -C haproxy --no-header | wc -l) -eq 0 ]; then</span><br><span class="line">       /etc/init.d/keepalived stop</span><br><span class="line">fi</span><br></pre></td></tr></table></figure><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">给执行权限</span><br><span class="line"># chmod +x /etc/keepalived/chk.sh</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/99528ac8-3a12-42ab-94ea-acbba44f314a.jpg" alt=""><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">启动keepalived：</span><br><span class="line"># service keepalived start</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/6b51d05b-d67d-4e98-a59f-c9815633e60b.jpg" alt=""><br><br>安装keepalived成功！<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 6、功能测试<br><br>测试之前先在mysql1和mysql2中建立一个mysql用户，此用户可以允许13、14linux主机登陆：<br><br>用户：jack<br><br>密码：321<br><br>host：192.168.95.%<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; GRANT ALL ON *.* TO &apos;jack&apos;@&apos;192.168.95.%&apos; IDENTIFIED BY &apos;321&apos;;</span><br><span class="line">mysql&gt; FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　6.1、流程简述<br><br>大概讲述一下整体的运作流程:<br><br>首先两个11,12的mysql以及13、14的haproxy、keepalived都启动；<br><br>keepalived在keepalived群组中获取虚拟IP，以及检测haproxy是否被kill；<br><br>haproxy负责将进来的数据转发到11或者12的mysql中。<br><br>下图是我画的简单理解图：（相对来说比较简洁哈，凑合凑合哈）<br><br><img src="http://pangguoming.com/blog/images/022d4d98-1714-419b-afbc-a0f94641de43.jpg" alt=""><br><br>接下来我们将一个个功能的进行测试验证。<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　6.2、测试haproxy监听前端端口3306<br><br>1、frontend监听端口3306时，将mysql、haproxy、keepalived全部开启<br><br>2、使用任意一个mysql客户端登陆用户jack<br><br>登陆成功(windowns上登陆mysql)<br><br><img src="http://pangguoming.com/blog/images/83b5f23d-3428-4283-9ae3-57f67b1ce0f2.jpg" alt=""><br><br>3、更改frontend监听端口为3307，继续操作登陆测试<br><br>登陆失败<br><br><img src="http://pangguoming.com/blog/images/54f65b3d-e3f8-4f1f-9dac-539f3608e280.jpg" alt=""><br><br>结果：说明了frontend监听端口的用处，有助于我们理解haproxy用法。<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　6.3、测试高可用+keepalived不抢占vip<br><br>可以通过haproxy监控页面获知谁获取了vip<br><br>1、依次启动13、14的keepalived、haproxy（启动keepalived后将会自动开启haproxy）<br><br><img src="http://pangguoming.com/blog/images/bbe45886-7794-481e-804a-f9d48649ce02.jpg" alt=""><br><br><img src="http://pangguoming.com/blog/images/23a989f8-6de0-4fce-868e-4a952281427a.jpg" alt=""><br><br>2、访问<a href="http://192.168.95.55:8888/haproxyadmin?stats" target="_blank" rel="noopener">http://192.168.95.55:8888/haproxyadmin?stats</a><br><br>13获取了vip<br><br><img src="http://pangguoming.com/blog/images/a847a139-a627-4e51-bbab-cbd8947c946e.jpg" alt=""><br><br>3、# kill -9 8923<br><br>刷新<a href="http://192.168.95.55:8888/haproxyadmin?stats" target="_blank" rel="noopener">http://192.168.95.55:8888/haproxyadmin?stats</a><br><br><img src="http://pangguoming.com/blog/images/80b11550-fb1d-4630-a0f1-ca500618945b.jpg" alt=""><br><br>14获取了vip，机器正常工作<br><br>结果：证明了高可用，挂了一台另一台继续工作<br><br>4、重新启动13的haproxy以及keepalived<br><br>并刷新<a href="http://192.168.95.55:8888/haproxyadmin?stats" target="_blank" rel="noopener">http://192.168.95.55:8888/haproxyadmin?stats</a><br><br><img src="http://pangguoming.com/blog/images/ee7dbe60-110a-4382-b2e6-4efd7f6f8da2.jpg" alt=""><br><br><img src="http://pangguoming.com/blog/images/f8ac816e-536f-478a-bf96-c70da33082d6.jpg" alt=""><br><br>结果：此时vip仍在14手中，证明了keepalived配置了不抢占vip，不必浪费资源去获取vip。<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　6.4、测试负载均衡<br><br>1、全部正常启动，此时vip在14手中<br><br>2、分别在11、12中开启抓包<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># tcpdump -n -i eth0 host 192.168.95.11 and 192.168.95.14</span><br><span class="line"># tcpdump -n -i eth0 host 192.168.95.12 and 192.168.95.14</span><br></pre></td></tr></table></figure><br><br>3、使用不同客户端登陆jack用户，不断向数据库添加数据<br><br><img src="http://pangguoming.com/blog/images/cfb3a85a-a770-4dba-bedd-7d282b646edd.jpg" alt=""><br><br><img src="http://pangguoming.com/blog/images/0361098f-5391-4a2d-8a82-51ba04b57857.jpg" alt=""><br><br>结果：此时14向11、12都有发送数据，此时证明负载均衡<br><br>【我们设置的haproxy中balance方式是最少连接方式，假若采用roundrobin方式测试结果将会更加明显】<br><br>注意：<br><br>当某一台mysql挂了以后，haproxy会将其踢出mysql服务器群组。<br><br>当有命令传来时会将其转发到正常的服务器上。<br><br>当出问题的mysql恢复后，haproxy又会自动地将它放回mysql服务器群组中，并且自动同步没有同步的数据<br><br>测试：<br><br>1、全部正常启动<br><br>mysql1、mysql2都正常<br><br><img src="http://pangguoming.com/blog/images/b79695e4-4137-4d34-b4f4-34ca96dd5a87.jpg" alt=""><br><br> 2、将mysql2关掉<br><br><img src="http://pangguoming.com/blog/images/175e658d-1a16-43b4-94cf-8925b73a082f.jpg" alt=""><br><br>mysql2出问题，将其踢出mysql群组<br><br>3、启动mysql2<br><br><img src="http://pangguoming.com/blog/images/1a830f32-68c9-45f4-ac32-ddab8fed8ea0.jpg" alt=""><br><br>mysql2恢复后又将其放回mysql群组里<br><br>【当mysql2挂掉时，若有数据插入，将会转发给mysql1，当mysql恢复后，又会将这些数据同步到mysql2中】<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 7、总结与建议<br><br> 在这篇博文中我们不仅仅只关注这一整个mysql高可用负载均衡的实现方式，我们还应该理解haproxy以及keepalived的工作方式。Haproxy和keepalived这两个工具很强大，了解他们的实现方式，那么就可以以此类推与其他服务器组合构建强大健壮的服务集群。例如它可以与apache组合，构成高可用负载均衡的web集群。<br><br> 这篇文章中只是简简单单的搭建了一个mysql高可用负载均衡的环境，真正应用到生产环境中，还需要根据具体项目进行相应的修改。<br><br> 最后我的小建议就是看完这篇博客可以去了解了解更多的haproxy和keepalived的相应配置，以及学习与haproxy功能差不多的LVS。<br><br>（以上是自己的一些见解与总结，若有不足或者错误的地方请各位指出）<br><br>作者：<a href="http://www.cnblogs.com/phpstudy2015-6/" target="_blank" rel="noopener">那一叶随风</a><br><br>声明：以上只代表本人在工作学习中某一时间内总结的观点或结论。转载时请在文章页面明显位置给出原文链接<br><br> <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label2" target="_blank" rel="noopener">https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label2</a><br></div></div></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -968,7 +951,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/24/CentOS7安装openjdk、tomcat和mysql流程介绍/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/ad16a579.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -987,7 +970,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/24/CentOS7安装openjdk、tomcat和mysql流程介绍/" itemprop="url">CentOS7安装openjdk、tomcat和mysql流程介绍</a></h1>
+                <a class="post-title-link" href="/post/ad16a579.html" itemprop="url">CentOS7安装openjdk、tomcat和mysql流程介绍</a></h1>
         
 
         <div class="post-meta">
@@ -1039,18 +1022,140 @@
       
         
           
-          首先是前戏，推荐一个远程工具Xshell和Xftp搭配使用，以下是Xshell的官网http://www.netsarang.com/products/xsh_overview.html
+            <p>首先是前戏，推荐一个远程工具Xshell和Xftp搭配使用，以下是Xshell的官网<br><a href="http://www.netsarang.com/products/xsh_overview.html" target="_blank" rel="noopener">http://www.netsarang.com/products/xsh_overview.html</a></p>
+<hr>
+<h2 id="1-openjdk"><a href="#1-openjdk" class="headerlink" title="1.openjdk"></a>1.openjdk</h2><blockquote>
+<p>How to download and install prebuilt OpenJDK packages</p>
+<p>JDK 8</p>
+<p>Debian, Ubuntu, etc.</p>
+<p>On the command line, type:</p>
+<p>$ sudo apt-get install openjdk-8-jre</p>
+<p>The openjdk-8-jre package contains just the Java Runtime Environment. If you want to develop Java programs then please install the openjdk-8-jdk package.</p>
+<p>Fedora, Oracle Linux, Red Hat Enterprise Linux, etc.</p>
+<p>On the command line, type:</p>
+<p>$ su -c “yum install java-1.8.0-openjdk”</p>
+<p>The java-1.8.0-openjdk package contains just the Java Runtime Environment. If you want to develop Java programs then install the java-1.8.0-openjdk-devel package.</p>
+</blockquote>
+<p>以上说了不同系统的安装方式，还指出命令只是安装了JRE，如果你需要开发应用程序，还需要另外安装（已经用加粗标识），想安装其它版本详情看openjdk官网介绍<br><a href="http://openjdk.java.net/install/" target="_blank" rel="noopener">http://openjdk.java.net/install/</a></p>
+<p><code class="hljs d has-numbering">[root<span class="hljs-keyword">@VM_207_229_centos ~]# java -<span class="hljs-keyword">version<br>    openjdk <span class="hljs-keyword">version <span class="hljs-string">“1.8.0_71”<br>    OpenJDK Runtime Environment (build <span class="hljs-number">1.8.0_71-b15)<br>    OpenJDK <span class="hljs-number">64-Bit Server VM (build <span class="hljs-number">25.71-b15, mixed mode)</span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">*   1</span><br><span class="line">*   2</span><br><span class="line">*   3</span><br><span class="line">*   4</span><br><span class="line"></span><br><span class="line">* * *</span><br><span class="line"></span><br><span class="line">## 2.tomcat</span><br><span class="line"></span><br><span class="line">&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs vala has-numbering&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# cd /usr/local</span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# wget https://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.0.36/bin/apache-tomcat-8.0.36.tar.gz</span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# tar xzf apache-tomcat-8.0.36.tar.gz</span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# mv apache-tomcat-8.0.36 tomcat</span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# ls</span><br><span class="line">apache-tomcat-&lt;span class=&quot;hljs-number&quot;&gt;8.0&lt;span class=&quot;hljs-number&quot;&gt;.36.tar.gz  etc    include  lib64    logs    sa    share  tomcat   bin   games  lib   libexec  qcloud  sbin  src</span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>*   1
+*   2
+*   3
+*   4
+*   5
+*   6
+*   7
+</code></pre><p>个人习惯把tomcat放在/user/local下，下载后解压，再更名为tomcat<br>想要其它版本的话……在以下地址找好路径下载<br><a href="https://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/</a></p>
+<p>修改配置文件conf/server.xml改为监听80端口，默认编码utf-8，并开启gzip压缩</p>
+<pre><code>&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs xml has-numbering&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;Connector &lt;span class=&quot;hljs-attribute&quot;&gt;port=&lt;span class=&quot;hljs-value&quot;&gt;&quot;80&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;protocol=&lt;span class=&quot;hljs-value&quot;&gt;&quot;HTTP/1.1&quot;
+               &lt;span class=&quot;hljs-attribute&quot;&gt;connectionTimeout=&lt;span class=&quot;hljs-value&quot;&gt;&quot;20000&quot;
+               &lt;span class=&quot;hljs-attribute&quot;&gt;redirectPort=&lt;span class=&quot;hljs-value&quot;&gt;&quot;8443&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;executor=&lt;span class=&quot;hljs-value&quot;&gt;&quot;tomcatThreadPool&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;URIEncoding=&lt;span class=&quot;hljs-value&quot;&gt;&quot;utf-8&quot;   
+               &lt;span class=&quot;hljs-attribute&quot;&gt;compression=&lt;span class=&quot;hljs-value&quot;&gt;&quot;on&quot;   
+               &lt;span class=&quot;hljs-attribute&quot;&gt;compressionMinSize=&lt;span class=&quot;hljs-value&quot;&gt;&quot;50&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;noCompressionUserAgents=&lt;span class=&quot;hljs-value&quot;&gt;&quot;gozilla, traviata&quot;   
+               &lt;span class=&quot;hljs-attribute&quot;&gt;compressableMimeType=&lt;span class=&quot;hljs-value&quot;&gt;&quot;text/html,text/xml,text/javascript,text/css,text/plain&quot; /&gt;
+    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- A &quot;Connector&quot; using the shared thread pool--&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    *   1</span><br><span class="line">    *   2</span><br><span class="line">    *   3</span><br><span class="line">    *   4</span><br><span class="line">    *   5</span><br><span class="line">    *   6</span><br><span class="line">    *   7</span><br><span class="line"></span><br><span class="line">启动tomcat，在浏览器输入ip地址访问，看到tomcat小猫页面就行了。CentOS7开放80端口，Centos 7使用firewalld代替了原来的iptables。</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs xml has-numbering&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 启动防火墙 --&gt;</span><br><span class="line">    # systemctl start  firewalld</span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 开启80端口，出现success表明添加成功 --&gt;</span><br><span class="line">    # firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 重启防火墙 --&gt;</span><br><span class="line">    # systemctl restart firewalld.service</span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 检查端口 --&gt;</span><br><span class="line">    # firewall-cmd --permanent --zone=public --list-ports</span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- 自启动防火墙 --&gt;</span><br><span class="line">    #systemctl enable firewalld&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
 
-1.openjdk
-How to download and install prebuilt OpenJDK 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/24/CentOS7安装openjdk、tomcat和mysql流程介绍/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+*   1
+*   2
+*   3
+*   4
+*   5
+*   6
+*   7
+*   8
+*   9
+*   10
+</code></pre><p>还有更改默认访问地址，不想见到tomcat小猫（此步骤看个人需要）</p>
+<pre><code>&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs xml has-numbering&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;Engine &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;Catalina&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;defaultHost=&lt;span class=&quot;hljs-value&quot;&gt;&quot;www.caihongwen.cn&quot;&gt;
+
+     &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;Realm &lt;span class=&quot;hljs-attribute&quot;&gt;className=&lt;span class=&quot;hljs-value&quot;&gt;&quot;org.apache.catalina.realm.LockOutRealm&quot;&gt;
+       &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;Realm &lt;span class=&quot;hljs-attribute&quot;&gt;className=&lt;span class=&quot;hljs-value&quot;&gt;&quot;org.apache.catalina.realm.UserDatabaseRealm&quot;
+               &lt;span class=&quot;hljs-attribute&quot;&gt;resourceName=&lt;span class=&quot;hljs-value&quot;&gt;&quot;UserDatabase&quot;/&gt;
+      &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;Realm&gt;
+
+      &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;Host &lt;span class=&quot;hljs-attribute&quot;&gt;name=&lt;span class=&quot;hljs-value&quot;&gt;&quot;www.caihongwen.cn&quot;  &lt;span class=&quot;hljs-attribute&quot;&gt;appBase=&lt;span class=&quot;hljs-value&quot;&gt;&quot;webapps&quot;
+            &lt;span class=&quot;hljs-attribute&quot;&gt;unpackWARs=&lt;span class=&quot;hljs-value&quot;&gt;&quot;true&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;autoDeploy=&lt;span class=&quot;hljs-value&quot;&gt;&quot;true&quot;&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;Context &lt;span class=&quot;hljs-attribute&quot;&gt;docBase=&lt;span class=&quot;hljs-value&quot;&gt;&quot;blog&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;path=&lt;span class=&quot;hljs-value&quot;&gt;&quot;&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;debug=&lt;span class=&quot;hljs-value&quot;&gt;&quot;0&quot;  &lt;span class=&quot;hljs-attribute&quot;&gt;reloadable=&lt;span class=&quot;hljs-value&quot;&gt;&quot;true&quot;/&gt;
+               &lt;span class=&quot;hljs-comment&quot;&gt;&lt;!-- Access log processes all example.
+             Documentation at: /docs/config/valve.html
+             Note: The pattern used is equivalent to using pattern=&quot;common&quot; --&gt;
+        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;Valve &lt;span class=&quot;hljs-attribute&quot;&gt;className=&lt;span class=&quot;hljs-value&quot;&gt;&quot;org.apache.catalina.valves.AccessLogValve&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;directory=&lt;span class=&quot;hljs-value&quot;&gt;&quot;logs&quot;
+               &lt;span class=&quot;hljs-attribute&quot;&gt;prefix=&lt;span class=&quot;hljs-value&quot;&gt;&quot;localhost_access_log&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;suffix=&lt;span class=&quot;hljs-value&quot;&gt;&quot;.txt&quot;
+               &lt;span class=&quot;hljs-attribute&quot;&gt;pattern=&lt;span class=&quot;hljs-value&quot;&gt;&quot;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&quot; /&gt;
+
+      &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;Host&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;Engine&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    *   1</span><br><span class="line">    *   2</span><br><span class="line">    *   3</span><br><span class="line">    *   4</span><br><span class="line">    *   5</span><br><span class="line">    *   6</span><br><span class="line">    *   7</span><br><span class="line">    *   8</span><br><span class="line">    *   9</span><br><span class="line">    *   10</span><br><span class="line">    *   11</span><br><span class="line">    *   12</span><br><span class="line">    *   13</span><br><span class="line">    *   14</span><br><span class="line">    *   15</span><br><span class="line">    *   16</span><br><span class="line">    *   17</span><br><span class="line">    *   18</span><br><span class="line">    *   19</span><br><span class="line"></span><br><span class="line">请在意Host之间添加了一段代码</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs lua has-numbering&quot;&gt;&lt;Context docBase=&lt;span class=&quot;hljs-string&quot;&gt;&quot;blog&quot; path=&lt;span class=&quot;hljs-string&quot;&gt;&quot;&quot; &lt;span class=&quot;hljs-built_in&quot;&gt;debug=&lt;span class=&quot;hljs-string&quot;&gt;&quot;0&quot;  reloadable=&lt;span class=&quot;hljs-string&quot;&gt;&quot;true&quot;/&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+*   1
+</code></pre><p>这个blog是放在webapps的项目war包名，通过ip或域名直接进入博客，不会出现tomcat小猫管理页面，第一次启动tomcat稍慢，新增加的war包需要重启一次才能起效。还有一个要点是对外开启80端口。</p>
+<pre><code>* * *
+
+## 3.mysql
+</code></pre><p>使用RPM包进行安装，这种安装进程会自动完成系统的相关配置，比较方便。<br>另外有.tar.gz的压缩文件安装方式，推荐一个博客的介绍。<br><a href="http://blog.csdn.net/superchanon/article/details/8546254/" target="_blank" rel="noopener">http://blog.csdn.net/superchanon/article/details/8546254/</a></p>
+<p>卸载原有MySQL或者Mariadb安装程序<br>1、CentOs7版本默认情况下安装了mariadb-libs，必须先卸载才可以继续安装MySql。<br>a) 查找以前是否安装mariadb-libs</p>
+<pre><code>&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs vala has-numbering&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# rpm -qa | grep -i mariadb-libs&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    *   1</span><br><span class="line"></span><br><span class="line">b)卸载已经安装的mariadb-libs</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs vala has-numbering&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# yum remove mariadb-libs-5.5.44-2.el7.centos.x86_64&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+*   1
+</code></pre><p>2、查找以前是否安装MySQL</p>
+<pre><code>&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs bash has-numbering&quot;&gt; &lt;span class=&quot;hljs-comment&quot;&gt;# rpm -qa | grep -i mysql&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    *   1</span><br><span class="line"></span><br><span class="line">有的话，也删除</span><br><span class="line"></span><br><span class="line">安装MySQL</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs vala has-numbering&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm</span><br><span class="line">    &lt;span class=&quot;hljs-preprocessor&quot;&gt;# rpm -ivh mysql-community-release-el7-5.noarch.rpm</span><br><span class="line">    &lt;span class=&quot;hljs-preprocessor&quot;&gt;# yum install mysql-community-server&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+*   1
+*   2
+*   3
+</code></pre><p>成功安装之后重启mysql服务</p>
+<pre><code>&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs vala has-numbering&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# service mysqld restart&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    *   1</span><br><span class="line"></span><br><span class="line">初次安装mysql是root账户是没有密码的，设置密码的方法</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs vala has-numbering&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# mysql -uroot</span><br><span class="line">    mysql&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;set password &lt;span class=&quot;hljs-keyword&quot;&gt;for &lt;span class=&quot;hljs-string&quot;&gt;&apos;root&apos;@&lt;span class=&quot;hljs-string&quot;&gt;&apos;localhost&apos; = password(&lt;span class=&quot;hljs-string&quot;&gt;&apos;mypasswd&apos;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+*   1
+*   2
+</code></pre><p>远程授权连接mysql</p>
+<pre><code>&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs lasso has-numbering&quot;&gt;mysql&lt;span class=&quot;hljs-subst&quot;&gt;&gt; GRANT &lt;span class=&quot;hljs-literal&quot;&gt;ALL PRIVILEGES &lt;span class=&quot;hljs-keyword&quot;&gt;ON &lt;span class=&quot;hljs-subst&quot;&gt;*&lt;span class=&quot;hljs-built_in&quot;&gt;.&lt;span class=&quot;hljs-subst&quot;&gt;* &lt;span class=&quot;hljs-keyword&quot;&gt;TO &lt;span class=&quot;hljs-string&quot;&gt;&apos;root&apos;@&lt;span class=&quot;hljs-string&quot;&gt;&apos;%&apos; IDENTIFIED &lt;span class=&quot;hljs-keyword&quot;&gt;BY &lt;span class=&quot;hljs-string&quot;&gt;&apos;mypasswd&apos; &lt;span class=&quot;hljs-keyword&quot;&gt;WITH GRANT OPTION;
+FLUSH   PRIVILEGES;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    *   1</span><br><span class="line">    *   2</span><br><span class="line"></span><br><span class="line">修改mysql默认编码</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs vala has-numbering&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# vim /etc/my.cnf&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+*   1
+</code></pre><p>作出以下修改</p>
+<pre><code>&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs ini has-numbering&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;[client]
+&lt;span class=&quot;hljs-setting&quot;&gt;default-character-set=&lt;span class=&quot;hljs-value&quot;&gt;utf8
+&lt;span class=&quot;hljs-title&quot;&gt;[mysqld]
+&lt;span class=&quot;hljs-setting&quot;&gt;character_set_server=&lt;span class=&quot;hljs-value&quot;&gt;utf8&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    *   1</span><br><span class="line">    *   2</span><br><span class="line">    *   3</span><br><span class="line">    *   4</span><br><span class="line"></span><br><span class="line">然后重启mysql</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs asciidoc has-numbering&quot;&gt;# service mysqld restart</span><br><span class="line">    # mysql -uroot -p</span><br><span class="line">    &lt;span class=&quot;hljs-header&quot;&gt;mysql&gt; show variables like &apos;character%&apos;;</span><br><span class="line">    +--------------------------+----------------------------+</span><br><span class="line">    &lt;span class=&quot;hljs-header&quot;&gt;| Variable_name            | Value                      |</span><br><span class="line">    +--------------------------+----------------------------+</span><br><span class="line">    | character&lt;span class=&quot;hljs-emphasis&quot;&gt;_set_client     | utf8                       |</span><br><span class="line">    | character&lt;span class=&quot;hljs-emphasis&quot;&gt;_set_connection | utf8                       |</span><br><span class="line">    | character&lt;span class=&quot;hljs-emphasis&quot;&gt;_set_database   | utf8                       |</span><br><span class="line">    | character&lt;span class=&quot;hljs-emphasis&quot;&gt;_set_filesystem | binary                     |</span><br><span class="line">    | character&lt;span class=&quot;hljs-emphasis&quot;&gt;_set_results    | utf8                       |</span><br><span class="line">    | character&lt;span class=&quot;hljs-emphasis&quot;&gt;_set_server     | utf8                       |</span><br><span class="line">    | character&lt;span class=&quot;hljs-emphasis&quot;&gt;_set_system     | utf8                       |</span><br><span class="line">    &lt;span class=&quot;hljs-header&quot;&gt;| character_sets_dir       | /usr/share/mysql/charsets/ |</span><br><span class="line">    +--------------------------+----------------------------+</span><br><span class="line">    8 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-header&quot;&gt;mysql&gt; show variables like &apos;collation%&apos;;</span><br><span class="line">    +----------------------+-----------------+</span><br><span class="line">    &lt;span class=&quot;hljs-header&quot;&gt;| Variable_name        | Value           |</span><br><span class="line">    +----------------------+-----------------+</span><br><span class="line">    | collation&lt;span class=&quot;hljs-emphasis&quot;&gt;_connection | utf8_general&lt;span class=&quot;hljs-emphasis&quot;&gt;_ci |</span><br><span class="line">    | collation_database   | utf8&lt;span class=&quot;hljs-emphasis&quot;&gt;_general_ci |</span><br><span class="line">    &lt;span class=&quot;hljs-header&quot;&gt;| collation_server     | utf8_general_ci |</span><br><span class="line">    +----------------------+-----------------+</span><br><span class="line">    3 rows in set (0.00 sec)</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+*   1
+*   2
+*   3
+*   4
+*   5
+*   6
+*   7
+*   8
+*   9
+*   10
+*   11
+*   12
+*   13
+*   14
+*   15
+*   16
+*   17
+*   18
+*   19
+*   20
+*   21
+*   22
+*   23
+*   24
+*   25
+*   26
+*   27
+</code></pre><p>安装mysql-jdbc驱动</p>
+<pre><code>&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs vala has-numbering&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# yum install mysql-connector-java&lt;/span&gt;&lt;/code&gt;```
+
+*   1
+
+* * *
+
+## 完工！！！
+</code></pre><p>远程连接mysql，如果连接不上的话，可能是没开放3306端口。<br>最后，分享一个mysql远程管理神器navicat，你懂的<br><a href="http://pan.baidu.com/s/1mh87vGc" target="_blank" rel="noopener">http://pan.baidu.com/s/1mh87vGc</a><br></p>
+
+          
         
       
     </div>
@@ -1097,7 +1202,7 @@ How to download and install prebuilt OpenJDK
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/24/windows下 安装 rabbitMQ 及操作常用命令/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/6c8d19bc.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1116,7 +1221,7 @@ How to download and install prebuilt OpenJDK
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/24/windows下 安装 rabbitMQ 及操作常用命令/" itemprop="url">windows下 安装 rabbitMQ 及操作常用命令</a></h1>
+                <a class="post-title-link" href="/post/6c8d19bc.html" itemprop="url">windows下 安装 rabbitMQ 及操作常用命令</a></h1>
         
 
         <div class="post-meta">
@@ -1168,15 +1273,8 @@ How to download and install prebuilt OpenJDK
       
         
           
-          rabbitMQ是一个在AMQP协议标准基础上完整的，可服用的企业消息系统。它遵循Mozilla Public License开源协议，采用 Erlang 实现的工业级的消息队列(MQ)服务器，Rabbit MQ 是建立在Erlang OTP平台上。## 1.安装Erlang所以在安装rabbitM
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/24/windows下 安装 rabbitMQ 及操作常用命令/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div id="cnblogs_post_body" class="blogpost-body"><br><br>rabbitMQ是一个在AMQP协议标准基础上完整的，可服用的企业消息系统。它遵循Mozilla Public License开源协议，采用 Erlang 实现的工业级的消息队列(MQ)服务器，Rabbit MQ 是建立在Erlang OTP平台上。<br><br>## 1.安装Erlang<br><br>所以在安装rabbitMQ之前，需要先安装Erlang 。<br><br>小编使用的是<a href="https://pan.baidu.com/s/1c2826rA" target="_blank" rel="noopener">otp_win64_18.1</a> ，需要其他版本或者32位系统的，可以去<a href="http://www.erlang.org/downloads" target="_blank" rel="noopener">官网</a>下载。<br><br>全部点击“下一步”就行。<br><br>有的选择其他的安装方式，可能需要添加一下系统环境变量（正常安装的也要检查下）：<br><br><img src="http://pangguoming.com/blog/images/7cf5bd41-6f06-4857-af25-374451c4b0cb.png" alt=""><br><br>有最好，没有的话就手动添加嘛。<br><br>## 2.安装RabbitMQ<br><br>下载运行<a href="https://pan.baidu.com/s/1cqpG0u" target="_blank" rel="noopener">rabbitmq-server-3.6.5</a> ，需要其他版本或者32位系统的，可以去<a href="http://www.rabbitmq.com/download.html" target="_blank" rel="noopener">官网</a>下载。<br><br>依旧可以不改变默认进行安装。<br><br>需要注意：默认安装的RabbitMQ 监听端口是5672<br><br>## 3.配置<br><br>### 激活 RabbitMQ’s Management Plugin<br><br>使用RabbitMQ 管理插件，可以更好的可视化方式查看Rabbit MQ 服务器实例的状态。<br><br>打开命令窗口：<br><br>输入命令：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files\RabbitMQ Server\rabbitmq_server-3.6.5\sbin\rabbitmq-plugins.bat&quot; enable rabbitmq_management</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/1973259f-2fd6-4ee9-814f-1127084c77bf.png" alt=""><br><br>这样，就安装好插件了，是不是能使用了呢？别急，需要重启服务才行，使用命令：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net stop RabbitMQ &amp;&amp; net start RabbitMQ</span><br></pre></td></tr></table></figure><br><br>这时候的，也许会出现这种结果：<br><br><img src="http://pangguoming.com/blog/images/c78a979e-08f6-450c-a8cb-4932406ee04b.png" alt=""><br><br>“发生错误：发生系统错误<span lang="EN-US"> 5。<span lang="EN-US">  拒绝访问。”</span></span><br><br>这是什么鬼？查了下，原来，5代表的是：不是系统管理员权限。<br><br>问题解决方案：使用管理员打开<span lang="EN-US">cmd再执行此命令：</span><br><br><span lang="EN-US"><img src="http://pangguoming.com/blog/images/5b41ea32-2a83-4ec8-a9cd-fb4fefa11320.png" alt=""></span><br><br>这样就结束了吗？当然没有。<br><br>### 创建用户，密码，绑定角色<br><br>使用<span lang="EN-US">rabbitmqctl控制台命令（位于<span lang="EN-US">C:\Program Files\RabbitMQ Server\rabbitmq_server-3.6.5\sbin&gt;）来创建用户，密码，绑定权限等。</span></span><br><br>注意：安装路径不同的请看仔细啊。<br><br>rabbitmq的用户管理包括增加用户，删除用户，查看用户列表，修改用户密码。<br><br>查看已有用户及用户的角色：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl.bat list_users</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/7284cf6f-958b-4306-9b23-72c935e320bb.png" alt=""><br><br>新增一个用户：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl.bat add_user username password</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/4a46e70b-6d04-429b-a397-db7769240462.png" alt=""><br><br>此时来看下我们当前用户哈：<br><br><img src="http://pangguoming.com/blog/images/67b89427-990d-4514-b57a-82f0b6a68cc0.png" alt=""><br><br>eric 后面没有“[administrator]”<br><br>这个administrator是干嘛用的呢？这就涉及到用户角色问题了：<br><br>按照我个人理解，rabbitmq用户角色可分为五类：超级管理员, 监控者, 策略制定者, 普通管理者以及其他。<br><br>(1) 超级管理员(administrator)<br><br>可登陆管理控制台(启用management plugin的情况下)，可查看所有的信息，并且可以对用户，策略(policy)进行操作。<br><br>(2) 监控者(monitoring)<br><br>可登陆管理控制台(启用management plugin的情况下)，同时可以查看rabbitmq节点的相关信息(进程数，内存使用情况，磁盘使用情况等)<br><br>(3) 策略制定者(policymaker)<br><br>可登陆管理控制台(启用management plugin的情况下), 同时可以对policy进行管理。<br><br>(4) 普通管理者(management)<br><br>仅可登陆管理控制台(启用management plugin的情况下)，无法看到节点信息，也无法对策略进行管理。<br><br>(5) 其他的<br><br>无法登陆管理控制台，通常就是普通的生产者和消费者。<br><br>好啦，我们也给 eric 变成 “超级管理员” 角色：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl.bat set_user_tags username administrator</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/41ea4848-c1ea-494e-bf16-c10aec3275c2.png" alt=""><br><br>再看下结果哈：<br><br><img src="http://pangguoming.com/blog/images/29b8f030-a89e-44de-a187-a8f83e6b7890.png" alt=""><br><br>当然，除了上面的administrator 还有 monitoring、policymaker、management、自定义名称 ，对应上面介绍到的不同的角色。<br><br>像我们人一样，我们角色除了是公司的员工，还是父母的孩子、子女的爸妈等，用户也可以同时具有多个角色,设置方式:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl.bat  set_user_tags  username tag1 tag2 ...</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/38407ded-2019-407c-9263-c691c2e9e143.png" alt=""><br><br>恩，现在总觉得guest 这个不安全（它的默认密码是guest）,想更改密码，好办：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl change_password userName newPassword</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/9d5f24ed-1080-4107-9fa4-60137b0b5815.png" alt=""><br><br>有的人也许会说，我就是看guest不爽，老子新增了administrator用户了，就是想干掉它，可以：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl.bat delete_user username</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/d75c3440-d163-448a-9a7b-41214abca43d.png" alt=""><br><br> 这时，可能有人就要问了：命令框是只有一个用户了，你怎么操作啊？怎么查看执行情况啊/<br><br> 当然有路子啦：<br><br>使用浏览器打开<a href="http://localhost:15672/" target="_blank" rel="noopener"> http://localhost:15672</a><a href="http://localhost:15672%C2%A0/" target="_blank" rel="noopener"> </a>访问Rabbit Mq的管理控制台，使用刚才创建的账号登陆系统：<br><br> <img src="http://pangguoming.com/blog/images/2f8d2bd9-e8e5-4ccf-9f8c-c45596d10311.png" alt=""><br><br><img src="http://pangguoming.com/blog/images/7d9c4404-7f10-457d-9351-cd89f69360b5.png" alt=""><br><br>其实，除了可查看所有的信息 ，上面的命令 增删改查、权限设置，都可以在这个页面完成，还可以依据业务需求设置策略(policy)，具体的就不在这里啰嗦了，大家可以看看网上的帖子。<br><br>### 权限设置<br><br>用户有了角色，那也需要权限设置啊，别急，慢慢来：<br><br>按照官方文档，用户权限指的是用户对exchange，queue的操作权限，包括配置权限，读写权限。<br><br>我们配置权限会影响到exchange、queue的声明和删除。<br><br>读写权限影响到从queue里取消息、向exchange发送消息以及queue和exchange的绑定(binding)操作。<br><br>例如： 将queue绑定到某exchange上，需要具有queue的可写权限，以及exchange的可读权限；向exchange发送消息需要具有exchange的可写权限；从queue里取数据需要具有queue的可读权限<br><br>权限相关命令为：<br><br>(1) 设置用户权限<br><br>rabbitmqctl  set_permissions  -p  VHostPath  User  ConfP  WriteP  ReadP<br><br>(2) 查看(指定hostpath)所有用户的权限信息<br><br>rabbitmqctl  list_permissions  [-p  VHostPath]<br><br>(3) 查看指定用户的权限信息<br><br>rabbitmqctl  list_user_permissions  User<br><br>(4)  清除用户的权限信息<br><br>rabbitmqctl  clear_permissions  [-p VHostPath]  User<br><br>现在环境搭好了，用户、角色、权限全部设置好，开始进行code（原理整理，及编码 待续）<br><br>## 参考：<br><br>安装参考 <a href="http://www.rabbitmq.com/install-windows-manual.html" target="_blank" rel="noopener">http://www.rabbitmq.com/install-windows-manual.html</a><br><br>权限内容参考 <a href="http://www.rabbitmq.com/man/rabbitmqctl.1.man.html" target="_blank" rel="noopener">http://www.rabbitmq.com/man/rabbitmqctl.1.man.html</a><br><br>权限命令摘自 <a href="https://my.oschina.net/hncscwc/blog/262246" target="_blank" rel="noopener">https://my.oschina.net/hncscwc/blog/262246</a><br><br><div id="MySignature"><br><br>作者：<a href="http://www.cnblogs.com/ericli-ericli/" target="_blank" rel="noopener">Eric Li</a><br>出处：<a href="http://www.cnblogs.com/ericli-ericli/" target="_blank" rel="noopener">http://www.cnblogs.com/ericli-ericli/</a><br>除转载文章外，随笔版权归作者和博客园所有，欢迎转载，转载请标明出处。<br>如果您觉得本篇博文对您有所收获，觉得作者还算用心，请点击右下角的 [推荐]，谢谢！<br><br></div></div>
+          
         
       
     </div>
@@ -1223,7 +1321,7 @@ How to download and install prebuilt OpenJDK
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/22/使用Spring Cloud Security OAuth2搭建授权服务/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/ed78bc01.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1242,7 +1340,7 @@ How to download and install prebuilt OpenJDK
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/22/使用Spring Cloud Security OAuth2搭建授权服务/" itemprop="url">使用Spring Cloud Security OAuth2搭建授权服务</a></h1>
+                <a class="post-title-link" href="/post/ed78bc01.html" itemprop="url">使用Spring Cloud Security OAuth2搭建授权服务</a></h1>
         
 
         <div class="post-meta">
@@ -1294,16 +1392,50 @@ How to download and install prebuilt OpenJDK
       
         
           
-          前言：本文意在抛砖引玉，帮大家将基本的环境搭起来，具体实战方案还要根据自己的业务需求进行制定。我们最终没有使用Spring Security OAuth2来搭建授权服务，而是完全根据OAuth2标准自己实现的服务。
-Spring Cloud Security OAuth2 是 Spring 对 OA
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/22/使用Spring Cloud Security OAuth2搭建授权服务/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>前言：<br>本文意在抛砖引玉，帮大家将基本的环境搭起来，具体实战方案还要根据自己的业务需求进行制定。我们最终没有使用Spring Security OAuth2来搭建授权服务，而是完全根据OAuth2标准自己实现的服务。</p>
+<p>Spring Cloud Security OAuth2 是 Spring 对 OAuth2 的开源实现，优点是能与Spring Cloud技术栈无缝集成，如果全部使用默认配置，开发者只需要添加注解就能完成 OAuth2 授权服务的搭建。</p>
+<h1 id="1-添加依赖"><a href="#1-添加依赖" class="headerlink" title="1. 添加依赖"></a>1. 添加依赖</h1><p>授权服务是基于Spring Security的，因此需要在项目中引入两个依赖：</p>
+<p><code class="hljs xml has-numbering"> <span class="hljs-tag">&lt;<span class="hljs-title">dependency&gt;<br>            <span class="hljs-tag">&lt;<span class="hljs-title">groupId&gt;org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-title">groupId&gt;<br>            <span class="hljs-tag">&lt;<span class="hljs-title">artifactId&gt;spring-cloud-starter-security<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId&gt;<br>    <span class="hljs-tag">&lt;/<span class="hljs-title">dependency&gt;</span></span></span></span></span></span></span></span></span></span></span></span></code></p>
+<pre><code>&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;dependency&gt;
+         &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;groupId&gt;org.springframework.cloud&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;groupId&gt;
+         &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;artifactId&gt;spring-cloud-starter-oauth2&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;artifactId&gt;
+ &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;dependency&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">前者为 Security，后者为Security的OAuth2扩展。</span><br><span class="line"></span><br><span class="line">    # 2. 添加注解和配置</span><br><span class="line"></span><br><span class="line">在启动类中添加`@EnableAuthorizationServer`注解：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs java has-numbering&quot;&gt;&lt;span class=&quot;hljs-annotation&quot;&gt;@SpringBootApplication</span><br><span class="line">    &lt;span class=&quot;hljs-annotation&quot;&gt;@EnableAuthorizationServer</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class &lt;span class=&quot;hljs-title&quot;&gt;AlanOAuthApplication &#123;</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-keyword&quot;&gt;static &lt;span class=&quot;hljs-keyword&quot;&gt;void &lt;span class=&quot;hljs-title&quot;&gt;main(String[] args) &#123;</span><br><span class="line">            SpringApplication.run(AlanOAuthApplication.class, args);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>完成这些我们的授权服务最基本的骨架就已经搭建完成了。但是要想跑通整个流程，我们必须分配 <code>client_id</code>, <code>client_secret</code>才行。Spring Security OAuth2的配置方法是编写<code>@Configuration</code>类继承<code>AuthorizationServerConfigurerAdapter</code>，然后重写<code>void configure(ClientDetailsServiceConfigurer clients)</code>方法，如：</p>
+<pre><code>&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;language-java hljs  has-numbering&quot;&gt;&lt;span class=&quot;hljs-annotation&quot;&gt;@Override
+    &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-keyword&quot;&gt;void &lt;span class=&quot;hljs-title&quot;&gt;configure(ClientDetailsServiceConfigurer clients) &lt;span class=&quot;hljs-keyword&quot;&gt;throws Exception {
+        clients.inMemory() &lt;span class=&quot;hljs-comment&quot;&gt;// 使用in-memory存储
+                .withClient(&lt;span class=&quot;hljs-string&quot;&gt;&quot;client&quot;) &lt;span class=&quot;hljs-comment&quot;&gt;// client_id
+                .secret(&lt;span class=&quot;hljs-string&quot;&gt;&quot;secret&quot;) &lt;span class=&quot;hljs-comment&quot;&gt;// client_secret
+                .authorizedGrantTypes(&lt;span class=&quot;hljs-string&quot;&gt;&quot;authorization_code&quot;) &lt;span class=&quot;hljs-comment&quot;&gt;// 该client允许的授权类型
+                .scopes(&lt;span class=&quot;hljs-string&quot;&gt;&quot;app&quot;); &lt;span class=&quot;hljs-comment&quot;&gt;// 允许的授权范围
+    }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    # 3. 授权流程</span><br><span class="line"></span><br><span class="line">访问授权页面：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs avrasm has-numbering&quot;&gt;&lt;span class=&quot;hljs-label&quot;&gt;localhost:&lt;span class=&quot;hljs-number&quot;&gt;8080/oauth/authorize?client_id=client&amp;response_type=code&amp;redirect_uri=http://www&lt;span class=&quot;hljs-preprocessor&quot;&gt;.baidu&lt;span class=&quot;hljs-preprocessor&quot;&gt;.com&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>此时浏览器会让你输入用户名密码，这是因为 Spring Security 在默认情况下会对所有URL添加Basic Auth认证。默认的用户名为<code>user</code>, 密码是随机生成的，在控制台日志中可以看到。</p>
+<p><img src="http://img.blog.csdn.net/20160914172241289" alt="oauth2"></p>
+<p>画风虽然很简陋，但是基本功能都具备了。点击<code>Authorize</code>后，浏览器就会重定向到百度，并带上<code>code</code>参数：</p>
+<p><img src="http://img.blog.csdn.net/20160914172412190" alt="这里写图片描述"></p>
+<p>拿到<code>code</code>以后，就可以调用</p>
+<pre><code>&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs livecodeserver has-numbering&quot;&gt;POST/GET &lt;span class=&quot;hljs-keyword&quot;&gt;http://client:secret@localhost:&lt;span class=&quot;hljs-number&quot;&gt;8080/oauth/&lt;span class=&quot;hljs-keyword&quot;&gt;token&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">来换取`access_token`了：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs lasso has-numbering&quot;&gt;curl &lt;span class=&quot;hljs-attribute&quot;&gt;-X POST &lt;span class=&quot;hljs-attribute&quot;&gt;-H &lt;span class=&quot;hljs-string&quot;&gt;&quot;Content-Type: application/x-www-form-urlencoded&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;-d &lt;span class=&quot;hljs-string&quot;&gt;&apos;grant_type=authorization_code&amp;code=Li4NZo&amp;redirect_uri=http://www.baidu.com&apos; &lt;span class=&quot;hljs-string&quot;&gt;&quot;http://client:secret@localhost:8080/oauth/token&quot;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><blockquote>
+<p>注意，URL中的client为上文中通过<code>ClientDetailsServiceConfigurer</code>类指定的clientId。由于authorization_code的授权方式不需要 client_secret, 因此secret可以填写任意值</p>
+</blockquote>
+<p>返回如下：</p>
+<pre><code>&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;language-json hljs  has-numbering&quot;&gt;{
+  &quot;&lt;span class=&quot;hljs-attribute&quot;&gt;access_token&quot;: &lt;span class=&quot;hljs-value&quot;&gt;&lt;span class=&quot;hljs-string&quot;&gt;&quot;32a1ca28-bc7a-4147-88a1-c95abcc30556&quot;, // 令牌
+  &quot;&lt;span class=&quot;hljs-attribute&quot;&gt;token_type&quot;: &lt;span class=&quot;hljs-value&quot;&gt;&lt;span class=&quot;hljs-string&quot;&gt;&quot;bearer&quot;,
+  &quot;&lt;span class=&quot;hljs-attribute&quot;&gt;expires_in&quot;: &lt;span class=&quot;hljs-value&quot;&gt;&lt;span class=&quot;hljs-number&quot;&gt;2591999,
+  &quot;&lt;span class=&quot;hljs-attribute&quot;&gt;scope&quot;: &lt;span class=&quot;hljs-value&quot;&gt;&lt;span class=&quot;hljs-string&quot;&gt;&quot;app&quot;
+}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">到此我们最最基本的授权服务就搭建完成了。然而，这仅仅是个demo，如果要在生产环境中使用，还需要做更多的工作。</span><br><span class="line"></span><br><span class="line">    # 4. 使用MySQL存储access_token和client信息</span><br><span class="line"></span><br><span class="line">在上面的例子中，所有的token信息都是保存在内存中的，这显然无法在生产环境中使用(进程结束后所有token丢失, 用户需要重新授权)，因此我们需要将这些信息进行持久化操作。   </span><br><span class="line">把授权服务器中的数据存储到数据库中并不难，因为 Spring Cloud Security OAuth 已经为我们设计好了一套Schema和对应的DAO对象。但在使用之前，我们需要先对相关的类有一定的了解。</span><br><span class="line"></span><br><span class="line">    ## 4.1 相关接口</span><br><span class="line"></span><br><span class="line">Spring Cloud Security OAuth2通过`DefaultTokenServices`类来完成token生成、过期等 OAuth2 标准规定的业务逻辑，而`DefaultTokenServices`又是通过`TokenStore`接口完成对生成数据的持久化。在上面的demo中，`TokenStore`的默认实现为`InMemoryTokenStore`，即内存存储。 对于Client信息，`ClientDetailsService`接口负责从存储仓库中读取数据，在上面的demo中默认使用的也是`InMemoryClientDetialsService`实现类。说到这里就能看出，要想使用数据库存储，只需要提供这些接口的实现类即可。庆幸的是，框架已经为我们写好JDBC实现了，即`JdbcTokenStore`和`JdbcClientDetailsService`。</span><br><span class="line"></span><br><span class="line">    ## 4.2 建表</span><br><span class="line"></span><br><span class="line">要想使用这些JDBC实现，首先要建表。框架为我们提前设计好了schema, 在github上：[https://github.com/spring-projects/spring-security-oauth/blob/master/spring-security-oauth2/src/test/resources/schema.sql](https://github.com/spring-projects/spring-security-oauth/blob/master/spring-security-oauth2/src/test/resources/schema.sql)</span><br><span class="line"></span><br><span class="line">在使用这套表结构之前要注意的是，对于MySQL来说，默认建表语句中主键是varchar(255)类型，在mysql中执行会报错，原因是mysql对varchar主键长度有限制。所以这里改成128即可。其次，语句中会有某些字段为`LONGVARBINARY`类型，它对应mysql的`blob`类型，也需要修改一下。</span><br><span class="line"></span><br><span class="line">    ## 4.3 配置</span><br><span class="line"></span><br><span class="line">数据库建好后，下一步就是配置框架使用JDBC实现。方法还是编写`@Configuration`类继承`AuthorizationServerConfigurerAdapter`：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs java has-numbering&quot;&gt;    &lt;span class=&quot;hljs-annotation&quot;&gt;@Autowired</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;private AuthenticationManager authenticationManager;</span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@Autowired</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;private DataSource dataSource;</span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@Bean &lt;span class=&quot;hljs-comment&quot;&gt;// 声明TokenStore实现</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public TokenStore &lt;span class=&quot;hljs-title&quot;&gt;tokenStore() &#123;</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;return &lt;span class=&quot;hljs-keyword&quot;&gt;new JdbcTokenStore(dataSource);</span><br><span class="line">        &#125;</span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@Bean &lt;span class=&quot;hljs-comment&quot;&gt;// 声明 ClientDetails实现</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public ClientDetailsService &lt;span class=&quot;hljs-title&quot;&gt;clientDetails() &#123;</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;return &lt;span class=&quot;hljs-keyword&quot;&gt;new JdbcClientDetailsService(dataSource);</span><br><span class="line">        &#125;</span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@Override &lt;span class=&quot;hljs-comment&quot;&gt;// 配置框架应用上述实现</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-keyword&quot;&gt;void &lt;span class=&quot;hljs-title&quot;&gt;configure(AuthorizationServerEndpointsConfigurer endpoints) &lt;span class=&quot;hljs-keyword&quot;&gt;throws Exception &#123;</span><br><span class="line">            endpoints.authenticationManager(authenticationManager);</span><br><span class="line">            endpoints.tokenStore(tokenStore());</span><br><span class="line"></span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 配置TokenServices参数</span><br><span class="line">            DefaultTokenServices tokenServices = &lt;span class=&quot;hljs-keyword&quot;&gt;new DefaultTokenServices();</span><br><span class="line">            tokenServices.setTokenStore(endpoints.getTokenStore());</span><br><span class="line">            tokenServices.setSupportRefreshToken(&lt;span class=&quot;hljs-keyword&quot;&gt;false);</span><br><span class="line">            tokenServices.setClientDetailsService(endpoints.getClientDetailsService());</span><br><span class="line">            tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());</span><br><span class="line">            tokenServices.setAccessTokenValiditySeconds( (&lt;span class=&quot;hljs-keyword&quot;&gt;int) TimeUnit.DAYS.toSeconds(&lt;span class=&quot;hljs-number&quot;&gt;30)); &lt;span class=&quot;hljs-comment&quot;&gt;// 30天</span><br><span class="line">            endpoints.tokenServices(tokenServices);</span><br><span class="line">        &#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>完成这些后，框架就会将中间产生的数据写到mysql中了。<code>oauth_client_details</code>是client表，可以直接在该表中添加记录来添加client:<br><img src="http://img.blog.csdn.net/20160914174747955" alt="这里写图片描述"></p>
+<pre><code>## 4.4 需要注意的地方
+</code></pre><p>这里不得不说 Spring 设计有一个奇葩地的方。注意看<code>oauth_access_token</code>表是存放访问令牌的，但是并没有直接在字段中存放token。Spring 使用<code>OAuth2AccessToken</code>来抽象与令牌有关的所有属性，在写入到数据库时，<strong>Spring将该对象通过JDK自带的序列化机制序列成字节</strong>直接保存到了该表的<code>token</code>字段中。也就是说，如果只看数据表你是看不出<code>access_token</code>的值是多少，过期时间等信息的。这就给资源服务器的实现带来了麻烦。我们的资源提供方并没有使用Spring Security，也不想引入 Spring Security 的任何依赖，这时候就只能将 <code>DefaultOAuth2AccessToken</code>的源码copy到资源提供方的项目中，然后读取<code>token</code>字段并反序列化还原对象来获取token信息。但是如果这样做还会遇到反序列化兼容性的问题，具体解决方法参考我另一篇博文: <a href="http://blog.csdn.net/neosmith/article/details/52539614" target="_blank" rel="noopener">http://blog.csdn.net/neosmith/article/details/52539614</a></p>
+<pre><code># 5. 总结
+</code></pre><p>至此一个能在生产环境下使用的授权服务就搭建好了。其实我们在实际使用时应该适当定制<code>JdbcTokenStore</code>或<code>ClientDetailsService</code>来实适应业务需要，甚至可以直接从0开始实现接口，完全不用框架提供的实现。另外，Spring 直接将<code>DefaultOAuth2AccessToken</code>序列化成字节保存到数据库中的设计，我认为是非常不合理的。或许设计者的初衷是保密<code>access_token</code>，但是通过加密的方法也可以实现，完全不应该直接扔字节。不过通过定制<code>TokenStore</code>接口，我们可以使用自己的表结构而不拘泥于默认实现。</p>
+<pre><code># 6. 个人看法
+</code></pre><p>Spring的OAuth2实现有些过于复杂了，oauth2本身只是个非常简单的协议，完全可以自己在SpringMVC的基础上自由实现，没有难度，也不复杂。我想很多人去用框架应该是担心oauth2协议复杂实现起来健壮性不足，其实是多虑了。如果是开发我个人的项目，我肯定会不使用任何框架。</p>
+<pre><code>* * *
+</code></pre><p>github地址： <a href="https://github.com/wanghongfei/spring-security-oauth2-example" target="_blank" rel="noopener">https://github.com/wanghongfei/spring-security-oauth2-example</a><br></p>
+
+          
         
       
     </div>
@@ -1350,7 +1482,7 @@ Spring Cloud Security OAuth2 是 Spring 对 OA
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/22/Neo4j 2.0 生产环境集群搭建/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/4cb54bc2.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1369,7 +1501,7 @@ Spring Cloud Security OAuth2 是 Spring 对 OA
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/22/Neo4j 2.0 生产环境集群搭建/" itemprop="url">Neo4j 2.0 生产环境集群搭建</a></h1>
+                <a class="post-title-link" href="/post/4cb54bc2.html" itemprop="url">Neo4j 2.0 生产环境集群搭建</a></h1>
         
 
         <div class="post-meta">
@@ -1421,20 +1553,185 @@ Spring Cloud Security OAuth2 是 Spring 对 OA
       
         
           
-          一、在windows上搭建Neo4j ha cluster的配置方法：
-例如：建立集群的三台机器的ip分别为：10.230.9.91，10.230.9.92，10.230.9.93。
-10.230.9.91**机器上的配置如下：**
-1、关闭防火墙
+            <p><strong>一、在windows上搭建Neo4j ha cluster的配置方法：</strong></p>
+<p>例如：建立集群的三台机器的ip分别为：10.230.9.91，10.230.9.92，10.230.9.93。</p>
+<p><strong>10.230.9.91**</strong>机器上的配置如下：**</p>
+<pre><code>1、关闭防火墙
 
-2、ping 10.230.9.92和10.23
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/22/Neo4j 2.0 生产环境集群搭建/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+2、ping 10.230.9.92和10.230.9.93，看是否能ping通
+
+3、解压Neo4j 安装文件到某一目录下（例如F:\）
+
+4、修改Neo4j配置文件(F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\conf\neo4j.properties)
+
+   *ha.server_id=1*
+</code></pre><ul>
+<li><p>ha.initial_hosts=10.230.9.91:5001,10.230.9.92:5001,10.230.9.93:5001*</p>
+<p>5、修改Neo4j配置文件(F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\conf\neo4j-server.properties)</p>
+<p><em>org.neo4j.server.webserver.address=0.0.0.0</em></p>
+</li>
+<li><p>org.neo4j.server.database.mode=HA*</p>
+<p>6、以管理员权限启动cmd控制台, 进入F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\bin</p>
+</li>
+</ul>
+<p><strong>10.230.9.92**</strong>机器上的配置如下：**</p>
+<p>1、关闭防火墙</p>
+<p>2、ping 10.230.9.91和10.230.9.93，看是否能ping通</p>
+<p>3、解压Neo4j 安装文件到某一目录下（例如F:\）</p>
+<p>4、修改Neo4j配置文件(F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\conf\neo4j.properties)</p>
+<pre><code>ha.server_id=2
+
+ha.initial_hosts=10.230.9.91:5001,10.230.9.92:5001,10.230.9.93:5001
+</code></pre><p>5、修改Neo4j配置文件(F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\conf\neo4j-server.properties)</p>
+<pre><code>org.neo4j.server.webserver.address=0.0.0.0
+
+org.neo4j.server.database.mode=HA
+</code></pre><p>6、以管理员权限启动cmd控制台, 进入F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\bin</p>
+<p><strong>10.230.9.93**</strong>机器上的配置如下：**</p>
+<p>1、关闭防火墙</p>
+<p>2、ping 10.230.9.91和10.230.9.92，看是否能ping通</p>
+<p>3、解压Neo4j 安装文件到某一目录下（例如F:\）</p>
+<p>4、修改Neo4j配置文件(F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\conf\neo4j.properties)</p>
+<pre><code>ha.server_id=3
+
+ha.initial_hosts=10.230.9.91:5001,10.230.9.92:5001,10.230.9.93:5001
+</code></pre><p>5、修改Neo4j配置文件(F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\conf\neo4j-server.properties)</p>
+<pre><code>org.neo4j.server.webserver.address=0.0.0.0
+
+org.neo4j.server.database.mode=HA
+</code></pre><p>6、以管理员权限启动cmd控制台, 进入F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\bin</p>
+<p><strong>启动集群：</strong></p>
+<p>在三个控制台分别输入Neo4j start，并回车。</p>
+<p><strong>集群启动成功验证：</strong></p>
+<p>在三台机器的浏览器分别输入：<a href="http://localhost:7474/" target="_blank" rel="noopener">http://localhost:7474</a> 回车，进入server info,点击左侧导航栏“High Availability”，显示如下即为成功启动cluster:</p>
+<p> <img src="http://pangguoming.com/blog/images/d9eb3868-97b9-4930-817c-ecbbb9127e3b.jpg" alt=""><img src="http://pangguoming.com/blog/images/eeb4e640-5608-4c39-932b-2296555249e7.jpg" alt=""><img src="http://pangguoming.com/blog/images/d3ba614b-0163-4f3f-9d42-bcd552515af7.jpg" alt=""><img src="http://pangguoming.com/blog/images/bd07e2cc-d663-409f-8eae-067b224a6d31.jpg" alt=""></p>
+<p>注：按照neo4j manual的写法，windows和linux生产环境集群，搭建后的验证方法相同。</p>
+<p><strong>注：某些情况下，集群未成功启动，但还是可以进入上面的页面，但是available=false,haRole=UNKNOWN。这种情况应该进入/data/graph.db/message.log查看出错原因。</strong></p>
+<p> <img src="http://pangguoming.com/blog/images/9eb0642e-8d5e-4055-8162-5fac9d66abab.jpg" alt=""></p>
+<p><strong>二、在RedHat6.0上搭建Neo4j ha cluster的配置方法：</strong></p>
+<p>例如：建立集群的三个虚拟机的ip分别为：192.168.110.131,192.168.110.132,192.168.110.133。</p>
+<p><strong>三台虚拟机上相同的配置：</strong></p>
+<pre><code>1、进入root，创建neo4j用户。
+
+2、关闭防火墙，$service iptables stop。
+
+3、将防火墙设置为非自启动。
+</code></pre><p> <img src="http://pangguoming.com/blog/images/4bfffcd9-9ca9-42d9-8d65-bad51c817559.jpg" alt=""></p>
+<p>4、手动配置网络。</p>
+<p> <img src="http://pangguoming.com/blog/images/c96f6b8a-7788-4b56-b669-c953edd88ef7.jpg" alt=""><img src="http://pangguoming.com/blog/images/b95632d1-78e2-4697-9e2f-ca2cee522f9f.jpg" alt=""><img src="http://pangguoming.com/blog/images/d8b6b7f5-4730-4afa-9f8d-c4c4f4b33a41.jpg" alt=""></p>
+<pre><code>修改 /etc/sysconfig/network 主机名，相应的主机名如下：
+
+    192.168.110.131虚拟机上的主机配置为NETWORKING=yes HOSTNAME=neo4j-01
+
+    192.168.110.132虚拟机上的主机配置为NETWORKING=yes HOSTNAME=neo4j-02
+
+    192.168.110.133虚拟机上的主机配置为NETWORKING=yes HOSTNAME=neo4j-03
+
+修改/etc/hosts,相应的配置如下：
+
+    192.168.110.131虚拟机上的配置为：
+</code></pre><p> <img src="http://pangguoming.com/blog/images/143bf044-dcf4-42e4-8a1e-d32bcf1f7f2a.jpg" alt=""></p>
+<p>192.168.110.132虚拟机上的配置为：</p>
+<p> <img src="http://pangguoming.com/blog/images/31a10317-83db-432e-b44c-3bf832da6d37.jpg" alt=""></p>
+<p>192.168.110.133虚拟机上的配置为：</p>
+<p> <img src="http://pangguoming.com/blog/images/66df5150-18f0-4af9-b1a1-915e86767955.jpg" alt=""></p>
+<p>5、配置java环境</p>
+<p> 将jdk安装包解压至/usr/java</p>
+<p> 在/etc/profile 文件中添加：</p>
+<p>export JAVA_HOME=/usr/java/jdk1.7.0_25</p>
+<p>export PATH=$PATH:$JAVA_HOME/bin</p>
+<p>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</p>
+<p> <img src="http://pangguoming.com/blog/images/c72600aa-d334-4264-a27d-bf0230c4800c.jpg" alt=""></p>
+<p>6、配置ssh</p>
+<p>各个虚拟机上 /etc/ssh/sshd_config文件放开如下属性：</p>
+<p>RSAAuthentication yes</p>
+<p>PubkeyAuthentication yes</p>
+<p>AuthorizedKeysFile  .ssh/authorized_keys</p>
+<p>UseDNS  yes</p>
+<p>7、（三个虚拟机都配）分别进入neo4j账户，配置ssh无密码登陆：</p>
+<p><strong>$ssh-keygen –t rsa</strong></p>
+<p>   一路回车，/home/neo4j/.ssh/中出现两个文件：id_rsa(私钥)和id_rsa.pub(公钥)。</p>
+<pre><code>**$cd /home/neo4j/.ssh**
+</code></pre><p><strong>$cat id_rsa.pub &gt;&gt; authorized_keys</strong></p>
+<p>   /home/neo4j/.ssh/中出现authorized_keys文件。</p>
+<p><strong>$sudo root</strong></p>
+<p><strong>$**</strong>输入root账户的密码**</p>
+<p><strong>Root]$chmod 700 /home/neo4j/.ssh</strong></p>
+<p><strong>Root]$chmod 600 /home/neo4j/.ssh/*</strong></p>
+<p>切换至neo4j账户：</p>
+<p><strong>Neo4j]$ssh localhost</strong></p>
+<p>会让输入(yes/no),输入yes回车</p>
+<p>第一次可能会让输入密码，以后就不会输入密码了。如果出现总让输入密码的状况，说明ssh配置不成功。</p>
+<p>8、配置相互间ssh无密码登陆：</p>
+<p>将neo4j-01上的/home/neo4j/.ssh/authorized_keys的内容追加到neo4j-02和neo4j-03上的此文件中。<strong>结果是保证每个虚拟机上的公钥（id_rsa.pub）的内容，在各个虚拟机的authorized_keys文件中都有。</strong></p>
+<p>验证ssh：</p>
+<pre><code>Neo4j-01]$ssh localhost
+</code></pre><p>Neo4j-01]$ssh 192.168.110.132</p>
+<p>Neo4j-01]$ssh neo4j-02</p>
+<p>以上如果都不需要密码登陆，则配置成功。</p>
+<pre><code>9、配置neo4j:
+</code></pre><p><strong>192.168.110.131**</strong>机器上的配置如下：**</p>
+<pre><code>1、解压Neo4j 安装文件到某一目录下（例如/home/neo4j/Documents）
+
+2、修改Neo4j配置文件(/home/neo4j/Documents/neo4j-enterprise-2.0.0-M06/conf/neo4j.properties)
+</code></pre><p><em>ha.server_id=1</em></p>
+<p><em>ha.initial_hosts=192.168.110.131:5001,192.168.110.132:5001,192.168.110.133:5001</em></p>
+<pre><code>5、修改Neo4j配置文件(/home/neo4j/Documents/neo4j-enterprise-2.0.0-M06/conf/neo4j-server.properties)
+
+    *org.neo4j.server.webserver.address=0.0.0.0*
+</code></pre><ul>
+<li><p>org.neo4j.server.database.mode=HA*</p>
+<p>6、进入控制台</p>
+<p>$cd /home/neo4j/Document/neo4j-enterprise-2.0.0-M06/bin</p>
+<p>$./neo4j start</p>
+</li>
+</ul>
+<p><strong>192.168.110.132**</strong>机器上的配置如下：**</p>
+<pre><code>1、解压Neo4j 安装文件到某一目录下（例如/home/neo4j/Documents）
+
+2、修改Neo4j配置文件(/home/neo4j/Documents/neo4j-enterprise-2.0.0-M06/conf/neo4j.properties)
+</code></pre><p><em>ha.server_id=2</em></p>
+<p><em>ha.initial_hosts=192.168.110.131:5001,192.168.110.132:5001,192.168.110.133:5001</em></p>
+<pre><code>5、修改Neo4j配置文件(/home/neo4j/Documents/neo4j-enterprise-2.0.0-M06/conf/neo4j-server.properties)
+
+    *org.neo4j.server.webserver.address=0.0.0.0*
+</code></pre><ul>
+<li><p>org.neo4j.server.database.mode=HA*</p>
+<p>6、进入控制台</p>
+<p>$cd /home/neo4j/Document/neo4j-enterprise-2.0.0-M06/bin</p>
+<p>$./neo4j start</p>
+</li>
+</ul>
+<p><strong>192.168.110.133**</strong>机器上的配置如下：**</p>
+<pre><code>1、解压Neo4j 安装文件到某一目录下（例如/home/neo4j/Documents）
+
+2、修改Neo4j配置文件(/home/neo4j/Documents/neo4j-enterprise-2.0.0-M06/conf/neo4j.properties)
+</code></pre><p><em>ha.server_id=3</em></p>
+<p><em>ha.initial_hosts=192.168.110.131:5001,192.168.110.132:5001,192.168.110.133:5001</em></p>
+<pre><code>5、修改Neo4j配置文件(/home/neo4j/Documents/neo4j-enterprise-2.0.0-M06/conf/neo4j-server.properties)
+
+    *org.neo4j.server.webserver.address=0.0.0.0*
+</code></pre><ul>
+<li><p>org.neo4j.server.database.mode=HA*</p>
+<p>6、进入控制台</p>
+<p>$cd /home/neo4j/Document/neo4j-enterprise-2.0.0-M06/bin</p>
+<p>$./neo4j start</p>
+</li>
+</ul>
+<p><strong>启动集群：</strong></p>
+<p>在三个控制台分别输入Neo4j start，并回车。</p>
+<p> <img src="http://pangguoming.com/blog/images/ba9c0df5-a98f-488c-b51b-67ea2a8b7e59.jpg" alt=""></p>
+<p>   集群搭建成功的验证方法同windows。</p>
+<p><strong>搭建过程中，message.log可能出现的错误：</strong></p>
+<p>1、ERROR [o.n.c.c.NetworkSender]: Receive exception:</p>
+<p>java.net.NoRouteToHostException: No route to host</p>
+<pre><code>可能没有关闭防火墙
+</code></pre><p>2、WARN [o.n.c.c.NetworkSender]: Could not connect to:cluster://192.168.1.129:5001<br>org.neo4j.cluster.com.ChannelOpenFailedException: Client could not connect to /192.168.1.129:5001<br>ERROR [o.n.c.c.NetworkSender]: Channel [id: 0xfc016066] had no URI associated with it.</p>
+<pre><code>Ssh没有配置成功，或者因为使用root账户创建ssh。
+</code></pre><p>3、WARN [o.n.k.h.c.HighAvailabilityModeSwitcher]: Consistency checker failed<br>org.neo4j.com.ComException: MasterClient18 could not connect to neo4j-01:6001</p>
+<pre><code>/etc/hosts没有配置对其他机器的映射。
+</code></pre>
+          
         
       
     </div>
@@ -1481,7 +1778,7 @@ Spring Cloud Security OAuth2 是 Spring 对 OA
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/22/添加 Github  follow、star按钮到网页/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/7bec239b.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1500,7 +1797,7 @@ Spring Cloud Security OAuth2 是 Spring 对 OA
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/22/添加 Github  follow、star按钮到网页/" itemprop="url">添加 Github  follow、star按钮到网页</a></h1>
+                <a class="post-title-link" href="/post/7bec239b.html" itemprop="url">添加 Github  follow、star按钮到网页</a></h1>
         
 
         <div class="post-meta">
@@ -1552,15 +1849,8 @@ Spring Cloud Security OAuth2 是 Spring 对 OA
       
         
           
-          怎么把github的star/fork/watch三个按钮弄到自己网站上？就是这个按钮如何弄到我的网站里面来，是否有API呢？mdo/github-buttons · GitHub这个超级方便已经添加上去了，不用去调API了。看效果吧 http://JSLite.io
+            <h1 id="怎么把github的star-fork-watch三个按钮弄到自己网站上？"><a href="#怎么把github的star-fork-watch三个按钮弄到自己网站上？" class="headerlink" title="怎么把github的star/fork/watch三个按钮弄到自己网站上？"></a>怎么把github的star/fork/watch三个按钮弄到自己网站上？</h1><div data-reactid="78"><br><div class="QuestionHeader-detail" data-reactid="80"><br><div class="QuestionRichText QuestionRichText--expandable" data-reactid="81"><br><div data-reactid="82"><span class="RichText" data-reactid="83"><img src="https://pic1.zhimg.com/50/91ad6691e2c400cd092fa3a8d4cda2a8_hd.jpg" alt="">就是这个按钮如何弄到我的网站里面来，是否有API呢？<br><a href="https://link.zhihu.com/?target=https%3A//github.com/mdo/github-buttons" target="_blank" rel="noopener">mdo/github-buttons · GitHub</a><br>这个超级方便已经添加上去了，不用去调API了。看效果吧 <a href="https://link.zhihu.com/?target=http%3A//jslite.io/" target="_blank" rel="noopener">http://JSLite.io</a></span><br><br></div></div></div></div>
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/22/添加 Github  follow、star按钮到网页/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1623,105 +1913,108 @@ Spring Cloud Security OAuth2 是 Spring 对 OA
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
-            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+
           
-            <p class="site-author-name" itemprop="name">庞国明</p>
-            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives">
-            
-                <span class="site-state-item-count">420</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">267</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>GitHub</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
-                  
-                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -1738,12 +2031,9 @@ Spring Cloud Security OAuth2 是 Spring 对 OA
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">庞国明</span>
 
@@ -1751,11 +2041,17 @@ Spring Cloud Security OAuth2 是 Spring 对 OA
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
@@ -1775,6 +2071,8 @@ Spring Cloud Security OAuth2 是 Spring 对 OA
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -1809,53 +2107,61 @@ Spring Cloud Security OAuth2 是 Spring 对 OA
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
 
-
-
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1881,6 +2187,23 @@ Spring Cloud Security OAuth2 是 Spring 对 OA
 
   
 
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
 
 
 
@@ -2210,11 +2533,27 @@ Spring Cloud Security OAuth2 是 Spring 对 OA
 
 
 
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
 
   
 
   
 
+  
+
+  
   
 
   

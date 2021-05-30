@@ -45,38 +45,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT">
@@ -84,11 +73,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
 
 
 
@@ -113,11 +97,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -153,30 +137,6 @@
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-	<div id="topnavbar">
-  <div class="tophead">
-    <div class="toplogo"><a href="/">庞国明-博客</a></div>
-    <div id="mnav">
-      <h2><span class="navicon"></span></h2>
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </div>
-    <nav class="topnav" id="topnav">
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
 
   
   
@@ -230,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -250,12 +220,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            关于
+            归档
           </a>
         </li>
       
@@ -278,20 +248,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -324,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/10/springboot-shrio-vue-cors/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/d07d1c62.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -343,7 +319,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/10/springboot-shrio-vue-cors/" itemprop="url">spring boot shiro vue webpack 跨域及shiro无法获取登陆用户解决方案</a></h1>
+                <a class="post-title-link" href="/post/d07d1c62.html" itemprop="url">spring boot shiro vue webpack 跨域及shiro无法获取登陆用户解决方案</a></h1>
         
 
         <div class="post-meta">
@@ -417,15 +393,26 @@
       
         
           
-          问题描述我的项目是前后端分离架构，前端采用vue搭建单页应用，后端采用spring boot搭建Restful服务，运行在localhost:8181服务端， 用spring boot 搭建，配合使用shiro权限框架，发布Restful 接口客户端是 vue cli搭建 由webpack 做代理,
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/10/springboot-shrio-vue-cors/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>我的项目是前后端分离架构，前端采用vue搭建单页应用，后端采用spring boot搭建Restful服务，运行在localhost:8181<br>服务端， 用spring boot 搭建，配合使用shiro权限框架，发布Restful 接口<br>客户端是 vue cli搭建 由webpack 做代理,运行在localhost:8080，这样就是跨域访问服务端了。</p>
+<p>目前遇到的问题是：用户登录正常，登录后 发现 session丢失，无法再获取当前登陆用户。<br>查看web浏览器 发现 cookie中JSESSION 登陆后发生变化，断定问题应该出现在客户端<br>客户端采用 vue-axio 库来处理 Http请求，<br>因为要使用http请求的来认证权限，所以必须开启axio的认证凭证功能<br>axios.defaults.withCredentials = true ;<br>但设置完后，还是出现session丢失。</p>
+<p>经过调研找到原因和解决方案。</p>
+<h3 id="Spring-boot服务端配置"><a href="#Spring-boot服务端配置" class="headerlink" title="Spring boot服务端配置"></a>Spring boot服务端配置</h3><p><em>注：Spring boot服务端项目源码在：<a href="https://github.com/pangguoming/spring-boot-restful-demo" target="_blank" rel="noopener">https://github.com/pangguoming/spring-boot-restful-demo</a></em></p>
+<p>首先服务端需要配置开启跨域访问，这个配置和普通sevlet配置跨域访问没什么区别，唯一注意的就是采用Spring boot的配置方式（配置类要添加@Componet注解）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/*跨域请求拦截器，文件位置：spring-boot-restful-demo/src/main/java/com/rjhy/cloud/common/config/CorsFilter.java*/</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import javax.servlet.Filter;</span><br><span class="line">import javax.servlet.FilterChain;</span><br><span class="line">import javax.servlet.FilterConfig;</span><br><span class="line">import javax.servlet.ServletException;</span><br><span class="line">import javax.servlet.ServletRequest;</span><br><span class="line">import javax.servlet.ServletResponse;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line">@Component  </span><br><span class="line">public class CorsFilter implements Filter &#123;  </span><br><span class="line">  </span><br><span class="line">    final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(CorsFilter.class);  </span><br><span class="line">  </span><br><span class="line">    /*跨域请求配置*/</span><br><span class="line">    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException &#123;  </span><br><span class="line">        HttpServletResponse response = (HttpServletResponse) res;  </span><br><span class="line">  </span><br><span class="line">        HttpServletRequest reqs = (HttpServletRequest) req;  </span><br><span class="line">  </span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Origin&quot;,reqs.getHeader(&quot;Origin&quot;));  </span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);  </span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;POST, PUT, GET, OPTIONS, DELETE&quot;);  </span><br><span class="line">        response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;5000&quot;);  </span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With&quot;);</span><br><span class="line">        chain.doFilter(req, res);  </span><br><span class="line">    &#125;  </span><br><span class="line">    public void init(FilterConfig filterConfig) &#123;&#125;  </span><br><span class="line">    public void destroy() &#123;&#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置完服务端跨域后，在对服务端的网络请求已经允许使用跨域访问了。</p>
+<p>接下来有个<strong>坑</strong>！</p>
+<p>因为我们采用Shiro做安全框架，shiro框架通过判断每个网络请求携带的cookie来唯一确定用户身份。<br>但axios通过浏览器发送跨域请求的时候POST、PUT、DELETE操作之前，会先发OPTIONS请求（为啥先发OPTIONS，请参见），并且此OPTIONS请求是不带cookie的，这导致shiro框架无法获取到cookie来确定用户身份而抛出403异常，然后请求终止，并不再响应接下来的POST、PUT、DELETE请求，GET请求可正常使用。</p>
+<p>解决办法：</p>
+<p>为shiro创建一个单独处理OPTIONS请求的过滤器，功能是凡是OPTIONS请求，统统强制正常返回（也就是返回HTTP 200 响应），代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/*Shiro自定义过滤器文件，文件位置：spring-boot-restful-demo/src/main/java/com/rjhy/cloud/common/config/ShiroFilter.java*/</span><br><span class="line">import javax.servlet.ServletRequest;</span><br><span class="line">import javax.servlet.ServletResponse;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line">import org.apache.shiro.web.servlet.AdviceFilter;</span><br><span class="line">import org.springframework.http.HttpStatus;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"></span><br><span class="line">@Component</span><br><span class="line">public class ShiroFilter extends AdviceFilter &#123;</span><br><span class="line">	@Override</span><br><span class="line">	protected boolean preHandle(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception &#123;</span><br><span class="line">		HttpServletRequest request = (HttpServletRequest) servletRequest;</span><br><span class="line">		HttpServletResponse response = (HttpServletResponse) servletResponse;</span><br><span class="line">		if (request.getMethod().equals(RequestMethod.OPTIONS.name())) &#123;</span><br><span class="line">			response.setStatus(HttpStatus.OK.value());</span><br><span class="line">			return false;</span><br><span class="line">		&#125;</span><br><span class="line">		return super.preHandle(request, response);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/*将自定义shiro过滤器注册到shiro配置中，文件位置：spring-boot-restful-demo/src/main/java/com/rjhy/cloud/common/config/ShiroConfiguration.java 第136行*/</span><br><span class="line">    ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();</span><br><span class="line">    shiroFilter.setSecurityManager(securityManager);</span><br></pre></td></tr></table></figure>
+<h3 id="vue客户端配置"><a href="#vue客户端配置" class="headerlink" title="vue客户端配置"></a>vue客户端配置</h3><p><em>注：客户端项目源码在：<a href="https://github.com/pangguoming/iview-admin" target="_blank" rel="noopener">https://github.com/pangguoming/iview-admin</a></em></p>
+<p>使用Vue cli创建的项目一般都是由webpack做请求代理，网上有些人说要去配置webpack的proxyTable，但经过本人尝试，不需要配置。只需要配置axios的参数即可，axios的配置最重要的就是axios.defaults.withCredentials = true ；我的代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/*axios配置，文件位置：iview-admin/src/vendors/axios.js*/</span><br><span class="line">axios.defaults.timeout = 5000;</span><br><span class="line">axios.defaults.headers.post[&apos;Content-Type&apos;] = &apos;application/x-www-form-urlencoded;charset=UTF-8&apos;;</span><br><span class="line">axios.defaults.baseURL = &apos;http://localhost:8181/&apos;;</span><br><span class="line">axios.defaults.withCredentials = true ;</span><br></pre></td></tr></table></figure>
+<p>这样就可以跨域从Vue客户端 发送POST、PUT、DELETE、GET方法了。</p>
+<p>问题完美解决！（得意的笑声中…….）</p>
+
+          
         
       
     </div>
@@ -472,7 +459,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/10/vue-permission/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/284fcf20.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -491,7 +478,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/10/vue-permission/" itemprop="url">Vue 自定义指令实现权限</a></h1>
+                <a class="post-title-link" href="/post/284fcf20.html" itemprop="url">Vue 自定义指令实现权限</a></h1>
         
 
         <div class="post-meta">
@@ -565,17 +552,20 @@
       
         
           
-          注：以下代码片段可以从：https://github.com/pangguoming/iview-admin中找到
-服务端返回权限字符串数组在登陆后服务端返回的用户信息中有权限信息permissions,其JSON内容如下：
-1permissions:[ &quot;KT Admin&quot;,&
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/10/vue-permission/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p><em>注：以下代码片段可以从：<br><a href="https://github.com/pangguoming/iview-admin" target="_blank" rel="noopener">https://github.com/pangguoming/iview-admin</a><br>中找到</em></p>
+<h3 id="服务端返回权限字符串数组"><a href="#服务端返回权限字符串数组" class="headerlink" title="服务端返回权限字符串数组"></a>服务端返回权限字符串数组</h3><p>在登陆后服务端返回的用户信息中有权限信息permissions,其JSON内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">permissions:[ &quot;KT Admin&quot;,&quot;sys.role&quot;, &quot;sys.user.add&quot;, &quot;dict.dictclass.view&quot;, &quot;dict.dictclass.add&quot;, &quot;sys.permission&quot;, &quot;sys.permission.edit&quot;, &quot;sys.user.view&quot;, &quot;sys&quot;]</span><br></pre></td></tr></table></figure>
+<h3 id="Vue保存权限字符串数组"><a href="#Vue保存权限字符串数组" class="headerlink" title="Vue保存权限字符串数组"></a>Vue保存权限字符串数组</h3><p>Vue客户端获上面JSON对象后，存入cookie中（也可以存在sessionStorage、localStorage中）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/*代码位置/src/views/login.vue*/</span><br><span class="line">Cookies.set(&apos;access&apos;, response.data.result.permissions);</span><br></pre></td></tr></table></figure>
+<h3 id="创建自定义权限指令"><a href="#创建自定义权限指令" class="headerlink" title="创建自定义权限指令"></a>创建自定义权限指令</h3><p>创建permission.js文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/*代码位置/src/directive/permission.js*/</span><br><span class="line">import Vue from &apos;vue&apos;;</span><br><span class="line">import Cookies from &apos;js-cookie&apos;;</span><br><span class="line">import Util from &apos;@/libs/util&apos;;</span><br><span class="line">Vue.directive(&apos;permission&apos;, &#123;</span><br><span class="line">    bind: function (el, binding, vnode) &#123;</span><br><span class="line">      let access = JSON.parse(Cookies.get(&apos;access&apos;));</span><br><span class="line">      let intersectionSet = new Set([...new Set(itAccess)].filter(x =&gt; new Set(currentAccess).has(x)));</span><br><span class="line">       if (intersectionSet.size==0) &#123;//用来判断用户的权限字符串数组与指令所在元素上的权限字符串数组是否有交集</span><br><span class="line">           el.style.display=&quot;none&quot;;</span><br><span class="line">       &#125;      </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="使用自定义权限指令"><a href="#使用自定义权限指令" class="headerlink" title="使用自定义权限指令"></a>使用自定义权限指令</h3><p>在vue主文件main.js中引入permission即可生效：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/*代码位置/src/main.js*/</span><br><span class="line">import permission from &apos;./directive/permission&apos;</span><br></pre></td></tr></table></figure>
+<p>其中cookies.get(‘access’)用来取出当前用户的权限字符串数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/*代码位置/src/views/demo/demo-crud.vue*/</span><br><span class="line">&lt;Button v-permission=&quot;[&apos;KT Admin&apos;]&quot; type=&quot;error&quot; @click=&quot;removeAll&quot; &gt;批量删除&lt;/Button&gt;</span><br></pre></td></tr></table></figure>
+<p>如果，用户权限数组有 ‘KT Admin’ 权限，则此按钮显示否则不显示。</p>
+
+          
         
       
     </div>
@@ -622,7 +612,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/08/搭建MySQL高可用负载均衡集群（转）/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/b76d6708.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -641,7 +631,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/08/搭建MySQL高可用负载均衡集群（转）/" itemprop="url">搭建MySQL高可用负载均衡集群（转）</a></h1>
+                <a class="post-title-link" href="/post/b76d6708.html" itemprop="url">搭建MySQL高可用负载均衡集群（转）</a></h1>
         
 
         <div class="post-meta">
@@ -693,19 +683,39 @@
       
         
           
-          阅读目录   1、简介
-   2、基本环境   3、配置MySQL主主复制
-   4、中间件简述   　　4.1、Haproxy介绍
-   　　4.2、keepalived介绍   5、中间件的安装与配置（haproxy、keepalived）
-   　　5.1、安装haproxy   　　1）、编
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/搭建MySQL高可用负载均衡集群（转）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div id="navCategory"><br><br><strong>阅读目录</strong><br><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label0" target="_blank" rel="noopener">1、简介</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label1" target="_blank" rel="noopener">2、基本环境</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label2" target="_blank" rel="noopener">3、配置MySQL主主复制</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label3" target="_blank" rel="noopener">4、中间件简述</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label4" target="_blank" rel="noopener">　　4.1、Haproxy介绍</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label5" target="_blank" rel="noopener">　　4.2、keepalived介绍</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label6" target="_blank" rel="noopener">5、中间件的安装与配置（haproxy、keepalived）</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label7" target="_blank" rel="noopener">　　5.1、安装haproxy</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label8" target="_blank" rel="noopener">　　1）、编译安装haproxy</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label9" target="_blank" rel="noopener">　　2）、提供启动脚本</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label10" target="_blank" rel="noopener">　　3）、提供配置文件</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label11" target="_blank" rel="noopener">　　4）、启动日志</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label12" target="_blank" rel="noopener">　　5）、启动haproxy</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label13" target="_blank" rel="noopener">　　6）、测试haproxy</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label14" target="_blank" rel="noopener">　　5.2、安装keepalived</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label15" target="_blank" rel="noopener">　　1）、解决缺少的软件库文件</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label16" target="_blank" rel="noopener">　　2）、编译安装keepalived软件</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label17" target="_blank" rel="noopener">　　3）、创建配置文件</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label18" target="_blank" rel="noopener">　　4）、创建脚本文件</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label19" target="_blank" rel="noopener">6、功能测试</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label20" target="_blank" rel="noopener">　　6.1、流程简述</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label21" target="_blank" rel="noopener">　　6.2、测试haproxy监听前端端口3306</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label22" target="_blank" rel="noopener">　　6.3、测试高可用+keepalived不抢占vip</a>
+</em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label23" target="_blank" rel="noopener">　　6.4、测试负载均衡</a><br><em>   <a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_label24" target="_blank" rel="noopener">7、总结与建议</a><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 1、简介<br><br> 使用MySQL时随着时间的增长，用户量以及数据量的逐渐增加，访问量更是剧增，最终将会使MySQL达到某个瓶颈，那么MySQL的性能将会大大降低。这一结果也不利于软件的推广。<br><br> 那么如何跨过这个瓶颈，提高MySQL的并发量呢？方法有很多，分布式数据库、读写分离、高可用负载均衡、增加缓存服务器等等。之前的文章里已经介绍了读写分离的方案了，接下来我将讲解MySQL高可用负载均衡这一方法。<br><br> 其中实现高可用负载均衡的方法有很多，例如LVS+keepalived组合实现、haproxy+keepalived组合实现等等，这里我们采用haproxy+keepalived组合实现MySQL高可用负载均衡这一技术。<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 2、基本环境<br><br>四台linux虚拟主机<br><br>Linux版本CentOS6.6<br><br>MySQL 5.5（已安装好）<br><br>haproxy-1.5.14<br><br>keepalived-1.2.19<br><br>IP：192.168.95.11（mysql1）、192.168.95.12（mysql2）、192.168.95.13（haproxy+keepalived）、192.168.95.14（haproxy+keepalived）、192.168.95.55（vip）<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 3、配置MySQL主主复制<br><br>详细配置步骤可以参考这篇文章：<br><br><a href="http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label7" target="_blank" rel="noopener">http://www.cnblogs.com/phpstudy2015-6/p/6485819.html#_label7</a><br><br>以下简要介绍一下mysql的主主复制：<br><br>何为主主复制？就是两个mysql都能读能写，数据记录通过二进制传达给对方从而保持数据的一致性。<br><br><strong>（192.168.95.11**</strong>主从复制+192.168.95.12<strong><strong>主从复制==192.168.95.11</strong></strong>、192.168.95.12<strong>**主主复制）</strong><br><br> 因此主主复制中必须要解决的事情就是自增主键的问题。如果mysql1主键id增加到12了，此时二进制数据还没到达mysql2，那么mysql2恰好要插入数据，那么新数据主键id也是12，那不就是乱套了么！解决这一问题我们可以直接更改MySQL中的配置文件即可。<br><br><strong>1**</strong>）、更改配置文件<strong><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">--192.168.95.11：MySQL</span><br><span class="line">server-id=11   #任意自然数n，只要保证两台MySQL主机不重复就可以了。</span><br><span class="line">log-bin=mysql-bin   #开启二进制日志</span><br><span class="line">auto_increment_increment=2   #步进值auto_imcrement。一般有n台主MySQL就填n</span><br><span class="line">auto_increment_offset=1   #起始值。一般填第n台主MySQL。此时为第一台主MySQL</span><br><span class="line">binlog-ignore=mysql   #忽略mysql库【我一般都不写】</span><br><span class="line">binlog-ignore=information_schema   #忽略information_schema库【我一般都不写】</span><br><span class="line">replicate-do-db=aa   #要同步的数据库，默认所有库</span><br><span class="line">--192.168.95.12：MySQL</span><br><span class="line">server-id=12</span><br><span class="line">log-bin=mysql-bin</span><br><span class="line">auto_increment_increment=2</span><br><span class="line">auto_increment_offset=2</span><br><span class="line">replicate-do-db=aa</span><br></pre></td></tr></table></figure><br><br>配置好后重启MySQL
+
+</strong>2<strong><strong>）、配置192.168.95.11</strong></strong>主从复制<strong><br><br> 1、在192.168.95.12中创建一个192.168.95.11主机中可以登录的MySQL用户<br><br>      用户：mysql11<br><br>      密码：mysql11<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;GRANT REPLICATION SLAVE ON *.* TO ‘mysql11’@’192.168.95.11’ IDENTIFIED BY ’mysql11’;</span><br><span class="line">mysql&gt;FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure><br><br> 2、查看192.168.95.12二进制日志<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show master status;</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/e34d200d-a0fb-469f-9c22-ff57f64256a5.jpg" alt=""><br><br> 3、告知二进制文件名与位置<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; change master to</span><br><span class="line">    -&gt; master_host=&apos;192.168.95.11&apos;,</span><br><span class="line">    -&gt; master_user=&apos;mysql11&apos;,</span><br><span class="line">    -&gt;master_password=&apos;mysql11&apos;,</span><br><span class="line">    -&gt;master_log_file=&apos;mysql-bin.000097&apos;,</span><br><span class="line">    -&gt; master_log_pos=107;</span><br></pre></td></tr></table></figure><br><br> 4、查看结果<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; slave start;</span><br><span class="line">mysql&gt; show slave status\G</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/2f4bba6d-3f44-4580-9fe3-efed06b6e76d.jpg" alt=""><br><br>配置主从复制成功
+
+</strong>3<strong><strong>）、配置192.168.95.12</strong></strong>主从复制<strong><br><br>同上<br><br><img src="http://pangguoming.com/blog/images/94ad0dc9-9ced-45df-b759-05e1ee036d67.jpg" alt=""><br><br>配置主从复制成功。<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 4、中间件简述<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### </div></div></strong>　　4.1<strong><strong>、Haproxy</strong></strong>介绍<strong><br><br>Haproxy是一个开源的高性能的反向代理或者说是负载均衡服务软件之一，它支持双机热备、虚拟主机、基于TCP和HTTP应用代理等功能。其配置简单，而且拥有很好的对服务器节点的健康检查功能（相当于keepalived健康检查），当其代理的后端服务器出现故障时，Haproxy会自动的将该故障服务器摘除，当服务器的故障恢复后Haproxy还会自动将RS服务器。<br><br>HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。HAProxy运行在当前的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上。<br><br>Haproxy软件引入了frontend，backend的功能，frontend（acl规则匹配）可以根据任意HTTP请求头做规则匹配，然后把请求定向到相关的backend（server pools等待前端把请求转过来的服务器组）。通过frontend和backup，我们可以很容易的实现haproxy的7层代理功能，haproxy是一款不可多得的优秀代理服务软件。<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### </div></strong>　　4.2<strong><strong>、keepalived</strong></strong>介绍<strong><br><br>keepalived是以VRRP协议为实现基础的，VRRP全称Virtual Router Redundancy Protocol，即虚拟路由冗余协议。<br><br>虚拟路由冗余协议，可以认为是实现路由器高可用的协议，即将N台提供相同功能的路由器组成一个路由器组，这个组里面有一个master和多个backup，master上面有一个对外提供服务的vip（该路由器所在局域网内其他机器的默认路由为该vip），master会发组播，当backup收不到vrrp包时就认为master宕掉了，这时就需要根据VRRP的优先级来选举一个backup当master。这样的话就可以保证路由器的高可用了。<br><br>keepalived主要有三个模块，分别是core、check和vrrp。core模块为keepalived的核心，负责主进程的启动、维护以及全局配置文件的加载和解析。check负责健康检查，包括常见的各种检查方式。vrrp模块是来实现VRRP协议的。<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 5、中间件的安装与配置（haproxy、keepalived）<br><br>百度云下载：<a href="http://pan.baidu.com/s/1qYoCjDE" target="_blank" rel="noopener">http://pan.baidu.com/s/1qYoCjDE</a>  密码：7cef<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　5.1、安装haproxy<br><br>在192.168.95.13、192.168.95.14安装haproxy（一模一样安装）<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　1）、编译安装haproxy<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># tar -zxvf haproxy-1.5.14.tar.gz</span><br><span class="line"># cd haproxy-1.5.14</span><br><span class="line"># make TARGET=linux26 ARCH=x86_64 </span><br><span class="line"># make install SBINDIR=/usr/sbin/ MANDIR=/usr/share/man/ DOCDIR=/usr/share/doc/</span><br></pre></td></tr></table></figure><br><br>注意：<br><br>1、为什么不用configure，请看下图。haproxy-1.5.14已经存在Makefile文件了。<br><br>2、make的时候，target以及arch需要根据自己的linux主机设置<br><br>3、make install的时候我增加了一些额外选项。这可加可不加由自己配置，不加的话将会按默认路径安装，请看下图。<br><br><img src="http://pangguoming.com/blog/images/3ab546cb-9388-4df7-8ce4-404941bcb317.jpg" alt=""><br><br><img src="http://pangguoming.com/blog/images/92b34062-e027-462e-90a1-f747f10e9be9.jpg" alt=""><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　2）、提供启动脚本<br><br>将haproxy这个启动脚本放在/etc/init.d/文件夹下，以便我们可以直接service启动它<br><br>【注意】：此启动脚本仅仅适合我以上的安装路径。假若安装路径不同，则需要进行相应的修改方可使用。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#给执行权力</span><br><span class="line">#chmod +x /etc/init.d/haproxy</span><br></pre></td></tr></table></figure><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　3）、提供配置文件<br><br>根据上面的启动脚本建立相应的目录以及配置文件<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># mkdir /etc/haproxy</span><br><span class="line"># mkdir /var/lib/haproxy</span><br><span class="line"># useradd -r haproxy       #建立脚本启动用户</span><br><span class="line"># vi /etc/haproxy/haproxy.cfg</span><br></pre></td></tr></table></figure><br><br>【配置文件】<br><br>#这里的配置文件仅仅只是贴出来进行解析说明。<br><br>#如果需要这个配置文件最好将注释解析全部删除掉，因为我在使用的过程中，正是因为存在注释解析而导致出错，删除后就能正常运行。<br><br>#可以下载这个配置文件进行使用，与下面贴出来的配置文件一致，只是不存在注释解析<br><br>#百度云下载该配置文件（不含注释）：链接：<a href="http://pan.baidu.com/s/1gfOMtKB" target="_blank" rel="noopener">http://pan.baidu.com/s/1gfOMtKB</a>  密码：zl9o<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">global</span><br><span class="line"></span><br><span class="line">    log         127.0.0.1 local2         //日志定义级别</span><br><span class="line">    chroot      /var/lib/haproxy         //当前工作目录</span><br><span class="line">    pidfile     /var/run/haproxy.pid     //进程id</span><br><span class="line">    maxconn     4000                     //最大连接数</span><br><span class="line">    user        haproxy                  //运行改程序的用户</span><br><span class="line">    group       haproxy</span><br><span class="line">    daemon                               //后台形式运行</span><br><span class="line">    stats socket /var/lib/haproxy/stats</span><br><span class="line"></span><br><span class="line">defaults</span><br><span class="line">    mode                    tcp            //haproxy运行模式（http | tcp | health）</span><br><span class="line">    log                     global</span><br><span class="line">    option                  dontlognull</span><br><span class="line">    option                  redispatch     //serverId对应的服务器挂掉后,强制定向到其他健康的服务器</span><br><span class="line">    retries                 3              //三次连接失败则服务器不用</span><br><span class="line">    timeout http-request    10s</span><br><span class="line">    timeout queue           1m</span><br><span class="line">    timeout connect         10s            //连接超时</span><br><span class="line">    timeout client          1m             //客户端超时</span><br><span class="line">    timeout server          1m             //服务器超时</span><br><span class="line">    timeout http-keep-alive 10s</span><br><span class="line">    timeout check           10s            //心跳检测</span><br><span class="line">    maxconn                 600            //最大连接数</span><br><span class="line"></span><br><span class="line">listen stats                               //配置haproxy状态页（用来查看的页面）</span><br><span class="line">    mode http</span><br><span class="line">    bind :8888</span><br><span class="line">    stats enable</span><br><span class="line">    stats hide-version                    //隐藏haproxy版本号</span><br><span class="line">stats uri     /haproxyadmin?stats     //一会用于打开状态页的uri</span><br><span class="line">    stats realm   Haproxy\ Statistics     //输入账户密码时的提示文字</span><br><span class="line">    stats auth    admin:admin             //用户名:密码</span><br><span class="line"></span><br><span class="line">frontend  main </span><br><span class="line">bind 0.0.0.0:3306                     //使用3306端口。监听前端端口【表示任何ip访问3306端口都会将数据轮番转发到mysql服务器群组中】</span><br><span class="line">    default_backend             mysql     //后端服务器组名</span><br><span class="line"></span><br><span class="line">backend mysql</span><br><span class="line">    balance     leastconn                 //使用最少连接方式调度</span><br><span class="line">    server mysql1 192.168.95.11:3306 check port 3306 maxconn 300</span><br><span class="line">    server mysql2 192.168.95.12:3306 check port 3306 maxconn 300</span><br></pre></td></tr></table></figure><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　4）、启动日志<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/rsyslog.conf</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/c5cf2718-bbe1-45ea-b339-45e0a53f6d60.jpg" alt=""><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#service rsyslog restart</span><br></pre></td></tr></table></figure><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　5）、启动haproxy<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># service haproxy start</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/d1a7915b-a09f-4744-8e4a-781859b088be.jpg" alt=""><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　6）、测试haproxy<br><br>安照配置文件进行相应的测试<br><br><img src="http://pangguoming.com/blog/images/ee2c5d3b-fb09-47a1-a936-d6d7bf9d8627.jpg" alt=""><br><br>打开浏览器输入192.168.95.13:8888/haproxyadmin?stats<br><br><img src="http://pangguoming.com/blog/images/47b9b332-3417-447d-a55e-8b836f433952.jpg" alt=""><br><br>登陆后如下如所示，表明安装haproxy成功。<br><br><img src="http://pangguoming.com/blog/images/ec00bcc8-c524-43ea-bd4e-4ce166bba468.jpg" alt=""><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　5.2、安装keepalived<br><br>官网下载：<a href="http://www.keepalived.org/download.html" target="_blank" rel="noopener">http://www.keepalived.org/download.html</a><br><br>在192.168.95.13、192.168.95.14安装keepalived<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　1）、解决缺少的软件库文件<br><br>【这一步骤视具体的linux版本而定，有些已经安装openssl了。具体情况可以执行./configure就能够确定缺不缺少软件库文件了】<br><br>首先我们先将keepalived-1.2.19.tar.gz解压，然后进入目录./configure查看<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># tar -zxvf keepalived-1.2.19.tar.gz</span><br><span class="line"># ./configure --prefix=/usr/local/keepalived  --sbindir=/usr/sbin/ --sysconfdir=/etc/ --mandir=/usr/local/share/man/ --with-kernel-dir=/usr/src/kernels/2.6.32-504.el6.x86_64/</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/415e66bc-07ed-4eea-b7ce-dfe58258ab12.jpg" alt=""><br><br><img src="http://pangguoming.com/blog/images/6fd13b97-9756-42b8-96ab-77e7e6419557.jpg" alt=""><br><br> 由上图可见keepalived的安装需要先安装软件OpenSSL<br><br>缺少头文件，只需要安装openssl和openssl-devel即可<br><br>最简单的方法是：yum -y install openssl openssl-devel<br><br>没网的朋友也不用怕，接下来将介绍的是</div></div></div></div></div></div></div></div></div></div></strong>rpm方法安装：<strong><br><br>#挂载光盘，在光盘中查找软件。若光盘找不到就直接下载，再传入linux进行安装<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># mount /dev/cdrom  /home/suifeng2/rom/</span><br><span class="line"># cd rom/</span><br><span class="line"># cd Packages/</span><br><span class="line"># ls |grep openssl</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/8538db2b-5541-4366-b29c-02a91093cb9e.jpg" alt=""><br><br>安装keepalived软件时存在各种依赖，下图是我安装软件后整理的依赖关系图：<br><br><img src="http://pangguoming.com/blog/images/9353333e-4405-4561-b5af-e7a2d8cac340.jpg" alt=""><br><br>既然已经知道各软件依赖，则可按最后面的软件开始安装：<br><br>（你也可以从前面开始进行安装，一步一步的查看各个依赖关系）
+
+</strong>1<strong>**、安装openssl</strong><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh openssl-1.0.1e-30.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/942a6d4f-43f0-45f9-808d-855a66c86b22.jpg" alt=""><br><br>安装openssl成功<br><br><strong>2**</strong>、安装openssl-devel<strong>**  
+</strong><br><br>**</div></div></div></em>安装libsepol-devel：<strong><em><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh libsepol-devel-2.0.41-4.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/daac145d-7e3d-4cba-852e-063cd12b9169.jpg" alt="">
+
+</em></strong>安装pkgconfig(libsepol)：<strong><em><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh pkgconfig-0.23-9.1.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/b4e1fa71-f86c-4239-bd3f-521778d408b5.jpg" alt="">
+
+</em></strong>安装libselinux-devel：<strong><em><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh libselinux-devel-2.0.94-5.8.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/f1375d57-ac3a-4b10-b176-3200f26a22ef.jpg" alt="">
+
+</em></strong>安装keyutils-libs-devel：<strong><em><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh keyutils-libs-devel-1.4-5.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/f825f724-b2d9-4903-9e50-35ab55118180.jpg" alt=""><br><br>安装libcom_err-devel：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh libcom_err-devel-141.12-21.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/424f1e3f-4ed9-4807-bd75-52d03ac500e8.jpg" alt="">
+
+</em></strong>安装krb5-devel：<strong><em><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh krb5-devel-1.10.3-33.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/c5d451e1-4343-46c1-b94f-17557de37076.jpg" alt="">
+
+</em></strong>安装zlib-devel：<strong>*<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh zlib-devel-1.2.3-29.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/7c5e9e71-04c5-44a3-be5c-2998dd21c8ba.jpg" alt="">
+
+</strong>安装openssl-devel<strong>**：</strong><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh openssl-devel-1.0.1e-30.el6.x86_64.rpm</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/8c180417-21d0-41b1-86a7-20c08ee82871.jpg" alt=""><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　2）、编译安装keepalived软件<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># cd keepalived-1.2.19</span><br><span class="line"># ./configure --prefix=/usr/local/keepalived  --sbindir=/usr/sbin/ --sysconfdir=/etc/ --mandir=/usr/local/share/man/ --with-kernel-dir=/usr/src/kernels/2.6.32-504.el6.x86_64/</span><br><span class="line"># make &amp;&amp; make install  </span><br><span class="line"></span><br><span class="line"># chkconfig --add keepalived  #添加开机自启（我暂时没添加）</span><br><span class="line"># chkconfig keepalived on</span><br></pre></td></tr></table></figure><br><br>【注意】：<br><br>1、安装时./configure中的—prefix后的几个选择可选可不选，选了就可以采用service直接启动了。建议最好都加上吧<br><br>2、–with-kernel-dir这个选项根据自己的linux版本进行填写（在linux中使用命令uname –a可以查到）<br><br><img src="http://pangguoming.com/blog/images/66aa8041-7fcc-405f-b5ca-6b64e5ea65e7.jpg" alt=""><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　3）、创建配置文件<br><br>/etc/keepalived/文件夹已存在keepalived.conf文件，我们将它改名为keepalived.conf.back，再建立一个我们自己keepalived.conf配置文件。<br><br><img src="http://pangguoming.com/blog/images/67274b22-b242-4ba9-9a03-72913448c3d7.jpg" alt=""><br><br>vi /etc/keepalived/keepalived.conf（13与14配置文件路径一致）<br><br>【以下是简单的配置文件，使用时最好去掉注释】<br><br>配置文件下载（不含注释）：<br><br><strong><em>192.168.95.13配置文件:</em></strong><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">! Configuration File for keepalived</span><br><span class="line">#简单的头部，这里主要可以做邮件通知报警等的设置，此处就暂不配置了；</span><br><span class="line">global_defs &#123;</span><br><span class="line">        notificationd LVS_DEVEL</span><br><span class="line">&#125;</span><br><span class="line">#预先定义一个脚本，方便后面调用，也可以定义多个，方便选择；</span><br><span class="line">vrrp_script chk_haproxy &#123;</span><br><span class="line">    script &quot;/etc/keepalived/chk.sh&quot;  #具体脚本路径</span><br><span class="line">    interval 2  #脚本循环运行间隔</span><br><span class="line">&#125;</span><br><span class="line">#VRRP虚拟路由冗余协议配置</span><br><span class="line">vrrp_instance VI_1 &#123;   #VI_1 是自定义的名称；</span><br><span class="line">    state BACKUP    #MASTER表示是一台主设备，BACKUP表示为备用设备【我们这里因为设置为开启不抢占，所以都设置为备用】</span><br><span class="line">    nopreempt      #开启不抢占</span><br><span class="line">    interface eth0   #指定VIP需要绑定的物理网卡</span><br><span class="line">    virtual_router_id 11   #VRID虚拟路由标识，也叫做分组名称，该组内的设备需要相同</span><br><span class="line">    priority 130   #定义这台设备的优先级 1-254；开启了不抢占，所以此处优先级必须高于另一台</span><br><span class="line"></span><br><span class="line">    advert_int 1   #生存检测时的组播信息发送间隔，组内一致</span><br><span class="line">    authentication &#123;    #设置验证信息，组内一致</span><br><span class="line">        auth_type PASS   #有PASS 和 AH 两种，常用 PASS</span><br><span class="line">        auth_pass asd    #密码</span><br><span class="line">    &#125;</span><br><span class="line">    virtual_ipaddress &#123;</span><br><span class="line">        192.168.95.55    #指定VIP地址，组内一致，可以设置多个IP</span><br><span class="line">    &#125;</span><br><span class="line">    track_script &#123;    #使用在这个域中使用预先定义的脚本，上面定义的</span><br><span class="line">        chk_haproxy   </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    notify_backup &quot;/etc/init.d/haproxy restart&quot;   #表示当切换到backup状态时,要执行的脚本</span><br><span class="line">    notify_fault &quot;/etc/init.d/haproxy stop&quot;     #故障时执行的脚本</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br><strong><em>192.168.95.14配置文件:</em></strong><br><br>配置文件与上面的几乎一样，仅仅改变priority 120【只需要比上面的小即可】<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　4）、创建脚本文件<br><br>创建上面配置文件所需的脚本文件（13、14一样）<br><br>（检测haproxy有没有发生故障，发生故障则将keepalived停掉，让出vip）<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/keepalived/chk.sh#!/bin/bash</span><br><span class="line">#</span><br><span class="line">if [ $(ps -C haproxy --no-header | wc -l) -eq 0 ]; then</span><br><span class="line">       /etc/init.d/keepalived stop</span><br><span class="line">fi</span><br></pre></td></tr></table></figure><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">给执行权限</span><br><span class="line"># chmod +x /etc/keepalived/chk.sh</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/217e2f04-84c2-40f2-89f8-4b73768dbd77.jpg" alt=""><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">启动keepalived：</span><br><span class="line"># service keepalived start</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/6c1534ba-47a7-49fb-ac9e-e6b9bc1c657d.jpg" alt=""><br><br>安装keepalived成功！<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 6、功能测试<br><br>测试之前先在mysql1和mysql2中建立一个mysql用户，此用户可以允许13、14linux主机登陆：<br><br>用户：jack<br><br>密码：321<br><br>host：192.168.95.%<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; GRANT ALL ON *.* TO &apos;jack&apos;@&apos;192.168.95.%&apos; IDENTIFIED BY &apos;321&apos;;</span><br><span class="line">mysql&gt; FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure><br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　6.1、流程简述<br><br>大概讲述一下整体的运作流程:<br><br>首先两个11,12的mysql以及13、14的haproxy、keepalived都启动；<br><br>keepalived在keepalived群组中获取虚拟IP，以及检测haproxy是否被kill；<br><br>haproxy负责将进来的数据转发到11或者12的mysql中。<br><br>下图是我画的简单理解图：（相对来说比较简洁哈，凑合凑合哈）<br><br><img src="http://pangguoming.com/blog/images/384c091e-2e81-4131-9041-142d71562d3d.jpg" alt=""><br><br>接下来我们将一个个功能的进行测试验证。<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　6.2、测试haproxy监听前端端口3306<br><br>1、frontend监听端口3306时，将mysql、haproxy、keepalived全部开启<br><br>2、使用任意一个mysql客户端登陆用户jack<br><br>登陆成功(windowns上登陆mysql)<br><br><img src="http://pangguoming.com/blog/images/a21efd87-25a4-4841-b1ec-b57801c0ac2c.jpg" alt=""><br><br>3、更改frontend监听端口为3307，继续操作登陆测试<br><br>登陆失败<br><br><img src="http://pangguoming.com/blog/images/484503a3-6125-430a-bec6-9acf3319e574.jpg" alt=""><br><br>结果：说明了frontend监听端口的用处，有助于我们理解haproxy用法。<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　6.3、测试高可用+keepalived不抢占vip<br><br>可以通过haproxy监控页面获知谁获取了vip<br><br>1、依次启动13、14的keepalived、haproxy（启动keepalived后将会自动开启haproxy）<br><br><img src="http://pangguoming.com/blog/images/1d235ff7-7e83-48f6-98d3-b19a4800fd68.jpg" alt=""><br><br><img src="http://pangguoming.com/blog/images/298db7f3-cf0d-4a53-b7d4-b773325c01ad.jpg" alt=""><br><br>2、访问<a href="http://192.168.95.55:8888/haproxyadmin?stats" target="_blank" rel="noopener">http://192.168.95.55:8888/haproxyadmin?stats</a><br><br>13获取了vip<br><br><img src="http://pangguoming.com/blog/images/b72f3cfe-35c5-4131-8cf8-30829c3a89ab.jpg" alt=""><br><br>3、# kill -9 8923<br><br>刷新<a href="http://192.168.95.55:8888/haproxyadmin?stats" target="_blank" rel="noopener">http://192.168.95.55:8888/haproxyadmin?stats</a><br><br><img src="http://pangguoming.com/blog/images/01a27f41-5477-45f1-9437-48e4ccbaf033.jpg" alt=""><br><br>14获取了vip，机器正常工作<br><br>结果：证明了高可用，挂了一台另一台继续工作<br><br>4、重新启动13的haproxy以及keepalived<br><br>并刷新<a href="http://192.168.95.55:8888/haproxyadmin?stats" target="_blank" rel="noopener">http://192.168.95.55:8888/haproxyadmin?stats</a><br><br><img src="http://pangguoming.com/blog/images/a5ca8a12-d97d-4262-9a38-f6c8f7845825.jpg" alt=""><br><br><img src="http://pangguoming.com/blog/images/f7bdc194-b54d-4a49-b79d-ee89811b3cc8.jpg" alt=""><br><br>结果：此时vip仍在14手中，证明了keepalived配置了不抢占vip，不必浪费资源去获取vip。<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 　　6.4、测试负载均衡<br><br>1、全部正常启动，此时vip在14手中<br><br>2、分别在11、12中开启抓包<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># tcpdump -n -i eth0 host 192.168.95.11 and 192.168.95.14</span><br><span class="line"># tcpdump -n -i eth0 host 192.168.95.12 and 192.168.95.14</span><br></pre></td></tr></table></figure><br><br>3、使用不同客户端登陆jack用户，不断向数据库添加数据<br><br><img src="http://pangguoming.com/blog/images/d1b30fbb-a9c7-4294-84e0-d41c5ef1df59.jpg" alt=""><br><br><img src="http://pangguoming.com/blog/images/dc6ca1a6-0c6d-4aa4-bc11-7938c4d142ff.jpg" alt=""><br><br>结果：此时14向11、12都有发送数据，此时证明负载均衡<br><br>【我们设置的haproxy中balance方式是最少连接方式，假若采用roundrobin方式测试结果将会更加明显】<br><br>注意：<br><br>当某一台mysql挂了以后，haproxy会将其踢出mysql服务器群组。<br><br>当有命令传来时会将其转发到正常的服务器上。<br><br>当出问题的mysql恢复后，haproxy又会自动地将它放回mysql服务器群组中，并且自动同步没有同步的数据<br><br>测试：<br><br>1、全部正常启动<br><br>mysql1、mysql2都正常<br><br><img src="http://pangguoming.com/blog/images/cab6c836-e707-400d-b578-0aa20cd93c29.jpg" alt=""><br><br> 2、将mysql2关掉<br><br><img src="http://pangguoming.com/blog/images/2dd0cbf4-8f89-4d5d-92f2-be8249eb5887.jpg" alt=""><br><br>mysql2出问题，将其踢出mysql群组<br><br>3、启动mysql2<br><br><img src="http://pangguoming.com/blog/images/5582ea84-bec6-4af6-a49e-bd30bbbb310b.jpg" alt=""><br><br>mysql2恢复后又将其放回mysql群组里<br><br>【当mysql2挂掉时，若有数据插入，将会转发给mysql1，当mysql恢复后，又会将这些数据同步到mysql2中】<br><br><div><a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html#_labelTop" target="_blank" rel="noopener">回到顶部</a><br><br>#### 7、总结与建议<br><br> 在这篇博文中我们不仅仅只关注这一整个mysql高可用负载均衡的实现方式，我们还应该理解haproxy以及keepalived的工作方式。Haproxy和keepalived这两个工具很强大，了解他们的实现方式，那么就可以以此类推与其他服务器组合构建强大健壮的服务集群。例如它可以与apache组合，构成高可用负载均衡的web集群。<br><br> 这篇文章中只是简简单单的搭建了一个mysql高可用负载均衡的环境，真正应用到生产环境中，还需要根据具体项目进行相应的修改。<br><br> 最后我的小建议就是看完这篇博客可以去了解了解更多的haproxy和keepalived的相应配置，以及学习与haproxy功能差不多的LVS。<br><br>（以上是自己的一些见解与总结，若有不足或者错误的地方请各位指出）<br><br>作者：<a href="http://www.cnblogs.com/phpstudy2015-6/" target="_blank" rel="noopener">那一叶随风</a><br><br>声明：以上只代表本人在工作学习中某一时间内总结的观点或结论。转载时请在文章页面明显位置给出原文链接<a href="https://www.cnblogs.com/phpstudy2015-6/p/6706465.html" target="_blank" rel="noopener">https://www.cnblogs.com/phpstudy2015-6/p/6706465.html</a><br></div></div></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -752,7 +762,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/08/MySQL集群的几种方案/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/cfd76a3a.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -771,7 +781,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/08/MySQL集群的几种方案/" itemprop="url">MySQL集群的几种方案</a></h1>
+                <a class="post-title-link" href="/post/cfd76a3a.html" itemprop="url">MySQL集群的几种方案</a></h1>
         
 
         <div class="post-meta">
@@ -823,15 +833,8 @@
       
         
           
-          组建MySQL集群的几种方案LVS+Keepalived+MySQL（有脑裂问题？但似乎很多人推荐这个）DRBD+Heartbeat+MySQL（有一台机器空余？Heartbeat切换时间较长？有脑裂问题？）MySQL Proxy（不够成熟与稳定？使用了Lua？是不是用了他做分表则可以不用更改客户端
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/MySQL集群的几种方案/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div><br><div><br><br>组建MySQL集群的几种方案<br>LVS+Keepalived+MySQL（有脑裂问题？但似乎很多人推荐这个）<br>DRBD+Heartbeat+MySQL（有一台机器空余？Heartbeat切换时间较长？有脑裂问题？）<br>MySQL Proxy（不够成熟与稳定？使用了Lua？是不是用了他做分表则可以不用更改客户端逻辑？）<br>MySQL Cluster （社区版不支持INNODB引擎？商用案例不足？）<br>MySQL + MHA （如果配上异步复制，似乎是不错的选择，又和问题？）<br>MySQL + MMM （似乎反映有很多问题，未实践过，谁能给个说法）<br><br>回答：<br><br>不管哪种方案都是有其场景限制 或说 规模限制，以及优缺点的。<br><br>1. 首先反对大家做读写分离，关于这方面的原因解释太多次数（增加技术复杂度、可能导致读到落后的数据等），只说一点：99.8%的业务场景没有必要做读写分离，只要做好数据库设计优化 和配置合适正确的主机即可。<br><br>2.Keepalived+MySQL –确实有脑裂的问题，还无法做到准确判断mysqld是否HANG的情况；<br><br>3.DRBD+Heartbeat+MySQL –同样有脑裂的问题，还无法做到准确判断mysqld是否HANG的情况，且DRDB是不需要的，增加反而会出问题；<br><br>3.MySQL Proxy – 不错的项目，可惜官方半途夭折了，不建议用，无法高可用，是一个写分离；<br><br>4.MySQL Cluster – 社区版本不支持NDB是错误的言论，商用案例确实不多，主要是跟其业务场景要求有关系、这几年发展有点乱不过现在已经上正规了、对网络要求高；<br><br>5.MySQL + MHA – 可以解决脑裂的问题，需要的IP多，小集群是可以的，但是管理大的就麻烦，其次MySQL + MMM 的话且坑很多，有MHA就没必要采用MMM<br><br>建议：<br>1.若是双主复制的模式，不用做数据拆分，那么就可以选择MHA或 Keepalive 或 heartbeat<br>2.若是双主复制，还做了数据的拆分，则可以考虑采用Cobar；<br>3.若是双主复制+Slave，还做了数据的拆分，需要读写分类，可以考虑Amoeba；<br><br>上述所有的内容都要依据公司内部的业务场景、数据量、访问量、并发量、高可用的要求、DBA人群的数量等 综合权衡<br><br></div></div>
+          
         
       
     </div>
@@ -878,7 +881,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/08/实战体验几种MySQL Cluster方案（转）/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/ccfa6938.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -897,7 +900,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/08/实战体验几种MySQL Cluster方案（转）/" itemprop="url">实战体验几种MySQL Cluster方案（转）</a></h1>
+                <a class="post-title-link" href="/post/ccfa6938.html" itemprop="url">实战体验几种MySQL Cluster方案（转）</a></h1>
         
 
         <div class="post-meta">
@@ -949,19 +952,172 @@
       
         
           
-          1.背景MySQL的cluster方案有很多官方和第三方的选择，选择多就是一种烦恼，因此，我们考虑MySQL数据库满足下三点需求，考察市面上可行的解决方案：
+            <h2 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h2><p>MySQL的cluster方案有很多官方和第三方的选择，选择多就是一种烦恼，因此，我们考虑MySQL数据库满足下三点需求，考察市面上可行的解决方案：</p>
+<ul>
+<li>高可用性：主服务器故障后可自动切换到后备服务器</li>
+<li>可伸缩性：可方便通过脚本增加DB服务器</li>
+<li><p>负载均衡：支持手动把某公司的数据请求切换到另外的服务器，可配置哪些公司的数据服务访问哪个服务器</p>
+<p>需要选用一种方案满足以上需求。在MySQL官方网站上参考了几种解决方案的优缺点：</p>
+</li>
+</ul>
+<p><img src="http://pangguoming.com/blog/images/a0cdcb8d-aff8-4b46-9d29-4a8624fc7223.jpg" alt=""></p>
+<p>综合考虑，决定采用MySQL Fabric和MySQL Cluster方案，以及另外一种较成熟的集群方案Galera Cluster进行预研。</p>
+<h2 id="2-MySQLCluster"><a href="#2-MySQLCluster" class="headerlink" title="2.MySQLCluster"></a>2.MySQLCluster</h2><p><strong>简介：</strong></p>
+<p>MySQL Cluster 是MySQL 官方集群部署方案，它的历史较久。支持通过自动分片支持读写扩展，通过实时备份冗余数据，是可用性最高的方案，声称可做到99.999%的可用性。</p>
+<p> 架构及实现原理：</p>
+<p><strong><img src="http://pangguoming.com/blog/images/24683c63-55f2-4fc6-96c0-c3d44a406616.jpg" alt="">  
+</strong></p>
+<p>MySQL cluster主要由三种类型的服务组成：</p>
+<ul>
+<li>NDB Management Server：管理服务器主要用于管理cluster中的其他类型节点（Data Node和SQL Node），通过它可以配置Node信息，启动和停止Node。</li>
+<li>SQL Node：在MySQL Cluster中，一个SQL Node就是一个使用NDB引擎的mysql server进程，用于供外部应用提供集群数据的访问入口。</li>
+<li>Data Node：用于存储集群数据；系统会尽量将数据放在内存中。</li>
+</ul>
+<p><strong><img src="http://pangguoming.com/blog/images/70f91ee1-336c-4351-9bc6-7b746669143d.jpg" alt=""><img src="http://pangguoming.com/blog/images/f7a7fee9-6dc9-4b19-bf6a-38cbcac85253.jpg" alt="">  
+</strong></p>
+<p>缺点及限制：</p>
+<ul>
+<li>对需要进行分片的表需要修改引擎Innodb为NDB，不需要分片的可以不修改。</li>
+<li>NDB的事务隔离级别只支持Read Committed，即一个事务在提交前，查询不到在事务内所做的修改；而Innodb支持所有的事务隔离级别，默认使用Repeatable Read，不存在这个问题。</li>
+<li>外键支持：虽然最新的Cluster版本已经支持外键，但性能有问题（因为外键所关联的记录可能在别的分片节点中），所以建议去掉所有外键。</li>
+<li>Data Node节点数据会被尽量放在内存中，对内存要求大。</li>
+</ul>
+<p>数据库系统提供了四种事务隔离级别：<br>A.Serializable（串行化）：一个事务在执行过程中完全看不到其他事务对数据库所做的更新（事务执行的时候不允许别的事务并发执行。事务串行化执行，事务只能一个接着一个地执行，而不能并发执行。）。<br>B.Repeatable Read（可重复读）：一个事务在执行过程中可以看到其他事务已经提交的新插入的记录，但是不能看到其他其他事务对已有记录的更新。<br>C.Read Commited（读已提交数据）：一个事务在执行过程中可以看到其他事务已经提交的新插入的记录，而且能看到其他事务已经提交的对已有记录的更新。<br>D.Read Uncommitted（读未提交数据）：一个事务在执行过程中可以看到其他事务没有提交的新插入的记录，而且能看到其他事务没有提交的对已有记录的更新。</p>
+<h2 id="3-MySQL-Fabric"><a href="#3-MySQL-Fabric" class="headerlink" title="3.MySQL Fabric"></a>3.MySQL Fabric</h2><p>简介：</p>
+<p>为了实现和方便管理MySQL 分片以及实现高可用部署，Oracle在2014年5月推出了一套为各方寄予厚望的MySQL产品 – MySQL Fabric, 用来管理MySQL 服务，提供扩展性和容易使用的系统，Fabric当前实现了两个特性：高可用和使用数据分片实现可扩展性和负载均衡，这两个特性能单独使用或结合使用。</p>
+<p>MySQL Fabric 使用了一系列的python脚本实现。</p>
+<p>应用案例：由于该方案在去年才推出，目前在网上暂时没搜索到有大公司的应用案例。</p>
+<p>架构及实现原理：</p>
+<p>Fabric支持实现高可用性的架构图如下：</p>
+<p><img src="http://pangguoming.com/blog/images/2137cb58-4236-4255-9f43-f91204a4d586.jpg" alt=""></p>
+<p>Fabric使用HA组实现高可用性，其中一台是主服务器，其他是备份服务器， 备份服务器通过同步复制实现数据冗余。应用程序使用特定的驱动，连接到Fabric 的Connector组件，当主服务器发生故障后，Connector自动升级其中一个备份服务器为主服务器，应用程序无需修改。  </p>
+<p>Fabric支持可扩展性及负载均衡的架构如下：</p>
+<p><img src="http://pangguoming.com/blog/images/55e09098-15f7-44c2-b0fd-04b8d85cf39e.jpg" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/e0a7548b-db2a-4a9f-ac16-2c518a0b4d11.jpg" alt=""></p>
+<p>使用多个HA 组实现分片，每个组之间分担不同的分片数据（组内的数据是冗余的，这个在高可用性中已经提到）<br>应用程序只需向connector发送query和insert等语句，Connector通过MasterGroup自动分配这些数据到各个组，或从各个组中组合符合条件的数据，返回给应用程序。  </p>
+<p>缺点及限制：<br>影响比较大的两个限制是：</p>
+<ul>
+<li>自增长键不能作为分片的键；</li>
+<li>事务及查询只支持在同一个分片内，事务中更新的数据不能跨分片，查询语句返回的数据也不能跨分片。</li>
+</ul>
+<p><img src="http://pangguoming.com/blog/images/fc206902-1d1e-4be9-bf8c-f8e5bd89703a.jpg" alt=""></p>
+<p><strong>测试高可用性</strong></p>
+<p>服务器架构：</p>
+<table><br><tbody><br><tr><br><td valign="top"><br><br>功能<br><br></td><br><td valign="top"><br><br>IP<br><br></td><br><td valign="top"><br><br>Port<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>Backing store(保存各服务器配置信息)<br><br></td><br><td valign="top"><br><br>200.200.168.24<br><br></td><br><td valign="top"><br><br>3306<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>Fabric 管理进程（Connector）<br><br></td><br><td valign="top"><br><br>200.200.168.24<br><br></td><br><td valign="top"><br><br>32274<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>HA Group 1 – Master<br><br></td><br><td valign="top"><br><br>200.200.168.23<br><br></td><br><td valign="top"><br><br>3306<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>HA Group 1 – Slave<br><br></td><br><td valign="top"><br><br>200.200.168.25<br><br></td><br><td valign="top"><br><br>3306<br><br></td><br><br></tr><br><br></tbody><br><br></table>
 
-高可用性：主服务器故障后可自动切换到后备服务器
-可伸缩性：可方便通过脚本增加DB服务器
-负载均衡：支持手动把某公司的数据请求切换到另外的服务
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/实战体验几种MySQL Cluster方案（转）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+<p>安装过程省略，下面讲述如何设置高可用组、添加备份服务器等过程</p>
+<p>首先，创建高可用组，例如组名group_id-1，命令：</p>
+<p>mysqlfabric group create group_id-1</p>
+<p>往组内group_id-1添加机器200.200.168.25和200.200.168.23：</p>
+<p>mysqlfabric group add group_id-1 200.200.168.25:3306</p>
+<p>mysqlfabric group add group_id-1 200.200.168.23:3306</p>
+<p>然后查看组内机器状态：</p>
+<p><img src="http://pangguoming.com/blog/images/9171df72-654c-4ae4-b40c-260b937dee23.jpg" alt=""></p>
+<p>由于未设置主服务器，两个服务的状态都是SECONDARY<br>提升其中一个为主服务器：<br>mysqlfabric group promote group_id-1 –slave_id 00f9831f-d602-11e3-b65e-0800271119cb<br>然后再查看状态：</p>
+<p><img src="http://pangguoming.com/blog/images/9bc5419e-84c0-425d-8673-cfb1a5f919b3.jpg" alt=""></p>
+<p>设置成主服务器的服务已经变成Primary。<br>另外，mode属性表示该服务器是可读写（READ_WRITE)，或只读(READ_ONLY)，只读表示可以分摊查询数据的压力；只有主服务器能设置成可读写（READ_WRITE)。<br>这时检查25服务器的slave状态：</p>
+<p><img src="http://pangguoming.com/blog/images/dc5ffe32-6a0e-400c-80c6-b8c27e1e662d.jpg" alt=""></p>
+<p>可以看到它的主服务器已经指向23  </p>
+<p>然后激活故障自动切换功能：<br>mysqlfabric group activate group_id-1<br>激活后即可测试服务的高可以性<br>首先，进行状态测试：<br>停止主服务器23</p>
+<p><img src="http://pangguoming.com/blog/images/84ad436c-5a83-43f1-bc62-1d3b7eb35b8b.jpg" alt=""></p>
+<p>然后查看状态：</p>
+<p><img src="http://pangguoming.com/blog/images/d7a78261-acbb-45a0-9b49-129ccfa95e98.jpg" alt=""></p>
+<p>可以看到，这时将25自动提升为主服务器。<br>但如果将23恢复起来后，需要手动重新设置23为主服务器。  </p>
+<p><strong>实时性测试：</strong><br>目的：测试在主服务更新数据后，备份服务器多久才显示这些数据<br>测试案例：使用java代码建连接，往某张表插入100条记录，看备份服务器多久才能同步这100条数据<br>测试结果：<br>表中原来有101条数据，运行程序后，查看主服务器的数据条数：</p>
+<p><img src="http://pangguoming.com/blog/images/ff1dc4c6-0b5a-46c2-8adf-e68022f1db49.jpg" alt=""></p>
+<p>可见主服务器当然立即得到更新。  </p>
+<p>查看备份服务器的数据条数：</p>
+<p><img src="http://pangguoming.com/blog/images/16407758-e15f-4923-bdce-b62502cdf154.jpg" alt=""></p>
+<p>但备份服务器等待了1-2分钟才同步完成（可以看到fabric使用的是异步复制，这是默认方式，性能较好，主服务器不用等待备份服务器返回，但同步速度较慢）</p>
+<p>对于从服务器同步数据稳定性问题，有以下解决方案：</p>
+<ul>
+<li>使用半同步加强数据一致性：异步复制能提供较好的性能，但主库只是把binlog日志发送给从库，动作就结束了，不会验证从库是否接收完毕，风险较高。半同步复制会在发送给从库后，等待从库发送确认信息后才返回。</li>
+<li><p>可以设置从库中同步日志的更新方式，从而减少从库同步的延迟，加快同步速度。</p>
+<p>安装半同步复制：<br>在mysql中运行<br>install plugin rpl_semi_sync_master soname ‘semisync_master.so’;<br>install plugin rpl_semi_sync_slave soname ‘semisync_slave.so’;<br>SET GLOBAL rpl_semi_sync_master_enabled=ON;<br>SET GLOBAL rpl_semi_sync_slave_enabled=ON;<br>修改my.cnf ：<br>rpl_semi_sync_master_enabled=1<br>rpl_semi_sync_slave_enabled=1<br>sync_relay_log=1<br>sync_relay_log_info=1<br>sync_master_info=1  </p>
+</li>
+</ul>
+<p><strong>稳定性测试：</strong><br>测试案例：使用java代码建连接，往某张表插入1w条记录，插入过程中将其中的master服务器停了，看备份服务器是否有这1w笔记录<br>测试结果，停止主服务器后，java程序抛出异常：</p>
+<p><img src="http://pangguoming.com/blog/images/be6e9bd3-5ffb-4082-ada1-9f3634194efb.jpg" alt=""></p>
+<p>但这时再次发送sql命令，可以成功返回。证明只是当时的事务失败了。连接切换到了备份服务器，仍然可用。<br>翻阅了mysql文档，有章节说明了这个问题：</p>
+<p><img src="http://pangguoming.com/blog/images/c17565e4-9a51-4bf4-99f8-e902ea5e44f4.jpg" alt=""></p>
+<p>里面提到：当主服务器当机时，我们的应用程序虽然是不需做任何修改的，但在主服务器被备份服务器替换前，某些事务会丢失，这些可以作为正常的mysql错误来处理。  </p>
+<p><strong>数据完整性校验：</strong><br>测试主服务器停止后，备份服务器是否能够同步所有数据。<br>重启了刚才停止主服务器后，查看记录数</p>
+<p><img src="http://pangguoming.com/blog/images/f8e1b6a4-3890-423c-8c5d-e089744c89d8.jpg" alt=""></p>
+<p>可以看到在插入1059条记录后被停止了。</p>
+<p>现在看看备份服务器的记录数是多少，看看在主服务器当机后是否所有数据都能同步过来</p>
+<p><img src="http://pangguoming.com/blog/images/98f58609-f4b9-4338-9af8-2fdcc621bc89.jpg" alt=""></p>
+<p>大约经过了几十秒，才同步完，数据虽然不是立即同步过来，但没有丢失。</p>
+<p><strong>1.2、分片：如何支持可扩展性和负载均衡</strong></p>
+<p>fabric分片简介：当一台机器或一个组承受不了服务压力后，可以添加服务器分摊读写压力，通过Fabirc的分片功能可以将某些表中数据分散存储到不同服务器。我们可以设定分配数据存储的规则，通过在表中设置分片key设置分配的规则。另外，有些表的数据可能并不需要分片存储，需要将整张表存储在同一个服务器中，可以将设置一个全局组（Global Group）用于存储这些数据，存储到全局组的数据会自动拷贝到其他所有的分片组中。</p>
+<p><img src="http://pangguoming.com/blog/images/e9530d3d-713f-442c-af6d-1decc90c7731.jpg" alt=""></p>
+<h2 id="4-Galera-Cluster"><a href="#4-Galera-Cluster" class="headerlink" title="4.Galera Cluster"></a>4.Galera Cluster</h2><p>简介：</p>
+<p>Galera Cluster号称是世界上最先进的开源数据库集群方案</p>
+<p><img src="http://pangguoming.com/blog/images/f5649f61-517a-4202-aa87-33801ca57d3d.jpg" alt=""></p>
+<p>主要优点及特性：</p>
+<ul>
+<li>真正的多主服务模式：多个服务能同时被读写，不像Fabric那样某些服务只能作备份用</li>
+<li>同步复制：无延迟复制，不会产生数据丢失</li>
+<li>热备用：当某台服务器当机后，备用服务器会自动接管，不会产生任何当机时间</li>
+<li>自动扩展节点：新增服务器时，不需手工复制数据库到新的节点</li>
+<li>支持InnoDB引擎</li>
+<li>对应用程序透明：应用程序不需作修改</li>
+</ul>
+<p><img src="http://pangguoming.com/blog/images/ab5a364d-545b-4ebd-8d7e-8f9937208b94.jpg" alt=""></p>
+<p><strong>架构及实现原理：</strong><br>首先，我们看看传统的基于mysql Replication（复制）的架构图：</p>
+<p><img src="http://pangguoming.com/blog/images/1444bc4c-08ed-4a77-992c-dd41c86e3076.jpg" alt=""></p>
+<p>Replication方式是通过启动复制线程从主服务器上拷贝更新日志，让后传送到备份服务器上执行，这种方式存在事务丢失及同步不及时的风险。Fabric以及传统的主从复制都是使用这种实现方式。</p>
+<p>而Galera则采用以下架构保证事务在所有机器的一致性：</p>
+<p><img src="http://pangguoming.com/blog/images/50bd84e2-413e-421d-b1e0-de819c019638.jpg" alt=""></p>
+<p>客户端通过Galera Load Balancer访问数据库，提交的每个事务都会通过wsrep API 在所有服务器中执行，要不所有服务器都执行成功，要不就所有都回滚，保证所有服务的数据一致性，而且所有服务器同步实时更新。  </p>
+<p>缺点及限制：</p>
+<ul>
+<li>由于同一个事务需要在集群的多台机器上执行，因此网络传输及并发执行会导致性能上有一定的消耗。</li>
+<li>所有机器上都存储着相同的数据，全冗余。</li>
+<li>若一台机器既作为主服务器，又作为备份服务器，出现乐观锁导致rollback的概率会增大，编写程序时要小心。</li>
+<li>不支持的SQL：LOCK / UNLOCK TABLES / GET_LOCK(), RELEASE_LOCK()…</li>
+<li>不支持XA Transaction</li>
+</ul>
+<p>目前基于Galera Cluster的实现方案有三种：Galera Cluster for MySQL、Percona XtraDB Cluster、MariaDB Galera Cluster。<br>我们采用较成熟、应用案例较多的Percona XtraDB Cluster。<br>应用案例：<br>超过2000多家外国企业使用：</p>
+<p><img src="http://pangguoming.com/blog/images/a162a2bc-a39c-4bd5-a9e1-aa561763c971.jpg" alt=""></p>
+<p>包括：</p>
+<p> <img src="http://pangguoming.com/blog/images/ecad04c0-aebc-419f-b86f-b64278a19892.jpg" alt=""></p>
+<p>集群部署架构：</p>
+<table><br><tbody><br><tr><br><td valign="top"><br><br>功能<br><br></td><br><td valign="top"><br><br>IP<br><br></td><br><td valign="top"><br><br>Port<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>Backing store(保存各服务器配置信息)<br><br></td><br><td valign="top"><br><br>200.200.168.24<br><br></td><br><td valign="top"><br><br>3306<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>Fabric 管理进程（Connector）<br><br></td><br><td valign="top"><br><br>200.200.168.24<br><br></td><br><td valign="top"><br><br>32274<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>HA Master 1<br><br></td><br><td valign="top"><br><br>200.200.168.24<br><br></td><br><td valign="top"><br><br>3306<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>HA Master 2<br><br></td><br><td valign="top"><br><br>200.200.168.25<br><br></td><br><td valign="top"><br><br>3306<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>HA Master 3<br><br></td><br><td valign="top"><br><br>200.200.168.23<br><br></td><br><td valign="top"><br><br>3306<br><br></td><br><br></tr><br><br></tbody><br><br></table>
+
+<p><strong>4.1、测试数据同步</strong></p>
+<p>在机器24上创建一个表：</p>
+<p><img src="http://pangguoming.com/blog/images/33d93828-ca88-4ffe-bbcf-86874433baaa.jpg" alt=""></p>
+<p>立即在25 中查看，可见已被同步创建</p>
+<p><img src="http://pangguoming.com/blog/images/712f29ca-252c-48ee-9971-e458ffe3c8c2.jpg" alt=""></p>
+<p>使用Java代码在24服务器上插入100条记录</p>
+<p><img src="http://pangguoming.com/blog/images/e777f3ad-0bcf-4013-87b0-faed7f743218.jpg" alt=""></p>
+<p>立即在25服务器上查看记录数</p>
+<p><img src="http://pangguoming.com/blog/images/e2654aa5-bbcb-4473-bf1e-47b2834bca70.jpg" alt=""></p>
+<p>可见数据同步是立即生效的。  </p>
+<p><strong>4.2、测试添加集群节点</strong><br>添加一个集群节点的步骤很简单，只要在新加入的机器上部署好Percona XtraDB Cluster，然后启动，系统将自动将现存集群中的数据同步到新的机器上。  </p>
+<p>现在为了测试，先将其中一个节点服务停止：</p>
+<p><img src="http://pangguoming.com/blog/images/a1934637-5a4f-4cc4-97c0-6101fbcd6aa1.jpg" alt=""></p>
+<p>然后使用java代码在集群上插入100W数据</p>
+<p><img src="http://pangguoming.com/blog/images/8482891f-ebed-4248-b110-cc0c268139f1.jpg" alt=""></p>
+<p>查看100w数据的数据库大小：</p>
+<p><img src="http://pangguoming.com/blog/images/41625c11-02c7-4942-baf7-32f3d33398d0.jpg" alt=""></p>
+<p>这时启动另外一个节点，启动时即会自动同步集群的数据：</p>
+<p><img src="http://pangguoming.com/blog/images/57c33365-08de-4b6a-84ff-1d7da5c7186e.jpg" alt=""></p>
+<p>启动只需20秒左右，查看数据大小一致，查看表记录数，也已经同步过来</p>
+<p><img src="http://pangguoming.com/blog/images/c210d89b-0d23-43bf-b429-198ff75337d2.jpg" alt=""></p>
+<h2 id="5-对比总结"><a href="#5-对比总结" class="headerlink" title="5.对比总结"></a>5.对比总结</h2><table><br><tbody><br><tr><br><td valign="top"> </td><br><td valign="top"><br><br>MySQL Fabric<br><br></td><br><td valign="top"><br><br>Galera Cluster<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>使用案例<br><br></td><br><td valign="top"><br><br>2014年5月才推出，目前在网上暂时没搜索到有大公司的应用案例<br><br></td><br><td valign="top"><br><br>方案较成熟，外国多家互联网公司使用<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>数据备份的实时性<br><br></td><br><td valign="top"><br><br>由于使用异步复制，一般延时几十秒，但数据不会丢失。<br><br></td><br><td valign="top"><br><br>实时同步，数据不会丢失<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>数据冗余<br><br></td><br><td valign="top"><br><br>使用分片，通过设置分片key规则可以将同一张表的不同数据分散在多台机器中<br><br></td><br><td valign="top"><br><br>每个节点全冗余，没有分片<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>高可用性<br><br></td><br><td valign="top"><br><br>通过Fabric Connector实现主服务器当机后的自动切换，但由于备份延迟，切换后可能不能立即查询数据<br><br></td><br><td valign="top"><br><br>使用HAProxy实现。由于实时同步，切换的可用性更高。<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>可伸缩性<br><br></td><br><td valign="top"><br><br>添加节点后，需要先手工复制集群数据<br><br></td><br><td valign="top"><br><br>扩展节点十分方便，启动节点时自动同步集群数据，100w数据（100M）只需20秒左右<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>负载均衡<br><br></td><br><td valign="top"><br><br>通过HASharding实现<br><br></td><br><td valign="top"><br><br>使用HAProxy实现负载均衡<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>程序修改<br><br></td><br><td valign="top"><br><br>需要切换成jdbc:mysql:fabric的jdbc类和url<br><br></td><br><td valign="top"><br><br>程序无需修改<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>性能对比<br><br></td><br><td valign="top"><br><br>使用java直接用jdbc插入100条记录，大概2000+ms<br><br></td><br><td valign="top"><br><br>跟直接操作mysql一样，直接用jdbc插入100条记录，大概600ms<br><br></td><br><br></tr><br><br></tbody><br><br></table>
+
+<h2 id="6-实践应用"><a href="#6-实践应用" class="headerlink" title="6.实践应用"></a>6.实践应用</h2><p>综合考虑上面方案的优缺点，我们比较偏向选择Galera 如果只有两台数据库服务器，考虑采用以下数据库架构实现高可用性、负载均衡和动态扩展：</p>
+<p><img src="http://pangguoming.com/blog/images/b5ba35df-a5fc-4521-b8cc-43b2b5adf777.jpg" alt=""></p>
+<p>如果三台机器可以考虑：</p>
+<p><img src="http://pangguoming.com/blog/images/4aefa66b-6124-4bdb-86a5-be7c46a4bb67.jpg" alt=""></p>
+<h2 id="7-参考文档"><a href="#7-参考文档" class="headerlink" title="7.参考文档"></a>7.参考文档</h2><p>MySQL各种集群解决方案的对比：<a href="https://www.acquia.com/blog/high-availability-database-tools" target="_blank" rel="noopener">https://www.acquia.com/blog/high-availability-database-tools</a>  </p>
+<p>Percona XtraDB Cluster 搭配 HAProxy：<a href="http://itindex.net/detail/47688-percona-xtradb-cluster" target="_blank" rel="noopener">http://itindex.net/detail/47688-percona-xtradb-cluster</a></p>
+<p>MySQL Fabric : <a href="http://dev.mysql.com/doc/mysql-utilities/1.6/en/fabric.html" target="_blank" rel="noopener">http://dev.mysql.com/doc/mysql-utilities/1.6/en/fabric.html</a></p>
+<p>MySQL Cluster: <a href="http://dev.mysql.com/tech-resources/articles/mysql-cluster-7.3.html" target="_blank" rel="noopener">http://dev.mysql.com/tech-resources/articles/mysql-cluster-7.3.html</a></p>
+<p>Percona XtraDB Cluster:  <a href="http://www.percona.com/" target="_blank" rel="noopener">http://www.percona.com</a></p>
+
+          
         
       
     </div>
@@ -1008,7 +1164,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/08/美团点评MySQL数据库高可用架构从MMM到MHA+Zebra以及MHA+Proxy的演进/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/3734cbe.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1027,7 +1183,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/08/美团点评MySQL数据库高可用架构从MMM到MHA+Zebra以及MHA+Proxy的演进/" itemprop="url">美团点评MySQL数据库高可用架构从MMM到MHA+Zebra以及MHA+Proxy的演进</a></h1>
+                <a class="post-title-link" href="/post/3734cbe.html" itemprop="url">美团点评MySQL数据库高可用架构从MMM到MHA+Zebra以及MHA+Proxy的演进</a></h1>
         
 
         <div class="post-meta">
@@ -1079,16 +1235,73 @@
       
         
           
-          本文介绍最近几年美团点评MySQL数据库高可用架构的演进过程，以及我们在开源技术基础上做的一些创新。同时，也和业界其它方案进行综合对比，了解业界在高可用方面的进展，和未来我们的一些规划和展望。
-MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master replicatio
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/美团点评MySQL数据库高可用架构从MMM到MHA+Zebra以及MHA+Proxy的演进/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>本文介绍最近几年美团点评MySQL数据库高可用架构的演进过程，以及我们在开源技术基础上做的一些创新。同时，也和业界其它方案进行综合对比，了解业界在高可用方面的进展，和未来我们的一些规划和展望。</p>
+<h1 id="MMM"><a href="#MMM" class="headerlink" title="MMM"></a>MMM</h1><p>在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master replication manager for MySQL）做数据库高可用，积累了比较多的经验，也踩了不少坑，可以说MMM在公司数据库高速发展过程中起到了很大的作用。</p>
+<p>MMM的架构如下。</p>
+<p><img src="https://tech.meituan.com/img/mysql-ha/mmm1.png" alt="MMM架构"></p>
+<p>如上所示，整个MySQL集群提供1个写VIP（Virtual IP）和N（N&gt;=1）个读VIP提供对外服务。每个MySQL节点均部署有一个Agent（mmm-agent），mmm-agent和mmm-manager保持通信状态，定期向mmm-manager上报当前MySQL节点的存活情况（这里称之为心跳）。当mmm-manager连续多次无法收到mmm-agent的心跳消息时，会进行切换操作。</p>
+<p>mmm-manager分两种情况处理出现的异常。</p>
+<ol>
+<li></li>
+</ol>
+<p>出现异常的是从节点</p>
+<pre><code>*   mmm-manager会尝试摘掉该从节点的读VIP，并将该读VIP漂移到其它存活的节点上，通过这种方式实现从库的高可用。
+</code></pre><ol start="2">
+<li></li>
+</ol>
+<p>出现异常的是主节点</p>
+<pre><code>*   如果当时节点还没完全挂，只是响应超时。则尝试将Dead Master加上全局锁（flush tables with read lock）。
+*   在从节点中选择一个候选主节点作为新的主节点，进行数据补齐。
+*   数据补齐之后，摘掉Dead Master的写VIP，并尝试加到新的主节点上。
+*   将其它存活的节点进行数据补齐，并重新挂载在新的主节点上。
+</code></pre><p>主库发生故障后，整个集群状态变化如下：</p>
+<p><img src="https://tech.meituan.com/img/mysql-ha/mmm2.png" alt="MMM故障切换"></p>
+<p>mmm-manager检测到master1发生了故障，对数据进行补齐之后，将写VIP漂移到了master2上，应用写操作在新的节点上继续进行。</p>
+<p>然而，MMM架构存在如下问题：</p>
+<ul>
+<li>VIP的数量过多，管理困难（曾经有一个集群是1主6从，共计7个VIP）。某些情况下会导致集群大部分VIP同时丢失，很难分清节点上之前使用的是哪个VIP。</li>
+<li>mmm-agent过度敏感，容易导致VIP丢失。同时mmm-agent自身由于没有高可用，一旦挂掉，会造成mmm-manager误判，误认为MySQL节点异常。</li>
+<li>mmm-manager存在单点，一旦由于某些原因挂掉，整个集群就失去了高可用。</li>
+<li>VIP需要使用ARP协议，跨网段、跨机房的高可用基本无法实现，保障能力有限。</li>
+</ul>
+<p>同时，MMM是Google技术团队开发的一款比较老的高可用产品，在业内使用的并不多，社区也不活跃，Google很早就不再维护MMM的代码分支。我们在使用过程中发现大量Bug，部分Bug我们做了修改，并提交到开源社区，有兴趣的同学可以参考<a href="https://github.com/cenalulu/mysql-mmm" target="_blank" rel="noopener">这里</a>。</p>
+<h1 id="MHA"><a href="#MHA" class="headerlink" title="MHA"></a>MHA</h1><p>针对于此，从2015年开始，美团点评对MySQL高可用架构进行了改进，全部更新为MHA，很大程度上解决了之前MMM遇到的各种问题。</p>
+<p>MHA（MySQL Master High Availability）是由Facebook工程师<a href="https://www.percona.com/live/mysql-conference-2014/users/yoshinori-matsunobu" target="_blank" rel="noopener">Yoshinori Matsunobu</a>开发的一款MySQL高可用软件。从名字就可以看出，MHA只负责MySQL主库的高可用。主库发生故障时，MHA会选择一个数据最接近原主库的候选主节点（这里只有一个从节点，所以该从节点即为候选主节点）作为新的主节点，并补齐和之前Dead Master 差异的Binlog。数据补齐之后，即将写VIP漂移到新主库上。</p>
+<p>整个MHA的架构如下（为简单起见，只描述一主一从）：</p>
+<p><img src="https://tech.meituan.com/img/mysql-ha/mha1.png" alt="MHA故障切换"></p>
+<p>这里我们对MHA做了一些优化，避免一些脑裂问题。</p>
+<p>比如DB服务器的上联交换机出现了抖动，导致主库无法访问，被管理节点判定为故障，触发MHA切换，VIP被漂到了新主库上。随后交换机恢复，主库可被访问，但由于VIP并没有从主库上摘除，因此2台机器同时拥有VIP，会产生脑裂。我们对MHA Manager加入了向同机架上其他物理机的探测，通过对比更多的信息来判断是网络故障还是单机故障。</p>
+<h1 id="MHA-Zebra-DAL"><a href="#MHA-Zebra-DAL" class="headerlink" title="MHA+Zebra (DAL)"></a>MHA+Zebra (DAL)</h1><p>Zebra（斑马）是美团点评基础架构团队开发的一个Java数据库访问中间件，是在<a href="https://github.com/swaldman/c3p0" target="_blank" rel="noopener">c3p0</a>基础上包装的美团点评内部使用的动态数据源，包括读写分离、分库分表、SQL流控等非常强的功能。它和MHA配合，成为了MySQL数据库高可用的重要一环。如下是MHA+Zebra配合的整体架构：</p>
+<p><img src="https://tech.meituan.com/img/mysql-ha/mha2.png" alt="MHA + Zebra架构"></p>
+<p>还是以主库发生故障为例，处理逻辑有如下两种方式：</p>
+<ul>
+<li>当MHA切换完成之后，主动发送消息给Zebra monitor，Zebra monitor更新ZooKeeper的配置，将主库上配置的读流量标记为下线状态。</li>
+<li>Zebra monitor每隔一段时间（10s ~ 40s）检测集群中节点的健康状况，一旦发现某个节点出现了问题，及时刷新ZooKeeper中的配置，将该节点标记为下线。</li>
+</ul>
+<p>一旦节点变更完成，客户端监听到节点发生了变更，会立即使用新的配置重建连接，而老的连接会逐步关闭。整个集群故障切换的过程如下（仅描述Zebra monitor主动探测的情况，第一种MHA通知请自行脑补^_^）。</p>
+<p><img src="https://tech.meituan.com/img/mysql-ha/mha3.png" alt="MHA + Zebra故障切换"></p>
+<p>由于该切换过程还是借助于VIP漂移，导致只能在同网段或者说同个二层交换机下进行，无法做到跨网段或者跨机房的高可用。为解决这个问题，我们对MHA进行了二次开发，将MHA添加VIP的操作去掉，切换完之后通知Zebra monitor去重新调整节点的读写信息（将Write调整为new master的实IP，将Dead Master的读流量摘除），整个切换就完全去VIP化，做到跨网段、甚至跨机房切换，彻底解决之前高可用仅局限于同网段的问题。上述切换过程就变成了如下图。</p>
+<p><img src="https://tech.meituan.com/img/mysql-ha/mha4.png" alt="MHA + Zebra去VIP"></p>
+<p>然而，这种方式中的MHA管理节点是单点，在网络故障或者机器宕机情况下依然存在风险。同时，由于Master-Slave之间是基于Binlog的异步复制，也就导致了主库机器宕机或者主库无法访问时，MHA切换过程中可能导致数据丢失。</p>
+<p>另外，当Master-Slave延迟太大时，也会给数据补齐这一操作带来额外的时间开销。</p>
+<h1 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h1><p>除了Zebra中间件，美团点评还有一套基于Proxy的中间件，和MHA一起配合使用。当MHA切换后，主动通知Proxy来进行读写流量调整，Proxy相比Zebra更加灵活，同时也能覆盖非Java应用场景。缺点就是访问链路多了一层，对应的Response Time和故障率也有一定增加。有兴趣的同学们可以自行前往GitHub查询<a href="https://github.com/Meituan-Dianping/DBProxy" target="_blank" rel="noopener">详细文档</a>。</p>
+<h1 id="未来架构设想"><a href="#未来架构设想" class="headerlink" title="未来架构设想"></a>未来架构设想</h1><p>上文提到的MHA架构依然存在如下两个问题：</p>
+<ul>
+<li>管理节点单点。</li>
+<li>MySQL异步复制中的数据丢失。</li>
+</ul>
+<p>针对于此，我们在部分核心业务上使用Semi-Sync，可以保证95%以上场景下数据不丢失（依然存在一些极端情况下无法保障数据的强一致性）。另外，高可用使用分布式的Agent，在某个节点发生故障后，通过一定的选举协议来选择新的Master，从而解决了MHA Manager的单点问题。</p>
+<p>针对上述问题，我们研究了业界的一些领先的做法，简单描述如下。</p>
+<h3 id="主从同步数据丢失"><a href="#主从同步数据丢失" class="headerlink" title="主从同步数据丢失"></a>主从同步数据丢失</h3><p>针对主从同步的数据丢失，一种做法是创建一个Binlog Server，该Server模拟Slave接受Binlog日志，主库每次的数据写入都需要接收到Binlog Server的ACK应答，才认为写入成功。Binlog Server可以部署在就近的物理节点上，从而保证每次数据写入都能快速落地到Binlog Server。在发生故障时，只需要从Binlog Server拉取数据即可保证数据不丢失。</p>
+<h3 id="分布式Agent高可用"><a href="#分布式Agent高可用" class="headerlink" title="分布式Agent高可用"></a>分布式Agent高可用</h3><p>针对MHA管理节点单点问题，一种做法是让MySQL数据库集群中每个节点部署Agent，发生故障时每个Agent均参与选举投票，选举出合适的Slave作为新的主库，防止只通过Manager来切换，去除MHA单点。整个架构如下图所示。</p>
+<p><img src="https://tech.meituan.com/img/mysql-ha/mha5.png" alt="分布式Agent+Binlog Server+Zebra"></p>
+<h3 id="MGR结合中间件高可用"><a href="#MGR结合中间件高可用" class="headerlink" title="MGR结合中间件高可用"></a>MGR结合中间件高可用</h3><p>上述方式某种程度上解决了之前的问题，但是Agent和Binlog Server却是新引入的风险，同时Binlog Server的存在，也带来了响应时间上的额外开销。有没有一种方式，能够去除Binlog Server和Agent，又能保证数据不丢失呢 ？答案当然是有的。</p>
+<p>最近几年，MySQL社区关于分布式协议Raft和Paxos非常火，社区也推出了基于Paxos的MGR版本的MySQL，通过Paxos将一致性和切换过程下推到数据库内部，向上层屏蔽了切换细节。架构如下（以MGR的single-primary为例）。</p>
+<p><img src="https://tech.meituan.com/img/mysql-ha/mha6.png" alt="MGR+Zebra"></p>
+<p>当数据库发生故障时，MySQL内部自己进行切换。切换完成后将topo结构推送给Zebra monitor，Zebra monitor进行相应的读写流量变更。不过，该架构存在与Binlog Server同样的需要回复确认问题，就是每次主库数据写入，都需要大多数节点回复ACK，该次写入才算成功，存在一定的响应时间开销。同时，每个MGR集群必须需要奇数个数（大于1）的节点，导致原先只需要一主一从两台机器，现在需要至少三台，带来一定的资源浪费。但不管怎么说，MGR的出现是无疑是MySQL数据库又一次伟大的创新。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>本文介绍了美团点评MySQL数据库高可用架构从MMM到MHA+Zebra以及MHA+Proxy的演进历程，同时也介绍了业界一些高可用的做法。数据库最近几年发展突飞猛进，数据库的高可用设计上没有完美的方案，只有不断的突破和创新，我们也一直在这条路上探索更加优秀的设计与更加完美的方案。</p>
+
+          
         
       
     </div>
@@ -1135,7 +1348,7 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/01/08/机器学习、NLP、Python和Math最好的150余个教程（建议收藏）/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/a5be2cc7.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1154,7 +1367,7 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/08/机器学习、NLP、Python和Math最好的150余个教程（建议收藏）/" itemprop="url">机器学习、NLP、Python和Math最好的150余个教程（建议收藏）</a></h1>
+                <a class="post-title-link" href="/post/a5be2cc7.html" itemprop="url">机器学习、NLP、Python和Math最好的150余个教程（建议收藏）</a></h1>
         
 
         <div class="post-meta">
@@ -1206,18 +1419,589 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
       
         
           
+            <p><img src="http://pangguoming.com/blog/images/627f968a-4df2-4dc5-afbc-d6e44681be9f.jpg" alt="640?wx_fmt=jpeg&amp;wxfrom=5&amp;wx_lazy=1"></p>
+<p>编辑 | MingMing</p>
+<p>尽管机器学习的历史可以追溯到1959年，但目前，这个领域正以前所未有的速度发展。最近，我一直在网上寻找关于机器学习和NLP各方面的好资源，为了帮助到和我有相同需求的人，我整理了一份迄今为止我发现的最好的教程内容列表。</p>
+<p>通过教程中的简介内容讲述一个概念。避免了包括书籍章节涵盖范围广，以及研究论文在教学理念上做的不好的特点。</p>
+<p>我把这篇文章分成四个部分：机器学习、NLP、Python和数学。</p>
+<p>每个部分中都包含了一些主题文章，但是由于材料巨大，每个部分不可能包含所有可能的主题，我将每个主题限制在5到6个教程中。（由于微信不能插入外链，请点击“阅读原文”查看原文）</p>
+<h2 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h2><ul>
+<li></li>
+</ul>
+<p>Machine Learning is Fun! (medium.com/@ageitgey)</p>
+<ul>
+<li></li>
+</ul>
+<p>Machine Learning Crash Course: Part I, Part II, Part III (Machine Learning at Berkeley)</p>
+<ul>
+<li></li>
+</ul>
+<p>An Introduction to Machine Learning Theory and Its Applications: A Visual Tutorial with Examples (toptal.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>A Gentle Guide to Machine Learning (monkeylearn.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Which machine learning algorithm should I use? (sas.com)</p>
+<h2 id="激活和损失函数"><a href="#激活和损失函数" class="headerlink" title="激活和损失函数"></a>激活和损失函数</h2><ul>
+<li></li>
+</ul>
+<p>Sigmoid neurons (neuralnetworksanddeeplearning.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>What is the role of the activation function in a neural network? (quora.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Comprehensive list of activation functions in neural networks with pros/cons(stats.stackexchange.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Activation functions and it’s types-Which is better? (medium.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Making Sense of Logarithmic Loss (exegetic.biz)</p>
+<ul>
+<li></li>
+</ul>
+<p>Loss Functions (Stanford CS231n)</p>
+<ul>
+<li></li>
+</ul>
+<p>L1 vs. L2 Loss function (rishy.github.io)</p>
+<ul>
+<li></li>
+</ul>
+<p>The cross-entropy cost function (neuralnetworksanddeeplearning.com)</p>
+<h2 id="Bias"><a href="#Bias" class="headerlink" title="Bias"></a>Bias</h2><ul>
+<li></li>
+</ul>
+<p>Role of Bias in Neural Networks (stackoverflow.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Bias Nodes in Neural Networks (makeyourownneuralnetwork.blogspot.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>What is bias in artificial neural network? (quora.com)</p>
+<h2 id="感知器"><a href="#感知器" class="headerlink" title="感知器"></a>感知器</h2><ul>
+<li></li>
+</ul>
+<p>Perceptrons (neuralnetworksanddeeplearning.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>The Perception (natureofcode.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Single-layer Neural Networks (Perceptrons) (dcu.ie)</p>
+<ul>
+<li></li>
+</ul>
+<p>From Perceptrons to Deep Networks (toptal.com)</p>
+<h2 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h2><ul>
+<li></li>
+</ul>
+<p>Introduction to linear regression analysis (duke.edu)</p>
+<ul>
+<li></li>
+</ul>
+<p>Linear Regression (ufldl.stanford.edu)</p>
+<ul>
+<li></li>
+</ul>
+<p>Linear Regression (readthedocs.io)</p>
+<ul>
+<li></li>
+</ul>
+<p>Logistic Regression (readthedocs.io)</p>
+<ul>
+<li></li>
+</ul>
+<p>Simple Linear Regression Tutorial for Machine Learning(machinelearningmastery.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Logistic Regression Tutorial for Machine Learning(machinelearningmastery.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Softmax Regression (ufldl.stanford.edu)</p>
+<h2 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h2><ul>
+<li></li>
+</ul>
+<p>Learning with gradient descent (neuralnetworksanddeeplearning.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Gradient Descent (iamtrask.github.io)</p>
+<ul>
+<li></li>
+</ul>
+<p>How to understand Gradient Descent algorithm (kdnuggets.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>An overview of gradient descent optimization algorithms(sebastianruder.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Optimization: Stochastic Gradient Descent (Stanford CS231n)</p>
+<h2 id="生成式学习"><a href="#生成式学习" class="headerlink" title="生成式学习"></a>生成式学习</h2><ul>
+<li></li>
+</ul>
+<p>Generative Learning Algorithms (Stanford CS229)</p>
+<ul>
+<li></li>
+</ul>
+<p>A practical explanation of a Naive Bayes classifier (monkeylearn.com)</p>
+<h2 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h2><ul>
+<li></li>
+</ul>
+<p>An introduction to Support Vector Machines (SVM) (monkeylearn.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Support Vector Machines (Stanford CS229)</p>
+<ul>
+<li></li>
+</ul>
+<p>Linear classification: Support Vector Machine, Softmax (Stanford 231n)</p>
+<h2 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h2><ul>
+<li></li>
+</ul>
+<p>Yes you should understand backprop (medium.com/@karpathy)</p>
+<ul>
+<li></li>
+</ul>
+<p>Can you give a visual explanation for the back propagation algorithm for neural - networks? (github.com/rasbt)</p>
+<ul>
+<li></li>
+</ul>
+<p>How the backpropagation algorithm works(neuralnetworksanddeeplearning.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Backpropagation Through Time and Vanishing Gradients (wildml.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>A Gentle Introduction to Backpropagation Through Time(machinelearningmastery.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Backpropagation, Intuitions (Stanford CS231n)</p>
+<h2 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h2><ul>
+<li></li>
+</ul>
+<p>Deep Learning in a Nutshell (nikhilbuduma.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>A Tutorial on Deep Learning (Quoc V. Le)</p>
+<ul>
+<li></li>
+</ul>
+<p>What is Deep Learning? (machinelearningmastery.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>What’s the Difference Between Artificial Intelligence, Machine Learning, and Deep - Learning? (nvidia.com)</p>
+<h2 id="优化和降维"><a href="#优化和降维" class="headerlink" title="优化和降维"></a>优化和降维</h2><ul>
+<li></li>
+</ul>
+<p>Seven Techniques for Data Dimensionality Reduction (knime.org)</p>
+<ul>
+<li></li>
+</ul>
+<p>Principal components analysis (Stanford CS229)</p>
+<ul>
+<li></li>
+</ul>
+<p>Dropout: A simple way to improve neural networks (Hinton @ NIPS 2012)</p>
+<ul>
+<li></li>
+</ul>
+<p>How to train your Deep Neural Network (rishy.github.io)</p>
+<h2 id="长短期记忆网络"><a href="#长短期记忆网络" class="headerlink" title="长短期记忆网络"></a>长短期记忆网络</h2><ul>
+<li></li>
+</ul>
+<p>A Gentle Introduction to Long Short-Term Memory Networks by the Experts(machinelearningmastery.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Understanding LSTM Networks (colah.github.io)</p>
+<ul>
+<li></li>
+</ul>
+<p>Exploring LSTMs (echen.me)</p>
+<ul>
+<li></li>
+</ul>
+<p>Anyone Can Learn To Code an LSTM-RNN in Python (iamtrask.github.io)</p>
+<h2 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h2><ul>
+<li></li>
+</ul>
+<p>Introducing convolutional networks (neuralnetworksanddeeplearning.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Deep Learning and Convolutional Neural Networks(medium.com/@ageitgey)</p>
+<ul>
+<li></li>
+</ul>
+<p>Conv Nets: A Modular Perspective (colah.github.io)</p>
+<ul>
+<li></li>
+</ul>
+<p>Understanding Convolutions (colah.github.io)</p>
+<h2 id="递归神经网络"><a href="#递归神经网络" class="headerlink" title="递归神经网络"></a>递归神经网络</h2><ul>
+<li></li>
+</ul>
+<p>Recurrent Neural Networks Tutorial (wildml.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Attention and Augmented Recurrent Neural Networks (distill.pub)</p>
+<ul>
+<li></li>
+</ul>
+<p>The Unreasonable Effectiveness of Recurrent Neural Networks(karpathy.github.io)</p>
+<ul>
+<li></li>
+</ul>
+<p>A Deep Dive into Recurrent Neural Nets (nikhilbuduma.com)</p>
+<h2 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a>强化学习</h2><ul>
+<li></li>
+</ul>
+<p>Simple Beginner’s guide to Reinforcement Learning &amp; its implementation(analyticsvidhya.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>A Tutorial for Reinforcement Learning (mst.edu)</p>
+<ul>
+<li></li>
+</ul>
+<p>Learning Reinforcement Learning (wildml.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Deep Reinforcement Learning: Pong from Pixels (karpathy.github.io)</p>
+<h2 id="生成对抗网络"><a href="#生成对抗网络" class="headerlink" title="生成对抗网络"></a>生成对抗网络</h2><ul>
+<li></li>
+</ul>
+<p>What’s a Generative Adversarial Network? (nvidia.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Abusing Generative Adversarial Networks to Make 8-bit Pixel Art(medium.com/@ageitgey)</p>
+<ul>
+<li></li>
+</ul>
+<p>An introduction to Generative Adversarial Networks (with code in - TensorFlow) (aylien.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Generative Adversarial Networks for Beginners (oreilly.com)</p>
+<h2 id="多任务学习"><a href="#多任务学习" class="headerlink" title="多任务学习"></a>多任务学习</h2><ul>
+<li></li>
+</ul>
+<p>An Overview of Multi-Task Learning in Deep Neural Networks(sebastianruder.com)</p>
+<h2 id="自然语言处理"><a href="#自然语言处理" class="headerlink" title="自然语言处理"></a>自然语言处理</h2><ul>
+<li></li>
+</ul>
+<p>A Primer on Neural Network Models for Natural Language Processing (Yoav Goldberg)</p>
+<ul>
+<li></li>
+</ul>
+<p>The Definitive Guide to Natural Language Processing (monkeylearn.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Introduction to Natural Language Processing (algorithmia.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Natural Language Processing Tutorial (vikparuchuri.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Natural Language Processing (almost) from Scratch (arxiv.org)</p>
+<h2 id="深入学习和NLP"><a href="#深入学习和NLP" class="headerlink" title="深入学习和NLP"></a>深入学习和NLP</h2><ul>
+<li></li>
+</ul>
+<p>Deep Learning applied to NLP (arxiv.org)</p>
+<ul>
+<li></li>
+</ul>
+<p>Deep Learning for NLP (without Magic) (Richard Socher)</p>
+<ul>
+<li></li>
+</ul>
+<p>Understanding Convolutional Neural Networks for NLP (wildml.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Deep Learning, NLP, and Representations (colah.github.io)</p>
+<ul>
+<li></li>
+</ul>
+<p>Embed, encode, attend, predict: The new deep learning formula for state-of-the-art NLP models (explosion.ai)</p>
+<ul>
+<li></li>
+</ul>
+<p>Understanding Natural Language with Deep Neural Networks Using Torch(nvidia.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Deep Learning for NLP with Pytorch (pytorich.org)</p>
+<h2 id="词向量"><a href="#词向量" class="headerlink" title="词向量"></a>词向量</h2><ul>
+<li></li>
+</ul>
+<p>Bag of Words Meets Bags of Popcorn (kaggle.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>On word embeddings Part I, Part II, Part III (sebastianruder.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>The amazing power of word vectors (acolyer.org)</p>
+<ul>
+<li></li>
+</ul>
+<p>word2vec Parameter Learning Explained (arxiv.org)</p>
+<ul>
+<li></li>
+</ul>
+<p>Word2Vec Tutorial — The Skip-Gram Model, Negative Sampling(mccormickml.com)</p>
+<h2 id="Encoder-Decoder"><a href="#Encoder-Decoder" class="headerlink" title="Encoder-Decoder"></a>Encoder-Decoder</h2><ul>
+<li></li>
+</ul>
+<p>Attention and Memory in Deep Learning and NLP (wildml.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Sequence to Sequence Models (tensorflow.org)</p>
+<ul>
+<li></li>
+</ul>
+<p>Sequence to Sequence Learning with Neural Networks (NIPS 2014)</p>
+<ul>
+<li></li>
+</ul>
+<p>Machine Learning is Fun Part 5: Language Translation with Deep Learning and the Magic of Sequences (medium.com/@ageitgey)</p>
+<ul>
+<li></li>
+</ul>
+<p>How to use an Encoder-Decoder LSTM to Echo Sequences of Random Integers(machinelearningmastery.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>tf-seq2seq (google.github.io)</p>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><ul>
+<li></li>
+</ul>
+<p>7 Steps to Mastering Machine Learning With Python (kdnuggets.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>An example machine learning notebook (nbviewer.jupyter.org)</p>
+<p>例子</p>
+<ul>
+<li></li>
+</ul>
+<p>How To Implement The Perceptron Algorithm From Scratch In Python(machinelearningmastery.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Implementing a Neural Network from Scratch in Python (wildml.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>A Neural Network in 11 lines of Python (iamtrask.github.io)</p>
+<ul>
+<li></li>
+</ul>
+<p>Implementing Your Own k-Nearest Neighbour Algorithm Using Python(kdnuggets.com)<br>Demonstration of Memory with a Long Short-Term Memory Network in - Python (machinelearningmastery.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>How to Learn to Echo Random Integers with Long Short-Term Memory Recurrent Neural Networks (machinelearningmastery.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>How to Learn to Add Numbers with seq2seq Recurrent Neural Networks(machinelearningmastery.com)</p>
+<h2 id="Scipy和numpy"><a href="#Scipy和numpy" class="headerlink" title="Scipy和numpy"></a>Scipy和numpy</h2><ul>
+<li></li>
+</ul>
+<p>Scipy Lecture Notes (scipy-lectures.org)</p>
+<ul>
+<li></li>
+</ul>
+<p>Python Numpy Tutorial (Stanford CS231n)</p>
+<ul>
+<li></li>
+</ul>
+<p>An introduction to Numpy and Scipy (UCSB CHE210D)</p>
+<ul>
+<li></li>
+</ul>
+<p>A Crash Course in Python for Scientists (nbviewer.jupyter.org)</p>
+<h2 id="scikit-learn"><a href="#scikit-learn" class="headerlink" title="scikit-learn"></a>scikit-learn</h2><ul>
+<li></li>
+</ul>
+<p>PyCon scikit-learn Tutorial Index (nbviewer.jupyter.org)</p>
+<ul>
+<li></li>
+</ul>
+<p>scikit-learn Classification Algorithms (github.com/mmmayo13)</p>
+<ul>
+<li></li>
+</ul>
+<p>scikit-learn Tutorials (scikit-learn.org)</p>
+<ul>
+<li></li>
+</ul>
+<p>Abridged scikit-learn Tutorials (github.com/mmmayo13)</p>
+<h2 id="Tensorflow"><a href="#Tensorflow" class="headerlink" title="Tensorflow"></a>Tensorflow</h2><ul>
+<li></li>
+</ul>
+<p>Tensorflow Tutorials (tensorflow.org)</p>
+<ul>
+<li></li>
+</ul>
+<p>Introduction to TensorFlow — CPU vs GPU (medium.com/@erikhallstrm)</p>
+<ul>
+<li></li>
+</ul>
+<p>TensorFlow: A primer (metaflow.fr)</p>
+<ul>
+<li></li>
+</ul>
+<p>RNNs in Tensorflow (wildml.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Implementing a CNN for Text Classification in TensorFlow (wildml.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>How to Run Text Summarization with TensorFlow (surmenok.com)</p>
+<h2 id="PyTorch"><a href="#PyTorch" class="headerlink" title="PyTorch"></a>PyTorch</h2><ul>
+<li></li>
+</ul>
+<p>PyTorch Tutorials (pytorch.org)</p>
+<ul>
+<li></li>
+</ul>
+<p>A Gentle Intro to PyTorch (gaurav.im)</p>
+<ul>
+<li></li>
+</ul>
+<p>Tutorial: Deep Learning in PyTorch (iamtrask.github.io)</p>
+<ul>
+<li></li>
+</ul>
+<p>PyTorch Examples (github.com/jcjohnson)</p>
+<ul>
+<li></li>
+</ul>
+<p>PyTorch Tutorial (github.com/MorvanZhou)</p>
+<ul>
+<li></li>
+</ul>
+<p>PyTorch Tutorial for Deep Learning Researchers (github.com/yunjey)</p>
+<h2 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h2><ul>
+<li></li>
+</ul>
+<p>Math for Machine Learning (ucsc.edu)</p>
+<ul>
+<li></li>
+</ul>
+<p>Math for Machine Learning (UMIACS CMSC422)</p>
+<p>线性代数</p>
+<ul>
+<li></li>
+</ul>
+<p>An Intuitive Guide to Linear Algebra (betterexplained.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>A Programmer’s Intuition for Matrix Multiplication (betterexplained.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Understanding the Cross Product (betterexplained.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Understanding the Dot Product (betterexplained.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Linear Algebra for Machine Learning (U. of Buffalo CSE574)</p>
+<ul>
+<li></li>
+</ul>
+<p>Linear algebra cheat sheet for deep learning (medium.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Linear Algebra Review and Reference (Stanford CS229)</p>
+<p>概率</p>
+<ul>
+<li></li>
+</ul>
+<p>Understanding Bayes Theorem With Ratios (betterexplained.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Review of Probability Theory (Stanford CS229)</p>
+<ul>
+<li></li>
+</ul>
+<p>Probability Theory Review for Machine Learning (Stanford CS229)</p>
+<ul>
+<li></li>
+</ul>
+<p>Probability Theory (U. of Buffalo CSE574)</p>
+<ul>
+<li></li>
+</ul>
+<p>Probability Theory for Machine Learning (U. of Toronto CSC411)</p>
+<p>微积分</p>
+<ul>
+<li></li>
+</ul>
+<p>How To Understand Derivatives: The Quotient Rule, Exponents, and Logarithms (betterexplained.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>How To Understand Derivatives: The Product, Power &amp; Chain Rules(betterexplained.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Vector Calculus: Understanding the Gradient (betterexplained.com)</p>
+<ul>
+<li></li>
+</ul>
+<p>Differential Calculus (Stanford CS224n)</p>
+<ul>
+<li></li>
+</ul>
+<p>Calculus Overview (readthedocs.io)</p>
+<blockquote>
+<p>原文链接<a href="https://unsupervisedmethods.com/over-150-of-the-best-machine-learning-nlp-and-python-tutorials-ive-found-ffce2939bd78" target="_blank" rel="noopener">https://unsupervisedmethods.com/over-150-of-the-best-machine-learning-nlp-and-python-tutorials-ive-found-ffce2939bd78</a></p>
+</blockquote>
+
           
-编辑 | MingMing
-尽管机器学习的历史可以追溯到1959年，但目前，这个领域正以前所未有的速度发展。最近，我一直在网上寻找关于机器学习和NLP各方面的好资源，为了帮助到和我有相同需求的人，我整理了一份迄今为止我发现的最好的教程内容列表。
-通过教程中的简介内容讲述一个概念。避免了包括书籍章节
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/机器学习、NLP、Python和Math最好的150余个教程（建议收藏）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1264,7 +2048,7 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/12/31/springboot-vue/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/aed2a768.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1283,7 +2067,7 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/31/springboot-vue/" itemprop="url">springboot与vue（iview UI）搭建前后端分离项目</a></h1>
+                <a class="post-title-link" href="/post/aed2a768.html" itemprop="url">springboot与vue（iview UI）搭建前后端分离项目</a></h1>
         
 
         <div class="post-meta">
@@ -1357,15 +2141,8 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
       
         
           
+            
           
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/31/springboot-vue/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1412,7 +2189,7 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/12/30/primary-consul/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/23d0c494.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1431,7 +2208,7 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/30/primary-consul/" itemprop="url">微服务Spring cloud经验总结系列(初级），第十三篇：服务发现与配置工具consul</a></h1>
+                <a class="post-title-link" href="/post/23d0c494.html" itemprop="url">微服务Spring cloud经验总结系列(初级），第十三篇：服务发现与配置工具consul</a></h1>
         
 
         <div class="post-meta">
@@ -1505,15 +2282,8 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
       
         
           
+            
           
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/30/primary-consul/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1560,7 +2330,7 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/12/30/primary-turbine/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/5c19f437.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1579,7 +2349,7 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/30/primary-turbine/" itemprop="url">微服务Spring cloud经验总结系列(初级），第十二篇：集群监控turbine</a></h1>
+                <a class="post-title-link" href="/post/5c19f437.html" itemprop="url">微服务Spring cloud经验总结系列(初级），第十二篇：集群监控turbine</a></h1>
         
 
         <div class="post-meta">
@@ -1653,15 +2423,8 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
       
         
           
+            
           
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/30/primary-turbine/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1724,105 +2487,108 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
-            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+
           
-            <p class="site-author-name" itemprop="name">庞国明</p>
-            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives">
-            
-                <span class="site-state-item-count">420</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">267</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>GitHub</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
-                  
-                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -1839,12 +2605,9 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">庞国明</span>
 
@@ -1852,11 +2615,17 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
@@ -1876,6 +2645,8 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -1910,53 +2681,61 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
 
-
-
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1982,6 +2761,23 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
 
   
 
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
 
 
 
@@ -2311,11 +3107,27 @@ MMM在2015年之前，美团点评（点评侧）长期使用MMM（Master-Master
 
 
 
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
 
   
 
   
 
+  
+
+  
   
 
   

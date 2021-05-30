@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="每一个程序员在编写代码的过程中都免不了出现错误或是小的失误，这些小的错误和失误往往使得程序员还得返工。那么，如何才能尽量避免这些错误的发生呢？笔者总结只有在日常的编写代码中总结出经验，在这篇文章中，笔者列出了10个Java编程中常见的错误，你可以把这些错误添加到你的代码审查的检查列表中，这样在经过代码审查后，你可以确信你的代码中不再存在这类错误了。  一、常见错误1：多次拷贝字符串  测试所不能发">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java代码常见的十种错误">
+<meta property="og:url" content="http://pangguoming.com/post/9613628.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="每一个程序员在编写代码的过程中都免不了出现错误或是小的失误，这些小的错误和失误往往使得程序员还得返工。那么，如何才能尽量避免这些错误的发生呢？笔者总结只有在日常的编写代码中总结出经验，在这篇文章中，笔者列出了10个Java编程中常见的错误，你可以把这些错误添加到你的代码审查的检查列表中，这样在经过代码审查后，你可以确信你的代码中不再存在这类错误了。  一、常见错误1：多次拷贝字符串  测试所不能发">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-10T03:30:55.660Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java代码常见的十种错误">
+<meta name="twitter:description" content="每一个程序员在编写代码的过程中都免不了出现错误或是小的失误，这些小的错误和失误往往使得程序员还得返工。那么，如何才能尽量避免这些错误的发生呢？笔者总结只有在日常的编写代码中总结出经验，在这篇文章中，笔者列出了10个Java编程中常见的错误，你可以把这些错误添加到你的代码审查的检查列表中，这样在经过代码审查后，你可以确信你的代码中不再存在这类错误了。  一、常见错误1：多次拷贝字符串  测试所不能发">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/post/9613628.html">
+
+
+
+
+
+  <title>Java代码常见的十种错误 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/9613628.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java代码常见的十种错误</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-12T08:32:00+08:00">
+                2018-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/9613628.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/post/9613628.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>每一个程序员在编写代码的过程中都免不了出现错误或是小的失误，这些小的错误和失误往往使得程序员还得返工。那么，如何才能尽量避免这些错误的发生呢？笔者总结只有在日常的编写代码中总结出经验，在这篇文章中，笔者列出了10个Java编程中常见的错误，你可以把这些错误添加到你的代码审查的检查列表中，这样在经过代码审查后，你可以确信你的代码中不再存在这类错误了。</p>
+<p> 一、常见错误1：多次拷贝字符串</p>
+<p> 测试所不能发现的一个错误是生成不可变(immutable)对象的多份拷贝。不可变对象是不可改变的，因此不需要拷贝它。最常用的不可变对象是String。</p>
+<p> 如果你必须改变一个String对象的内容，你应该使用StringBuffer。下面的代码会正常工作：</p>
+<p> String s = new String (“Text here”);<br>  但是，这段代码性能差，而且没有必要这么复杂。你还可以用以下的方式来重写上面的代码：</p>
+<p> String temp = “Text here”;<br> String s = new String (temp);<br>  但是这段代码包含额外的String，并非完全必要。更好的代码为：</p>
+<p> String s = “Text here”;<br>  二、常见错误2：没有克隆(clone)返回的对象</p>
+<p> 封装(encapsulation)是面向对象编程的重要概念。不幸的是，Java为不小心打破封装提供了方便——Java允许返回私有数据的引用(reference)。下面的代码揭示了这一点：</p>
+<p> import java.awt.Dimension;<br> /<strong><em>Example class.The x and y values should never</em>be negative.<em>/<br> public class Example{<br> private Dimension d = new Dimension (0, 0);<br> public Example (){ }<br> /</em></strong> Set height and width. Both height and width must be nonnegative <em> or an exception is thrown.</em>/<br> public synchronized void setValues (int height,int width) throws IllegalArgumentException{<br> if (height &lt;0 || width &lt;0)<br> throw new IllegalArgumentException();<br> d.height = height;<br> d.width = width;<br> }<br> public synchronized Dimension getValues(){<br> // Ooops! Breaks encapsulation<br> return d;<br> }<br> }<br>  Example类保证了它所存储的height和width值永远非负数，试图使用setValues()方法来设置负值会触发异常。不幸的是，由于getValues()返回d的引用，而不是d的拷贝，你可以编写如下的破坏性代码：</p>
+<p> Example ex = new Example();<br> Dimension d = ex.getValues();<br> d.height = -5;<br> d.width = -10;<br>  现在，Example对象拥有负值了!如果getValues() 的调用者永远也不设置返回的Dimension对象的width 和height值，那么仅凭测试是不可能检测到这类的错误。</p>
+<p> 不幸的是，随着时间的推移，客户代码可能会改变返回的Dimension对象的值，这个时候，追寻错误的根源是件枯燥且费时的事情，尤其是在多线程环境中。</p>
+<p> 更好的方式是让getValues()返回拷贝：</p>
+<p> public synchronized Dimension getValues(){<br> return new Dimension (d.x, d.y);<br> }<br>  现在，Example对象的内部状态就安全了。调用者可以根据需要改变它所得到的拷贝的状态，但是要修改Example对象的内部状态，必须通过setValues()才可以。</p>
+<p> 三、常见错误3：不必要的克隆</p>
+<p> 我们现在知道了get方法应该返回内部数据对象的拷贝，而不是引用。但是，事情没有绝对：</p>
+<p> /<strong><em> Example class.The value should never </em> be negative.<em>/<br> public class Example{<br> private Integer i = new Integer (0);<br> public Example (){ }<br> /</em></strong> Set x. x must be nonnegative<em> or an exception will be thrown</em>/<br> public synchronized void setValues (int x) throws IllegalArgumentException{<br> if (x &lt;0)<br> throw new IllegalArgumentException();<br> i = new Integer (x);<br> }<br> public synchronized Integer getValue(){<br> // We can’t clone Integers so we makea copy this way.<br> return new Integer (i.intValue());<br> }<br> }<br>  这段代码是安全的，但是就象在错误1#那样，又作了多余的工作。Integer对象，就象String对象那样，一旦被创建就是不可变的。因此，返回内部Integer对象，而不是它的拷贝，也是安全的。</p>
+<p> 方法getValue()应该被写为：</p>
+<p> public synchronized Integer getValue(){<br> // ’i’ is immutable, so it is safe to return it instead of a copy.<br> return i;<br> }<br>  Java程序比C++程序包含更多的不可变对象。JDK 所提供的若干不可变类包括：</p>
+<p> ·Boolean<br> ·Byte<br> ·Character<br> ·Class<br> ·Double<br> ·Float<br> ·Integer<br> ·Long<br> ·Short<br> ·String<br> ·大部分的Exception的子类</p>
+<p> 四、常见错误4：自编代码来拷贝数组</p>
+<p> Java允许你克隆数组，但是开发者通常会错误地编写如下的代码，问题在于如下的循环用三行做的事情，如果采用Object的clone方法用一行就可以完成：</p>
+<p> public class Example{<br> private int[] copy;<br> /<em>** Save a copy of ’data’. ’data’ cannot be null.</em>/<br> public void saveCopy (int[] data){<br> copy = new int[data.length];<br> for (int i = 0; i<br> copy[i] = data[i];<br> }<br> }<br>  这段代码是正确的，但却不必要地复杂。saveCopy()的一个更好的实现是：</p>
+<p> void saveCopy (int[] data){<br> try{<br> copy = (int[])data.clone();<br> }catch (CloneNotSupportedException e){<br> // Can’t get here.<br> }<br> }<br>  如果你经常克隆数组，编写如下的一个工具方法会是个好主意：</p>
+<p> static int[] cloneArray (int[] data){<br> try{<br> return(int[])data.clone();<br> }catch(CloneNotSupportedException e){<br> // Can’t get here.<br> }<br> }<br>  这样的话，我们的saveCopy看起来就更简洁了：</p>
+<p> void saveCopy (int[] data){<br> copy = cloneArray ( data);<br> }<br>  五、常见错误5：拷贝错误的数据</p>
+<p> 有时候程序员知道必须返回一个拷贝，但是却不小心拷贝了错误的数据。由于仅仅做了部分的数据拷贝工作，下面的代码与程序员的意图有偏差：</p>
+<p> import java.awt.Dimension;<br> /<strong><em> Example class. The height and width values should never </em> be<br> negative. <em>/<br> public class Example{<br> static final public int TOTAL_VALUES = 10;<br> private Dimension[] d = new Dimension[TOTAL_VALUES];<br> public Example (){ }<br> /</em></strong> Set height and width. Both height and width must be nonnegative <em> or an exception will be thrown. </em>/<br> public synchronized void setValues (int index, int height, int width) throws IllegalArgumentException{<br> if (height &lt;0 || width &lt;0)<br> throw new IllegalArgumentException();<br> if (d[index] == null)<br> d[index] = new Dimension();<br> d[index].height = height;<br> d[index].width = width;<br> }<br> public synchronized Dimension[] getValues()<br> throws CloneNotSupportedException{<br> return (Dimension[])d.clone();<br> }<br> }<br>  这儿的问题在于getValues()方法仅仅克隆了数组，而没有克隆数组中包含的Dimension对象，因此，虽然调用者无法改变内部的数组使其元素指向不同的Dimension对象，但是调用者却可以改变内部的数组元素(也就是Dimension对象)的内容。方法getValues()的更好版本为：</p>
+<p> public synchronized Dimension[] getValues() throws CloneNotSupportedException{<br> Dimension[] copy = (Dimension[])d.clone();<br> for (int i = 0; i<br> // NOTE: Dimension isn’t cloneable.<br> if (d != null)<br> copy[i] = new Dimension (d[i].height, d[i].width);<br> }<br> return copy;<br> }<br>  在克隆原子类型数据的多维数组的时候，也会犯类似的错误。原子类型包括int,float等。简单的克隆int型的一维数组是正确的，如下所示：</p>
+<p> public void store (int[] data) throws CloneNotSupportedException{<br> this.data = (int[])data.clone();<br> // OK<br> }<br>  拷贝int型的二维数组更复杂些。Java没有int型的二维数组，因此一个int型的二维数组实际上是一个这样的一维数组：它的类型为int[]。简单的克隆int[][]型的数组会犯与上面例子中getValues()方法第一版本同样的错误，因此应该避免这么做。下面的例子演示了在克隆int型二维数组时错误的和正确的做法：</p>
+<p> public void wrongStore (int[][] data) throws CloneNotSupportedException{<br> this.data = (int[][])data.clone(); // Not OK!<br> }<br> public void rightStore (int[][] data){<br> // OK!<br> this.data = (int[][])data.clone();<br> for (int i = 0; i<br> if (data != null)<br> this.data[i] = (int[])data[i].clone();<br> }<br> }<br>  六、常见错误6：检查new 操作的结果是否为null</p>
+<p> Java编程新手有时候会检查new操作的结果是否为null。可能的检查代码为：</p>
+<p> Integer i = new Integer (400);<br> if (i == null)<br> throw new NullPointerException();<br>  检查当然没什么错误，但却不必要，if和throw这两行代码完全是浪费，他们的唯一功用是让整个程序更臃肿，运行更慢。</p>
+<p> C/C++程序员在开始写java程序的时候常常会这么做，这是由于检查C中malloc()的返回结果是必要的，不这样做就可能产生错误。检查C++中new操作的结果可能是一个好的编程行为，这依赖于异常是否被使能(许多编译器允许异常被禁止，在这种情况下new操作失败就会返回null)。在java 中，new 操作不允许返回null，如果真的返回null，很可能是虚拟机崩溃了，这时候即便检查返回结果也无济于事。</p>
+<p> 七、常见错误7：用== 替代.equals</p>
+<p> 在Java中，有两种方式检查两个数据是否相等：通过使用==操作符，或者使用所有对象都实现的.equals方法。原子类型(int, flosat, char 等)不是对象，因此他们只能使用==操作符，如下所示：</p>
+<p> int x = 4;<br> int y = 5;<br> if (x == y)<br> System.out.println (“Hi”);<br> // This ’if’ test won’t compile.<br> if (x.equals (y))<br> System.out.println (“Hi”);<br>  对象更复杂些，==操作符检查两个引用是否指向同一个对象，而equals方法则实现更专门的相等性检查。</p>
+<p> 更显得混乱的是由java.lang.Object 所提供的缺省的equals方法的实现使用==来简单的判断被比较的两个对象是否为同一个。</p>
+<p> 许多类覆盖了缺省的equals方法以便更有用些，比如String类，它的equals方法检查两个String对象是否包含同样的字符串，而Integer的equals方法检查所包含的int值是否相等。</p>
+<p> 大部分时候，在检查两个对象是否相等的时候你应该使用equals方法，而对于原子类型的数据，你用该使用==操作符。</p>
+<p> 八、常见错误8：混淆原子操作和非原子操作</p>
+<p> Java保证读和写32位数或者更小的值是原子操作，也就是说可以在一步完成，因而不可能被打断，因此这样的读和写不需要同步。以下的代码是线程安全(thread safe)的：</p>
+<p> public class Example{<br> private int value; // More code here…<br> public void set (int x){<br> // NOTE: No synchronized keyword<br> this.value = x;<br> }<br> }<br>  不过，这个保证仅限于读和写，下面的代码不是线程安全的：</p>
+<p> public void increment (){<br> // This is effectively two or three instructions:<br> // 1) Read current setting of ’value’.<br> // 2) Increment that setting.<br> // 3) Write the new setting back.<br> ++this.value;<br> }<br>  在测试的时候，你可能不会捕获到这个错误。首先，测试与线程有关的错误是很难的，而且很耗时间。其次，在有些机器上，这些代码可能会被翻译成一条指令，因此工作正常，只有当在其它的虚拟机上测试的时候这个错误才可能显现。因此最好在开始的时候就正确地同步代码：</p>
+<p> public synchronized void increment (){<br> ++this.value;<br> }<br>  九、常见错误9：在catch 块中作清除工作</p>
+<p> 一段在catch块中作清除工作的代码如下所示：</p>
+<p> OutputStream os = null;<br> try{<br> os = new OutputStream ();<br> // Do something with os here.<br> os.close();<br> }catch (Exception e){<br> if (os != null)<br> os.close();<br> }<br>  尽管这段代码在几个方面都是有问题的，但是在测试中很容易漏掉这个错误。下面列出了这段代码所存在的三个问题：</p>
+<p> 1.语句os.close()在两处出现，多此一举，而且会带来维护方面的麻烦。</p>
+<p> 2.上面的代码仅仅处理了Exception，而没有涉及到Error。但是当try块运行出现了Error，流也应该被关闭。</p>
+<p> 3.close()可能会抛出异常。</p>
+<p> 上面代码的一个更优版本为：</p>
+<p> OutputStream os = null;<br> try{<br> os = new OutputStream ();<br> // Do something with os here.<br> }finally{<br> if (os != null)<br> os.close();<br> }<br>  这个版本消除了上面所提到的两个问题：代码不再重复，Error也可以被正确处理了。但是没有好的方法来处理第三个问题，也许最好的方法是把close()语句单独放在一个try/catch块中。</p>
+<p> 十、常见错误10： 增加不必要的catch 块</p>
+<p> 一些开发者听到try/catch块这个名字后，就会想当然的以为所有的try块必须要有与之匹配的catch块。</p>
+<p> C++程序员尤其是会这样想，因为在C++中不存在finally块的概念，而且try块存在的唯一理由只不过是为了与catch块相配对。</p>
+<p> 增加不必要的catch块的代码就象下面的样子，捕获到的异常又立即被抛出： </p>
+<p> try{<br> // Nifty code here<br> }catch(Exception e){<br> throw e;<br> }finally{<br> // Cleanup code here<br> }<br>  不必要的catch块被删除后，上面的代码就缩短为：</p>
+<p> try{<br> // Nifty code here<br> }finally{<br> // Cleanup code here<br> }</p>
+<hr>
+<p>作者：dumb_man<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/dahailantian1/article/details/78584662?utm_source=copy" target="_blank" rel="noopener">https://blog.csdn.net/dahailantian1/article/details/78584662?utm_source=copy</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/a66057ed.html" rel="next" title="Java编程最差实践（常见编程错误典范）">
+                <i class="fa fa-chevron-left"></i> Java编程最差实践（常见编程错误典范）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/7dba9b02.html" rel="prev" title="centos7 使用rsync 实现文件同步">
+                centos7 使用rsync 实现文件同步 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'pangguoming',
+            repo: 'pangguoming.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51',
+            
+                client_id: '1e9770fed2b4d227cd0a'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

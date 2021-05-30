@@ -45,38 +45,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT">
@@ -84,11 +73,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
 
 
 
@@ -113,11 +97,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -153,30 +137,6 @@
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-	<div id="topnavbar">
-  <div class="tophead">
-    <div class="toplogo"><a href="/">庞国明-博客</a></div>
-    <div id="mnav">
-      <h2><span class="navicon"></span></h2>
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </div>
-    <nav class="topnav" id="topnav">
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
 
   
   
@@ -230,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -250,12 +220,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            关于
+            归档
           </a>
         </li>
       
@@ -278,20 +248,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -324,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2019/02/05/primary-eureka/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/e405e215.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -343,7 +319,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/05/primary-eureka/" itemprop="url">微服务Spring cloud经验总结系列(初级），第三篇：服务注册与发现 Eureka</a></h1>
+                <a class="post-title-link" href="/post/e405e215.html" itemprop="url">微服务Spring cloud经验总结系列(初级），第三篇：服务注册与发现 Eureka</a></h1>
         
 
         <div class="post-meta">
@@ -355,8 +331,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-05T13:57:29+08:00">
-                2019-02-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-26T10:23:06+08:00">
+                2020-07-26
               </time>
             
 
@@ -417,15 +393,8 @@
       
         
           
+            
           
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/05/primary-eureka/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -472,7 +441,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2019/02/03/VuePress/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/6a25e0e9.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -491,7 +460,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/03/VuePress/" itemprop="url">VuePress</a></h1>
+                <a class="post-title-link" href="/post/6a25e0e9.html" itemprop="url">VuePress</a></h1>
         
 
         <div class="post-meta">
@@ -543,19 +512,75 @@
       
         
           
-          VuePress这篇文章主要是记录自己在使用VuePress过程中所遇到的问题以及如何一步一步的解决问题。
+            <h1 id="VuePress"><a href="#VuePress" class="headerlink" title="VuePress"></a>VuePress</h1><p>这篇文章主要是记录自己在使用VuePress过程中所遇到的问题以及如何一步一步的解决问题。</p>
+<blockquote>
+<p>安装vuepress前，请确保你的 Node.js 版本 &gt;= 8</p>
+</blockquote>
+<h2 id="全局安装"><a href="#全局安装" class="headerlink" title="全局安装"></a>全局安装</h2><p><code class="hljs dockerfile"><span class="hljs-comment"># 安装<br>    yarn global <span class="hljs-keyword">add<span class="bash"> vuepress 或者：npm install -g vuepress</span></span></span></code></p>
+<pre><code>&lt;span class=&quot;hljs-comment&quot;&gt;# 新建一个 markdown 文件
+echo &lt;span class=&quot;hljs-string&quot;&gt;&apos;# Hello VuePress!&apos; &gt; README.md
 
-安装vuepress前，请确保你的 Node.js 版本 &gt;= 8
+&lt;span class=&quot;hljs-comment&quot;&gt;# 开始写作
+vuepress dev .
 
-全局安装# 安装    yarn global add vuepress 或者：npm install -g vu
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/03/VuePress/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+&lt;span class=&quot;hljs-comment&quot;&gt;# 构建静态文件
+vuepress build .&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">注意 ：`vuepress dev .`和`vuepress build .`后面的`.`。</span><br><span class="line"></span><br><span class="line">    ## 在现有项目中安装</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs dockerfile&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# 将 vuepress 作为一个本地依赖安装</span><br><span class="line">    yarn &lt;span class=&quot;hljs-keyword&quot;&gt;add&lt;span class=&quot;bash&quot;&gt; -D vuepress 或者：npm install -D vuepress</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;# 新建一个 docs 文件夹</span><br><span class="line">    mkdir docs</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;# 新建一个 markdown 文件</span><br><span class="line">    echo &lt;span class=&quot;hljs-string&quot;&gt;&apos;# Hello VuePress!&apos; &gt; docs/README.md</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;# 开始写作</span><br><span class="line">    npx vuepress dev docs&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>接着，在 <code>package.json</code> 里加一些脚本:</p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;hljs json&quot;&gt;{
+  &lt;span class=&quot;hljs-attr&quot;&gt;&quot;scripts&quot;: {
+    &lt;span class=&quot;hljs-attr&quot;&gt;&quot;docs:dev&quot;: &lt;span class=&quot;hljs-string&quot;&gt;&quot;vuepress dev docs&quot;,
+    &lt;span class=&quot;hljs-attr&quot;&gt;&quot;docs:build&quot;: &lt;span class=&quot;hljs-string&quot;&gt;&quot;vuepress build docs&quot;
+  }
+}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">开始写作</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs less&quot;&gt;&lt;span class=&quot;hljs-selector-tag&quot;&gt;yarn &lt;span class=&quot;hljs-selector-tag&quot;&gt;docs&lt;span class=&quot;hljs-selector-pseudo&quot;&gt;:dev 或者：&lt;span class=&quot;hljs-selector-tag&quot;&gt;npm &lt;span class=&quot;hljs-selector-tag&quot;&gt;run &lt;span class=&quot;hljs-selector-tag&quot;&gt;docs&lt;span class=&quot;hljs-selector-pseudo&quot;&gt;:dev&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>第一个坑：我的项目就是依赖<code>webpack 3.6.0</code>同时也是用npm安装依赖，然后继续使用npm安装vuepress，然后执行<code>npx vuepress dev docs</code>的时候报错了，上网查了好久也没有解决问题，最后使用yarn安装vuepress成功了。</p>
+<p>如果你的现有项目依赖了 webpack 3.x，推荐使用 yarn而不是 npm 来安装 vuepress。</p>
+<p>要生成静态的 HTML 文件，运行：</p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;hljs less&quot;&gt;&lt;span class=&quot;hljs-selector-tag&quot;&gt;yarn &lt;span class=&quot;hljs-selector-tag&quot;&gt;docs&lt;span class=&quot;hljs-selector-pseudo&quot;&gt;:build 或者：&lt;span class=&quot;hljs-selector-tag&quot;&gt;npm &lt;span class=&quot;hljs-selector-tag&quot;&gt;run &lt;span class=&quot;hljs-selector-tag&quot;&gt;docs&lt;span class=&quot;hljs-selector-pseudo&quot;&gt;:build&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">默认情况下，文件将会被生成在 `.vuepress/dist`，也可以通过 `.vuepress/config.js` 中的 `dest` 字段来修改.</span><br><span class="line"></span><br><span class="line">以上步骤都成功以后，就可以在浏览器总看到页面了，接下来就是对页面进行布局</span><br><span class="line"></span><br><span class="line">    ## 主题配置</span><br><span class="line"></span><br><span class="line">本文是根据VuePress默认主题配置</span><br><span class="line"></span><br><span class="line">    ### 1.首页</span><br><span class="line"></span><br><span class="line">在docs文件夹下创建`.vuepress文件夹`和`README.md文件`。(如果以及有了就不要再新建)  </span><br><span class="line">根目录下的README.md文件可以当作首页，在文件中加入下面文字：</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs yaml&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;---</span><br><span class="line">    &lt;span class=&quot;hljs-attr&quot;&gt;home: &lt;span class=&quot;hljs-literal&quot;&gt;true</span><br><span class="line">    &lt;span class=&quot;hljs-attr&quot;&gt;actionText: &lt;span class=&quot;hljs-string&quot;&gt;快速上手 &lt;span class=&quot;hljs-string&quot;&gt;→</span><br><span class="line">    &lt;span class=&quot;hljs-attr&quot;&gt;actionLink: &lt;span class=&quot;hljs-string&quot;&gt;/guide/install/install</span><br><span class="line">    &lt;span class=&quot;hljs-meta&quot;&gt;---&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>可以根据自己的需要添加、删除、修改，这就完成了首页的布局<br><code>actionLink: /guide/install/install</code>就是首页后要显示的下一个页面</p>
+<p>接下来在docs文件夹中创建<code>guide文件夹</code>(根据自己的需要命名)。这个文件夹中放的是<code>markdown</code>文件，每一个<code>markdown</code>文件对应一个页面。至于页面之间的跳转和页面导航栏和侧边栏布局在<code>config.js</code>文件中设置。<br>VuePress 网站必要的配置文件是 <code>.vuepress/config.js</code>，它应该导出一个 JavaScript 对象：</p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;hljs java&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;module.&lt;span class=&quot;hljs-keyword&quot;&gt;exports = {
+    title: &lt;span class=&quot;hljs-string&quot;&gt;&apos;VuePress&apos;,
+    description: &lt;span class=&quot;hljs-string&quot;&gt;&apos;VuePress&apos;,
+}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">对于上述的配置，运行`yarn docs:dev`，你应该能看到一个页面，它包含一个页头，里面包含一个标题和一个搜索框。</span><br><span class="line"></span><br><span class="line">    ### 2.导航栏</span><br><span class="line"></span><br><span class="line">可以通过 `themeConfig.nav` 增加一些导航栏链接:</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs groovy&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;// .vuepress/config.js</span><br><span class="line">    module.exports = &#123;</span><br><span class="line">    &lt;span class=&quot;hljs-symbol&quot;&gt;  themeConfig: &#123;</span><br><span class="line">    &lt;span class=&quot;hljs-symbol&quot;&gt;    nav: [       </span><br><span class="line">               &#123;&lt;span class=&quot;hljs-string&quot;&gt;text: &lt;span class=&quot;hljs-string&quot;&gt;&apos;指南&apos;,&lt;span class=&quot;hljs-string&quot;&gt;link:&lt;span class=&quot;hljs-string&quot;&gt;&apos;/guide/install/install&apos;&#125;</span><br><span class="line">            ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>当你提供了一个 <code>items</code> 数组而不是一个单一的 <code>link</code> 时，它将显示为一个 <code>下拉列表</code> ：</p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;hljs groovy&quot;&gt;module.exports = {
+&lt;span class=&quot;hljs-symbol&quot;&gt;  themeConfig: {
+&lt;span class=&quot;hljs-symbol&quot;&gt;    nav: [
+      {
+&lt;span class=&quot;hljs-symbol&quot;&gt;        text: &lt;span class=&quot;hljs-string&quot;&gt;&apos;Languages&apos;,
+&lt;span class=&quot;hljs-symbol&quot;&gt;        items: [
+          { &lt;span class=&quot;hljs-string&quot;&gt;text: &lt;span class=&quot;hljs-string&quot;&gt;&apos;Chinese&apos;, &lt;span class=&quot;hljs-string&quot;&gt;link: &lt;span class=&quot;hljs-string&quot;&gt;&apos;/language/chinese/&apos; },
+          { &lt;span class=&quot;hljs-string&quot;&gt;text: &lt;span class=&quot;hljs-string&quot;&gt;&apos;Japanese&apos;, &lt;span class=&quot;hljs-string&quot;&gt;link: &lt;span class=&quot;hljs-string&quot;&gt;&apos;/language/japanese/&apos; }
+        ]
+      }
+    ]
+  }
+}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ### 3.侧边栏</span><br><span class="line"></span><br><span class="line">想要使侧边栏（Sidebar）生效，需要配置 `themeConfig.sidebar`</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs java&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;// .vuepress/config.js</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;module.&lt;span class=&quot;hljs-keyword&quot;&gt;exports = &#123;</span><br><span class="line">      themeConfig: &#123;</span><br><span class="line">        sidebar: [</span><br><span class="line">            &#123;</span><br><span class="line">                title: &lt;span class=&quot;hljs-string&quot;&gt;&apos;开发指南&apos;,</span><br><span class="line">                collapsable: &lt;span class=&quot;hljs-keyword&quot;&gt;false, &lt;span class=&quot;hljs-comment&quot;&gt;//是否展开</span><br><span class="line">            &#125;,</span><br><span class="line">            [&lt;span class=&quot;hljs-string&quot;&gt;&apos;./guide/install/install&apos;,&lt;span class=&quot;hljs-string&quot;&gt;&apos;安装&apos;],</span><br><span class="line">            [&lt;span class=&quot;hljs-string&quot;&gt;&apos;./guide/started/started&apos;,&lt;span class=&quot;hljs-string&quot;&gt;&apos;快速上手&apos;],</span><br><span class="line">            &#123;</span><br><span class="line">                title: &lt;span class=&quot;hljs-string&quot;&gt;&apos;组件&apos;,</span><br><span class="line">                collapsable: &lt;span class=&quot;hljs-keyword&quot;&gt;false</span><br><span class="line">            &#125;,</span><br><span class="line">            [&lt;span class=&quot;hljs-string&quot;&gt;&apos;./guide/icon/icon&apos;,&lt;span class=&quot;hljs-string&quot;&gt;&apos;icon&apos;],</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>可以省略 <code>.md</code> 拓展名，同时以 <code>/</code> 结尾的路径将会被视为 <code>*/README.md</code><br>如果想要显示地指定链接的文字，使用一个格式为 <code>[link, text]</code> 的数组。<br>具体配置可以根据官网配置：<a href="https://vuepress.vuejs.org/zh/theme/default-theme-config.html#%E4%BE%A7%E8%BE%B9%E6%A0%8F" target="_blank" rel="noopener">默认主题配置</a></p>
+<p>这是浏览器显示效果：</p>
+<p><img src="http://pangguoming.com/blog/images/2fa32dba-305a-40d1-aa10-e42f7f4c00e5.jpg" alt="1.png"></p>
+<p>现在页面基本也搭建完成，可以在页面之间进行切换。下一步是如何在<code>markdown</code>中使用vue组件，也就是在页面中展示自己的项目。</p>
+<pre><code>## 在markdown中使用Vue
+</code></pre><p>在<code>.vuepress</code>中创建<code>components</code>文件夹。<br>所有在 <code>.vuepress/components</code> 中找到的 <code>*.vue</code> 文件将会自动地被注册为全局的异步组件。</p>
+<p>如果需要引入静态文件，可以在<code>.vuepress</code>下新建<code>public</code>文件夹，里面可以放静态文件。</p>
+<p>因为本文的案例是展示Icon图标，所有引入了<code>svg.js</code>，<code>svg.js</code>可以在<a href="http://www.iconfont.cn/" target="_blank" rel="noopener">http://www.iconfont.cn/</a>中获取，本文使用<code>## symbol引用</code>具体方法请访问官网。放在<code>public</code>文件夹中，可以在<code>components</code>文件夹中的组件引入。</p>
+<p>这是docs文件夹目录结构</p>
+<p><img src="http://pangguoming.com/blog/images/644e33bb-7479-4e29-9d53-7ca5a1bfe4d1.jpg" alt="2.png"></p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;hljs css&quot;&gt;.
+└─ &lt;span class=&quot;hljs-selector-class&quot;&gt;.vuepress
+   └─ &lt;span class=&quot;hljs-selector-tag&quot;&gt;components
+      ├─ &lt;span class=&quot;hljs-selector-tag&quot;&gt;demo-1&lt;span class=&quot;hljs-selector-class&quot;&gt;.vue
+      └─ &lt;span class=&quot;hljs-selector-tag&quot;&gt;Icon
+         └─ &lt;span class=&quot;hljs-selector-tag&quot;&gt;vi-icon&lt;span class=&quot;hljs-selector-class&quot;&gt;.vue&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可以直接使用这些组件在任意的 Markdown 文件中（组件名是通过文件名取到的）：</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs javascript&quot;&gt;&lt;demo&lt;span class=&quot;hljs-number&quot;&gt;-1/&gt;</span><br><span class="line">    &lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-name&quot;&gt;Icon-vi-icon/&gt; &lt;span class=&quot;hljs-comment&quot;&gt;//文件名和组件名之间同`-`连接&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>完成这一步以后就可以在页面中看到自己的组件在页面中展示了，但是在运行下面命令进行打包的时候会报错：<br>报错原因参考官网文档：<a href="https://vuepress.vuejs.org/zh/guide/using-vue.html#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84-api-%E8%AE%BF%E9%97%AE%E9%99%90%E5%88%B6" target="_blank" rel="noopener">浏览器的 API 访问限制</a></p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;hljs less&quot;&gt;&lt;span class=&quot;hljs-selector-tag&quot;&gt;yarn &lt;span class=&quot;hljs-selector-tag&quot;&gt;docs&lt;span class=&quot;hljs-selector-pseudo&quot;&gt;:build 或者：&lt;span class=&quot;hljs-selector-tag&quot;&gt;npm &lt;span class=&quot;hljs-selector-tag&quot;&gt;run &lt;span class=&quot;hljs-selector-tag&quot;&gt;docs&lt;span class=&quot;hljs-selector-pseudo&quot;&gt;:build&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">解决这个问题只需要在使用Vue组件的`markdown`文件中使用`&lt;ClientOnly&gt;&lt;/ClientOnly&gt;`将组件包裹起来。如：</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-name&quot;&gt;ClientOnly&gt;</span><br><span class="line">      &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-name&quot;&gt;Icon-vi-icon/&gt;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-name&quot;&gt;ClientOnly&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>注意：在markdown文件中如果需要给组件名缩进，不要用<code>tab</code>键，会被当做<code>markdown</code>语法解析。</p>
+<p>浏览器效果图</p>
+<p><img src="http://pangguoming.com/blog/images/1d52dc2f-7fe7-4f62-8865-92a887822b72.jpg" alt="3.png"></p>
+<p>到这一步，基本上可以在页面中展示自己的组件。下一篇将继续写如何通过Vue组件实现跟：<a href="http://element-cn.eleme.io/#/zh-CN/component/icon" target="_blank" rel="noopener">Element</a>相似的效果。<br><a href="https://segmentfault.com/a/1190000017265894" target="_blank" rel="noopener">通过VuePress管理项目文档(二)</a></p>
+<p></p>
+
+          
         
       
     </div>
@@ -602,7 +627,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2019/02/01/Docker Compose安装以及入门/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/d4c0a2fe.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -621,7 +646,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/01/Docker Compose安装以及入门/" itemprop="url">Docker Compose安装以及入门</a></h1>
+                <a class="post-title-link" href="/post/d4c0a2fe.html" itemprop="url">Docker Compose安装以及入门</a></h1>
         
 
         <div class="post-meta">
@@ -673,15 +698,9 @@
       
         
           
-          Docker Compose 是 Docker 官方编排（Orchestration）项目之一，负责快速在集群中部署分布式应用。## Compose 简介Compose 项目是 Docker 官方的开源项目，负责实现对 Docker 容器集群的快速编排。Compose 定位是 「定义和运行多个 Do
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/01/Docker Compose安装以及入门/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown"><br><br>Docker Compose 是 Docker 官方编排（Orchestration）项目之一，负责快速在集群中部署分布式应用。<br><br>## Compose 简介<br><br>Compose 项目是 Docker 官方的开源项目，负责实现对 Docker 容器集群的快速编排。Compose 定位是 「定义和运行多个 Docker 容器的应用（Defining and running multicontainer Docker applications）」，其前身是开源项目 Fig。<br><br>使用一个 Dockerfile 模板文件，可以让用户很方便的定义一个单独的应用容器。然而，在日常工作中，经常会碰到需要多个容器相互配合来完成某项任务的情况。例如要实现一个 Web 项目，除了 Web 服务容器本身，往往还需要再加上后端的数据库服务容器，甚至还包括负载均衡容器等。<br><br>Compose 恰好满足了这样的需求。它允许用户通过一个单独的 docker-compose.yml 模板文件（YAML 格式）来定义一组相关联的应用容器为一个项目（project）。<br><br>Compose 中有两个重要的概念：<br><br><em>   服务 ( service )：一个应用的容器，实际上可以包括若干运行相同镜像的容器实例
+</em>   项目 ( project )：由一组关联的应用容器组成的一个完整业务单元，在 dockercompose.yml 文件中定义。<br><br>Compose 的默认管理对象是项目，通过子命令对项目中的一组容器进行便捷地生命周期管理。可见，一个项目可以由多个服务（容器）关联而成， Compose 面向项目进行管理<br><br>Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 来对容器进行管理。因此，只要所操作的平台支持 Docker API，就可以在其上利用 Compose 来进行编排管理。<br><br>## 安装与卸载<br><br>Compose 可以通过 Python 的包管理工具 pip 进行安装，也可以直接下载编译好的二进制文件使用，甚至能够直接在 Docker 容器中运行。前两种方式是传统方式，适合本地环境下安装使用；最后一种方式则不破坏系统环境，更适合云计算场景。Docker for Mac 、 Docker for Windows 自带 docker-compose 二进制文件，安装 Docker 之后可以直接使用。Linux 系统请使用以下介绍的方法安装。<br><br>### 二进制包安装<br><br>在 Linux 上的也安装十分简单，从 官方 GitHub Release 处直接下载编译好的二进制文件即可。<br><br>例如，在 Linux 64 位系统上直接下载对应的二进制包。<br><br><code class="hljs awk">sudo curl -L https:<span class="hljs-regexp">//github.com<span class="hljs-regexp">/docker/compose<span class="hljs-regexp">/releases/download<span class="hljs-regexp">/1.17.1/docker-compose-<code>uname -s</code>-<code>uname -m</code> &gt; <span class="hljs-regexp">/usr/local<span class="hljs-regexp">/bin/docker-compose<br>    sudo chmod +x <span class="hljs-regexp">/usr/local<span class="hljs-regexp">/bin/docker-compose</span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">对于卸载如果是二进制包方式安装的，删除二进制文件即可。</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs groovy&quot;&gt;sudo rm &lt;span class=&quot;hljs-regexp&quot;&gt;/usr/local&lt;span class=&quot;hljs-regexp&quot;&gt;/bin/docker-compose&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>    ### PIP 安装<br><br>这种方式是将 Compose 当作一个 Python 应用来从 pip 源中安装。执行安装命令：<br><br>    <pre><code class="hljs cmake">sudo pip <span class="hljs-keyword">install -U docker-compose</span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">使用PIP安装的时候，卸载可以使用如下命令：</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&lt;code class=&quot;hljs nginx&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;sudo pip uninstall docker-compose&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>    ## 简单入门<br><br>下面我们模拟一个网站，该网站的作用是能够记录页面的访问次数。我们使用Flask开发，缓存使用redis<br><br>    ### 编写wen应用<br><br>新建一个文件夹web，在该文件夹下创建app.py文件，内容如下：<br><br>    <pre><code class="hljs python"><span class="hljs-keyword">from flask <span class="hljs-keyword">import Flask<br>    <span class="hljs-keyword">from redis <span class="hljs-keyword">import Redis<br><br>    app = Flask(<strong>name</strong>)<br>    redis = Redis(host=<span class="hljs-string">“redis”,port=<span class="hljs-number">6379)<br><br>    <span class="hljs-meta">@app.route(“/“)<br>    <span class="hljs-function"><span class="hljs-keyword">def <span class="hljs-title">hello<span class="hljs-params">():<br>        count = redis.incr(<span class="hljs-string">‘hits’)<br>        <span class="hljs-keyword">return <span class="hljs-string">‘hello world! {}’.format(count)<br><br>    <span class="hljs-keyword">if <strong>name</strong> == <span class="hljs-string">“<strong>main</strong>“:<br>        app.run(host=<span class="hljs-string">“0.0.0.0”,debug=<span class="hljs-keyword">True)</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 编写Dockerfile文件</span><br><span class="line"></span><br><span class="line">&lt;pre&gt;&lt;code class=&quot;hljs dockerfile&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;FROM python:&lt;span class=&quot;hljs-number&quot;&gt;3.6-alpine</span><br><span class="line">&lt;span class=&quot;hljs-keyword&quot;&gt;ADD&lt;span class=&quot;bash&quot;&gt; . /code</span><br><span class="line">&lt;span class=&quot;hljs-keyword&quot;&gt;WORKDIR&lt;span class=&quot;bash&quot;&gt; /code</span><br><span class="line">&lt;span class=&quot;hljs-keyword&quot;&gt;RUN&lt;span class=&quot;bash&quot;&gt; pip install redis flask</span><br><span class="line">&lt;span class=&quot;hljs-keyword&quot;&gt;CMD&lt;span class=&quot;bash&quot;&gt; [&lt;span class=&quot;hljs-string&quot;&gt;&quot;python&quot;,&lt;span class=&quot;hljs-string&quot;&gt;&quot;app.py&quot;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>    ### docker-compose.yml<br><br>编写 docker-compose.yml 文件，这个是 Compose 使用的主模板文件。<br><br>    <pre><code class="hljs less"><span class="hljs-attribute">version: <span class="hljs-string">‘3’<br>    <span class="hljs-attribute">services:<br>        <span class="hljs-attribute">web:<br>            <span class="hljs-attribute">build: .<br>            <span class="hljs-attribute">ports:<br>                - <span class="hljs-string">“5000:5000”<br>        <span class="hljs-attribute">redis:<br>            <span class="hljs-attribute">images: <span class="hljs-string">“redis:alpine”</span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 运行 compose 项目</span><br><span class="line"></span><br><span class="line">&lt;pre&gt;&lt;code class=&quot;hljs&quot;&gt;docker-compose up&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>此时访问本地 5000 端口，每次刷新页面，计数就会加 1。<br><br>    <div id="MySignature">每天进步一点点</div></pre></pre></pre><br></div>
+          
         
       
     </div>
@@ -728,7 +747,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2019/01/31/PDF.js实现个性化PDF渲染（文本复制）/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/59d097ac.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -747,7 +766,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/31/PDF.js实现个性化PDF渲染（文本复制）/" itemprop="url">PDF.js实现个性化PDF渲染（文本复制）</a></h1>
+                <a class="post-title-link" href="/post/59d097ac.html" itemprop="url">PDF.js实现个性化PDF渲染（文本复制）</a></h1>
         
 
         <div class="post-meta">
@@ -799,20 +818,97 @@
       
         
           
-          
-我肥来啦😁。看到Redux教程突破3w的浏览量，小窃喜，很高兴自己的文章能够帮助到大家。
+            <blockquote>
+<p>我肥来啦😁。看到<a href="https://segmentfault.com/a/1190000011474522?_ea=4972178" target="_blank" rel="noopener">Redux教程</a>突破3w的浏览量，小窃喜，很高兴自己的文章能够帮助到大家。</p>
+</blockquote>
+<p>这次重返，依然带给大家一个小指南，也是最近工作中遇到的一个小case。</p>
+<p>前不久，产品经理提出要在界面上优雅地展示PDF文档，当即就有了两种实现方式：</p>
+<p><strong>实现方式一</strong><br>使用<code>embed</code>标记来使用浏览器自带的pdf工具。</p>
+<p>这种实现方式优缺点都很明显：<br>优点：自带“打印”，“搜索”，“翻页”等功能，强大且实现方便。<br>缺点：不同浏览器的pdf工具样式不一，且无法满足个性化需求，比如：禁止打印，下载等。</p>
+<p><em>我们的产品经理是挑剔的</em>😒，于是…</p>
+<p><strong>实现方式二</strong><br>使用Mozilla的<code>PDF.js</code>，自定义展示PDF。</p>
+<blockquote>
+<p>下面我们就细致讲述一下使用<code>PDF.js</code>过程中遇到的问题。主要包括：</p>
+</blockquote>
+<ul>
+<li>基础功能集成</li>
+<li>使用<code>Text-Layers</code>渲染</li>
+</ul>
+<h4 id="什么是PDF-JS"><a href="#什么是PDF-JS" class="headerlink" title="什么是PDF.JS"></a>什么是PDF.JS</h4><p>PDF.js是基于HTML5技术构建的，用于展示可移植文档格式的文件(PDF)，它可以在现代浏览器中使用且无需安装任何第三方插件。</p>
+<h4 id="基础功能集成"><a href="#基础功能集成" class="headerlink" title="基础功能集成"></a>基础功能集成</h4><p>1️⃣<strong>引用</strong></p>
+<p>首先，引用<code>PDF.js</code>就遇到了问题，<a href="https://mozilla.github.io/pdf.js/getting_started/" target="_blank" rel="noopener">官网</a>中提到通过CDN引用或者下载源码至本地。<br>而我们并不想污染我们的<code>index.html</code>并且希望可以对每一个引用的框架有统一的版本管理。于是，我们搜寻到一个包：<strong>pdfjs-dist</strong>。</p>
+<p>通过<code>npm install pdfjs-dist</code>，我们引入了PDF.js。</p>
+<p>基础功能有两个必须引用的文件：</p>
+<ul>
+<li>pdf.js</li>
+<li>pdf.worker.js</li>
+</ul>
+<p>如果使用CDN的方式，直接引用如下对应文件即可：</p>
+<ul>
+<li><a href="https://mozilla.github.io/pdf.js/build/pdf.js" target="_blank" rel="noopener">https://mozilla.github.io/pdf…</a></li>
+<li><a href="https://mozilla.github.io/pdf.js/build/pdf.worker.js" target="_blank" rel="noopener">https://mozilla.github.io/pdf…</a></li>
+</ul>
+<p>如果使用npm的方式，则在需要使用PDF.js的文件中如下引用:</p>
+<p><code class="JavaScript"><span class="hljs-keyword">import PDFJS <span class="hljs-keyword">from <span class="hljs-string">‘pdfjs-dist’;</span></span></span></code></p>
+<pre><code>PDFJS.GlobalWorkerOptions.workerSrc = &lt;span class=&quot;hljs-string&quot;&gt;&apos;pdfjs-dist/build/pdf.worker.js&apos;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这两个文件包含了获取、解析和展示PDF文档的方法，但是解析和渲染PDF需要较长的时间，可能会阻塞其它JS代码的运行。</span><br><span class="line"></span><br><span class="line">为解决该问题，pdf.js依赖了HTML5引入的[Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)——通过从主线程中移除大量CPU操作（如解析和渲染）来提升性能。</span><br><span class="line"></span><br><span class="line">PDF.js的API都会返回一个Promise，使得我们可以优雅的处理异步操作。</span><br><span class="line"></span><br><span class="line">2️⃣**使用**</span><br><span class="line"></span><br><span class="line">首先，我们需要在HTML中添加`&lt;canvas&gt;`元素以渲染PDF：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;xml hljs&quot;&gt;&lt;code class=&quot;html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-name&quot;&gt;canvas &lt;span class=&quot;hljs-attr&quot;&gt;id=&lt;span class=&quot;hljs-string&quot;&gt;&quot;pdf-canvas&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-name&quot;&gt;canvas&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>然后添加渲染PDF的js代码：</p>
+<pre><code>&lt;pre class=&quot;javascript hljs&quot;&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;var url = &lt;span class=&quot;hljs-string&quot;&gt;&apos;Helloworld.pdf&apos;;
 
-这次重返，依然带给大家一个小指南，也是最近工作中遇到的一个小case。
-前不久，产品经理提出要在界面上优雅地展示PDF文档，当即就有了两种实现方式：
-实现方式一使用embed标记来使用浏览器自带的pdf工
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/31/PDF.js实现个性化PDF渲染（文本复制）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+PDFJS.getDocument(url).then(&lt;span class=&quot;hljs-function&quot;&gt;(&lt;span class=&quot;hljs-params&quot;&gt;pdf) =&gt; {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;return pdf.getPage(&lt;span class=&quot;hljs-number&quot;&gt;1);
+}).then(&lt;span class=&quot;hljs-function&quot;&gt;(&lt;span class=&quot;hljs-params&quot;&gt;page) =&gt; {
+    &lt;span class=&quot;hljs-comment&quot;&gt;// 设置展示比例
+    &lt;span class=&quot;hljs-keyword&quot;&gt;var scale = &lt;span class=&quot;hljs-number&quot;&gt;1.5;
+    &lt;span class=&quot;hljs-comment&quot;&gt;// 获取pdf尺寸
+    &lt;span class=&quot;hljs-keyword&quot;&gt;var viewport = page.getViewport(scale);
+    &lt;span class=&quot;hljs-comment&quot;&gt;// 获取需要渲染的元素
+    &lt;span class=&quot;hljs-keyword&quot;&gt;var canvas = &lt;span class=&quot;hljs-built_in&quot;&gt;document.getElementById(&lt;span class=&quot;hljs-string&quot;&gt;&apos;pdf-canvas&apos;);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;var context = canvas.getContext(&lt;span class=&quot;hljs-string&quot;&gt;&apos;2d&apos;);
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    &lt;span class=&quot;hljs-keyword&quot;&gt;var renderContext = {
+        &lt;span class=&quot;hljs-attr&quot;&gt;canvasContext: context,
+        &lt;span class=&quot;hljs-attr&quot;&gt;viewport: viewport
+    };
+
+    page.render(renderContext);
+});&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">现在，PDF已经成功渲染在界面上了。我们来分析一下使用到的函数：</span><br><span class="line"></span><br><span class="line">`getDocument()`：用于异步获取PDf文档，发送多个Ajax请求以块的形式下载文档。它返回一个Promise，该Promise的成功回调传递一个对象，该对象包含PDF文档的信息，该回调中的代码将在完成PDf文档获取时执行。</span><br><span class="line"></span><br><span class="line">`getPage()`：用于获取PDF文档中的各个页面。</span><br><span class="line"></span><br><span class="line">`getViewport()`：针对提供的展示比例，返回PDf文档的页面尺寸。</span><br><span class="line"></span><br><span class="line">`render()`：渲染PDF。</span><br><span class="line"></span><br><span class="line">到这里，基本功能告一段落了。  </span><br><span class="line">满心欢喜准备上线的时候，产品经理提出了另一个需求：文本复制。  </span><br><span class="line">然鹅。。。翻了好几遍官方文档，也没有找到文本复制的方法，并且stackoverflow上有很多类似的问题。  </span><br><span class="line">在不断的尝试下，我们发现了`Text-Layer`。</span><br><span class="line"></span><br><span class="line">    #### 使用Text-Layers渲染</span><br><span class="line"></span><br><span class="line">PDF.js支持在使用Canvas渲染的PDF页面上渲染文本图层。然而，这个功能需要用到额外的两个文件：`text_layer_builder.js`和`text_layer_builder.css`。我们可以在GitHub的repo中获取到。</span><br><span class="line"></span><br><span class="line">如果是使用npm，则需要做如下引用：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;javascript hljs&quot;&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;import &#123; TextLayerBuilder &#125; &lt;span class=&quot;hljs-keyword&quot;&gt;from &lt;span class=&quot;hljs-string&quot;&gt;&apos;pdfjs-dist/web/pdf_viewer&apos;;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import &lt;span class=&quot;hljs-string&quot;&gt;&apos;pdfjs-dist/web/pdf_viewer.css&apos;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p><strong>现在，我们开始实现文本复制功能。</strong></p>
+<p>首先，创建渲染需要用到DOM节点：</p>
+<pre><code>&lt;pre class=&quot;xml hljs&quot;&gt;&lt;code class=&quot;html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-name&quot;&gt;div &lt;span class=&quot;hljs-attr&quot;&gt;id=&lt;span class=&quot;hljs-string&quot;&gt;&quot;container&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-name&quot;&gt;div&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">`div#container`为最外层节点，在该div中，我们会为PDF的每个页面创建自己的`div`，在每个页面的`div`中，都会有`Canvas`元素。</span><br><span class="line"></span><br><span class="line">接着，我们修改JS代码：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;javascript hljs&quot;&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;var container, pageDiv;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function &lt;span class=&quot;hljs-title&quot;&gt;getPDF(&lt;span class=&quot;hljs-params&quot;&gt;url) &#123;</span><br><span class="line">        PDFJS.getDocument(url).then(&lt;span class=&quot;hljs-function&quot;&gt;(&lt;span class=&quot;hljs-params&quot;&gt;pdf) =&gt; &#123;</span><br><span class="line">            pdfDoc = pdf;</span><br><span class="line">            container = &lt;span class=&quot;hljs-built_in&quot;&gt;document.getElementById(&lt;span class=&quot;hljs-string&quot;&gt;&apos;container&apos;);</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;for (&lt;span class=&quot;hljs-keyword&quot;&gt;var i = &lt;span class=&quot;hljs-number&quot;&gt;1; i&lt;= pdf.numPages; i++) &#123;</span><br><span class="line">                renderPDF(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function &lt;span class=&quot;hljs-title&quot;&gt;renderPDF(&lt;span class=&quot;hljs-params&quot;&gt;num) &#123;</span><br><span class="line">        pdf.getPage(num).then(&lt;span class=&quot;hljs-function&quot;&gt;(&lt;span class=&quot;hljs-params&quot;&gt;page) =&gt; &#123;</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;var scale = &lt;span class=&quot;hljs-number&quot;&gt;1.5;</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;var viewport = page.getViewport(scale);</span><br><span class="line">            pageDiv = &lt;span class=&quot;hljs-built_in&quot;&gt;document.createElement(&lt;span class=&quot;hljs-string&quot;&gt;&apos;div&apos;);</span><br><span class="line">            pageDiv.setAttribute(&lt;span class=&quot;hljs-string&quot;&gt;&apos;id&apos;, &lt;span class=&quot;hljs-string&quot;&gt;&apos;page-&apos; + (page.pageIndex + &lt;span class=&quot;hljs-number&quot;&gt;1));</span><br><span class="line">            pageDiv.setAttribute(&lt;span class=&quot;hljs-string&quot;&gt;&apos;style&apos;, &lt;span class=&quot;hljs-string&quot;&gt;&apos;position: relative&apos;);</span><br><span class="line">            container.appendChild(pageDiv);</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;var canvas = &lt;span class=&quot;hljs-built_in&quot;&gt;document.createElement(&lt;span class=&quot;hljs-string&quot;&gt;&apos;canvas&apos;);</span><br><span class="line">            pageDiv.appendChild(canvas);</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;var context = canvas.getContext(&lt;span class=&quot;hljs-string&quot;&gt;&apos;2d&apos;);</span><br><span class="line">            canvas.height = viewport.height;</span><br><span class="line">            canvas.width = view.width;</span><br><span class="line"></span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;var renderContext = &#123;</span><br><span class="line">                &lt;span class=&quot;hljs-attr&quot;&gt;canvasContext: context,</span><br><span class="line">                &lt;span class=&quot;hljs-attr&quot;&gt;viewport: viewport</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            page.render(renderContext);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>以上代码只是实现了多页渲染，接下来，开始渲染文本图层。我们需要将<code>page.render(renderContext)</code>修改为以下代码：</p>
+<pre><code>&lt;pre class=&quot;javascript hljs&quot;&gt;&lt;code class=&quot;javascript&quot;&gt;page.render(renderContext).then(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;() =&gt; {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;return page.getTextContent();
+}).then(&lt;span class=&quot;hljs-function&quot;&gt;(&lt;span class=&quot;hljs-params&quot;&gt;textContent) =&gt; {
+    &lt;span class=&quot;hljs-comment&quot;&gt;// 创建文本图层div
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const textLayerDiv = &lt;span class=&quot;hljs-built_in&quot;&gt;document.createElement(&lt;span class=&quot;hljs-string&quot;&gt;&apos;div&apos;);
+    textLayerDiv.setAttribute(&lt;span class=&quot;hljs-string&quot;&gt;&apos;class&apos;, &lt;span class=&quot;hljs-string&quot;&gt;&apos;textLayer&apos;);
+    &lt;span class=&quot;hljs-comment&quot;&gt;// 将文本图层div添加至每页pdf的div中
+    pageDiv.appendChild(textLayerDiv);
+
+    &lt;span class=&quot;hljs-comment&quot;&gt;// 创建新的TextLayerBuilder实例
+    &lt;span class=&quot;hljs-keyword&quot;&gt;var textLayer = &lt;span class=&quot;hljs-keyword&quot;&gt;new TextLayerBuilder({
+        &lt;span class=&quot;hljs-attr&quot;&gt;textLayerDiv: textLayerDiv,
+        &lt;span class=&quot;hljs-attr&quot;&gt;pageIndex: page.pageIndex,
+        &lt;span class=&quot;hljs-attr&quot;&gt;viewport: viewport
+    });
+
+    textLayer.setTextContent(textContent);
+
+    textLayer.render();
+});&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;```
+</code></pre><p>我们依旧来讲解以下用到的几个关键函数：</p>
+<p><code>page.render()</code>：该函数返回一个当PDF页面成功渲染到界面上时解析的<code>promise</code>，我们可以使用成功回调来渲染文本图层。</p>
+<p><code>page.getTextContent()</code>：该函数的成功回调会返回PDF页面上的文本片段。</p>
+<p><code>TextLayerBuilder</code>：该类的实例有两个重要的方法。<code>setTextContent()</code>用于设置<code>page.getTextContent()</code>函数返回的文本片段；<code>render()</code>用于渲染文本图层。</p>
+<blockquote>
+<p>Bingo😎！通过以上改造，文本复制功能就实现了。官方文档上可没有这个小技巧哦。</p>
+</blockquote>
+<p>PDF.js是一个很棒的工具，但无奈文档写的较为精简，需要开发人员不断探索PDF.js的强大功能。</p>
+<p>如果这篇文章有帮助到您，记得点赞咯👍！<br></p>
+
+          
         
       
     </div>
@@ -859,7 +955,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2019/01/29/超详细动手搭建一个Vuepress站点及开启PWA与自动部署/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/67684c56.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -878,7 +974,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/29/超详细动手搭建一个Vuepress站点及开启PWA与自动部署/" itemprop="url">超详细动手搭建一个Vuepress站点及开启PWA与自动部署</a></h1>
+                <a class="post-title-link" href="/post/67684c56.html" itemprop="url">超详细动手搭建一个Vuepress站点及开启PWA与自动部署</a></h1>
         
 
         <div class="post-meta">
@@ -930,15 +1026,12 @@
       
         
           
-          # 超详细动手搭建一个Vuepress站点及开启PWA与自动部署&gt; 五一之前就想写一篇关于Vuepress的文章,结果朋友结婚就不了了之了。&gt;&gt; 记得最后一定要看注意事项！## Vuepress介绍官网：https://vuepress.vuejs.org/类似hexo一个极简的静
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/29/超详细动手搭建一个Vuepress站点及开启PWA与自动部署/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div class="article"><br><div class="show-content" data-note-content=""><br><div class="show-content-free"><br><br># 超详细动手搭建一个Vuepress站点及开启PWA与自动部署<br><br>&gt; 五一之前就想写一篇关于Vuepress的文章,结果朋友结婚就不了了之了。<br>&gt;<br>&gt; 记得最后一定要看注意事项！<br><br>## Vuepress介绍<br><br>官网：<a href="https://link.jianshu.com?t=https%3A%2F%2Fvuepress.vuejs.org%2F" target="_blank" rel="noopener">https://vuepress.vuejs.org/</a><br><br>类似hexo一个极简的静态网站生成器,用来写技术文档不能在爽。当然搭建成博客也不成问题。<br><br>## Vuepress特点<br><br><em>   响应式,也可以自定义主题与hexo类似
+</em>   内置markdown(还增加了一些扩展),并且可以在其使用Vue组件<br><em>   Google Analytics 集成
+</em>   PWA 自动生成Service Worker<br><br>## 快速上手<br><br>### 安装<br><br>初始化项目<br><br><code class="shell">yarn init -y<br>    <span class="hljs-meta">#<span class="bash"> 或者 npm init -y<br>    </span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">安装vuepress</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs shell&quot;&gt;&lt;code class=&quot;shell&quot;&gt;yarn add -D vuepress</span><br><span class="line">    &lt;span class=&quot;hljs-meta&quot;&gt;#&lt;span class=&quot;bash&quot;&gt; 或者 npm install -D vuepress</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>全局安装vuepress<br><br>    <pre class="hljs shell"><code class="shell">yarn global add vuepress<br>    <span class="hljs-meta">#<span class="bash"> 或者 npm install -g vuepress<br>    </span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">新建一个docs文件夹</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs shell&quot;&gt;&lt;code class=&quot;shell&quot;&gt;mkdir docs</span><br><span class="line">    &lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>设置下package.json<br><br>    <pre class="hljs shell"><code class="shell">{<br>      “scripts”: {<br>        “docs:dev”: “vuepress dev docs”,<br>        “docs:build”: “vuepress build docs”<br>      }<br>    }<br>    </code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 写作</span><br><span class="line"></span><br><span class="line">&lt;pre class=&quot;hljs shell&quot;&gt;&lt;code class=&quot;shell&quot;&gt;yarn docs:dev # 或者：npm run docs:dev</span><br><span class="line">&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>也就是运行开发环境,直接去docs文件下书写文章就可以,打开<a href="https://link.jianshu.com?t=http%3A%2F%2Flocalhost%3A8080%2F" target="_blank" rel="noopener">http://localhost:8080/</a>可以预览<br><br>    <div class="image-package"><br>    <div class="image-container"><br>    <div class="image-container-fill"><br>    <div class="image-view" data-width="745" data-height="401"><img src="http://pangguoming.com/blog/images/ac55f2b0-6e8e-4d8d-8e2e-7dd1554cab89.jpg" alt=""><br><br>    <div class="image-caption">image<br><br>    ### 构建<br><br>build生成静态的HTML文件,默认会在 <code>.vuepress/dist</code> 文件夹下<br><br>    <pre class="hljs shell"><code class="shell">yarn docs:build # 或者：npm run docs:build<br>    </code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ## 基本配置</span><br><span class="line"></span><br><span class="line">在 `.vuepress`目录下新建一个`config.js`,他导出一个对象</span><br><span class="line"></span><br><span class="line">一些配置可以参考[官方文档](https://link.jianshu.com?t=https%3A%2F%2Fvuepress.vuejs.org%2Fconfig%2F%23base),这里我配置常用及必须配置的</span><br><span class="line"></span><br><span class="line">    ### 网站信息</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs javascript&quot;&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;module.exports = &#123;</span><br><span class="line">      &lt;span class=&quot;hljs-attr&quot;&gt;title: &lt;span class=&quot;hljs-string&quot;&gt;&apos;游魂的文档&apos;,</span><br><span class="line">      &lt;span class=&quot;hljs-attr&quot;&gt;description: &lt;span class=&quot;hljs-string&quot;&gt;&apos;Document library&apos;,</span><br><span class="line">      &lt;span class=&quot;hljs-attr&quot;&gt;head: [</span><br><span class="line">        [&lt;span class=&quot;hljs-string&quot;&gt;&apos;link&apos;, &#123; &lt;span class=&quot;hljs-attr&quot;&gt;rel: &lt;span class=&quot;hljs-string&quot;&gt;&apos;icon&apos;, &lt;span class=&quot;hljs-attr&quot;&gt;href: &lt;span class=&quot;hljs-string&quot;&gt;`/favicon.ico` &#125;],</span><br><span class="line">      ],</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>    ### 导航栏配置<br><br>    <pre class="hljs javascript"><code class="javascript"><span class="hljs-built_in">module.exports = {<br>      <span class="hljs-attr">themeConfig: {<br>        <span class="hljs-attr">nav: [<br>          { <span class="hljs-attr">text: <span class="hljs-string">‘主页’, <span class="hljs-attr">link: <span class="hljs-string">‘/‘ },<br>          { <span class="hljs-attr">text: <span class="hljs-string">‘前端规范’, <span class="hljs-attr">link: <span class="hljs-string">‘/frontEnd/‘ },<br>          { <span class="hljs-attr">text: <span class="hljs-string">‘开发环境’, <span class="hljs-attr">link: <span class="hljs-string">‘/development/‘ },<br>          { <span class="hljs-attr">text: <span class="hljs-string">‘学习文档’, <span class="hljs-attr">link: <span class="hljs-string">‘/notes/‘ },<br>          { <span class="hljs-attr">text: <span class="hljs-string">‘游魂博客’, <span class="hljs-attr">link: <span class="hljs-string">‘<a href="https://www.iyouhun.com&#39;" target="_blank" rel="noopener">https://www.iyouhun.com&#39;</a> },<br>          <span class="hljs-comment">// 下拉列表的配置<br>          {<br>            <span class="hljs-attr">text: <span class="hljs-string">‘Languages’,<br>            <span class="hljs-attr">items: [<br>              { <span class="hljs-attr">text: <span class="hljs-string">‘Chinese’, <span class="hljs-attr">link: <span class="hljs-string">‘/language/chinese’ },<br>              { <span class="hljs-attr">text: <span class="hljs-string">‘English’, <span class="hljs-attr">link: <span class="hljs-string">‘/language/English’ }<br>            ]<br>          }<br>        ]<br>      }<br>    }<br>    </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如图：</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;image-package&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;image-container&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;image-container-fill&quot;&gt; </span><br><span class="line">    &lt;div class=&quot;image-view&quot; data-width=&quot;556&quot; data-height=&quot;83&quot;&gt;![](http://pangguoming.com/blog/images/d0397c5a-09c6-4d33-bdd8-fd95ecb6d468.jpg)</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;image-caption&quot;&gt;image</span><br><span class="line"></span><br><span class="line">    ### 侧边栏配置</span><br><span class="line"></span><br><span class="line">可以省略`.md`扩展名,同时以 `/` 结尾的路径将会被视为 `*/README.md`</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs javascript&quot;&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;module.exports = &#123;</span><br><span class="line">      &lt;span class=&quot;hljs-attr&quot;&gt;themeConfig: &#123;</span><br><span class="line">        &lt;span class=&quot;hljs-attr&quot;&gt;sidebar: &#123;</span><br><span class="line">          &lt;span class=&quot;hljs-string&quot;&gt;&apos;/frontEnd/&apos;: genSidebarConfig(&lt;span class=&quot;hljs-string&quot;&gt;&apos;前端开发规范&apos;),</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>上面封装的<code>genSidebarConfig</code>函数<br><br>    <pre class="hljs javascript"><code class="javascript"><span class="hljs-function"><span class="hljs-keyword">function <span class="hljs-title">genSidebarConfig(<span class="hljs-params">title) {<br>      <span class="hljs-keyword">return [{<br>        title,<br>        <span class="hljs-attr">collapsable: <span class="hljs-literal">false,<br>        <span class="hljs-attr">children: [<br>          <span class="hljs-string">‘’,<br>          <span class="hljs-string">‘html-standard’,<br>          <span class="hljs-string">‘css-standard’,<br>          <span class="hljs-string">‘js-standard’,<br>          <span class="hljs-string">‘git-standard’<br>        ]<br>      }]<br>    }<br>    </span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">支持侧边栏分组(可以用来做博客文章分类) collapsable是当前分组是否展开</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs javascript&quot;&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;module.exports = &#123;</span><br><span class="line">      &lt;span class=&quot;hljs-attr&quot;&gt;themeConfig: &#123;</span><br><span class="line">        &lt;span class=&quot;hljs-attr&quot;&gt;sidebar: &#123;</span><br><span class="line">          &lt;span class=&quot;hljs-string&quot;&gt;&apos;/note&apos;: [</span><br><span class="line">            &#123;</span><br><span class="line">              &lt;span class=&quot;hljs-attr&quot;&gt;title:&lt;span class=&quot;hljs-string&quot;&gt;&apos;前端&apos;,</span><br><span class="line">              &lt;span class=&quot;hljs-attr&quot;&gt;collapsable: &lt;span class=&quot;hljs-literal&quot;&gt;true,</span><br><span class="line">              &lt;span class=&quot;hljs-attr&quot;&gt;children:[</span><br><span class="line">                &lt;span class=&quot;hljs-string&quot;&gt;&apos;/notes/frontEnd/VueJS组件编码规范&apos;,</span><br><span class="line">                &lt;span class=&quot;hljs-string&quot;&gt;&apos;/notes/frontEnd/vue-cli脚手架快速搭建项目&apos;,</span><br><span class="line">                &lt;span class=&quot;hljs-string&quot;&gt;&apos;/notes/frontEnd/深入理解vue中的slot与slot-scope&apos;,</span><br><span class="line">                &lt;span class=&quot;hljs-string&quot;&gt;&apos;/notes/frontEnd/webpack入门&apos;,</span><br><span class="line">                &lt;span class=&quot;hljs-string&quot;&gt;&apos;/notes/frontEnd/PWA介绍及快速上手搭建一个PWA应用&apos;,</span><br><span class="line">              ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">              &lt;span class=&quot;hljs-attr&quot;&gt;title:&lt;span class=&quot;hljs-string&quot;&gt;&apos;后端&apos;,</span><br><span class="line">              &lt;span class=&quot;hljs-attr&quot;&gt;collapsable: &lt;span class=&quot;hljs-literal&quot;&gt;true,</span><br><span class="line">              &lt;span class=&quot;hljs-attr&quot;&gt;children:[</span><br><span class="line">                &lt;span class=&quot;hljs-string&quot;&gt;&apos;notes/backEnd/nginx入门&apos;,</span><br><span class="line">                &lt;span class=&quot;hljs-string&quot;&gt;&apos;notes/backEnd/CentOS如何挂载磁盘&apos;,</span><br><span class="line">              ]</span><br><span class="line">            &#125;,</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>如图：<br><br>    <div class="image-package"><br>    <div class="image-container"><br>    <div class="image-container-fill"><br>    <div class="image-view" data-width="538" data-height="334"><img src="http://pangguoming.com/blog/images/ac3b62fa-e48a-4211-9870-be131972bd55.jpg" alt=""><br><br>    <div class="image-caption">成品图<br><br>    ## 默认主题修改<br><br>    ### 主题色修改<br><br>在<code>.vuepress</code>目录下的创建一个<code>override.styl</code>文件<br><br>    <pre class="hljs css"><code class="css">$<span class="hljs-selector-tag">accentColor = <span class="hljs-selector-id">#3eaf7c // 主题色<br>    $<span class="hljs-selector-tag">textColor = <span class="hljs-selector-id">#2c3e50 // 文字颜色<br>    $<span class="hljs-selector-tag">borderColor = <span class="hljs-selector-id">#eaecef // 边框颜色<br>    $<span class="hljs-selector-tag">codeBgColor = <span class="hljs-selector-id">#282c34 // 代码背景颜色<br>    </span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ### 自定义页面类</span><br><span class="line"></span><br><span class="line">有时需要在不同的页面应用不同的css,可以先在该页面中声明</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs yaml&quot;&gt;&lt;code class=&quot;yaml&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;---</span><br><span class="line">    &lt;span class=&quot;hljs-attr&quot;&gt;pageClass: &lt;span class=&quot;hljs-string&quot;&gt;custom-page-class</span><br><span class="line">    &lt;span class=&quot;hljs-meta&quot;&gt;---</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>然后在<code>override.styl</code>中书写<br><br>    <pre class="hljs css"><code class="css"><span class="hljs-selector-class">.theme-container<span class="hljs-selector-class">.custom-page-class {<br>      <span class="hljs-comment">/<em> 特定页面的 CSS </em>/<br>    }<br>    </span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ## PWA设置</span><br><span class="line"></span><br><span class="line">设置serviceWorker为true,然后提供Manifest 和 icons,可以参考我之前的《[PWA介绍及快速上手搭建一个PWA应用](https://www.jianshu.com/p/fad8aa9e277f)》</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs javascript&quot;&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;module.exports = &#123;</span><br><span class="line">      &lt;span class=&quot;hljs-attr&quot;&gt;head: [</span><br><span class="line">        [&lt;span class=&quot;hljs-string&quot;&gt;&apos;link&apos;, &#123; &lt;span class=&quot;hljs-attr&quot;&gt;rel: &lt;span class=&quot;hljs-string&quot;&gt;&apos;icon&apos;, &lt;span class=&quot;hljs-attr&quot;&gt;href: &lt;span class=&quot;hljs-string&quot;&gt;`/favicon.ico` &#125;],</span><br><span class="line">        &lt;span class=&quot;hljs-comment&quot;&gt;//增加manifest.json</span><br><span class="line">        [&lt;span class=&quot;hljs-string&quot;&gt;&apos;link&apos;, &#123; &lt;span class=&quot;hljs-attr&quot;&gt;rel: &lt;span class=&quot;hljs-string&quot;&gt;&apos;manifest&apos;, &lt;span class=&quot;hljs-attr&quot;&gt;href: &lt;span class=&quot;hljs-string&quot;&gt;&apos;/manifest.json&apos; &#125;],</span><br><span class="line">      ],</span><br><span class="line">      &lt;span class=&quot;hljs-attr&quot;&gt;serviceWorker: &lt;span class=&quot;hljs-literal&quot;&gt;true,</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>    ## 部署上线<br><br>    ### 设置基础路径<br><br>在<code>config.js</code>设置base<br> 例如：你想要部署在<a href="https://link.jianshu.com?t=https%3A%2F%2Ffoo.github.io" target="_blank" rel="noopener">https://foo.github.io</a> 那么设置base为<code>/</code>,base默认就为<code>/</code>,所以可以不用设置<br> 想要部署在<a href="https://link.jianshu.com?t=https%3A%2F%2Ffoo.github.io%2Fbar%2F" target="_blank" rel="noopener">https://foo.github.io/bar/</a>,那么 <code>base</code> 应该被设置成 <code>&quot;/bar/&quot;</code><br><br>    <pre class="hljs javascript"><code class="javascript"><span class="hljs-built_in">module.exports = {<br>      <span class="hljs-attr">base: <span class="hljs-string">‘/documents/‘,<br>    }<br>    </span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">`base` 将会自动地作为前缀插入到所有以 `/` 开始的其他选项的链接中,所以你只需要指定一次。</span><br><span class="line"></span><br><span class="line">    ### 构建与自动部署</span><br><span class="line"></span><br><span class="line">用[gitHub](https://link.jianshu.com?t=https%3A%2F%2Fgithub.com)的pages或者[coding](https://link.jianshu.com?t=https%3A%2F%2Fcoding.net%2Fr%2FO5YOFA)的pages都可以,也可以搭建在自己的服务器上。  </span><br><span class="line"> 将`dist`文件夹中的内容提交到git上或者上传到服务器就好</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs shell&quot;&gt;&lt;code class=&quot;shell&quot;&gt;yarn docs:build # 或者：npm run docs:build</span><br><span class="line">    &lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>&gt; 另外可以弄一个脚本,设置持续集成,在每次 push 代码时自动运行脚本<br><br>deploy.sh<br><br>    <pre class="hljs bash"><code class="bash"><span class="hljs-meta">#!/usr/bin/env sh<br><br>    <span class="hljs-comment"># 确保脚本抛出遇到的错误<br>    <span class="hljs-built_in">set -e<br><br>    <span class="hljs-comment"># 生成静态文件<br>    npm run docs:build<br><br>    <span class="hljs-comment"># 进入生成的文件夹<br>    <span class="hljs-built_in">cd docs/.vuepress/dist<br><br>    <span class="hljs-comment"># 如果是发布到自定义域名<br>    <span class="hljs-comment"># echo ‘<a href="http://www.example.com&#39;" target="_blank" rel="noopener">www.example.com&#39;</a> &gt; CNAME<br><br>    git init<br>    git add -A<br>    git commit -m <span class="hljs-string">‘deploy’<br><br>    <span class="hljs-comment"># 如果发布到 https://<username>.github.io<br>    <span class="hljs-comment"># git push -f <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:<username>/<username>.github.io.git master<br><br>    <span class="hljs-comment"># 如果发布到 https://<username>.github.io/<repo><br>    git push -f <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:<username>/<repo>.git master:gh-pages<br><br>    <span class="hljs-built_in">cd -<br>    </span></repo></username></repo></username></span></username></username></span></username></span></span></span></span></span></span></span></span></span></span></code><code>`</code><br><br>    ## 注意事项(坑)<br><br>    <em>   把你想引用的资源都放在<code>.vuepress</code>目录下的<code>public</code>文件夹
+    </em>   给git仓库绑定了独立域名后,记得修改<code>base</code>路径<br>    <em>   设置侧边栏分组后默认会自动生成 上/下一篇链接
+    </em>   设置了自动生成侧边栏会把侧边栏分组覆盖掉<br>    *   设置PWA记得开启SSL<br><br>    <div id="free-reward-panel" class="support-author"><br><br>    </div></pre></pre></pre></pre></div></div></div></div></div></pre></pre></pre></div></div></div></div></div></pre></pre></div></div></div><br>
+          
         
       
     </div>
@@ -985,7 +1078,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2019/01/26/PPTP服务端与客户端 修改默认PPTP默认端口1723/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/a210281e.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1004,7 +1097,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/26/PPTP服务端与客户端 修改默认PPTP默认端口1723/" itemprop="url">PPTP服务端与客户端 修改默认PPTP默认端口1723</a></h1>
+                <a class="post-title-link" href="/post/a210281e.html" itemprop="url">PPTP服务端与客户端 修改默认PPTP默认端口1723</a></h1>
         
 
         <div class="post-meta">
@@ -1056,18 +1149,13 @@
       
         
           
-          linux pptp服务端：我们在Linux下建立的pptpd端口号默认是1723，有时候这个端口并不是那么的好用，不是麽?所以服务端修改端口号比较简单
-修改 /etc/services 文件查找 1723,然后将其修改为你想修改的数值,重启 pptpd即可.
-Windows PPTP客户端：
-1、
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/26/PPTP服务端与客户端 修改默认PPTP默认端口1723/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>linux pptp服务端：<br>我们在Linux下建立的pptpd端口号默认是1723，有时候这个端口并不是那么的好用，不是麽?<br>所以服务端修改端口号比较简单</p>
+<p>修改 /etc/services 文件<br>查找 1723,然后将其修改为你想修改的数值,重启 pptpd即可.</p>
+<p>Windows PPTP客户端：</p>
+<p>1、找到 C:\WINDOWS\system32\drivers\etc，修改<a href="https://www.baidu.com/s?wd=services&amp;tn=24004469_oem_dg&amp;rsv_dl=gh_pl_sl_csd" target="_blank" rel="noopener">services</a>文件，修改里面的VPN（PPTP）端口1723为你设定的端口</p>
+<p>2、系统自带的东西，修改配置参数当然就得进注册表了。进入<code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4D36E972-E325-11CE- BFC1-08002bE10318}</code>项，其中有类似0000、0001、0002……这样的子项，每个子项都对应一个网<a href="https://www.baidu.com/s?wd=%E9%80%82%E9%85%8D%E5%99%A8&amp;tn=24004469_oem_dg&amp;rsv_dl=gh_pl_sl_csd" target="_blank" rel="noopener">适配器</a>的配置。逐一打开这些子项，找到其中字段<code>DriverDesc</code>值为<code>WAN Miniport (PPTP)</code>的子项，例如我找到的是<code>0003</code>。在这个子项里的<code>TcpPortNumber</code>的值就是pptp vpn所使用的端口，双击修改其值，选择基数为十进制，修改成所需要的值确认即可。重启机器后，修改生效。</p>
+
+          
         
       
     </div>
@@ -1114,7 +1202,7 @@ Windows PPTP客户端：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2019/01/26/centos7防火墙iptables开放常用端口/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/4b16a513.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1133,7 +1221,7 @@ Windows PPTP客户端：
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/26/centos7防火墙iptables开放常用端口/" itemprop="url">centos7防火墙iptables开放常用端口</a></h1>
+                <a class="post-title-link" href="/post/4b16a513.html" itemprop="url">centos7防火墙iptables开放常用端口</a></h1>
         
 
         <div class="post-meta">
@@ -1185,18 +1273,36 @@ Windows PPTP客户端：
       
         
           
-          
-清除所有规则：
+            <ol>
+<li>清除所有规则：</li>
+</ol>
+<p><code class="hljs nginx"><span class="hljs-attribute">iptables  -F</span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2.  开放常用tcp端口：</span><br><span class="line">&lt;pre&gt;&lt;code class=&quot;hljs css&quot;&gt;&lt;span class=&quot;hljs-selector-tag&quot;&gt;iptables  &lt;span class=&quot;hljs-selector-tag&quot;&gt;-I  &lt;span class=&quot;hljs-selector-tag&quot;&gt;INPUT  &lt;span class=&quot;hljs-selector-tag&quot;&gt;-p  &lt;span class=&quot;hljs-selector-tag&quot;&gt;tcp  &lt;span class=&quot;hljs-selector-tag&quot;&gt;-m  &lt;span class=&quot;hljs-selector-tag&quot;&gt;multiport  &lt;span class=&quot;hljs-selector-tag&quot;&gt;--dports 20,21,22,3690,80,443,4443,8023,8888,25,110,30000&lt;span class=&quot;hljs-selector-pseudo&quot;&gt;:30999  &lt;span class=&quot;hljs-selector-tag&quot;&gt;-j  &lt;span class=&quot;hljs-selector-tag&quot;&gt;ACCEPT</span><br><span class="line">&lt;span class=&quot;hljs-selector-tag&quot;&gt;iptables  &lt;span class=&quot;hljs-selector-tag&quot;&gt;-I  &lt;span class=&quot;hljs-selector-tag&quot;&gt;OUTPUT  &lt;span class=&quot;hljs-selector-tag&quot;&gt;-p  &lt;span class=&quot;hljs-selector-tag&quot;&gt;tcp  &lt;span class=&quot;hljs-selector-tag&quot;&gt;-m  &lt;span class=&quot;hljs-selector-tag&quot;&gt;multiport  &lt;span class=&quot;hljs-selector-tag&quot;&gt;--sports 20,21,22,3690,80,443,4443,8023,8888,25,110,30000&lt;span class=&quot;hljs-selector-pseudo&quot;&gt;:30999  &lt;span class=&quot;hljs-selector-tag&quot;&gt;-j  &lt;span class=&quot;hljs-selector-tag&quot;&gt;ACCEPT&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>3.  开放常用udp端口：
+&lt;pre&gt;&lt;code class=&quot;hljs sql&quot;&gt;iptables  -I  INPUT  -p  udp  -m  multiport  &lt;span class=&quot;hljs-comment&quot;&gt;--dports  53,123,8571,8888  -j  ACCEPT
+iptables  -I  OUTPUT  -p  udp  -m  multiport  &lt;span class=&quot;hljs-comment&quot;&gt;--sports  53,123,8571,8888  -j  ACCEPT&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4.  开放特殊udp端口（如：dns）：</span><br><span class="line">&lt;pre&gt;&lt;code class=&quot;hljs sql&quot;&gt;iptables  -I  INPUT  -p  udp  &lt;span class=&quot;hljs-comment&quot;&gt;--sport  53  -j  ACCEPT</span><br><span class="line">iptables  -I  OUTPUT  -p  udp  &lt;span class=&quot;hljs-comment&quot;&gt;--dport  53  -j  ACCEPT&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
 
-iptables  -F12342.  开放常用tcp端口：&lt;pre&gt;&lt;code class=&quot;hljs css&quot;&gt;&lt;span class=&quot;hljs-selector-tag&quot;&gt;iptables  &l
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/26/centos7防火墙iptables开放常用端口/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+5.  开放vrrp协议：
+&lt;pre&gt;&lt;code class=&quot;hljs nginx&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;iptables  -I  INPUT  -p  vrrp  -j  ACCEPT&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">6.  允许服务器互ping：</span><br><span class="line">&lt;pre&gt;&lt;code class=&quot;hljs nginx&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;iptables  -A  OUTPUT  -p  icmp  -j  ACCEPT</span><br><span class="line">iptables  -A  INPUT  -p  icmp  -j  ACCEPT&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+7.  允许握手成功的数据通过：
+&lt;pre&gt;&lt;code class=&quot;hljs perl&quot;&gt;iptables  -I  INPUT  -p  tcp  -&lt;span class=&quot;hljs-keyword&quot;&gt;m  &lt;span class=&quot;hljs-keyword&quot;&gt;state  --&lt;span class=&quot;hljs-keyword&quot;&gt;state  RELATED,ESTABLISHED  -j  ACCEPT
+iptables  -I  OUTPUT  -p  tcp  -&lt;span class=&quot;hljs-keyword&quot;&gt;m  &lt;span class=&quot;hljs-keyword&quot;&gt;state  --&lt;span class=&quot;hljs-keyword&quot;&gt;state  RELATED,ESTABLISHED  -j  ACCEPT&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">8.  设置默认关闭所有端口：</span><br><span class="line">&lt;pre&gt;&lt;code class=&quot;hljs sql&quot;&gt;iptables  -P  FORWARD  &lt;span class=&quot;hljs-keyword&quot;&gt;DROP</span><br><span class="line">iptables  -P  &lt;span class=&quot;hljs-keyword&quot;&gt;OUTPUT  &lt;span class=&quot;hljs-keyword&quot;&gt;ACCEPT</span><br><span class="line">iptables  -P  &lt;span class=&quot;hljs-keyword&quot;&gt;INPUT  &lt;span class=&quot;hljs-keyword&quot;&gt;DROP&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+9.  防syn***：
+&lt;pre&gt;&lt;code class=&quot;hljs sql&quot;&gt;iptables  -N  syn-flood 
+iptables  -A  INPUT  -p  tcp  &lt;span class=&quot;hljs-comment&quot;&gt;--syn  -j  syn-flood 
+iptables  -I  syn-flood  -p  tcp  -m  limit  &lt;span class=&quot;hljs-comment&quot;&gt;--limit  3/s  --limit-burst  6  -j  RETURN 
+iptables  -A  syn-flood  -j  REJECT&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">10.  防ddos***：</span><br><span class="line">&lt;pre&gt;&lt;code class=&quot;hljs sql&quot;&gt;iptables  -A  INPUT  -i  eth0  -p  tcp  &lt;span class=&quot;hljs-comment&quot;&gt;--syn  -m  connlimit  --connlimit-above  15 -j  DROP </span><br><span class="line">iptables  -A  INPUT  -p  tcp  -m  state  &lt;span class=&quot;hljs-comment&quot;&gt;--state  ESTABLISHED,RELATED  -j  ACCEPT</span><br><span class="line">iptables  -A  INPUT  -p  tcp  &lt;span class=&quot;hljs-comment&quot;&gt;--syn  -m  limit  --limit  12/s  --limit-burst  24  -j  ACCEPT</span><br><span class="line">iptables  -A  FORWARD  -p  tcp  &lt;span class=&quot;hljs-comment&quot;&gt;--syn  -m  limit  --limit  1/s  -j  ACCEPT&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+11.  防cc***：
+&lt;pre&gt;&lt;code class=&quot;hljs cs&quot;&gt;iptables  -I  INPUT  -p  tcp  --dport  &lt;span class=&quot;hljs-number&quot;&gt;80  -m  connlimit  --connlimit-above  &lt;span class=&quot;hljs-number&quot;&gt;50  -j  REJECT  &lt;span class=&quot;hljs-meta&quot;&gt;# 允许单个IP的最大连接数为30
+iptables  -A  INPUT  -p  tcp  --dport  &lt;span class=&quot;hljs-number&quot;&gt;80  -m  recent  --name  BAD_HTTP_ACCESS  --update  --seconds  &lt;span class=&quot;hljs-number&quot;&gt;60  --hitcount  &lt;span class=&quot;hljs-number&quot;&gt;30  -j  REJECT
+iptables  -A  INPUT  -p  tcp --dport  &lt;span class=&quot;hljs-number&quot;&gt;80  -m  recent  --name  BAD_HTTP_ACCESS  --&lt;span class=&quot;hljs-keyword&quot;&gt;set  -j  ACCEPT
+&lt;span class=&quot;hljs-meta&quot;&gt;#单个IP在60秒内只允许最多新建30个连接&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">12.  保存：</span><br><span class="line">&lt;pre&gt;&lt;code class=&quot;hljs javascript&quot;&gt;iptables-save  &gt;  &lt;span class=&quot;hljs-regexp&quot;&gt;/etc/sysconfig/iptables&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;
+</code></pre>
+          
         
       
     </div>
@@ -1243,7 +1349,7 @@ iptables  -F12342.  开放常用tcp端口：&lt;pre&gt;&lt;code class=&quot;hljs
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2019/01/25/PDF.js 分片下载的介绍2-分片下载demo/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/68a72078.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1262,7 +1368,7 @@ iptables  -F12342.  开放常用tcp端口：&lt;pre&gt;&lt;code class=&quot;hljs
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/25/PDF.js 分片下载的介绍2-分片下载demo/" itemprop="url">PDF.js 分片下载的介绍2:分片下载demo</a></h1>
+                <a class="post-title-link" href="/post/68a72078.html" itemprop="url">PDF.js 分片下载的介绍2:分片下载demo</a></h1>
         
 
         <div class="post-meta">
@@ -1314,17 +1420,31 @@ iptables  -F12342.  开放常用tcp端口：&lt;pre&gt;&lt;code class=&quot;hljs
       
         
           
-          上一个章节，简要说了以下分片下载的几个特性。今天主要用示例说明一下pdf.js分片下载。
-服务器环境：php7.2nginx 1.14ubuntu 18.04测试浏览器:谷歌浏览器 70.0.3538.110（
-第一个场景，直接使用pdf 文件1.1 代码如下：注意路径使用的是pdf 文件的物理路径
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/25/PDF.js 分片下载的介绍2-分片下载demo/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>上一个章节，简要说了以下分片下载的几个特性。今天主要用示例说明一下pdf.js分片下载。</p>
+<p>服务器环境：<br>php7.2<br>nginx 1.14<br>ubuntu 18.04<br>测试浏览器:谷歌浏览器 70.0.3538.110（</p>
+<p>第一个场景，直接使用pdf 文件<br>1.1 代码如下：注意路径使用的是pdf 文件的物理路径</p>
+<p>$filePath = ‘…/doc/big.pdf’;<br>这里是举例，这样作有一个明显的缺点，就是容易被盗链<br>getDocument 方法中的 rangeChunkSize 参数，就是设置分块大小，默认是64k,可以修改这个数字，来改变<br>这个例子使用的 1664k ,1m 左右来分片，方便测试。您可以根据具体情况，来调整<br>PDFJS.getDocument({url:url,rangeChunkSize:6553616,disableAutoFetch:0}).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">        &lt;head&gt;&lt;title&gt;pdf.js展示1，上一页，下一页&lt;/title&gt;&lt;/head&gt;</span><br><span class="line">        &lt;h1&gt;PDF.js Previous/Next example&lt;/h1&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;button id=&quot;prev&quot;&gt;Previous&lt;/button&gt;</span><br><span class="line">            &lt;button id=&quot;next&quot;&gt;Next&lt;/button&gt;     &lt;span&gt;Page: &lt;span id=&quot;page_num&quot;&gt;&lt;/span&gt; / &lt;span</span><br><span class="line">                id=&quot;page_count&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">        &lt;canvas id=&quot;the-canvas&quot;&gt;&lt;/canvas&gt;</span><br><span class="line">        &lt;script src=&quot;../js/pdfjs/pdf.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">        &lt;script src=&quot;../js/pdfjs/pdf.worker.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">        &lt;script&gt;</span><br><span class="line">            var url = &apos;../doc/big.pdf&apos;;</span><br><span class="line"></span><br><span class="line">            var pdfDoc = null,</span><br><span class="line">                pageNum = 1,</span><br><span class="line">                pageRendering = false,</span><br><span class="line">                pageNumPending = null,</span><br><span class="line">                scale = 0.8,</span><br><span class="line">                canvas = document.getElementById(&apos;the-canvas&apos;),</span><br><span class="line">                ctx = canvas.getContext(&apos;2d&apos;);</span><br><span class="line"></span><br><span class="line">            /**</span><br><span class="line">             * Get page info from document, resize canvas accordingly, and render page.</span><br><span class="line">             * @param num Page number.</span><br><span class="line">             */</span><br><span class="line">            function renderPage(num) &#123;</span><br><span class="line">                pageRendering = true;</span><br><span class="line">                // Using promise to fetch the page</span><br><span class="line">                pdfDoc.getPage(num).then(function (page) &#123;</span><br><span class="line">                    var viewport = page.getViewport(scale);</span><br><span class="line">                    canvas.height = viewport.height;</span><br><span class="line">                    canvas.width = viewport.width;</span><br><span class="line"></span><br><span class="line">                    // Render PDF page into canvas context</span><br><span class="line">                    var renderContext = &#123;</span><br><span class="line">                        canvasContext: ctx,</span><br><span class="line">                        viewport: viewport</span><br><span class="line">                    &#125;;</span><br><span class="line">                    var renderTask = page.render(renderContext);</span><br><span class="line"></span><br><span class="line">                    // Wait for rendering to finish</span><br><span class="line">                    renderTask.promise.then(function () &#123;</span><br><span class="line">                        pageRendering = false;</span><br><span class="line">                        if (pageNumPending !== null) &#123;</span><br><span class="line">                            // New page rendering is pending</span><br><span class="line">                            renderPage(pageNumPending);</span><br><span class="line">                            pageNumPending = null;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">                // Update page counters</span><br><span class="line">                document.getElementById(&apos;page_num&apos;).textContent = num;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            /**</span><br><span class="line">             * If another page rendering in progress, waits until the rendering is</span><br><span class="line">             * finised. Otherwise, executes rendering immediately.</span><br><span class="line">             */</span><br><span class="line">            function queueRenderPage(num) &#123;</span><br><span class="line">                if (pageRendering) &#123;</span><br><span class="line">                    pageNumPending = num;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    renderPage(num);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            /**</span><br><span class="line">             * Displays previous page.</span><br><span class="line">             */</span><br><span class="line">            function onPrevPage() &#123;</span><br><span class="line">                if (pageNum &lt;= 1) &#123;</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">                pageNum--;</span><br><span class="line">                queueRenderPage(pageNum);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            document.getElementById(&apos;prev&apos;).addEventListener(&apos;click&apos;, onPrevPage);</span><br><span class="line"></span><br><span class="line">            /**</span><br><span class="line">             * Displays next page.</span><br><span class="line">             */</span><br><span class="line">            function onNextPage() &#123;</span><br><span class="line">                if (pageNum &gt;= pdfDoc.numPages) &#123;</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">                pageNum++;</span><br><span class="line">                queueRenderPage(pageNum);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            document.getElementById(&apos;next&apos;).addEventListener(&apos;click&apos;, onNextPage);</span><br><span class="line"></span><br><span class="line">            /**</span><br><span class="line">             * Asynchronously downloads PDF.</span><br><span class="line">             */</span><br><span class="line">            PDFJS.getDocument(&#123;url:url,rangeChunkSize:65536*16,disableAutoFetch:0&#125;).then(function(pdfDoc_) &#123;</span><br><span class="line">                pdfDoc = pdfDoc_;</span><br><span class="line">                document.getElementById(&apos;page_count&apos;).textContent = pdfDoc.numPages;</span><br><span class="line"></span><br><span class="line">                // Initial/first page rendering</span><br><span class="line">                renderPage(pageNum);</span><br><span class="line">            &#125;);</span><br><span class="line">        &lt;/script&gt;</span><br><span class="line">        &lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>1.2今天第一加载：发现没有出现分片效果。如果您也遇到这种情况，不要着急，很大程度是因为浏览器缓存<br><img src="http://pangguoming.com/blog/images/7b42710a-05c9-425a-a027-0fe3760e4eac.jpg" alt="在这里插入图片描述"><br>1.3 在浏览器中，安Ctrl+alt+delte 键，清除缓存</p>
+<p><img src="http://pangguoming.com/blog/images/1c2424d7-6f94-4539-b565-46bcccf6173c.jpg" alt="在这里插入图片描述"><br>1.4 清除缓存后，再次刷新页面，发现分片下载功能出现了。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:html;gutter:true;&quot;&gt;后台代码</span><br><span class="line"></span><br><span class="line"> &lt;?php</span><br><span class="line">$filePath = &apos;../doc/big.pdf&apos;;</span><br><span class="line"></span><br><span class="line">//普通的方式处理包装pdf文件 </span><br><span class="line">download_file($filePath);</span><br><span class="line"></span><br><span class="line">function download_file($file, $fname = &apos;chunk.pdf&apos;)</span><br><span class="line">&#123;</span><br><span class="line">    header(&quot;Content-Type: application/octet-stream&quot;);</span><br><span class="line">    header(&quot;Content-Disposition: attachment;filename=$fname&quot;);</span><br><span class="line"></span><br><span class="line">    echo(file_get_contents($file));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p> 前台js 调用代码</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:html;gutter:true;&quot;&gt;  。。。。。</span><br><span class="line">    var url = &apos;download.php&apos;;</span><br><span class="line"></span><br><span class="line">    var pdfDoc = null,</span><br><span class="line">        pageNum = 1,</span><br><span class="line">        pageRendering = false,</span><br><span class="line">        pageNumPending = null,</span><br><span class="line">        scale = 0.8,</span><br><span class="line">        canvas = document.getElementById(&apos;the-canvas&apos;),</span><br><span class="line">        ctx = canvas.getContext(&apos;2d&apos;);</span><br><span class="line"></span><br><span class="line">。。。。</span><br></pre></td></tr></table></figure>
+</code></pre><p>2.2 经过清理缓存，发现无法达到分片的效果。<br><img src="http://pangguoming.com/blog/images/03c770a7-4826-40ba-a846-f31c95caf542.jpg" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>初步总结如下，常规的附件处理方式，会影响分片下载的效果</p>
+</blockquote>
+<pre><code>## 场景3：使用php 结合httprange,实现分片的效果
+</code></pre><p>3.1 这里是从网上搜集到的分片下载php 函数</p>
+<p>代码的核心是，增加head 头，开启分片 Header(“Accept-Ranges: bytes”); 至于 Http range 如何计算，就比较繁琐了，这里就不详细介绍了。有兴趣的可以去百度</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:html;gutter:true;&quot;&gt;&lt;?php</span><br><span class="line">$filePath = &apos;../doc/big.pdf&apos;;</span><br><span class="line"></span><br><span class="line">//分片下载</span><br><span class="line">chunk_download_file($filePath);</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 分篇下载的汉书</span><br><span class="line"> *</span><br><span class="line"> * @param $file</span><br><span class="line"> * @param $fname</span><br><span class="line"> */</span><br><span class="line">function chunk_download_file($file, $fname = &apos;chunk.pdf&apos;)</span><br><span class="line">&#123;</span><br><span class="line">    $fhandle = fopen($file, &apos;rb&apos;);//文件句柄</span><br><span class="line">    $fsize = filesize($file);//文件大小</span><br><span class="line"></span><br><span class="line">    //断点续传和整个文件下载的判断，支持多段下载</span><br><span class="line">    if (!empty($_SERVER[&apos;HTTP_RANGE&apos;])) &#123;</span><br><span class="line">        $range = str_replace(&quot;=&quot;, &quot;-&quot;, $_SERVER[&apos;HTTP_RANGE&apos;]);</span><br><span class="line">        $match = explode(&quot;-&quot;, $range);</span><br><span class="line">        $start = $match[1];</span><br><span class="line">        $end = !empty($match[2]) ? $match[2] : $fsize - 1;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        $start = 0;</span><br><span class="line">        $end = $fsize - 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (($end - $start) &lt; ($fsize - 1)) &#123;</span><br><span class="line">        fseek($fhandle, $start);</span><br><span class="line">        header(&quot;HTTP/1.1 206 Partial Content&quot;);</span><br><span class="line">        header(&quot;Content-Length: &quot; . ($end - $start + 1));</span><br><span class="line">        header(&quot;Content-Range: bytes &quot; . $start . &quot;-&quot; . $end . &quot;/&quot; . $fsize);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        header(&quot;HTTP/1.1 200 OK&quot;);</span><br><span class="line">        header(&quot;Content-Length: $fsize&quot;);</span><br><span class="line">        Header(&quot;Accept-Ranges: bytes&quot;);</span><br><span class="line">        header(&quot;Content-Range: bytes &quot; . $start . &quot;-&quot; . $end . &quot;/&quot; . $fsize);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    header(&quot;Content-Type: application/octet-stream&quot;);</span><br><span class="line">    header(&quot;Content-Disposition: attachment;filename=$fname&quot;);</span><br><span class="line"></span><br><span class="line">    if (!feof($fhandle)) &#123;</span><br><span class="line">        set_time_limit(0);</span><br><span class="line">        $buffer = fread($fhandle, $end - $start + 1);</span><br><span class="line">        echo $buffer;</span><br><span class="line">        flush();</span><br><span class="line">        ob_flush();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p>demo 下载路径：<br><a href="https://download.csdn.net/download/niedewang/10804164" target="_blank" rel="noopener">https://download.csdn.net/download/niedewang/10804164</a></p>
+<p>3.2 清理调浏览器缓存，发现这种方式可以达到分片下载的效果</p>
+<p>经过测试，谷歌浏览器支持的很好，如上图所示，截图就是使用的谷歌浏览器。<br>但是firefox 在这种场景下，分片效果不理想。具体原因未知</p>
+<p>简要的总结<br>1：前期承诺的demo 放出来了，blog貌似会清理连接地址，不知道是否会删除<br>2：使用pdf 真实文件路径，分片兼容性最好。但是地址容易泄漏<br>3：如果使用php 处理，一般的处理程序，不能达到分片效果。需要结合http range特性，但是不知道什么原因，firefox测试下来，效果不好。谷歌浏览器支持的较好，好消息是谷歌浏览器现在占用量是最大的。  </p>
+<h2 id="4：后面有时间了，会介绍以下使用-x-sendfile-的方式处理附件，无论性能还是兼容性都比php-处理要好"><a href="#4：后面有时间了，会介绍以下使用-x-sendfile-的方式处理附件，无论性能还是兼容性都比php-处理要好" class="headerlink" title="4：后面有时间了，会介绍以下使用 x-sendfile 的方式处理附件，无论性能还是兼容性都比php 处理要好  "></a>4：后面有时间了，会介绍以下使用 x-sendfile 的方式处理附件，无论性能还是兼容性都比php 处理要好  </h2><p>作者：只看远方<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/niedewang/article/details/84576969" target="_blank" rel="noopener">https://blog.csdn.net/niedewang/article/details/84576969</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！<br></p>
+
+          
         
       
     </div>
@@ -1371,7 +1491,7 @@ iptables  -F12342.  开放常用tcp端口：&lt;pre&gt;&lt;code class=&quot;hljs
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2019/01/21/使用 JMeter 进行压力测试/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/f6aaf7d7.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1390,7 +1510,7 @@ iptables  -F12342.  开放常用tcp端口：&lt;pre&gt;&lt;code class=&quot;hljs
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/21/使用 JMeter 进行压力测试/" itemprop="url">使用 JMeter 进行压力测试</a></h1>
+                <a class="post-title-link" href="/post/f6aaf7d7.html" itemprop="url">使用 JMeter 进行压力测试</a></h1>
         
 
         <div class="post-meta">
@@ -1442,16 +1562,79 @@ iptables  -F12342.  开放常用tcp端口：&lt;pre&gt;&lt;code class=&quot;hljs
       
         
           
-          一.前言压力测试是每一个Web应用程序上线之前都需要做的一个测试，他可以帮助我们发现系统中的瓶颈问题，减少发布到生产环境后出问题的几率；预估系统的承载能力，使我们能根据其做出一些应对措施。所以压力测试是一个非常重要的步骤，下面我带大家来使用一款压力测试工具JMeter。
-二.关于JMeterApac
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/21/使用 JMeter 进行压力测试/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h2 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h2><p>压力测试是每一个Web应用程序上线之前都需要做的一个测试，他可以帮助我们发现系统中的瓶颈问题，减少发布到生产环境后出问题的几率；预估系统的承载能力，使我们能根据其做出一些应对措施。所以压力测试是一个非常重要的步骤，下面我带大家来使用一款压力测试工具JMeter。</p>
+<h2 id="二-关于JMeter"><a href="#二-关于JMeter" class="headerlink" title="二.关于JMeter"></a>二.关于JMeter</h2><p>Apache JMeter是Apache组织开发的基于Java的压力测试工具。用于对软件做压力测试，它最初被设计用于Web应用测试，但后来扩展到其他测试领域。 它可以用于测试静态和动态资源，例如静态文件、Java 小服务程序、CGI 脚本、Java 对象、数据库、FTP 服务器， 等等。JMeter 可以用于对服务器、网络或对象模拟巨大的负载，来自不同压力类别下测试它们的强度和分析整体性能。另外，JMeter能够对应用程序做功能/回归测试，通过创建带有断言的脚本来验证你的程序返回了你期望的结果。为了最大限度的灵活性，JMeter允许使用正则表达式创建断言。<br>Apache jmeter 可以用于对静态的和动态的资源（文件，Servlet，Perl脚本，java 对象，数据库和查询，FTP服务器等等）的性能进行测试。它可以用于对服务器、网络或对象模拟繁重的负载来测试它们的强度或分析不同压力类型下的整体性能。你可以使用它做性能的图形分析或在大并发负载测试你的服务器/脚本/对象。</p>
+<p>官网：<a href="http://jmeter.apache.org/download_jmeter.cgi" target="_blank" rel="noopener">http://jmeter.apache.org/download_jmeter.cgi</a></p>
+<p>这里我选用了 4.0 版本的二进制包：<a href="http://mirror.bit.edu.cn/apache//jmeter/binaries/apache-jmeter-4.0.zip" target="_blank" rel="noopener">http://mirror.bit.edu.cn/apache//jmeter/binaries/apache-jmeter-4.0.zip</a></p>
+<blockquote>
+<p>更多内容介绍 <a href="https://baike.baidu.com/item/Jmeter/3104456" target="_blank" rel="noopener">https://baike.baidu.com/item/Jmeter/3104456</a></p>
+</blockquote>
+<h2 id="三-准备工作"><a href="#三-准备工作" class="headerlink" title="三.准备工作"></a>三.准备工作</h2><blockquote>
+<p>因为JMeter是使用JAVA写的，所以使用JMeter之前，先安装JAVA环境，本文就不讲不如安装JAVA环境了。.</p>
+</blockquote>
+<p>JAVA环境变量配置:<a href="https://jingyan.baidu.com/article/fd8044fa2c22f15031137a2a.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/fd8044fa2c22f15031137a2a.html</a></p>
+<p>解压下载的二进制包，进入bin目录，使用<code>jmeter.bat</code>启动程序。</p>
+<p>启动之后会有两个窗口，一个cmd窗口，一个JMeter的 GUI。前面<strong>不要忽略</strong>CMD窗口的提示信息：</p>
+<p><img src="http://pangguoming.com/blog/images/251c9f05-c2f4-4938-ba27-855c498556af.png" alt=""></p>
+<p>JMeter:</p>
+<p><img src="http://pangguoming.com/blog/images/ebcd2eb6-d344-48f6-9d6d-249521e68f75.png" alt=""></p>
+<h3 id="CMD窗口的提示信息"><a href="#CMD窗口的提示信息" class="headerlink" title="CMD窗口的提示信息"></a>CMD窗口的提示信息</h3><p><code class="hljs">================================================================================<br>    Don’t use GUI mode for load testing !, only for Test creation and Test debugging.<br>    For load testing, use NON GUI Mode:<br>       jmeter -n -t [jmx file] -l [results file] -e -o [Path to web report folder]<br>    &amp; increase Java Heap to meet your test requirements:<br>       Modify current env variable HEAP=”-Xms1g -Xmx1g -XX:MaxMetaspaceSize=256m” in the jmeter batch file<br>    Check : <a href="https://jmeter.apache.org/usermanual/best-practices.html" target="_blank" rel="noopener">https://jmeter.apache.org/usermanual/best-practices.html</a><br>    ================================================================================</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上面的意思就是：不要使用GUI运行压力测试，GUI仅用于压力测试的创建和调试；执行压力测试请不要使用GUI。使用下面的命令来执行测试：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;shell&quot;&gt;&lt;code class=&quot;hljs&quot;&gt; jmeter -n -t [jmx file] -l [results file] -e -o [Path to web report folder]&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<p>并且修改JMeter批处理文件的环境变量：<code>HEAP=&quot;-Xms1g -Xmx1g -XX:MaxMetaspaceSize=256m&quot;</code></p>
+<pre><code>### 更改语言为中文
+</code></pre><p>官方默认为我们提供了简体中文。通过 【Options】-&gt;【Choose Language】变更为简体中文</p>
+<p><img src="http://pangguoming.com/blog/images/3303341c-1dff-4779-9bdd-399533987640.png" alt=""></p>
+<pre><code>## 四.创建测试
+
+### 1.创建线程组
+</code></pre><p>在“测试计划”上右键 【添加】–&gt;【Threads(Users)】–&gt;【线程组】。</p>
+<p><img src="http://pangguoming.com/blog/images/b8d200e3-dfb4-4b35-b6ed-69a40ea14330.png" alt=""></p>
+<p>设置线程数和循环次数。我这里设置线程数为500，循环一次。</p>
+<p><img src="http://pangguoming.com/blog/images/71caf477-fa6d-431e-a52c-d1e9faf90e9f.png" alt=""></p>
+<pre><code>### 2.配置元件
+</code></pre><p>在我们刚刚创建的线程组上右键 【添加】–&gt;【配置元件】–&gt;【HTTP请求默认值】。</p>
+<p><img src="http://pangguoming.com/blog/images/c5630d08-f05e-4647-a7ff-6defb29b9a4d.png" alt=""></p>
+<p>配置我们需要进行测试的程序协议、地址和端口</p>
+<p><img src="http://pangguoming.com/blog/images/4b2b16e2-9e0a-44e5-9f64-a6ac7c3b8c9a.png" alt=""></p>
+<blockquote>
+<p>当所有的接口测试的访问域名和端口都一样时，可以使用该元件，一旦服务器地址变更，只需要修改请求默认值即可。</p>
+</blockquote>
+<pre><code>### 3.构造HTTP请求
+</code></pre><p>在“线程组”右键 【添加-】-&gt;【samlper】–&gt;【HTTP 请求】设置我们需要测试的API的请求路径和数据。我这里是用的json</p>
+<p><img src="http://pangguoming.com/blog/images/0a565b59-25ea-487c-b090-80ec9375255b.png" alt=""></p>
+<pre><code>### 4.添加HTTP请求头
+</code></pre><p>在我们刚刚创建的线程组上右键 【添加】–&gt;【配置元件】–&gt;【HTTP信息头管理器】。</p>
+<p>因为我要传输的数据为json，所以设置一个 <code>Content-Type:application/json</code></p>
+<p><img src="http://pangguoming.com/blog/images/e1620012-ca9d-4ce2-96d4-6e02ceb2565f.png" alt=""></p>
+<pre><code>### 5.添加断言
+</code></pre><p>在我们刚刚创建的线程组上右键 【添加】–&gt;【断言】–&gt;【响应断言】。</p>
+<p>根据响应的数据来判断请求是否正常。我在这里只判断的响应代码是否为200。还可以配置错误信息</p>
+<p><img src="http://pangguoming.com/blog/images/6c5e0442-0bf6-4dfd-a92a-e0d9169f0e85.png" alt=""></p>
+<pre><code>### 6.添加察看结果树
+</code></pre><p>在我们刚刚创建的线程组上右键 【添加】–&gt;【监听器】–&gt;【察看结果树】。</p>
+<p>直接添加，然后点击<code>运行</code>按钮就可以看到结果了。</p>
+<p><img src="http://pangguoming.com/blog/images/a65764db-19ae-40f9-b473-26f860eb2d50.png" alt=""></p>
+<pre><code>### 7.添加Summary Report
+</code></pre><p>在我们刚刚创建的线程组上右键 【添加】–&gt;【监听器】–&gt;【Summary Report】。</p>
+<p>直接添加，然后点击<code>运行</code>按钮就可以看到结果了。</p>
+<p><img src="http://pangguoming.com/blog/images/b2e5ddd5-948c-410d-8cad-6ff87853bda8.png" alt=""></p>
+<blockquote>
+<p>为了不引起不必要的争论，隐藏了TPS。此数据不具备任何价值，仅仅为文章演示。</p>
+</blockquote>
+<pre><code>### 8.测试计划创建完成
+</code></pre><p>记得点保存。</p>
+<pre><code>## 五.执行测试计划
+</code></pre><p>前面我们说过，执行测试计划不能用GUI，需要用命令行来执行。</p>
+<p><img src="http://pangguoming.com/blog/images/e8493400-5bb2-45ae-be6c-d7c7fd5c1623.png" alt=""></p>
+<p>我这里执行的命令为：</p>
+<pre><code>&lt;pre class=&quot;shell&quot;&gt;&lt;code class=&quot;hljs&quot;&gt;jmeter -n -t testplan/RedisLock.jmx -l testplan/result/result.txt -e -o testplan/webreport&lt;/code&gt;```
+</code></pre><p>说明：</p>
+<p><code>testplan/RedisLock.jmx</code> 为测试计划文件路径<br><code>testplan/result/result.txt</code> 为测试结果文件路径<br><code>testplan/webreport</code> 为web报告保存路径。</p>
+<p>Web报告如下：</p>
+<p><img src="http://pangguoming.com/blog/images/c16dd9d8-4b43-4ff4-a83a-d070717805f9.png" alt=""></p>
+<pre><code>## 六.写在最后
+</code></pre><p>线程数量和循环次数将会影响最终的测试报告,请大家多多测试。<br></p>
+
+          
         
       
     </div>
@@ -1498,7 +1681,7 @@ iptables  -F12342.  开放常用tcp端口：&lt;pre&gt;&lt;code class=&quot;hljs
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2019/01/18/Centos7 设置、查看、添加、删除服务的开机启动项/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/e5142445.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1517,7 +1700,7 @@ iptables  -F12342.  开放常用tcp端口：&lt;pre&gt;&lt;code class=&quot;hljs
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/18/Centos7 设置、查看、添加、删除服务的开机启动项/" itemprop="url">Centos7 设置、查看、添加、删除服务的开机启动项</a></h1>
+                <a class="post-title-link" href="/post/e5142445.html" itemprop="url">Centos7 设置、查看、添加、删除服务的开机启动项</a></h1>
         
 
         <div class="post-meta">
@@ -1569,20 +1752,17 @@ iptables  -F12342.  开放常用tcp端口：&lt;pre&gt;&lt;code class=&quot;hljs
       
         
           
-          查看开机启动项
-systemctl list-unit-files |   grep enable
-为服务添加开机启动项
-systemctl enable zabbix-server.service
-移除开机启动项的服务
-[root@localhost bin]# systemctl disable
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/18/Centos7 设置、查看、添加、删除服务的开机启动项/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>查看开机启动项</p>
+<p>systemctl list-unit-files |   grep enable</p>
+<p>为服务添加开机启动项</p>
+<p>systemctl enable zabbix-server.service</p>
+<p>移除开机启动项的服务</p>
+<p>[root@localhost bin]# systemctl disable zabbix-server.service<br>Removed symlink /etc/systemd/system/multi-user.target.wants/zabbix-server.service.</p>
+<p>减价修改自定义开机启动的脚本</p>
+<p>修改 /etc/rc.d/rc.local 这个文件</p>
+<p>例如将 apache、mysql、samba、svn 等这些服务的开机自启动问题一起搞定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[root@localhost ~]# vim /etc/rc.d/rc.local</span><br><span class="line"></span><br><span class="line">    #添加以下命令</span><br><span class="line"></span><br><span class="line">    /usr/sbin/apachectl start</span><br><span class="line"></span><br><span class="line">    /etc/rc.d/init.d/mysqld start</span><br><span class="line"></span><br><span class="line">    /etc/rc.d/init.d/smb start</span><br><span class="line"></span><br><span class="line">    /usr/local/subversion/bin/svnserve -d</span><br></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -1645,105 +1825,108 @@ systemctl enable zabbix-server.service
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
-            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+
           
-            <p class="site-author-name" itemprop="name">庞国明</p>
-            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives">
-            
-                <span class="site-state-item-count">420</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">267</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>GitHub</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
-                  
-                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -1760,12 +1943,9 @@ systemctl enable zabbix-server.service
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">庞国明</span>
 
@@ -1773,11 +1953,17 @@ systemctl enable zabbix-server.service
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
@@ -1797,6 +1983,8 @@ systemctl enable zabbix-server.service
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -1831,53 +2019,61 @@ systemctl enable zabbix-server.service
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
 
-
-
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1903,6 +2099,23 @@ systemctl enable zabbix-server.service
 
   
 
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
 
 
 
@@ -2232,11 +2445,27 @@ systemctl enable zabbix-server.service
 
 
 
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
 
   
 
   
 
+  
+
+  
   
 
   

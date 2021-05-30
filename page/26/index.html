@@ -45,38 +45,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT">
@@ -84,11 +73,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
 
 
 
@@ -113,11 +97,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -153,30 +137,6 @@
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-	<div id="topnavbar">
-  <div class="tophead">
-    <div class="toplogo"><a href="/">庞国明-博客</a></div>
-    <div id="mnav">
-      <h2><span class="navicon"></span></h2>
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </div>
-    <nav class="topnav" id="topnav">
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
 
   
   
@@ -230,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -250,12 +220,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            关于
+            归档
           </a>
         </li>
       
@@ -278,20 +248,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -324,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/07/27/添加sqljdbc4的maven依赖/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/57b20f9d.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -343,7 +319,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/27/添加sqljdbc4的maven依赖/" itemprop="url">添加sqljdbc4的maven依赖</a></h1>
+                <a class="post-title-link" href="/post/57b20f9d.html" itemprop="url">添加sqljdbc4的maven依赖</a></h1>
         
 
         <div class="post-meta">
@@ -395,18 +371,19 @@
       
         
           
-          sqljdbc是微软sql server的jdbc驱动
-使用sqljdbc需要从微软的官方网站下载jar包：
-http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=11774
-下载jar包之后可以通过下面
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/27/添加sqljdbc4的maven依赖/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>sqljdbc是微软sql server的jdbc驱动</p>
+<p>使用sqljdbc需要从微软的官方网站下载jar包：</p>
+<p><a href="http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=11774" target="_blank" rel="noopener">http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=11774</a></p>
+<p>下载jar包之后可以通过下面的maven命令将jar包安装到自己的私服上。</p>
+<p><span class="pln">mvn install<span class="pun">:<span class="pln">install<span class="pun">-<span class="pln">file <span class="pun">-<span class="typ">Dfile<span class="pun">=<span class="pln">sqljdbc4<span class="pun">.<span class="pln">jar <span class="pun">-<span class="typ">Dpackaging<span class="pun">=<span class="pln">jar <span class="pun">-<span class="typ">DgroupId<span class="pun">=<span class="pln">com<span class="pun">.<span class="pln">microsoft<span class="pun">.<span class="pln">sqlserver <span class="pun">-<span class="typ">DartifactId<span class="pun">=<span class="pln">sqljdbc4 <span class="pun">-<span class="typ">Dversion<span class="pun">=<span class="lit">4.0</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><code>`</code></p>
+<p>安装成功之后就可以在pom中引用sqljdbc依赖了。</p>
+<pre><code>&lt;pre class=&quot;prettyprint xml prettyprinted&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;dependency&gt;&lt;span class=&quot;pln&quot;&gt;
+    &lt;span class=&quot;tag&quot;&gt;&lt;groupId&gt;&lt;span class=&quot;pln&quot;&gt;com.microsoft.sqlserver&lt;span class=&quot;tag&quot;&gt;&lt;/groupId&gt;&lt;span class=&quot;pln&quot;&gt;
+    &lt;span class=&quot;tag&quot;&gt;&lt;artifactId&gt;&lt;span class=&quot;pln&quot;&gt;sqljdbc4&lt;span class=&quot;tag&quot;&gt;&lt;/artifactId&gt;&lt;span class=&quot;pln&quot;&gt;
+    &lt;span class=&quot;tag&quot;&gt;&lt;version&gt;&lt;span class=&quot;pln&quot;&gt;4.0&lt;span class=&quot;tag&quot;&gt;&lt;/version&gt;&lt;span class=&quot;pln&quot;&gt;
+&lt;span class=&quot;tag&quot;&gt;&lt;/dependency&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;```&lt;/pre&gt;
+</code></pre>
+          
         
       
     </div>
@@ -453,7 +430,7 @@ http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=11774
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/07/25/Result Maps collection already contains value for ---/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/a2ca624.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -472,7 +449,7 @@ http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=11774
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/25/Result Maps collection already contains value for ---/" itemprop="url">Result Maps collection already contains value for ***</a></h1>
+                <a class="post-title-link" href="/post/a2ca624.html" itemprop="url">Result Maps collection already contains value for ***</a></h1>
         
 
         <div class="post-meta">
@@ -524,17 +501,12 @@ http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=11774
       
         
           
-          关于MyBatis配置的时候，出现Result Maps collection already contains value for ***这个的问题   
-字面意思就是某某已经存在，这样的情况下Spring已经注入过一次，   
-其中有一种情况就是使用mybatisGenerator生成xml的时
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/25/Result Maps collection already contains value for ---/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>关于<br>MyBatis配置的时候，出现<br>Result Maps collection already contains value for ***<br>这个的问题   </p>
+<p>字面意思就是某某已经存在，这样的情况下Spring已经注入过一次，   </p>
+<p><span style="color: #ff0000;"><strong>其中有一种情况就是使用mybatisGenerator生成xml的时候，可能xml的内容不会被覆盖，而是追加到后面，导致xml里面有两份甚至更多的一样的内容，导致重复注入 </strong></span>  </p>
+<p>另外就是以前遇到的一个问题<br>在mapper中<br>insert 中的parameterType部分，之前我写的是类名，后来改为完整的包名+类名就好用了，这样导致可能是重名的类，也会被认为已经注入过一次，尽量都用完整的包名+类名</p>
+
+          
         
       
     </div>
@@ -581,7 +553,7 @@ http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=11774
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/07/24/mybatis 针对SQL Server 的 主键id生成策略/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/5a26e11f.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -600,7 +572,7 @@ http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=11774
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/24/mybatis 针对SQL Server 的 主键id生成策略/" itemprop="url">mybatis 针对SQL Server 的 主键id生成策略</a></h1>
+                <a class="post-title-link" href="/post/5a26e11f.html" itemprop="url">mybatis 针对SQL Server 的 主键id生成策略</a></h1>
         
 
         <div class="post-meta">
@@ -652,18 +624,14 @@ http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=11774
       
         
           
-          SQL Server中命令： select newId()  ，可以得到SQL server数据库原生的UUID值，因此我们可以将这条指令写到 Mybatis的主键生成策略配置selectKey中。
-如下：
-在 mapper.xml 类型映射配置文件中
-12345678910111213141516
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/24/mybatis 针对SQL Server 的 主键id生成策略/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>SQL Server中命令： select newId()  ，可以得到SQL server数据库原生的UUID值，因此我们可以将这条指令写到 Mybatis的主键生成策略配置selectKey中。</p>
+<p>如下：</p>
+<p>在 mapper.xml 类型映射配置文件中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;insert id=&quot;insert&quot; parameterType=&quot;com.hqdl.xiaoyi.bean.SpUser&quot;&gt;</span><br><span class="line">          &lt;selectKey keyProperty=&quot;id&quot; resultType=&quot;String&quot; order=&quot;BEFORE&quot;&gt;    </span><br><span class="line">            select newId()    </span><br><span class="line">        &lt;/selectKey&gt;  </span><br><span class="line">        insert into sp_user_list (id, name, full_name, </span><br><span class="line">          password, category, user_type, </span><br><span class="line">          company_id, depart_id, code, </span><br><span class="line">          locked, wrong_pwd_count, last_login_time, </span><br><span class="line">          lock_reason, create_user_id, create_person_name, </span><br><span class="line">          create_time, deleted)</span><br><span class="line">        values (#&#123;id,jdbcType=VARCHAR&#125;, #&#123;name,jdbcType=VARCHAR&#125;, #&#123;fullName,jdbcType=VARCHAR&#125;, </span><br><span class="line">          #&#123;password,jdbcType=VARCHAR&#125;, #&#123;category,jdbcType=VARCHAR&#125;, #&#123;userType,jdbcType=VARCHAR&#125;, </span><br><span class="line">          #&#123;companyId,jdbcType=VARCHAR&#125;, #&#123;departId,jdbcType=VARCHAR&#125;, #&#123;code,jdbcType=VARCHAR&#125;, </span><br><span class="line">          #&#123;locked,jdbcType=CHAR&#125;, #&#123;wrongPwdCount,jdbcType=INTEGER&#125;, #&#123;lastLoginTime,jdbcType=VARCHAR&#125;, </span><br><span class="line">          #&#123;lockReason,jdbcType=VARCHAR&#125;, #&#123;createUserId,jdbcType=VARCHAR&#125;, #&#123;createPersonName,jdbcType=VARCHAR&#125;, </span><br><span class="line">          #&#123;createTime,jdbcType=VARCHAR&#125;, #&#123;deleted,jdbcType=CHAR&#125;)</span><br><span class="line">      &lt;/insert&gt;</span><br></pre></td></tr></table></figure>
+<p> 得到插入结果</p>
+<p><img src="http://pangguoming.com/blog/images/dd9a989b-87da-4678-9033-1609358bde4c.png" alt=""></p>
+
+          
         
       
     </div>
@@ -710,7 +678,7 @@ http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=11774
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/07/21/PowerDesigner导入SQL脚本/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/73aad2e5.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -729,7 +697,7 @@ http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=11774
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/21/PowerDesigner导入SQL脚本/" itemprop="url">PowerDesigner导入SQL脚本</a></h1>
+                <a class="post-title-link" href="/post/73aad2e5.html" itemprop="url">PowerDesigner导入SQL脚本</a></h1>
         
 
         <div class="post-meta">
@@ -781,15 +749,8 @@ http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=11774
       
         
           
-          方法/步骤1.  打开PowerDesigner，鼠标单击File菜单；[2.  选择：Reverse Enginer，然后在他的子菜单选择Database…;[3.  选择好DBMS（数据库管理系统）类型；然后点击确定按钮；这里演示选中的是mysql数据库，具体类型根据自己需要选择；[4.  点击
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/21/PowerDesigner导入SQL脚本/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h2 id="方法-步骤"><a href="#方法-步骤" class="headerlink" title="方法/步骤"></a>方法/步骤</h2><div class="audio-wp audio-wp-2" data-text="" data-for="" data-index="1"><br><div class="exp-content-body"><br><br>1.  <div class="list-icon"><br><div class="content-list-text"><br><br>打开PowerDesigner，鼠标单击File菜单；<br><br><div class="content-list-media"><br><div class="content-list-image clearfix">[<img src="http://jingyan.baidu.com/album/67508eb4d63dfd9cca1ce437.html?picindex=1" alt="PowerDesigner：[1]导入SQL脚本](http://b.hiphotos.baidu.com/exp/w=500/sign=15cacbeea0cc7cd9fa2d34d909002104/8cb1cb13495409236431b37d9158d109b3de495d.jpg)"><br><br></div></div></div></div><br>2.  <div class="list-icon"><br><div class="content-list-text"><br><br>选择：Reverse Enginer，然后在他的子菜单选择Database…;<br><br><div class="content-list-media"><br><div class="content-list-image clearfix">[<img src="http://jingyan.baidu.com/album/67508eb4d63dfd9cca1ce437.html?picindex=2" alt="PowerDesigner：[1]导入SQL脚本](http://a.hiphotos.baidu.com/exp/w=500/sign=f79ca69a8126cffc692abfb289004a7d/63d9f2d3572c11dfe9356f20602762d0f603c2c9.jpg)"><br><br></div></div></div></div><br>3.  <div class="list-icon"><br><div class="content-list-text"><br><br>选择好DBMS（数据库管理系统）类型；然后点击确定按钮；这里演示选中的是mysql数据库，具体类型根据自己需要选择；<br><br><div class="content-list-media"><br><div class="content-list-image clearfix">[<img src="http://jingyan.baidu.com/album/67508eb4d63dfd9cca1ce437.html?picindex=3" alt="PowerDesigner：[1]导入SQL脚本](http://f.hiphotos.baidu.com/exp/w=500/sign=590d72ddf31f3a295ac8d5cea925bce3/c8177f3e6709c93da596ddf49c3df8dcd1005449.jpg)"><br><br></div></div></div></div><br>4.  <div class="list-icon"><br><div class="content-list-text"><br><br>点击Add  Files 图标添加脚本；<br><br><div class="content-list-media"><br><div class="content-list-image clearfix">[<img src="http://jingyan.baidu.com/album/67508eb4d63dfd9cca1ce437.html?picindex=4" alt="PowerDesigner：[1]导入SQL脚本](http://f.hiphotos.baidu.com/exp/w=500/sign=fc63aca3f503738dde4a0c22831ab073/622762d0f703918fe58eeec9523d269759eec452.jpg)"><br><br></div></div></div></div><br>5.  <div class="list-icon"><br><div class="content-list-text"><br><br>找到要导入的sql脚本，鼠标单击打开按钮；<br><br><div class="content-list-media"><br><div class="content-list-image clearfix">[<img src="http://jingyan.baidu.com/album/67508eb4d63dfd9cca1ce437.html?picindex=5" alt="PowerDesigner：[1]导入SQL脚本](http://c.hiphotos.baidu.com/exp/w=500/sign=7de615edb78f8c54e3d3c52f0a282dee/94cad1c8a786c917ad89813aca3d70cf3bc7572f.jpg)"><br><br></div></div></div></div><br>6.  <div class="list-icon"><br><div class="content-list-text"><br><br>鼠标单击，确定按钮；<br><br><div class="content-list-media"><br><div class="content-list-image clearfix">[<img src="http://jingyan.baidu.com/album/67508eb4d63dfd9cca1ce437.html?picindex=6" alt="PowerDesigner：[1]导入SQL脚本](http://c.hiphotos.baidu.com/exp/w=500/sign=3a6d7f16bf315c6043956befbdb0cbe6/3ac79f3df8dcd10060322b22718b4710b9122f03.jpg)"><br><br></div></div></div></div><br>7.  <div class="list-icon"><br><div class="content-list-text"><br><br>开始反向工程生成数据库…..<br><br><div class="content-list-media"><br><div class="content-list-image clearfix">[<img src="http://jingyan.baidu.com/album/67508eb4d63dfd9cca1ce437.html?picindex=7" alt="PowerDesigner：[1]导入SQL脚本](http://e.hiphotos.baidu.com/exp/w=500/sign=eb825f0b98504fc2a25fb005d5dce7f0/6d81800a19d8bc3e7599d5c9818ba61ea8d34524.jpg)"><br><br></div></div></div></div><br>8.  <div class="list-icon"><br><div class="content-list-text"><br><br>导入成功！<br><br><div class="content-list-media"><br><div class="content-list-image clearfix">[<img src="http://jingyan.baidu.com/album/67508eb4d63dfd9cca1ce437.html?picindex=8" alt="PowerDesigner：[1]导入SQL脚本](http://a.hiphotos.baidu.com/exp/w=500/sign=3b578a114c4a20a4311e3cc7a0529847/342ac65c1038534383b355229013b07eca8088b1.jpg)"><br><br><div class="last-item"><br></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -836,7 +797,7 @@ http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=11774
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/07/20/maven mvn Failed during checkstyle execution/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/30454910.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -855,7 +816,7 @@ http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=11774
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/20/maven mvn Failed during checkstyle execution/" itemprop="url">maven mvn Failed during checkstyle execution</a></h1>
+                <a class="post-title-link" href="/post/30454910.html" itemprop="url">maven mvn Failed during checkstyle execution</a></h1>
         
 
         <div class="post-meta">
@@ -907,19 +868,12 @@ http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=11774
       
         
           
-          maven 命令默认强制使用checkstyle， 造成 命令运行失败 并报错：
-Failed during checkstyle execution
-关闭checkstyle，命令如下：
-mvn [target] -Dcheckstyle.skip
+            <p>maven 命令默认强制使用checkstyle， 造成 命令运行失败 并报错：</p>
+<p>Failed during checkstyle execution</p>
+<p>关闭checkstyle，命令如下：</p>
+<p>mvn [target] -Dcheckstyle.skip</p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/20/maven mvn Failed during checkstyle execution/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -966,7 +920,7 @@ mvn [target] -Dcheckstyle.skip
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/07/20/angularJS constant和value/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/96e7efb8.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -985,7 +939,7 @@ mvn [target] -Dcheckstyle.skip
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/20/angularJS constant和value/" itemprop="url">angularJS constant和value</a></h1>
+                <a class="post-title-link" href="/post/96e7efb8.html" itemprop="url">angularJS constant和value</a></h1>
         
 
         <div class="post-meta">
@@ -1037,15 +991,8 @@ mvn [target] -Dcheckstyle.skip
       
         
           
-          angularJS可以通过constant(name,value)和value(name,value)对于创建服务也是很重要的。相同点是：都可以接受两个参数，name和value。区别：1.constant(name,value)可以将一个已经存在的变量值注册为服务，并将其注入到应用的其他部分中。其
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/20/angularJS constant和value/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div>angularJS可以通过constant(name,value)和value(name,value)对于创建服务也是很重要的。<br><div>相同点是：都可以接受两个参数，name和value。<br><div>区别：<br><div>1.constant(name,value)可以将一个已经存在的变量值注册为服务，并将其注入到应用的其他部分中。其中，name为注册的常量的名字，value为注册的常量的值或对象。<br><div>举例：<br><div>(1)value为值时：<br><div><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">angular.module(&apos;myApp&apos;) .constant(&apos;apiKey&apos;,&apos;123123123&apos;)</span><br><span class="line">.controller(&apos;MyController&apos;, function($scope, apiKey) &#123;</span><br><span class="line">// 可以像上面一样用apiKey作为常量</span><br><span class="line">// 用123123123作为字符串的值</span><br><span class="line">$scope.apiKey = apiKey;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br><br><div>(2)value为对象时：<br><div><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">angular.module(&apos;myApp&apos;) .constant(&apos;apiKey&apos;,&#123;name:[],age:[],date:[]&#125;)</span><br><span class="line">.factory(&apos;myFactory&apos;,function(apiKey,$scope)&#123;</span><br><span class="line">apiKey.name = &quot;lyy&quot;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br><br><div>2.value(name,value)的name同样是需要注册的服务名,value将这个值将作为可以注入的实例返回。<br><div><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ngular.module(&apos;myApp&apos;)</span><br><span class="line">.value(&apos;apiKey&apos;,&apos;123123123&apos;);</span><br></pre></td></tr></table></figure><br><br><div><br><div>它们最大的区别是：常量可以注入到配置函数中，而值不行。<br>通常情况下，可以通过value()来注册服务对象或函数，用constant()来配置数据。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">angular.module(&apos;myApp&apos;, [])</span><br><span class="line">.constant(&apos;apiKey&apos;, &apos;123123123&apos;)</span><br><span class="line">.config(function(apiKey) &#123;</span><br><span class="line">// 在这里apiKey将被赋值为123123123</span><br><span class="line">// 就像上面设置的那样</span><br><span class="line">&#125;)</span><br><span class="line">.value(&apos;FBid&apos;,&apos;231231231&apos;)</span><br><span class="line">.config(function(FBid) &#123;</span><br><span class="line">// 这将抛出一个错误，未知的provider: FBid</span><br><span class="line">// 因为在config函数内部无法访问这个值</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br><br>综上，当我们想要创建一个服务，并且这个服务只需要返回数据时，就可以使用constant(name,value)和value(name,value)，不过，它们有两个显著的区别：<br><br>1.value不可以在config里注入，但是constant可以<br><br>2.value可以修改，但是constant不可以修改，一般直接用constant配置一些需要经常使用的数据。<br><br><div class="clear"><br><div id="blog_post_info_block"> </div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -1092,7 +1039,7 @@ mvn [target] -Dcheckstyle.skip
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/07/19/CentOS中zip压缩和unzip解压缩命令详解/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/a4dd6405.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1111,7 +1058,7 @@ mvn [target] -Dcheckstyle.skip
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/19/CentOS中zip压缩和unzip解压缩命令详解/" itemprop="url">CentOS中zip压缩和unzip解压缩命令详解</a></h1>
+                <a class="post-title-link" href="/post/a4dd6405.html" itemprop="url">CentOS中zip压缩和unzip解压缩命令详解</a></h1>
         
 
         <div class="post-meta">
@@ -1163,16 +1110,20 @@ mvn [target] -Dcheckstyle.skip
       
         
           
-          以下命令均在/home目录下操作cd /home #进入/home目录  
-1、把/home目录下面的mydata目录压缩为mydata.zipzip -r mydata.zip mydata #压缩mydata目录2、把/home目录下面的mydata.zip解压到mydatabak目录里面unz
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/19/CentOS中zip压缩和unzip解压缩命令详解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>以下命令均在/home目录下操作<br>cd /home #进入/home目录<strong>  
+</strong>1、把/home目录下面的mydata目录压缩为mydata.zip<br>zip -r mydata.zip mydata #压缩mydata目录<br>2、把/home目录下面的mydata.zip解压到mydatabak目录里面<br>unzip mydata.zip -d mydatabak<br>3、把/home目录下面的abc文件夹和123.txt压缩成为abc123.zip</p>
+<p>zip -r abc123.zip abc 123.txt<br>4、把/home目录下面的wwwroot.zip直接解压到/home目录里面</p>
+<p>unzip wwwroot.zip<br>5、把/home目录下面的abc12.zip、abc23.zip、abc34.zip同时解压到/home目录里面</p>
+<p>unzip abc*.zip<br>6、查看把/home目录下面的wwwroot.zip里面的内容</p>
+<p>unzip -v wwwroot.zip<br>7、验证/home目录下面的wwwroot.zip是否完整</p>
+<p>unzip -t wwwroot.zip<br>8、把/home目录下面wwwroot.zip里面的所有文件解压到第一级目录</p>
+<p>unzip -j wwwroot.zip  </p>
+<h1 id="系统运维-温馨提醒：qihang01原创内容版权所有-转载请注明出处及原文链接"><a href="#系统运维-温馨提醒：qihang01原创内容版权所有-转载请注明出处及原文链接" class="headerlink" title="系统运维 温馨提醒：qihang01原创内容版权所有,转载请注明出处及原文链接  "></a>系统运维 温馨提醒：qihang01原创内容版权所有,转载请注明出处及原文链接  </h1><p><strong>主要参数</strong><br>-c：将解压缩的结果<br>-l：显示压缩文件内所包含的文件<br>-p：与-c参数类似，会将解压缩的结果显示到屏幕上，但不会执行任何的转换<br>-t：检查压缩文件是否正确<br>-u：与-f参数类似，但是除了更新现有的文件外，也会将压缩文件中的其它文件解压缩到目录中<br>-v：执行是时显示详细的信息<br>-z：仅显示压缩文件的备注文字<br>-a：对文本文件进行必要的字符转换<br>-b：不要对文本文件进行字符转换<br>-C：压缩文件中的文件名称区分大小写<br>-j：不处理压缩文件中原有的目录路径<br>-L：将压缩文件中的全部文件名改为小写<br>-M：将输出结果送到more程序处理<br>-n：解压缩时不要覆盖原有的文件<br>-o：不必先询问用户，unzip执行后覆盖原有文件<br>-P&lt;密码&gt;：使用zip的密码选项<br>-q：执行时不显示任何信息<br>-s：将文件名中的空白字符转换为底线字符<br>-V：保留VMS的文件版本信息<br>-X：解压缩时同时回存文件原来的UID/GID</p>
+<h2 id="linux操作系统下怎样解压rar文件"><a href="#linux操作系统下怎样解压rar文件" class="headerlink" title="linux操作系统下怎样解压rar文件"></a>linux操作系统下怎样解压rar文件</h2><p> rar格式的文件是在windows操作系统中常见的压缩格式，但是这种格式在linux操作系统中却不能正常解压缩，因为linux默认不支持这种格式，难道我们在linux操作系统中就不能解压这种文件了吗，答案只有一个，能，那么我们怎样在linux操作系统中解压rar文件呢?(以fedora操作系统为例)</p>
+<div><br><br>## 方法/步骤<br><br><div><br><br>1.<br><br>首先解压rar文件需要unrar命令，要使用这种命令我们必须安装rarlinux，我们可以在终端使用yum installrar，如果没有可安装的程序包，我们可以自行下载，上网搜搜就能搜到。<br><br>2.<br><br>安装rarlinux，安装此程序必须使用root身份才能安装，首先我们要以root身份运行，然后打开下载目录，使用tar命令解压缩rarlinux文件，当然你可以选择解压缩的位置，为了方便，小编就解压在了当前目录。<br><br>3.<br><br>解压完成后我们便要安装它，首先我们要打开刚才解压的那个文件夹，然后使用make命令进行安装，我们可以看到一些安装的程序在运行，等光标移动到命令输入行，证明我们已经安装成功了。<br><br>4.<br><br>接来下我们就可以解压缩rar文件了，我们可以使用unrar命令来解压缩，当然首先你要确保rarlinux安装成功了，否则不能使用unrar命令。具体命令如下图所示，这样就把amp.rar里面的压缩文件都解压在了下载目录中，如果你想解压在别的地方，可以更改命令，小编就在这里阐述了<br><br>5.  <div><br><br>其实还有一种更简单的解压缩方法，就是直接右键解压缩到此处（前提条件就是你必须安装了rarlinux，如果没有安装，点击解压缩会出现找不到程序），用它解压的好处就是直接把它里面的内容解压到了与它同名的文件夹中。<br><br><div>END<br><br>## 注意事项<br><br><em>   </em><br><br>fedora 64位<a href="http://lib.csdn.net/base/operatingsystem" title="操作系统知识库" target="_blank" rel="noopener">操作系统</a>中安装rar的时候一定要注意，需要下载rarlinux64位的安装包，如果下载的是32位的，可能会出现”没有那个文件或者目录”的错误<br><br>    <em><br><br>当你安装的是32位的rarlinux的时候你解压rar文件可能会是空文件，这并不是你的rar文件有损坏，而是你的unrar没有安装成功。
+
+    </em><br><br>相比于使用命令解压，直接右键解压更加方便​<br><br></div></div></div></div>
+          
         
       
     </div>
@@ -1219,7 +1170,7 @@ mvn [target] -Dcheckstyle.skip
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/07/14/AngularJS driective 封装 自动滚动插件/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/da2bb248.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1238,7 +1189,7 @@ mvn [target] -Dcheckstyle.skip
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/14/AngularJS driective 封装 自动滚动插件/" itemprop="url">AngularJS driective 封装 自动滚动插件</a></h1>
+                <a class="post-title-link" href="/post/da2bb248.html" itemprop="url">AngularJS driective 封装 自动滚动插件</a></h1>
         
 
         <div class="post-meta">
@@ -1290,16 +1241,17 @@ mvn [target] -Dcheckstyle.skip
       
         
           
-          1.ui-smooth-scroll.js文件内容
-12345678910111213141516171819202122232425262728293031323334353637383940414243angular.module(&apos;app&apos;)        .directi
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/14/AngularJS driective 封装 自动滚动插件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>1.ui-smooth-scroll.js文件内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">angular.module(&apos;app&apos;)</span><br><span class="line">        .directive(&apos;uiSmoothScroll&apos;, [&apos;$location&apos;, &apos;$anchorScroll&apos;, function($location, $anchorScroll) &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                restrict: &apos;AC&apos;,</span><br><span class="line">                scope: &#123;</span><br><span class="line">                    data:&quot;=&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                template: &apos;&lt;div class=&quot;smooth-scroll-container&quot;&gt;&apos;+</span><br><span class="line">                        &apos;&lt;ul class=&quot;smooth-scroll&quot;&gt;&apos;+</span><br><span class="line">                            &apos;&lt;li ng-repeat=&quot;item in data&quot;&gt;&apos;+</span><br><span class="line">                                &apos;&lt;a  href=&quot;&#123;&#123;item.url&#125;&#125;&quot; &gt;&lt;img ng-src=&quot;&#123;&#123;item.image&#125;&#125;&quot; alt=&quot;&quot; class=&quot;img-responsive&quot; /&gt;&lt;/a&gt;&apos;+</span><br><span class="line">                            &apos;&lt;/li&gt;&apos;+</span><br><span class="line">                        &apos;&lt;/ul&gt;&apos;+</span><br><span class="line">                    &apos;&lt;/div&gt;&apos;,</span><br><span class="line">                link: function(scope, element, attrs) &#123;</span><br><span class="line">                    setTimeout(function()&#123;</span><br><span class="line">                        var c = $(element).find(&apos;.smooth-scroll-container&apos;)[0];</span><br><span class="line">                        var ul = $(c).find(&apos;.smooth-scroll&apos;)[0];</span><br><span class="line">                        var lis = ul.getElementsByTagName(&apos;li&apos;);</span><br><span class="line">                        var itemCount = lis.length,</span><br><span class="line">                            width = lis[0].offsetWidth,</span><br><span class="line">                            marquee = function() &#123;</span><br><span class="line">                                c.scrollLeft += 2;</span><br><span class="line">                                if (c.scrollLeft &gt; width) &#123;</span><br><span class="line">                                    ul.appendChild(ul.getElementsByTagName(&apos;li&apos;)[0]);</span><br><span class="line">                                    c.scrollLeft = 0;</span><br><span class="line">                                &#125;;</span><br><span class="line">                            &#125;,</span><br><span class="line">                            speed = 30;</span><br><span class="line">                        ul.style.width = (width+13) * itemCount + 40 + &apos;px&apos; ;</span><br><span class="line">                        var timer = setInterval(marquee, speed);</span><br><span class="line">                        c.onmouseover = function() &#123;</span><br><span class="line">                            clearInterval(timer);</span><br><span class="line">                        &#125;;</span><br><span class="line">                        c.onmouseout = function() &#123;</span><br><span class="line">                            timer = setInterval(marquee, speed);</span><br><span class="line">                        &#125;;</span><br><span class="line">                    &#125;,100);</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;]);</span><br></pre></td></tr></table></figure>
+<p> HTML 使用方法</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:html;gutter:true;&quot;&gt; &lt;div ui-smooth-scroll data=&quot;slides&quot;&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p> Controller 中对 数据的绑定</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:javascript;gutter:true;&quot;&gt; $scope.slides = [&#123; image: &apos;img/qy_lunbo_01.png&apos; &#125;,&#123; image: &apos;img/qy_lunbo_02.png&apos; &#125;,&#123; image: &apos;img/qy_lunbo_03.png&apos; &#125;,&#123; image: &apos;img/qy_lunbo_04.png&apos; &#125;];</span><br></pre></td></tr></table></figure>
+</code></pre><p><img src="http://pangguoming.com/blog/images/61799521-4ba9-4705-8b46-2e00aed9b8be.png" alt=""></p>
+<p>搞定！</p>
+<p></p>
+
+          
         
       
     </div>
@@ -1346,7 +1298,7 @@ mvn [target] -Dcheckstyle.skip
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/07/11/AngularJS中的按需加载ocLazyLoad/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/cc6a01c5.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1365,7 +1317,7 @@ mvn [target] -Dcheckstyle.skip
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/11/AngularJS中的按需加载ocLazyLoad/" itemprop="url">AngularJS中的按需加载ocLazyLoad</a></h1>
+                <a class="post-title-link" href="/post/cc6a01c5.html" itemprop="url">AngularJS中的按需加载ocLazyLoad</a></h1>
         
 
         <div class="post-meta">
@@ -1417,17 +1369,30 @@ mvn [target] -Dcheckstyle.skip
       
         
           
-          初学者，有不足的地方希望各位指出
- 一、前言
- ocLoayLoad是AngularJS的模块按需加载器。一般在小型项目里，首次加载页面就下载好所有的资源没有什么大问题。但是当我们的网站渐渐庞大起来，这样子的加载策略让网速初始化速度变得越来越慢，用户体验不好。二来，分模块加载易于团队协作，减低代码冲
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/11/AngularJS中的按需加载ocLazyLoad/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>初学者，有不足的地方希望各位指出</p>
+<p> <strong>一、前言</strong></p>
+<p> ocLoayLoad是AngularJS的模块按需加载器。一般在小型项目里，首次加载页面就下载好所有的资源没有什么大问题。但是当我们的网站渐渐庞大起来，这样子的加载策略让网速初始化速度变得越来越慢，用户体验不好。二来，分模块加载易于团队协作，减低代码冲突。</p>
+<p><strong> 二、按需加载的对象</strong></p>
+<p><strong> </strong>各个Controller模块、Directive模块、Server模块、template模板，其实这些都是一些 .js文件或者 .html文件 。</p>
+<p><strong>   三 、按需加载的场景</strong></p>
+<p><strong> 三、1 路由加载(resolve/uiRouter)</strong></p>
+<p><strong> </strong>基于uiRouter的resolve是在加载controller和template之前所执行的一系列操作，它帮助我们初始化我们所要前往的那一个视图。只有be solved(操作完成)，controller才会被实例化。因此，我们可以在resolve步骤里面加载我们所需要的controller。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider</span><br><span class="line">    .state(&apos;index&apos;, &#123;</span><br><span class="line">        url: &apos;/&apos;,</span><br><span class="line">        views: &#123;</span><br><span class="line">            &apos;lazyLoadView&apos;: &#123;</span><br><span class="line">                templateUrl: &apos;partials/main.html&apos;,</span><br><span class="line">                controller: &apos;AppCtrl&apos;</span><br><span class="line">            &#125;    </span><br><span class="line">        &#125;,</span><br><span class="line">        resolve: &#123;</span><br><span class="line">            loadMyCtrl: [&apos;$ocLazyLoad&apos;, function($ocLazyLoad)&#123;</span><br><span class="line">                return $ocLazyLoad.load(&apos;js/AppCtrl.js&apos;)</span><br><span class="line">            &#125;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<p> 其中，’js/AppCtrl.js’里面放着一个我们所需要的controller</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">angular.module(&apos;myApp&apos;)</span><br><span class="line">.controller(&apos;AppCtrl&apos;, [&apos;$scope&apos;, function($scope)&#123;</span><br><span class="line">//...</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+<p><strong> 三、2 依赖加载</strong></p>
+<p><strong> </strong>在依赖项里面导入我们所需要的一系列模块(这里有一层’[ ]’符合哦)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">angular.module(&apos;gridModule&apos;, [[</span><br><span class="line">    &apos;bower_components/angular-ui-grid/ui-grid.js&apos;,</span><br><span class="line">    &apos;bower_components/angular-ui-grid/ui-grid.css&apos;</span><br><span class="line">]]).controller(&apos;GridModuleCtrl&apos;, [&apos;$scope&apos;, function($scope)&#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+<p><strong> 三、3 Cotroller里动态加载</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">angular.module(&apos;myApp&apos;)</span><br><span class="line">.controller(&apos;AppCtrl&apos;, [&apos;$scope&apos;,&apos;$ocLazyLoad&apos;, function($scope, $ocLazyLoad)&#123;</span><br><span class="line">    $scope.loadBootstrap = function()&#123;</span><br><span class="line">        $ocLazyLoad.load([</span><br><span class="line">          &apos;bower_components/bootstrap/dist/js/bootstrap.js&apos;,</span><br><span class="line">          &apos;bower_components/bootstrap/dist/css/bootstrap.css&apos;</span><br><span class="line">        ])</span><br><span class="line">    &#125;</span><br><span class="line">   var unbind = $scope.$on(&apos;ocLazyLoad.fileLoaded&apos;, function(e, file)&#123;</span><br><span class="line">        $scope.bootstrapLoaded = true;</span><br><span class="line">         console.log(&apos;下载boot完成&apos;);</span><br><span class="line">         unbind();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+<p><strong> 三、4 template包含加载(config)</strong></p>
+<p><strong> </strong>如何处理我们所加载的html模板里面嵌套的controller呢？这里需要oc-lazy-load指令和$ocLazyLoadProvider的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/*template A.html*/</span><br><span class="line">&lt;h1&gt;hi i am hzp &lt;/h1&gt;</span><br><span class="line">    &lt;div oc-lazy-load=&quot;gridModule&quot;&gt;</span><br><span class="line">        &lt;div ng-controller=&quot;GridModuleCtrl&quot;&gt;</span><br><span class="line">            &lt;span&gt;&#123;&#123;test&#125;&#125;&lt;/span&gt;&lt;br/&gt;</span><br><span class="line">            &lt;div ui-grid=&quot;gridOptions&quot; class=&quot;gridStyle&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ocLazyLoadProvider.config(&#123;</span><br><span class="line">    modules: [&#123;</span><br><span class="line">        name: &apos;gridModule&apos;,</span><br><span class="line">        files: [</span><br><span class="line">            &apos;js/gridModule.js&apos;</span><br><span class="line">        ]</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p> <strong>四、如何组织按需加载</strong></p>
+<p><strong> </strong>分路由、按功能来区分、打包成不同的多个或单个controller.directive.server模块</p>
+
+          
         
       
     </div>
@@ -1474,7 +1439,7 @@ mvn [target] -Dcheckstyle.skip
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/07/06/数据库表字段命名规范/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/b17cdc0f.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1493,7 +1458,7 @@ mvn [target] -Dcheckstyle.skip
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/06/数据库表字段命名规范/" itemprop="url">数据库表字段命名规范</a></h1>
+                <a class="post-title-link" href="/post/b17cdc0f.html" itemprop="url">数据库表字段命名规范</a></h1>
         
 
         <div class="post-meta">
@@ -1545,18 +1510,109 @@ mvn [target] -Dcheckstyle.skip
       
         
           
-          数据库表字段命名规范
+            <p><strong>数据库表字段命名规范</strong></p>
+<hr>
+<p><strong>摘要：</strong>当前研发工作中经常出现因数据库表、数据库表字段格式不规则而影响开发进度的问题，在后续开发使用原来数据库表时，也会因为数据库表的可读性不够高，表字段规则不统一，造成数据查询，数据使用效率低的问题，所以有必要整理出一套合适的数据库表字段命名规范来解决优化这些问题。</p>
+<p>本文是一篇包含了数据库命名、数据库表命名、数据库表字段命名及SQL语言编码的规范文档，针对研发中易产生的问题和常见错误做了一个整理和修改，为日后涉及到数据库相关的研发工作做好准备。</p>
+<p>一、数据库命名规范</p>
+<p>采用26个英文字母(区分大小写)和0-9的自然数(经常不需要)加上下划线’<em>‘组成，命名简洁明确，多个单词用下划线’</em>‘分隔，<strong><span style="text-decoration: underline;">一个项目一个数据库，多个项目慎用同一个数据库</span></strong></p>
+<p>二、数据库表命名规范</p>
+<p>2.1数据表命名规范</p>
+<p>（1）采用26个英文字母(区分大小写)和0-9的自然数(经常不需要)加上下划线’<em>‘组成，命名简洁明确，多个单词用下划线’</em>‘分隔</p>
+<p>（2）<strong><span style="text-decoration: underline;">全部小写命名，禁止出现大写</span></strong></p>
+<p>（3）禁止使用数据库关键字，如：name，time ，datetime，password等</p>
+<p>（4）表名称不应该取得太长（一般不超过三个英文单词）</p>
+<p>（5）<strong><span style="text-decoration: underline;">表的名称一般使用名词或者动宾短语</span></strong></p>
+<p>（6）<strong><span style="text-decoration: underline;">用单数形式表示名称，例如，使用 employee，而不是 employees</span></strong></p>
+<p>明细表的名称为：主表的名称+字符dtl（detail缩写）</p>
+<p>例如：采购定单的名称为：po_order，则采购定单的明细表为：po_orderdtl </p>
+<p>（7）表必须填写描述信息（使用SQL语句建表时）</p>
+<hr>
+<p>2.2命名规范</p>
+<p><strong>①模块_+功能点  示例：alllive_log   alllive_category</strong></p>
+<p><strong>②功能点  示例：live   message</strong></p>
+<p><strong>③通用表  示例：all_user</strong></p>
+<p>2.3待优化命名示例</p>
+<p><strong>①冗余：</strong></p>
+<p>错误示例：yy_alllive_video_recomment    yy_alllive_open_close_log</p>
+<p>说明：去除项目名，简化表名长度，去”yy_”</p>
+<p><strong>②相同类别表命名存在差异，管理性差</strong></p>
+<p>错误示例：yy_all_live_category    yy_alllive_comment_user</p>
+<p>说明：去除项目名，统一命名规则，均为”yy_alllive_”开头即可</p>
+<p><strong>③命名格式存在差异</strong></p>
+<p>错误示例：yy_showfriend    yy_user_getpoints    yy_live_program_get</p>
+<p>说明：去除项目名，统一命名规则，<strong><span style="text-decoration: underline;">动宾短语分离</span></strong>且<strong><span style="text-decoration: underline;">动宾逻辑顺序统一</span></strong></p>
+<p>三、数据库字段命名规范</p>
+<p>3.1字段命名规范</p>
+<p>（1）采用26个英文字母(区分大小写)和0-9的自然数(经常不需要)加上下划线’<em>‘组成，命名简洁明确，多个单词用下划线’</em>‘分隔</p>
+<p>（2）<strong><span style="text-decoration: underline;">全部小写命名，禁止出现大写</span></strong></p>
+<p>（3）<strong><span style="text-decoration: underline;">字段必须填写描述信息</span></strong></p>
+<p>（4）禁止使用数据库关键字，如：name，time ，datetime password 等</p>
+<p>（5）<strong><span style="text-decoration: underline;">字段名称一般采用名词或动宾短语</span></strong></p>
+<p>（6）采用字段的名称必须是易于理解，一般不超过三个英文单词</p>
+<p>（7）在命名表的列时，不要重复表的名称</p>
+<p>例如，在名employe的表中避免使用名为employee_lastname的字段</p>
+<p>（8）不要在列的名称中包含数据类型</p>
+<p>（9）<strong><span style="text-decoration: underline;">字段命名使用完整名称，禁止缩写</span></strong></p>
+<hr>
+<p>3.2命名规范</p>
+<p><strong>①名词  示例：user_id    user_name    sex</strong></p>
+<p><strong>②动宾短语  示例：is_friend   is_good</strong></p>
+<hr>
+<p>3.3待优化命名示例</p>
+<p><strong>①大小写规则不统一</strong></p>
+<p>错误示例：user_id    houseID</p>
+<p>说明：使用统一规则，修改为”user_id”，”house_id”</p>
+<p><strong>②加下划线规则不统一</strong></p>
+<p>错误示例：username    userid    isfriend    isgood</p>
+<p>说明：使用下划线进行分类，提升可性，方便管理，修改为”user_name”，”user_id”，”is_friend”，”is_good”</p>
+<hr>
+<p><strong>③字段表示不明确</strong></p>
+<p>错误示例：uid    pid</p>
+<p>说明：使用完整名称，提高可读性，修改为”user_id”，”person_id”</p>
+<p>3.4字段类型规范</p>
+<p>（1）所有字段在设计时，除以下数据类型timestamp、image、datetime、smalldatetime、uniqueidentifier、binary、sql_variant、binary 、varbinary外，必须有默认值，字符型的默认值为一个空字符值串’’，数值型的默认值为数值0，逻辑型的默认值为数值0</p>
+<p>（2）系统中所有逻辑型中数值0表示为“假”，数值1表示为“真”，datetime、smalldatetime类型的字段没有默认值，必须为NULL</p>
+<p>（3）用尽量少的存储空间来存储一个字段的数据</p>
+<p>使用int就不要使用varchar、char，</p>
+<p>用varchar(16)就不要使varchar(256)</p>
+<p>IP地址使用int类型</p>
+<p>固定长度的类型最好使用char，例如：邮编(postcode)</p>
+<p>能使用tinyint就不要使用smallint，int</p>
+<p>最好给每个字段一个默认值，最好不能为null</p>
+<p>（4）用合适的字段类型节约空间</p>
+<p>字符转化为数字(能转化的最好转化，同样节约空间、提高查询性能)</p>
+<p>避免使用NULL字段(NULL字段很难查询优化、NULL字段的索引需要额外空间、NULL字段的复合索引无效)</p>
+<p>少用text类型(尽量使用varchar代替text字段)</p>
+<p>3.5数据库中每个字段的规范描述 </p>
+<p>   （1）尽量遵守第三范式的标准（3NF） </p>
+<pre><code>表内的每一个值只能被表达一次 
 
-摘要：当前研发工作中经常出现因数据库表、数据库表字段格式不规则而影响开发进度的问题，在后续开发使用原来数据库表时，也会因为数据库表的可读性不够高，表字段规则不统一，造成数据查询，数据使用效率低的问题，所以有必要整理出一套合适的数据库表字段命名规范来解决优化这些问题。
-本文是一
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/06/数据库表字段命名规范/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+表内的每一行都应当被唯一的标示 
+
+表内不应该存储依赖于其他键的非键信息
+</code></pre><p>(2)如果字段事实上是与其它表的关键字相关联而未设计为外键引用，需建索引</p>
+<p>(3)如果字段与其它表的字段相关联，需建索引</p>
+<p>(4)如果字段需做模糊查询之外的条件查询，需建索引</p>
+<p>(5)除了主关键字允许建立簇索引外，其它字段所建索引必须为非簇索引</p>
+<p>四、SQL语言编码规范 </p>
+<p>4.1大小写规范 </p>
+<p>（1）所有关键字必须大写，如：INSERT、UPDATE、DELETE、SELECT及其子句，IF……ELSE、CASE、DECLARE等</p>
+<p>（2）所有函数及其参数中除用户变量以外的部分必须大写</p>
+<p>（3）在定义变量时用到的数据类型必须小写</p>
+<p>4.2注释 </p>
+<p>注释可以包含在批处理中，在触发器、存储过程中包含描述性注释将大大增加文本的可读性和可维护性，本规范建议： </p>
+<p>（1）注释以英文为主，实际应用中，发现以中文注释的SQL语句版本在英文环境中不可用，为避免后续版本执行过程中发生某些异常错误，建议使用英文注释</p>
+<p>（2）注释尽可能详细、全面创建每一数据对象前，应具体描述该对象的功能和用途，传入参数的含义应该有所说明，如果取值范围确定，也应该一并说明，取值有特定含义的变量（如boolean类型变量），应给出每个值的含义</p>
+<p>（3）注释语法：单行注释、多行注释 </p>
+<p>单行注释：注释前有两个连字符（–）对变量、条件子句可以采用该类注释</p>
+<p>多行注释：符号之间的内容为注释内容，对某项完整的操作建议使用该类注释</p>
+<p>（4）注释简洁，同时应描述清晰</p>
+<p>（5）函数注释： </p>
+<p>编写函数文本–如触发器、存储过程以及其他数据对象–时，必须为每个函数增加适当注释，该注释以多行注释为主，主要结构如下： </p>
+<p>CREATE PROCEDURE sp_xxx </p>
+
+          
         
       
     </div>
@@ -1619,105 +1675,108 @@ mvn [target] -Dcheckstyle.skip
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
-            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+
           
-            <p class="site-author-name" itemprop="name">庞国明</p>
-            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives">
-            
-                <span class="site-state-item-count">420</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">267</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>GitHub</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
-                  
-                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -1734,12 +1793,9 @@ mvn [target] -Dcheckstyle.skip
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">庞国明</span>
 
@@ -1747,11 +1803,17 @@ mvn [target] -Dcheckstyle.skip
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
@@ -1771,6 +1833,8 @@ mvn [target] -Dcheckstyle.skip
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -1805,53 +1869,61 @@ mvn [target] -Dcheckstyle.skip
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
 
-
-
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1877,6 +1949,23 @@ mvn [target] -Dcheckstyle.skip
 
   
 
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
 
 
 
@@ -2206,11 +2295,27 @@ mvn [target] -Dcheckstyle.skip
 
 
 
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
 
   
 
   
 
+  
+
+  
   
 
   

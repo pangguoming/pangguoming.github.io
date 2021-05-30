@@ -45,38 +45,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT">
@@ -84,11 +73,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
 
 
 
@@ -113,11 +97,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -153,30 +137,6 @@
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-	<div id="topnavbar">
-  <div class="tophead">
-    <div class="toplogo"><a href="/">庞国明-博客</a></div>
-    <div id="mnav">
-      <h2><span class="navicon"></span></h2>
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </div>
-    <nav class="topnav" id="topnav">
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
 
   
   
@@ -230,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -250,12 +220,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            关于
+            归档
           </a>
         </li>
       
@@ -278,20 +248,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -324,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/08/18/微信公众平台开发 自定义菜单/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/2367b8c5.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -343,7 +319,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/18/微信公众平台开发 自定义菜单/" itemprop="url">微信公众平台开发 自定义菜单</a></h1>
+                <a class="post-title-link" href="/post/2367b8c5.html" itemprop="url">微信公众平台开发 自定义菜单</a></h1>
         
 
         <div class="post-meta">
@@ -395,16 +371,9 @@
       
         
           
-          一、自定义菜单概述自定义菜单能够帮助公众号丰富界面，让用户更好更快地理解公众号的功能。开启自定义菜单后，公众号界面如图所示：
-二、申请自定义菜单个人订阅号只能编辑生成菜单，无法开发、企业订阅号通过微信认证；可以申请到自定义菜单资格服务号默认有菜单权限。# 三、获得AppId 和AppSecertAp
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/18/微信公众平台开发 自定义菜单/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="一、自定义菜单概述"><a href="#一、自定义菜单概述" class="headerlink" title="一、自定义菜单概述"></a><strong>一、自定义菜单概述</strong></h1><p>自定义菜单能够帮助公众号丰富界面，让用户更好更快地理解公众号的功能。开启自定义菜单后，公众号界面如图所示：</p>
+<div class="center"><br><div class="floatnone"><a href="http://mp.weixin.qq.com/wiki/index.php?title=%E6%96%87%E4%BB%B6:%E8%8F%9C%E5%8D%95.jpg" target="_blank" rel="noopener"><img src="http://pangguoming.com/blog/images/a4d958df-1da0-421d-89f8-2f127d6e90ed.jpg" alt=""></a><br><div class="floatnone"><br><br><strong>二、申请自定义菜单</strong><br><br>个人订阅号只能编辑生成菜单，无法开发、企业订阅号通过微信认证；可以申请到自定义菜单资格<br><br>服务号默认有菜单权限。<br><br># <strong>三、获得AppId 和AppSecert</strong><br><br>AppId和AppSecret在<strong>开发者中心</strong>-开发者ID中，可以找到。<br><br><img src="http://pangguoming.com/blog/images/b5826aa3-95b7-45f0-a8c1-be91377e440d.jpg" alt=""><br><br># <strong>四、获得Access Token</strong><br><br>用appid和appsecert获得access token，接口为<br><br><a href="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=APPID&amp;secret=APPSECRET" target="_blank" rel="noopener">https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=APPID&amp;secret=APPSECRET</a><br><br>程序实现如下<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$appid = &quot;&quot;;</span><br><span class="line">$appsecret = &quot;&quot;;</span><br><span class="line">$url = &quot;https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=$appid&amp;secret=$appsecret&quot;;</span><br><span class="line"></span><br><span class="line">$ch = curl_init();</span><br><span class="line">curl_setopt($ch, CURLOPT_URL, $url);</span><br><span class="line">curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); </span><br><span class="line">curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); </span><br><span class="line">curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);</span><br><span class="line">$output = curl_exec($ch);</span><br><span class="line">curl_close($ch);</span><br><span class="line">$jsoninfo = json_decode($output, true);</span><br><span class="line">$access_token = $jsoninfo[&quot;access_token&quot;];</span><br></pre></td></tr></table></figure><br><br><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="&quot;复制代码&quot;"><img src="http://pangguoming.com/blog/images/5461ca85-2024-473c-8ac8-b28a0594624d.gif" alt="复制代码"></a></span><br><br> 你也可以直接在浏览器地址栏中，拼接出地址，执行后，获得如下数据<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;access_token&quot;:&quot;N2L7KXa084WvelONYjkJ_traBMCCvy_UKmpUUzlrQ0EA2yNp3Iz6eSUrRG0bhaR_viswd50vDuPkY5nG43d1gbm-olT2KRMxOsVE08RfeD9lvK9lMguNG9kpIkKGZEjIf8Jv2m9fFhf8bnNa-yQH3g&quot;,&quot;expires_in&quot;:7200&#125;</span><br></pre></td></tr></table></figure><br><br>参数说明如下<br><br><div align="center"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td width="124"><br><br><strong>参数</strong><br><br></td><br><td width="283"><br><br><strong>说明</strong><br><br></td><br></tr><br><tr><br><td width="124"><br><br>access_token<br><br></td><br><td width="283"><br><br>获取到的凭证<br><br></td><br></tr><br><tr><br><td width="124"><br><br>expires_in<br><br></td><br><td width="283"><br><br>凭证有效时间，单位：秒<br><br></td><br></tr><br></tbody><br></table><br><br>其中的<br><br>N2L7KXa084WvelONYjkJ_traBMCCvy_UKmpUUzlrQ0EA2yNp3Iz6eSUrRG0bhaR_viswd50vDuPkY5nG43d1gbm-olT2KRMxOsVE08RfeD9lvK9lMguNG9kpIkKGZEjIf8Jv2m9fFhf8bnNa-yQH3g<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">就是access token。</span><br><span class="line"></span><br><span class="line">或者使用官方的接口调试工具，地址为：</span><br><span class="line"></span><br><span class="line">[使用网页调试工具调试自定义菜单接口](https://mp.weixin.qq.com/debug/cgi-bin/apiinfo?t=index&amp;type=%E5%9F%BA%E7%A1%80%E6%94%AF%E6%8C%81&amp;form=%E8%8E%B7%E5%8F%96access_token%E6%8E%A5%E5%8F%A3%20/token) </span><br><span class="line"></span><br><span class="line">![](http://pangguoming.com/blog/images/b4838d9e-4139-4e7c-9a41-670a5a8db7ee.jpg)</span><br><span class="line"></span><br><span class="line">点击检查问题得，得到原文 http://www.cnblogs.com/txw1958/p/weixin-58-custom-menu.html </span><br><span class="line"></span><br><span class="line">![](http://pangguoming.com/blog/images/0aedcad8-d5fc-4046-a25b-44be477870e2.jpg)</span><br><span class="line"></span><br><span class="line">这样也获得了access token</span><br><span class="line"></span><br><span class="line">    # **五、组织菜单内容**</span><br><span class="line"></span><br><span class="line">**自定义类型包括如下**</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;**1、click：点击推事件**</span><br><span class="line">    用户点击click类型按钮后，微信服务器会通过消息接口推送消息类型为event    的结构给开发者（参考消息接口指南），并且带上按钮中开发者填写的key值，开发者可以通过自定义的key值与用户进行交互；</span><br><span class="line">    **2、view：跳转URL**</span><br><span class="line">    用户点击view类型按钮后，微信客户端将会打开开发者在按钮中填写的网页URL，可与网页授权获取用户基本信息接口结合，获得用户基本信息。</span><br><span class="line">    **3、scancode_push：扫码推事件**</span><br><span class="line">    用户点击按钮后，微信客户端将调起扫一扫工具，完成扫码操作后显示扫描结果（如果是URL，将进入URL），且会将扫码的结果传给开发者，开发者可以下发消息。</span><br><span class="line">    **4、scancode_waitmsg：扫码推事件且弹出“消息接收中”提示框**</span><br><span class="line">    用户点击按钮后，微信客户端将调起扫一扫工具，完成扫码操作后，将扫码的结果传给开发者，同时收起扫一扫工具，然后弹出“消息接收中”提示框，随后可能会收到开发者下发的消息。</span><br><span class="line">    **5、pic_sysphoto：弹出系统拍照发图**</span><br><span class="line">    用户点击按钮后，微信客户端将调起系统相机，完成拍照操作后，会将拍摄的相片发送给开发者，并推送事件给开发者，同时收起系统相机，随后可能会收到开发者下发的消息。</span><br><span class="line">    **6、pic_photo_or_album：弹出拍照或者相册发图**</span><br><span class="line">    用户点击按钮后，微信客户端将弹出选择器供用户选择“拍照”或者“从手机相册选择”。用户选择后即走其他两种流程。</span><br><span class="line">    **7、pic_weixin：弹出微信相册发图器**</span><br><span class="line">    用户点击按钮后，微信客户端将调起微信相册，完成选择操作后，将选择的相片发送给开发者的服务器，并推送事件给开发者，同时收起相册，随后可能会收到开发者下发的消息。</span><br><span class="line">    **8、location_select：弹出地理位置选择器**</span><br><span class="line">    用户点击按钮后，微信客户端将调起地理位置选择工具，完成选择操作后，将选择的地理位置发送给开发者的服务器，同时收起位置选择工具，随后可能会收到开发者下发的消息。</span><br><span class="line">    **9、media_id：下发消息（除文本消息）**</span><br><span class="line">    用户点击media_id类型按钮后，微信服务器会将开发者填写的永久素材id对应的素材下发给用户，永久素材类型可以是图片、音频、视频、图文消息。请注意：永久素材id必须是在“素材管理/新增永久素材”接口上传后获得的合法id。</span><br><span class="line">    **10、view_limited：跳转图文消息URL**</span><br><span class="line">    用户点击view_limited类型按钮后，微信客户端将打开开发者在按钮中填写的永久素材id对应的图文消息URL，永久素材类型只支持图文消息。请注意：永久素材id必须是在“素材管理/新增永久素材”接口上传后获得的合法id。</span><br></pre></td></tr></table></figure><br><br><strong>接口调用请求说明</strong><br><br>http请求方式：POST（请使用https协议） <a href="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN" target="_blank" rel="noopener">https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN</a><br><br><strong>请求示例</strong><br><br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;button&quot;:[</span><br><span class="line">    &#123;    </span><br><span class="line">         &quot;type&quot;:&quot;click&quot;,</span><br><span class="line">         &quot;name&quot;:&quot;今日歌曲&quot;,</span><br><span class="line">         &quot;key&quot;:&quot;V1001_TODAY_MUSIC&quot;</span><br><span class="line">     &#125;,</span><br><span class="line">     &#123;</span><br><span class="line">          &quot;type&quot;:&quot;click&quot;,</span><br><span class="line">          &quot;name&quot;:&quot;歌手简介&quot;,</span><br><span class="line">          &quot;key&quot;:&quot;V1001_TODAY_SINGER&quot;</span><br><span class="line">     &#125;,</span><br><span class="line">     &#123;</span><br><span class="line">          &quot;name&quot;:&quot;菜单&quot;,</span><br><span class="line">          &quot;sub_button&quot;:[</span><br><span class="line">          &#123;    </span><br><span class="line">              &quot;type&quot;:&quot;view&quot;,</span><br><span class="line">              &quot;name&quot;:&quot;搜索&quot;,</span><br><span class="line">              &quot;url&quot;:&quot;http://www.soso.com/&quot;</span><br><span class="line">           &#125;,</span><br><span class="line">           &#123;</span><br><span class="line">              &quot;type&quot;:&quot;view&quot;,</span><br><span class="line">              &quot;name&quot;:&quot;视频&quot;,</span><br><span class="line">              &quot;url&quot;:&quot;http://v.qq.com/&quot;</span><br><span class="line">           &#125;,</span><br><span class="line">           &#123;</span><br><span class="line">              &quot;type&quot;:&quot;click&quot;,</span><br><span class="line">              &quot;name&quot;:&quot;赞一下我们&quot;,</span><br><span class="line">              &quot;key&quot;:&quot;V1001_GOOD&quot;</span><br><span class="line">           &#125;]</span><br><span class="line">      &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br>    <div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="&quot;复制代码&quot;"><img src="http://pangguoming.com/blog/images/5461ca85-2024-473c-8ac8-b28a0594624d.gif" alt="复制代码"></a></span><br><br><strong>参数说明</strong><br><br>    <table border="1" cellspacing="0" cellpadding="4" align="center"><br>    <tbody><br>    <tr><th>参数</th><th>是否必须</th><th>说明</th></tr><br>    <tr><br>    <td>button</td><br>    <td>是</td><br>    <td>一级菜单数组，个数应为1~3个</td><br>    </tr><br>    <tr><br>    <td>sub_button</td><br>    <td>否</td><br>    <td>二级菜单数组，个数应为1~5个</td><br>    </tr><br>    <tr><br>    <td>type</td><br>    <td>是</td><br>    <td>菜单的响应动作类型，目前有click、view两种类型</td><br>    </tr><br>    <tr><br>    <td>name</td><br>    <td>是</td><br>    <td>菜单标题，不超过16个字节，子菜单不超过40个字节</td><br>    </tr><br>    <tr><br>    <td>key</td><br>    <td>click类型必须</td><br>    <td>菜单KEY值，用于消息接口推送，不超过128字节</td><br>    </tr><br>    <tr><br>    <td>url</td><br>    <td>view类型必须</td><br>    <td>网页链接，用户点击菜单可打开链接，不超过256字节</td><br>    </tr><br>    </tbody><br>    </table><br><br>原文 <a href="http://www.cnblogs.com/txw1958/p/weixin-58-custom-menu.html" target="_blank" rel="noopener">http://www.cnblogs.com/txw1958/p/weixin-58-custom-menu.html</a><br><strong>返回结果</strong><br><br>正确时的返回JSON数据包如下：<br><br>    <pre>{“errcode”:0,”errmsg”:”ok”}<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">错误时的返回JSON数据包如下（示例为无效菜单名长度）：</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;&#123;&quot;errcode&quot;:40018,&quot;errmsg&quot;:&quot;invalid button name size&quot;&#125;</span><br></pre></td></tr></table></figure><br><br>    # <strong>六、提交菜单内容给服务器</strong><br><br>菜单的JSON结构为<br><br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;button&quot;:[&#123;&quot;name&quot;:&quot;天气预报&quot;,&quot;sub_button&quot;:[&#123;&quot;type&quot;:&quot;click&quot;,&quot;name&quot;:&quot;北京天气&quot;,&quot;key&quot;:&quot;天气北京&quot;&#125;,&#123;&quot;type&quot;:&quot;click&quot;,&quot;name&quot;:&quot;上海天气&quot;,&quot;key&quot;:&quot;天气上海&quot;&#125;,&#123;&quot;type&quot;:&quot;click&quot;,&quot;name&quot;:&quot;广州天气&quot;,&quot;key&quot;:&quot;天气广州&quot;&#125;,&#123;&quot;type&quot;:&quot;click&quot;,&quot;name&quot;:&quot;深圳天气&quot;,&quot;key&quot;:&quot;天气深圳&quot;&#125;,&#123;&quot;type&quot;:&quot;view&quot;,&quot;name&quot;:&quot;本地天气&quot;,&quot;url&quot;:&quot;http://m.hao123.com/a/tianqi&quot;&#125;]&#125;,&#123;&quot;name&quot;:&quot;方倍工作室&quot;,&quot;sub_button&quot;:[&#123;&quot;type&quot;:&quot;click&quot;,&quot;name&quot;:&quot;公司简介&quot;,&quot;key&quot;:&quot;company&quot;&#125;,&#123;&quot;type&quot;:&quot;click&quot;,&quot;name&quot;:&quot;趣味游戏&quot;,&quot;key&quot;:&quot;游戏&quot;&#125;,&#123;&quot;type&quot;:&quot;click&quot;,&quot;name&quot;:&quot;讲个笑话&quot;,&quot;key&quot;:&quot;笑话&quot;&#125;]&#125;]&#125;</span><br></pre></td></tr></table></figure><br><br>将以下代码保存为menu.php，并且在浏览器中运行该文件（比如 <a href="http://127.0.0.1/menu.php），将直接向微信服务器提交菜单，" target="_blank" rel="noopener">http://127.0.0.1/menu.php），将直接向微信服务器提交菜单，</a><br><br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">    &lt;?php  </span><br><span class="line"></span><br><span class="line">$access_token = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">    $jsonmenu = &apos;&#123;</span><br><span class="line">          &quot;button&quot;:[</span><br><span class="line">          &#123;</span><br><span class="line">                &quot;name&quot;:&quot;天气预报&quot;,</span><br><span class="line">               &quot;sub_button&quot;:[</span><br><span class="line">                &#123;</span><br><span class="line">                   &quot;type&quot;:&quot;click&quot;,</span><br><span class="line">                   &quot;name&quot;:&quot;北京天气&quot;,</span><br><span class="line">                   &quot;key&quot;:&quot;天气北京&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                   &quot;type&quot;:&quot;click&quot;,</span><br><span class="line">                   &quot;name&quot;:&quot;上海天气&quot;,</span><br><span class="line">                   &quot;key&quot;:&quot;天气上海&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                   &quot;type&quot;:&quot;click&quot;,</span><br><span class="line">                   &quot;name&quot;:&quot;广州天气&quot;,</span><br><span class="line">                   &quot;key&quot;:&quot;天气广州&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                   &quot;type&quot;:&quot;click&quot;,</span><br><span class="line">                   &quot;name&quot;:&quot;深圳天气&quot;,</span><br><span class="line">                   &quot;key&quot;:&quot;天气深圳&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;type&quot;:&quot;view&quot;,</span><br><span class="line">                    &quot;name&quot;:&quot;本地天气&quot;,</span><br><span class="line">                    &quot;url&quot;:&quot;http://m.hao123.com/a/tianqi&quot;</span><br><span class="line">                &#125;]</span><br><span class="line"></span><br><span class="line">           &#125;,</span><br><span class="line">           &#123;</span><br><span class="line">               &quot;name&quot;:&quot;方倍工作室&quot;,</span><br><span class="line">               &quot;sub_button&quot;:[</span><br><span class="line">                &#123;</span><br><span class="line">                   &quot;type&quot;:&quot;click&quot;,</span><br><span class="line">                   &quot;name&quot;:&quot;公司简介&quot;,</span><br><span class="line">                   &quot;key&quot;:&quot;company&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                   &quot;type&quot;:&quot;click&quot;,</span><br><span class="line">                   &quot;name&quot;:&quot;趣味游戏&quot;,</span><br><span class="line">                   &quot;key&quot;:&quot;游戏&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;type&quot;:&quot;click&quot;,</span><br><span class="line">                    &quot;name&quot;:&quot;讲个笑话&quot;,</span><br><span class="line">                    &quot;key&quot;:&quot;笑话&quot;</span><br><span class="line">                &#125;]</span><br><span class="line"></span><br><span class="line">           &#125;]</span><br><span class="line">     &#125;&apos;;</span><br><span class="line"></span><br><span class="line">    $url = &quot;https://api.weixin.qq.com/cgi-bin/menu/create?access_token=&quot;.$access_token;</span><br><span class="line">    $result = https_request($url, $jsonmenu);</span><br><span class="line">    var_dump($result);</span><br><span class="line"></span><br><span class="line">    function https_request($url,$data = null)&#123;</span><br><span class="line">        $curl = curl_init();</span><br><span class="line">        curl_setopt($curl, CURLOPT_URL, $url);</span><br><span class="line">        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);</span><br><span class="line">        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);</span><br><span class="line">        if (!empty($data))&#123;</span><br><span class="line">            curl_setopt($curl, CURLOPT_POST, 1);</span><br><span class="line">            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);</span><br><span class="line">        &#125;</span><br><span class="line">        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);</span><br><span class="line">        $output = curl_exec($curl);</span><br><span class="line">        curl_close($curl);</span><br><span class="line">        return $output;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ?&gt;</span><br></pre></td></tr></table></figure><br><br>    <div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="&quot;复制代码&quot;"><img src="http://pangguoming.com/blog/images/5461ca85-2024-473c-8ac8-b28a0594624d.gif" alt="复制代码"></a></span><br><br>原文 <a href="http://www.cnblogs.com/txw1958/p/weixin-58-custom-menu.html" target="_blank" rel="noopener">http://www.cnblogs.com/txw1958/p/weixin-58-custom-menu.html</a><br><br>或者使用官方的调试接口 <a href="https://mp.weixin.qq.com/debug/cgi-bin/apiinfo?t=index&amp;type=%E8%87%AA%E5%AE%9A%E4%B9%89%E8%8F%9C%E5%8D%95&amp;form=%E8%87%AA%E5%AE%9A%E4%B9%89%E8%8F%9C%E5%8D%95%E5%88%9B%E5%BB%BA%E6%8E%A5%E5%8F%A3%20/menu/create" target="_blank" rel="noopener">使用网页调试工具调试该接口</a><br><br><img src="http://pangguoming.com/blog/images/30c47af5-78a2-4944-9228-11c73e443988.jpg" alt=""><br><br> <img src="http://pangguoming.com/blog/images/15d84f8e-b516-4d00-bc6d-d94177df3a9c.jpg" alt=""><br><br>提交成功后，重新关注后即可看到菜单。菜单效果类似如下：原文 <a href="http://www.cnblogs.com/txw1958/p/weixin-58-custom-menu.html" target="_blank" rel="noopener">http://www.cnblogs.com/txw1958/p/weixin-58-custom-menu.html</a><br><br> <img src="http://pangguoming.com/blog/images/7789a73c-c468-4b69-a392-324f6384cab8.png" alt=""> <img src="http://pangguoming.com/blog/images/bb048f13-6055-408b-bf42-95544f7342f0.png" alt=""><br><br>    # <strong>七、响应菜单点击事件</strong><br><br>在消息接口中处理event事件,其中的click代表菜单点击,通过响应菜单结构中的key值回应消息，view事件无须响应，将直接跳转过去<br><br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">/* </span><br><span class="line">【版权声明】 </span><br><span class="line">    本软件产品的版权归方倍工作室所有，受《中华人民共和国计算机软件保护条例》等知识产权法律及国际条约与惯例的保护。您获得的只是本软件的使用权。 </span><br><span class="line"></span><br><span class="line">    您不得: </span><br><span class="line">    * 在未得到授权的情况下删除、修改本软件及其他副本上一切关于版权的信息； </span><br><span class="line">    * 销售、出租此软件产品的任何部分； </span><br><span class="line">    * 从事其他侵害本软件版权的行为。 </span><br><span class="line"></span><br><span class="line">    如果您未遵守本条款的任一约定，方倍工作室有权立即终止本条款的执行，且您必须立即终止使用本软件并销毁本软件产品的任何副本。这项要求对各种拷贝形式有效。 </span><br><span class="line"></span><br><span class="line">    您同意承担使用本软件产品的风险，在适用法律允许的最大范围内，方倍工作室在任何情况下不就因使用或不能使用本软件产品所发生的特殊的、意外的、非直接或间接的损失承担赔偿责任。即使已事先被告知该损害发生的可能性。 </span><br><span class="line"></span><br><span class="line">    如使用本软件所添加的任何信息，发生版权纠纷，方倍工作室不承担任何责任。 </span><br><span class="line"></span><br><span class="line">    方倍工作室对本条款拥有最终解释权。 </span><br><span class="line"></span><br><span class="line">    CopyRight 2013  方倍工作室  All Rights Reserved </span><br><span class="line"></span><br><span class="line">*/ </span><br><span class="line"></span><br><span class="line">define(&quot;TOKEN&quot;, &quot;weixin&quot;);</span><br><span class="line"></span><br><span class="line">$wechatObj = new wechatCallbackapiTest();</span><br><span class="line">if (!isset($_GET[&apos;echostr&apos;])) &#123;</span><br><span class="line">    $wechatObj-&gt;responseMsg();</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    $wechatObj-&gt;valid();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class wechatCallbackapiTest</span><br><span class="line">&#123;</span><br><span class="line">    public function valid()</span><br><span class="line">    &#123;</span><br><span class="line">        $echoStr = $_GET[&quot;echostr&quot;];</span><br><span class="line">        if($this-&gt;checkSignature())&#123;</span><br><span class="line">            echo $echoStr;</span><br><span class="line">            exit;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private function checkSignature()</span><br><span class="line">    &#123;</span><br><span class="line">        $signature = $_GET[&quot;signature&quot;];</span><br><span class="line">        $timestamp = $_GET[&quot;timestamp&quot;];</span><br><span class="line">        $nonce = $_GET[&quot;nonce&quot;];</span><br><span class="line"></span><br><span class="line">        $token = TOKEN;</span><br><span class="line">        $tmpArr = array($token, $timestamp, $nonce);</span><br><span class="line">        sort($tmpArr);</span><br><span class="line">        $tmpStr = implode( $tmpArr );</span><br><span class="line">        $tmpStr = sha1( $tmpStr );</span><br><span class="line"></span><br><span class="line">        if( $tmpStr == $signature )&#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function responseMsg()</span><br><span class="line">    &#123;</span><br><span class="line">        $postStr = $GLOBALS[&quot;HTTP_RAW_POST_DATA&quot;];</span><br><span class="line">        if (!empty($postStr))&#123;</span><br><span class="line">            $postObj = simplexml_load_string($postStr, &apos;SimpleXMLElement&apos;, LIBXML_NOCDATA);</span><br><span class="line">            $RX_TYPE = trim($postObj-&gt;MsgType);</span><br><span class="line"></span><br><span class="line">            switch ($RX_TYPE)</span><br><span class="line">            &#123;</span><br><span class="line">                case &quot;text&quot;:</span><br><span class="line">                    $resultStr = $this-&gt;receiveText($postObj);</span><br><span class="line">                    break;</span><br><span class="line">                case &quot;event&quot;:</span><br><span class="line">                    $resultStr = $this-&gt;receiveEvent($postObj);</span><br><span class="line">                    break;</span><br><span class="line">                default:</span><br><span class="line">                    $resultStr = &quot;&quot;;</span><br><span class="line">                    break;</span><br><span class="line">            &#125;</span><br><span class="line">            echo $resultStr;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            echo &quot;&quot;;</span><br><span class="line">            exit;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private function receiveText($object)</span><br><span class="line">    &#123;</span><br><span class="line">        $funcFlag = 0;</span><br><span class="line">        $contentStr = &quot;你发送的内容为：&quot;.$object-&gt;Content;</span><br><span class="line">        $resultStr = $this-&gt;transmitText($object, $contentStr, $funcFlag);</span><br><span class="line">        return $resultStr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private function receiveEvent($object)</span><br><span class="line">    &#123;</span><br><span class="line">        $contentStr = &quot;&quot;;</span><br><span class="line">        switch ($object-&gt;Event)</span><br><span class="line">        &#123;</span><br><span class="line">            case &quot;subscribe&quot;:</span><br><span class="line">                $contentStr = &quot;欢迎关注方倍工作室&quot;;</span><br><span class="line">            case &quot;unsubscribe&quot;:</span><br><span class="line">                break;</span><br><span class="line">            case &quot;CLICK&quot;:</span><br><span class="line">                switch ($object-&gt;EventKey)</span><br><span class="line">                &#123;</span><br><span class="line">                    case &quot;company&quot;:</span><br><span class="line">                        $contentStr[] = array(&quot;Title&quot; =&gt;&quot;公司简介&quot;, </span><br><span class="line">                        &quot;Description&quot; =&gt;&quot;方倍工作室提供移动互联网相关的产品及服务&quot;, </span><br><span class="line">                        &quot;PicUrl&quot; =&gt;&quot;http://discuz.comli.com/weixin/weather/icon/cartoon.jpg&quot;, </span><br><span class="line">                        &quot;Url&quot; =&gt;&quot;weixin://addfriend/pondbaystudio&quot;);</span><br><span class="line">                        break;</span><br><span class="line">                    default:</span><br><span class="line">                        $contentStr[] = array(&quot;Title&quot; =&gt;&quot;默认菜单回复&quot;, </span><br><span class="line">                        &quot;Description&quot; =&gt;&quot;您正在使用的是方倍工作室的自定义菜单测试接口&quot;, </span><br><span class="line">                        &quot;PicUrl&quot; =&gt;&quot;http://discuz.comli.com/weixin/weather/icon/cartoon.jpg&quot;, </span><br><span class="line">                        &quot;Url&quot; =&gt;&quot;weixin://addfriend/pondbaystudio&quot;);</span><br><span class="line">                        break;</span><br><span class="line">                &#125;</span><br><span class="line">                break;</span><br><span class="line">            default:</span><br><span class="line">                break;      </span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        if (is_array($contentStr))&#123;</span><br><span class="line">            $resultStr = $this-&gt;transmitNews($object, $contentStr);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            $resultStr = $this-&gt;transmitText($object, $contentStr);</span><br><span class="line">        &#125;</span><br><span class="line">        return $resultStr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private function transmitText($object, $content, $funcFlag = 0)</span><br><span class="line">    &#123;</span><br><span class="line">        $textTpl = &quot;&lt;xml&gt;</span><br><span class="line">&lt;ToUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/ToUserName&gt;</span><br><span class="line">&lt;FromUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/FromUserName&gt;</span><br><span class="line">&lt;CreateTime&gt;%s&lt;/CreateTime&gt;</span><br><span class="line">&lt;MsgType&gt;&lt;![CDATA[text]]&gt;&lt;/MsgType&gt;</span><br><span class="line">&lt;Content&gt;&lt;![CDATA[%s]]&gt;&lt;/Content&gt;</span><br><span class="line">&lt;FuncFlag&gt;%d&lt;/FuncFlag&gt;</span><br><span class="line">&lt;/xml&gt;&quot;;</span><br><span class="line">        $resultStr = sprintf($textTpl, $object-&gt;FromUserName, $object-&gt;ToUserName, time(), $content, $funcFlag);</span><br><span class="line">        return $resultStr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private function transmitNews($object, $arr_item, $funcFlag = 0)</span><br><span class="line">    &#123;</span><br><span class="line">        //首条标题28字，其他标题39字</span><br><span class="line">        if(!is_array($arr_item))</span><br><span class="line">            return;</span><br><span class="line"></span><br><span class="line">        $itemTpl = &quot;    &lt;item&gt;</span><br><span class="line">        &lt;Title&gt;&lt;![CDATA[%s]]&gt;&lt;/Title&gt;</span><br><span class="line">        &lt;Description&gt;&lt;![CDATA[%s]]&gt;&lt;/Description&gt;</span><br><span class="line">        &lt;PicUrl&gt;&lt;![CDATA[%s]]&gt;&lt;/PicUrl&gt;</span><br><span class="line">        &lt;Url&gt;&lt;![CDATA[%s]]&gt;&lt;/Url&gt;</span><br><span class="line">    &lt;/item&gt;</span><br><span class="line">&quot;;</span><br><span class="line">        $item_str = &quot;&quot;;</span><br><span class="line">        foreach ($arr_item as $item)</span><br><span class="line">            $item_str .= sprintf($itemTpl, $item[&apos;Title&apos;], $item[&apos;Description&apos;], $item[&apos;PicUrl&apos;], $item[&apos;Url&apos;]);</span><br><span class="line"></span><br><span class="line">        $newsTpl = &quot;&lt;xml&gt;</span><br><span class="line">&lt;ToUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/ToUserName&gt;</span><br><span class="line">&lt;FromUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/FromUserName&gt;</span><br><span class="line">&lt;CreateTime&gt;%s&lt;/CreateTime&gt;</span><br><span class="line">&lt;MsgType&gt;&lt;![CDATA[news]]&gt;&lt;/MsgType&gt;</span><br><span class="line">&lt;Content&gt;&lt;![CDATA[]]&gt;&lt;/Content&gt;</span><br><span class="line">&lt;ArticleCount&gt;%s&lt;/ArticleCount&gt;</span><br><span class="line">&lt;Articles&gt;</span><br><span class="line">$item_str&lt;/Articles&gt;</span><br><span class="line">&lt;FuncFlag&gt;%s&lt;/FuncFlag&gt;</span><br><span class="line">&lt;/xml&gt;&quot;;</span><br><span class="line"></span><br><span class="line">        $resultStr = sprintf($newsTpl, $object-&gt;FromUserName, $object-&gt;ToUserName, time(), count($arr_item), $funcFlag);</span><br><span class="line">        return $resultStr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><br><br>    <div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="&quot;复制代码&quot;"><img src="http://pangguoming.com/blog/images/5461ca85-2024-473c-8ac8-b28a0594624d.gif" alt="复制代码"></a></span><br><br>原文 <a href="http://www.cnblogs.com/txw1958/p/weixin-58-custom-menu.html" target="_blank" rel="noopener">http://www.cnblogs.com/txw1958/p/weixin-58-custom-menu.html</a><br><br>    # <strong>八、菜单中获取OpenID</strong><br><br>由于菜单中只能填写固定的url地址，对于想要菜单中获取用户的OpenID的情况，可以使用OAuth2.0授权的方式来实现。<br><br>URL中填写的地址为一个固定的回调地址。原理方法可以参考  <a href="http://www.cnblogs.com/txw1958/p/weixin-menu-get-openid.html" target="_blank" rel="noopener">微信公众平台开发(99) 自定义菜单获取OpenID</a><br><br></div></div></pre></div><br></div></div></div></div></div>
+          
         
       
     </div>
@@ -451,7 +420,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/08/18/C#开发微信公众平台-就这么简单（附Demo）/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/702a1c40.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -470,7 +439,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/18/C#开发微信公众平台-就这么简单（附Demo）/" itemprop="url">C#开发微信公众平台-就这么简单（附Demo）</a></h1>
+                <a class="post-title-link" href="/post/702a1c40.html" itemprop="url">C#开发微信公众平台-就这么简单（附Demo）</a></h1>
         
 
         <div class="post-meta">
@@ -522,25 +491,81 @@
       
         
           
-           阅读目录：
+            <p> 阅读目录：</p>
+<ol>
+<li><a href="https://www.cnblogs.com/xishuai/p/3625859.html#xishuai_h1" target="_blank" rel="noopener">服务号和订阅号</a></li>
+<li><a href="https://www.cnblogs.com/xishuai/p/3625859.html#xishuai_h2" target="_blank" rel="noopener">URL配置</a></li>
+<li><a href="https://www.cnblogs.com/xishuai/p/3625859.html#xishuai_h3" target="_blank" rel="noopener">创建菜单</a></li>
+<li><a href="https://www.cnblogs.com/xishuai/p/3625859.html#xishuai_h4" target="_blank" rel="noopener">查询、删除菜单</a></li>
+<li><a href="https://www.cnblogs.com/xishuai/p/3625859.html#xishuai_h5" target="_blank" rel="noopener">接受消息</a></li>
+<li><a href="https://www.cnblogs.com/xishuai/p/3625859.html#xishuai_h6" target="_blank" rel="noopener">发送消息（图文、菜单事件响应）</a></li>
+<li><a href="https://www.cnblogs.com/xishuai/p/3625859.html#xishuai_h7" target="_blank" rel="noopener">示例Demo下载</a></li>
+<li><p><a href="https://www.cnblogs.com/xishuai/p/3625859.html#xishuai_h8" target="_blank" rel="noopener">后记</a></p>
+<p>最近公司在做微信开发，其实就是接口开发，网上找了很多资料，当然园友也写了很多教程，但都是理论说了一大堆，实用指导或代码很少。如果你自己仔细研究下，其实就那么点东西，C#实现起来也很简单，原本不想写这篇文章的，但是本人当时摸索走了很多弯路，这边总结下，希望初次接触微信公众平台的朋友别像当时的我一样。</p>
+<p>自己动手，丰衣足食。</p>
+</li>
+</ol>
+<h2 id="服务号和订阅号"><a href="#服务号和订阅号" class="headerlink" title="服务号和订阅号"></a>服务号和订阅号</h2><p> 服务号是公司申请的微信公共账号，订阅号是个人申请的，我个人也申请了一个，不过没怎么用。</p>
+<p> 服务号</p>
+<ol>
+<li>1个月(30天)内仅可以发送1条群发消息。</li>
+<li>发给订阅用户(粉丝)的消息，会显示在对方的聊天列表中。</li>
+<li>在发送消息给用户时，用户将收到即时的消息提醒。</li>
+<li>服务号会在订阅用户(粉丝)的通讯录中。</li>
+<li><p>可申请自定义菜单。</p>
+<p>订阅号</p>
+</li>
+<li><p>每天(24小时内)可以发送1条群发消息。</p>
+</li>
+<li>发给订阅用户(粉丝)的消息，将会显示在对方的订阅号文件夹中。</li>
+<li>在发送消息给订阅用户(粉丝)时，订阅用户不会收到即时消息提醒。</li>
+<li>在订阅用户(粉丝)的通讯录中，订阅号将被放入订阅号文件夹中。</li>
+<li>订阅号不支持申请自定义菜单。</li>
+</ol>
+<h2 id="URL配置"><a href="#URL配置" class="headerlink" title="URL配置"></a>URL配置</h2><p> 启用开发模式需要先成为开发者，而且编辑模式和开发模式只能选择一个，进入微信公众平台-开发模式，如下：</p>
+<p><img src="http://pangguoming.com/blog/images/5efb336e-993f-4be6-82d5-435177b6359b.png" alt=""></p>
+<p> 需要填写url和token，当时本人填写这个的时候花了好久，我本以为填写个服务器的url就可以了（80端口），但是不行，主要是没有仔细的阅读提示信息，所以总是提示</p>
+<p><img src="http://pangguoming.com/blog/images/8ebfa455-2ea5-4cd5-beb9-cb4a4b68b2da.png" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/596f62ec-475c-42ca-8f63-6a31ad23b011.png" alt=""></p>
+<p> 从上面可以看出，点击提交后微信会向我们填写的服务器发送几个参数，然后需要原样返回出来，所以在提交url的时候，先在服务器创建接口测试返回echostr参数内容。代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> 1         //成为开发者url测试，返回echoStr</span><br><span class="line"> 2         public void InterfaceTest()</span><br><span class="line"> 3         &#123;</span><br><span class="line"> 4             string token = &quot;填写的token&quot;;</span><br><span class="line"> 5             if (string.IsNullOrEmpty(token))</span><br><span class="line"> 6             &#123;</span><br><span class="line"> 7                 return;</span><br><span class="line"> 8             &#125;</span><br><span class="line"> 9 </span><br><span class="line">10             string echoString = HttpContext.Current.Request.QueryString[&quot;echoStr&quot;];</span><br><span class="line">11             string signature = HttpContext.Current.Request.QueryString[&quot;signature&quot;];</span><br><span class="line">12             string timestamp = HttpContext.Current.Request.QueryString[&quot;timestamp&quot;];</span><br><span class="line">13             string nonce = HttpContext.Current.Request.QueryString[&quot;nonce&quot;];</span><br><span class="line">14 </span><br><span class="line">15             if (!string.IsNullOrEmpty(echoString))</span><br><span class="line">16             &#123;</span><br><span class="line">17                 HttpContext.Current.Response.Write(echoString);</span><br><span class="line">18                 HttpContext.Current.Response.End();</span><br><span class="line">19             &#125;</span><br><span class="line">20         &#125;</span><br></pre></td></tr></table></figure>
+<p> 在一般处理程序ashx的ProcessRequest的方法内调用上面的方法，url填写的就是这个ashx的服务器地址，token是一个服务器标示，可以随便输入，代码中的token要和申请填写的一致，成为开发者才能做开发。</p>
+<h2 id="创建菜单"><a href="#创建菜单" class="headerlink" title="创建菜单"></a>创建菜单</h2><p> 我们添加一些微信服务号，聊天窗口下面有些菜单，这个可以在编辑模式简单配置，也可以在开发模式代码配置。微信公众平台开发者文档：<a href="http://mp.weixin.qq.com/wiki/index.php?title=%E8%87%AA%E5%AE%9A%E4%B9%89%E8%8F%9C%E5%8D%95%E5%88%9B%E5%BB%BA%E6%8E%A5%E5%8F%A3" target="_blank" rel="noopener">http://mp.weixin.qq.com/wiki/index.php?title=自定义菜单创建接口</a>，可以看到创建菜单的一些要点，下面的<a href="https://mp.weixin.qq.com/debug/cgi-bin/apiinfo?t=index&amp;type=%E8%87%AA%E5%AE%9A%E4%B9%89%E8%8F%9C%E5%8D%95&amp;form=%E8%87%AA%E5%AE%9A%E4%B9%89%E8%8F%9C%E5%8D%95%E5%88%9B%E5%BB%BA%E6%8E%A5%E5%8F%A3%20/menu/create" target="_blank" rel="noopener">使用网页调试工具调试该接口</a>，只是调试接口是否可用，并不是直接创建菜单的，菜单分为两种：</p>
+<ul>
+<li><strong>click：</strong> 用户点击click类型按钮后，微信服务器会通过消息接口推送消息类型为event 的结构给开发者（参考消息接口指南），并且带上按钮中开发者填写的key值，开发者可以通过自定义的key值与用户进行交互。</li>
+<li><p><strong>view：</strong> 用户点击view类型按钮后，微信客户端将会打开开发者在按钮中填写的url值 （即网页链接），达到打开网页的目的，建议与网页授权获取用户基本信息接口结合，获得用户的登入个人信息。</p>
+<p>click菜单需要填一个key，这个是在我们菜单点击事件的时候会用到，view只是一个菜单超链接。菜单数据是json格式，官网是php示例，其实C#实现起来也很简单，就是post发送一个json数据，示例代码：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"> 1     public partial class createMenu : System.Web.UI.Page</span><br><span class="line"> 2     &#123;</span><br><span class="line"> 3         protected void Page_Load(object sender, EventArgs e)</span><br><span class="line"> 4         &#123;</span><br><span class="line"> 5             FileStream fs1 = new FileStream(Server.MapPath(&quot;.&quot;)+&quot;\\menu.txt&quot;, FileMode.Open);</span><br><span class="line"> 6             StreamReader sr = new StreamReader(fs1, Encoding.GetEncoding(&quot;GBK&quot;));</span><br><span class="line"> 7             string menu = sr.ReadToEnd();</span><br><span class="line"> 8             sr.Close();</span><br><span class="line"> 9             fs1.Close();</span><br><span class="line">10             GetPage(&quot;https://api.weixin.qq.com/cgi-bin/menu/create?access_token=access_token&quot;, menu);</span><br><span class="line">11         &#125;</span><br><span class="line">12         public string GetPage(string posturl, string postData)</span><br><span class="line">13         &#123;</span><br><span class="line">14             Stream outstream = null;</span><br><span class="line">15             Stream instream = null;</span><br><span class="line">16             StreamReader sr = null;</span><br><span class="line">17             HttpWebResponse response = null;</span><br><span class="line">18             HttpWebRequest request = null;</span><br><span class="line">19             Encoding encoding = Encoding.UTF8;</span><br><span class="line">20             byte[] data = encoding.GetBytes(postData);</span><br><span class="line">21             // 准备请求...</span><br><span class="line">22             try</span><br><span class="line">23             &#123;</span><br><span class="line">24                 // 设置参数</span><br><span class="line">25                 request = WebRequest.Create(posturl) as HttpWebRequest;</span><br><span class="line">26                 CookieContainer cookieContainer = new CookieContainer();</span><br><span class="line">27                 request.CookieContainer = cookieContainer;</span><br><span class="line">28                 request.AllowAutoRedirect = true;</span><br><span class="line">29                 request.Method = &quot;POST&quot;;</span><br><span class="line">30                 request.ContentType = &quot;application/x-www-form-urlencoded&quot;;</span><br><span class="line">31                 request.ContentLength = data.Length;</span><br><span class="line">32                 outstream = request.GetRequestStream();</span><br><span class="line">33                 outstream.Write(data, 0, data.Length);</span><br><span class="line">34                 outstream.Close();</span><br><span class="line">35                 //发送请求并获取相应回应数据</span><br><span class="line">36                 response = request.GetResponse() as HttpWebResponse;</span><br><span class="line">37                 //直到request.GetResponse()程序才开始向目标网页发送Post请求</span><br><span class="line">38                 instream = response.GetResponseStream();</span><br><span class="line">39                 sr = new StreamReader(instream, encoding);</span><br><span class="line">40                 //返回结果网页（html）代码</span><br><span class="line">41                 string content = sr.ReadToEnd();</span><br><span class="line">42                 string err = string.Empty;</span><br><span class="line">43                 Response.Write(content);</span><br><span class="line">44                 return content;</span><br><span class="line">45             &#125;</span><br><span class="line">46             catch (Exception ex)</span><br><span class="line">47             &#123;</span><br><span class="line">48                 string err = ex.Message;</span><br><span class="line">49                 return string.Empty;</span><br><span class="line">50             &#125;</span><br><span class="line">51         &#125;</span><br><span class="line">52     &#125;</span><br></pre></td></tr></table></figure>
+<p> menu.text里面的内容就是json示例菜单，大家可以从示例复制下来，按照你的需要修改一些就行了。</p>
+<p> 关于access_token，其实就是一个请求标示，获取方式：<a href="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=appid&amp;secret=secret；appid和secret是开发者标示，在你的信息里面可以看到，通过这个链接返回一个json数据，就可以得到access_token值。" target="_blank" rel="noopener">https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=appid&amp;secret=secret；appid和secret是开发者标示，在你的信息里面可以看到，通过这个链接返回一个json数据，就可以得到access_token值。</a></p>
+<p> 需要注意的是：access_token有一定的时效性，失效的话就需要重新获取下，这个在本机就可以创建，不需要上传到服务器，创建菜单正确，返回{“errcode”:0,”errmsg”:”ok”}提示信息。这边就不截图了，大家试下就可以看到效果，一般创建菜单是一到两分钟生效，实在不行就重新关注下。</p>
+<h2 id="查询、删除菜单"><a href="#查询、删除菜单" class="headerlink" title="查询、删除菜单"></a>查询、删除菜单</h2><p> 查询和删除菜单也很简单，只不过是get请求，不需要传数据，看下示例代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"> 1     public partial class selectMenu : System.Web.UI.Page</span><br><span class="line"> 2     &#123;</span><br><span class="line"> 3         protected void Page_Load(object sender, EventArgs e)</span><br><span class="line"> 4         &#123;</span><br><span class="line"> 5             GetPage(&quot;https://api.weixin.qq.com/cgi-bin/menu/get?access_token=access_token&quot;);</span><br><span class="line"> 6             //GetPage(&quot;https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=access_token&quot;);</span><br><span class="line"> 7         &#125;</span><br><span class="line"> 8         public string GetPage(string posturl)</span><br><span class="line"> 9         &#123;</span><br><span class="line">10             Stream instream = null;</span><br><span class="line">11             StreamReader sr = null;</span><br><span class="line">12             HttpWebResponse response = null;</span><br><span class="line">13             HttpWebRequest request = null;</span><br><span class="line">14             Encoding encoding = Encoding.UTF8;</span><br><span class="line">15             // 准备请求...</span><br><span class="line">16             try</span><br><span class="line">17             &#123;</span><br><span class="line">18                 // 设置参数</span><br><span class="line">19                 request = WebRequest.Create(posturl) as HttpWebRequest;</span><br><span class="line">20                 CookieContainer cookieContainer = new CookieContainer();</span><br><span class="line">21                 request.CookieContainer = cookieContainer;</span><br><span class="line">22                 request.AllowAutoRedirect = true;</span><br><span class="line">23                 request.Method = &quot;GET&quot;;</span><br><span class="line">24                 request.ContentType = &quot;application/x-www-form-urlencoded&quot;;</span><br><span class="line">25                 //发送请求并获取相应回应数据</span><br><span class="line">26                 response = request.GetResponse() as HttpWebResponse;</span><br><span class="line">27                 //直到request.GetResponse()程序才开始向目标网页发送Post请求</span><br><span class="line">28                 instream = response.GetResponseStream();</span><br><span class="line">29                 sr = new StreamReader(instream, encoding);</span><br><span class="line">30                 //返回结果网页（html）代码</span><br><span class="line">31                 string content = sr.ReadToEnd();</span><br><span class="line">32                 string err = string.Empty;</span><br><span class="line">33                 Response.Write(content);</span><br><span class="line">34                 return content;</span><br><span class="line">35             &#125;</span><br><span class="line">36             catch (Exception ex)</span><br><span class="line">37             &#123;</span><br><span class="line">38                 string err = ex.Message;</span><br><span class="line">39                 return string.Empty;</span><br><span class="line">40             &#125;</span><br><span class="line">41         &#125;</span><br><span class="line">42     &#125;</span><br></pre></td></tr></table></figure>
+<p> access_token获取方式上面已经讲过了，查询菜单返回的是json数据，其实就是我们创建菜单的menu.txt里面的内容。</p>
+<p> 删除成功返回信息提示：{“errcode”:0,”errmsg”:”ok”}，这个也只要在本地运行就可以了。</p>
+<h2 id="接受消息"><a href="#接受消息" class="headerlink" title="接受消息"></a>接受消息</h2><p> 微信公众平台开发者文档：<a href="http://mp.weixin.qq.com/wiki/index.php?title=%E6%8E%A5%E6%94%B6%E6%99%AE%E9%80%9A%E6%B6%88%E6%81%AF" target="_blank" rel="noopener">http://mp.weixin.qq.com/wiki/index.php?title=接收普通消息</a>，我们使用微信就是要对用户发送的信息进行处理，这边以接受普通消息为例，语音、图片消息等，举一反三可得。</p>
+<p> 从文档上可以看出接受消息获得的是一个xml格式文件，当时有点犯傻的是，我要在哪边进行接受消息啊？还郁闷了半天，其实就是你一开始填写的url，是不是很汗颜啊，哈哈。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1  &lt;xml&gt;</span><br><span class="line">2  &lt;ToUserName&gt;&lt;![CDATA[toUser]]&gt;&lt;/ToUserName&gt;</span><br><span class="line">3  &lt;FromUserName&gt;&lt;![CDATA[fromUser]]&gt;&lt;/FromUserName&gt; </span><br><span class="line">4  &lt;CreateTime&gt;1348831860&lt;/CreateTime&gt;</span><br><span class="line">5  &lt;MsgType&gt;&lt;![CDATA[text]]&gt;&lt;/MsgType&gt;</span><br><span class="line">6  &lt;Content&gt;&lt;![CDATA[this is a test]]&gt;&lt;/Content&gt;</span><br><span class="line">7  &lt;MsgId&gt;1234567890123456&lt;/MsgId&gt;</span><br><span class="line">8  &lt;/xml&gt;</span><br></pre></td></tr></table></figure>
+<p> 我们在ashx添加下面代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> 1         public void ProcessRequest(HttpContext param_context)</span><br><span class="line"> 2         &#123;</span><br><span class="line"> 3             string postString = string.Empty;</span><br><span class="line"> 4             if (HttpContext.Current.Request.HttpMethod.ToUpper() == &quot;POST&quot;)</span><br><span class="line"> 5             &#123;</span><br><span class="line"> 6                 using (Stream stream = HttpContext.Current.Request.InputStream)</span><br><span class="line"> 7                 &#123;</span><br><span class="line"> 8                     Byte[] postBytes = new Byte[stream.Length];</span><br><span class="line"> 9                     stream.Read(postBytes, 0, (Int32)stream.Length);</span><br><span class="line">10                     postString = Encoding.UTF8.GetString(postBytes);</span><br><span class="line">11                     Handle(postString);</span><br><span class="line">12                 &#125;</span><br><span class="line">13             &#125;</span><br><span class="line">14         &#125;</span><br><span class="line">15 </span><br><span class="line">16         /// &lt;summary&gt;</span><br><span class="line">17         /// 处理信息并应答</span><br><span class="line">18         /// &lt;/summary&gt;</span><br><span class="line">19         private void Handle(string postStr)</span><br><span class="line">20         &#123;</span><br><span class="line">21             messageHelp help = new messageHelp();</span><br><span class="line">22             string responseContent = help.ReturnMessage(postStr);</span><br><span class="line">23 </span><br><span class="line">24             HttpContext.Current.Response.ContentEncoding = Encoding.UTF8;</span><br><span class="line">25             HttpContext.Current.Response.Write(responseContent);</span><br><span class="line">26         &#125;</span><br></pre></td></tr></table></figure>
+<p> messageHelp是消息处理帮助类，这边提供下部分代码，完整的可以下载来，获取的postString是xml，格式如上，我们这边只需要转换成XmlDocument进行解析就行了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"> 1         //接受文本消息</span><br><span class="line"> 2         public string TextHandle(XmlDocument xmldoc)</span><br><span class="line"> 3         &#123;</span><br><span class="line"> 4             string responseContent = &quot;&quot;;</span><br><span class="line"> 5             XmlNode ToUserName = xmldoc.SelectSingleNode(&quot;/xml/ToUserName&quot;);</span><br><span class="line"> 6             XmlNode FromUserName = xmldoc.SelectSingleNode(&quot;/xml/FromUserName&quot;);</span><br><span class="line"> 7             XmlNode Content = xmldoc.SelectSingleNode(&quot;/xml/Content&quot;);</span><br><span class="line"> 8             if (Content != null)</span><br><span class="line"> 9             &#123;</span><br><span class="line">10                 responseContent = string.Format(ReplyType.Message_Text, </span><br><span class="line">11                     FromUserName.InnerText, </span><br><span class="line">12                     ToUserName.InnerText, </span><br><span class="line">13                     DateTime.Now.Ticks, </span><br><span class="line">14                     &quot;欢迎使用微信公共账号，您输入的内容为：&quot; + Content.InnerText+&quot;\r\n&lt;a href=\&quot;http://www.cnblogs.com\&quot;&gt;点击进入&lt;/a&gt;&quot;);</span><br><span class="line">15             &#125;</span><br><span class="line">16             return responseContent;</span><br><span class="line">17         &#125;</span><br><span class="line">18         /// &lt;summary&gt;</span><br><span class="line">19         /// 普通文本消息</span><br><span class="line">20         /// &lt;/summary&gt;</span><br><span class="line">21         public static string Message_Text</span><br><span class="line">22         &#123;</span><br><span class="line">23             get &#123; return @&quot;&lt;xml&gt;</span><br><span class="line">24                             &lt;ToUserName&gt;&lt;![CDATA[&#123;0&#125;]]&gt;&lt;/ToUserName&gt;</span><br><span class="line">25                             &lt;FromUserName&gt;&lt;![CDATA[&#123;1&#125;]]&gt;&lt;/FromUserName&gt;</span><br><span class="line">26                             &lt;CreateTime&gt;&#123;2&#125;&lt;/CreateTime&gt;</span><br><span class="line">27                             &lt;MsgType&gt;&lt;![CDATA[text]]&gt;&lt;/MsgType&gt;</span><br><span class="line">28                             &lt;Content&gt;&lt;![CDATA[&#123;3&#125;]]&gt;&lt;/Content&gt;</span><br><span class="line">29                             &lt;/xml&gt;&quot;; &#125;</span><br><span class="line">30         &#125;</span><br></pre></td></tr></table></figure>
+<p> 上面的代码就是接受消息，并做一些处理操作，返回消息。</p>
+<h2 id="发送消息（图文、菜单事件响应）"><a href="#发送消息（图文、菜单事件响应）" class="headerlink" title="发送消息（图文、菜单事件响应）"></a>发送消息（图文、菜单事件响应）</h2><p> 这边发送消息我分为三种：普通消息、图文消息和菜单事件响应。普通消息其实上面说接受消息的时候讲到了，完整的代码下边下载来看。</p>
+<p> 我们先看下图文消息和菜单事件响应，微信公众平台开发者文档：<a href="http://mp.weixin.qq.com/wiki/index.php?title=%E5%9B%9E%E5%A4%8D%E5%9B%BE%E6%96%87%E6%B6%88%E6%81%AF#.E5.9B.9E.E5.A4.8D.E5.9B.BE.E6.96.87.E6.B6.88.E6.81.AF" target="_blank" rel="noopener">http://mp.weixin.qq.com/wiki/index.php?title=<span id=".E5.8F.91.E9.80.81.E5.9B.BE.E6.96.87.E6.B6.88.E6.81.AF" class="mw-headline"><span id=".E5.9B.9E.E5.A4.8D.E5.9B.BE.E6.96.87.E6.B6.88.E6.81.AF" class="mw-headline">回复图文消息#.E5.9B.9E.E5.A4.8D.E5.9B.BE.E6.96.87.E6.B6.88.E6.81.AF</span></span></a>，xml格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> 1 &lt;xml&gt;</span><br><span class="line"> 2 &lt;ToUserName&gt;&lt;![CDATA[toUser]]&gt;&lt;/ToUserName&gt;</span><br><span class="line"> 3 &lt;FromUserName&gt;&lt;![CDATA[fromUser]]&gt;&lt;/FromUserName&gt;</span><br><span class="line"> 4 &lt;CreateTime&gt;12345678&lt;/CreateTime&gt;</span><br><span class="line"> 5 &lt;MsgType&gt;&lt;![CDATA[news]]&gt;&lt;/MsgType&gt;</span><br><span class="line"> 6 &lt;ArticleCount&gt;2&lt;/ArticleCount&gt;</span><br><span class="line"> 7 &lt;Articles&gt;</span><br><span class="line"> 8 &lt;item&gt;</span><br><span class="line"> 9 &lt;Title&gt;&lt;![CDATA[title1]]&gt;&lt;/Title&gt; </span><br><span class="line">10 &lt;Description&gt;&lt;![CDATA[description1]]&gt;&lt;/Description&gt;</span><br><span class="line">11 &lt;PicUrl&gt;&lt;![CDATA[picurl]]&gt;&lt;/PicUrl&gt;</span><br><span class="line">12 &lt;Url&gt;&lt;![CDATA[url]]&gt;&lt;/Url&gt;</span><br><span class="line">13 &lt;/item&gt;</span><br><span class="line">14 &lt;item&gt;</span><br><span class="line">15 &lt;Title&gt;&lt;![CDATA[title]]&gt;&lt;/Title&gt;</span><br><span class="line">16 &lt;Description&gt;&lt;![CDATA[description]]&gt;&lt;/Description&gt;</span><br><span class="line">17 &lt;PicUrl&gt;&lt;![CDATA[picurl]]&gt;&lt;/PicUrl&gt;</span><br><span class="line">18 &lt;Url&gt;&lt;![CDATA[url]]&gt;&lt;/Url&gt;</span><br><span class="line">19 &lt;/item&gt;</span><br><span class="line">20 &lt;/Articles&gt;</span><br><span class="line">21 &lt;/xml&gt;</span><br></pre></td></tr></table></figure>
+<p> 图文消息分为两种，我们先看下效果，找的圆通速递的微信服务号做示例：</p>
+<p><img src="http://pangguoming.com/blog/images/9ff9f9cd-daad-41d3-bf3d-81bedcadc795.png" alt=""><img src="http://pangguoming.com/blog/images/c6822863-1d52-41b1-850e-491be71a6370.png" alt=""></p>
+<p> 刚开始做的时候，我以为这两种应该不是用的同一个接口，但是在文档中找了半天也没有找到除这个之外的，就试了下两个图文消息，发现就是这个接口发送的，如果多个的话，item中的Description会失效，只会显示Title，大家试下就知道了，示例代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"> 1         //事件</span><br><span class="line"> 2         public string EventHandle(XmlDocument xmldoc)</span><br><span class="line"> 3         &#123;</span><br><span class="line"> 4             string responseContent = &quot;&quot;;</span><br><span class="line"> 5             XmlNode Event = xmldoc.SelectSingleNode(&quot;/xml/Event&quot;);</span><br><span class="line"> 6             XmlNode EventKey = xmldoc.SelectSingleNode(&quot;/xml/EventKey&quot;);</span><br><span class="line"> 7             XmlNode ToUserName = xmldoc.SelectSingleNode(&quot;/xml/ToUserName&quot;);</span><br><span class="line"> 8             XmlNode FromUserName = xmldoc.SelectSingleNode(&quot;/xml/FromUserName&quot;);</span><br><span class="line"> 9             if (Event!=null)</span><br><span class="line">10             &#123;</span><br><span class="line">11                 //菜单单击事件</span><br><span class="line">12                 if (Event.InnerText.Equals(&quot;CLICK&quot;))</span><br><span class="line">13                 &#123;</span><br><span class="line">14                     if (EventKey.InnerText.Equals(&quot;click_one&quot;))//click_one</span><br><span class="line">15                     &#123;</span><br><span class="line">16                         responseContent = string.Format(ReplyType.Message_Text,</span><br><span class="line">17                             FromUserName.InnerText,</span><br><span class="line">18                             ToUserName.InnerText, </span><br><span class="line">19                             DateTime.Now.Ticks, </span><br><span class="line">20                             &quot;你点击的是click_one&quot;);</span><br><span class="line">21                     &#125;</span><br><span class="line">22                     else if (EventKey.InnerText.Equals(&quot;click_two&quot;))//click_two</span><br><span class="line">23                     &#123;</span><br><span class="line">24                         responseContent = string.Format(ReplyType.Message_News_Main, </span><br><span class="line">25                             FromUserName.InnerText, </span><br><span class="line">26                             ToUserName.InnerText, </span><br><span class="line">27                             DateTime.Now.Ticks, </span><br><span class="line">28                             &quot;2&quot;,</span><br><span class="line">29                              string.Format(ReplyType.Message_News_Item,&quot;我要寄件&quot;,&quot;&quot;,</span><br><span class="line">30                              &quot;http://www.soso.com/orderPlace.jpg&quot;,</span><br><span class="line">31                              &quot;http://www.soso.com/&quot;)+</span><br><span class="line">32                              string.Format(ReplyType.Message_News_Item, &quot;订单管理&quot;, &quot;&quot;,</span><br><span class="line">33                              &quot;http://www.soso.com/orderManage.jpg&quot;,</span><br><span class="line">34                              &quot;http://www.soso.com/&quot;));</span><br><span class="line">35                     &#125;</span><br><span class="line">36                     else if (EventKey.InnerText.Equals(&quot;click_three&quot;))//click_three</span><br><span class="line">37                     &#123;</span><br><span class="line">38                         responseContent = string.Format(ReplyType.Message_News_Main,</span><br><span class="line">39                             FromUserName.InnerText,</span><br><span class="line">40                             ToUserName.InnerText,</span><br><span class="line">41                             DateTime.Now.Ticks,</span><br><span class="line">42                             &quot;1&quot;,</span><br><span class="line">43                              string.Format(ReplyType.Message_News_Item, &quot;标题&quot;, &quot;摘要&quot;,</span><br><span class="line">44                              &quot;http://www.soso.com/jieshao.jpg&quot;,</span><br><span class="line">45                              &quot;http://www.soso.com/&quot;));</span><br><span class="line">46                     &#125;</span><br><span class="line">47                 &#125;</span><br><span class="line">48             &#125;</span><br><span class="line">49             return responseContent;</span><br><span class="line">50         &#125;</span><br><span class="line">51         /// &lt;summary&gt;</span><br><span class="line">52         /// 图文消息主体</span><br><span class="line">53         /// &lt;/summary&gt;</span><br><span class="line">54         public static string Message_News_Main</span><br><span class="line">55         &#123;</span><br><span class="line">56             get</span><br><span class="line">57             &#123;</span><br><span class="line">58                 return @&quot;&lt;xml&gt;</span><br><span class="line">59                             &lt;ToUserName&gt;&lt;![CDATA[&#123;0&#125;]]&gt;&lt;/ToUserName&gt;</span><br><span class="line">60                             &lt;FromUserName&gt;&lt;![CDATA[&#123;1&#125;]]&gt;&lt;/FromUserName&gt;</span><br><span class="line">61                             &lt;CreateTime&gt;&#123;2&#125;&lt;/CreateTime&gt;</span><br><span class="line">62                             &lt;MsgType&gt;&lt;![CDATA[news]]&gt;&lt;/MsgType&gt;</span><br><span class="line">63                             &lt;ArticleCount&gt;&#123;3&#125;&lt;/ArticleCount&gt;</span><br><span class="line">64                             &lt;Articles&gt;</span><br><span class="line">65                             &#123;4&#125;</span><br><span class="line">66                             &lt;/Articles&gt;</span><br><span class="line">67                             &lt;/xml&gt; &quot;;</span><br><span class="line">68             &#125;</span><br><span class="line">69         &#125;</span><br><span class="line">70         /// &lt;summary&gt;</span><br><span class="line">71         /// 图文消息项</span><br><span class="line">72         /// &lt;/summary&gt;</span><br><span class="line">73         public static string Message_News_Item</span><br><span class="line">74         &#123;</span><br><span class="line">75             get</span><br><span class="line">76             &#123;</span><br><span class="line">77                 return @&quot;&lt;item&gt;</span><br><span class="line">78                             &lt;Title&gt;&lt;![CDATA[&#123;0&#125;]]&gt;&lt;/Title&gt; </span><br><span class="line">79                             &lt;Description&gt;&lt;![CDATA[&#123;1&#125;]]&gt;&lt;/Description&gt;</span><br><span class="line">80                             &lt;PicUrl&gt;&lt;![CDATA[&#123;2&#125;]]&gt;&lt;/PicUrl&gt;</span><br><span class="line">81                             &lt;Url&gt;&lt;![CDATA[&#123;3&#125;]]&gt;&lt;/Url&gt;</span><br><span class="line">82                             &lt;/item&gt;&quot;;</span><br><span class="line">83             &#125;</span><br><span class="line">84         &#125;</span><br></pre></td></tr></table></figure>
+<p> 需要注意的是：XmlNode Event = xmldoc.SelectSingleNode(“/xml/Event”)表示获取的是事件类型，XmlNode EventKey = xmldoc.SelectSingleNode(“/xml/EventKey”)表示事件标示，就是我们创建菜单添加click的key，通过key我们就可以判断出是点的哪个菜单。</p>
+<p> 还有一点是回复超链接，有时候在服务号会发送一些链接，我们打开直接就会链接到相关网址，只需要在回复内容中添加：<a href="http://www.baidu.com" target="_blank" rel="noopener">点击进入</a>，就可以了。</p>
+<h2 id="示例Demo下载"><a href="#示例Demo下载" class="headerlink" title="示例Demo下载"></a>示例Demo下载</h2><p> 下载地址：<a href="http://pan.baidu.com/s/1eSAxJns" target="_blank" rel="noopener">http://pan.baidu.com/s/1eSAxJns</a></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p> 关于微信公众平台当然还有许多其他的东西，本篇只是一些经验之谈，希望可以起到抛砖引玉的作用。有时候我们发现一些新鲜事物，觉得很难，就远远的看着，如果你用心的去感受它，其实也就这么回事。</p>
 
-服务号和订阅号
-URL配置
-创建菜单
-查询、删除菜单
-接受消息
-发送消息（图文、菜单事件响应）
-示例Demo下载
-后记
-最近公司在做微信开发，其实就是接口开发，网上找了很多资料，当然园友也写了很多教程，但都是理论说了一大堆，实用指导或代码很少。如果你自己仔细研究下，其实就那么点东西，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/18/C#开发微信公众平台-就这么简单（附Demo）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -587,7 +612,7 @@ URL配置
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/08/18/C#微信接口之推送模板消息功能示例/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/647eef3c.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -606,7 +631,7 @@ URL配置
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/18/C#微信接口之推送模板消息功能示例/" itemprop="url">C#微信接口之推送模板消息功能示例</a></h1>
+                <a class="post-title-link" href="/post/647eef3c.html" itemprop="url">C#微信接口之推送模板消息功能示例</a></h1>
         
 
         <div class="post-meta">
@@ -658,16 +683,9 @@ URL配置
       
         
           
-          本文实例讲述了C#微信接口之推送模板消息功能。分享给大家供大家参考，具体如下：
-?1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/18/C#微信接口之推送模板消息功能示例/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>本文实例讲述了C#微信接口之推送模板消息功能。分享给大家供大家参考，具体如下：</p>
+<div class="jb51code"><br><div><br><div id="highlighter_516421" class="syntaxhighlighter  csharp"><br><div class="toolbar"><a href="https://www.jb51.net/article/118132.htm#" target="_blank" rel="noopener">?</a><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><div class="line number3 index2 alt2">3<br><div class="line number4 index3 alt1">4<br><div class="line number5 index4 alt2">5<br><div class="line number6 index5 alt1">6<br><div class="line number7 index6 alt2">7<br><div class="line number8 index7 alt1">8<br><div class="line number9 index8 alt2">9<br><div class="line number10 index9 alt1">10<br><div class="line number11 index10 alt2">11<br><div class="line number12 index11 alt1">12<br><div class="line number13 index12 alt2">13<br><div class="line number14 index13 alt1">14<br><div class="line number15 index14 alt2">15<br><div class="line number16 index15 alt1">16<br><div class="line number17 index16 alt2">17<br><div class="line number18 index17 alt1">18<br><div class="line number19 index18 alt2">19<br><div class="line number20 index19 alt1">20<br><div class="line number21 index20 alt2">21<br><div class="line number22 index21 alt1">22<br><div class="line number23 index22 alt2">23<br><div class="line number24 index23 alt1">24<br><div class="line number25 index24 alt2">25<br><div class="line number26 index25 alt1">26<br><div class="line number27 index26 alt2">27<br><div class="line number28 index27 alt1">28<br><div class="line number29 index28 alt2">29<br><div class="line number30 index29 alt1">30<br><div class="line number31 index30 alt2">31<br><div class="line number32 index31 alt1">32<br><div class="line number33 index32 alt2">33<br><div class="line number34 index33 alt1">34<br><div class="line number35 index34 alt2">35<br><div class="line number36 index35 alt1">36<br><div class="line number37 index36 alt2">37<br><div class="line number38 index37 alt1">38<br><div class="line number39 index38 alt2">39<br><div class="line number40 index39 alt1">40<br><div class="line number41 index40 alt2">41<br><div class="line number42 index41 alt1">42<br><div class="line number43 index42 alt2">43<br><div class="line number44 index43 alt1">44<br><div class="line number45 index44 alt2">45<br><div class="line number46 index45 alt1">46<br><div class="line number47 index46 alt2">47<br><div class="line number48 index47 alt1">48<br><div class="line number49 index48 alt2">49<br><div class="line number50 index49 alt1">50<br><div class="line number51 index50 alt2">51<br><div class="line number52 index51 alt1">52<br><div class="line number53 index52 alt2">53<br><div class="line number54 index53 alt1">54<br><div class="line number55 index54 alt2">55<br><div class="line number56 index55 alt1">56<br><div class="line number57 index56 alt2">57<br><div class="line number58 index57 alt1">58<br><div class="line number59 index58 alt2">59<br><div class="line number60 index59 alt1">60<br><div class="line number61 index60 alt2">61<br><div class="line number62 index61 alt1">62<br><div class="line number63 index62 alt2">63<br><div class="line number64 index63 alt1">64<br><div class="line number65 index64 alt2">65<br><div class="line number66 index65 alt1">66<br><div class="line number67 index66 alt2">67<br><div class="line number68 index67 alt1">68<br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="csharp keyword">public</code> <code class="csharp keyword">string</code> <code class="csharp plain">SendTempletMessge()</code><br><div class="line number2 index1 alt1"><code class="csharp plain">{</code><br><div class="line number3 index2 alt2"><code class="csharp spaces">   </code><code class="csharp keyword">string</code> <code class="csharp plain">strReturn = </code><code class="csharp keyword">string</code><code class="csharp plain">.Empty;</code><br><div class="line number4 index3 alt1"><code class="csharp spaces">   </code><code class="csharp keyword">try</code><br><div class="line number5 index4 alt2"><code class="csharp spaces">   </code><code class="csharp plain">{</code><br><div class="line number6 index5 alt1"><code class="csharp spaces">     </code><code class="csharp preprocessor">#region 获取access_token</code><br><div class="line number7 index6 alt2"><code class="csharp spaces">     </code><code class="csharp keyword">string</code> <code class="csharp plain">apiurl = </code><code class="csharp string">“<a href="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=" target="_blank" rel="noopener">https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=</a>你的appid&amp;secret=你的secret”</code><code class="csharp plain">;</code><br><div class="line number8 index7 alt1"><code class="csharp spaces">     </code><code class="csharp plain">WebRequest request = WebRequest.Create(@apiurl);</code><br><div class="line number9 index8 alt2"><code class="csharp spaces">     </code><code class="csharp plain">request.Method = </code><code class="csharp string">“POST”</code><code class="csharp plain">;</code><br><div class="line number10 index9 alt1"><code class="csharp spaces">     </code><code class="csharp plain">WebResponse response = request.GetResponse();</code><br><div class="line number11 index10 alt2"><code class="csharp spaces">     </code><code class="csharp plain">Stream stream = response.GetResponseStream();</code><br><div class="line number12 index11 alt1"><code class="csharp spaces">     </code><code class="csharp plain">Encoding encode = Encoding.UTF8;</code><br><div class="line number13 index12 alt2"><code class="csharp spaces">     </code><code class="csharp plain">StreamReader reader = </code><code class="csharp keyword">new</code> <code class="csharp plain">StreamReader(stream, encode);</code><br><div class="line number14 index13 alt1"><code class="csharp spaces">     </code><code class="csharp keyword">string</code> <code class="csharp plain">detail = reader.ReadToEnd();</code><br><div class="line number15 index14 alt2"><code class="csharp spaces">     </code><code class="csharp plain">var jd = JsonConvert.DeserializeObject<wxapi>(detail);</wxapi></code><br><div class="line number16 index15 alt1"><code class="csharp spaces">     </code><code class="csharp keyword">string</code> <code class="csharp plain">token = (String)jd.access_token;</code><br><div class="line number17 index16 alt2"><code class="csharp spaces">     </code><code class="csharp preprocessor">#endregion</code><br><div class="line number18 index17 alt1"><code class="csharp spaces">     </code><code class="csharp preprocessor">#region 组装信息推送，并返回结果（其它模版消息于此类似）</code><br><div class="line number19 index18 alt2"><code class="csharp spaces">     </code><code class="csharp keyword">string</code> <code class="csharp plain">url = </code><code class="csharp string">“<a href="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" target="_blank" rel="noopener">https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=</a>“</code> <code class="csharp plain">+ token;</code><br><div class="line number20 index19 alt1"><code class="csharp spaces">     </code><code class="csharp keyword">string</code> <code class="csharp plain">temp = </code><code class="csharp string">“{\”touser\”: \””</code> <code class="csharp plain">+ UserInfo.OpenID + </code><code class="csharp string">“\”,”</code> <code class="csharp plain">+</code><br><div class="line number21 index20 alt2"><code class="csharp spaces">            </code><code class="csharp string">“\”template_id\”: \”f3kRRjJeyLDf4tndtg-OJeRvgEdgjjDxCy4T9kuwM70\”, “</code> <code class="csharp plain">+</code><br><div class="line number22 index21 alt1"><code class="csharp spaces">            </code><code class="csharp string">“\”topcolor\”: \”#FF0000\”, “</code> <code class="csharp plain">+</code><br><div class="line number23 index22 alt2"><code class="csharp spaces">            </code><code class="csharp string">“\”data\”: “</code> <code class="csharp plain">+</code><br><div class="line number24 index23 alt1"><code class="csharp spaces">            </code><code class="csharp string">“{\”first\”: {\”value\”: \”您好，您有一条回款通知信息\”},”</code> <code class="csharp plain">+</code><br><div class="line number25 index24 alt2"><code class="csharp spaces">            </code><code class="csharp string">“\”keyword1\”: { \”value\”: \”单位名称\”},”</code> <code class="csharp plain">+</code><br><div class="line number26 index25 alt1"><code class="csharp spaces">            </code><code class="csharp string">“\”keyword2\”: { \”value\”: \”日期\”},”</code> <code class="csharp plain">+</code><br><div class="line number27 index26 alt2"><code class="csharp spaces">            </code><code class="csharp string">“\”keyword3\”: { \”value\”: \”金额\”},”</code> <code class="csharp plain">+</code><br><div class="line number28 index27 alt1"><code class="csharp spaces">            </code><code class="csharp string">“\”keyword4\”: { \”value\”: \”业务员\”},”</code> <code class="csharp plain">+</code><br><div class="line number29 index28 alt2"><code class="csharp spaces">            </code><code class="csharp string">“\”remark\”: {\”value\”: \”\” }}}”</code><code class="csharp plain">;</code><br><div class="line number30 index29 alt1"><code class="csharp spaces">     </code><code class="csharp preprocessor">#endregion</code><br><div class="line number31 index30 alt2"><code class="csharp spaces">   </code><code class="csharp comments">//核心代码</code><br><div class="line number32 index31 alt1"><code class="csharp spaces">   </code><code class="csharp plain">GetResponseData(temp, @url);</code><br><div class="line number33 index32 alt2"><code class="csharp spaces">     </code><code class="csharp plain">strReturn = </code><code class="csharp string">“推送成功”</code><code class="csharp plain">;</code><br><div class="line number34 index33 alt1"><code class="csharp spaces">   </code><code class="csharp plain">}</code><br><div class="line number35 index34 alt2"><code class="csharp spaces">   </code><code class="csharp keyword">catch</code> <code class="csharp plain">(Exception ex)</code><br><div class="line number36 index35 alt1"><code class="csharp spaces">   </code><code class="csharp plain">{</code><br><div class="line number37 index36 alt2"><code class="csharp spaces">    </code><code class="csharp plain">strReturn = ex.Message;</code><br><div class="line number38 index37 alt1"><code class="csharp spaces">   </code><code class="csharp plain">}</code><br><div class="line number39 index38 alt2"><code class="csharp spaces">   </code><code class="csharp keyword">return</code> <code class="csharp plain">strReturn;</code><br><div class="line number40 index39 alt1"><code class="csharp plain">}</code><br><div class="line number41 index40 alt2"><code class="csharp color1">/// <summary></summary></code><br><div class="line number42 index41 alt1"><code class="csharp color1">/// 返回JSon数据</code><br><div class="line number43 index42 alt2"><code class="csharp color1">/// </code><br><div class="line number44 index43 alt1"><code class="csharp color1">/// <param name="JSONData">要处理的JSON数据</code><br><div class="line number45 index44 alt2"><code class="csharp color1">/// <param name="Url">要提交的URL</code><br><div class="line number46 index45 alt1"><code class="csharp color1">/// <returns>返回的JSON处理字符串</returns></code><br><div class="line number47 index46 alt2"><code class="csharp keyword">public</code> <code class="csharp keyword">string</code> <code class="csharp plain">GetResponseData(</code><code class="csharp keyword">string</code> <code class="csharp plain">JSONData, </code><code class="csharp keyword">string</code> <code class="csharp plain">Url)</code><br><div class="line number48 index47 alt1"><code class="csharp plain">{</code><br><div class="line number49 index48 alt2"><code class="csharp spaces">   </code><code class="csharp keyword">byte</code><code class="csharp plain">[] bytes = Encoding.UTF8.GetBytes(JSONData);</code><br><div class="line number50 index49 alt1"><code class="csharp spaces">   </code><code class="csharp plain">HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);</code><br><div class="line number51 index50 alt2"><code class="csharp spaces">   </code><code class="csharp plain">request.Method = </code><code class="csharp string">“POST”</code><code class="csharp plain">;</code><br><div class="line number52 index51 alt1"><code class="csharp spaces">   </code><code class="csharp plain">request.ContentLength = bytes.Length;</code><br><div class="line number53 index52 alt2"><code class="csharp spaces">   </code><code class="csharp plain">request.ContentType = </code><code class="csharp string">“json”</code><code class="csharp plain">;</code><br><div class="line number54 index53 alt1"><code class="csharp spaces">   </code><code class="csharp plain">Stream reqstream = request.GetRequestStream();</code><br><div class="line number55 index54 alt2"><code class="csharp spaces">   </code><code class="csharp plain">reqstream.Write(bytes, 0, bytes.Length);</code><br><div class="line number56 index55 alt1"><code class="csharp spaces">   </code><code class="csharp comments">//声明一个HttpWebRequest请求</code><br><div class="line number57 index56 alt2"><code class="csharp spaces">   </code><code class="csharp plain">request.Timeout = 90000;</code><br><div class="line number58 index57 alt1"><code class="csharp spaces">   </code><code class="csharp comments">//设置连接超时时间</code><br><div class="line number59 index58 alt2"><code class="csharp spaces">   </code><code class="csharp plain">request.Headers.Set(</code><code class="csharp string">“Pragma”</code><code class="csharp plain">, </code><code class="csharp string">“no-cache”</code><code class="csharp plain">);</code><br><div class="line number60 index59 alt1"><code class="csharp spaces">   </code><code class="csharp plain">HttpWebResponse response = (HttpWebResponse)request.GetResponse();</code><br><div class="line number61 index60 alt2"><code class="csharp spaces">   </code><code class="csharp plain">Stream streamReceive = response.GetResponseStream();</code><br><div class="line number62 index61 alt1"><code class="csharp spaces">   </code><code class="csharp plain">Encoding encoding = Encoding.UTF8;</code><br><div class="line number63 index62 alt2"><code class="csharp spaces">   </code><code class="csharp plain">StreamReader streamReader = </code><code class="csharp keyword">new</code> <code class="csharp plain">StreamReader(streamReceive, encoding);</code><br><div class="line number64 index63 alt1"><code class="csharp spaces">   </code><code class="csharp keyword">string</code> <code class="csharp plain">strResult = streamReader.ReadToEnd();</code><br><div class="line number65 index64 alt2"><code class="csharp spaces">   </code><code class="csharp plain">streamReceive.Dispose();</code><br><div class="line number66 index65 alt1"><code class="csharp spaces">   </code><code class="csharp plain">streamReader.Dispose();</code><br><div class="line number67 index66 alt2"><code class="csharp spaces">   </code><code class="csharp keyword">return</code> <code class="csharp plain">strResult;</code><br><div class="line number68 index67 alt1"><code class="csharp plain">}</code><br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>涉及到的实体：<br><br><div class="jb51code"><br><div><br><div id="highlighter_369635" class="syntaxhighlighter  csharp"><br><div class="toolbar"><a href="https://www.jb51.net/article/118132.htm#" target="_blank" rel="noopener">?</a><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><div class="line number3 index2 alt2">3<br><div class="line number4 index3 alt1">4<br></div></div></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="csharp keyword">public</code> <code class="csharp keyword">class</code> <code class="csharp plain">WXApi</code><br><div class="line number2 index1 alt1"><code class="csharp plain">{</code><br><div class="line number3 index2 alt2"><code class="csharp spaces">  </code><code class="csharp keyword">public</code> <code class="csharp keyword">string</code> <code class="csharp plain">access_token { </code><code class="csharp keyword">set</code><code class="csharp plain">; </code><code class="csharp keyword">get</code><code class="csharp plain">; }</code><br><div class="line number4 index3 alt1"><code class="csharp plain">}</code><br><br></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>更多关于C#相关内容感兴趣的读者可查看本站专题：《<a href="https://www.jb51.net/Special/165.htm" target="_blank" rel="noopener">C#常见控件用法教程</a>》、《<a href="https://www.jb51.net/Special/125.htm" target="_blank" rel="noopener">WinForm控件用法总结</a>》、《<a href="https://www.jb51.net/Special/116.htm" target="_blank" rel="noopener">C#数据结构与算法教程</a>》、《<a href="https://www.jb51.net/Special/478.htm" target="_blank" rel="noopener">C#面向对象程序设计入门教程</a>》及《<a href="https://www.jb51.net/Special/227.htm" target="_blank" rel="noopener">C#程序设计之线程使用技巧总结</a>》<br><br>希望本文所述对大家C#程序设计有所帮助。<br></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -714,7 +732,7 @@ URL配置
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/07/30/微服务 面试/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/b80346fe.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -733,7 +751,7 @@ URL配置
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/30/微服务 面试/" itemprop="url">微服务 面试</a></h1>
+                <a class="post-title-link" href="/post/b80346fe.html" itemprop="url">微服务 面试</a></h1>
         
 
         <div class="post-meta">
@@ -785,16 +803,27 @@ URL配置
       
         
           
-          1、什么是微服务？    就目前而言，对于微服务业界并没有一个统一的，标准的定义。
-但通常而言，微服务架构是一种架构模式或者说是一种架构风格，它提倡将单一应用程序划分一组小的服务，每个服务运行在其独立的自己的进程中，服务之间相互协调、互相配合，为用户提供最总价值。服务之间采用轻量级的通信机制互相沟通
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/30/微服务 面试/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>1、什么是微服务？<br>    就目前而言，对于微服务业界并没有一个统一的，标准的定义。</p>
+<pre><code>但通常而言，微服务架构是一种架构模式或者说是一种架构风格，它提倡将单一应用程序划分一组小的服务，每个服务运行在其独立的自己的进程中，服务之间相互协调、互相配合，为用户提供最总价值。服务之间采用轻量级的通信机制互相沟通（通常是基于HTTP的RESTful API）,每个服务都围绕着具体的业务进行构建，并且能够被独立的构建在生产环境、类生产环境等。另外，应避免统一的、集中式的服务管理机制，对具体的一个服务而言，应根据业务上下文，选择合适的语言、工具对其进行构建，可以有一个非常轻量级的集中式管理来协调这些服务，可以使用不同的语言来编写服务，也可以使用不同的数据存储。
+</code></pre><p>2、微服务之间是如何独立通讯的？</p>
+<p>3、SpringCloud和Dubbo有哪些区别？</p>
+<table border="1" cellspacing="1" cellpadding="1"><br><tbody><br><tr><br><td> </td><br><td>Dubbo</td><br><td>SpringCloud</td><br><br></tr><br><tr><br><td>服务注册中心</td><br><td>Zookeeper</td><br><td>Eureka</td><br><br></tr><br><tr><br><td>服务调用方式</td><br><td>RPC</td><br><td>REST API</td><br><br></tr><br><tr><br><td valign="top">服务监控</td><br><td valign="top">Dubbo-monitor</td><br><td valign="top">Spring BootAdmin</td><br><br></tr><br><tr><br><td valign="top">断路器</td><br><td valign="top">不完善</td><br><td valign="top">Spring Cloud Netflix Hystrix</td><br><br></tr><br><tr><br><td valign="top">服务网关</td><br><td valign="top">无</td><br><td valign="top">Spring Cloud Netflix Zuul</td><br><br></tr><br><tr><br><td valign="top">分布式配置</td><br><td valign="top">无</td><br><td valign="top">Spring Cloud Config</td><br><br></tr><br><tr><br><td valign="top">服务跟踪</td><br><td valign="top">无</td><br><td valign="top">Spring Cloud Sleuth</td><br><br></tr><br><tr><br><td valign="top">消息总线</td><br><td valign="top">无</td><br><td valign="top">Spring Cloud Bus</td><br><br></tr><br><tr><br><td valign="top">数据流</td><br><td valign="top">无</td><br><td valign="top">Spring Cloud Stream</td><br><br></tr><br><tr><br><td valign="top">批量任务</td><br><td valign="top">无    </td><br><td valign="top">Spring Cloud Task</td><br><br></tr><br><br></tbody><br><br></table>
+
+<pre><code> 最大区别：SpringCloud抛弃了Dubbo的RPC通信，采用的是基于HTTP的REST方式。  
+总体来说，两者各有优势。虽说后者服务调用的功能，但也避免了上面提到的原生RPC带来的问题。而且REST相比RPC更为灵活，服务提供方和调用方的依赖只依靠一纸契约，不存在代码级别的依赖，这在强调快速演化的微服务环境下，显得更加合适。  
+品牌机与组装机的区别：很明显SpringCloud比dubbo的功能更强大，覆盖面更广，而且能够与SpringFramework、SpringBoot、SpringData、SpringBatch等其他Spring项目完美融合，这些对于微服务至关重要。使用Dubbo构建的微服务架构就像组装电脑、各环节我们选择自由度高，但是最总可能会因为内存质量而影响整体，但对于高手这也就不是问题。而SpringCloud就像品牌机，在Spring Source的整合下，做了大量的兼容性测试，保证了机器拥有更高的稳定性。  
+在面临微服务基础框架选型时Dubbo与SpringCloud只能二选一。
+</code></pre><p>4、SpringBoot和SpringCloud,请你谈谈对他们的理解？<br>    1）、SpringBoot专注于快速方便的开发单个个体微服务。<br>    2）、SpringCloud是关注全局的微服务协调、整理、治理的框架，它将SpringBoot开发的单体整合并管理起来。<br>    3）、SpringBoot可以离开SpringCloud独立使用开发项目，但是SpringCloud离不开SpringBoot，属于依赖关系。   </p>
+<p>5、什么是服务熔断？什么是服务降级？<br>        熔断机制是应对雪崩效应的一种微服务链路保护机制。当扇出链路的某个微服务不可用或者响应时间太长时，会进行服务降级，进而熔断该节点微服务的调用，快速返回“错误”的响应信息。当检测到该节点微服务调用响应正常后恢复调用链路。在SpringCloud框架里熔断机制通过Hystrix实现，Hystrix会监控微服务间调用的状况，当失败的调用到一定阈值，缺省是5秒内调用20次，如果失败，就会启动熔断机制。熔断机制的注解是@HystrixCommand<br>        服务降级，一般是从整体负荷考虑。就是当某个服务熔断之后，服务器将不再被调用，此时客户端可以自己准备一个本地的fallback回调，返回一个缺省值。这样做，虽然水平下降，但好歹可用，比直接挂掉强。</p>
+<p>6、微服务的优缺点是什么？说下你在项目开发中碰到的问题<br>优点：1）、每个服务足够内聚，足够小，代码容易理解这样能聚焦一个指定的业务功能或业务需求。<br>          2）、开发简单，开发效率提高，一个服务可能就是专一的只干一件事。<br>          3）、微服务能够被小团队开发，这个团队可以是2到5个开发人员组成。<br>          4）、微服务是松耦合的，是有功能意义的服务，无论是在开发阶段或部署阶段都是独立的。<br>          5）、微服务能使用不同的语言开发。<br>          6）、易于第三方集成，微服务允许容易且灵活的方式集成自动部署，通过持续集成集成工具，如Jenkins、Hudson等。<br>          7）、微服务易于被一个开发人员理解，修改和维护，这样小团队能够更关注自己的工作成果。无需通过合作体现价值。<br>          8）、微服务允许你融合最新技术。<br>          9）、微服务知识业务逻辑代码，不会和HTML和CSS其他界面组件混合。<br>        10）、每个微服务都有自己的存储能力，可以有自己的数据库，也可以由统一的数据库。<br>缺点：1）、开发人员要处理分布式系统的复杂性。<br>          2）、多服务运维难度，随着服务的增加，运维的压力也在增加。<br>          3）、系统部署依赖。<br>          4）、服务间通讯成本。<br>          5）、数据一致性。<br>          6）、系统集成测试。<br>          7）、性能监控…..</p>
+<p>7、你所知道的微服务技术栈有哪些?请举例一二<br>微服务的技术栈（各项功能的实现所使用的技术）具体如下：</p>
+<table border="1" cellspacing="1" cellpadding="1"><br><tbody><br><tr><br><td>                                      微服务条目  </td><br><td>                                   落地的技术</td><br><td>          备注</td><br><br></tr><br><tr><br><td>服务开发</td><br><td>SpringBoot、Spring、SpringMVC</td><br><td> </td><br><br></tr><br><tr><br><td>服务配置管理</td><br><td>Netfilx公司的Archaius、阿里的Diamond等</td><br><td> </td><br><br></tr><br><tr><br><td valign="top">服务注册与发现</td><br><td valign="top">Eureka、Consul、Zookeeper</td><br><td valign="top"> </td><br><br></tr><br><tr><br><td valign="top">服务调用</td><br><td valign="top">RPC、Rest、gRPC</td><br><td valign="top"> </td><br><br></tr><br><tr><br><td valign="top">服务熔断器</td><br><td valign="top">Hystrix、Envoy等</td><br><td valign="top"> </td><br><br></tr><br><tr><br><td valign="top">负载均衡</td><br><td valign="top">Nginx、Ribbon</td><br><td valign="top"> </td><br><br></tr><br><tr><br><td valign="top">服务接口调用（客户端调用服务的简化工具）</td><br><td valign="top">Feign等</td><br><td valign="top"> </td><br><br></tr><br><tr><br><td valign="top">消息队列</td><br><td valign="top">Kafka、RabbitMQ、ActiveMQ等</td><br><td valign="top"> </td><br><br></tr><br><tr><br><td valign="top">服务配置中心配置管理</td><br><td valign="top">SpringCloudConfig、Chef等</td><br><td valign="top"> </td><br><br></tr><br><tr><br><td valign="top">服务路由（API网关）</td><br><td valign="top">Zuul等</td><br><td valign="top"> </td><br><br></tr><br><tr><br><td valign="top">服务监控</td><br><td valign="top">Zabbix、Naggios、Metrics、Spectator等</td><br><td valign="top"> </td><br><br></tr><br><tr><br><td valign="top">全链路追踪</td><br><td valign="top">Zipkin、Brave、Dapper等</td><br><td valign="top"> </td><br><br></tr><br><tr><br><td valign="top">服务部署</td><br><td valign="top">Docker、OpenStack、Kubernetes等</td><br><td valign="top"> </td><br><br></tr><br><tr><br><td valign="top">数据流操作开发包</td><br><td valign="top">SpringCloud Stream</td><br><td valign="top"> </td><br><br></tr><br><tr><br><td valign="top">事件消息总线</td><br><td valign="top">Spring Cloud Bus</td><br><td valign="top"> </td><br><br></tr><br><br></tbody><br><br></table>
+
+<p> 8、Eureka和zookeeper都可以提供服务注册与发现的功能，请说说两个的区别？<br>    1）、Zookeeper保证了CP（C：一致性，P：分区容错性），Eureka保证了AP（A：高可用）<br>        （1）、当向注册中心查询服务列表时，我们可以容忍注册中心返回的是几分钟以前的信息，但不能容忍直接down掉不可用。也就是说，服务注册功能对高可用性要求比较高，但zk会出现这样一种情况，当master节点因为网络故障与其他节点失去联系时，剩余节点会重新选leader。问题在于，选取leader时间过长，30 ~ 120s，且选取期间zk集群都不可用，这样就会导致选取期间注册服务瘫痪。在云部署的环境下，因网络问题使得zk集群失去master节点是较大概率会发生的事，虽然服务能够恢复，但是漫长的选取时间导致的注册长期不可用是不能容忍的。<br>          （2）、Eureka保证了可用性，Eureka各个节点是平等的，几个节点挂掉不会影响正常节点的工作，剩余的节点仍然可以提供注册和查询服务。而Eureka的客户端向某个Eureka注册或发现是发生连接失败，则会自动切换到其他节点，只要有一台Eureka还在，就能保证注册服务可用，只是查到的信息可能不是最新的。除此之外，Eureka还有自我保护机制，如果在15分钟内超过85%的节点没有正常的心跳，那么Eureka就认为客户端与注册中心发生了网络故障，此时会出现以下几种情况：<br>           ①、Eureka不在从注册列表中移除因为长时间没有收到心跳而应该过期的服务。<br>           ②、Eureka仍然能够接受新服务的注册和查询请求，但是不会被同步到其他节点上（即保证当前节点仍然可用）</p>
+<pre><code>③、当网络稳定时，当前实例新的注册信息会被同步到其他节点。
+</code></pre><p> 因此，Eureka可以很好的应对因网络故障导致部分节点失去联系的情况，而不会像Zookeeper那样使整个微服务瘫痪。</p>
+
+          
         
       
     </div>
@@ -841,7 +870,7 @@ URL配置
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/07/27/SpringMVC工作原理/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/d99054cc.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -860,7 +889,7 @@ URL配置
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/27/SpringMVC工作原理/" itemprop="url">SpringMVC工作原理</a></h1>
+                <a class="post-title-link" href="/post/d99054cc.html" itemprop="url">SpringMVC工作原理</a></h1>
         
 
         <div class="post-meta">
@@ -912,19 +941,66 @@ URL配置
       
         
           
-          SpringMVC的工作原理图：
+            <p>SpringMVC的工作原理图：</p>
+<p><img src="http://pangguoming.com/blog/images/0dac8a8f-ac12-41fd-88c6-3ec5cc982903.jpg" alt=""></p>
+<h3 id="SpringMVC流程"><a href="#SpringMVC流程" class="headerlink" title="SpringMVC流程"></a>SpringMVC流程</h3><p>1、  用户发送请求至前端控制器DispatcherServlet。</p>
+<p>2、  DispatcherServlet收到请求调用HandlerMapping处理器映射器。</p>
+<p>3、  处理器映射器找到具体的处理器(可以根据xml配置、注解进行查找)，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet。</p>
+<p>4、  DispatcherServlet调用HandlerAdapter处理器适配器。</p>
+<p>5、  HandlerAdapter经过适配调用具体的处理器(Controller，也叫后端控制器)。</p>
+<p>6、  Controller执行完成返回ModelAndView。</p>
+<p>7、  HandlerAdapter将controller执行结果ModelAndView返回给DispatcherServlet。</p>
+<p>8、  DispatcherServlet将ModelAndView传给ViewReslover视图解析器。</p>
+<p>9、  ViewReslover解析后返回具体View。</p>
+<p>10、DispatcherServlet根据View进行渲染视图（即将模型数据填充至视图中）。</p>
+<p>11、 DispatcherServlet响应用户。</p>
+<h3 id="组件说明："><a href="#组件说明：" class="headerlink" title="组件说明："></a>组件说明：</h3><p>以下组件通常使用框架提供实现：</p>
+<p>DispatcherServlet：作为前端控制器，整个流程控制的中心，控制其它组件执行，统一调度，降低组件之间的耦合性，提高每个组件的扩展性。</p>
+<p>HandlerMapping：通过扩展处理器映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。 </p>
+<p>HandlAdapter：通过扩展处理器适配器，支持更多类型的处理器。</p>
+<p>ViewResolver：通过扩展视图解析器，支持更多类型的视图解析，例如：jsp、freemarker、pdf、excel等。</p>
+<p><strong>组件：</strong><br><strong>1、前端控制器DispatcherServlet（不需要工程师开发）,由框架提供</strong><br>作用：接收请求，响应结果，相当于转发器，中央处理器。有了dispatcherServlet减少了其它组件之间的耦合度。<br>用户请求到达前端控制器，它就相当于mvc模式中的c，dispatcherServlet是整个流程控制的中心，由它调用其它组件处理用户的请求，dispatcherServlet的存在降低了组件之间的耦合性。</p>
+<p><strong>2、处理器映射器HandlerMapping(不需要工程师开发),由框架提供</strong><br>作用：根据请求的url查找Handler<br>HandlerMapping负责根据用户请求找到Handler即处理器，springmvc提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。</p>
+<p><strong>3、处理器适配器HandlerAdapter</strong><br>作用：按照特定规则（HandlerAdapter要求的规则）去执行Handler<br>通过HandlerAdapter对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。</p>
+<p><strong>4、处理器Handler(需要工程师开发)</strong><br><strong>注意：编写Handler时按照HandlerAdapter的要求去做，这样适配器才可以去正确执行Handler</strong><br>Handler 是继DispatcherServlet前端控制器的后端控制器，在DispatcherServlet的控制下Handler对具体的用户请求进行处理。<br>由于Handler涉及到具体的用户业务请求，所以一般情况需要工程师根据业务需求开发Handler。</p>
+<p><strong>5、视图解析器View resolver(不需要工程师开发),由框架提供</strong><br>作用：进行视图解析，根据逻辑视图名解析成真正的视图（view）<br>View Resolver负责将处理结果生成View视图，View Resolver首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成View视图对象，最后对View进行渲染将处理结果通过页面展示给用户。 springmvc框架提供了很多的View视图类型，包括：jstlView、freemarkerView、pdfView等。<br>一般情况下需要通过页面标签或页面模版技术将模型数据通过页面展示给用户，需要由工程师根据业务需求开发具体的页面。</p>
+<p><strong>6、视图View(需要工程师开发jsp…)</strong><br>View是一个接口，实现类支持不同的View类型（jsp、freemarker、pdf…）</p>
+<p><strong>核心架构的具体流程步骤如下：</strong><br>1、首先用户发送请求——&gt;DispatcherServlet，前端控制器收到请求后自己不进行处理，而是委托给其他的解析器进行处理，作为统一访问点，进行全局的流程控制；<br>2、DispatcherServlet——&gt;HandlerMapping， HandlerMapping 将会把请求映射为HandlerExecutionChain 对象（包含一个Handler 处理器（页面控制器）对象、多个HandlerInterceptor 拦截器）对象，通过这种策略模式，很容易添加新的映射策略；<br>3、DispatcherServlet——&gt;HandlerAdapter，HandlerAdapter 将会把处理器包装为适配器，从而支持多种类型的处理器，即适配器设计模式的应用，从而很容易支持很多类型的处理器；<br>4、HandlerAdapter——&gt;处理器功能处理方法的调用，HandlerAdapter 将会根据适配的结果调用真正的处理器的功能处理方法，完成功能处理；并返回一个ModelAndView 对象（包含模型数据、逻辑视图名）；<br>5、ModelAndView的逻辑视图名——&gt; ViewResolver， ViewResolver 将把逻辑视图名解析为具体的View，通过这种策略模式，很容易更换其他视图技术；<br>6、View——&gt;渲染，View会根据传进来的Model模型数据进行渲染，此处的Model实际是一个Map数据结构，因此很容易支持其他视图技术；<br>7、返回控制权给DispatcherServlet，由DispatcherServlet返回响应给用户，到此一个流程结束。</p>
+<p>下边两个组件通常情况下需要开发：</p>
+<p>Handler：处理器，即后端控制器用controller表示。</p>
+<p>View：视图，即展示给用户的界面，视图中通常需要标签语言展示模型数据。</p>
+<p><strong>在将SpringMVC之前我们先来看一下什么是MVC模式</strong></p>
+<p>MVC：MVC是一种设计模式</p>
+<p>MVC的原理图：</p>
+<p><img src="http://pangguoming.com/blog/images/8b7b6655-b2c6-4e2a-a726-23d95687c861.png" alt=""></p>
+<p><strong>分析：</strong></p>
+<p>M-Model 模型（完成业务逻辑：有javaBean构成，service+dao+entity）</p>
+<p>V-View 视图（做界面的展示  jsp，html……）</p>
+<p>C-Controller 控制器（接收请求—&gt;调用模型—&gt;根据结果派发页面）</p>
+<p><strong>springMVC是什么：</strong> </p>
+<p><strong> </strong>springMVC是一个MVC的开源框架，springMVC=struts2+spring，springMVC就相当于是Struts2加上sring的整合，但是这里有一个疑惑就是，springMVC和spring是什么样的关系呢？这个在百度百科上有一个很好的解释：意思是说，springMVC是spring的一个后续产品，其实就是spring在原有基础上，又提供了web应用的MVC模块，可以简单的把springMVC理解为是spring的一个模块（类似AOP，IOC这样的模块），网络上经常会说springMVC和spring无缝集成，其实springMVC就是spring的一个子模块，所以根本不需要同spring进行整合。</p>
+<p><strong>SpringMVC的原理图：</strong></p>
+<p><strong><img src="http://pangguoming.com/blog/images/9434718d-bd27-49b9-8aab-673ff00e17db.png" alt=""></strong></p>
+<p><strong>看到这个图大家可能会有很多的疑惑，现在我们来看一下这个图的步骤：（可以对比MVC的原理图进行理解）</strong></p>
+<p>第一步:用户发起请求到前端控制器（DispatcherServlet）</p>
+<p>第二步：前端控制器请求处理器映射器（HandlerMappering）去查找处理器（Handle）：通过xml配置或者注解进行查找</p>
+<p>第三步：找到以后处理器映射器（HandlerMappering）像前端控制器返回执行链（HandlerExecutionChain）</p>
+<p>第四步：前端控制器（DispatcherServlet）调用处理器适配器（HandlerAdapter）去执行处理器（Handler）</p>
+<p>第五步：处理器适配器去执行Handler</p>
+<p>第六步：Handler执行完给处理器适配器返回ModelAndView</p>
+<p>第七步：处理器适配器向前端控制器返回ModelAndView</p>
+<p>第八步：前端控制器请求视图解析器（ViewResolver）去进行视图解析</p>
+<p>第九步：视图解析器像前端控制器返回View</p>
+<p>第十步：前端控制器对视图进行渲染</p>
+<p>第十一步：前端控制器向用户响应结果</p>
+<p><strong>看到这些步骤我相信大家很感觉非常的乱，这是正常的，但是这里主要是要大家理解springMVC中的几个组件：</strong></p>
+<p>前端控制器（DispatcherServlet）：接收请求，响应结果，相当于电脑的CPU。</p>
+<p>处理器映射器（HandlerMapping）：根据URL去查找处理器</p>
+<p>处理器（Handler）：（需要程序员去写代码处理逻辑的）</p>
+<p>处理器适配器（HandlerAdapter）：会把处理器包装成适配器，这样就可以支持多种类型的处理器，类比笔记本的适配器（适配器模式的应用）</p>
+<p>视图解析器（ViewResovler）：进行视图解析，多返回的字符串，进行处理，可以解析成对应的页面</p>
 
-SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。
-2、  DispatcherServlet收到请求调用HandlerMapping处理器映射器。
-3、  处理器映射器找到具体的处理器(可以根据xml配置、注解进行查找)，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/27/SpringMVC工作原理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -971,7 +1047,7 @@ SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/07/23/win7系统不能用telnet命令的两种解决方法/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/6fd35722.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -990,7 +1066,7 @@ SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/23/win7系统不能用telnet命令的两种解决方法/" itemprop="url">win7系统不能用telnet命令的两种解决方法</a></h1>
+                <a class="post-title-link" href="/post/6fd35722.html" itemprop="url">win7系统不能用telnet命令的两种解决方法</a></h1>
         
 
         <div class="post-meta">
@@ -1042,15 +1118,32 @@ SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。
       
         
           
-          电脑专业人员对telnet命令都不陌生了，Telnet当成一种通信协议，在日常工作中，经常面对网络问题的人都会用到telnet命令，因为简单有效，可以帮助更快的找出问题。要是在使用过程中碰到win7纯净版系统不能用telnet命令的问题怎么办呢？不要担心，为此小编给大家推荐win7系统不能用teln
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/23/win7系统不能用telnet命令的两种解决方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>电脑专业人员对telnet命令都不陌生了，Telnet当成一种通信协议，在日常工作中，经常面对网络问题的人都会用到telnet命令，因为简单有效，可以帮助更快的找出问题。要是在使用过程中碰到<a href="http://www.xitongcheng.com/chjb/win7/" target="_blank" rel="noopener"><strong>win7纯净版系统</strong></a>不能用telnet命令的问题怎么办呢？不要担心，为此小编给大家推荐win7系统不能用telnet命令的两种解决方法。</p>
+<p>解决方法1:</p>
+<p>1、 首先，我们打开控制面板；</p>
+<p><img src="http://img.xitongcheng.com/upload/2015/09/29/1038/144349431477565345240.jpg" alt="打开控制面板" title="打开控制面板"></p>
+<p>2、找到：程序-卸载程序，并点击进入；</p>
+<p><img src="http://img.xitongcheng.com/upload/2015/09/29/1038/144349431759716081530a.jpg" alt="点击进入" title="点击进入"></p>
+<p>3、 在：卸载或更改程序对话框里，左边，找到并点击：打开或关闭windows功能；</p>
+<p><img src="http://img.xitongcheng.com/upload/2015/09/29/1038/144349431836343323234.jpg" alt="点击：打开或关闭windows功能" title="点击：打开或关闭windows功能"></p>
+<p>4、在：打开或关闭windows功能对话框里，下拉，找到并打勾：telnet客户端，并按确定；</p>
+<p><img src="http://img.xitongcheng.com/upload/2015/09/29/1038/144349431971274721481.jpg" alt="按确定" title="按确定"></p>
+<p>5、 稍等片刻……就会安装完成，即返回上一层对话框，你全部都点关闭就可以了。</p>
+<p><img src="http://img.xitongcheng.com/upload/2015/09/29/1038/144349432354012081374.jpg" alt=" 稍等片刻……" title=" 稍等片刻……"></p>
+<p>解决方法2:</p>
+<p>1、 用telnet命令测试端口方法很简单。大家都可以学习一下！首先，打开：命令提示符，或者：点开始，然后输入：CMD再回车；</p>
+<p><img src="http://img.xitongcheng.com/upload/2015/09/29/1038/144349432394406657458d.jpg" alt="输入：CMD" title="输入：CMD"></p>
+<p>2、就可以正常测试命令了；</p>
+<p><img src="http://img.xitongcheng.com/upload/2015/09/29/1038/14434943257009313917d.jpg" alt="测试命令" title="测试命令"></p>
+<p>3、 我们先来测试一下，telnet 192.168.1.191，在不加端口的情况下，telnet 的默认端口是23，返回信息是：无法打开到主机的连接，而不是说：telnet 不是内部或外部命令，也不是可运行的程序或批处理文件。即表示命令是可以使用的了；</p>
+<p><img src="http://img.xitongcheng.com/upload/2015/09/29/1038/1443494326462625346751.jpg" alt="输入telnet 192.168.1.191" title="输入telnet 192.168.1.191"></p>
+<p>4、我们再来测试命令：telnet 192.168.1.191 80，这次我们加了端口80，光标一闪，就到了这个界面，即表示连接192.168.1.191的80端口是正常的；</p>
+<p><img src="http://img.xitongcheng.com/upload/2015/09/29/1038/144349432676905067591c.jpg" alt="测试命令：telnet 192.168.1.191 80" title="测试命令：telnet 192.168.1.191 80"></p>
+<p>5、 更多的telnet命令，我们可以用“帮助”来看看，输入 ：telnet /?。</p>
+<p><img src="http://img.xitongcheng.com/upload/2015/09/29/1038/1443494327713130798049.jpg" alt="输入 ：telnet /?" title="输入 ：telnet /?"></p>
+<p>以上教程帮助大家解决win7系统不能用telnet命令的问题，大家可以选择一款合适的方法进行处理，设置之后telnet命令就恢复正常了。</p>
+
+          
         
       
     </div>
@@ -1097,7 +1190,7 @@ SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/07/23/Java NIO框架Netty教程（一） – Hello Netty/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/b77d46d8.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1116,7 +1209,7 @@ SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/23/Java NIO框架Netty教程（一） – Hello Netty/" itemprop="url">Java NIO框架Netty教程（一） – Hello Netty</a></h1>
+                <a class="post-title-link" href="/post/b77d46d8.html" itemprop="url">Java NIO框架Netty教程（一） – Hello Netty</a></h1>
         
 
         <div class="post-meta">
@@ -1168,16 +1261,12 @@ SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。
       
         
           
-          先啰嗦两句，如果你还不知道Netty是做什么的能做什么。那可以先简单的搜索了解一下。我只能说Netty是一个NIO的框架，可以用于开发分布式的Java程序。具体能做什么，各位可以尽量发挥想象。技术，是服务于人而不是局限住人的。
-如果你已经万事具备，那么我们先从一段代码开始。程序员们习惯的上手第一步，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/23/Java NIO框架Netty教程（一） – Hello Netty/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>先啰嗦两句，如果你还不知道Netty是做什么的能做什么。那可以先简单的搜索了解一下。我只能说Netty是一个NIO的框架，可以用于开发分布式的Java程序。具体能做什么，各位可以尽量发挥想象。技术，是服务于人而不是局限住人的。</p>
+<p>如果你已经万事具备，那么我们先从一段代码开始。程序员们习惯的上手第一步，自然是”Hello world”，不过Netty官网的例子却偏偏抛弃了”Hello world”。那我们就自己写一个最简单的”Hello world”的例子，作为上手。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"> 1 /** </span><br><span class="line"> 2  * Netty 服务端代码 </span><br><span class="line"> 3  *  </span><br><span class="line"> 4  * @author lihzh </span><br><span class="line"> 5  * @alia OneCoder </span><br><span class="line"> 6  * @blog http://www.coderli.com </span><br><span class="line"> 7  */  </span><br><span class="line"> 8 public class HelloServer &#123;  </span><br><span class="line"> 9   </span><br><span class="line">10     public static void main(String args[]) &#123;  </span><br><span class="line">11         // Server服务启动器  </span><br><span class="line">12         ServerBootstrap bootstrap = new ServerBootstrap(  </span><br><span class="line">13                 new NioServerSocketChannelFactory(  </span><br><span class="line">14                         Executors.newCachedThreadPool(),  </span><br><span class="line">15                         Executors.newCachedThreadPool()));  </span><br><span class="line">16         // 设置一个处理客户端消息和各种消息事件的类(Handler)  </span><br><span class="line">17         bootstrap  </span><br><span class="line">18                 .setPipelineFactory(new ChannelPipelineFactory() &#123;  </span><br><span class="line">19                     @Override  </span><br><span class="line">20                     public ChannelPipeline getPipeline()  </span><br><span class="line">21                             throws Exception &#123;  </span><br><span class="line">22                         return Channels  </span><br><span class="line">23                                 .pipeline(new HelloServerHandler());  </span><br><span class="line">24                     &#125;  </span><br><span class="line">25                 &#125;);  </span><br><span class="line">26         // 开放8000端口供客户端访问。  </span><br><span class="line">27         bootstrap.bind(new InetSocketAddress(8000));  </span><br><span class="line">28     &#125;  </span><br><span class="line">29   </span><br><span class="line">30     private static class HelloServerHandler extends  </span><br><span class="line">31             SimpleChannelHandler &#123;  </span><br><span class="line">32   </span><br><span class="line">33         /** </span><br><span class="line">34          * 当有客户端绑定到服务端的时候触发，打印&quot;Hello world, I&apos;m server.&quot; </span><br><span class="line">35          *  </span><br><span class="line">36          * @alia OneCoder </span><br><span class="line">37          * @author lihzh </span><br><span class="line">38          */  </span><br><span class="line">39         @Override  </span><br><span class="line">40         public void channelConnected(  </span><br><span class="line">41                 ChannelHandlerContext ctx,  </span><br><span class="line">42                 ChannelStateEvent e) &#123;  </span><br><span class="line">43             System.out.println(&quot;Hello world, I&apos;m server.&quot;);  </span><br><span class="line">44         &#125;  </span><br><span class="line">45     &#125;  </span><br><span class="line">46 &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">/** </span><br><span class="line"> * Netty 客户端代码 </span><br><span class="line"> *  </span><br><span class="line"> * @author lihzh </span><br><span class="line"> * @alia OneCoder </span><br><span class="line"> * @blog http://www.coderli.com </span><br><span class="line"> */  </span><br><span class="line">public class HelloClient &#123;  </span><br><span class="line"></span><br><span class="line">    public static void main(String args[]) &#123;  </span><br><span class="line">        // Client服务启动器  </span><br><span class="line">        ClientBootstrap bootstrap = new ClientBootstrap(  </span><br><span class="line">                new NioClientSocketChannelFactory(  </span><br><span class="line">                        Executors.newCachedThreadPool(),  </span><br><span class="line">                        Executors.newCachedThreadPool()));  </span><br><span class="line">        // 设置一个处理服务端消息和各种消息事件的类(Handler)  </span><br><span class="line">        bootstrap.setPipelineFactory(new ChannelPipelineFactory() &#123;  </span><br><span class="line">            @Override  </span><br><span class="line">            public ChannelPipeline getPipeline() throws Exception &#123;  </span><br><span class="line">                return Channels.pipeline(new HelloClientHandler());  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;);  </span><br><span class="line">        // 连接到本地的8000端口的服务端  </span><br><span class="line">        bootstrap.connect(new InetSocketAddress(  </span><br><span class="line">                &quot;127.0.0.1&quot;, 8000));  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    private static class HelloClientHandler extends SimpleChannelHandler &#123;  </span><br><span class="line"></span><br><span class="line">        /** </span><br><span class="line">         * 当绑定到服务端的时候触发，打印&quot;Hello world, I&apos;m client.&quot; </span><br><span class="line">         *  </span><br><span class="line">         * @alia OneCoder </span><br><span class="line">         * @author lihzh </span><br><span class="line">         */  </span><br><span class="line">        @Override  </span><br><span class="line">        public void channelConnected(ChannelHandlerContext ctx,  </span><br><span class="line">                ChannelStateEvent e) &#123;  </span><br><span class="line">            System.out.println(&quot;Hello world, I&apos;m client.&quot;);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="dp-highlighter bg_java"><br><div class="bar"><br><div class="tools"><strong> </strong><br><div class="tools"><br><br>既然是分布式的，自然要分多个服务。Netty中，需要区分Server和Client服务。所有的Client都是绑定在Server上的，他们之间是不能通过Netty直接通信的。（自己采用的其他手段，不包括在内。）。白话一下这个通信过程，Server端开放端口，供Client连接，Client发起请求，连接到Server指定的端口，完成绑定。随后便可自由通信。其实就是普通Socket连接通信的过程。<br><br>Netty框架是基于事件机制的，简单说，就是发生什么事，就找相关处理方法。就跟着火了找119，抢劫了找110一个道理。所以，这里，我们处理的是当客户端和服务端完成连接以后的这个事件。什么时候完成的连接，Netty知道，他告诉我了，我就负责处理。这就是框架的作用。Netty，提供的事件还有很多，以后会慢慢的接触和介绍。<br><br>你应该已经可以上手了：）<br></div></div></div></div>
+          
         
       
     </div>
@@ -1224,7 +1313,7 @@ SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/07/23/基于JT-T808协议的车辆监控平台架构方案/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/45e44734.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1243,7 +1332,7 @@ SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/23/基于JT-T808协议的车辆监控平台架构方案/" itemprop="url">基于JT/T808协议的车辆监控平台架构方案</a></h1>
+                <a class="post-title-link" href="/post/45e44734.html" itemprop="url">基于JT/T808协议的车辆监控平台架构方案</a></h1>
         
 
         <div class="post-meta">
@@ -1295,17 +1384,30 @@ SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。
       
         
           
+            <p><img src="http://pangguoming.com/blog/images/0fd0dd97-bbde-45c4-8236-edeb5ac39745.jpg" alt=""></p>
+<p>技术支持QQ：78772895</p>
+<p>1、接入网关应用采用mina/netty+spring架构，独立于其他应用，主要负责维护接入终端的tcp链接、上行以及下行消息的解码、编码、流量控制，黑白名单等安全控制，网关同时支持交通部JT/T808-2011、JT/T808-2013两个版本全部的808协议，网关应用提供二次开发接口，支持协议扩展而不需要改动任何原有代码。接入网关采用json消息通过MQ消息队列与业务平台进行交互，支持ActiveMQ和RabbitMQ，能够无缝接入各种异构系统。</p>
+<pre><code>本网关应用已历经并通过多次交通部部标的检测，性能稳定，适用于物联网（车联网）领域应用，特别是基于交通部808协议或者其扩展协议的智能终端监控平台，如车辆GPS定位监控平台。经测试在普通pc机上，单个网关应用至少可支持同时1w以上终端同时在线，具备至少600wGPS数据/小时的数据处理能力（见附件性能测试报告）。
+</code></pre><p>2、消息处理应用，采用spring+mysql+redis+mongoDB框架，是基于事件驱动的责任链设计模式处理终端上行消息、批量存储消息、gps纠偏、发布终端重要消息（告警，上下线等）等平台业务处理，提供消息处理二次开发接口而不需要改动任何原有代码，实现个性格业务处理能力。</p>
+<p>3、平台接口层是基于spring-boot的微服务架构，底层封装了基于元数据的几大高度抽象的restful风格接口（包括CRUD接口、复杂查询接口、下发消息接口等个性化定制接口），业务系统无需再单独开发数据库相关操作的代码（增加新的数据库表只需要建立entity映射，即可实现增上改查等功能），只需关注业务逻辑开发即可。同时模块也提供提供二次开发接口，而不需要改动任何原有代码，实现个性格业务处理以及自定义接口能力。</p>
+<p>4、展现层web端对JQuery EasyUI进行了二次封装，提供部分js常用组件，对于普通的CRUD操作只需按照模板开发相关的界面即可完美展现,web端同时集成了WDR对终端上下线、告警等重要信息实时推送提醒消息。</p>
+<p>5、框架集成了redis缓存，通过简单的注解就能使用缓存；</p>
+<p>6、在业务功能目前实现了：</p>
+<p>   a、支持JT/T808协议的全部指令，如拍照、文本下发、监听、点名等；</p>
+<p>   b、平台告警设置：原地设防、围栏告警（圆形、矩形、多边形）、超速告警；</p>
+<p>   c、车辆监控：区域查车、车辆上下线提示、告警实时提示、车辆实时跟踪、历史轨迹、油耗、里程等；</p>
+<p>   d、车辆管理：车辆信息维护、多媒体信息、上行消息、下行消息、告警查询等；</p>
+<p>   e、账号维护：企业注册、企业信息维护、修改密码等；</p>
+<p>   f、各种统计报表。</p>
+<p>7、接口层同时也提供了开放平台，开放平台遵循标准oauth2.0，提供几大基于元数据的高度抽象的restful风格的增删改查数据接口以及部分个性化定制的业务接口；开放平台支持接口调用频率控制（基于令牌桶算法），支持ip黑白名单、接口调用权限等功能。</p>
+<p>网关程序下载地址：<br><a href="http://download.csdn.net/detail/gaoshbo/9340739" target="_blank" rel="noopener">http://download.csdn.net/detail/gaoshbo/9340739</a></p>
+<p>平台体验网址：</p>
+<p><a href="http://elink.legaoyi.com/" target="_blank" rel="noopener">http://elink.legaoyi.com</a>，登陆用户：test007，密码：123456</p>
+<p>分布式高可用高并发平台见：</p>
+<p><a href="http://670624517.iteye.com/blog/2389492" target="_blank" rel="noopener">http://670624517.iteye.com/blog/2389492</a></p>
+<p><img src="http://pangguoming.com/blog/images/bc2c6e13-53c4-4f9c-820a-8441fff802a4.jpg" alt=""></p>
+
           
-技术支持QQ：78772895
-1、接入网关应用采用mina/netty+spring架构，独立于其他应用，主要负责维护接入终端的tcp链接、上行以及下行消息的解码、编码、流量控制，黑白名单等安全控制，网关同时支持交通部JT/T808-2011、JT/T808-2013两个版本全部的808协议，网
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/23/基于JT-T808协议的车辆监控平台架构方案/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1352,7 +1454,7 @@ SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/07/23/分布式高并发物联网（车联网-JT808协议）平台架构方案/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/6d4ef9e7.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1371,7 +1473,7 @@ SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/23/分布式高并发物联网（车联网-JT808协议）平台架构方案/" itemprop="url">分布式高并发物联网（车联网-JT808协议）平台架构方案</a></h1>
+                <a class="post-title-link" href="/post/6d4ef9e7.html" itemprop="url">分布式高并发物联网（车联网-JT808协议）平台架构方案</a></h1>
         
 
         <div class="post-meta">
@@ -1423,16 +1525,30 @@ SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。
       
         
           
-          技术支持QQ：78772895
-1、车载终端网关采用mina/netty+spring架构，独立于其他应用，主要负责维护接入终端的tcp链接、上行以及下行消息的解码、编码、流量控制，黑白名单等安全控制，网关同时支持交通部JT/T808-2011、JT/T808-2013两个版本全部的808协议，网关
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/23/分布式高并发物联网（车联网-JT808协议）平台架构方案/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>技术支持QQ：<strong>78772895</strong></p>
+<p>1、车载终端网关采用mina/netty+spring架构，独立于其他应用，主要负责维护接入终端的tcp链接、上行以及下行消息的解码、编码、流量控制，黑白名单等安全控制，网关同时支持交通部JT/T808-2011、JT/T808-2013两个版本全部的808协议，网关应用提供二次开发接口，支持以插件形式协议扩展而不需要改动任何原有代码。接入网关采用json消息通过MQ消息队列与业务平台进行交互，支持ActiveMQ和RabbitMQ，能够无缝接入各种异构系统。</p>
+<p>本网关应用已历经并通过多次交通部部标的检测，性能稳定，适用于物联网（车联网）领域应用，特别是基于交通部808协议或者其扩展协议的智能终端监控平台，如车辆GPS定位监控平台。经测试在普通pc机上，单个网关应用至少可支持同时1w以上终端同时在线，具备至少600wGPS数据/小时的数据处理能力（见附件性能测试报告）。</p>
+<p>本网关可水平扩展成支持高可用高并发的分布式架构</p>
+<p>2、上行消息处理服务，采用spring+mysql+redis+mongoDB框架，是基于事件驱动的责任链设计模式处理终端上行消息、批量存储消息、发布终端重要消息（告警，上下线等）等平台业务处理，提供以插件形式消息处理二次开发接口而不需要改动任何原有代码，实现个性格业务处理能力。本服务可水平扩展成支持高可用高并发的分布式架构</p>
+<p>3、平台服务层是基于spring-boot的微服务架构，同时集成了服务注册中心，接口网关，支持高并发高可用的分布式架构；底层封装了基于元数据的几大高度抽象的restful风格接口（包括CRUD接口、复杂查询接口、下发消息接口等个性化定制接口），业务系统无需再单独开发数据库相关操作的代码（增加新的数据库表只需要建立entity映射，即可实现增上改查等功能），只需关注业务逻辑开发即可。同时模块也提供提供二次开发接口，而不需要改动任何原有代码，实现个性格业务处理以及自定义接口能力。</p>
+<p>4、展现层web端对JQuery EasyUI进行了二次封装，提供部分js常用组件，对于普通的CRUD操作只需按照模板开发相关的界面即可完美展现,web端同时集成了WDR对终端上下线、告警等重要信息实时推送提醒消息。</p>
+<p>5、框架集成了redis缓存，通过简单的注解就能使用缓存；</p>
+<p>6、在业务功能目前实现了：</p>
+<p>   a、支持JT/T808协议的全部指令，如拍照、文本下发、监听、点名等；</p>
+<p>   b、平台告警设置：原地设防、围栏告警（圆形、矩形、多边形）、超速告警；</p>
+<p>   c、车辆监控：区域查车、车辆上下线提示、告警实时提示、车辆实时跟踪、历史轨迹、油耗、里程等；</p>
+<p>   d、车辆管理：车辆信息维护、多媒体信息、上行消息、下行消息、告警查询等；</p>
+<p>   e、账号维护：企业注册、企业信息维护、修改密码等；</p>
+<p>   f、各种统计报表。</p>
+<p>7、开放平台遵循标准oauth2.0，提供几大基于元数据的高度抽象的restful风格的增删改查数据接口以及部分个性化定制的业务接口；开放平台支持接口调用频率控制（基于令牌桶算法），支持ip黑白名单、接口调用权限等功能。</p>
+<p>试用版网关程序下载地址：</p>
+<p><strong><a href="http://download.csdn.net/detail/gaoshbo/9340739" target="_blank" rel="noopener">http://download.csdn.net/detail/gaoshbo/9340739</a> **</strong>，需要正版可联系QQ:78772895**</p>
+<p>平台体验网址：</p>
+<p><a href="http://elink.legaoyi.com/" target="_blank" rel="noopener"><strong>http://elink.legaoyi.com</strong></a><strong>，登陆用户：test007，密码：123456</strong></p>
+<p>**  </p>
+<p> **</p>
+
+          
         
       
     </div>
@@ -1479,7 +1595,7 @@ SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/07/23/Netty和Tomcat的区别、性能对比/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/f29275a5.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1498,7 +1614,7 @@ SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/23/Netty和Tomcat的区别、性能对比/" itemprop="url">Netty和Tomcat的区别、性能对比</a></h1>
+                <a class="post-title-link" href="/post/f29275a5.html" itemprop="url">Netty和Tomcat的区别、性能对比</a></h1>
         
 
         <div class="post-meta">
@@ -1550,16 +1666,26 @@ SpringMVC流程1、  用户发送请求至前端控制器DispatcherServlet。
       
         
           
-          一、Netty和Tomcat有什么区别？ 
-Netty和Tomcat最大的区别就在于通信协议，Tomcat是基于Http协议的，他的实质是一个基于http协议的web容器，但是Netty不一样，他能通过编程自定义各种协议，因为netty能够通过codec自己来编码/解码字节流，完成类似redis访问
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/23/Netty和Tomcat的区别、性能对比/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>一、Netty和Tomcat有什么区别？ </p>
+<p>Netty和Tomcat最大的区别就在于通信协议，Tomcat是基于Http协议的，他的实质是一个基于http协议的web容器，但是Netty不一样，他能通过编程自定义各种协议，因为netty能够通过codec自己来编码/解码字节流，完成类似redis访问的功能，这就是netty和tomcat最大的不同。</p>
+<p>有人说netty的性能就一定比tomcat性能高，其实不然，tomcat从6.x开始就支持了nio模式，并且后续还有arp模式——一种通过jni调用apache网络库的模式，相比于旧的bio模式，并发性能得到了很大提高，特别是arp模式，而netty是否比tomcat性能更高，则要取决于netty程序作者的技术实力了。<br>为什么Netty受欢迎？</p>
+<p>netty是一款收到大公司青睐的框架，在我看来，netty能够受到青睐的原因有三：<br>并发高<br>传输快<br>封装好<br>Netty为什么并发高 </p>
+<p>Netty是一款基于NIO（Nonblocking I/O，非阻塞IO）开发的网络通信框架，对比于BIO（Blocking I/O，阻塞IO），他的并发性能得到了很大提高。</p>
+<p>NIO 2.0里终于有AIO了，Linux上用AIO，Windows上用IOCP，都支持了概念上的最后一种IOasynchronous I/O</p>
+<ol>
+<li>就IO而言：概念上有5中模型：blocking I/O，nonblocking I/O，I/O multiplexing (select and poll)，signal driven I/O (SIGIO)，asynchronous I/O (the POSIX aio_functions)。 </li>
+<li>然后呢 不同的操作系统对上述模型支持不同: unix支持io多路复用，不同系统叫法不同 :freebsd里面叫 kqueue；linux 是epoll。而windows: 2000的时候就诞生了IOCP支持最后一种异步I/O </li>
+<li>java是一种跨平台语言，为了支持异步IO,诞生了nio,Java1.4引入的NIO 1.0是基于I/O复用的。在各个平台上会选择不同的复用方式。Linux用的epoll，BSD上用kqueue，Windows上应该是重叠I/O（肯定不是IOCP）</li>
+</ol>
+<p>但是nio直接使用比较难用，所以有了mina，netty这些针对网络io部分（tcp/udp-传输层）的封装（nio也有非网络io部分），为了使nio更易用。<br>http是应用层的协议。<br>servlet3.0则是另外一种东西，不是对协议的封装，javaee6众多规范中的一个，但凡javaee6的实现（或者像tomcat这种web容器部分的实现），都会支持servlet3.0，servlet理论上可以支持多种应用层协议（不单单只是http），而servlet3.0以后提供的异步特性与javase提供的nio或aio无直接关系，就是使用bio一样可以实现servlet3.0中提供的异步特性。<br>异步只是一种概念，异步与否要看，上层使用的异步，而支持的下层完全可能是阻塞的。</p>
+<ul>
+<li>tomcat就是针对http层的，所以我建议http还是选择tomcat(或者其他成熟的http-server)，并不是说netty不好，而是你的选择问题。</li>
+<li>netty是一个网络组件，tcp,udp,http都可以弄，但是官方文档都是些hello wolrd级别的。如果你非常了解http结构，完全可以基于netty搞出一个比tomcat牛的http server。如果做tcp开发，netty不二之选！</li>
+</ul>
+<p>现在高并发分布式网站架构一般采用nginx（前端负载均衡）+ Netty/Tomcat（HTTP）</p>
+<p>Netty是基于Java NIO开发的，而Tomcat是Apache下的针对HTTP的服务器项目，前者更像一个中间件框架，后者更像一个工具</p>
+
+          
         
       
     </div>
@@ -1622,105 +1748,108 @@ Netty和Tomcat最大的区别就在于通信协议，Tomcat是基于Http协议�
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
-            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+
           
-            <p class="site-author-name" itemprop="name">庞国明</p>
-            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives">
-            
-                <span class="site-state-item-count">420</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">267</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>GitHub</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
-                  
-                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -1737,12 +1866,9 @@ Netty和Tomcat最大的区别就在于通信协议，Tomcat是基于Http协议�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">庞国明</span>
 
@@ -1750,11 +1876,17 @@ Netty和Tomcat最大的区别就在于通信协议，Tomcat是基于Http协议�
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
@@ -1774,6 +1906,8 @@ Netty和Tomcat最大的区别就在于通信协议，Tomcat是基于Http协议�
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -1808,53 +1942,61 @@ Netty和Tomcat最大的区别就在于通信协议，Tomcat是基于Http协议�
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
 
-
-
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1880,6 +2022,23 @@ Netty和Tomcat最大的区别就在于通信协议，Tomcat是基于Http协议�
 
   
 
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
 
 
 
@@ -2209,11 +2368,27 @@ Netty和Tomcat最大的区别就在于通信协议，Tomcat是基于Http协议�
 
 
 
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
 
   
 
   
 
+  
+
+  
   
 
   

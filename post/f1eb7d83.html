@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JSP,EL," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="EL 全名为Expression Language EL 语法很简单，它最大的特点就是使用上很方便。接下来介绍EL主要的语法结构： ${sessionScope.user.sex} 所有EL都是以${为起始、以}为结尾的。上述EL范例的意思是：从Session的范围中，取得 用户的性别。假若依照之前JSP Scriptlet的写法如下： User user =(User)session.getAt">
+<meta name="keywords" content="JSP,EL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSP 中EL表达式用法详解">
+<meta property="og:url" content="http://pangguoming.com/post/f1eb7d83.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="EL 全名为Expression Language EL 语法很简单，它最大的特点就是使用上很方便。接下来介绍EL主要的语法结构： ${sessionScope.user.sex} 所有EL都是以${为起始、以}为结尾的。上述EL范例的意思是：从Session的范围中，取得 用户的性别。假若依照之前JSP Scriptlet的写法如下： User user =(User)session.getAt">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-10T03:30:55.719Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSP 中EL表达式用法详解">
+<meta name="twitter:description" content="EL 全名为Expression Language EL 语法很简单，它最大的特点就是使用上很方便。接下来介绍EL主要的语法结构： ${sessionScope.user.sex} 所有EL都是以${为起始、以}为结尾的。上述EL范例的意思是：从Session的范围中，取得 用户的性别。假若依照之前JSP Scriptlet的写法如下： User user =(User)session.getAt">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/post/f1eb7d83.html"/>
+
+
+
+
+
+  <title>JSP 中EL表达式用法详解 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/f1eb7d83.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JSP 中EL表达式用法详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-12T12:24:00+08:00">
+                2017-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/f1eb7d83.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/post/f1eb7d83.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>EL 全名为Expression Language</p>
+<p>EL 语法很简单，它最大的特点就是使用上很方便。接下来介绍EL主要的语法结构：</p>
+<p>${sessionScope.user.sex}</p>
+<p>所有EL都是以${为起始、以}为结尾的。上述EL范例的意思是：从Session的范围中，取得</p>
+<p>用户的性别。假若依照之前JSP Scriptlet的写法如下：</p>
+<p>User user =(User)session.getAttribute(“user”);</p>
+<p>String sex =user.getSex( );</p>
+<p>两者相比较之下，可以发现EL 的语法比传统JSP Scriptlet 更为方便、简洁。</p>
+<p><strong>.与 [ ] 运算符</strong></p>
+<p>EL 提供 . 和 [ ] 两种运算符来导航数据。下列两者所代表的意思是一样的：</p>
+<p>${sessionScope.user.sex}等于${sessionScope.user[“sex”]}</p>
+<p><strong>. </strong>和 [ ] 也可以同时混合使用，如下：</p>
+<p>${sessionScope.shoppingCart[0].price}</p>
+<p>回传结果为shoppingCart中第一项物品的价格。</p>
+<p>不过，以下两种情况，两者会有差异：</p>
+<p>(1) 当要存取的属性名称中包含一些特殊字符，如. 或 – 等并非字母或数字的符号，就一定要使用 [ ]，</p>
+<p>例如：${user.My-Name }</p>
+<p>上述是不正确的方式，应当改为：${user[“My-Name”] }</p>
+<p>(2) 我们来考虑下列情况：</p>
+<p>${sessionScope.user[data]}</p>
+<p>此时，data 是一个变量，假若data的值为”sex”时，那上述的例子等于${sessionScope.user.sex}；</p>
+<p>假若data 的值为”name”时，它就等于${sessionScope.user.name}。</p>
+<p>因此，如果要动态取值时，就可以用上述的方法来做，但<strong>. </strong>无法做到动态取值。</p>
+<p> <strong>EL 变量</strong></p>
+<p>EL 存取变量数据的方法很简单，例如：${username}。它的意思是取出某一范围中名称为username的变量。</p>
+<p>因为我们并没有指定哪一个范围的username，所以它的默认值会先从Page 范围找，假如找不到，</p>
+<p>再依序到Request、Session、Application范围。假如途中找到username，就直接回传，不再继续找下去，</p>
+<p>但是假如全部的范围都没有找到时，就回传null，当然EL表达式还会做出优化，页面上显示空白，而不是打印输出NULL。</p>
+<table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="top"><br><br>属性范围（jstl名称）<br><br></td><br><td valign="top"><br><br>EL中的名称<br><br></td><br></tr><br><tr><br><td valign="top"><br><br>Page<br><br></td><br><td valign="top"><br><br>PageScope<br><br></td><br></tr><br><tr><br><td valign="top"><br><br>Request<br><br></td><br><td valign="top"><br><br>RequestScope<br><br></td><br></tr><br><tr><br><td valign="top"><br><br>Session<br><br></td><br><td valign="top"><br><br>SessionScope<br><br></td><br></tr><br><tr><br><td valign="top"><br><br>Application<br><br></td><br><td valign="top"><br><br>ApplicationScope<br><br></td><br></tr><br></tbody><br></table>
+
+<p>我们也可以指定要取出哪一个范围的变量：</p>
+<table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="top"><br><br>范例<br><br></td><br><td valign="top"><br><br>说明<br><br></td><br></tr><br><tr><br><td valign="top"><br><br>${pageScope.username}<br><br></td><br><td valign="top"><br><br>取出Page范围的username变量<br><br></td><br></tr><br><tr><br><td valign="top"><br><br>${requestScope.username}<br><br></td><br><td valign="top"><br><br>取出Request范围的username变量<br><br></td><br></tr><br><tr><br><td valign="top"><br><br>${sessionScope.username}<br><br></td><br><td valign="top"><br><br>取出Session范围的username变量<br><br></td><br></tr><br><tr><br><td valign="top"><br><br>${applicationScope.username}<br><br></td><br><td valign="top"><br><br>取出Application范围的username变量<br><br></td><br></tr><br></tbody><br></table>
+
+<p>其中，pageScope、requestScope、sessionScope和applicationScope都是EL 的隐含对象，</p>
+<p>由它们的名称可以很容易猜出它们所代表的意思，</p>
+<p>例如：${sessionScope.username}是取出Session范围的username 变量。这种写法是不是比之前JSP 的写法：</p>
+<p>String username =(String) session.getAttribute(“username”);容易、简洁许多.</p>
+<p><strong>自动转变类型</strong></p>
+<p>EL 除了提供方便存取变量的语法之外，它另外一个方便的功能就是：自动转变类型，我们来看下面这个范例：</p>
+<p>${param.count + 20}</p>
+<p>假若窗体传来count的值为10时，那么上面的结果为30。之前没接触过JSP 的读者可能会认为上面的例子是理所当然的，</p>
+<p>但是在JSP 1.2 之中不能这样做，原因是从窗体所传来的值，它们的类型一律是String，所以当你接收之后，必须再将它转为其他类型，</p>
+<p>如：int、float 等等，然后才能执行一些数学运算，下面是之前的做法：</p>
+<p>String str_count =request.getParameter(“count”);</p>
+<p>int count =Integer.parseInt(str_count);</p>
+<p>count = count + 20;<br>所以，注意不要和java的语法（当字符串和数字用“+”链接时会把数字转换为字符串）搞混淆喽。</p>
+<p>**  </p>
+<p>**</p>
+<p><strong>EL 隐含对象</strong></p>
+<p>JSP有9个隐含对象，而EL也有自己的隐含对象。EL隐含对象总共有11 个</p>
+<table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="top"><br><br>隐含对象<br><br></td><br><td valign="top"><br><br>类型<br><br></td><br><td valign="top"><br><br>说明<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>PageContext<br><br></td><br><td valign="top"><br><br>javax.servlet.ServletContext<br><br></td><br><td valign="top"><br><br>表示此JSP的PageContext<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>PageScope<br><br></td><br><td valign="top"><br><br>java.util.Map<br><br></td><br><td valign="top"><br><br>取得Page范围的属性名称所对应的值<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>RequestScope<br><br></td><br><td valign="top"><br><br>java.util.Map<br><br></td><br><td valign="top"><br><br>取得Request范围的属性名称所对应的值<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>sessionScope<br><br></td><br><td valign="top"><br><br>java.util.Map<br><br></td><br><td valign="top"><br><br>取得Session范围的属性名称所对应的值<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>applicationScope<br><br></td><br><td valign="top"><br><br>java.util.Map<br><br></td><br><td valign="top"><br><br>取得Application范围的属性名称所对应的值<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>param<br><br></td><br><td valign="top"><br><br>java.util.Map<br><br></td><br><td valign="top"><br><br>如同ServletRequest.getParameter(String name)。回传String类型的值<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>paramValues<br><br></td><br><td valign="top"><br><br>java.util.Map<br><br></td><br><td valign="top"><br><br>如同ServletRequest.getParameterValues(String name)。回传String[]类型的值<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>header<br><br></td><br><td valign="top"><br><br>java.util.Map<br><br></td><br><td valign="top"><br><br>如同ServletRequest.getHeader(String name)。回传String类型的值<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>headerValues<br><br></td><br><td valign="top"><br><br>java.util.Map<br><br></td><br><td valign="top"><br><br>如同ServletRequest.getHeaders(String name)。回传String[]类型的值<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>cookie<br><br></td><br><td valign="top"><br><br>java.util.Map<br><br></td><br><td valign="top"><br><br>如同HttpServletRequest.getCookies()<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>initParam<br><br></td><br><td valign="top"><br><br>java.util.Map<br><br></td><br><td valign="top"><br><br>如同ServletContext.getInitParameter(String name)。回传String类型的值<br><br></td><br><br></tr><br><br></tbody><br><br></table>
+
+<hr>
+<p><strong>不过有一点要注意的是如果你要用EL输出一个常量的话，字符串要加双引号，不然的话EL会默认把你认为的常量当做一个变量来处理，</strong></p>
+<p><strong>这时如果这个变量在4个声明范围不存在的话会输出空，如果存在则输出该变量的值。</strong></p>
+<p>属性(Attribute)与范围(Scope)</p>
+<p>与范围有关的EL 隐含对象包含以下四个：pageScope、requestScope、sessionScope 和</p>
+<p>applicationScope，它们基本上就和JSP的pageContext、request、session和application一样，所以笔者在这里只稍略说明。</p>
+<p>不过必须注意的是，这四个隐含对象只能用来取得范围属性值，即JSP中的getAttribute(String name)，却不能取得其他相关信息，</p>
+<p>例如：JSP中的request对象除可以存取属性之外，还可以取得用户的请求参数或表头信息等等。</p>
+<p>但是在EL中，它就只能单纯用来取得对应范围的属性值，</p>
+<p>例如：我们要在session 中储存一个属性，它的名称为username，在JSP 中使用session.getAttribute(“username”)来取得username 的值，</p>
+<p> 但是在EL中，则是使用${sessionScope.username}来取得其值的。</p>
+<p>cookie</p>
+<p>所谓的cookie是一个小小的文本文件，它是以key、value的方式将Session Tracking的内容记录在这个文本文件内，这个文本文件通常存在于浏览器的暂存区内。</p>
+<p>JSTL并没有提供设定cookie的动作，因为这个动作通常都是后端开发者必须去做的事情，而不是交给前端的开发者。</p>
+<p>假若我们在cookie 中设定一个名称为userCountry的值，那么可以使用${cookie.userCountry}来取得它。</p>
+<p>header 和headerValues</p>
+<p>header 储存用户浏览器和服务端用来沟通的数据，当用户要求服务端的网页时，会送出一个记载要求信息的标头文件，例如：用户浏览器的版本、用户计算机所设定的区域等其他相关数据。假若要取得用户浏览器的版本，即${header[“User-Agent”]}。另外在鲜少机会下，有可能同一标头名称拥有不同的值，此时必须改为使用headerValues 来取得这些值。</p>
+<p>注意:因为User-Agent 中包含“-”这个特殊字符，所以必须使用“[]”，而不能写成</p>
+<p>$(header.User-Agent)。</p>
+<p>initParam</p>
+<p>就像其他属性一样，我们可以自行设定web 站台的环境参数(Context)，当我们想取得这些参数initParam就像其他属性一样，</p>
+<p>我们可以自行设定web 站台的环境参数(Context)，当我们想取得这些参数</p>
+<p>&lt;?xml version=”1.0”encoding=”ISO-8859-1”?&gt;</p>
+<p>&lt;web-appxmlns=”<a href="http://java.sun.com/xml/ns/j2ee&quot;" target="_blank" rel="noopener">http://java.sun.com/xml/ns/j2ee&quot;</a></p>
+<p>xmlns:xsi=”<a href="http://www.w3.org/2001/XMLSchema-instance&quot;" target="_blank" rel="noopener">http://www.w3.org/2001/XMLSchema-instance&quot;</a></p>
+<p>xsi:schemaLocation=”<a href="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&quot;" target="_blank" rel="noopener">http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&quot;</a></p>
+<p>version=”2.4”&gt;：</p>
+<p><context-param></context-param></p>
+<p><param-name>userid</param-name></p>
+<p><param-value>mike</param-value></p>
+<p>：</p>
+<p></p>
+<p>那么我们就可以直接使用${initParam.userid}来取得名称为userid，其值为mike 的参数。</p>
+<p>下面是之前的做法：String userid =(String)application.getInitParameter(“userid”);</p>
+<p>param和paramValues<br>在取得用户参数时通常使用一下方法：</p>
+<p>request.getParameter(String name)<br>request.getParameterValues(String name)</p>
+<p>在 EL中则可以使用param和paramValues两者来取得数据。<br>${param.name}<br>${paramValues.name}</p>
+<p>这里param 的功能和request.getParameter(String name)相同，而paramValues和<br>request.getParameterValues(String name)相同。如果用户填了一个表格，表格名称为username，则我们就可以使用${param.username}来取得用户填入的值。</p>
+<p><strong>看到这里，大家应该很明确EL表达式只能通过内置对象取值，也就是只读操作，如果想进行写操作的话就让后台代码去完成，毕竟EL表达式仅仅是视图上的输出标签罢了。</strong>  </p>
+<p>pageContext</p>
+<p>我们可以使用 ${pageContext}来取得其他有关用户要求或页面的详细信息。下表列出了几个比较常用的部分</p>
+<table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="top"><br><br>Expression<br><br></td><br><td valign="top"><br><br>说明<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>${pageContext.request.queryString}<br><br></td><br><td valign="top"><br><br>取得请求的参数字符串<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>${pageContext.request.requestURL}<br><br></td><br><td valign="top"><br><br>取得请求的URL，但不包括请求之参数字符串,即servlet的HTTP地址。<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>${pageContext.request.contextPath}<br><br></td><br><td valign="top"><br><br>服务的webapplication的名称<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>${pageContext.request.method}<br><br></td><br><td valign="top"><br><br>取得HTTP的方法(GET、POST)<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>${pageContext.request.protocol}<br><br></td><br><td valign="top"><br><br>取得使用的协议(HTTP/1.1、HTTP/1.0)<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>${pageContext.request.remoteUser}<br><br></td><br><td valign="top"><br><br>取得用户名称<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>${pageContext.request.remoteAddr}<br><br></td><br><td valign="top"><br><br>取得用户的IP地址<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>${pageContext.session.new}<br><br></td><br><td valign="top"><br><br>判断session是否为新的，所谓新的session，表示刚由server产生而client尚未使用<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>${pageContext.session.id}<br><br></td><br><td valign="top"><br><br>取得session的ID<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>${pageContext.servletContext.serverInfo}<br><br></td><br><td valign="top"><br><br>取得主机端的服务信息<br><br></td><br><br></tr><br><br></tbody><br><br></table>
+
+<p> 这个对象可有效地改善代码的硬编码问题，如页面中有一A标签链接访问一个SERVLET，如果写死了该SERVLET的HTTP地址</p>
+<p>那么如果当该SERVLET的SERVLET-MAPPING改变的时候必须要修改源代码，这样维护性会大打折扣。</p>
+<p><strong>EL算术运算</strong></p>
+<p>表达式语言支持的算术运算符和逻辑运算符非常多，所有在Java语言里支持的算术运算符，表达式语言都可以使用；</p>
+<p>甚至Java语言不支持的一些算术运算符和逻辑运算符，表达式语言也支持。</p>
+<p>Code<br>&lt;%@ page contentType=”text/html; charset=gb2312”%&gt;  </p>
+<html><br><head><meta name="generator" content="Hexo 3.8.0"><br><title>表达式语言 - 算术运算符</title><br></head><br><body><br><h2>表达式语言 - 算术运算符</h2><br><hr><br><table border="1" bgcolor="aaaadd"><br><tr><br><td><b>表达式语言</b></td><br><td><b>计算结果</b></td><br></tr><br><!-- 直接输出常量 --><br><tr><br><td>\${1}</td><br><td>${1}</td><br></tr><br><!-- 计算加法 --><br><tr><br><td>\${1.2 + 2.3}</td><br><td>${1.2 + 2.3}</td><br></tr><br><!-- 计算加法 --><br><tr><br><td>\${1.2E4 + 1.4}</td><br><td>${1.2E4 + 1.4}</td><br></tr><br><!-- 计算减法 --><br><tr><br><td>\${-4 - 2}</td><br><td>${-4 - 2}</td><br></tr><br><!-- 计算乘法 --><br><tr><br><td>\${21 <em> 2}</em></td><br><td>${21  2}</td><br></tr><br><!-- 计算除法 --><br><tr><br><td>\${3/4}</td><br><td>${3/4}</td><br></tr><br><!-- 计算除法 --><br><tr><br><td>\${3 div 4}</td><br><td>${3 div 4}</td><br></tr><br><!-- 计算除法 --><br><tr><br><td>\${3/0}</td><br><td>${3/0}</td><br></tr><br><!-- 计算求余 --><br><tr><br><td>\${10%4}</td><br><td>${10%4}</td><br></tr><br><!-- 计算求余 --><br><tr><br><td>\${10 mod 4}</td><br><td>${10 mod 4}</td><br></tr><br><!-- 计算三目运算符 --><br><tr><br><td>\${(1==2) ? 3 : 4}</td><br><td>${(1==2) ? 3 : 4}</td><br></tr><br></table><br></body><br></html>  
+
+<p>&lt;%@ page contentType=”text/html; charset=gb2312”%&gt;  </p>
+<html><br><head><meta name="generator" content="Hexo 3.8.0"><br><title>表达式语言 - 算术运算符</title><br></head><br><body><br><h2>表达式语言 - 算术运算符</h2><br><hr><br><table border="1" bgcolor="aaaadd"><br><tr><br><td><b>表达式语言</b></td><br><td><b>计算结果</b></td><br></tr><br><!-- 直接输出常量 --><br><tr><br><td>\${1}</td><br><td>${1}</td><br></tr><br><!-- 计算加法 --><br><tr><br><td>\${1.2 + 2.3}</td><br><td>${1.2 + 2.3}</td><br></tr><br><!-- 计算加法 --><br><tr><br><td>\${1.2E4 + 1.4}</td><br><td>${1.2E4 + 1.4}</td><br></tr><br><!-- 计算减法 --><br><tr><br><td>\${-4 - 2}</td><br><td>${-4 - 2}</td><br></tr><br><!-- 计算乘法 --><br><tr><br><td>\${21 <em> 2}</em></td><br><td>${21  2}</td><br></tr><br><!-- 计算除法 --><br><tr><br><td>\${3/4}</td><br><td>${3/4}</td><br></tr><br><!-- 计算除法 --><br><tr><br><td>\${3 div 4}</td><br><td>${3 div 4}</td><br></tr><br><!-- 计算除法 --><br><tr><br><td>\${3/0}</td><br><td>${3/0}</td><br></tr><br><!-- 计算求余 --><br><tr><br><td>\${10%4}</td><br><td>${10%4}</td><br></tr><br><!-- 计算求余 --><br><tr><br><td>\${10 mod 4}</td><br><td>${10 mod 4}</td><br></tr><br><!-- 计算三目运算符 --><br><tr><br><td>\${(1==2) ? 3 : 4}</td><br><td>${(1==2) ? 3 : 4}</td><br></tr><br></table><br></body><br></html>  
+
+<p> 上面页面中示范了表达式语言所支持的加、减、乘、除、求余等算术运算符的功能，读者可能也发现了表达式语言还支持div、mod等运算符。</p>
+<p>而且表达式语言把所有数值都当成浮点数处理，所以3/0的实质是3.0/0.0，得到结果应该是Infinity。</p>
+<p><strong>如果需要在支持表达式语言的页面中正常输出“$”符号，则在“$”符号前加转义字符“\”，否则系统以为“$”是表达式语言的特殊标记。</strong></p>
+<p><strong>EL关系运算符</strong></p>
+<table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="top"><br><br>关系运算符<br><br></td><br><td valign="top"><br><br>说明<br><br></td><br><td valign="top"><br><br>范例<br><br></td><br><td valign="top"><br><br>结果<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>== 或 eq<br><br></td><br><td valign="top"><br><br>等于<br><br></td><br><td valign="top"><br><br>${5==5}或${5eq5}<br><br></td><br><td valign="top"><br><br>true<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>!= 或 ne<br><br></td><br><td valign="top"><br><br>不等于<br><br></td><br><td valign="top"><br><br>${5!=5}或${5ne5}<br><br></td><br><td valign="top"><br><br>false<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>&lt; 或 lt<br><br></td><br><td valign="top"><br><br>小于<br><br></td><br><td valign="top"><br><br>${3&lt;5}或${3lt5}<br><br></td><br><td valign="top"><br><br>true<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>&gt; 或 gt<br><br></td><br><td valign="top"><br><br>大于<br><br></td><br><td valign="top"><br><br>${3&gt;5}或{3gt5}<br><br></td><br><td valign="top"><br><br>false<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>&lt;= 或 le<br><br></td><br><td valign="top"><br><br>小于等于<br><br></td><br><td valign="top"><br><br>${3&lt;=5}或${3le5}<br><br></td><br><td valign="top"><br><br>true<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>&gt;= 或 ge<br><br></td><br><td valign="top"><br><br>大于等于<br><br></td><br><td valign="top"><br><br>5}或${3ge5}<br><br></td><br><td valign="top"><br><br>false<br><br></td><br><br></tr><br><br></tbody><br><br></table>
+
+<p>表达式语言不仅可在数字与数字之间比较，还可在字符与字符之间比较，字符串的比较是根据其对应UNICODE值来比较大小的。  </p>
+<p><strong>注意：在使用EL 关系运算符时，不能够写成：<br>${param.password1} = =${param.password2}<br>或者<br>${ ${param.password1 } = = ${param.password2 } }<br>而应写成<br>${ param.password1 = =param.password2 }</strong></p>
+<p><strong><br>EL逻辑运算符</strong></p>
+<table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="top"><br><br>逻辑运算符<br><br></td><br><td valign="top"><br><br>范例<br><br></td><br><td valign="top"><br><br>结果<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>&amp;&amp;或and<br><br></td><br><td valign="top"><br><br>交集${A &amp;&amp; B}或${A and B}<br><br></td><br><td valign="top"><br><br>true/false<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>||或or<br><br></td><br><td valign="top"><br><br>并集${A || B}或${A or B}<br><br></td><br><td valign="top"><br><br>true/false<br><br></td><br><br></tr><br><tr><br><td valign="top"><br><br>!或not<br><br></td><br><td valign="top"><br><br>非${! A }或${not A}<br><br></td><br><td valign="top"><br><br>true/false<br><br></td><br><br></tr><br><br></tbody><br><br></table>
+
+<p><strong>Empty 运算符</strong></p>
+<p>Empty 运算符主要用来判断值是否为空（NULL,空字符串，空集合）。</p>
+<p><strong>条件运算符</strong></p>
+<p>${ A ? B : C}</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JSP/" rel="tag"># JSP</a>
+          
+            <a href="/tags/EL/" rel="tag"># EL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/e417e1d3.html" rel="next" title="CSS判断不同分辨率显示不同宽度布局CSS3技术支持IE6到IE8">
+                <i class="fa fa-chevron-left"></i> CSS判断不同分辨率显示不同宽度布局CSS3技术支持IE6到IE8
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/734b335.html" rel="prev" title="eclipse无法解析导入 java.util">
+                eclipse无法解析导入 java.util <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4"
+                alt="庞国明" />
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">表达式语言 - 算术运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">表达式语言 - 算术运算符</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'pangguoming',
+            repo: 'pangguoming.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51',
+            
+                client_id: '1e9770fed2b4d227cd0a'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

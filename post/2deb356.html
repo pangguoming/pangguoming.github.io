@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iot,物联网,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="# 国外物联网平台（1）——亚马逊AWS IoT马智## 平台定位   AWS IoT是一款托管的云平台，使互联设备可以轻松安全地与云应用程序及其他设备交互。    AWS IoT可支持数十亿台设备和数万亿条消息，并且可以对这些消息进行处理并将其安全可靠地路由至 AWS 终端节点和其他设备。应用程序可以随时跟踪所有设备并与其通信，即使这些设备未处于连接状态也不例外。   使用AWS Lambda、">
+<meta name="keywords" content="iot,物联网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="国外物联网平台（1）：亚马逊AWS IoT">
+<meta property="og:url" content="http://pangguoming.com/post/2deb356.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="# 国外物联网平台（1）——亚马逊AWS IoT马智## 平台定位   AWS IoT是一款托管的云平台，使互联设备可以轻松安全地与云应用程序及其他设备交互。    AWS IoT可支持数十亿台设备和数万亿条消息，并且可以对这些消息进行处理并将其安全可靠地路由至 AWS 终端节点和其他设备。应用程序可以随时跟踪所有设备并与其通信，即使这些设备未处于连接状态也不例外。   使用AWS Lambda、">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pangguoming.com/blog/images/749f8d9f-d07a-46bf-8cf5-166ac94c6e73.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/08ce966e-46d5-4264-a984-57339094e17a.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/9c12f5db-f3a2-479d-a820-30e4bcce0413.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/31b83074-5664-48ff-9ac6-0f866b622a23.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/df535454-d61e-4c3b-b4ec-afcc80fbbd23.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/d5fd9de3-23c1-452a-8328-09d762682e94.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/45e6b514-865a-4d06-ab5a-ed0fc303394c.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/e4a924dc-39db-4019-bb4f-b7ec13dd3563.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/087a04ff-9312-47ff-8608-7d288d808cd9.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/9e8a2e6c-3ecd-4cdd-909f-aa4ff045f51d.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/f025dd12-5cbd-478f-ae63-d4f1a8edbdb1.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/a7b0a2c1-818a-4316-b9a9-e3ff0119f91d.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/a7614bb3-170a-4659-9243-4749b4b9d690.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/4da08984-907f-4801-ba91-9a165d4edaa2.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/0535d7a1-0278-492b-918b-10f3931cfe45.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/6d5969e0-b73f-4d5f-b1c8-a44d1e9eb77f.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/a1fb39a6-e5c8-4a52-b361-7b3b07e05f9a.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/e2d9de09-4236-48ca-8ba6-af431794ad16.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/94f622ee-4403-4003-b8a4-bb26c9409595.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/ffd07d0e-64e2-468c-acf0-e392d66f714f.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/dea6149d-aea6-4be2-82fc-ca39c2039818.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/f36e110e-daad-4db3-8283-d400ebd47255.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/1da4c36f-bc7e-4ec7-8427-583a1a46b772.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/5bd320ae-dc6c-4178-8e05-2c3e33b70558.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/2f461678-4eb7-4035-98b3-20264e62f6d4.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/3b29c6e2-7a3e-4ab9-a8a1-866f4da8ec1e.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/12320b04-d6af-47e4-b56c-b92bc3ec3b7c.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/01697b23-f944-44d5-92e6-c604e65c5314.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/471cc20b-9339-4cd6-ae8e-8e2c0f045a04.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/d46c2314-e99a-4d8e-91e8-00d3e99c36d5.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/395e6409-8a4e-4ddd-9d48-b12ee5356ed8.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/66f0c4f0-1027-4a72-aa3a-5cafcf6ddc65.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/f61ad53e-1276-4724-9ac0-219289a035cc.png">
+<meta property="og:image" content="http://pangguoming.com/blog/images/0bb63191-b7f8-4abb-b874-7527fb159520.png">
+<meta property="og:updated_time" content="2019-07-10T03:30:55.689Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="国外物联网平台（1）：亚马逊AWS IoT">
+<meta name="twitter:description" content="# 国外物联网平台（1）——亚马逊AWS IoT马智## 平台定位   AWS IoT是一款托管的云平台，使互联设备可以轻松安全地与云应用程序及其他设备交互。    AWS IoT可支持数十亿台设备和数万亿条消息，并且可以对这些消息进行处理并将其安全可靠地路由至 AWS 终端节点和其他设备。应用程序可以随时跟踪所有设备并与其通信，即使这些设备未处于连接状态也不例外。   使用AWS Lambda、">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/749f8d9f-d07a-46bf-8cf5-166ac94c6e73.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/post/2deb356.html">
+
+
+
+
+
+  <title>国外物联网平台（1）：亚马逊AWS IoT | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/2deb356.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">国外物联网平台（1）：亚马逊AWS IoT</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-07T14:43:00+08:00">
+                2018-09-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/2deb356.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/post/2deb356.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="cnblogs_post_body" class="blogpost-body"><br><br># 国外物联网平台（1）<br>——亚马逊AWS IoT<br><br>马智<br><br>## 平台定位<br><br><em>   AWS IoT是一款托管的云平台，使互联设备可以轻松安全地与云应用程序及其他设备交互。
+</em>   AWS IoT可支持数十亿台设备和数万亿条消息，并且可以对这些消息进行处理并将其安全可靠地路由至 AWS 终端节点和其他设备。应用程序可以随时跟踪所有设备并与其通信，即使这些设备未处于连接状态也不例外。<br><em>   使用AWS Lambda、Amazon Kinesis、Amazon S3、Amazon Machine Learning、Amazon DynamoDB、Amazon CloudWatch、AWS CloudTrail 和内置 Kibana 集成的 Amazon Elasticsearch Service 等AWS服务来构建IoT应用程序，以便收集、处理和分析互连设备生成的数据并对其执行操作，且无需管理任何基础设施。<br><br>## 架构<br><br><img src="http://pangguoming.com/blog/images/749f8d9f-d07a-46bf-8cf5-166ac94c6e73.png" alt=""><br><br>## 与AWS IoT平台集成的AWS服务<br><br><img src="http://pangguoming.com/blog/images/08ce966e-46d5-4264-a984-57339094e17a.png" alt="">
+
+</em>   Amazon DynamoDB—托管NoSQL数据库<br><em>   Amazon Kinesis—大规模流式数据实时处理
+</em>   AWS Lambda—EC2云虚拟机运行代码响应事件<br><em>   Amazon Simple Storage Service（S3）—可扩展云存储
+</em>   Amazon Simple Notification—推送通知服务<br><em>   Amazon Simple Queue Service—消息队列服务<br><br>## 设备SDK<br><br><img src="http://pangguoming.com/blog/images/9c12f5db-f3a2-479d-a820-30e4bcce0413.png" alt="">
+
+</em>   AWS IoT 设备 SDK 使用 MQTT、HTTP 或 WebSockets 协议将硬件设备连接到 AWS IoT，硬件设备无缝安全地与 AWS IoT 提供的设备网关和设备影子协作。<br><em>   设备 SDK 支持 C、JavaScript 、Arduino、Java和Python。
+</em>   设备 SDK 包含开源库、带有示例的开发人员指南和移植指南，用户根据硬件平台构建 IoT 产品或解决方案。<br><br>## 设备网关<br><br><img src="http://pangguoming.com/blog/images/31b83074-5664-48ff-9ac6-0f866b622a23.png" alt=""><br><br><em>   AWS IoT 设备网关支持设备安全高效地与 AWS IoT 进行通信。设备网关可以使用发布/订阅模式交换消息，从而支持一对一和一对多的通信。凭借此一对多的通信模式，AWS IoT 将支持互连设备向多名给定主题的订阅者广播数据。
+</em>   设备网关支持 MQTT、WebSocket 和 HTTP 1.1 协议，也支持私有协议。<br><em>   设备网关可自动扩展，以支持 10 亿多台设备，而无需预配置基础设施。<br><br>## 认证和授权<br><br><img src="http://pangguoming.com/blog/images/df535454-d61e-4c3b-b4ec-afcc80fbbd23.png" alt="">
+
+</em>   AWS IoT 在所有连接点处提供相互身份验证和加密。AWS IoT 支持 AWS 身份验证方法（称为”SigV4”）以及基于身份验证的 X.509 证书。使用 HTTP 的连接可以使用任一方法，使用 MQTT 的连接可以使用基于证书的身份验证，使用 WebSockets 的连接可以使用 SigV4。<br><em>   使用 AWS IoT 生成的证书以及由首选证书颁发机构 (CA) 签署的证书，将所选的角色和/或策略映射到每个证书，以便授予设备或应用程序访问权限，或撤消访问权限。
+</em>   通过控制台或使用 API 创建、部署并管理设备的证书和策略。这些设备证书可以预配置、激活和与使用 AWS IAM 配置的相关策略关联。<br><em>   AWS IoT 还支持用户移动应用使用 Amazon Cognito 进行连接，Amazon Cognito 将负责执行必要的操作来为应用用户创建唯一标识符并获取临时的、权限受限的 AWS 凭证。<br><br>## 注册表
+
+</em>   注册表将创建设备标识并跟踪元数据，如设备的属性和功能。<br><em>   注册表向格式一致的每台设备分配唯一的标识，而不管设备的类型和连接方式为何。此外，它还支持描述设备功能的元数据，例如传感器是否报告温度，以及数据是华氏度还是摄氏度。
+</em>   注册表存储有关设备的元数据，无需支付额外费用；并且需要每隔 7 天至少访问或更新注册表条目一次，注册表中的元数据就不会过期。<br><br>以JSON格式存储的设备注册表信息<br><br><img src="http://pangguoming.com/blog/images/d5fd9de3-23c1-452a-8328-09d762682e94.png" alt=""><br><br>## 设备影子（Shadow）<br><br><img src="http://pangguoming.com/blog/images/45e6b514-865a-4d06-ab5a-ed0fc303394c.png" alt=""><br><br><em>   设备影子保留每台设备的最后报告状态和期望的未来状态，即便设备处于离线状态。
+</em>   通过 API 或使用规则引擎，获取设备的最后报告状态或设置期望的未来状态。<br><em>   应用程序可以设置设备的期望未来状态，而无需说明设备的当前状态。AWS IoT 将比较期望未来状态和最后报告状态之间的差异，并命令设备”弥补差异”。
+</em>   设备 SDK 能够轻松地同步其状态及其影子，并响应通过影子设置的期望的未来状态。<br><em>   设备影子免费存储设备状态多达一年。如果至少每年更新一次状态，则设备影子将永久保留状态；否则状态将过期。<br><br>## 设备影子（Shadow）流程<br><br><img src="http://pangguoming.com/blog/images/e4a924dc-39db-4019-bb4f-b7ec13dd3563.png" alt=""><br><br>## 设备影子（Shadow）格式<br><br><img src="http://pangguoming.com/blog/images/087a04ff-9312-47ff-8608-7d288d808cd9.png" alt=""><br><br>## 设备影子（Shadow）服务<br><br>设备影子服务使用MQTT话题，便于应用和设备之间的通信，下面是相关的MQTT QoS 1话题：<br><br>$aws/things/{thingName}/shadow/update<br><br>$aws/things/{thingName}/shadow/get<br><br>$aws/things/{thingName}/shadow/delete<br><br>$aws/things/{thingName}/shadow/update/accepted<br><br>$aws/things/{thingName}/shadow/update/rejected<br><br>$aws/things/{thingName}/shadow/update/delta<br><br>$aws/things/{thingName}/shadow/get/accepted<br><br>$aws/things/{thingName}/shadow/get/rejected<br><br>$aws/things/{thingName}/shadow/delete/accepted<br><br>$aws/things/{thingName}/shadow/delete/rejected<br><br>设备SDK（C-SDK、JS-SDK）将影子功能内置在设备中，能够使设备与影子服务之间自动同步状态。<br><br>## 规则引擎<br><br><img src="http://pangguoming.com/blog/images/9e8a2e6c-3ecd-4cdd-909f-aa4ff045f51d.png" alt="">
+
+</em>   规则引擎验证发布到 AWS IoT 的入站消息，并根据定义的业务规则转换这些消息并将它们传输到另一台设备或云服务。规则可以应用至一台或多台设备中的数据，并且它可以并行执行一个或多 个操作。<br><em>   规则引擎还可以将消息路由到 AWS 终端节点，包括 AWS Lambda、Amazon Kinesis、Amazon S3、Amazon Machine Learning、Amazon DynamoDB、Amazon CloudWatch 和内置 Kibana 集成的 Amazon Elasticsearch Service。外部终端节点可以使用 AWS Lambda、Amazon Kinesis 和 Amazon Simple Notification Service (SNS) 进行连接。
+</em>   使用类似 SQL 的语句编写规则。例如：如果温度读数超出特定阈值，则它可以触发规则以便将数据传输到 AWS Lambda；如果此温度超出其他 5 台设备的平均值 15%，则应采取措施。<br><em>   规则引擎将提供数十个可用于转换数据的可用功能，并且可以通过 AWS Lambda 创建无限个功能。例如，如果正在处理各种不同的数值，则可以取传入数字的平均值。规则还会触发在 AWS Lambda 中执行 Java、Node.js 或 Python 代码，从而提供最高灵活度以及处理设备数据的能力。<br><br>## 规则引擎集成其它云服务<br><br><img src="http://pangguoming.com/blog/images/f025dd12-5cbd-478f-ae63-d4f1a8edbdb1.png" alt=""><br><br>规则引擎验证发布至AWS IoT的消息请求，基于业务规则转换消息请求并发布至其它服务，例如：
+
+</em>   富集化或过滤从设备收集的数据<br><em>   将设备数据写入一个亚马逊DynamoDBm数据库
+</em>   保存文件至亚马逊S3<br><em>   发送一个推送通知到所有亚马逊SNS用户
+</em>   向亚马逊SQS队列发布数据<br><em>   调用Lambda函数抽取数据
+</em>   使用亚马逊Kinesis处理大量的设备消息数据<br><em>   发送数据至亚马逊Elasticsearch服务
+</em>   捕获一条CloudWatch测量数据<br><em>   更新一条CloudWatch告警
+</em>   把一条MQTT消息数据发送至亚马逊机器学习服务，基于亚马逊机器学习模型进行预测<br><br>## 规则引擎&amp;实时流式数据处理<br><br><img src="http://pangguoming.com/blog/images/a7b0a2c1-818a-4316-b9a9-e3ff0119f91d.png" alt=""><br><br><strong>N:1 入站的传感器流式数据（数据降噪）</strong><br><br>规则引擎过滤、转换、汇总传感器数据后，发送至亚马逊Kinesis处理实时流式数据<br><br><strong>Kinesis流式数据共享至其它业务系统</strong><br><br>将流式数据的实时处理结果导入至数据库、应用或其它亚马逊服务<br><br>## 规则引擎&amp;推送通知服务<br><br><img src="http://pangguoming.com/blog/images/a7614bb3-170a-4659-9243-4749b4b9d690.png" alt=""><br><br><strong>推送通知</strong><br><br>支持苹果APNS推送通知服务、谷歌GCM云消息服务、亚马逊ADM设备消息服务，微软WNS推送服务<br><br><strong>亚马逊SNS推送通知服务-&gt;HTTP协议终端（短信、邮件）</strong><br><br>通过亚马逊SNS推送通知服务，调用第三方HTTP协议终端，支持订阅和重试<br><br>## 规则引擎示例 – 使用机器学习预测函数<br><br><div><br><table border="0"><colgroup><col></colgroup><br><tbody valign="top"><br><tr><br><td><br><br>{ “sql”:<br><br>    “SELECT <em><br><br>    FROM ‘iot/test’<br><br>    where<br><br>        machinelearning_predict(‘my-model’, ‘arn:aws:iam::123456789012:role/my-iot-aml-role’, </em>).predictedLabel=1”,<br><br>    “ruleDisabled”: false,<br><br>    “awsIotSqlVersion”: “2016-03-23-beta”,<br><br>    “actions”:<br><br>        [{ “republish”:<br><br>            { “roleArn”: “arn:aws:iam::123456789012:role/my-iot-role”,                 “topic”: “my-mqtt-topic” }<br><br>        }]<br><br>}<br><br></td><br><br></tr><br><br></tbody><br><br></table><br><br>上面是使用亚马逊机器学习预测函数machinelearning_predict 的规则示例，其含义是：<br><br>如果机器学习预测函数处理MQTT消息后的结果是分类1，那么重新将此消息发布至一个话题。<br><br>## 设备管理<br><br><img src="http://pangguoming.com/blog/images/4da08984-907f-4801-ba91-9a165d4edaa2.png" alt=""><br><br><em>   支持全球或部分地区的固件升级
+</em>   规则引擎在DynamoDBm数据库跟踪升级状态和进度<br><em>   注册表存储设备的固件版本<br><br><strong>S3管理固件分发版本</strong><br><br>在S3中组织和保障和固件二进制文件<br><br><strong>消息代理使用话题模式通知设备分组</strong><br><br>通知设备分组固件更新信息，包括S3中的固件二进制文件URL地址<br><br>## AWS IoT平台接口
+
+</em>   <div>AWS Command Line Interface (AWS CLI)<br><br>    <em>   在Windows、Mac和Linux执行AWS IoT命令<br><br></em></div>
+   <div>AWS SDKs<br><br>    <em>   使用特定语言API开发IoT应用<br><br></em></div>
+   <div>AWS IoT API<br><br>    <em>   使用HTTP或者HTTPS请求开发IoT应用<br><br></em></div>
+   <div>AWS IoT Thing SDK for C<br><br>    *   在资源受限的设备上开发IoT应用，如MCU<br><br></div>
+
+<h2 id="AWS-IoT监控工具"><a href="#AWS-IoT监控工具" class="headerlink" title="AWS IoT监控工具"></a>AWS IoT监控工具</h2><p><strong>自动化监控工具</strong></p>
+<ul>
+<li>Amazon CloudWatch Alarms</li>
+<li>Amazon CloudWatch Logs</li>
+<li>Amazon CloudWatch Events</li>
+<li>AWS CloudTrail Log Monitoring</li>
+</ul>
+<p><strong>手工监控工具</strong></p>
+<ul>
+<li><p><div>AWS IoT 仪表盘</div></p>
+<ul>
+<li>证书</li>
+<li>策略</li>
+<li>规则</li>
+<li>设备</li>
+</ul>
+</li>
+</ul>
+<p></p></div><p></p>
+<ul>
+<li><p><div>CloudWatch首页</div></p>
+<ul>
+<li>当前告警和状态</li>
+<li>告警和资源图表</li>
+<li>服务健康度</li>
+</ul>
+</li>
+</ul>
+<p></p></div><p></p>
+<ul>
+<li>CloudWatch</li>
+<li>自定义仪表盘</li>
+<li>自定义图表进行排障和监控趋势</li>
+<li>搜索所有AWS资源指标</li>
+<li>创建和修改告警参数</li>
+</ul>
+<h2 id="AWS-IoT-初学者工具包"><a href="#AWS-IoT-初学者工具包" class="headerlink" title="AWS IoT 初学者工具包"></a>AWS IoT 初学者工具包</h2><ul>
+<li>AWS IoT 初学者工具包旨在帮助进行原型开发和安全地连接 AWS IoT。</li>
+<li>工具包内含开发微控制器开发板、传感器和执行器、AWS IoT 设备 SDK 以及入门指南。</li>
+</ul>
+<p><img src="http://pangguoming.com/blog/images/0535d7a1-0278-492b-918b-10f3931cfe45.png" alt=""></p>
+<h2 id="AWS-IoT-初学者工具包-支持的平台"><a href="#AWS-IoT-初学者工具包-支持的平台" class="headerlink" title="AWS IoT 初学者工具包 - 支持的平台"></a>AWS IoT 初学者工具包 - 支持的平台</h2><p><img src="http://pangguoming.com/blog/images/6d5969e0-b73f-4d5f-b1c8-a44d1e9eb77f.png" alt=""></p>
+<h2 id="AWS-IoT生态"><a href="#AWS-IoT生态" class="headerlink" title="AWS IoT生态"></a>AWS IoT生态</h2><p><img src="http://pangguoming.com/blog/images/a1fb39a6-e5c8-4a52-b361-7b3b07e05f9a.png" alt=""></p>
+<h2 id="开发示例-AWS-IoT-按钮"><a href="#开发示例-AWS-IoT-按钮" class="headerlink" title="开发示例 - AWS IoT 按钮"></a>开发示例 - AWS IoT 按钮</h2><p><img src="http://pangguoming.com/blog/images/e2d9de09-4236-48ca-8ba6-af431794ad16.jpg" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/94f622ee-4403-4003-b8a4-bb26c9409595.png" alt=""></p>
+<p>创建设备</p>
+<p><img src="http://pangguoming.com/blog/images/ffd07d0e-64e2-468c-acf0-e392d66f714f.png" alt=""></p>
+<p>设备属性</p>
+<p><img src="http://pangguoming.com/blog/images/dea6149d-aea6-4be2-82fc-ca39c2039818.png" alt=""></p>
+<p>创建证书</p>
+<p><img src="http://pangguoming.com/blog/images/f36e110e-daad-4db3-8283-d400ebd47255.png" alt=""></p>
+<p>激活证书</p>
+<p><img src="http://pangguoming.com/blog/images/1da4c36f-bc7e-4ec7-8427-583a1a46b772.png" alt=""></p>
+<p>创建策略</p>
+<p><img src="http://pangguoming.com/blog/images/5bd320ae-dc6c-4178-8e05-2c3e33b70558.png" alt=""></p>
+<p>绑定证书与策略</p>
+<p><img src="http://pangguoming.com/blog/images/2f461678-4eb7-4035-98b3-20264e62f6d4.png" alt=""></p>
+<p>绑定证书与设备</p>
+<p><img src="http://pangguoming.com/blog/images/3b29c6e2-7a3e-4ab9-a8a1-866f4da8ec1e.png" alt=""></p>
+<p>配置设备</p>
+<p><img src="http://pangguoming.com/blog/images/12320b04-d6af-47e4-b56c-b92bc3ec3b7c.png" alt=""></p>
+<p>使用MQTT客户端订阅设备消息</p>
+<p><img src="http://pangguoming.com/blog/images/01697b23-f944-44d5-92e6-c604e65c5314.png" alt=""></p>
+<p>使用MQTT客户端查看设备消息</p>
+<p><img src="http://pangguoming.com/blog/images/471cc20b-9339-4cd6-ae8e-8e2c0f045a04.png" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/d46c2314-e99a-4d8e-91e8-00d3e99c36d5.png" alt=""></p>
+<p>创建短信推送话题并订阅此话题</p>
+<p><img src="http://pangguoming.com/blog/images/395e6409-8a4e-4ddd-9d48-b12ee5356ed8.png" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/66f0c4f0-1027-4a72-aa3a-5cafcf6ddc65.png" alt=""></p>
+<p>创建规则</p>
+<p><img src="http://pangguoming.com/blog/images/f61ad53e-1276-4724-9ac0-219289a035cc.png" alt=""></p>
+<p>创建规则的行为</p>
+<p><img src="http://pangguoming.com/blog/images/0bb63191-b7f8-4abb-b874-7527fb159520.png" alt=""></p>
+<p>测试订阅是否成功</p>
+<div id="MySignature"><br>作者：马智<br><br>微信公众号：物联网那点事<br><br>如果你想及时得到相关资讯，可以关注个人公众号。<br><br>本文版权归作者和博客园共有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。</div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iot/" rel="tag"># iot</a>
+          
+            <a href="/tags/物联网/" rel="tag"># 物联网</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/575d09df.html" rel="next" title="mysql主从配置（清晰的思路）">
+                <i class="fa fa-chevron-left"></i> mysql主从配置（清晰的思路）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/47393678.html" rel="prev" title="开源飞控介绍">
+                开源飞控介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AWS-IoT监控工具"><span class="nav-number">1.</span> <span class="nav-text">AWS IoT监控工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AWS-IoT-初学者工具包"><span class="nav-number">2.</span> <span class="nav-text">AWS IoT 初学者工具包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AWS-IoT-初学者工具包-支持的平台"><span class="nav-number">3.</span> <span class="nav-text">AWS IoT 初学者工具包 - 支持的平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AWS-IoT生态"><span class="nav-number">4.</span> <span class="nav-text">AWS IoT生态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发示例-AWS-IoT-按钮"><span class="nav-number">5.</span> <span class="nav-text">开发示例 - AWS IoT 按钮</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'pangguoming',
+            repo: 'pangguoming.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51',
+            
+                client_id: '1e9770fed2b4d227cd0a'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

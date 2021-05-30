@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="spring boot,shiro,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="项目下载地址：http://download.csdn.NET/detail/aqsunkai/9805821 （一）在pom.xml中添加依赖： [html] view plain copy1.  &amp;lt;properties&amp;gt;  2.      &amp;lt;shiro.version&amp;gt;1.3.2&amp;lt;/shiro.version&amp;gt;  3.  &amp;lt;/properties&amp;gt">
+<meta name="keywords" content="spring boot,shiro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot学习：整合shiro（身份认证和权限认证）,使用EhCache缓存">
+<meta property="og:url" content="http://pangguoming.com/post/3ebd6ee4.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="项目下载地址：http://download.csdn.NET/detail/aqsunkai/9805821 （一）在pom.xml中添加依赖： [html] view plain copy1.  &amp;lt;properties&amp;gt;  2.      &amp;lt;shiro.version&amp;gt;1.3.2&amp;lt;/shiro.version&amp;gt;  3.  &amp;lt;/properties&amp;gt">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pangguoming.com/blog/images/0ad58d0b-2994-41f6-acbd-ffc0f06453d2.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/73877d60-a478-43cf-98bf-4a194242bee3.jpg">
+<meta property="og:updated_time" content="2019-07-10T03:30:55.785Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot学习：整合shiro（身份认证和权限认证）,使用EhCache缓存">
+<meta name="twitter:description" content="项目下载地址：http://download.csdn.NET/detail/aqsunkai/9805821 （一）在pom.xml中添加依赖： [html] view plain copy1.  &amp;lt;properties&amp;gt;  2.      &amp;lt;shiro.version&amp;gt;1.3.2&amp;lt;/shiro.version&amp;gt;  3.  &amp;lt;/properties&amp;gt">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/0ad58d0b-2994-41f6-acbd-ffc0f06453d2.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/post/3ebd6ee4.html">
+
+
+
+
+
+  <title>SpringBoot学习：整合shiro（身份认证和权限认证）,使用EhCache缓存 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/3ebd6ee4.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SpringBoot学习：整合shiro（身份认证和权限认证）,使用EhCache缓存</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-08T14:36:00+08:00">
+                2017-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/3ebd6ee4.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/post/3ebd6ee4.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>项目下载地址：<a href="http://download.csdn.NET/detail/aqsunkai/9805821" target="_blank" rel="noopener">http://download.csdn.NET/detail/aqsunkai/9805821</a></p>
+<p>（一）在pom.xml中添加依赖：</p>
+<div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="tag">&lt;<span class="tag-name">properties<span class="tag">&gt;  </span></span></span><br>2.      <span class="tag">&lt;<span class="tag-name">shiro.version<span class="tag">&gt;1.3.2<span class="tag">&lt;/<span class="tag-name">shiro.version<span class="tag">&gt;  </span></span></span></span></span></span><br>3.  <span class="tag">&lt;/<span class="tag-name">properties<span class="tag">&gt;  </span></span></span><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="comments"><!--shiro start-->  </span><br>2.      <span class="tag">&lt;<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>3.        <span class="tag">&lt;<span class="tag-name">groupId<span class="tag">&gt;org.apache.shiro<span class="tag">&lt;/<span class="tag-name">groupId<span class="tag">&gt;  </span></span></span></span></span></span><br>4.        <span class="tag">&lt;<span class="tag-name">artifactId<span class="tag">&gt;shiro-core<span class="tag">&lt;/<span class="tag-name">artifactId<span class="tag">&gt;  </span></span></span></span></span></span><br>5.        <span class="tag">&lt;<span class="tag-name">version<span class="tag">&gt;${shiro.version}<span class="tag">&lt;/<span class="tag-name">version<span class="tag">&gt;  </span></span></span></span></span></span><br>6.      <span class="tag">&lt;/<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>7.      <span class="tag">&lt;<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>8.        <span class="tag">&lt;<span class="tag-name">groupId<span class="tag">&gt;org.apache.shiro<span class="tag">&lt;/<span class="tag-name">groupId<span class="tag">&gt;  </span></span></span></span></span></span><br>9.        <span class="tag">&lt;<span class="tag-name">artifactId<span class="tag">&gt;shiro-web<span class="tag">&lt;/<span class="tag-name">artifactId<span class="tag">&gt;  </span></span></span></span></span></span><br>10.        <span class="tag">&lt;<span class="tag-name">version<span class="tag">&gt;${shiro.version}<span class="tag">&lt;/<span class="tag-name">version<span class="tag">&gt;  </span></span></span></span></span></span><br>11.      <span class="tag">&lt;/<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>12.      <span class="tag">&lt;<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>13.        <span class="tag">&lt;<span class="tag-name">groupId<span class="tag">&gt;org.apache.shiro<span class="tag">&lt;/<span class="tag-name">groupId<span class="tag">&gt;  </span></span></span></span></span></span><br>14.        <span class="tag">&lt;<span class="tag-name">artifactId<span class="tag">&gt;shiro-ehcache<span class="tag">&lt;/<span class="tag-name">artifactId<span class="tag">&gt;  </span></span></span></span></span></span><br>15.        <span class="tag">&lt;<span class="tag-name">version<span class="tag">&gt;${shiro.version}<span class="tag">&lt;/<span class="tag-name">version<span class="tag">&gt;  </span></span></span></span></span></span><br>16.      <span class="tag">&lt;/<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>17.      <span class="tag">&lt;<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>18.        <span class="tag">&lt;<span class="tag-name">groupId<span class="tag">&gt;org.apache.shiro<span class="tag">&lt;/<span class="tag-name">groupId<span class="tag">&gt;  </span></span></span></span></span></span><br>19.        <span class="tag">&lt;<span class="tag-name">artifactId<span class="tag">&gt;shiro-spring<span class="tag">&lt;/<span class="tag-name">artifactId<span class="tag">&gt;  </span></span></span></span></span></span><br>20.        <span class="tag">&lt;<span class="tag-name">version<span class="tag">&gt;${shiro.version}<span class="tag">&lt;/<span class="tag-name">version<span class="tag">&gt;  </span></span></span></span></span></span><br>21.      <span class="tag">&lt;/<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>22.  <span class="comments"><!--shiro end-->  </span><br><br>下面是数据库的表，这里主要涉及到五张表：用户表，角色表(用户所拥有的角色)，权限表(角色所涉及到的权限)，用户-角色表(用户和角色是多对多的)，角色-权限表(角色和权限是多对多的)。sql语句如下：<br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  – —————————-<br>2.  – Table structure for sys_permission<br>3.  – —————————-<br>4.  DROP TABLE IF EXISTS <code>sys_permission</code>;<br>5.  CREATE TABLE <code>sys_permission</code> (<br>6.    <code>id</code> int(11) NOT NULL AUTO_INCREMENT COMMENT ‘主键ID’,<br>7.    <code>url</code> varchar(256) DEFAULT NULL COMMENT ‘url地址’,<br>8.    <code>name</code> varchar(64) DEFAULT NULL COMMENT ‘url描述/名称’,<br>9.     parent_id int(11) DEFAULT NULL COMMENT ‘父节点权限ID’,<br>10.    PRIMARY KEY (<code>id</code>)<br>11.  ) <span class="attribute">ENGINE=<span class="attribute-value">InnoDB <span class="attribute">AUTO_INCREMENT=<span class="attribute-value">1 DEFAULT <span class="attribute">CHARSET=<span class="attribute-value">utf8;  </span></span></span></span></span></span><br>12.<br>13.  – —————————-<br>14.  – Records of sys_permission<br>15.  – —————————-<br>16.  INSERT INTO <code>sys_permission</code> VALUES (‘10’, ‘/member/changeSessionStatus.shtml’, ‘用户Session踢出’,null);<br>17.  INSERT INTO <code>sys_permission</code> VALUES (‘11’, ‘/member/forbidUserById.shtml’, ‘用户激活&amp;禁止’,null);<br>18.  INSERT INTO <code>sys_permission</code> VALUES (‘12’, ‘/member/deleteUserById.shtml’, ‘用户删除’,null);<br>19.  INSERT INTO <code>sys_permission</code> VALUES (‘13’, ‘/permission/addPermission2Role.shtml’, ‘权限分配’,null);<br>20.  INSERT INTO <code>sys_permission</code> VALUES (‘14’, ‘/role/clearRoleByUserIds.shtml’, ‘用户角色分配清空’,null);<br>21.  INSERT INTO <code>sys_permission</code> VALUES (‘15’, ‘/role/addRole2User.shtml’, ‘角色分配保存’,null);<br>22.  INSERT INTO <code>sys_permission</code> VALUES (‘16’, ‘/role/deleteRoleById.shtml’, ‘角色列表删除’,null);<br>23.  INSERT INTO <code>sys_permission</code> VALUES (‘17’, ‘/role/addRole.shtml’, ‘角色列表添加’,null);<br>24.  INSERT INTO <code>sys_permission</code> VALUES (‘18’, ‘/role/index.shtml’, ‘角色列表’,null);<br>25.  INSERT INTO <code>sys_permission</code> VALUES (‘19’, ‘/permission/allocation.shtml’, ‘权限分配’,null);<br>26.  INSERT INTO <code>sys_permission</code> VALUES (‘20’, ‘/role/allocation.shtml’, ‘角色分配’,null);<br>27.  INSERT INTO <code>sys_permission</code> VALUES (‘4’, ‘/permission/index.shtml’, ‘权限列表’,null);<br>28.  INSERT INTO <code>sys_permission</code> VALUES (‘6’, ‘/permission/addPermission.shtml’, ‘权限添加’,null);<br>29.  INSERT INTO <code>sys_permission</code> VALUES (‘7’, ‘/permission/deletePermissionById.shtml’, ‘权限删除’,null);<br>30.  INSERT INTO <code>sys_permission</code> VALUES (‘8’, ‘/member/list.shtml’, ‘用户列表’,null);<br>31.  INSERT INTO <code>sys_permission</code> VALUES (‘9’, ‘/member/online.shtml’, ‘在线用户’,null);<br>32.<br>33.  – —————————-<br>34.  – Table structure for sys_role<br>35.  – —————————-<br>36.  DROP TABLE IF EXISTS <code>sys_role</code>;<br>37.  CREATE TABLE <code>sys_role</code> (<br>38.    <code>id</code> int(11) NOT NULL AUTO_INCREMENT COMMENT ‘主键ID’,<br>39.    <code>name</code> varchar(32) DEFAULT NULL COMMENT ‘角色名称’,<br>40.    <code>type</code> varchar(10) DEFAULT NULL COMMENT ‘角色类型’,<br>41.     PRIMARY KEY (<code>id</code>)<br>42.  ) <span class="attribute">ENGINE=<span class="attribute-value">InnoDB <span class="attribute">AUTO_INCREMENT=<span class="attribute-value">1 DEFAULT <span class="attribute">CHARSET=<span class="attribute-value">utf8;  </span></span></span></span></span></span><br>43.<br>44.  – —————————-<br>45.  – Records of sys_role<br>46.  – —————————-<br>47.  INSERT INTO <code>sys_role</code> VALUES (‘1’, ‘系统管理员’, ‘100004’);<br>48.  INSERT INTO <code>sys_role</code> VALUES (‘3’, ‘权限角色’, ‘100001’);<br>49.  INSERT INTO <code>sys_role</code> VALUES (‘4’, ‘用户中心’, ‘100002’);<br>50.  INSERT INTO <code>sys_role</code> VALUES (‘0’, ‘角色管理’, ‘100003’);<br>51.<br>52.  – —————————-<br>53.  – Table structure for sys_role_permission<br>54.  – —————————-<br>55.  DROP TABLE IF EXISTS <code>sys_role_permission</code>;<br>56.  CREATE TABLE <code>sys_role_permission</code> (<br>57.    <code>id</code> int(11) NOT NULL AUTO_INCREMENT COMMENT ‘主键ID’,<br>58.    <code>rid</code> varchar(64) DEFAULT NULL COMMENT ‘角色ID’,<br>59.    <code>pid</code> varchar(64) DEFAULT NULL COMMENT ‘权限ID’,<br>60.    PRIMARY KEY (<code>id</code>)<br>61.  ) <span class="attribute">ENGINE=<span class="attribute-value">InnoDB <span class="attribute">AUTO_INCREMENT=<span class="attribute-value">1 DEFAULT <span class="attribute">CHARSET=<span class="attribute-value">utf8;  </span></span></span></span></span></span><br>62.<br>63.  – —————————-<br>64.  – Records of sys_role_permission<br>65.  – —————————-<br>66.  INSERT INTO <code>sys_role_permission</code> VALUES (‘1’, ‘4’, ‘8’);<br>67.  INSERT INTO <code>sys_role_permission</code> VALUES (‘10’, ‘3’, ‘14’);<br>68.  INSERT INTO <code>sys_role_permission</code> VALUES (‘11’, ‘3’, ‘15’);<br>69.  INSERT INTO <code>sys_role_permission</code> VALUES (‘12’, ‘3’, ‘16’);<br>70.  INSERT INTO <code>sys_role_permission</code> VALUES (‘13’, ‘3’, ‘17’);<br>71.  INSERT INTO <code>sys_role_permission</code> VALUES (‘14’, ‘3’, ‘18’);<br>72.  INSERT INTO <code>sys_role_permission</code> VALUES (‘15’, ‘3’, ‘19’);<br>73.  INSERT INTO <code>sys_role_permission</code> VALUES (‘16’, ‘3’, ‘20’);<br>74.  INSERT INTO <code>sys_role_permission</code> VALUES (‘17’, ‘1’, ‘4’);<br>75.  INSERT INTO <code>sys_role_permission</code> VALUES (‘18’, ‘1’, ‘6’);<br>76.  INSERT INTO <code>sys_role_permission</code> VALUES (‘19’, ‘1’, ‘7’);<br>77.  INSERT INTO <code>sys_role_permission</code> VALUES (‘2’, ‘4’, ‘9’);<br>78.  INSERT INTO <code>sys_role_permission</code> VALUES (‘20’, ‘1’, ‘8’);<br>79.  INSERT INTO <code>sys_role_permission</code> VALUES (‘21’, ‘1’, ‘9’);<br>80.  INSERT INTO <code>sys_role_permission</code> VALUES (‘22’, ‘1’, ‘10’);<br>81.  INSERT INTO <code>sys_role_permission</code> VALUES (‘23’, ‘1’, ‘11’);<br>82.  INSERT INTO <code>sys_role_permission</code> VALUES (‘24’, ‘1’, ‘12’);<br>83.  INSERT INTO <code>sys_role_permission</code> VALUES (‘25’, ‘1’, ‘13’);<br>84.  INSERT INTO <code>sys_role_permission</code> VALUES (‘26’, ‘1’, ‘14’);<br>85.  INSERT INTO <code>sys_role_permission</code> VALUES (‘27’, ‘1’, ‘15’);<br>86.  INSERT INTO <code>sys_role_permission</code> VALUES (‘28’, ‘1’, ‘16’);<br>87.  INSERT INTO <code>sys_role_permission</code> VALUES (‘29’, ‘1’, ‘17’);<br>88.  INSERT INTO <code>sys_role_permission</code> VALUES (‘3’, ‘4’, ‘10’);<br>89.  INSERT INTO <code>sys_role_permission</code> VALUES (‘30’, ‘1’, ‘18’);<br>90.  INSERT INTO <code>sys_role_permission</code> VALUES (‘31’, ‘1’, ‘19’);<br>91.  INSERT INTO <code>sys_role_permission</code> VALUES (‘32’, ‘1’, ‘20’);<br>92.  INSERT INTO <code>sys_role_permission</code> VALUES (‘4’, ‘4’, ‘11’);<br>93.  INSERT INTO <code>sys_role_permission</code> VALUES (‘5’, ‘4’, ‘12’);<br>94.  INSERT INTO <code>sys_role_permission</code> VALUES (‘6’, ‘3’, ‘4’);<br>95.  INSERT INTO <code>sys_role_permission</code> VALUES (‘7’, ‘3’, ‘6’);<br>96.  INSERT INTO <code>sys_role_permission</code> VALUES (‘8’, ‘3’, ‘7’);<br>97.  INSERT INTO <code>sys_role_permission</code> VALUES (‘9’, ‘3’, ‘13’);<br>98.<br>99.  – —————————-<br>100.  – Table structure for sys_user<br>101.  – —————————-<br>102.  DROP TABLE IF EXISTS <code>sys_user</code>;<br>103.  CREATE TABLE <code>sys_user</code> (<br>104.    <code>id</code> int(11) NOT NULL AUTO_INCREMENT COMMENT ‘主键ID’,<br>105.    <code>nickname</code> varchar(20) DEFAULT NULL COMMENT ‘用户昵称’,<br>106.    <code>email</code> varchar(128) DEFAULT NULL COMMENT ‘邮箱|登录帐号’,<br>107.    <code>pswd</code> varchar(255) DEFAULT NULL COMMENT ‘密码’,<br>108.    <code>create_time</code> datetime DEFAULT NULL COMMENT ‘创建时间’,<br>109.    <code>last_login_time</code> datetime DEFAULT NULL COMMENT ‘最后登录时间’,<br>110.    <code>status</code> TINYINT DEFAULT ‘1’ COMMENT ‘1:有效，0:禁止登录’,<br>111.    PRIMARY KEY (<code>id</code>)<br>112.  ) <span class="attribute">ENGINE=<span class="attribute-value">InnoDB <span class="attribute">AUTO_INCREMENT=<span class="attribute-value">1 DEFAULT <span class="attribute">CHARSET=<span class="attribute-value">utf8;  </span></span></span></span></span></span><br>113.<br>114.  – —————————-<br>115.  – Records of sys_user<br>116.  – —————————-<br>117.  INSERT INTO <code>sys_user</code> VALUES (‘1’, ‘admin’, <a href="mailto:&#39;admin@qq.com" target="_blank" rel="noopener">&#39;admin@qq.com</a>‘, ‘123456’, NOW(), NOW(), ‘1’);<br>118.  INSERT INTO <code>sys_user</code> VALUES (‘11’, ‘root’, <a href="mailto:&#39;8446666@qq.com" target="_blank" rel="noopener">&#39;8446666@qq.com</a>‘, ‘123456’, ‘2016-05-26 20:50:54’, ‘2017-02-13 15:49:04’, ‘1’);<br>119.  INSERT INTO <code>sys_user</code> VALUES (‘12’, ‘8446666’, ‘8446666’, ‘CpievEp3tWpuK7exnZldGFzkQJDBPimEt+zG1EbUth6pmRt2pMLwSxtNJEhBRJRU’, ‘2016-05-27 22:34:19’, ‘2016-06-15 17:03:16’, ‘1’);<br>120.  INSERT INTO <code>sys_user</code> VALUES (‘13’, ‘123’, ‘123’, ‘CpievEp3tWpuK7exnZldGFzkQJDBPimEt+zG1EbUth6pmRt2pMLwSxtNJEhBRJRU’, ‘2016-05-27 22:34:19’, ‘2016-06-15 17:03:16’, ‘0’);<br>121.  INSERT INTO <code>sys_user</code> VALUES (‘14’, ‘haiqin’, <a href="mailto:&#39;123123@qq.com" target="_blank" rel="noopener">&#39;123123@qq.com</a>‘, ‘CpievEp3tWpuK7exnZldGFzkQJDBPimEt+zG1EbUth6pmRt2pMLwSxtNJEhBRJRU’, ‘2016-05-27 22:34:19’, ‘2017-03-23 21:39:44’, ‘1’);<br>122.  – —————————-<br>123.  – Table structure for sys_user_role<br>124.  – —————————-<br>125.  DROP TABLE IF EXISTS <code>sys_user_role</code>;<br>126.  CREATE TABLE <code>sys_user_role</code> (<br>127.    <code>id</code>  int(11) NOT NULL AUTO_INCREMENT COMMENT ‘主键ID’,<br>128.    <code>uid</code> varchar(64) DEFAULT NULL COMMENT ‘用户ID’,<br>129.    <code>rid</code> varchar(64) DEFAULT NULL COMMENT ‘角色ID’,<br>130.    PRIMARY KEY (<code>id</code>)<br>131.  ) <span class="attribute">ENGINE=<span class="attribute-value">InnoDB <span class="attribute">AUTO_INCREMENT=<span class="attribute-value">1 DEFAULT <span class="attribute">CHARSET=<span class="attribute-value">utf8;  </span></span></span></span></span></span><br>132.<br>133.  – —————————-<br>134.  – Records of sys_user_role<br>135.  – —————————-<br>136.  INSERT INTO <code>sys_user_role</code> VALUES (‘1’, ‘12’, ‘4’);<br>137.  INSERT INTO <code>sys_user_role</code> VALUES (‘2’, ‘11’, ‘3’);<br>138.  INSERT INTO <code>sys_user_role</code> VALUES (‘3’, ‘11’, ‘4’);<br>139.  INSERT INTO <code>sys_user_role</code> VALUES (‘4’, ‘1’, ‘1’);<br><br>（二）shiro配置类：<br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  package com.sun.configuration;<br>2.<br>3.  import org.apache.log4j.Logger;<br>4.  import org.apache.shiro.cache.ehcache.EhCacheManager;<br>5.  import org.apache.shiro.spring.LifecycleBeanPostProcessor;<br>6.  import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;<br>7.  import org.apache.shiro.spring.web.ShiroFilterFactoryBean;<br>8.  import org.apache.shiro.web.mgt.DefaultWebSecurityManager;<br>9.  import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;<br>10.  import org.springframework.context.annotation.Bean;<br>11.  import org.springframework.context.annotation.Configuration;<br>12.  import org.springframework.transaction.annotation.EnableTransactionManagement;<br>13.<br>14.  import java.util.LinkedHashMap;<br>15.  import java.util.Map;<br>16.<br>17.  /<strong><br>18.   <em> Shiro 配置<br>19.   </em> Apache Shiro 核心通过 Filter 来实现，就好像SpringMvc 通过DispachServlet 来主控制一样。<br>20.   <em> 既然是使用 Filter 一般也就能猜到，是通过URL规则来进行过滤和权限校验，所以我们需要定义一系列关于URL的规则和访问权限。<br>21.   </em> Created by sun on 2017-4-2.<br>22.   */<br>23.  @Configuration<br>24.  @EnableTransactionManagement<br>25.  public class ShiroConfiguration{<br>26.<br>27.      private final Logger <span class="attribute">logger = <span class="attribute-value">Logger.getLogger(ShiroConfiguration.class);  </span></span><br>28.<br>29.      /</strong><br>30.       <em> ShiroFilterFactoryBean 处理拦截资源文件问题。<br>31.       </em> 注意：单独一个ShiroFilterFactoryBean配置是或报错的，因为在<br>32.       <em> 初始化ShiroFilterFactoryBean的时候需要注入：SecurityManager<br>33.       </em><br>34.       Filter Chain定义说明<br>35.       1、一个URL可以配置多个Filter，使用逗号分隔<br>36.       2、当设置多个过滤器时，全部验证通过，才视为通过<br>37.       3、部分过滤器可指定参数，如perms，roles<br>38.       <em><br>39.       </em>/<br>40.      @Bean<br>41.      public EhCacheManager getEhCacheManager(){<br>42.          EhCacheManager <span class="attribute">ehcacheManager = <span class="attribute-value">new EhCacheManager();  </span></span><br>43.          ehcacheManager.setCacheManagerConfigFile(“classpath:config/ehcache-shiro.xml”);<br>44.          return ehcacheManager;<br>45.      }<br>46.<br>47.      @Bean(<span class="attribute">name = <span class="attribute-value">“myShiroRealm”)  </span></span><br>48.      public MyShiroRealm myShiroRealm(EhCacheManager ehCacheManager){<br>49.          MyShiroRealm <span class="attribute">realm = <span class="attribute-value">new MyShiroRealm();  </span></span><br>50.          realm.setCacheManager(ehCacheManager);<br>51.          return realm;<br>52.      }<br>53.<br>54.      @Bean(<span class="attribute">name = <span class="attribute-value">“lifecycleBeanPostProcessor”)  </span></span><br>55.      public LifecycleBeanPostProcessor lifecycleBeanPostProcessor(){<br>56.          return new LifecycleBeanPostProcessor();<br>57.      }<br>58.<br>59.      @Bean<br>60.      public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator(){<br>61.          DefaultAdvisorAutoProxyCreator <span class="attribute">creator = <span class="attribute-value">new DefaultAdvisorAutoProxyCreator();  </span></span><br>62.          creator.setProxyTargetClass(true);<br>63.          return creator;<br>64.      }<br>65.<br>66.      @Bean(<span class="attribute">name = <span class="attribute-value">“securityManager”)  </span></span><br>67.      public DefaultWebSecurityManager defaultWebSecurityManager(MyShiroRealm realm){<br>68.          DefaultWebSecurityManager <span class="attribute">securityManager = <span class="attribute-value">new DefaultWebSecurityManager();  </span></span><br>69.          //设置realm<br>70.          securityManager.setRealm(realm);<br>71.          securityManager.setCacheManager(getEhCacheManager());<br>72.          return securityManager;<br>73.      }<br>74.<br>75.      @Bean<br>76.      public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager){<br>77.          AuthorizationAttributeSourceAdvisor <span class="attribute">advisor = <span class="attribute-value">new AuthorizationAttributeSourceAdvisor();  </span></span><br>78.          advisor.setSecurityManager(securityManager);<br>79.          return advisor;<br>80.      }<br>81.<br>82.      @Bean(<span class="attribute">name = <span class="attribute-value">“shiroFilter”)  </span></span><br>83.      public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager securityManager){<br>84.          ShiroFilterFactoryBean <span class="attribute">factoryBean = <span class="attribute-value">new MyShiroFilterFactoryBean();  </span></span><br>85.          factoryBean.setSecurityManager(securityManager);<br>86.          // 如果不设置默认会自动寻找Web工程根目录下的”/login.jsp”页面<br>87.          factoryBean.setLoginUrl(“/login”);<br>88.          // 登录成功后要跳转的连接<br>89.          factoryBean.setSuccessUrl(“/welcome”);<br>90.          factoryBean.setUnauthorizedUrl(“/403”);<br>91.          loadShiroFilterChain(factoryBean);<br>92.          logger.info(“shiro拦截器工厂类注入成功”);<br>93.          return factoryBean;<br>94.      }<br>95.<br>96.      /<strong><br>97.       <em> 加载ShiroFilter权限控制规则<br>98.       </em>/<br>99.      private void loadShiroFilterChain(ShiroFilterFactoryBean factoryBean) {<br>100.          /</strong>下面这些规则配置最好配置到配置文件中<em>/<br>101.          Map<span class="tag">&lt;<span class="tag-name">String, String<span class="tag">&gt; <span class="attribute">filterChainMap = <span class="attribute-value">new LinkedHashMap<span class="tag">&lt;<span class="tag-name">String, String<span class="tag">&gt;();  </span></span></span></span></span></span></span></span><br>102.          /** authc：该过滤器下的页面必须验证后才能访问，它是Shiro内置的一个拦截器<br>103.           </em> org.apache.shiro.web.filter.authc.FormAuthenticationFilter <em>/<br>104.          // anon：它对应的过滤器里面是空的,什么都没做,可以理解为不拦截<br>105.          //authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问<br>106.          filterChainMap.put(“/permission/userInsert”, “anon”);<br>107.          filterChainMap.put(“/error”, “anon”);<br>108.          filterChainMap.put(“/tUser/insert”,”anon”);<br>109.          filterChainMap.put(“/**”, “authc”);<br>110.<br>111.          factoryBean.setFilterChainDefinitionMap(filterChainMap);<br>112.      }<br>113.<br>114.      /</em>1.LifecycleBeanPostProcessor，这是个DestructionAwareBeanPostProcessor的子类，负责org.apache.shiro.util.Initializable类型bean的生命周期的，初始化和销毁。主要是AuthorizingRealm类的子类，以及EhCacheManager类。<br>115.      2.HashedCredentialsMatcher，这个类是为了对密码进行编码的，防止密码在数据库里明码保存，当然在登陆认证的生活，这个类也负责对form里输入的密码进行编码。<br>116.      3.ShiroRealm，这是个自定义的认证类，继承自AuthorizingRealm，负责用户的认证和权限的处理，可以参考JdbcRealm的实现。<br>117.      4.EhCacheManager，缓存管理，用户登陆成功后，把用户信息和权限信息缓存起来，然后每次用户请求时，放入用户的session中，如果不设置这个bean，每个请求都会查询一次数据库。<br>118.      5.SecurityManager，权限管理，这个类组合了登陆，登出，权限，session的处理，是个比较重要的类。<br>119.      6.ShiroFilterFactoryBean，是个factorybean，为了生成ShiroFilter。它主要保持了三项数据，securityManager，filters，filterChainDefinitionManager。<br>120.      7.DefaultAdvisorAutoProxyCreator，Spring的一个bean，由Advisor决定对哪些类的方法进行AOP代理。<br>121.      8.AuthorizationAttributeSourceAdvisor，shiro里实现的Advisor类，内部使用AopAllianceAnnotationsAuthorizingMethodInterceptor来拦截用以下注解的方法。<em>/<br>122.<br>123.  }<br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  package com.sun.configuration;<br>2.<br>3.  import org.apache.shiro.mgt.SecurityManager;<br>4.  import org.apache.shiro.spring.web.ShiroFilterFactoryBean;<br>5.  import org.apache.shiro.web.filter.mgt.FilterChainManager;<br>6.  import org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolver;<br>7.  import org.apache.shiro.web.mgt.WebSecurityManager;<br>8.  import org.apache.shiro.web.servlet.AbstractShiroFilter;<br>9.  import org.springframework.beans.factory.BeanInitializationException;<br>10.<br>11.  import javax.servlet.FilterChain;<br>12.  import javax.servlet.ServletException;<br>13.  import javax.servlet.ServletRequest;<br>14.  import javax.servlet.ServletResponse;<br>15.  import javax.servlet.http.HttpServletRequest;<br>16.  import java.io.IOException;<br>17.  import java.util.HashSet;<br>18.  import java.util.Set;<br>19.<br>20.  /**<br>21.   </div></div></div></div></em> Created by sun on 2017-4-2.<br>22.   <em>/<br>23.  public class MyShiroFilterFactoryBean extends ShiroFilterFactoryBean {<br>24.      // ShiroFilter将直接忽略的请求<br>25.      private Set<span class="tag">&lt;<span class="tag-name">String<span class="tag">&gt; ignoreExt;  </span></span></span><br>26.<br>27.      public MyShiroFilterFactoryBean(){<br>28.          super();<br>29.          <span class="attribute">ignoreExt = <span class="attribute-value">new HashSet<span class="tag">&lt;<span class="tag-name">String<span class="tag">&gt;();  </span></span></span></span></span><br>30.          ignoreExt.add(“.jpg”);<br>31.          ignoreExt.add(“.png”);<br>32.          ignoreExt.add(“.gif”);<br>33.          ignoreExt.add(“.bmp”);<br>34.          ignoreExt.add(“.js”);<br>35.          ignoreExt.add(“.css”);<br>36.      }<br>37.      /**<br>38.       </em> 启动时加载<br>39.       <em>/<br>40.      @Override<br>41.      protected AbstractShiroFilter createInstance() throws Exception {<br>42.          SecurityManager <span class="attribute">securityManager = <span class="attribute-value">getSecurityManager();  </span></span><br>43.          if (<span class="attribute">securityManager == null){  </span><br>44.              throw new BeanInitializationException(“SecurityManager property must be set.”);<br>45.          }<br>46.<br>47.          if (!(securityManager instanceof WebSecurityManager)){<br>48.              throw new BeanInitializationException(“The security manager does not implement the WebSecurityManager interface.”);<br>49.          }<br>50.<br>51.          PathMatchingFilterChainResolver <span class="attribute">chainResolver = <span class="attribute-value">new PathMatchingFilterChainResolver();  </span></span><br>52.          FilterChainManager <span class="attribute">chainManager = <span class="attribute-value">createFilterChainManager();  </span></span><br>53.          chainResolver.setFilterChainManager(chainManager);<br>54.          return new MySpringShiroFilter((WebSecurityManager)securityManager, chainResolver);<br>55.      }<br>56.<br>57.      /**<br>58.       </em> 启动时加载<br>59.       <em>/<br>60.      private class MySpringShiroFilter extends AbstractShiroFilter {<br>61.          public MySpringShiroFilter(<br>62.                  WebSecurityManager securityManager, PathMatchingFilterChainResolver chainResolver) {<br>63.              super();<br>64.              if (<span class="attribute">securityManager == null){  </span><br>65.                  throw new IllegalArgumentException(“WebSecurityManager property cannot be null.”);<br>66.              }<br>67.              setSecurityManager(securityManager);<br>68.              if (chainResolver != null){<br>69.                  setFilterChainResolver(chainResolver);<br>70.              }<br>71.          }<br>72.          /**<br>73.           </em> 页面上传输的url先进入此方法验证<br>74.           <em>/<br>75.          @Override<br>76.          protected void doFilterInternal(ServletRequest servletRequest, ServletResponse servletResponse,<br>77.                                          FilterChain chain)<br>78.                  throws ServletException, IOException {<br>79.              HttpServletRequest <span class="attribute">request = (HttpServletRequest)servletRequest;  </span><br>80.              String <span class="attribute">str = <span class="attribute-value">request.getRequestURI().toLowerCase();  </span></span><br>81.              boolean <span class="attribute">flag = <span class="attribute-value">true;  </span></span><br>82.              int <span class="attribute">idx = <span class="attribute-value">0;  </span></span><br>83.              if ((<span class="attribute">idx = <span class="attribute-value">str.lastIndexOf(“.”)) <span class="tag">&gt; 0){  </span></span></span><br>84.                  <span class="attribute">str = <span class="attribute-value">str.substring(idx);  </span></span><br>85.                  if (ignoreExt.contains(str.toLowerCase())){<br>86.                      <span class="attribute">flag = <span class="attribute-value">false;  </span></span><br>87.                  }<br>88.              }<br>89.              if (flag){<br>90.                  super.doFilterInternal(servletRequest, servletResponse, chain);<br>91.              } else {<br>92.                  chain.doFilter(servletRequest, servletResponse);<br>93.              }<br>94.          }<br>95.      }<br>96.  }<br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  package com.sun.configuration;<br>2.<br>3.  import com.sun.permission.model.Role;<br>4.  import com.sun.permission.model.User;<br>5.  import com.sun.permission.service.PermissionService;<br>6.  import org.apache.commons.lang3.builder.ReflectionToStringBuilder;<br>7.  import org.apache.commons.lang3.builder.ToStringStyle;<br>8.  import org.apache.log4j.Logger;<br>9.  import org.apache.shiro.authc.</div></div></div></div></em>;<br>10.  import org.apache.shiro.authz.AuthorizationInfo;<br>11.  import org.apache.shiro.authz.SimpleAuthorizationInfo;<br>12.  import org.apache.shiro.realm.AuthorizingRealm;<br>13.  import org.apache.shiro.subject.PrincipalCollection;<br>14.  import org.springframework.beans.factory.annotation.Autowired;<br>15.<br>16.  import java.util.List;<br>17.<br>18.  /<strong><br>19.   <em> shiro的认证最终是交给了Realm进行执行<br>20.   </em> 所以我们需要自己重新实现一个Realm，此Realm继承AuthorizingRealm<br>21.   <em> Created by sun on 2017-4-2.<br>22.   </em>/<br>23.  public class MyShiroRealm extends AuthorizingRealm {<br>24.<br>25.      private static final Logger <span class="attribute">logger = <span class="attribute-value">Logger.getLogger(MyShiroRealm.class);  </span></span><br>26.      @Autowired<br>27.      private PermissionService permissionService;<br>28.      /</strong><br>29.       <em> 登录认证<br>30.       </em>/<br>31.      @Override<br>32.      protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {<br>33.          //UsernamePasswordToken用于存放提交的登录信息<br>34.          UsernamePasswordToken <span class="attribute">token = (UsernamePasswordToken)authenticationToken;  </span><br>35.          logger.info(“登录认证!”);<br>36.          logger.info(“验证当前Subject时获取到token为：” + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));<br>37.          User <span class="attribute">user = <span class="attribute-value">permissionService.findByUserEmail(token.getUsername());  </span></span><br>38.          if (user != null){<br>39.              logger.info(“用户: “ + user.getEmail());<br>40.              if(user.getStatus() == 0){<br>41.                  throw new DisabledAccountException();<br>42.              }<br>43.              // 若存在，将此用户存放到登录认证info中，无需自己做密码对比，Shiro会为我们进行密码对比校验<br>44.              return new SimpleAuthenticationInfo(user.getEmail(), user.getPswd(), getName());<br>45.          }<br>46.          return null;<br>47.      }<br>48.<br>49.      /<strong><br>50.       <em> 权限认证（为当前登录的Subject授予角色和权限）<br>51.       </em><br>52.       <em> 该方法的调用时机为需授权资源被访问时，并且每次访问需授权资源都会执行该方法中的逻辑，这表明本例中并未启用AuthorizationCache，<br>53.       </em> 如果连续访问同一个URL（比如刷新），该方法不会被重复调用，Shiro有一个时间间隔（也就是cache时间，在ehcache-shiro.xml中配置），<br>54.       <em> 超过这个时间间隔再刷新页面，该方法会被执行<br>55.       </em><br>56.       <em> doGetAuthorizationInfo()是权限控制，<br>57.       </em> 当访问到页面的时候，使用了相应的注解或者shiro标签才会执行此方法否则不会执行，<br>58.       <em> 所以如果只是简单的身份认证没有权限的控制的话，那么这个方法可以不进行实现，直接返回null即可<br>59.       </em>/<br>60.      @Override<br>61.      protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {<br>62.          String <span class="attribute">loginName = (String) super.getAvailablePrincipal(principals);  </span><br>63.          User <span class="attribute">user = <span class="attribute-value">permissionService.findByUserEmail(loginName);  </span></span><br>64.          logger.info(“权限认证!”);<br>65.          if (user != null){<br>66.              // 权限信息对象info，用来存放查出的用户的所有的角色及权限<br>67.              SimpleAuthorizationInfo <span class="attribute">info = <span class="attribute-value">new SimpleAuthorizationInfo();  </span></span><br>68.              //用户的角色集合<br>69.              info.setRoles(permissionService.getRolesName(user.getId()));<br>70.              List<span class="tag">&lt;<span class="tag-name">Role<span class="tag">&gt; <span class="attribute">roleList = <span class="attribute-value">permissionService.getRoleList(user.getId());  </span></span></span></span></span><br>71.              for (Role role : roleList){<br>72.                  //用户的角色对应的所有权限<br>73.                  logger.info(“角色: “+role.getName());<br>74.                  info.addStringPermissions(permissionService.getPermissionsName(role.getId()));<br>75.              }<br>76.              return info;<br>77.          }<br>78.          // 返回null将会导致用户访问任何被拦截的请求时都会自动跳转到unauthorizedUrl指定的地址<br>79.          return null;<br>80.      }<br>81.  }<br><br>ehcache-shiro.xml内容：<br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"></div></div></div></strong>[html]<strong> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="tag">&lt;?<span class="tag-name">xml <span class="attribute">version=<span class="attribute-value">“1.0” <span class="attribute">encoding=<span class="attribute-value">“UTF-8”<span class="tag">?&gt;  </span></span></span></span></span></span></span><br>2.  <span class="tag">&lt;<span class="tag-name">ehcache <span class="attribute">updateCheck=<span class="attribute-value">“false” <span class="attribute">name=<span class="attribute-value">“shiroCache”<span class="tag">&gt;  </span></span></span></span></span></span></span><br>3.      <!--  
+4.         name:缓存名称。  
+5.         maxElementsInMemory:缓存最大数目  
+6.         maxElementsOnDisk：硬盘最大缓存个数。  
+7.         eternal:对象是否永久有效，一但设置了，timeout将不起作用。  
+8.         overflowToDisk:是否保存到磁盘，当系统当机时  
+9.         timeToIdleSeconds:设置对象在失效前的允许闲置时间（单位：秒）。仅当<span class="attribute">eternal=<span class="attribute-value">false对象不是永久有效时使用，可选属性，默认值是0，也就是可闲置时间无穷大。  </span></span>
+10.         timeToLiveSeconds:设置对象在失效前允许存活时间（单位：秒）。最大时间介于创建时间和失效时间之间。仅当<span class="attribute">eternal=<span class="attribute-value">false对象不是永久有效时使用，默认是0.，也就是对象存活时间无穷大。  </span></span>
+11.         diskPersistent：是否缓存虚拟机重启期数据 Whether the disk store persists between restarts of the Virtual Machine. The default value is false.  
+12.         diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区。  
+13.         diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是120秒。  
+14.         memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）。  
+15.          clearOnFlush：内存数量最大时是否清除。  
+16.           memoryStoreEvictionPolicy:  
+17.              Ehcache的三种清空策略;  
+18.              FIFO，first in first out，这个是大家最熟的，先进先出。  
+19.              LFU， Less Frequently Used，就是上面例子中使用的策略，直白一点就是讲一直以来最少被使用的。如上面所讲，缓存的元素有一个hit属性，hit值最小的将会被清出缓存。  
+20.              LRU，Least Recently Used，最近最少使用的，缓存的元素有一个时间戳，当缓存容量满了，而又需要腾出地方来缓存新的元素的时候，那么现有缓存元素中时间戳离当前时间最远的元素将被清出缓存。  
+21.      --<span class="tag">>  </span>
+22.      <span class="tag"><<span class="tag-name">defaultCache  </span></span>
+23.              <span class="attribute">maxElementsInMemory=<span class="attribute-value">"10000"  </span></span>
+24.              <span class="attribute">eternal=<span class="attribute-value">"false"  </span></span>
+25.              <span class="attribute">timeToIdleSeconds=<span class="attribute-value">"120"  </span></span>
+26.              <span class="attribute">timeToLiveSeconds=<span class="attribute-value">"120"  </span></span>
+27.              <span class="attribute">overflowToDisk=<span class="attribute-value">"false"  </span></span>
+28.              <span class="attribute">diskPersistent=<span class="attribute-value">"false"  </span></span>
+29.              <span class="attribute">diskExpiryThreadIntervalSeconds=<span class="attribute-value">"120"  </span></span>
+30.      <span class="tag">/>  </span>
+31.      <span class="comments"><!-- 登录记录缓存锁定10分钟 -->  <br>32.      <span class="tag">&lt;<span class="tag-name">cache <span class="attribute">name=<span class="attribute-value">“passwordRetryCache”  </span></span></span></span><br>33.             <span class="attribute">maxEntriesLocalHeap=<span class="attribute-value">“2000”  </span></span><br>34.             <span class="attribute">eternal=<span class="attribute-value">“false”  </span></span><br>35.             <span class="attribute">timeToIdleSeconds=<span class="attribute-value">“3600”  </span></span><br>36.             <span class="attribute">timeToLiveSeconds=<span class="attribute-value">“0”  </span></span><br>37.             <span class="attribute">overflowToDisk=<span class="attribute-value">“false”  </span></span><br>38.             <span class="attribute">statistics=<span class="attribute-value">“true”<span class="tag">&gt;  </span></span></span><br>39.      <span class="tag">&lt;/<span class="tag-name">cache<span class="tag">&gt;  </span></span></span><br>40.  <span class="tag">&lt;/<span class="tag-name">ehcache<span class="tag">&gt;  </span></span></span><br><br> 登录的controller类如下：<br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"></div></div></div></div></strong>[html]<strong> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  package com.sun.permission.controller;<br>2.<br>3.  import com.sun.permission.model.User;<br>4.  import com.sun.permission.service.PermissionService;<br>5.  import com.sun.util.CommonUtils;<br>6.  import org.apache.commons.lang3.StringUtils;<br>7.  import org.apache.log4j.Logger;<br>8.  import org.apache.shiro.SecurityUtils;<br>9.  import org.apache.shiro.authc.*;<br>10.  import org.apache.shiro.session.Session;<br>11.  import org.apache.shiro.subject.Subject;<br>12.  import org.springframework.beans.factory.annotation.Autowired;<br>13.  import org.springframework.stereotype.Controller;<br>14.  import org.springframework.validation.BindingResult;<br>15.  import org.springframework.web.bind.annotation.RequestMapping;<br>16.  import org.springframework.web.bind.annotation.RequestMethod;<br>17.  import org.springframework.web.servlet.ModelAndView;<br>18.  import org.springframework.web.servlet.mvc.support.RedirectAttributes;<br>19.<br>20.  import javax.validation.Valid;<br>21.<br>22.  /</div></strong><br>23.   <em> Created by sun on 2017-4-2.<br>24.   </em>/<br>25.  @Controller<br>26.  public class LoginController {<br>27.      private static final Logger <span class="attribute">logger = <span class="attribute-value">Logger.getLogger(LoginController.class);  </span></span><br>28.      @Autowired<br>29.      private PermissionService permissionService;<br>30.<br>31.      @RequestMapping(<span class="attribute">value=<span class="attribute-value">“/login”,<span class="attribute">method= <span class="attribute-value">RequestMethod.GET)  </span></span></span></span><br>32.      public ModelAndView loginForm(){<br>33.          ModelAndView <span class="attribute">model = <span class="attribute-value">new ModelAndView();  </span></span><br>34.          model.addObject(“user”, new User());<br>35.          model.setViewName(“login”);<br>36.          return model;<br>37.      }<br>38.<br>39.      @RequestMapping(<span class="attribute">value=<span class="attribute-value">“/login”,<span class="attribute">method=<span class="attribute-value">RequestMethod.POST)  </span></span></span></span><br>40.      public String login(@Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes){<br>41.          if(bindingResult.hasErrors()){<br>42.              return “redirect:login”;<br>43.          }<br>44.          String <span class="attribute">email = <span class="attribute-value">user.getEmail();  </span></span><br>45.          if(StringUtils.isBlank(user.getEmail()) || StringUtils.isBlank(user.getPswd())){<br>46.              logger.info(“用户名或密码为空! “);<br>47.              redirectAttributes.addFlashAttribute(“message”, “用户名或密码为空!”);<br>48.              return “redirect:login”;<br>49.          }<br>50.          //验证<br>51.          UsernamePasswordToken <span class="attribute">token = <span class="attribute-value">new UsernamePasswordToken(user.getEmail(), user.getPswd());  </span></span><br>52.          //获取当前的Subject<br>53.          Subject <span class="attribute">currentUser = <span class="attribute-value">SecurityUtils.getSubject();  </span></span><br>54.          try {<br>55.              //在调用了login方法后,SecurityManager会收到AuthenticationToken,并将其发送给已配置的Realm执行必须的认证检查<br>56.              //每个Realm都能在必要时对提交的AuthenticationTokens作出反应<br>57.              //所以这一步在调用login(token)方法时,它会走到MyRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法<br>58.              logger.info(“对用户[“ + email + “]进行登录验证..验证开始”);<br>59.              currentUser.login(token);<br>60.              logger.info(“对用户[“ + email + “]进行登录验证..验证通过”);<br>61.          }catch(UnknownAccountException uae){<br>62.              logger.info(“对用户[“ + email + “]进行登录验证..验证未通过,未知账户”);<br>63.              redirectAttributes.addFlashAttribute(“message”, “未知账户”);<br>64.          }catch(IncorrectCredentialsException ice){<br>65.              logger.info(“对用户[“ + email + “]进行登录验证..验证未通过,错误的凭证”);<br>66.              redirectAttributes.addFlashAttribute(“message”, “密码不正确”);<br>67.          }catch(LockedAccountException lae){<br>68.              logger.info(“对用户[“ + email + “]进行登录验证..验证未通过,账户已锁定”);<br>69.              redirectAttributes.addFlashAttribute(“message”, “账户已锁定”);<br>70.          }catch(ExcessiveAttemptsException eae){<br>71.              logger.info(“对用户[“ + email + “]进行登录验证..验证未通过,错误次数大于5次,账户已锁定”);<br>72.              redirectAttributes.addFlashAttribute(“message”, “用户名或密码错误次数大于5次,账户已锁定”);<br>73.          }catch (DisabledAccountException sae){<br>74.              logger.info(“对用户[“ + email + “]进行登录验证..验证未通过,帐号已经禁止登录”);<br>75.              redirectAttributes.addFlashAttribute(“message”, “帐号已经禁止登录”);<br>76.          }catch(AuthenticationException ae){<br>77.              //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景<br>78.              logger.info(“对用户[“ + email + “]进行登录验证..验证未通过,堆栈轨迹如下”);<br>79.              ae.printStackTrace();<br>80.              redirectAttributes.addFlashAttribute(“message”, “用户名或密码不正确”);<br>81.          }<br>82.          //验证是否登录成功<br>83.          if(currentUser.isAuthenticated()){<br>84.              logger.info(“用户[“ + email + “]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)”);<br>85.              //把当前用户放入session<br>86.              Session <span class="attribute">session = <span class="attribute-value">currentUser.getSession();  </span></span><br>87.              User <span class="attribute">tUser = <span class="attribute-value">permissionService.findByUserEmail(email);  </span></span><br>88.              session.setAttribute(“currentUser”,tUser);<br>89.              return “/welcome”;<br>90.          }else{<br>91.              token.clear();<br>92.              return “redirect:login”;<br>93.          }<br>94.      }<br>95.<br>96.      @RequestMapping(<span class="attribute">value=<span class="attribute-value">“/logout”,<span class="attribute">method=<span class="attribute-value">RequestMethod.GET)  </span></span></span></span><br>97.      public String logout(RedirectAttributes redirectAttributes ){<br>98.          //使用权限管理工具进行用户的退出，跳出登录，给出提示信息<br>99.          SecurityUtils.getSubject().logout();<br>100.          redirectAttributes.addFlashAttribute(“message”, “您已安全退出”);<br>101.          return “redirect:login”;<br>102.      }<br>103.<br>104.      @RequestMapping(“/403”)<br>105.      public String unauthorizedRole(){<br>106.          logger.info(“——没有权限——-“);<br>107.          return “errorPermission”;<br>108.      }<br>109.<br>110.  }<br><br>login.jsp如下：<br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="tag">&lt;%@ page <span class="attribute">language=<span class="attribute-value">“java” <span class="attribute">import=<span class="attribute-value">“java.util.*” <span class="attribute">pageEncoding=<span class="attribute-value">“UTF-8”%<span class="tag">&gt;  </span></span></span></span></span></span></span></span><br>2.  <span class="tag">&lt;%  </span><br>3.  String <span class="attribute">path = <span class="attribute-value">request.getContextPath();  </span></span><br>4.  String <span class="attribute">basePath = <span class="attribute-value">request.getScheme()+”://“+request.getServerName()+”:”+request.getServerPort()+path+”/“;  </span></span><br>5.  %<span class="tag">&gt;  </span><br>6.<br>7.  &lt;!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01 Transitional//EN”<span class="tag">&gt;  </span><br>8.  <span class="tag">&lt;<span class="tag-name">html<span class="tag">&gt;  </span></span></span><br>9.    <span class="tag">&lt;<span class="tag-name">head<span class="tag">&gt;  </span></span></span><br>10.      <span class="tag">&lt;<span class="tag-name">base <span class="attribute">href=<span class="attribute-value">“&lt;%=basePath%&gt;”<span class="tag">&gt;  </span></span></span></span></span><br>11.<br>12.      <span class="tag">&lt;<span class="tag-name">title<span class="tag">&gt;Login<span class="tag">&lt;/<span class="tag-name">title<span class="tag">&gt;  </span></span></span></span></span></span><br>13.      <span class="tag">&lt;<span class="tag-name">meta <span class="attribute">http-equiv=<span class="attribute-value">“pragma” <span class="attribute">content=<span class="attribute-value">“no-cache”<span class="tag">&gt;  </span></span></span></span></span></span></span><br>14.      <span class="tag">&lt;<span class="tag-name">meta <span class="attribute">http-equiv=<span class="attribute-value">“cache-control” <span class="attribute">content=<span class="attribute-value">“no-cache”<span class="tag">&gt;  </span></span></span></span></span></span></span><br>15.      <span class="tag">&lt;<span class="tag-name">meta <span class="attribute">http-equiv=<span class="attribute-value">“expires” <span class="attribute">content=<span class="attribute-value">“0”<span class="tag">&gt;      </span></span></span></span></span></span></span><br>16.      <span class="tag">&lt;<span class="tag-name">meta <span class="attribute">http-equiv=<span class="attribute-value">“keywords” <span class="attribute">content=<span class="attribute-value">“keyword1,keyword2,keyword3”<span class="tag">&gt;  </span></span></span></span></span></span></span><br>17.      <span class="tag">&lt;<span class="tag-name">meta <span class="attribute">http-equiv=<span class="attribute-value">“description” <span class="attribute">content=<span class="attribute-value">“This is my page”<span class="tag">&gt;  </span></span></span></span></span></span></span><br>18.      <span class="comments"><!-- </span>
+19.  <span class="comments">    <link rel="stylesheet" type="text/css" href="styles.css"> </span>
+20.  <span class="comments">    -->  </span><br>21.      <span class="tag">&lt;<span class="tag-name">script <span class="attribute">src=<span class="attribute-value">“&lt;%=basePath%&gt;js/jquery-2.1.4/jquery.min.js”<span class="tag">&gt;<span class="tag">&lt;/<span class="tag-name">script<span class="tag">&gt;  </span></span></span></span></span></span></span></span><br>22.    <span class="tag">&lt;/<span class="tag-name">head<span class="tag">&gt;  </span></span></span><br>23.<br>24.    <span class="tag">&lt;<span class="tag-name">body <span class="attribute">style=<span class="attribute-value">“margin-left: 500px”<span class="tag">&gt;  </span></span></span></span></span><br>25.       <span class="tag">&lt;<span class="tag-name">h1 <span class="attribute">style=<span class="attribute-value">“margin-left: 30px”<span class="tag">&gt;登录页面—-<span class="tag">&lt;/<span class="tag-name">h1<span class="tag">&gt;  </span></span></span></span></span></span></span></span><br>26.       <span class="tag">&lt;<span class="tag-name">form <span class="attribute">action=<span class="attribute-value">“&lt;%=basePath%&gt;/login” <span class="attribute">method=<span class="attribute-value">“post”<span class="tag">&gt;  </span></span></span></span></span></span></span><br>27.           用户名 : <span class="tag">&lt;<span class="tag-name">input <span class="attribute">type=<span class="attribute-value">“text” <span class="attribute">name=<span class="attribute-value">“email” <span class="attribute">id=<span class="attribute-value">“email”<span class="tag">/&gt;<span class="tag">&lt;<span class="tag-name">br<span class="tag">&gt;  </span></span></span></span></span></span></span></span></span></span></span></span><br>28.           密码: <span class="tag">&lt;<span class="tag-name">input <span class="attribute">type=<span class="attribute-value">“password” <span class="attribute">name=<span class="attribute-value">“pswd” <span class="attribute">id=<span class="attribute-value">“pswd”<span class="tag">/&gt;<span class="tag">&lt;<span class="tag-name">br<span class="tag">&gt;  </span></span></span></span></span></span></span></span></span></span></span></span><br>29.           <span class="tag">&lt;<span class="tag-name">input <span class="attribute">style=<span class="attribute-value">“margin-left: 100px” <span class="attribute">type=<span class="attribute-value">“submit” <span class="attribute">value=<span class="attribute-value">“登录”<span class="tag">/&gt;<span class="tag">&lt;<span class="tag-name">input <span class="attribute">style=<span class="attribute-value">“left: 50px” <span class="attribute">onclick=<span class="attribute-value">“register()” <span class="attribute">type=<span class="attribute-value">“button” <span class="attribute">value=<span class="attribute-value">“注册”<span class="tag">/&gt;  </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br>30.       <span class="tag">&lt;/<span class="tag-name">form<span class="tag">&gt;  </span></span></span><br>31.       <span class="tag">&lt;<span class="tag-name">h1 <span class="attribute">style=<span class="attribute-value">“color: red”<span class="tag">&gt;${message }<span class="tag">&lt;/<span class="tag-name">h1<span class="tag">&gt;  </span></span></span></span></span></span></span></span><br>32.    <span class="tag">&lt;/<span class="tag-name">body<span class="tag">&gt;  </span></span></span><br>33.    <span class="tag">&lt;<span class="tag-name">script <span class="attribute">type=<span class="attribute-value">“text/javascript”<span class="tag">&gt;  </span></span></span></span></span><br>34.<br>35.        function register(){<br>36.            <span class="attribute">location.href=<span class="attribute-value">“&lt;%=basePath%&gt;permission/userInsert”;  </span></span><br>37.        }<br>38.<br>39.    <span class="tag">&lt;/<span class="tag-name">script<span class="tag">&gt;  </span></span></span><br>40.  <span class="tag">&lt;/<span class="tag-name">html<span class="tag">&gt;  </span></span></span><br><br> welcome.jsp如下：<br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/aqsunkai/article/details/69757017#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="tag">&lt;%–  </span><br>2.    Created by IntelliJ IDEA.<br>3.    User: sun<br>4.    Date: 2017-4-2<br>5.    Time: 20:17<br>6.    To change this template use File | Settings | File Templates.<br>7.  –%<span class="tag">&gt;  </span><br>8.  <span class="tag">&lt;%@ page <span class="attribute">contentType=<span class="attribute-value">“text/html;charset=UTF-8” <span class="attribute">language=<span class="attribute-value">“java” %<span class="tag">&gt;  </span></span></span></span></span></span><br>9.  <span class="tag">&lt;%–<span class="tag">&lt;%@ taglib <span class="attribute">prefix=<span class="attribute-value">“c” <span class="attribute">uri=<span class="attribute-value">“<a href="http://java.sun.com/jsp/jstl/core&quot;" target="_blank" rel="noopener">http://java.sun.com/jsp/jstl/core&quot;</a> %<span class="tag">&gt;–%<span class="tag">&gt;  </span></span></span></span></span></span></span></span><br>10.  <span class="tag">&lt;%@ taglib <span class="attribute">prefix=<span class="attribute-value">“shiro” <span class="attribute">uri=<span class="attribute-value">“<a href="http://shiro.apache.org/tags&quot;" target="_blank" rel="noopener">http://shiro.apache.org/tags&quot;</a> %<span class="tag">&gt;  </span></span></span></span></span></span><br>11.  <span class="tag">&lt;<span class="tag-name">html<span class="tag">&gt;  </span></span></span><br>12.  <span class="tag">&lt;<span class="tag-name">head<span class="tag">&gt;  </span></span></span><br>13.      <span class="tag">&lt;<span class="tag-name">title<span class="tag">&gt;欢迎!<span class="tag">&lt;/<span class="tag-name">title<span class="tag">&gt;  </span></span></span></span></span></span><br>14.  <span class="tag">&lt;/<span class="tag-name">head<span class="tag">&gt;  </span></span></span><br>15.  <span class="tag">&lt;<span class="tag-name">body <span class="attribute">style=<span class="attribute-value">“text-align: center”<span class="tag">&gt;  </span></span></span></span></span><br>16.      <span class="tag">&lt;<span class="tag-name">h1<span class="tag">&gt;${message }<span class="tag">&lt;/<span class="tag-name">h1<span class="tag">&gt;  </span></span></span></span></span></span><br>17.      <span class="tag">&lt;<span class="tag-name">h1<span class="tag">&gt;用户列表–<span class="tag">&lt;<span class="tag-name">a <span class="attribute">href=<span class="attribute-value">“${pageContext.request.contextPath }/logout”<span class="tag">&gt;退出登录<span class="tag">&lt;/<span class="tag-name">a<span class="tag">&gt;<span class="tag">&lt;/<span class="tag-name">h1<span class="tag">&gt;  </span></span></span></span></span></span></span></span></span></span></span></span></span></span><br>18.      当前登录用户: <span class="tag">&lt;<span class="tag-name">shiro:principal<span class="tag">/&gt;<span class="tag">&lt;<span class="tag-name">br<span class="tag">/&gt;  </span></span></span></span></span></span><br>19.      <span class="tag">&lt;<span class="tag-name">shiro:authenticated<span class="tag">&gt;我已登录,但未记住<span class="tag">&lt;<span class="tag-name">br<span class="tag">/&gt;<span class="tag">&lt;/<span class="tag-name">shiro:authenticated<span class="tag">&gt;  </span></span></span></span></span></span></span></span></span><br>20.      <span class="tag">&lt;<span class="tag-name">shiro:user<span class="tag">&gt;我已登录,或已记住<span class="tag">&lt;<span class="tag-name">br<span class="tag">/&gt;<span class="tag">&lt;/<span class="tag-name">shiro:user<span class="tag">&gt;  </span></span></span></span></span></span></span></span></span><br>21.      <span class="tag">&lt;<span class="tag-name">shiro:guest<span class="tag">&gt;我是访客<span class="tag">&lt;<span class="tag-name">br<span class="tag">/&gt;<span class="tag">&lt;/<span class="tag-name">shiro:guest<span class="tag">&gt;  </span></span></span></span></span></span></span></span></span><br>22.      <span class="tag">&lt;<span class="tag-name">shiro:hasAnyRoles <span class="attribute">name=<span class="attribute-value">“manager,admin”<span class="tag">&gt;manager or admin 角色用户登录显示此内容<span class="tag">&lt;<span class="tag-name">br<span class="tag">/&gt;<span class="tag">&lt;/<span class="tag-name">shiro:hasAnyRoles<span class="tag">&gt;  </span></span></span></span></span></span></span></span></span></span></span><br>23.      <span class="tag">&lt;<span class="tag-name">shiro:hasRole <span class="attribute">name=<span class="attribute-value">“系统管理员”<span class="tag">&gt;我是系统管理员<span class="tag">&lt;<span class="tag-name">br<span class="tag">/&gt;<span class="tag">&lt;/<span class="tag-name">shiro:hasRole<span class="tag">&gt;  </span></span></span></span></span></span></span></span></span></span></span><br>24.      <span class="tag">&lt;<span class="tag-name">shiro:hasRole <span class="attribute">name=<span class="attribute-value">“会员”<span class="tag">&gt;我是会员<span class="tag">&lt;<span class="tag-name">br<span class="tag">/&gt;<span class="tag">&lt;/<span class="tag-name">shiro:hasRole<span class="tag">&gt;  </span></span></span></span></span></span></span></span></span></span></span><br>25.      <span class="tag">&lt;<span class="tag-name">h2<span class="tag">&gt;权限列表<span class="tag">&lt;/<span class="tag-name">h2<span class="tag">&gt;  </span></span></span></span></span></span><br>26.      <span class="tag">&lt;<span class="tag-name">shiro:hasPermission <span class="attribute">name=<span class="attribute-value">“权限列表”<span class="tag">&gt;具有权限列表权限用户显示此内容<span class="tag">&lt;<span class="tag-name">br<span class="tag">/&gt;<span class="tag">&lt;/<span class="tag-name">shiro:hasPermission<span class="tag">&gt;  </span></span></span></span></span></span></span></span></span></span></span><br>27.      <span class="tag">&lt;<span class="tag-name">shiro:hasPermission <span class="attribute">name=<span class="attribute-value">“用户列表”<span class="tag">&gt;具有用户列表权限用户显示此内容<span class="tag">&lt;<span class="tag-name">br<span class="tag">/&gt;<span class="tag">&lt;/<span class="tag-name">shiro:hasPermission<span class="tag">&gt;  </span></span></span></span></span></span></span></span></span></span></span><br>28.      <span class="tag">&lt;<span class="tag-name">shiro:hasPermission <span class="attribute">name=<span class="attribute-value">“在线用户”<span class="tag">&gt;具有在线用户权限用户显示此内容<span class="tag">&lt;<span class="tag-name">br<span class="tag">/&gt;<span class="tag">&lt;/<span class="tag-name">shiro:hasPermission<span class="tag">&gt;  </span></span></span></span></span></span></span></span></span></span></span><br>29.      <span class="tag">&lt;<span class="tag-name">shiro:lacksPermission <span class="attribute">name=<span class="attribute-value">“角色分配保存”<span class="tag">&gt;不具有角色分配保存权限的用户显示此内容 <span class="tag">&lt;<span class="tag-name">br<span class="tag">/&gt;<span class="tag">&lt;/<span class="tag-name">shiro:lacksPermission<span class="tag">&gt;  </span></span></span></span></span></span></span></span></span></span></span><br>30.<br>31.  <span class="tag">&lt;/<span class="tag-name">body<span class="tag">&gt;  </span></span></span><br>32.  <span class="tag">&lt;/<span class="tag-name">html<span class="tag">&gt;  </span></span></span><br><br>启动后在页面上输入：<a href="http://localhost:8080/boot/会跳转到login登录页面：" target="_blank" rel="noopener">http://localhost:8080/boot/会跳转到login登录页面：</a><br><img src="http://pangguoming.com/blog/images/0ad58d0b-2994-41f6-acbd-ffc0f06453d2.jpg" alt=""><br><br>登录后会跳转到welcome页面，该页面使用了shiro标签，会进行权限认证：<br><br> <img src="http://pangguoming.com/blog/images/73877d60-a478-43cf-98bf-4a194242bee3.jpg" alt=""><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring-boot/" rel="tag"># spring boot</a>
+          
+            <a href="/tags/shiro/" rel="tag"># shiro</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/5860b93c.html" rel="next" title="帝国备份王出错">
+                <i class="fa fa-chevron-left"></i> 帝国备份王出错
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/dce60112.html" rel="prev" title="SpringBoot整合Quartz定时任务 的简单实例">
+                SpringBoot整合Quartz定时任务 的简单实例 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'pangguoming',
+            repo: 'pangguoming.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51',
+            
+                client_id: '1e9770fed2b4d227cd0a'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

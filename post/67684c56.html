@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Vuepress,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="# 超详细动手搭建一个Vuepress站点及开启PWA与自动部署&amp;gt; 五一之前就想写一篇关于Vuepress的文章,结果朋友结婚就不了了之了。&amp;gt;&amp;gt; 记得最后一定要看注意事项！## Vuepress介绍官网：https://vuepress.vuejs.org/类似hexo一个极简的静态网站生成器,用来写技术文档不能在爽。当然搭建成博客也不成问题。## Vuepress特点   响应">
+<meta name="keywords" content="Vuepress">
+<meta property="og:type" content="article">
+<meta property="og:title" content="超详细动手搭建一个Vuepress站点及开启PWA与自动部署">
+<meta property="og:url" content="http://pangguoming.com/post/67684c56.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="# 超详细动手搭建一个Vuepress站点及开启PWA与自动部署&amp;gt; 五一之前就想写一篇关于Vuepress的文章,结果朋友结婚就不了了之了。&amp;gt;&amp;gt; 记得最后一定要看注意事项！## Vuepress介绍官网：https://vuepress.vuejs.org/类似hexo一个极简的静态网站生成器,用来写技术文档不能在爽。当然搭建成博客也不成问题。## Vuepress特点   响应">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pangguoming.com/blog/images/ac55f2b0-6e8e-4d8d-8e2e-7dd1554cab89.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/ac3b62fa-e48a-4211-9870-be131972bd55.jpg">
+<meta property="og:updated_time" content="2019-07-10T03:30:55.703Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="超详细动手搭建一个Vuepress站点及开启PWA与自动部署">
+<meta name="twitter:description" content="# 超详细动手搭建一个Vuepress站点及开启PWA与自动部署&amp;gt; 五一之前就想写一篇关于Vuepress的文章,结果朋友结婚就不了了之了。&amp;gt;&amp;gt; 记得最后一定要看注意事项！## Vuepress介绍官网：https://vuepress.vuejs.org/类似hexo一个极简的静态网站生成器,用来写技术文档不能在爽。当然搭建成博客也不成问题。## Vuepress特点   响应">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/ac55f2b0-6e8e-4d8d-8e2e-7dd1554cab89.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/post/67684c56.html">
+
+
+
+
+
+  <title>超详细动手搭建一个Vuepress站点及开启PWA与自动部署 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/67684c56.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">超详细动手搭建一个Vuepress站点及开启PWA与自动部署</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T17:29:00+08:00">
+                2019-01-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/67684c56.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/post/67684c56.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div class="article"><br><div class="show-content" data-note-content=""><br><div class="show-content-free"><br><br># 超详细动手搭建一个Vuepress站点及开启PWA与自动部署<br><br>&gt; 五一之前就想写一篇关于Vuepress的文章,结果朋友结婚就不了了之了。<br>&gt;<br>&gt; 记得最后一定要看注意事项！<br><br>## Vuepress介绍<br><br>官网：<a href="https://link.jianshu.com?t=https%3A%2F%2Fvuepress.vuejs.org%2F" target="_blank" rel="noopener">https://vuepress.vuejs.org/</a><br><br>类似hexo一个极简的静态网站生成器,用来写技术文档不能在爽。当然搭建成博客也不成问题。<br><br>## Vuepress特点<br><br><em>   响应式,也可以自定义主题与hexo类似
+</em>   内置markdown(还增加了一些扩展),并且可以在其使用Vue组件<br><em>   Google Analytics 集成
+</em>   PWA 自动生成Service Worker<br><br>## 快速上手<br><br>### 安装<br><br>初始化项目<br><br><code class="shell">yarn init -y<br>    <span class="hljs-meta">#<span class="bash"> 或者 npm init -y<br>    </span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">安装vuepress</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs shell&quot;&gt;&lt;code class=&quot;shell&quot;&gt;yarn add -D vuepress</span><br><span class="line">    &lt;span class=&quot;hljs-meta&quot;&gt;#&lt;span class=&quot;bash&quot;&gt; 或者 npm install -D vuepress</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>全局安装vuepress<br><br>    <pre class="hljs shell"><code class="shell">yarn global add vuepress<br>    <span class="hljs-meta">#<span class="bash"> 或者 npm install -g vuepress<br>    </span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">新建一个docs文件夹</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs shell&quot;&gt;&lt;code class=&quot;shell&quot;&gt;mkdir docs</span><br><span class="line">    &lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>设置下package.json<br><br>    <pre class="hljs shell"><code class="shell">{<br>      “scripts”: {<br>        “docs:dev”: “vuepress dev docs”,<br>        “docs:build”: “vuepress build docs”<br>      }<br>    }<br>    </code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 写作</span><br><span class="line"></span><br><span class="line">&lt;pre class=&quot;hljs shell&quot;&gt;&lt;code class=&quot;shell&quot;&gt;yarn docs:dev # 或者：npm run docs:dev</span><br><span class="line">&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>也就是运行开发环境,直接去docs文件下书写文章就可以,打开<a href="https://link.jianshu.com?t=http%3A%2F%2Flocalhost%3A8080%2F" target="_blank" rel="noopener">http://localhost:8080/</a>可以预览<br><br>    <div class="image-package"><br>    <div class="image-container"><br>    <div class="image-container-fill"><br>    <div class="image-view" data-width="745" data-height="401"><img src="http://pangguoming.com/blog/images/ac55f2b0-6e8e-4d8d-8e2e-7dd1554cab89.jpg" alt=""><br><br>    <div class="image-caption">image<br><br>    ### 构建<br><br>build生成静态的HTML文件,默认会在 <code>.vuepress/dist</code> 文件夹下<br><br>    <pre class="hljs shell"><code class="shell">yarn docs:build # 或者：npm run docs:build<br>    </code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ## 基本配置</span><br><span class="line"></span><br><span class="line">在 `.vuepress`目录下新建一个`config.js`,他导出一个对象</span><br><span class="line"></span><br><span class="line">一些配置可以参考[官方文档](https://link.jianshu.com?t=https%3A%2F%2Fvuepress.vuejs.org%2Fconfig%2F%23base),这里我配置常用及必须配置的</span><br><span class="line"></span><br><span class="line">    ### 网站信息</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs javascript&quot;&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;module.exports = &#123;</span><br><span class="line">      &lt;span class=&quot;hljs-attr&quot;&gt;title: &lt;span class=&quot;hljs-string&quot;&gt;&apos;游魂的文档&apos;,</span><br><span class="line">      &lt;span class=&quot;hljs-attr&quot;&gt;description: &lt;span class=&quot;hljs-string&quot;&gt;&apos;Document library&apos;,</span><br><span class="line">      &lt;span class=&quot;hljs-attr&quot;&gt;head: [</span><br><span class="line">        [&lt;span class=&quot;hljs-string&quot;&gt;&apos;link&apos;, &#123; &lt;span class=&quot;hljs-attr&quot;&gt;rel: &lt;span class=&quot;hljs-string&quot;&gt;&apos;icon&apos;, &lt;span class=&quot;hljs-attr&quot;&gt;href: &lt;span class=&quot;hljs-string&quot;&gt;`/favicon.ico` &#125;],</span><br><span class="line">      ],</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>    ### 导航栏配置<br><br>    <pre class="hljs javascript"><code class="javascript"><span class="hljs-built_in">module.exports = {<br>      <span class="hljs-attr">themeConfig: {<br>        <span class="hljs-attr">nav: [<br>          { <span class="hljs-attr">text: <span class="hljs-string">‘主页’, <span class="hljs-attr">link: <span class="hljs-string">‘/‘ },<br>          { <span class="hljs-attr">text: <span class="hljs-string">‘前端规范’, <span class="hljs-attr">link: <span class="hljs-string">‘/frontEnd/‘ },<br>          { <span class="hljs-attr">text: <span class="hljs-string">‘开发环境’, <span class="hljs-attr">link: <span class="hljs-string">‘/development/‘ },<br>          { <span class="hljs-attr">text: <span class="hljs-string">‘学习文档’, <span class="hljs-attr">link: <span class="hljs-string">‘/notes/‘ },<br>          { <span class="hljs-attr">text: <span class="hljs-string">‘游魂博客’, <span class="hljs-attr">link: <span class="hljs-string">‘<a href="https://www.iyouhun.com&#39;" target="_blank" rel="noopener">https://www.iyouhun.com&#39;</a> },<br>          <span class="hljs-comment">// 下拉列表的配置<br>          {<br>            <span class="hljs-attr">text: <span class="hljs-string">‘Languages’,<br>            <span class="hljs-attr">items: [<br>              { <span class="hljs-attr">text: <span class="hljs-string">‘Chinese’, <span class="hljs-attr">link: <span class="hljs-string">‘/language/chinese’ },<br>              { <span class="hljs-attr">text: <span class="hljs-string">‘English’, <span class="hljs-attr">link: <span class="hljs-string">‘/language/English’ }<br>            ]<br>          }<br>        ]<br>      }<br>    }<br>    </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如图：</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;image-package&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;image-container&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;image-container-fill&quot;&gt; </span><br><span class="line">    &lt;div class=&quot;image-view&quot; data-width=&quot;556&quot; data-height=&quot;83&quot;&gt;![](http://pangguoming.com/blog/images/d0397c5a-09c6-4d33-bdd8-fd95ecb6d468.jpg)</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;image-caption&quot;&gt;image</span><br><span class="line"></span><br><span class="line">    ### 侧边栏配置</span><br><span class="line"></span><br><span class="line">可以省略`.md`扩展名,同时以 `/` 结尾的路径将会被视为 `*/README.md`</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs javascript&quot;&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;module.exports = &#123;</span><br><span class="line">      &lt;span class=&quot;hljs-attr&quot;&gt;themeConfig: &#123;</span><br><span class="line">        &lt;span class=&quot;hljs-attr&quot;&gt;sidebar: &#123;</span><br><span class="line">          &lt;span class=&quot;hljs-string&quot;&gt;&apos;/frontEnd/&apos;: genSidebarConfig(&lt;span class=&quot;hljs-string&quot;&gt;&apos;前端开发规范&apos;),</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>上面封装的<code>genSidebarConfig</code>函数<br><br>    <pre class="hljs javascript"><code class="javascript"><span class="hljs-function"><span class="hljs-keyword">function <span class="hljs-title">genSidebarConfig(<span class="hljs-params">title) {<br>      <span class="hljs-keyword">return [{<br>        title,<br>        <span class="hljs-attr">collapsable: <span class="hljs-literal">false,<br>        <span class="hljs-attr">children: [<br>          <span class="hljs-string">‘’,<br>          <span class="hljs-string">‘html-standard’,<br>          <span class="hljs-string">‘css-standard’,<br>          <span class="hljs-string">‘js-standard’,<br>          <span class="hljs-string">‘git-standard’<br>        ]<br>      }]<br>    }<br>    </span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">支持侧边栏分组(可以用来做博客文章分类) collapsable是当前分组是否展开</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs javascript&quot;&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;module.exports = &#123;</span><br><span class="line">      &lt;span class=&quot;hljs-attr&quot;&gt;themeConfig: &#123;</span><br><span class="line">        &lt;span class=&quot;hljs-attr&quot;&gt;sidebar: &#123;</span><br><span class="line">          &lt;span class=&quot;hljs-string&quot;&gt;&apos;/note&apos;: [</span><br><span class="line">            &#123;</span><br><span class="line">              &lt;span class=&quot;hljs-attr&quot;&gt;title:&lt;span class=&quot;hljs-string&quot;&gt;&apos;前端&apos;,</span><br><span class="line">              &lt;span class=&quot;hljs-attr&quot;&gt;collapsable: &lt;span class=&quot;hljs-literal&quot;&gt;true,</span><br><span class="line">              &lt;span class=&quot;hljs-attr&quot;&gt;children:[</span><br><span class="line">                &lt;span class=&quot;hljs-string&quot;&gt;&apos;/notes/frontEnd/VueJS组件编码规范&apos;,</span><br><span class="line">                &lt;span class=&quot;hljs-string&quot;&gt;&apos;/notes/frontEnd/vue-cli脚手架快速搭建项目&apos;,</span><br><span class="line">                &lt;span class=&quot;hljs-string&quot;&gt;&apos;/notes/frontEnd/深入理解vue中的slot与slot-scope&apos;,</span><br><span class="line">                &lt;span class=&quot;hljs-string&quot;&gt;&apos;/notes/frontEnd/webpack入门&apos;,</span><br><span class="line">                &lt;span class=&quot;hljs-string&quot;&gt;&apos;/notes/frontEnd/PWA介绍及快速上手搭建一个PWA应用&apos;,</span><br><span class="line">              ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">              &lt;span class=&quot;hljs-attr&quot;&gt;title:&lt;span class=&quot;hljs-string&quot;&gt;&apos;后端&apos;,</span><br><span class="line">              &lt;span class=&quot;hljs-attr&quot;&gt;collapsable: &lt;span class=&quot;hljs-literal&quot;&gt;true,</span><br><span class="line">              &lt;span class=&quot;hljs-attr&quot;&gt;children:[</span><br><span class="line">                &lt;span class=&quot;hljs-string&quot;&gt;&apos;notes/backEnd/nginx入门&apos;,</span><br><span class="line">                &lt;span class=&quot;hljs-string&quot;&gt;&apos;notes/backEnd/CentOS如何挂载磁盘&apos;,</span><br><span class="line">              ]</span><br><span class="line">            &#125;,</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>如图：<br><br>    <div class="image-package"><br>    <div class="image-container"><br>    <div class="image-container-fill"><br>    <div class="image-view" data-width="538" data-height="334"><img src="http://pangguoming.com/blog/images/ac3b62fa-e48a-4211-9870-be131972bd55.jpg" alt=""><br><br>    <div class="image-caption">成品图<br><br>    ## 默认主题修改<br><br>    ### 主题色修改<br><br>在<code>.vuepress</code>目录下的创建一个<code>override.styl</code>文件<br><br>    <pre class="hljs css"><code class="css">$<span class="hljs-selector-tag">accentColor = <span class="hljs-selector-id">#3eaf7c // 主题色<br>    $<span class="hljs-selector-tag">textColor = <span class="hljs-selector-id">#2c3e50 // 文字颜色<br>    $<span class="hljs-selector-tag">borderColor = <span class="hljs-selector-id">#eaecef // 边框颜色<br>    $<span class="hljs-selector-tag">codeBgColor = <span class="hljs-selector-id">#282c34 // 代码背景颜色<br>    </span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ### 自定义页面类</span><br><span class="line"></span><br><span class="line">有时需要在不同的页面应用不同的css,可以先在该页面中声明</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs yaml&quot;&gt;&lt;code class=&quot;yaml&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;---</span><br><span class="line">    &lt;span class=&quot;hljs-attr&quot;&gt;pageClass: &lt;span class=&quot;hljs-string&quot;&gt;custom-page-class</span><br><span class="line">    &lt;span class=&quot;hljs-meta&quot;&gt;---</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>然后在<code>override.styl</code>中书写<br><br>    <pre class="hljs css"><code class="css"><span class="hljs-selector-class">.theme-container<span class="hljs-selector-class">.custom-page-class {<br>      <span class="hljs-comment">/<em> 特定页面的 CSS </em>/<br>    }<br>    </span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ## PWA设置</span><br><span class="line"></span><br><span class="line">设置serviceWorker为true,然后提供Manifest 和 icons,可以参考我之前的《[PWA介绍及快速上手搭建一个PWA应用](https://www.jianshu.com/p/fad8aa9e277f)》</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs javascript&quot;&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;module.exports = &#123;</span><br><span class="line">      &lt;span class=&quot;hljs-attr&quot;&gt;head: [</span><br><span class="line">        [&lt;span class=&quot;hljs-string&quot;&gt;&apos;link&apos;, &#123; &lt;span class=&quot;hljs-attr&quot;&gt;rel: &lt;span class=&quot;hljs-string&quot;&gt;&apos;icon&apos;, &lt;span class=&quot;hljs-attr&quot;&gt;href: &lt;span class=&quot;hljs-string&quot;&gt;`/favicon.ico` &#125;],</span><br><span class="line">        &lt;span class=&quot;hljs-comment&quot;&gt;//增加manifest.json</span><br><span class="line">        [&lt;span class=&quot;hljs-string&quot;&gt;&apos;link&apos;, &#123; &lt;span class=&quot;hljs-attr&quot;&gt;rel: &lt;span class=&quot;hljs-string&quot;&gt;&apos;manifest&apos;, &lt;span class=&quot;hljs-attr&quot;&gt;href: &lt;span class=&quot;hljs-string&quot;&gt;&apos;/manifest.json&apos; &#125;],</span><br><span class="line">      ],</span><br><span class="line">      &lt;span class=&quot;hljs-attr&quot;&gt;serviceWorker: &lt;span class=&quot;hljs-literal&quot;&gt;true,</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>    ## 部署上线<br><br>    ### 设置基础路径<br><br>在<code>config.js</code>设置base<br> 例如：你想要部署在<a href="https://link.jianshu.com?t=https%3A%2F%2Ffoo.github.io" target="_blank" rel="noopener">https://foo.github.io</a> 那么设置base为<code>/</code>,base默认就为<code>/</code>,所以可以不用设置<br> 想要部署在<a href="https://link.jianshu.com?t=https%3A%2F%2Ffoo.github.io%2Fbar%2F" target="_blank" rel="noopener">https://foo.github.io/bar/</a>,那么 <code>base</code> 应该被设置成 <code>&quot;/bar/&quot;</code><br><br>    <pre class="hljs javascript"><code class="javascript"><span class="hljs-built_in">module.exports = {<br>      <span class="hljs-attr">base: <span class="hljs-string">‘/documents/‘,<br>    }<br>    </span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">`base` 将会自动地作为前缀插入到所有以 `/` 开始的其他选项的链接中,所以你只需要指定一次。</span><br><span class="line"></span><br><span class="line">    ### 构建与自动部署</span><br><span class="line"></span><br><span class="line">用[gitHub](https://link.jianshu.com?t=https%3A%2F%2Fgithub.com)的pages或者[coding](https://link.jianshu.com?t=https%3A%2F%2Fcoding.net%2Fr%2FO5YOFA)的pages都可以,也可以搭建在自己的服务器上。  </span><br><span class="line"> 将`dist`文件夹中的内容提交到git上或者上传到服务器就好</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;hljs shell&quot;&gt;&lt;code class=&quot;shell&quot;&gt;yarn docs:build # 或者：npm run docs:build</span><br><span class="line">    &lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>&gt; 另外可以弄一个脚本,设置持续集成,在每次 push 代码时自动运行脚本<br><br>deploy.sh<br><br>    <pre class="hljs bash"><code class="bash"><span class="hljs-meta">#!/usr/bin/env sh<br><br>    <span class="hljs-comment"># 确保脚本抛出遇到的错误<br>    <span class="hljs-built_in">set -e<br><br>    <span class="hljs-comment"># 生成静态文件<br>    npm run docs:build<br><br>    <span class="hljs-comment"># 进入生成的文件夹<br>    <span class="hljs-built_in">cd docs/.vuepress/dist<br><br>    <span class="hljs-comment"># 如果是发布到自定义域名<br>    <span class="hljs-comment"># echo ‘<a href="http://www.example.com&#39;" target="_blank" rel="noopener">www.example.com&#39;</a> &gt; CNAME<br><br>    git init<br>    git add -A<br>    git commit -m <span class="hljs-string">‘deploy’<br><br>    <span class="hljs-comment"># 如果发布到 https://<username>.github.io<br>    <span class="hljs-comment"># git push -f <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:<username>/<username>.github.io.git master<br><br>    <span class="hljs-comment"># 如果发布到 https://<username>.github.io/<repo><br>    git push -f <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:<username>/<repo>.git master:gh-pages<br><br>    <span class="hljs-built_in">cd -<br>    </span></repo></username></repo></username></span></username></username></span></username></span></span></span></span></span></span></span></span></span></span></code><code>`</code><br><br>    ## 注意事项(坑)<br><br>    <em>   把你想引用的资源都放在<code>.vuepress</code>目录下的<code>public</code>文件夹
+    </em>   给git仓库绑定了独立域名后,记得修改<code>base</code>路径<br>    <em>   设置侧边栏分组后默认会自动生成 上/下一篇链接
+    </em>   设置了自动生成侧边栏会把侧边栏分组覆盖掉<br>    *   设置PWA记得开启SSL<br><br>    <div id="free-reward-panel" class="support-author"><br><br>    </div></pre></pre></pre></pre></div></div></div></div></div></pre></pre></pre></div></div></div></div></div></pre></pre></div></div></div><br>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vuepress/" rel="tag"># Vuepress</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/a210281e.html" rel="next" title="PPTP服务端与客户端 修改默认PPTP默认端口1723">
+                <i class="fa fa-chevron-left"></i> PPTP服务端与客户端 修改默认PPTP默认端口1723
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/59d097ac.html" rel="prev" title="PDF.js实现个性化PDF渲染（文本复制）">
+                PDF.js实现个性化PDF渲染（文本复制） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'pangguoming',
+            repo: 'pangguoming.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51',
+            
+                client_id: '1e9770fed2b4d227cd0a'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

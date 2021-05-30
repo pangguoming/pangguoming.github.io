@@ -45,38 +45,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT">
@@ -84,11 +73,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
 
 
 
@@ -113,11 +97,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -153,30 +137,6 @@
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-	<div id="topnavbar">
-  <div class="tophead">
-    <div class="toplogo"><a href="/">庞国明-博客</a></div>
-    <div id="mnav">
-      <h2><span class="navicon"></span></h2>
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </div>
-    <nav class="topnav" id="topnav">
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
 
   
   
@@ -230,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -250,12 +220,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            关于
+            归档
           </a>
         </li>
       
@@ -278,20 +248,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -324,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/11/29/分布式文件系统-FastDFS/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/dc0f673d.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -343,7 +319,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/29/分布式文件系统-FastDFS/" itemprop="url">分布式文件系统-FastDFS</a></h1>
+                <a class="post-title-link" href="/post/dc0f673d.html" itemprop="url">分布式文件系统-FastDFS</a></h1>
         
 
         <div class="post-meta">
@@ -395,17 +371,85 @@
       
         
           
-          一、FastDFS简介
-一、FastDFS简介
-FastDFS是由国人余庆所开发，其项目地址：https://github.com/happyfish100 FastDFS是一个轻量级的开源分布式文件系统，主要解决了大容量的文件存储和高并发访问的问题，文件存取时实现了负载均衡。 支持存储服务器在线扩
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/29/分布式文件系统-FastDFS/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>一、FastDFS简介</p>
+<h3 id="一、FastDFS简介"><a href="#一、FastDFS简介" class="headerlink" title="一、FastDFS简介"></a>一、FastDFS简介</h3><blockquote>
+<p><code>FastDFS</code>是由国人余庆所开发，其项目地址：<a href="https://github.com/happyfish100" target="_blank" rel="noopener">https://github.com/happyfish100</a><br> <code>FastDFS</code>是一个轻量级的开源分布式文件系统，主要解决了大容量的文件存储和高并发访问的问题，文件存取时实现了负载均衡。<br> 支持存储服务器在线扩容,支持相同的文件只保存一份,节约磁盘。<br> <code>FastDFS</code>只能通过Client API访问，不支持POSIX访问方式。<br> FastDFS适合中大型网站使用，用来存储资源文件(如：图片、文档、视频等)</p>
+</blockquote>
+<h3 id="二、FastDFS组成部分及其它名词"><a href="#二、FastDFS组成部分及其它名词" class="headerlink" title="二、FastDFS组成部分及其它名词"></a>二、FastDFS组成部分及其它名词</h3><h4 id="1、tracker-server"><a href="#1、tracker-server" class="headerlink" title="1、tracker server"></a>1、tracker server</h4><p>跟踪服务器：用来调度来自客户端的请求。且在内存中记录所有存储组和存储服务器的信息状态。</p>
+<h4 id="2、storage-server"><a href="#2、storage-server" class="headerlink" title="2、storage server"></a>2、storage server</h4><p>存储服务器：用来存储文件(data)和文件属性(metadata)</p>
+<h4 id="3、client"><a href="#3、client" class="headerlink" title="3、client"></a>3、client</h4><p>客户端：业务请求发起方，通过专用接口基于TCP协议与<code>tracker</code>以及<code>storage server</code>进行交互</p>
+<h4 id="group"><a href="#group" class="headerlink" title="group"></a><code>group</code></h4><p>组，也可称为卷：同组内上的文件是完全相同的</p>
+<h4 id="文件标识"><a href="#文件标识" class="headerlink" title="文件标识"></a><code>文件标识</code></h4><p>包括两部分：组名和文件名(包含路径)</p>
+<h4 id="meta-data"><a href="#meta-data" class="headerlink" title="meta data"></a><code>meta data</code></h4><p>文件相关属性：键值对(Key Value Pair)方式</p>
+<h4 id="fid"><a href="#fid" class="headerlink" title="fid"></a><code>fid</code></h4><p>文件标识符：<br>例如：<br><code>group1/M00/00/00/CgEOxVegXB2AdYafAAAB0b8tBbQ9155303</code><br><code>group_name</code>：存储组的组名；上传完成后，需要客户端自行保存<br><code>M##</code>：服务器配置的虚拟路径，与磁盘选项store_path#对应<br>两级以两位16进制数字命名的目录<br><code>文件名</code>：与原文件名并不相同；由storage server根据特定信息生成。文件名包含：源存储服务器的IP地址、文件创建时间戳、文件大小、随机数和文件扩展名等</p>
+<h3 id="三、FastDFS同步机制"><a href="#三、FastDFS同步机制" class="headerlink" title="三、FastDFS同步机制"></a>三、FastDFS同步机制</h3><blockquote>
+<p>1、同一组内的storage server之间是对等的，文件上传、删除等操作可以在任意一台storage server上进行；<br> 2、文件同步只在同组内的storage server之间进行，采用push方式，即源服务器同步给目标服务器；<br> 3、源头数据才需要同步，备份数据不需要再次同步，否则就构成环路了；<br> 上述第二条规则有个例外，就是新增加一台storage server时，由已有的一台storage server将已有的所有数据（包括源头数据和备份数据）同步给该新增服务器。</p>
+</blockquote>
+<h3 id="四、FastDFS与集中存储方式对比"><a href="#四、FastDFS与集中存储方式对比" class="headerlink" title="四、FastDFS与集中存储方式对比"></a>四、FastDFS与集中存储方式对比</h3><p><a href="http://pangguoming.com/blog/images/f118238b-f529-4821-b26f-2c5e90889633.png"><img src="http://pangguoming.com/blog/images/f118238b-f529-4821-b26f-2c5e90889633.png" alt="fastdfs2.png"></a></p>
+<h3 id="五、FastDFS和mogileFS对比"><a href="#五、FastDFS和mogileFS对比" class="headerlink" title="五、FastDFS和mogileFS对比"></a>五、FastDFS和mogileFS对比</h3><p><a href="http://pangguoming.com/blog/images/571f959c-0614-4537-9520-a281090d4f90.png"><img src="http://pangguoming.com/blog/images/571f959c-0614-4537-9520-a281090d4f90.png" alt="fastdfs1.png"></a></p>
+<h3 id="六、FastDFS安装配置"><a href="#六、FastDFS安装配置" class="headerlink" title="六、FastDFS安装配置"></a>六、FastDFS安装配置</h3><h4 id="1、安装开发环境"><a href="#1、安装开发环境" class="headerlink" title="1、安装开发环境"></a>1、安装开发环境</h4><p><code class="hljs autoit"><span class="hljs-preprocessor"># yum groupinstall <span class="hljs-string">“Development Tools” <span class="hljs-string">“Server platform Development”<br></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #### 2、安装libfastcommon</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs vala&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# git clone https://github.com/happyfish100/libfastcommon.git  </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# cd libfastcommon/  </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# ./make.sh   </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# ./make.sh install  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>#### 3、安装fastdfs
+
+&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs vala&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# cd /root/  
+</code></pre><p><span class="hljs-preprocessor"># git clone <a href="https://github.com/happyfish100/fastdfs.git" target="_blank" rel="noopener">https://github.com/happyfish100/fastdfs.git</a><br><span class="hljs-preprocessor"># cd fastdfs/<br><span class="hljs-preprocessor"># ./make.sh<br><span class="hljs-preprocessor"># ./make.sh install<br></span></span></span></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #### tracker 配置</span><br><span class="line"></span><br><span class="line">配置文件修改：根据需求修改</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs vala&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# cd /etc/fdfs  </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# cp tracker.conf.sample tracker.conf  </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# vim /etc/fdfs/tracker.conf  </span><br><span class="line">  base_path=/data/fdfs/tracker # 存储日志及tracker的状态信息  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<p>启动服务（Centos6）：</p>
+<pre><code>&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs vala&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# mkdir -pv /data/fdfs/tracker  
+</code></pre><p><span class="hljs-preprocessor"># service fdfs_trackerd start<br></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">启动服务（Centos7）方式一：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs vala&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# mkdir -pv /data/fdfs/tracker  </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# /etc/init.d/fdfs_trackerd start  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<p>启动服务（Centos7）方式二：<br>添加systemd的units文件</p>
+<pre><code>&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs fortran&quot;&gt;# cat &gt; /usr/lib/systemd/system/fdfs_trackerd &lt;&lt; EOF  
+</code></pre><h1 id="Systemd-unit-file-for-default-tomcat"><a href="#Systemd-unit-file-for-default-tomcat" class="headerlink" title="Systemd unit file for default tomcat"></a>Systemd <span class="hljs-keyword">unit <span class="hljs-keyword">file for <span class="hljs-keyword">default tomcat</span></span></span></h1><h1 id=""><a href="#" class="headerlink" title=" "></a> </h1><p>[<span class="hljs-keyword">Unit]<br>Description=FastDFS tracker script<br>After=syslog.<span class="hljs-type">target network.<span class="hljs-type">target  </span></span></span></p>
+<p>[Service]<br><span class="hljs-keyword">Type=notify<br>ExecStart=/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf  </span></p>
+<p>[Install]<br>WantedBy=multi-user.<span class="hljs-type">target<br>EOF<br></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">通过systemd启动</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;systemctl start fdfs_trackerd.service  </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# ss -tnl|grep &lt;span class=&quot;hljs-number&quot;&gt;22122  </span><br><span class="line">LISTEN     &lt;span class=&quot;hljs-number&quot;&gt;0      &lt;span class=&quot;hljs-number&quot;&gt;128          *:&lt;span class=&quot;hljs-number&quot;&gt;22122                    *:*    </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>#### storage 配置
+</code></pre><p>根据需求修改</p>
+<pre><code>&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# cd /etc/fdfs  
+</code></pre><p><span class="hljs-preprocessor"># cp storage.conf.sample storage.conf<br><span class="hljs-preprocessor"># vim /etc/fdfs/storage.conf<br>  group_name=group1  <span class="hljs-preprocessor">#指定组名<br>  base_path=/data/fdfs/storage <span class="hljs-preprocessor"># 用于存储数据<br>  store_path_count=<span class="hljs-number">2 <span class="hljs-preprocessor"># 设置设备数量<br>  store_path0=/data/fdfs/storage/m0 <span class="hljs-preprocessor">#指定存储路径<span class="hljs-number">0<br>  store_path1=/data/fdfs/storage/m1 <span class="hljs-preprocessor">#指定存储路径<span class="hljs-number">1<br>  <span class="hljs-preprocessor"># 注意：同一组内存储路径不能冲突，例如：下一个节点的存储路径就是m2,m3….等<br>  tracker_server=<span class="hljs-number">10.1<span class="hljs-number">.14<span class="hljs-number">.197:<span class="hljs-number">22122 <span class="hljs-preprocessor">#指定tracker<br></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">启动服务（Centos6）：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs vala&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# mkdir -pv /data/fdfs/storage/&#123;m0,m1&#125; # 创建数据目录  </span><br><span class="line">&lt;span class=&quot;hljs-preprocessor&quot;&gt;# service fdfs_storaged start  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<p>启动服务（Centos7）方式一：</p>
+<pre><code>&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs vala&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# mkdir -pv /data/fdfs/storage/{m0,m1} # 创建数据目录  
+</code></pre><p><span class="hljs-preprocessor"># /etc/init.d/fdfs_storaged start<br></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">启动服务（Centos7）方式二：   </span><br><span class="line">添加systemd的units文件</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs fortran&quot;&gt;# mkdir -pv /&lt;span class=&quot;hljs-type&quot;&gt;data/fdfs/storage/&#123;m0,m1&#125; # 创建数据目录  </span><br><span class="line"></span><br><span class="line"># cat &gt; /usr/lib/systemd/system/fdfs_trackerd &lt;&lt; EOF  </span><br><span class="line"># Systemd &lt;span class=&quot;hljs-keyword&quot;&gt;unit &lt;span class=&quot;hljs-keyword&quot;&gt;file for &lt;span class=&quot;hljs-keyword&quot;&gt;default fastdfs storage  </span><br><span class="line">#   </span><br><span class="line"></span><br><span class="line">[&lt;span class=&quot;hljs-keyword&quot;&gt;Unit]  </span><br><span class="line">Description=FastDFS storage script  </span><br><span class="line">After=syslog.&lt;span class=&quot;hljs-type&quot;&gt;target network.&lt;span class=&quot;hljs-type&quot;&gt;target  </span><br><span class="line"></span><br><span class="line">[Service]  </span><br><span class="line">&lt;span class=&quot;hljs-keyword&quot;&gt;Type=notify  </span><br><span class="line">ExecStart=/usr/bin/fdfs_storaged /etc/fdfs/storage.conf  </span><br><span class="line"></span><br><span class="line">[Install]  </span><br><span class="line">WantedBy=multi-user.&lt;span class=&quot;hljs-type&quot;&gt;target  </span><br><span class="line">EOF  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<p>通过systemd启动</p>
+<pre><code>&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;systemctl start fdfs_storaged.service  
+</code></pre><p><span class="hljs-preprocessor"># ss -tnl|grep <span class="hljs-number">23000<br>LISTEN     <span class="hljs-number">0      <span class="hljs-number">128          <em>:<span class="hljs-number">23000                    </span></em>:*<br></span></span></span></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #### client配置</span><br><span class="line"></span><br><span class="line">修改客户端配置文件</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;base_path=/data/fdfs/client  </span><br><span class="line">tracker_server=&lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.197:&lt;span class=&quot;hljs-number&quot;&gt;22122  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>### 七、测试FastDFS
+
+#### 1、上传文件
+</code></pre><p>fdfs_upload_file   [storage_ip:port] [store_path_index]</p>
+<pre><code>&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# fdfs_upload_file /etc/fdfs/client.conf /etc/issue  
+</code></pre><p>group1/M00/<span class="hljs-number">00/<span class="hljs-number">00/CgEOxVeMxeuABKiEAAAAF30Ccq85795930<br></span></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #### 2、查看文件</span><br><span class="line"></span><br><span class="line">fdfs_file_info</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# fdfs_file_info /etc/fdfs/client.conf group1/M00/&lt;span class=&quot;hljs-number&quot;&gt;00/&lt;span class=&quot;hljs-number&quot;&gt;00/CgEOxVeMxeuABKiEAAAAF30Ccq85795930  </span><br><span class="line"></span><br><span class="line">source storage id: &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">source ip address: &lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.198  </span><br><span class="line">file create timestamp: &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;07-&lt;span class=&quot;hljs-number&quot;&gt;18 &lt;span class=&quot;hljs-number&quot;&gt;20:&lt;span class=&quot;hljs-number&quot;&gt;04:&lt;span class=&quot;hljs-number&quot;&gt;59  </span><br><span class="line">file size: &lt;span class=&quot;hljs-number&quot;&gt;23  </span><br><span class="line">file crc32: &lt;span class=&quot;hljs-number&quot;&gt;2097312431 (&lt;span class=&quot;hljs-number&quot;&gt;0x7D0272AF)  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>#### 3、下载文件
+</code></pre><p>fdfs_download_file   [local_filename] [ ]</p>
+<pre><code>&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs gradle&quot;&gt;# fdfs_download_file &lt;span class=&quot;hljs-regexp&quot;&gt;/etc/fdfs&lt;span class=&quot;hljs-regexp&quot;&gt;/client.conf group1/M00&lt;span class=&quot;hljs-regexp&quot;&gt;/00/&lt;span class=&quot;hljs-number&quot;&gt;00&lt;span class=&quot;hljs-regexp&quot;&gt;/CgEOxVeMxeuABKiEAAAAF30Ccq85795930 /tmp&lt;span class=&quot;hljs-regexp&quot;&gt;/issue  
+</code></pre><p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #### 4、查看存储节点状态</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# fdfs_monitor /etc/fdfs/client.conf  </span><br><span class="line">[&lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;11:&lt;span class=&quot;hljs-number&quot;&gt;58:&lt;span class=&quot;hljs-number&quot;&gt;20] DEBUG - base_path=/data/fdfs/client, connect_timeout=&lt;span class=&quot;hljs-number&quot;&gt;30, network_timeout=&lt;span class=&quot;hljs-number&quot;&gt;60, tracker_server_count=&lt;span class=&quot;hljs-number&quot;&gt;1, anti_steal_token=&lt;span class=&quot;hljs-number&quot;&gt;0, anti_steal_secret_key length=&lt;span class=&quot;hljs-number&quot;&gt;0, use_connection_pool=&lt;span class=&quot;hljs-number&quot;&gt;0, g_connection_pool_max_idle_time=&lt;span class=&quot;hljs-number&quot;&gt;3600s, use_storage_id=&lt;span class=&quot;hljs-number&quot;&gt;0, storage server id count: &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line"></span><br><span class="line">server_count=&lt;span class=&quot;hljs-number&quot;&gt;1, server_index=&lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line"></span><br><span class="line">tracker server is &lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.197:&lt;span class=&quot;hljs-number&quot;&gt;22122  </span><br><span class="line"></span><br><span class="line">group count: &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line"></span><br><span class="line">Group &lt;span class=&quot;hljs-number&quot;&gt;1:  </span><br><span class="line">group name = mage1  </span><br><span class="line">disk total space = &lt;span class=&quot;hljs-number&quot;&gt;18898 MB  </span><br><span class="line">disk &lt;span class=&quot;hljs-built_in&quot;&gt;free space = &lt;span class=&quot;hljs-number&quot;&gt;17222 MB  </span><br><span class="line">trunk &lt;span class=&quot;hljs-built_in&quot;&gt;free space = &lt;span class=&quot;hljs-number&quot;&gt;0 MB  </span><br><span class="line">storage server count = &lt;span class=&quot;hljs-number&quot;&gt;2  </span><br><span class="line">active server count = &lt;span class=&quot;hljs-number&quot;&gt;2  </span><br><span class="line">storage server port = &lt;span class=&quot;hljs-number&quot;&gt;23000  </span><br><span class="line">storage HTTP port = &lt;span class=&quot;hljs-number&quot;&gt;8888  </span><br><span class="line">store path count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">subdir count per path = &lt;span class=&quot;hljs-number&quot;&gt;256  </span><br><span class="line">current write server index = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">current trunk file id = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line"></span><br><span class="line">    Storage &lt;span class=&quot;hljs-number&quot;&gt;1:  </span><br><span class="line">        id = &lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.198  </span><br><span class="line">        ip_addr = &lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.198  ACTIVE  </span><br><span class="line">        http domain =   </span><br><span class="line">        version = &lt;span class=&quot;hljs-number&quot;&gt;5.08  </span><br><span class="line">        join time = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;20:&lt;span class=&quot;hljs-number&quot;&gt;40:&lt;span class=&quot;hljs-number&quot;&gt;46  </span><br><span class="line">        up time = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;11:&lt;span class=&quot;hljs-number&quot;&gt;58:&lt;span class=&quot;hljs-number&quot;&gt;16  </span><br><span class="line">        total storage = &lt;span class=&quot;hljs-number&quot;&gt;18898 MB  </span><br><span class="line">        &lt;span class=&quot;hljs-built_in&quot;&gt;free storage = &lt;span class=&quot;hljs-number&quot;&gt;17222 MB  </span><br><span class="line">        upload priority = &lt;span class=&quot;hljs-number&quot;&gt;10  </span><br><span class="line">        store_path_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        subdir_count_per_path = &lt;span class=&quot;hljs-number&quot;&gt;256  </span><br><span class="line">        storage_port = &lt;span class=&quot;hljs-number&quot;&gt;23000  </span><br><span class="line">        storage_http_port = &lt;span class=&quot;hljs-number&quot;&gt;8888  </span><br><span class="line">        current_write_path = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        source storage id =   </span><br><span class="line">        if_trunk_server = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        connection.alloc_count = &lt;span class=&quot;hljs-number&quot;&gt;256  </span><br><span class="line">        connection.current_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        connection.max_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_upload_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        success_upload_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        total_append_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_append_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_modify_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_modify_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_truncate_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_truncate_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_set_meta_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_set_meta_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_delete_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_delete_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_download_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_download_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_get_meta_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_get_meta_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_create_link_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_create_link_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_delete_link_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_delete_link_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_upload_bytes = &lt;span class=&quot;hljs-number&quot;&gt;23  </span><br><span class="line">        success_upload_bytes = &lt;span class=&quot;hljs-number&quot;&gt;23  </span><br><span class="line">        total_append_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_append_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_modify_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_modify_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        stotal_download_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_download_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_sync_in_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_sync_in_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_sync_out_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_sync_out_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_file_open_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        success_file_open_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        total_file_read_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_file_read_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_file_write_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        success_file_write_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        last_heart_beat_time = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;11:&lt;span class=&quot;hljs-number&quot;&gt;58:&lt;span class=&quot;hljs-number&quot;&gt;15  </span><br><span class="line">        last_source_update = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;20:&lt;span class=&quot;hljs-number&quot;&gt;43:&lt;span class=&quot;hljs-number&quot;&gt;55  </span><br><span class="line">        last_sync_update = &lt;span class=&quot;hljs-number&quot;&gt;1970-&lt;span class=&quot;hljs-number&quot;&gt;01-&lt;span class=&quot;hljs-number&quot;&gt;01 &lt;span class=&quot;hljs-number&quot;&gt;08:&lt;span class=&quot;hljs-number&quot;&gt;00:&lt;span class=&quot;hljs-number&quot;&gt;00  </span><br><span class="line">        last_synced_timestamp = &lt;span class=&quot;hljs-number&quot;&gt;1970-&lt;span class=&quot;hljs-number&quot;&gt;01-&lt;span class=&quot;hljs-number&quot;&gt;01 &lt;span class=&quot;hljs-number&quot;&gt;08:&lt;span class=&quot;hljs-number&quot;&gt;00:&lt;span class=&quot;hljs-number&quot;&gt;00   </span><br><span class="line">    Storage &lt;span class=&quot;hljs-number&quot;&gt;2:  </span><br><span class="line">        id = &lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.199  </span><br><span class="line">        ip_addr = &lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.199  ACTIVE  </span><br><span class="line">        http domain =   </span><br><span class="line">        version = &lt;span class=&quot;hljs-number&quot;&gt;5.08  </span><br><span class="line">        join time = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;20:&lt;span class=&quot;hljs-number&quot;&gt;42:&lt;span class=&quot;hljs-number&quot;&gt;13  </span><br><span class="line">        up time = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;11:&lt;span class=&quot;hljs-number&quot;&gt;58:&lt;span class=&quot;hljs-number&quot;&gt;08  </span><br><span class="line">        total storage = &lt;span class=&quot;hljs-number&quot;&gt;18898 MB  </span><br><span class="line">        &lt;span class=&quot;hljs-built_in&quot;&gt;free storage = &lt;span class=&quot;hljs-number&quot;&gt;17222 MB  </span><br><span class="line">        upload priority = &lt;span class=&quot;hljs-number&quot;&gt;10  </span><br><span class="line">        store_path_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        subdir_count_per_path = &lt;span class=&quot;hljs-number&quot;&gt;256  </span><br><span class="line">        storage_port = &lt;span class=&quot;hljs-number&quot;&gt;23000  </span><br><span class="line">        storage_http_port = &lt;span class=&quot;hljs-number&quot;&gt;8888  </span><br><span class="line">        current_write_path = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        source storage id = &lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.198  </span><br><span class="line">        if_trunk_server = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        connection.alloc_count = &lt;span class=&quot;hljs-number&quot;&gt;256  </span><br><span class="line">        connection.current_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        connection.max_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_upload_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_upload_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_append_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_append_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_modify_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_modify_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_truncate_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_truncate_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_set_meta_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_set_meta_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_delete_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_delete_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_download_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_download_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_get_meta_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_get_meta_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_create_link_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_create_link_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_delete_link_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_delete_link_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_upload_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_upload_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_append_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_append_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_modify_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_modify_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        stotal_download_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_download_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_sync_in_bytes = &lt;span class=&quot;hljs-number&quot;&gt;23  </span><br><span class="line">        success_sync_in_bytes = &lt;span class=&quot;hljs-number&quot;&gt;23  </span><br><span class="line">        total_sync_out_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_sync_out_bytes = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_file_open_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        success_file_open_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        total_file_read_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        success_file_read_count = &lt;span class=&quot;hljs-number&quot;&gt;0  </span><br><span class="line">        total_file_write_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        success_file_write_count = &lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">        last_heart_beat_time = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;11:&lt;span class=&quot;hljs-number&quot;&gt;58:&lt;span class=&quot;hljs-number&quot;&gt;07  </span><br><span class="line">        last_source_update = &lt;span class=&quot;hljs-number&quot;&gt;1970-&lt;span class=&quot;hljs-number&quot;&gt;01-&lt;span class=&quot;hljs-number&quot;&gt;01 &lt;span class=&quot;hljs-number&quot;&gt;08:&lt;span class=&quot;hljs-number&quot;&gt;00:&lt;span class=&quot;hljs-number&quot;&gt;00  </span><br><span class="line">        last_sync_update = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;20:&lt;span class=&quot;hljs-number&quot;&gt;43:&lt;span class=&quot;hljs-number&quot;&gt;57  </span><br><span class="line">        last_synced_timestamp = &lt;span class=&quot;hljs-number&quot;&gt;2016-&lt;span class=&quot;hljs-number&quot;&gt;08-&lt;span class=&quot;hljs-number&quot;&gt;03 &lt;span class=&quot;hljs-number&quot;&gt;20:&lt;span class=&quot;hljs-number&quot;&gt;43:&lt;span class=&quot;hljs-number&quot;&gt;55 (&lt;span class=&quot;hljs-number&quot;&gt;0s delay)  </span><br><span class="line"></span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>### 八、配置nginx为storage server提供http访问接口
+
+#### 1、下载fastdfs-nginx-module
+
+&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# git clone https:&lt;span class=&quot;hljs-comment&quot;&gt;//github.com/happyfish100/fastdfs-nginx-module.git  
+</code></pre><p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #### 2、下载nginx源码，并编译支持fastdfs</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs gradle&quot;&gt;# 安装依赖程序  </span><br><span class="line"># yum install openssl-devel pcre-devel -y &amp;&gt;&lt;span class=&quot;hljs-regexp&quot;&gt;/dev/&lt;span class=&quot;hljs-keyword&quot;&gt;null  </span><br><span class="line"></span><br><span class="line"># wget http:&lt;span class=&quot;hljs-comment&quot;&gt;//nginx.org/download/nginx-1.10.1.tar.gz &amp;&gt;/dev/null  </span><br><span class="line"></span><br><span class="line"># tar xf &lt;span class=&quot;hljs-regexp&quot;&gt;/root/nginx-&lt;span class=&quot;hljs-number&quot;&gt;1.10.&lt;span class=&quot;hljs-number&quot;&gt;1.tar.gz  </span><br><span class="line"></span><br><span class="line"># cd &lt;span class=&quot;hljs-regexp&quot;&gt;/root/nginx-&lt;span class=&quot;hljs-number&quot;&gt;1.10.&lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line"># useradd -r nginx &amp;&gt;&lt;span class=&quot;hljs-regexp&quot;&gt;/dev/&lt;span class=&quot;hljs-keyword&quot;&gt;null  </span><br><span class="line"></span><br><span class="line"># .&lt;span class=&quot;hljs-regexp&quot;&gt;/configure --prefix=/usr&lt;span class=&quot;hljs-regexp&quot;&gt;/local/nginx --conf-path=&lt;span class=&quot;hljs-regexp&quot;&gt;/etc/nginx&lt;span class=&quot;hljs-regexp&quot;&gt;/nginx.conf --error-log-path=/var&lt;span class=&quot;hljs-regexp&quot;&gt;/log/nginx&lt;span class=&quot;hljs-regexp&quot;&gt;/error.log --http-log-path=/var&lt;span class=&quot;hljs-regexp&quot;&gt;/log/nginx&lt;span class=&quot;hljs-regexp&quot;&gt;/access.log --pid-path=/var&lt;span class=&quot;hljs-regexp&quot;&gt;/run/nginx&lt;span class=&quot;hljs-regexp&quot;&gt;/nginx.pid --lock-path=/var&lt;span class=&quot;hljs-regexp&quot;&gt;/lock/nginx.lock --user=nginx --&lt;span class=&quot;hljs-keyword&quot;&gt;group=nginx --with-http_ssl_module --with-http_stub_status_module --with-pcre --add-module=..&lt;span class=&quot;hljs-regexp&quot;&gt;/fastdfs-nginx-module/src  </span><br><span class="line"># make  </span><br><span class="line"># make install  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>#### 3、复制配置文件
+
+&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# cp /root/fastdfs-nginx-module/src/mod_fastdfs.conf  /etc/fdfs/  
+</code></pre><p><span class="hljs-preprocessor"># cp /root/fastdfs-<span class="hljs-number">5.0<span class="hljs-number">.8/conf/{http.conf,mime.types}  /etc/fdfs/<br></span></span></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">注意：`fastdfs-5.0.8`为`fastdfs`源码目录，如为更改，应叫`fastdfs`</span><br><span class="line"></span><br><span class="line">    #### 4、配置fastdfs-nginx-module配置文件</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;# vim /etc/fdfs/mod_fastdfs.conf  </span><br><span class="line">base_path=/data/fdfs/storage &lt;span class=&quot;hljs-preprocessor&quot;&gt;#存储节点的目录位置  </span><br><span class="line">tracker_server=&lt;span class=&quot;hljs-number&quot;&gt;10.1&lt;span class=&quot;hljs-number&quot;&gt;.14&lt;span class=&quot;hljs-number&quot;&gt;.197:&lt;span class=&quot;hljs-number&quot;&gt;22122 &lt;span class=&quot;hljs-preprocessor&quot;&gt;#制定tracker-server  </span><br><span class="line">storage_server_port=&lt;span class=&quot;hljs-number&quot;&gt;23000  </span><br><span class="line">group_name=mage1  &lt;span class=&quot;hljs-preprocessor&quot;&gt;#制定组名  </span><br><span class="line">url_have_group_name = &lt;span class=&quot;hljs-literal&quot;&gt;true  &lt;span class=&quot;hljs-preprocessor&quot;&gt;#访问路径中是否包括组名  </span><br><span class="line">store_path_count=&lt;span class=&quot;hljs-number&quot;&gt;1 &lt;span class=&quot;hljs-preprocessor&quot;&gt;#配置路径个数  </span><br><span class="line">store_path0=/data/fdfs/storage/m0  &lt;span class=&quot;hljs-preprocessor&quot;&gt;#指定要查看的路径  </span><br><span class="line"></span><br><span class="line">[group1]  </span><br><span class="line">group_name=mage1  </span><br><span class="line">storage_server_port=&lt;span class=&quot;hljs-number&quot;&gt;23000  </span><br><span class="line">store_path_count=&lt;span class=&quot;hljs-number&quot;&gt;1  </span><br><span class="line">store_path0=/data/fdfs/storage/m0  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>#### 5、配置nginx
+
+&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs elixir&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# vim /etc/nginx/nginx.conf  
+</code></pre><p>location ~ <span class="hljs-regexp">/mage[0-9]+/<span class="hljs-constant">M00/ {<br>    root /data/fdfs/storage/m<span class="hljs-number">0/data/;<br>    ngx_fastdfs_module;<br>}<br><span class="hljs-comment"># cat &gt;&gt; /etc/profile.d/nginx.sh &lt;&lt; EOF<br>export <span class="hljs-constant">PATH=<span class="hljs-variable">$PATH<span class="hljs-symbol">:/usr/local/nginx/sbin<br><span class="hljs-constant">EOF  </span></span></span></span></span></span></span></span></p>
+<p><span class="hljs-comment"># source /etc/profile.d/nginx.sh  </span></p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #### 6、为存储文件路径穿件链接至M00</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs gradle&quot;&gt;# ln -sv &lt;span class=&quot;hljs-regexp&quot;&gt;/data/fdfs&lt;span class=&quot;hljs-regexp&quot;&gt;/storage/m0&lt;span class=&quot;hljs-regexp&quot;&gt;/data  /data&lt;span class=&quot;hljs-regexp&quot;&gt;/fdfs/storage&lt;span class=&quot;hljs-regexp&quot;&gt;/m0/data&lt;span class=&quot;hljs-regexp&quot;&gt;/M00   </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>#### 7、启动nginx和重启storage并上传文件测试
+
+&lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs cpp&quot;&gt;启动nginx  
+</code></pre><p><span class="hljs-preprocessor"># nginx -t<br><span class="hljs-preprocessor"># nginx<br><span class="hljs-preprocessor"># /etc/init.d/fdfs_storaged restart<br><span class="hljs-preprocessor"># ss -tnl|grep -E <span class="hljs-string">“(80|23000)”<br>LISTEN     <span class="hljs-number">0      <span class="hljs-number">128          <em>:<span class="hljs-number">80                       </span></em>:<em><br>LISTEN     <span class="hljs-number">0      <span class="hljs-number">128          </span></span></em>:<span class="hljs-number">23000                    <em>:</em>    </span></span></span></span></span></span></span></span></p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**上传文件**</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint hljs-dark&quot;&gt;&lt;code class=&quot;hljs gradle&quot;&gt;# fdfs_upload_file &lt;span class=&quot;hljs-regexp&quot;&gt;/etc/fdfs&lt;span class=&quot;hljs-regexp&quot;&gt;/client.conf /usr&lt;span class=&quot;hljs-regexp&quot;&gt;/share/wallpapers&lt;span class=&quot;hljs-regexp&quot;&gt;/CentOS7/contents&lt;span class=&quot;hljs-regexp&quot;&gt;/images/&lt;span class=&quot;hljs-number&quot;&gt;2560x1600.jpg  </span><br><span class="line">mage1&lt;span class=&quot;hljs-regexp&quot;&gt;/M00/&lt;span class=&quot;hljs-number&quot;&gt;00&lt;span class=&quot;hljs-regexp&quot;&gt;/00/CgEOx1ehc2eATt6RAA6q2wjnW8s035.jpg  </span><br><span class="line">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>查看测试</strong></p>
+<p><a href="http://pangguoming.com/blog/images/ba471ae7-79ad-4523-85f2-9bead3e19818.png"><img src="http://pangguoming.com/blog/images/ba471ae7-79ad-4523-85f2-9bead3e19818.png" alt="fastdfs3.png"></a></p>
+<blockquote>
+<p> 作者：<code>Antony</code> <code>WX&amp;QQ：1257465991</code><br> Q/A：如有问题请慷慨提出</p>
+<p>如有格式问题请访问：<br><a href="http://zantony.top/2016/08/02/%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F-FastDFS/" target="_blank" rel="noopener">http://zantony.top/2016/08/02/%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F-FastDFS/</a></p>
+</blockquote>
+<p></p>
+
+          
         
       
     </div>
@@ -452,7 +496,7 @@ FastDFS是由国人余庆所开发，其项目地址：https://github.com/happyf
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/11/23/Spring Security OAuth2 Demo/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/6f8f7b99.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -471,7 +515,7 @@ FastDFS是由国人余庆所开发，其项目地址：https://github.com/happyf
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/23/Spring Security OAuth2 Demo/" itemprop="url">Spring Security OAuth2 Demo</a></h1>
+                <a class="post-title-link" href="/post/6f8f7b99.html" itemprop="url">Spring Security OAuth2 Demo</a></h1>
         
 
         <div class="post-meta">
@@ -523,17 +567,181 @@ FastDFS是由国人余庆所开发，其项目地址：https://github.com/happyf
       
         
           
-          Spring Security OAuth2 Demo项目使用的是MySql存储, 需要先创建以下表结构:
-    CREATE SCHEMA IF NOT EXISTS `alan-oauth` DEFAULT CHARACTER SET utf8 ;
+            <h1 id="Spring-Security-OAuth2-Demo"><a href="#Spring-Security-OAuth2-Demo" class="headerlink" title="Spring Security OAuth2 Demo"></a>Spring Security OAuth2 Demo</h1><p>项目使用的是MySql存储, 需要先创建以下表结构:</p>
+<pre><code>    CREATE SCHEMA IF NOT EXISTS `alan-oauth` DEFAULT CHARACTER SET utf8 ;
     USE `alan-oauth` ;
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/23/Spring Security OAuth2 Demo/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+    -- -----------------------------------------------------
+    -- Table `alan-oauth`.`clientdetails`
+    -- -----------------------------------------------------
+    CREATE TABLE IF NOT EXISTS `alan-oauth`.`clientdetails` (
+      `appId` VARCHAR(128) NOT NULL,
+      `resourceIds` VARCHAR(256) NULL DEFAULT NULL,
+      `appSecret` VARCHAR(256) NULL DEFAULT NULL,
+      `scope` VARCHAR(256) NULL DEFAULT NULL,
+      `grantTypes` VARCHAR(256) NULL DEFAULT NULL,
+      `redirectUrl` VARCHAR(256) NULL DEFAULT NULL,
+      `authorities` VARCHAR(256) NULL DEFAULT NULL,
+      `access_token_validity` INT(11) NULL DEFAULT NULL,
+      `refresh_token_validity` INT(11) NULL DEFAULT NULL,
+      `additionalInformation` VARCHAR(4096) NULL DEFAULT NULL,
+      `autoApproveScopes` VARCHAR(256) NULL DEFAULT NULL,
+      PRIMARY KEY (`appId`))
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
+    -- -----------------------------------------------------
+    -- Table `alan-oauth`.`oauth_access_token`
+    -- -----------------------------------------------------
+    CREATE TABLE IF NOT EXISTS `alan-oauth`.`oauth_access_token` (
+      `token_id` VARCHAR(256) NULL DEFAULT NULL,
+      `token` BLOB NULL DEFAULT NULL,
+      `authentication_id` VARCHAR(128) NOT NULL,
+      `user_name` VARCHAR(256) NULL DEFAULT NULL,
+      `client_id` VARCHAR(256) NULL DEFAULT NULL,
+      `authentication` BLOB NULL DEFAULT NULL,
+      `refresh_token` VARCHAR(256) NULL DEFAULT NULL,
+      PRIMARY KEY (`authentication_id`))
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
+    -- -----------------------------------------------------
+    -- Table `alan-oauth`.`oauth_approvals`
+    -- -----------------------------------------------------
+    CREATE TABLE IF NOT EXISTS `alan-oauth`.`oauth_approvals` (
+      `userId` VARCHAR(256) NULL DEFAULT NULL,
+      `clientId` VARCHAR(256) NULL DEFAULT NULL,
+      `scope` VARCHAR(256) NULL DEFAULT NULL,
+      `status` VARCHAR(10) NULL DEFAULT NULL,
+      `expiresAt` DATETIME NULL DEFAULT NULL,
+      `lastModifiedAt` DATETIME NULL DEFAULT NULL)
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
+    -- -----------------------------------------------------
+    -- Table `alan-oauth`.`oauth_client_details`
+    -- -----------------------------------------------------
+    CREATE TABLE IF NOT EXISTS `alan-oauth`.`oauth_client_details` (
+      `client_id` VARCHAR(128) NOT NULL,
+      `resource_ids` VARCHAR(256) NULL DEFAULT NULL,
+      `client_secret` VARCHAR(256) NULL DEFAULT NULL,
+      `scope` VARCHAR(256) NULL DEFAULT NULL,
+      `authorized_grant_types` VARCHAR(256) NULL DEFAULT NULL,
+      `web_server_redirect_uri` VARCHAR(256) NULL DEFAULT NULL,
+      `authorities` VARCHAR(256) NULL DEFAULT NULL,
+      `access_token_validity` INT(11) NULL DEFAULT NULL,
+      `refresh_token_validity` INT(11) NULL DEFAULT NULL,
+      `additional_information` VARCHAR(4096) NULL DEFAULT NULL,
+      `autoapprove` VARCHAR(256) NULL DEFAULT NULL,
+      PRIMARY KEY (`client_id`))
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
+    -- -----------------------------------------------------
+    -- Table `alan-oauth`.`oauth_client_token`
+    -- -----------------------------------------------------
+    CREATE TABLE IF NOT EXISTS `alan-oauth`.`oauth_client_token` (
+      `token_id` VARCHAR(256) NULL DEFAULT NULL,
+      `token` BLOB NULL DEFAULT NULL,
+      `authentication_id` VARCHAR(128) NOT NULL,
+      `user_name` VARCHAR(256) NULL DEFAULT NULL,
+      `client_id` VARCHAR(256) NULL DEFAULT NULL,
+      PRIMARY KEY (`authentication_id`))
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
+    -- -----------------------------------------------------
+    -- Table `alan-oauth`.`oauth_code`
+    -- -----------------------------------------------------
+    CREATE TABLE IF NOT EXISTS `alan-oauth`.`oauth_code` (
+      `code` VARCHAR(256) NULL DEFAULT NULL,
+      `authentication` BLOB NULL DEFAULT NULL)
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
+    -- -----------------------------------------------------
+    -- Table `alan-oauth`.`oauth_refresh_token`
+    -- -----------------------------------------------------
+    CREATE TABLE IF NOT EXISTS `alan-oauth`.`oauth_refresh_token` (
+      `token_id` VARCHAR(256) NULL DEFAULT NULL,
+      `token` BLOB NULL DEFAULT NULL,
+      `authentication` BLOB NULL DEFAULT NULL)
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">然后在`oauth_client_details`表中插入记录:</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;</span><br><span class="line">        # client_id, resource_ids, client_secret, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove</span><br><span class="line">        &apos;client&apos;, NULL, &apos;secret&apos;, &apos;app&apos;, &apos;authorization_code&apos;, &apos;http://www.baidu.com&apos;, NULL, NULL, NULL, NULL, NULL</span><br></pre></td></tr></table></figure>
+</code></pre><p>这时就可以访问授权页面了:</p>
+<pre><code>&lt;pre&gt;
+    localhost:8080/oauth/authorize?client_id=client&amp;response_type=code&amp;redirect_uri=http://www.baidu.com
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">访问时Spring让你登陆,随便输入一个用户名密码即可。 注意, 如果每次登陆时输入的用户名不一样,那么Spring Security会认为是不同的用户,因此访问/token/authorize会再次显示授权页面。如果用户名一致, 则只需要授权一次</span><br><span class="line"></span><br><span class="line">数据库连接信息在`application.properties`中配置。</span><br><span class="line"></span><br><span class="line">Spring Cloud Security OAuth2 是 Spring 对 OAuth2 的开源实现，优点是能与Spring Cloud技术栈无缝集成，如果全部使用默认配置，开发者只需要添加注解就能完成 OAuth2 授权服务的搭建。</span><br><span class="line"></span><br><span class="line">    # [](https://github.com/wanghongfei/spring-security-oauth2-example#博文)博文</span><br><span class="line"></span><br><span class="line">    ## [](https://github.com/wanghongfei/spring-security-oauth2-example#1-添加依赖)1. 添加依赖</span><br><span class="line"></span><br><span class="line">授权服务是基于Spring Security的，因此需要在项目中引入两个依赖：</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;</span><br><span class="line">         &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-cloud-starter-security&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">                 &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">                 &lt;artifactId&gt;spring-cloud-starter-oauth2&lt;/artifactId&gt;</span><br><span class="line">         &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>前者为 Security，后者为Security的OAuth2扩展。</p>
+<pre><code>## [](https://github.com/wanghongfei/spring-security-oauth2-example#2-添加注解和配置)2. 添加注解和配置
+</code></pre><p>在启动类中添加<code>@EnableAuthorizationServer</code>注解：</p>
+<pre><code>&lt;pre&gt;
+    @SpringBootApplication
+    @EnableAuthorizationServer
+    public class AlanOAuthApplication {
+        public static void main(String[] args) {
+            SpringApplication.run(AlanOAuthApplication.class, args);
+        }
+    }
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">完成这些我们的授权服务最基本的骨架就已经搭建完成了。但是要想跑通整个流程，我们必须分配 `client_id`, `client_secret`才行。Spring Security OAuth2的配置方法是编写`@Configuration`类继承`AuthorizationServerConfigurerAdapter`，然后重写`void configure(ClientDetailsServiceConfigurer clients)`方法，如：</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;highlight highlight-source-java&quot;&gt;</span><br><span class="line">    &lt;pre&gt;&lt;span class=&quot;pl-k&quot;&gt;@Override</span><br><span class="line">        &lt;span class=&quot;pl-k&quot;&gt;public &lt;span class=&quot;pl-k&quot;&gt;void configure(&lt;span class=&quot;pl-smi&quot;&gt;ClientDetailsServiceConfigurer clients) throws &lt;span class=&quot;pl-smi&quot;&gt;Exception &#123;</span><br><span class="line">            clients&lt;span class=&quot;pl-k&quot;&gt;.inMemory() &lt;span class=&quot;pl-c&quot;&gt;&lt;span class=&quot;pl-c&quot;&gt;// 使用in-memory存储</span><br><span class="line">                    .withClient(&lt;span class=&quot;pl-s&quot;&gt;&lt;span class=&quot;pl-pds&quot;&gt;&quot;client&lt;span class=&quot;pl-pds&quot;&gt;&quot;) &lt;span class=&quot;pl-c&quot;&gt;&lt;span class=&quot;pl-c&quot;&gt;// client_id</span><br><span class="line">                    .secret(&lt;span class=&quot;pl-s&quot;&gt;&lt;span class=&quot;pl-pds&quot;&gt;&quot;secret&lt;span class=&quot;pl-pds&quot;&gt;&quot;) &lt;span class=&quot;pl-c&quot;&gt;&lt;span class=&quot;pl-c&quot;&gt;// client_secret</span><br><span class="line">                    .authorizedGrantTypes(&lt;span class=&quot;pl-s&quot;&gt;&lt;span class=&quot;pl-pds&quot;&gt;&quot;authorization_code&lt;span class=&quot;pl-pds&quot;&gt;&quot;) &lt;span class=&quot;pl-c&quot;&gt;&lt;span class=&quot;pl-c&quot;&gt;// 该client允许的授权类型</span><br><span class="line">                    .scopes(&lt;span class=&quot;pl-s&quot;&gt;&lt;span class=&quot;pl-pds&quot;&gt;&quot;app&lt;span class=&quot;pl-pds&quot;&gt;&quot;); &lt;span class=&quot;pl-c&quot;&gt;&lt;span class=&quot;pl-c&quot;&gt;// 允许的授权范围</span><br><span class="line">        &#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+
+## [](https://github.com/wanghongfei/spring-security-oauth2-example#3-授权流程)3. 授权流程
+</code></pre><p>访问授权页面：</p>
+<pre><code>&lt;pre&gt;
+    localhost:8080/oauth/authorize?client_id=client&amp;response_type=code&amp;redirect_uri=http://www.baidu.com
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">此时浏览器会让你输入用户名密码，这是因为 Spring Security 在默认情况下会对所有URL添加Basic Auth认证。默认的用户名为`user`, 密码是随机生成的，在控制台日志中可以看到。</span><br><span class="line"></span><br><span class="line">[![oauth2](http://pangguoming.com/blog/images/d143738c-2549-42fc-a019-85e10f4a1613.jpg)](http://pangguoming.com/blog/images/d143738c-2549-42fc-a019-85e10f4a1613.jpg)</span><br><span class="line"></span><br><span class="line">画风虽然很简陋，但是基本功能都具备了。点击`Authorize`后，浏览器就会重定向到百度，并带上`code`参数：</span><br><span class="line"></span><br><span class="line">[![这里写图片描述](http://pangguoming.com/blog/images/faa26090-75f7-4ec9-8354-67c8e5de5497.jpg)](http://pangguoming.com/blog/images/faa26090-75f7-4ec9-8354-67c8e5de5497.jpg)</span><br><span class="line"></span><br><span class="line">拿到`code`以后，就可以调用</span><br><span class="line"></span><br><span class="line">    &lt;pre&gt;</span><br><span class="line">        POST/GET http://client:secret@localhost:8080/oauth/token</span><br></pre></td></tr></table></figure>
+</code></pre><p>来换取<code>access_token</code>了：</p>
+<pre><code>&lt;pre&gt;
+    curl -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -d &apos;grant_type=authorization_code&amp;code=Li4NZo&amp;redirect_uri=http://www.baidu.com&apos; &quot;http://client:secret@localhost:8080/oauth/token&quot;
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; 注意，URL中的client为上文中通过`ClientDetailsServiceConfigurer`类指定的clientId。由于authorization_code的授权方式不需要 client_secret, 因此secret可以填写任意值</span><br><span class="line"></span><br><span class="line">返回如下：</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;highlight highlight-source-json&quot;&gt;</span><br><span class="line">    &lt;pre&gt;&#123;</span><br><span class="line">      &lt;span class=&quot;pl-s&quot;&gt;&lt;span class=&quot;pl-pds&quot;&gt;&quot;access_token&lt;span class=&quot;pl-pds&quot;&gt;&quot;: &lt;span class=&quot;pl-s&quot;&gt;&lt;span class=&quot;pl-pds&quot;&gt;&quot;32a1ca28-bc7a-4147-88a1-c95abcc30556&lt;span class=&quot;pl-pds&quot;&gt;&quot;, &lt;span class=&quot;pl-ii&quot;&gt;// &lt;span class=&quot;pl-ii&quot;&gt;令牌</span><br><span class="line">      &lt;span class=&quot;pl-s&quot;&gt;&lt;span class=&quot;pl-pds&quot;&gt;&quot;token_type&lt;span class=&quot;pl-pds&quot;&gt;&quot;: &lt;span class=&quot;pl-s&quot;&gt;&lt;span class=&quot;pl-pds&quot;&gt;&quot;bearer&lt;span class=&quot;pl-pds&quot;&gt;&quot;,</span><br><span class="line">      &lt;span class=&quot;pl-s&quot;&gt;&lt;span class=&quot;pl-pds&quot;&gt;&quot;expires_in&lt;span class=&quot;pl-pds&quot;&gt;&quot;: &lt;span class=&quot;pl-c1&quot;&gt;2591999,</span><br><span class="line">      &lt;span class=&quot;pl-s&quot;&gt;&lt;span class=&quot;pl-pds&quot;&gt;&quot;scope&lt;span class=&quot;pl-pds&quot;&gt;&quot;: &lt;span class=&quot;pl-s&quot;&gt;&lt;span class=&quot;pl-pds&quot;&gt;&quot;app&lt;span class=&quot;pl-pds&quot;&gt;&quot;</span><br><span class="line">    &#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>到此我们最最基本的授权服务就搭建完成了。然而，这仅仅是个demo，如果要在生产环境中使用，还需要做更多的工作。</p>
+<pre><code>## [](https://github.com/wanghongfei/spring-security-oauth2-example#4-使用mysql存储access_token和client信息)4. 使用MySQL存储access_token和client信息
+</code></pre><p>在上面的例子中，所有的token信息都是保存在内存中的，这显然无法在生产环境中使用(进程结束后所有token丢失, 用户需要重新授权)，因此我们需要将这些信息进行持久化操作。 把授权服务器中的数据存储到数据库中并不难，因为 Spring Cloud Security OAuth 已经为我们设计好了一套Schema和对应的DAO对象。但在使用之前，我们需要先对相关的类有一定的了解。</p>
+<pre><code>### [](https://github.com/wanghongfei/spring-security-oauth2-example#41-相关接口)4.1 相关接口
+</code></pre><p>Spring Cloud Security OAuth2通过<code>DefaultTokenServices</code>类来完成token生成、过期等 OAuth2 标准规定的业务逻辑，而<code>DefaultTokenServices</code>又是通过<code>TokenStore</code>接口完成对生成数据的持久化。在上面的demo中，<code>TokenStore</code>的默认实现为<code>InMemoryTokenStore</code>，即内存存储。 对于Client信息，<code>ClientDetailsService</code>接口负责从存储仓库中读取数据，在上面的demo中默认使用的也是<code>InMemoryClientDetialsService</code>实现类。说到这里就能看出，要想使用数据库存储，只需要提供这些接口的实现类即可。庆幸的是，框架已经为我们写好JDBC实现了，即<code>JdbcTokenStore</code>和<code>JdbcClientDetailsService</code>。</p>
+<pre><code>### [](https://github.com/wanghongfei/spring-security-oauth2-example#42-建表)4.2 建表
+</code></pre><p>要想使用这些JDBC实现，首先要建表。框架为我们提前设计好了schema, 在github上：<a href="https://github.com/spring-projects/spring-security-oauth/blob/master/spring-security-oauth2/src/test/resources/schema.sql" target="_blank" rel="noopener">https://github.com/spring-projects/spring-security-oauth/blob/master/spring-security-oauth2/src/test/resources/schema.sql</a></p>
+<p>在使用这套表结构之前要注意的是，对于MySQL来说，默认建表语句中主键是varchar(255)类型，在mysql中执行会报错，原因是mysql对varchar主键长度有限制。所以这里改成128即可。其次，语句中会有某些字段为<code>LONGVARBINARY</code>类型，它对应mysql的<code>blob</code>类型，也需要修改一下。</p>
+<pre><code>### [](https://github.com/wanghongfei/spring-security-oauth2-example#43-配置)4.3 配置
+</code></pre><p>数据库建好后，下一步就是配置框架使用JDBC实现。方法还是编写<code>@Configuration</code>类继承<code>AuthorizationServerConfigurerAdapter</code>：</p>
+<pre><code>&lt;pre&gt;
+        @Autowired
+        private AuthenticationManager authenticationManager;
+        @Autowired
+        private DataSource dataSource;
+        @Bean // 声明TokenStore实现
+        public TokenStore tokenStore() {
+            return new JdbcTokenStore(dataSource);
+        }
+        @Bean // 声明 ClientDetails实现
+        public ClientDetailsService clientDetails() {
+            return new JdbcClientDetailsService(dataSource);
+        }
+        @Override // 配置框架应用上述实现
+        public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+            endpoints.authenticationManager(authenticationManager);
+            endpoints.tokenStore(tokenStore());
+            // 配置TokenServices参数
+            DefaultTokenServices tokenServices = new DefaultTokenServices();
+            tokenServices.setTokenStore(endpoints.getTokenStore());
+            tokenServices.setSupportRefreshToken(false);
+            tokenServices.setClientDetailsService(endpoints.getClientDetailsService());
+            tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());
+            tokenServices.setAccessTokenValiditySeconds( (int) TimeUnit.DAYS.toSeconds(30)); // 30天
+            endpoints.tokenServices(tokenServices);
+        }
+
+```
+</code></pre><p>完成这些后，框架就会将中间产生的数据写到mysql中了。<code>oauth_client_details</code>是client表，可以直接在该表中添加记录来添加client: <a href="http://pangguoming.com/blog/images/9aa14cc9-26ea-4604-a5a0-76f6a4faf54e.jpg"><img src="http://pangguoming.com/blog/images/9aa14cc9-26ea-4604-a5a0-76f6a4faf54e.jpg" alt="这里写图片描述"></a></p>
+<pre><code>### [](https://github.com/wanghongfei/spring-security-oauth2-example#44-需要注意的地方)4.4 需要注意的地方
+</code></pre><p>这里不得不说 Spring 设计有一个奇葩地的方。注意看<code>oauth_access_token</code>表是存放访问令牌的，但是并没有直接在字段中存放token。Spring 使用<code>OAuth2AccessToken</code>来抽象与令牌有关的所有属性，在写入到数据库时，Spring将该对象通过JDK自带的序列化机制序列成字节 直接保存到了该表的<code>token</code>字段中。也就是说，如果只看数据表你是看不出<code>access_token</code>的值是多少，过期时间等信息的。这就给资源服务器的实现带来了麻烦。我们的资源提供方并没有使用Spring Security，也不想引入 Spring Security 的任何依赖，这时候就只能将 <code>DefaultOAuth2AccessToken</code>的源码copy到资源提供方的项目中，然后读取<code>token</code>字段并反序列化还原对象来获取token信息。但是如果这样做还会遇到反序列化兼容性的问题，具体解决方法参考我另一篇博文: <a href="http://blog.csdn.net/neosmith/article/details/52539614" target="_blank" rel="noopener">http://blog.csdn.net/neosmith/article/details/52539614</a></p>
+<pre><code>## [](https://github.com/wanghongfei/spring-security-oauth2-example#5-总结)5. 总结
+</code></pre><p>至此一个能在生产环境下使用的授权服务就搭建好了。其实我们在实际使用时应该适当定制<code>JdbcTokenStore</code>或<code>ClientDetailsService</code>来实适应业务需要，甚至可以直接从0开始实现接口，完全不用框架提供的实现。另外，Spring 直接将<code>DefaultOAuth2AccessToken</code>序列化成字节保存到数据库中的设计，我认为是非常不合理的。或许设计者的初衷是保密<code>access_token</code>，但是通过加密的方法也可以实现，完全不应该直接扔字节。不过通过定制<code>TokenStore</code>接口，我们可以使用自己的表结构而不拘泥于默认实现。</p>
+<pre><code>## [](https://github.com/wanghongfei/spring-security-oauth2-example#6-个人看法)6. 个人看法
+</code></pre><p>Spring的OAuth2实现有些过于复杂了，oauth2本身只是个非常简单的协议，完全可以自己在SpringMVC的基础上自由实现，没有难度，也不复杂。我想很多人去用框架应该是担心oauth2协议复杂实现起来健壮性不足，其实是多虑了。如果是开发我个人的项目，我肯定会不使用任何框架。</p>
+<pre><code>* * *
+</code></pre><p>github地址： <a href="https://github.com/wanghongfei/spring-security-oauth2-example" target="_blank" rel="noopener">https://github.com/wanghongfei/spring-security-oauth2-example</a><br></p>
+
+          
         
       
     </div>
@@ -580,7 +788,7 @@ FastDFS是由国人余庆所开发，其项目地址：https://github.com/happyf
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/11/23/spring cloud-给Eureka Server加上安全的用户认证/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/9c1a156.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -599,7 +807,7 @@ FastDFS是由国人余庆所开发，其项目地址：https://github.com/happyf
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/23/spring cloud-给Eureka Server加上安全的用户认证/" itemprop="url">spring cloud-给Eureka Server加上安全的用户认证</a></h1>
+                <a class="post-title-link" href="/post/9c1a156.html" itemprop="url">spring cloud-给Eureka Server加上安全的用户认证</a></h1>
         
 
         <div class="post-meta">
@@ -651,18 +859,13 @@ FastDFS是由国人余庆所开发，其项目地址：https://github.com/happyf
       
         
           
-          前言
-在前面的一篇文章中
-spring cloud中启动Eureka Server
-我们启动了Eureka Server，然后在浏览器中输入http://localhost:8761/后，直接回车，就进入了spring cloud的服务治理页面，这么做在生产环境是极不安全的，下面，我们就给Eurek
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/23/spring cloud-给Eureka Server加上安全的用户认证/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>前言</p>
+<p>在前面的一篇文章中</p>
+<p><a href="http://blog.csdn.net/liuchuanhong1/article/details/54666715" target="_blank" rel="noopener">spring cloud中启动Eureka Server</a></p>
+<p>我们启动了Eureka Server，然后在浏览器中输入<a href="http://localhost:8761/后，直接回车，就进入了spring" target="_blank" rel="noopener">http://localhost:8761/后，直接回车，就进入了spring</a> cloud的服务治理页面，这么做在生产环境是极不安全的，下面，我们就给Eureka Server加上安全的用户认证.</p>
+<p>一、添加spring-security支持</p>
+<div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/liuchuanhong1/article/details/54729556#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="http://blog.csdn.net/liuchuanhong1/article/details/54729556#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="tag">&lt;<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>2.      <span class="tag">&lt;<span class="tag-name">groupId<span class="tag">&gt;org.springframework.boot<span class="tag">&lt;/<span class="tag-name">groupId<span class="tag">&gt;  </span></span></span></span></span></span><br>3.      <span class="tag">&lt;<span class="tag-name">artifactId<span class="tag">&gt;spring-boot-starter-security<span class="tag">&lt;/<span class="tag-name">artifactId<span class="tag">&gt;  </span></span></span></span></span></span><br>4.  <span class="tag">&lt;/<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br><br>二、在配置文件中加入安全认证<br><br><div class="dp-highlighter bg_java"><br><div class="bar"><br><div class="tools"><strong>[java]</strong> <a href="http://blog.csdn.net/liuchuanhong1/article/details/54729556#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="http://blog.csdn.net/liuchuanhong1/article/details/54729556#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  # eureka.client.registerWithEureka ：表示是否将自己注册到Eureka Server，默认为<span class="keyword">true。由于当前这个应用就是Eureka Server，故而设为<span class="keyword">false  </span></span><br>2.  # eureka.client.fetchRegistry ：表示是否从Eureka Server获取注册信息，默认为<span class="keyword">true。因为这是一个单点的Eureka Server，不需要同步其他的Eureka Server节点的数据，故而设为<span class="keyword">false。  </span></span><br>3.  # eureka.client.serviceUrl.defaultZone ：设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址。默认是http:<span class="comment">//localhost:8761/eureka ；多个地址可使用 , 分隔。  </span><br>4.  server:<br>5.    port: <span class="number">8764  </span><br>6.<br>7.  # 安全认证的配置<br>8.  security:<br>9.    basic:<br>10.      enabled: <span class="keyword">true  </span><br>11.    user:<br>12.      name: chhliu  # 用户名<br>13.      password: chhliu123456   # 用户密码<br>14.  eureka:<br>15.    client:<br>16.      register-with-eureka: <span class="keyword">false  </span><br>17.      fetch-registry: <span class="keyword">false  </span><br>18.      service-url:<br>19.        defaultZone: http:<span class="comment">//chhliu:chhliu123456@localhost:8761/eureka  # 安全的注册地址  </span><br><br>三、在浏览器中输入<a href="http://localhost:8764/" target="_blank" rel="noopener">http://localhost:8764/</a><br><br><img src="http://pangguoming.com/blog/images/b04839ef-56a1-4bea-bd0f-05091d0d4427.jpg" alt=""><br><br>回车后，会发现需要输入用户名和密码进行验证，输入正确之后，才会进入Eureka Server的服务治理页面。<br><br>引自：<a href="http://blog.csdn.net/liuchuanhong1/article/details/54729556" target="_blank" rel="noopener">http://blog.csdn.net/liuchuanhong1/article/details/54729556</a><br></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -709,7 +912,7 @@ spring cloud中启动Eureka Server
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/11/21/spring cloud 报错Error creating bean with name &#39;hystrixCommandAspect&#39; ，解决方案/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/20a1fb00.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -728,7 +931,7 @@ spring cloud中启动Eureka Server
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/21/spring cloud 报错Error creating bean with name &#39;hystrixCommandAspect&#39; ，解决方案/" itemprop="url">spring cloud 报错Error creating bean with name 'hystrixCommandAspect' ，解决方案</a></h1>
+                <a class="post-title-link" href="/post/20a1fb00.html" itemprop="url">spring cloud 报错Error creating bean with name 'hystrixCommandAspect' ，解决方案</a></h1>
         
 
         <div class="post-meta">
@@ -780,16 +983,14 @@ spring cloud中启动Eureka Server
       
         
           
-          spring cloud 升级到最新版 后，报错：
-1234567891011121314151617181920212223242526272829303132333435363738394041424344org.springframework.beans.factory.BeanCreatio
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/21/spring cloud 报错Error creating bean with name &#39;hystrixCommandAspect&#39; ，解决方案/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>spring cloud 升级到最新版 后，报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;hystrixCommandAspect&apos; defined in class path resource [org/springframework/cloud/netflix/hystrix/HystrixCircuitBreakerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.netflix.hystrix.contrib.javanica.aop.aspectj.HystrixCommandAspect]: Factory method &apos;hystrixCommandAspect&apos; threw exception; nested exception is java.lang.NoClassDefFoundError: org/aspectj/lang/JoinPoint</span><br><span class="line">        at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:599) ~[spring-beans-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1128) ~[spring-beans-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1023) ~[spring-beans-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510) ~[spring-beans-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482) ~[spring-beans-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197) ~[spring-beans-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:751) ~[spring-beans-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:861) ~[spring-context-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:541) ~[spring-context-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) ~[spring-boot-1.4.1.RELEASE.jar:1.4.1.RELEASE]</span><br><span class="line">        at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:761) [spring-boot-1.4.1.RELEASE.jar:1.4.1.RELEASE]</span><br><span class="line">        at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:371) [spring-boot-1.4.1.RELEASE.jar:1.4.1.RELEASE]</span><br><span class="line">        at org.springframework.boot.SpringApplication.run(SpringApplication.java:315) [spring-boot-1.4.1.RELEASE.jar:1.4.1.RELEASE]</span><br><span class="line">        at org.springframework.boot.SpringApplication.run(SpringApplication.java:1186) [spring-boot-1.4.1.RELEASE.jar:1.4.1.RELEASE]</span><br><span class="line">        at org.springframework.boot.SpringApplication.run(SpringApplication.java:1175) [spring-boot-1.4.1.RELEASE.jar:1.4.1.RELEASE]</span><br><span class="line">        at com.siddharth.SpringBootHelloWorldApplication.main(SpringBootHelloWorldApplication.java:14) [classes/:na]</span><br><span class="line">    Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.netflix.hystrix.contrib.javanica.aop.aspectj.HystrixCommandAspect]: Factory method &apos;hystrixCommandAspect&apos; threw exception; nested exception is java.lang.NoClassDefFoundError: org/aspectj/lang/JoinPoint</span><br><span class="line">        at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:189) ~[spring-beans-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588) ~[spring-beans-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        ... 18 common frames omitted</span><br><span class="line">    Caused by: java.lang.NoClassDefFoundError: org/aspectj/lang/JoinPoint</span><br><span class="line">        at org.springframework.cloud.netflix.hystrix.HystrixCircuitBreakerConfiguration.hystrixCommandAspect(HystrixCircuitBreakerConfiguration.java:60) ~[spring-cloud-netflix-core-1.2.6.RELEASE.jar:1.2.6.RELEASE]</span><br><span class="line">        at org.springframework.cloud.netflix.hystrix.HystrixCircuitBreakerConfiguration$$EnhancerBySpringCGLIB$$8c1f134f.CGLIB$hystrixCommandAspect$2(&lt;generated&gt;) ~[spring-cloud-netflix-core-1.2.6.RELEASE.jar:1.2.6.RELEASE]</span><br><span class="line">        at org.springframework.cloud.netflix.hystrix.HystrixCircuitBreakerConfiguration$$EnhancerBySpringCGLIB$$8c1f134f$$FastClassBySpringCGLIB$$af9d12ee.invoke(&lt;generated&gt;) ~[spring-cloud-netflix-core-1.2.6.RELEASE.jar:1.2.6.RELEASE]</span><br><span class="line">        at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228) ~[spring-core-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:356) ~[spring-context-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        at org.springframework.cloud.netflix.hystrix.HystrixCircuitBreakerConfiguration$$EnhancerBySpringCGLIB$$8c1f134f.hystrixCommandAspect(&lt;generated&gt;) ~[spring-cloud-netflix-core-1.2.6.RELEASE.jar:1.2.6.RELEASE]</span><br><span class="line">        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_112]</span><br><span class="line">        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_112]</span><br><span class="line">        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_112]</span><br><span class="line">        at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_112]</span><br><span class="line">        at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162) ~[spring-beans-4.3.3.RELEASE.jar:4.3.3.RELEASE]</span><br><span class="line">        ... 19 common frames omitted</span><br><span class="line">    Caused by: java.lang.ClassNotFoundException: org.aspectj.lang.JoinPoint</span><br><span class="line">        at java.net.URLClassLoader.findClass(URLClassLoader.java:381) ~[na:1.8.0_112]</span><br><span class="line">        at java.lang.ClassLoader.loadClass(ClassLoader.java:424) ~[na:1.8.0_112]</span><br><span class="line">        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331) ~[na:1.8.0_112]</span><br><span class="line">        at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[na:1.8.0_112]</span><br><span class="line">        ... 30 common frames omitted</span><br></pre></td></tr></table></figure>
+<p>解决方法：</p>
+<p>pom文件中添加依赖：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:html;gutter:true;&quot;&gt;&lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.aspectj&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;aspectjrt&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;1.7.1&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.aspectj&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;1.7.1&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-aspects&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p></p>
+
+          
         
       
     </div>
@@ -836,7 +1037,7 @@ spring cloud中启动Eureka Server
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/11/21/分布式唯一ID极简教程/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/1a66e2fd.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -855,7 +1056,7 @@ spring cloud中启动Eureka Server
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/21/分布式唯一ID极简教程/" itemprop="url">分布式唯一ID极简教程</a></h1>
+                <a class="post-title-link" href="/post/1a66e2fd.html" itemprop="url">分布式唯一ID极简教程</a></h1>
         
 
         <div class="post-meta">
@@ -907,17 +1108,28 @@ spring cloud中启动Eureka Server
       
         
           
-          原创 2017-11-21 帝都羊 架构师小秘圈一，题记所有的业务系统，都有生成ID的需求，如订单id，商品id，文章ID等。这个ID会是数据库中的唯一主键，在它上面会建立聚集索引！ID生成的核心需求有两点：全局唯一
+            <div id="meta_content" class="rich_media_meta_list"><span id="copyright_logo" class="rich_media_meta meta_original_tag">原创 <span id="post-date" class="rich_media_meta rich_media_meta_text">2017-11-21 <span class="rich_media_meta rich_media_meta_text">帝都羊 <a href="http://mp.weixin.qq.com/s?__biz=MzU0OTE4MzYzMw==&amp;mid=2247484184&amp;idx=1&amp;sn=e0aed5908e4cd83fdb883e5c6f8d04a5&amp;chksm=fbb28ae6ccc503f0c565cb95a8bcb37de85c7760cb8059828af7913e4b4bb6b0317dd8651460&amp;mpshare=1&amp;scene=1&amp;srcid=1121EkbqBMckwvy2RUeW1rlZ##" target="_blank" rel="noopener">架构师小秘圈</a></span></span></span><br><div id="js_content" class="rich_media_content ">一，题记<br><br>所有的业务系统，都有生成ID的需求，如订单id，商品id，文章ID等。这个ID会是数据库中的唯一主键，在它上面会建立聚集索引！<br><br>ID生成的核心需求有两点：<br><br><em><br><br>全局唯一
 
-趋势有序二，为什么要全局唯一？著名的例子就是身份证号码，身份证号码确实是对人唯一
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/21/分布式唯一ID极简教程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+</em><br><br>趋势有序<br><br>二，为什么要全局唯一？<br><br>著名的例子就是身份证号码，身份证号码确实是对人唯一的，然而一个人是可以办理多个身份证的，例如你身份证丢了，又重新补办了一张，号码不变。<br><br>问题来了，因为系统是按照身份证号码做唯一主键的。此时，如果身份证是被盗的情况下，你是没有办法在系统里面注销的，因为新旧2个身份证的“主键”都是身份证号码。<br><br>也就是说，旧的身份证仍然逍遥在外，完全有效。这个时候，还好有一个身份证有效时间的东西，只有靠身份证有效期来辨识了。不过，这就是现在这么多银行，电信诈骗的由来，捡到一张身份证，去很多银行，手机，酒店都可以使用！身份证缺乏注销机制！<br><br>所以，经验告诉我们。不要相信自己的直觉，业务上所谓的唯一往往都是不靠谱的，经不起时间的考研的。所以需要单独设置一个和业务无关的主键，专业术语叫做代理主键（surrogate key）。<br><br>这也是为什么数据库设计范式，唯一主键是第一范式！<br><br>三，为什么要趋势有序<br><br>以mysql为例，InnoDB引擎表是基于B+树的索引组织表(IOT)；每个表都需要有一个聚集索引(clustered index)；所有的行记录都存储在B+树的叶子节点(leaf pages of the tree)；基于聚集索引的增、删、改、查的效率相对是最高的；如下图：<br><br><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt=""><br><br><em><br><br>如果我们定义了主键(PRIMARY KEY)，那么InnoDB会选择其作为聚集索引；
+
+</em><br><br>如果没有显式定义主键，则InnoDB会选择第一个不包含有NULL值的唯一索引作为主键索引；<br><br><em><br><br>如果也没有这样的唯一索引，则InnoDB会选择内置6字节长的ROWID作为隐含的聚集索引(ROWID随着行记录的写入而主键递增，这个ROWID不像ORACLE的ROWID那样可引用，是隐含的)。<br><br>综上总结，如果InnoDB表的数据写入顺序能和B+树索引的叶子节点顺序一致的话，这时候存取效率是最高的，也就是下面这几种情况的存取效率最高
+
+</em><br><br>使用自增列(INT/BIGINT类型)做主键，这时候写入顺序是自增的，和B+数叶子节点分裂顺序一致；<br><br><em><br><br>该表不指定自增列做主键，同时也没有可以被选为主键的唯一索引(上面的条件)，这时候InnoDB会选择内置的ROWID作为主键，写入顺序和ROWID增长顺序一致；
+
+</em><br><br>除此以外，如果一个InnoDB表又没有显示主键，又有可以被选择为主键的唯一索引，但该唯一索引可能不是递增关系时(例如字符串、UUID、多字段联合唯一索引的情况)，该表的存取效率就会比较差。）<br><br>这就是为什么我们的分布式ID一定要是趋势递增的！那么在开发当中，面对这种分布式ID需求，常见的处理方案有哪些呢？<br><br><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt=""><br><br>四，数据库自增长序列或字段<br><br>最常见的方式。利用数据库，全数据库唯一。<br><br>优点：<br><br>1）简单，代码方便，性能可以接受。<br><br>2）数字ID天然排序，对分页或者需要排序的结果很有帮助。<br><br>缺点：<br><br>1）不同数据库语法和实现不同，数据库迁移的时候或多数据库版本支持的时候需要处理。<br><br>2）在单个数据库或读写分离或一主多从的情况下，只有一个主库可以生成。有单点故障的风险。<br><br>3）在性能达不到要求的情况下，比较难于扩展。<br><br>4）如果遇见多个系统需要合并或者涉及到数据迁移会相当痛苦。<br><br>5）分表分库的时候会有麻烦。<br><br>优化方案：<br><br>1）针对主库单点，如果有多个Master库，则每个Master库设置的起始数字不一样，步长一样，可以是Master的个数。比如：Master1 生成的是 1，4，7，10，Master2生成的是2,5,8,11 Master3生成的是 3,6,9,12。这样就可以有效生成集群中的唯一ID，也可以大大降低ID生成数据库操作的负载。<br><br>五，UUID<br><br>常见的方式。可以利用数据库也可以利用程序生成，一般来说全球唯一。<br><br>优点：<br><br>1）简单，代码方便。<br><br>2）生成ID性能非常好，基本不会有性能问题。<br><br>3）全球唯一，在遇见数据迁移，系统数据合并，或者数据库变更等情况下，可以从容应对。<br><br>缺点：<br><br>1）没有排序，无法保证趋势递增。<br><br>2）UUID往往是使用字符串存储，查询的效率比较低。<br><br>3）存储空间比较大，如果是海量数据库，就需要考虑存储量的问题。<br><br>4）传输数据量大<br><br>5）不可读。<br><br>六，Redis生成ID<br><br>当使用数据库来生成ID性能不够要求的时候，我们可以尝试使用Redis来生成ID。这主要依赖于Redis是单线程的，所以也可以用生成全局唯一的ID。可以用Redis的原子操作 INCR和INCRBY来实现。<br><br>可以使用Redis集群来获取更高的吞吐量。假如一个集群中有5台Redis。可以初始化每台Redis的值分别是1,2,3,4,5，然后步长都是5。各个Redis生成的ID为：<br><br>A：1,6,11,16,21<br><br>B：2,7,12,17,22<br><br>C：3,8,13,18,23<br><br>D：4,9,14,19,24<br><br>E：5,10,15,20,25<br><br>这个，随便负载到哪个机确定好，未来很难做修改。但是3-5台服务器基本能够满足器上，都可以获得不同的ID。但是步长和初始值一定需要事先需要了。使用Redis集群也可以方式单点故障的问题。<br><br>另外，比较适合使用Redis来生成每天从0开始的流水号。比如订单号=日期+当日自增长号。可以每天在Redis中生成一个Key，使用INCR进行累加。<br><br>优点：<br><br>1）不依赖于数据库，灵活方便，且性能优于数据库。<br><br>2）数字ID天然排序，对分页或者需要排序的结果很有帮助。<br><br>缺点：<br><br>1）如果系统中没有Redis，还需要引入新的组件，增加系统复杂度。<br><br>2）需要编码和配置的工作量比较大。<br><br>七，twitter<br><br>twitter在把存储系统从MySQL迁移到Cassandra的过程中由于Cassandra没有顺序ID生成机制，于是自己开发了一套全局唯一ID生成服务：Snowflake。<br>1 41位的时间序列（精确到毫秒，41位的长度可以使用69年）<br>2 10位的机器标识（10位的长度最多支持部署1024个节点）<br>3 12位的计数顺序号（12位的计数顺序号支持每个节点每毫秒产生4096个ID序号） 最高位是符号位，始终为0。<br>优点：<br><br><em><br><br>高性能，低延迟；独立的应用；
+
+</em><br><br>按时间有序。<br><br>缺点：<br><br><em><br><br>需要独立的开发和部署。
+
+</em><br><br>强依赖时钟,如果主机时间回拨,则会造成重复ID,会产生<br><br><em><br><br>ID虽然有序,但是不连续<br><br>原理<br><br><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt=""><br><br>八，MongoDB的ObjectId<br><br>MongoDB的ObjectId和snowflake算法类似。它设计成轻量型的，不同的机器都能用全局唯一的同种方法方便地生成它。MongoDB 从一开始就设计用来作为分布式数据库，处理多个节点是一个核心要求。使其在分片环境中要容易生成得多。<br><br>ObjectId使用12字节的存储空间，其生成方式如下：<br><br>|0|1|2|3|4|5|6 |7|8|9|10|11|<br><br>|时间戳 |机器ID|PID|计数器 |<br><br>前四个字节时间戳是从标准纪元开始的时间戳，单位为秒，有如下特性：<br><br> 1 时间戳与后边5个字节一块，保证秒级别的唯一性；<br> 2 保证插入顺序大致按时间排序；<br> 3 隐含了文档创建时间；<br> 4 时间戳的实际值并不重要，不需要对服务器之间的时间进行同步（因为加上机器ID和进程ID已保证此值唯一，唯一性是ObjectId的最终诉求）。<br><br>机器ID是服务器主机标识，通常是机器主机名的散列值。<br><br>同一台机器上可以运行多个mongod实例，因此也需要加入进程标识符PID。<br><br>前9个字节保证了同一秒钟不同机器不同进程产生的ObjectId的唯一性。后三个字节是一个自动增加的计数器（一个mongod进程需要一个全局的计数器），保证同一秒的ObjectId是唯一的。同一秒钟最多允许每个进程拥有（256^3 = 16777216）个不同的ObjectId。<br><br>总结一下：时间戳保证秒级唯一，机器ID保证设计时考虑分布式，避免时钟同步，PID保证同一台服务器运行多个mongod实例时的唯一性，最后的计数器保证同一秒内的唯一性（选用几个字节既要考虑存储的经济性，也要考虑并发性能的上限）。<br><br>“_id”既可以在服务器端生成也可以在客户端生成，在客户端生成可以降低服务器端的压力。<br><br>九，类snowflake算法<br><br>国内有很多厂家基于snowflake算法进行了国产化，例如<br><br>百度的uid-generator：<br><br><a href="https://github.com/baidu/uid-generator" target="_blank" rel="noopener">https://github.com/baidu/uid-generator</a><br><br>美团Leaf：<br><br><a href="https://github.com/zhuzhong/idleaf" target="_blank" rel="noopener">https://github.com/zhuzhong/idleaf</a><br><br>基本是对snowflake的进一步优化，比如解决时钟 回拨问题！<br><br>十，总结<br><br>总体而言，分布式唯一ID需要满足以下条件：
+
+</em><br><br>高可用性：不能有单点故障。<br><br><em><br><br>全局唯一性：不能出现重复的ID号，既然是唯一标识，这是最基本的要求。
+
+</em><br><br>趋势递增：在MySQL InnoDB引擎中使用的是聚集索引，由于多数RDBMS使用B-tree的数据结构来存储索引数据，在主键的选择上面我们应该尽量使用有序的主键保证写入性能。<br><br><em><br><br>时间有序：以时间为序，或者ID里包含时间。这样一是可以少一个索引，二是冷热数据容易分离。
+
+</em><br><br>分片支持：可以控制ShardingId。比如某一个用户的文章要放在同一个分片内，这样查询效率高，修改也容易。<br><br><em><br><br>单调递增：保证下一个ID一定大于上一个ID，例如事务版本号、IM增量消息、排序等特殊需求。
+
+</em><br><br>长度适中：不要太长，最好64bit。使用long比较好操作，如果是96bit，那就要各种移位相当的不方便，还有可能有些组件不能支持这么大的ID。<br><br>*<br><br>信息安全：如果ID是连续的，恶意用户的扒取工作就非常容易做了，直接按照顺序下载指定URL即可；如果是订单号就更危险了，竞争对手可以直接知道我们一天的单量。所以在一些应用场景下，会需要ID无规则、不规则。<br><br>文章参考出处：叶金荣博客 <a href="http://imysql.com/，欢迎大家积极留言，您使用的是哪种方式" target="_blank" rel="noopener">http://imysql.com/，欢迎大家积极留言，您使用的是哪种方式</a>?<br><br>推荐阅读：<a href="http://mp.weixin.qq.com/s?__biz=MzU0OTE4MzYzMw==&amp;mid=2247483707&amp;idx=1&amp;sn=168c163e852e826d52c07b887977ff2f&amp;chksm=fbb288c5ccc501d3b0e43d8aca0cffcadfd0dd859f6840ca76fb8593d4593ef48134b22bb368&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">2T架构师教学视频分享</a><br><br></div></div>
+          
         
       
     </div>
@@ -964,7 +1176,7 @@ spring cloud中启动Eureka Server
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/11/16/：Windows下RabbitMQ安装及入门/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/54ef043c.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -983,7 +1195,7 @@ spring cloud中启动Eureka Server
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/16/：Windows下RabbitMQ安装及入门/" itemprop="url">：Windows下RabbitMQ安装及入门</a></h1>
+                <a class="post-title-link" href="/post/54ef043c.html" itemprop="url">：Windows下RabbitMQ安装及入门</a></h1>
         
 
         <div class="post-meta">
@@ -1035,16 +1247,48 @@ spring cloud中启动Eureka Server
       
         
           
-          1.Windows下安装RabbitMQ需要以下几个步骤
-   (1)：下载erlang，原因在于RabbitMQ服务端代码是使用并发式语言erlang编写的，下载地址：http://www.erlang.org/downloads，双击.exe文件进行安装就好，安装完成之后创建一个名为ERLANG
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/16/：Windows下RabbitMQ安装及入门/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>1.Windows下安装RabbitMQ需要以下几个步骤</p>
+<p>   (1)：下载erlang，原因在于RabbitMQ服务端代码是使用并发式语言erlang编写的，下载地址：<a href="http://www.erlang.org/downloads，双击.exe文件进行安装就好，安装完成之后创建一个名为ERLANG_HOME的环境变量，其值指向erlang的安装目录，同时将%ERLANG_HOME%\bin加入到Path中，最后打开命令行，输入erl，如果出现erlang的版本信息就表示erlang语言环境安装成功；" target="_blank" rel="noopener">http://www.erlang.org/downloads，双击.exe文件进行安装就好，安装完成之后创建一个名为ERLANG_HOME的环境变量，其值指向erlang的安装目录，同时将%ERLANG_HOME%\bin加入到Path中，最后打开命令行，输入erl，如果出现erlang的版本信息就表示erlang语言环境安装成功；</a></p>
+<p><img src="http://pangguoming.com/blog/images/fa2f9af2-832a-4b19-9c3e-b0f3147f7882.jpg" alt="">                      </p>
+<p> <img src="http://pangguoming.com/blog/images/e70ad789-c7ec-4196-993c-8e064d3e6ed4.jpg" alt=""></p>
+<p>   (2)：下载RabbitMQ，下载地址：<a href="http://www.rabbitmq.com/，同样双击.exe进行安装就好" target="_blank" rel="noopener">http://www.rabbitmq.com/，同样双击.exe进行安装就好</a>(这里需要注意一点，默认的安装目录是C:/Program Files/….，这个目录中是存在空格符的，我们需要改变安装目录，貌似RabbitMQ安装目录中是不允许有空格的，我之前踩过这个大坑)；</p>
+<p>   (3)：安装RabbitMQ-Plugins，这个相当于是一个管理界面，方便我们在浏览器界面查看RabbitMQ各个消息队列以及exchange的工作情况，安装方法是：打开命令行cd进入rabbitmq的sbin目录(我的目录是：E:\software\rabbitmq\rabbitmq_server-3.6.5\sbin)，输入：rabbitmq-plugins enable rabbitmq_management命令，稍等会会发现出现plugins安装成功的提示，默认是安装6个插件，如果你在安装插件的过程中出现了下面的错误：        </p>
+<p><img src="http://pangguoming.com/blog/images/4473fe69-e80a-4672-a618-ba551488b87b.jpg" alt=""></p>
+<p>   解决方法是：首先在命令行输入：rabbitmq-service stop，接着输入rabbitmq-service remove，再接着输入rabbitmq-service install，接着输入rabbitmq-service start，最后重新输入rabbitmq-plugins enable rabbitmq_management试试，我是这样解决的；</p>
+<p>   (4)：插件安装完之后，在浏览器输入<a href="http://localhost:15672进行验证，你会看到下面界面，输入用户名：guest，密码：guest你就可以进入管理界面，当然用户名密码你都可以变的；" target="_blank" rel="noopener">http://localhost:15672进行验证，你会看到下面界面，输入用户名：guest，密码：guest你就可以进入管理界面，当然用户名密码你都可以变的；</a></p>
+<p><img src="http://pangguoming.com/blog/images/a359284c-0b35-4743-8964-d4e46bee0817.jpg" alt=""></p>
+<p>2.安装完RabbitMQ之后，我们先来简单了解下RabbitMQ中涉及到的几个概念</p>
+<pre><code>producer：消息生产者
+
+consumer：消息消费者
+
+ virtual host：虚拟主机，在RabbitMQ中，用户只能在虚拟主机的层面上进行一些权限设置，比如我可以访问哪些队列，我可以处理哪些请求等等；
+
+ broker：消息转发者，也就是我们RabbitMQ服务端充当的功能了，那么消息是按照什么规则进行转发的呢？需要用到下面几个概念；
+
+ exchange：交换机，他是和producer直接进行打交道的，有点类似于路由器的功能，主要就是进行转发操作的呗，那么producer到底用哪个exchange进行路由呢？这个取决于routing key(路由键)，每个消息都有这个键，我们也可以自己设定，其实就是一字符串；
+
+ queue：消息队列，用于存放消息，他接收exchange路由过来的消息，我们可以对队列内容进行持久化操作，那么queue到底接收那个exchange路由的消息呢？这个时候就要用到binding key(绑定键)了，绑定键会将队列和exchange进行绑定，至于绑定方式，RabbitMQ提供了多种方式，大家可以看看鸿洋大神的RabbitMQ博客系列([点击查看](http://blog.csdn.net/lmj623565791/article/category/2386657))；
+
+ 以上就是RabbitMQ涉及到的一些概念了，用一张图表示这些概念之间的关系就是：
+</code></pre><p><img src="http://pangguoming.com/blog/images/8acc3259-6d99-492a-b2e2-96e58c768e2c.jpg" alt=""></p>
+<p>3.RabbitMQ简单使用</p>
+<p>   producer(生产者)端步骤：</p>
+<pre><code>(1)：创建ConnectionFactory，并且设置一些参数，比如hostname,portNumber等等
+
+(2)：利用ConnectionFactory创建一个Connection连接
+
+(3)：利用Connection创建一个Channel通道
+
+(4)：创建queue并且和Channel进行绑定
+
+(5)：创建消息，并且发送到队列中
+
+ 注意，在我们当前的例子中，并没有用到exchange交换机，RabbitMQ默认情况下是会创建一个空字符串名字的exchange的，如果我们没有创建自己的exchange的话，默认就是使用的这个exchange；
+
+ producer端代码：
+</code></pre><div class="dp-highlighter bg_java"><br><div class="bar"><br><div class="tools"><strong>[java]</strong> <a href="http://blog.csdn.net/hzw19920329/article/details/53156015#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/hzw19920329/article/details/53156015#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="keyword">public <span class="keyword">class Sender {  </span></span><br>2.      <span class="keyword">private <span class="keyword">final <span class="keyword">static String QUEUE_NAME = <span class="string">“MyQueue”;  </span></span></span></span><br>3.<br>4.      <span class="keyword">public <span class="keyword">static <span class="keyword">void main(String[] args) {  </span></span></span><br>5.          send();<br>6.      }<br>7.<br>8.      <span class="keyword">public <span class="keyword">static <span class="keyword">void send()  </span></span></span><br>9.      {<br>10.          ConnectionFactory factory = <span class="keyword">null;  </span><br>11.          Connection connection = <span class="keyword">null;  </span><br>12.          Channel channel = <span class="keyword">null;  </span><br>13.          <span class="keyword">try {  </span><br>14.              factory = <span class="keyword">new ConnectionFactory();  </span><br>15.              factory.setHost(<span class="string">“localhost”);  </span><br>16.              connection = factory.newConnection();<br>17.              channel = connection.createChannel();<br>18.              channel.queueDeclare(QUEUE_NAME, <span class="keyword">false, <span class="keyword">false, <span class="keyword">false, <span class="keyword">null);  </span></span></span></span><br>19.              String message = <span class="string">“my first message …..”;  </span><br>20.              channel.basicPublish(<span class="string">“”, QUEUE_NAME, <span class="keyword">null, message.getBytes(<span class="string">“UTF-8”));  </span></span></span><br>21.              System.out.println(<span class="string">“已经发送消息…..”+message);  </span><br>22.          } <span class="keyword">catch (IOException e) {  </span><br>23.              e.printStackTrace();<br>24.          } <span class="keyword">catch (TimeoutException e) {  </span><br>25.              e.printStackTrace();<br>26.          }<span class="keyword">finally{  </span><br>27.              <span class="keyword">try {  </span><br>28.                  <span class="comment">//关闭资源  </span><br>29.                  channel.close();<br>30.                  connection.close();<br>31.              } <span class="keyword">catch (IOException e) {  </span><br>32.                  e.printStackTrace();<br>33.              } <span class="keyword">catch (TimeoutException e) {  </span><br>34.                  e.printStackTrace();<br>35.              }<br>36.          }<br>37.      }<br>38.  }<br><br>     consumer(消费者)端步骤：<br><br>     (1)：创建ConnectionFactory，并且设置一些参数，比如hostname,portNumber等等<br><br>     (2)：利用ConnectionFactory创建一个Connection连接<br><br>     (3)：利用Connection创建一个Channel通道<br><br>     (4)：将queue和Channel进行绑定，注意这里的queue名字要和前面producer创建的queue一致<br><br>     (5)：创建消费者Consumer来接收消息，同时将消费者和queue进行绑定<br><br>     consumer端代码：<br><br><div class="dp-highlighter bg_java"><br><div class="bar"><br><div class="tools"><strong>[java]</strong> <a href="http://blog.csdn.net/hzw19920329/article/details/53156015#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/hzw19920329/article/details/53156015#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="keyword">public <span class="keyword">class Receiver {  </span></span><br>2.      <span class="keyword">private <span class="keyword">final <span class="keyword">static String QUEUE_NAME = <span class="string">“MyQueue”;  </span></span></span></span><br>3.<br>4.      <span class="keyword">public <span class="keyword">static <span class="keyword">void main(String[] args) {  </span></span></span><br>5.          receive();<br>6.      }<br>7.<br>8.      <span class="keyword">public <span class="keyword">static <span class="keyword">void receive()  </span></span></span><br>9.      {<br>10.          ConnectionFactory factory = <span class="keyword">null;  </span><br>11.          Connection connection = <span class="keyword">null;  </span><br>12.          Channel channel = <span class="keyword">null;  </span><br>13.<br>14.          <span class="keyword">try {  </span><br>15.              factory = <span class="keyword">new ConnectionFactory();  </span><br>16.              factory.setHost(<span class="string">“localhost”);  </span><br>17.              connection = factory.newConnection();<br>18.              channel = connection.createChannel();<br>19.              channel.queueDeclare(QUEUE_NAME, <span class="keyword">false, <span class="keyword">false, <span class="keyword">false, <span class="keyword">null);  </span></span></span></span><br>20.              Consumer consumer = <span class="keyword">new DefaultConsumer(channel){  </span><br>21.                  <span class="annotation">@Override  </span><br>22.                  <span class="keyword">public <span class="keyword">void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties,  </span></span><br>23.                          <span class="keyword">byte[] body) <span class="keyword">throws IOException {  </span></span><br>24.                      System.out.println(<span class="string">“11111111111”);  </span><br>25.                      String message = <span class="keyword">new String(body, <span class="string">“UTF-8”);  </span></span><br>26.                      System.out.println(<span class="string">“收到消息…..”+message);  </span><br>27.                  }};<br>28.              channel.basicConsume(QUEUE_NAME, <span class="keyword">true,consumer);  </span><br>29.          } <span class="keyword">catch (IOException e) {  </span><br>30.              e.printStackTrace();<br>31.          } <span class="keyword">catch (TimeoutException e) {  </span><br>32.              e.printStackTrace();<br>33.          }<span class="keyword">finally{  </span><br>34.              <span class="keyword">try {  </span><br>35.                  <span class="comment">//关闭资源  </span><br>36.                  channel.close();<br>37.                  connection.close();<br>38.              } <span class="keyword">catch (IOException e) {  </span><br>39.                  e.printStackTrace();<br>40.              } <span class="keyword">catch (TimeoutException e) {  </span><br>41.                  e.printStackTrace();<br>42.              }<br>43.          }<br>44.      }<br>45.  }<br><br>   好了，这篇先到这了，下一篇我会简单介绍点更深入的东西，后续也会对RabbitMQ原生API进行封装，便于我们自己开发；<br></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -1091,7 +1335,7 @@ spring cloud中启动Eureka Server
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/11/13/Open edX 学习、开发、运维相关链接整理/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/efc54c3f.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1110,7 +1354,7 @@ spring cloud中启动Eureka Server
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/13/Open edX 学习、开发、运维相关链接整理/" itemprop="url">Open edX 学习、开发、运维相关链接整理</a></h1>
+                <a class="post-title-link" href="/post/efc54c3f.html" itemprop="url">Open edX 学习、开发、运维相关链接整理</a></h1>
         
 
         <div class="post-meta">
@@ -1162,17 +1406,54 @@ spring cloud中启动Eureka Server
       
         
           
-          原文地址：http://edustack.org/
-所需知识：Linux Git Python (Django Mako coffeescript sass) (MongoDB Mysql) Ansible-playbook Gem
-项目介绍：http://code.edx.orghttp://ib
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/13/Open edX 学习、开发、运维相关链接整理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>原文地址：<a href="http://edustack.org/" target="_blank" rel="noopener">http://edustack.org/</a></p>
+<h3 id="所需知识："><a href="#所需知识：" class="headerlink" title="所需知识："></a>所需知识：</h3><p>Linux Git Python (Django Mako coffeescript sass) (MongoDB Mysql) Ansible-playbook Gem</p>
+<h3 id="项目介绍："><a href="#项目介绍：" class="headerlink" title="项目介绍："></a>项目介绍：</h3><p><a href="http://code.edx.org/" title="code" target="_blank" rel="noopener">http://code.edx.org</a><br><a href="http://iblstudios.com/wp-content/uploads/2014/08/IBL-Open-edX-Ebook-2014.pdf" title="IBL-Open-edX-Ebook-2014" target="_blank" rel="noopener">http://iblstudios.com/wp-content/uploads/2014/08/IBL-Open-edX-Ebook-2014.pdf</a></p>
+<h3 id="项目页："><a href="#项目页：" class="headerlink" title="项目页："></a>项目页：</h3><p><a href="http://github.com/edx" title="github.edx" target="_blank" rel="noopener">http://github.com/edx</a><br><a href="http://github.com/edx-solutions" title="http://github.com/edx-solutions" target="_blank" rel="noopener">http://github.com/edx-solutions</a></p>
+<h3 id="官方文档："><a href="#官方文档：" class="headerlink" title="官方文档："></a>官方文档：</h3><p><a href="http://docs.edx.org/" title="docs" target="_blank" rel="noopener">http://docs.edx.org</a></p>
+<h3 id="官方wiki"><a href="#官方wiki" class="headerlink" title="官方wiki:"></a>官方wiki:</h3><p><a href="https://edx-wiki.atlassian.net/wiki/dashboard.action" title="Wiki" target="_blank" rel="noopener">https://edx-wiki.atlassian.net/wiki/dashboard.action</a></p>
+<h3 id="安装配置文档："><a href="#安装配置文档：" class="headerlink" title="安装配置文档："></a>安装配置文档：</h3><p><a href="http://edx.readthedocs.org/projects/edx-installing-configuring-and-running/en/latest/" title="edx-installing-configuring-and-running/" target="_blank" rel="noopener">http://edx.readthedocs.org/projects/edx-installing-configuring-and-running/en/latest/</a><br><a href="http://www.idefs.com/record-openedx-multinode-installation-attempts.html" title="Multi node install" target="_blank" rel="noopener">http://www.idefs.com/record-openedx-multinode-installation-attempts.html</a><br><a href="http://www.idefs.com/reprintedx-ubuntu-12-04-64-bit-installation.html" title="single node install" target="_blank" rel="noopener">http://www.idefs.com/reprintedx-ubuntu-12-04-64-bit-installation.html</a><br><a href="http://www.idefs.com/record-openedx-sets-the-smtp-send-mail.html" title="set up smtp" target="_blank" rel="noopener">http://www.idefs.com/record-openedx-sets-the-smtp-send-mail.html</a></p>
+<h3 id="功能试用："><a href="#功能试用：" class="headerlink" title="功能试用："></a>功能试用：</h3><p>官方sandbox:</p>
+<p><a href="https://github.com/edx/edx-platform/wiki/Open-edx-sandbox-website" title="Open-edx-sandbox-website" target="_blank" rel="noopener">https://github.com/edx/edx-platform/wiki/Open-edx-sandbox-website</a></p>
+<p>我们小组制作的OVA(VMware)镜像：</p>
+<p><a href="http://www.edustack.org/?page_id=8" title="edustack" target="_blank" rel="noopener">http://www.edustack.org/?page_id=8</a></p>
+<p>官方制作的vagrant</p>
+<p><a href="https://raw.githubusercontent.com/edx/configuration/master/vagrant/release/devstack/Vagrantfile" title="Vagrantfile" target="_blank" rel="noopener">https://raw.githubusercontent.com/edx/configuration/master/vagrant/release/devstack/Vagrantfile</a></p>
+<p>Mitx制作：</p>
+<p><a href="https://people.csail.mit.edu/ichuang/edx/" title="mit" target="_blank" rel="noopener">https://people.csail.mit.edu/ichuang/edx/</a></p>
+<h3 id="谁在用Open-edX"><a href="#谁在用Open-edX" class="headerlink" title="谁在用Open edX:"></a>谁在用Open edX:</h3><p><a href="https://github.com/edx/edx-platform/wiki/Sites-powered-by-Open-edX" title="Sites-powered-by-Open-edX" target="_blank" rel="noopener">https://github.com/edx/edx-platform/wiki/Sites-powered-by-Open-edX</a></p>
+<h3 id="谁能提供Open-edX技术服务："><a href="#谁能提供Open-edX技术服务：" class="headerlink" title="谁能提供Open edX技术服务："></a>谁能提供Open edX技术服务：</h3><p><a href="https://github.com/edx/edx-platform/wiki/List-of-Open-edX-service-providers" title="List-of-Open-edX-service-providers" target="_blank" rel="noopener">https://github.com/edx/edx-platform/wiki/List-of-Open-edX-service-providers</a></p>
+<h2 id="作为课程制作者："><a href="#作为课程制作者：" class="headerlink" title="作为课程制作者："></a>作为课程制作者：</h2><p><a href="http://edx.readthedocs.org/projects/edx-partner-course-staff/en/latest/" title="edx-partner-course-staff" target="_blank" rel="noopener">http://edx.readthedocs.org/projects/edx-partner-course-staff/en/latest/</a></p>
+<h2 id="作为开发者："><a href="#作为开发者：" class="headerlink" title="作为开发者："></a>作为开发者：</h2><h3 id="开发者文档："><a href="#开发者文档：" class="headerlink" title="开发者文档："></a>开发者文档：</h3><p><a href="http://edx.readthedocs.org/projects/userdocs/en/latest/" title="userdocs" target="_blank" rel="noopener">http://edx.readthedocs.org/projects/userdocs/en/latest/</a></p>
+<h3 id="xblock："><a href="#xblock：" class="headerlink" title="xblock："></a>xblock：</h3><p><a href="http://edx.readthedocs.org/projects/xblock/en/latest/" title="xblock" target="_blank" rel="noopener">http://edx.readthedocs.org/projects/xblock/en/latest/</a><br><a href="https://antoviaque.org/docs/edx/xblock/tutorial.html" title="xblock" target="_blank" rel="noopener">https://antoviaque.org/docs/edx/xblock/tutorial.html</a></p>
+<h2 id="作为一个贡献者："><a href="#作为一个贡献者：" class="headerlink" title="作为一个贡献者："></a>作为一个贡献者：</h2><h3 id="1-签署个人贡献者协议"><a href="#1-签署个人贡献者协议" class="headerlink" title="1.签署个人贡献者协议"></a>1.签署个人贡献者协议</h3><p><a href="http://code.edx.org/individual-contributor-agreement.pdf" title="individual-contributor-agreement" target="_blank" rel="noopener">http://code.edx.org/individual-contributor-agreement.pdf</a><br>扫描件发送到<a href="mailto:jennifer@edx.org" target="_blank" rel="noopener">jennifer@edx.org</a></p>
+<h3 id="2-确认你的代码符合要求："><a href="#2-确认你的代码符合要求：" class="headerlink" title="2.确认你的代码符合要求："></a>2.确认你的代码符合要求：</h3><p>pep8、pep257等确认质量100%<br><a href="https://github.com/edx/edx-platform/wiki/Python-Guidelines" title="Python-Guidelines" target="_blank" rel="noopener">https://github.com/edx/edx-platform/wiki/Python-Guidelines</a></p>
+<p><a href="https://github.com/edx/edx-platform/wiki/i18n-Coding-Guidelines" title="i18n" target="_blank" rel="noopener">https://github.com/edx/edx-platform/wiki/i18n-Coding-Guidelines</a></p>
+<p><a href="https://github.com/edx/edx-platform/wiki/Javascript-Guidelines" title="js" target="_blank" rel="noopener">https://github.com/edx/edx-platform/wiki/Javascript-Guidelines</a></p>
+<p>写好测试，确认覆盖率100%<br><a href="http://edx.readthedocs.org/projects/userdocs/en/latest/testing/index.html" title="test" target="_blank" rel="noopener">http://edx.readthedocs.org/projects/userdocs/en/latest/testing/index.html</a></p>
+<h3 id="3-提交第一个pr"><a href="#3-提交第一个pr" class="headerlink" title="3.提交第一个pr"></a>3.提交第一个pr</h3><ul>
+<li>提交第一个pr</li>
+<li>更新AUTHORS文件，写入你的github email,和全名</li>
+<li>等待ci测试结果</li>
+</ul>
+<h3 id="4-项目所有者review"><a href="#4-项目所有者review" class="headerlink" title="4.@ 项目所有者review"></a>4.@ 项目所有者review</h3><p><a href="https://github.com/edx/edx-platform/wiki/Code-Ownership" title="Code-Ownership" target="_blank" rel="noopener">https://github.com/edx/edx-platform/wiki/Code-Ownership</a></p>
+<h2 id="作为运维："><a href="#作为运维：" class="headerlink" title="作为运维："></a>作为运维：</h2><h3 id="一些操作："><a href="#一些操作：" class="headerlink" title="一些操作："></a>一些操作：</h3><p><a href="https://github.com/edx/configuration/wiki/edX-Managing-the-Production-Stack" title="edX-Managing-the-Production-Stack" target="_blank" rel="noopener">https://github.com/edx/configuration/wiki/edX-Managing-the-Production-Stack</a></p>
+<h3 id="一些配置："><a href="#一些配置：" class="headerlink" title="一些配置："></a>一些配置：</h3><p>自己的主题：</p>
+<p><a href="https://github.com/edx/edx-platform/wiki/Stanford-Theming" title="Stanford-Theming" target="_blank" rel="noopener">https://github.com/edx/edx-platform/wiki/Stanford-Theming</a></p>
+<p>自己的登录认证：</p>
+<p><a href="https://github.com/edx/configuration/wiki/Setting-Up-External-Authentication" title="Setting-Up-External-Authentication" target="_blank" rel="noopener">https://github.com/edx/configuration/wiki/Setting-Up-External-Authentication</a></p>
+<h3 id="一些命令："><a href="#一些命令：" class="headerlink" title="一些命令："></a>一些命令：</h3><p><a href="https://github.com/edx/edx-platform/wiki/Shell-commands" title="Shell-commands" target="_blank" rel="noopener">https://github.com/edx/edx-platform/wiki/Shell-commands</a></p>
+<h3 id="一些工具："><a href="#一些工具：" class="headerlink" title="一些工具："></a>一些工具：</h3><p><a href="https://github.com/edx/edx-tools/wiki" title="edx-tools" target="_blank" rel="noopener">https://github.com/edx/edx-tools/wiki</a></p>
+<h2 id="遇到问题："><a href="#遇到问题：" class="headerlink" title="遇到问题："></a>遇到问题：</h2><p>openedx-ops:运维相关问题</p>
+<p><a href="https://groups.google.com/forum/#!forum/openedx-ops" title="openedx-ops" target="_blank" rel="noopener">https://groups.google.com/forum/#!forum/openedx-ops</a></p>
+<p>openedx-translation: edx翻译项目</p>
+<p><a href="https://groups.google.com/forum/#!forum/openedx-translation" title="openedx-translation" target="_blank" rel="noopener">https://groups.google.com/forum/#!forum/openedx-translation</a></p>
+<p>openedx-analytics:</p>
+<p><a href="https://groups.google.com/forum/#!forum/openedx-analytics" title="openedx-analytics" target="_blank" rel="noopener">https://groups.google.com/forum/#!forum/openedx-analytics</a></p>
+<p>edx-code: edx 功能、代码相关</p>
+<p><a href="https://groups.google.com/forum/#!forum/edx-code" title="edx-code" target="_blank" rel="noopener">https://groups.google.com/forum/#!forum/edx-code</a></p>
+
+          
         
       
     </div>
@@ -1219,7 +1500,7 @@ spring cloud中启动Eureka Server
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/11/09/删除在Godaddy注册的域名，申请退款的全过程/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/d6ea476f.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1238,7 +1519,7 @@ spring cloud中启动Eureka Server
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/09/删除在Godaddy注册的域名，申请退款的全过程/" itemprop="url">删除在Godaddy注册的域名，申请退款的全过程</a></h1>
+                <a class="post-title-link" href="/post/d6ea476f.html" itemprop="url">删除在Godaddy注册的域名，申请退款的全过程</a></h1>
         
 
         <div class="post-meta">
@@ -1290,16 +1571,44 @@ spring cloud中启动Eureka Server
       
         
           
-            1，删除域名。 登录进 Godaddy ，进入域名管理(Domain Manager)，点击你要删除的域名，把要删除的域名前面打上对勾，再点击“delete selected”，确认，稍等一会就删除了。   
-2，发请求退款邮件。 收件人：[billing@Godaddy.com](mailto
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/09/删除在Godaddy注册的域名，申请退款的全过程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>  1，删除域名。 登录进 Godaddy ，进入域名管理(Domain Manager)，点击你要删除的域名，把要删除的域名前面打上对勾，再点击“delete selected”，确认，稍等一会就删除了。   </p>
+<pre><code>2，发请求退款邮件。 收件人：[billing@Godaddy.com](mailto:billing@Godaddy.com) 主题可以写“Refund Request”，“退款请求”的意思， 内容是告之对方自己注册了一个不满意的域名，把它删除了，请你们退款之类的。 可以这么写：(咳咳……英语课……)  
+</code></pre><p>Dear Sir，  </p>
+<p>Because of my careless(或者Due to some mistakes),I registered a wrong domain ,the domain is *.info(此处填写你删除的域名),so I deleted（或者canceled） it today.  </p>
+<p>Please help me apply a refund to my Alipay （我用的是支付宝，所以这里写的是Alipay ，用Paypal 或者其他的请自行变更）account: <em>@</em>.com（这里写你的收款账户） .  </p>
+<p>Here is my infomation:（附上购买时候的信息，在你注册godaddy时候填写的邮箱里会看到）  </p>
+<p>CUSTOMER NUMBER: 88888888  </p>
+<p>LOGIN NAME: merror.info  </p>
+<p>RECEIPT NUMBER: 8888888  </p>
+<p>ORDER TOTAL: $1.07 (基本上这样就够了，支付宝显示的商品信息包含在上面了) Thank you! 这样发送出去就可以了。  </p>
+<p>然后Godaddy总共会发来三封邮件。 ———————————————————————————————————–  </p>
+<pre><code>1，[donotreply@godaddy.com](mailto:donotreply@godaddy.com) 发来一封邮件：  
+</code></pre><p>Your question has been received. You should expect a response within 24 hours.This is your Incident ID: 8897855Thanks, GoDaddy.com, Inc.  </p>
+<p>大意是“你的问题我们已经接受，你会在24小时内得到答复” 好了，等吧~   </p>
+<pre><code>2，大约一个小时之后，（这个时间长度不同的人可能不一样） ，[sales@godaddy.com](mailto:sales@godaddy.com)发来一封主题是GoDaddy.com Refund的邮件，内容如下：  
+</code></pre><p>Thursday, April 29, 2010 11:59:59 AMDear Merror.info,  </p>
+<p>GoDaddy.com has received a refund request for the following items:  </p>
+<p>QTY ITEM PRICE -1 .INFO Domain Name Registration – 1 Year ($1.07)  </p>
+<p>*.INFO  </p>
+<p>Subtotal: ($1.07) Shipping &amp; Handling: $0.00 Tax: $0.00 Total: ($1.07)  </p>
+<p>Important Information concerning your purchase:  </p>
+<p>Domain Registration Product Info Legal Agreement  </p>
+<p>Quick Blogcast Product Info Legal Agreement  </p>
+<p>Free Hosting w/Web Site Builder Product Info  </p>
+<p>Starter Web Page or For Sale Page Product Info  </p>
+<p>Free Personal Email Product Info Legal Agreement  </p>
+<p>Your refund receipt number is: 888888888R Your customer number is: 88888888 Log in to review your order history at any time. To safely log in: Go to the GoDaddy.com home page and log in with your username or customer number and password. From the My Products list, you can manage, renew, and upgrade your products and services.  </p>
+<p>If you have any questions regarding this order or your refund, feel free to email us at <a href="mailto:support@godaddy.com" target="_blank" rel="noopener">support@godaddy.com</a>.  </p>
+<p>Sincerely, GoDaddy.com  </p>
+<p>叫你确认一下信息。  </p>
+<pre><code>3，紧接着一分钟过后，[billing@godaddy.com](mailto:billing@godaddy.com)发来主题为Update [Incident ID: 8888888] – refund request的邮件，主要内容如下：  
+</code></pre><p>Dear Sir/Madam,Thank you for contacting Online Support.I have applied a refund to your account. Please allow 5-7 business days to see the funds applied to the associated payment method. Thank you for your patience and understanding in this matter. Please let us know if we can help any other way. Sincerely,  </p>
+<p>Roni P. Online Support Technician  </p>
+<p>然后还有最初你发过去的邮件原文 。第三封邮件意思是你会在5~7个工作日收到退款。  </p>
+<p>———————————————————————————————————–  </p>
+<p>注意：申请退款要在购买域名之后的5天内提出申请。</p>
+
+          
         
       
     </div>
@@ -1346,7 +1655,7 @@ spring cloud中启动Eureka Server
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/11/08/Jenkins详细安装与构建部署使用教程/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/8b16e5fd.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1365,7 +1674,7 @@ spring cloud中启动Eureka Server
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/08/Jenkins详细安装与构建部署使用教程/" itemprop="url">Jenkins详细安装与构建部署使用教程</a></h1>
+                <a class="post-title-link" href="/post/8b16e5fd.html" itemprop="url">Jenkins详细安装与构建部署使用教程</a></h1>
         
 
         <div class="post-meta">
@@ -1417,17 +1726,18 @@ spring cloud中启动Eureka Server
       
         
           
-            Jenkins是一个开源软件项目，旨在提供一个开放易用的软件平台，使软件的持续集成变成可能。Jenkins是基于Java开发的一种持续集成工具，用于监控持续重复的工作，功能包括：1、持续的软件版本发布/测试项目。2、监控外部调用执行的工作。
-本文使用的Linux：Ubuntu
-其中JDK、Tom
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/08/Jenkins详细安装与构建部署使用教程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>  Jenkins是一个开源软件项目，旨在提供一个开放易用的软件平台，使软件的持续集成变成可能。Jenkins是基于Java开发的一种持续集成工具，用于监控持续重复的工作，功能包括：<br>1、持续的软件版本发布/测试项目。<br>2、监控外部调用执行的工作。</p>
+<p>本文使用的Linux：Ubuntu</p>
+<p>其中JDK、Tomcat、SVN服务器请看这里<a href="http://blog.csdn.net/evankaka/article/details/50463782" target="_blank" rel="noopener">Ubuntu安装配置JDK、Tomcat、SVN服务器</a></p>
+<h1 id="一、安装Jenkins"><a href="#一、安装Jenkins" class="headerlink" title="一、安装Jenkins"></a>一、安装Jenkins</h1><p>本文直接使用war包安装</p>
+<p>下载地址：<a href="https://jenkins-ci.org/content/thank-you-downloading-windows-installer/" target="_blank" rel="noopener">https://jenkins-ci.org/content/thank-you-downloading-windows-installer/</a></p>
+<p><img src="http://pangguoming.com/blog/images/f2199453-4662-4fdd-968a-37616b6a6c97.jpg" alt=""></p>
+<p>war包有两种安装方法</p>
+<p>方法一</p>
+<p> 下载jenkins.war, 拷贝到D:\Java\Tool\jenkins（）下，然后运行java -jar jenkins.war. (注意需要先安装JDK，然后设置JAVA_HOME环境变量且将%JAVA_HOME%\bin加入到PATH环境变量中)  </p>
+<p>运行如下：  </p>
+<div><img src="http://pangguoming.com/blog/images/647e1ca6-abc2-4b75-b2d6-1fb474a06ab4.jpg" alt=""><br><br>访问<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> , jenkins的主界面如下：<br><br><img src="http://pangguoming.com/blog/images/6aad1c61-ebd0-4db2-8661-85a3d997ff21.jpg" alt=""><br><br>方法二<br><br>把Jenkins 1.409.1版解压，把得到的war包直接扔到tomcat下，启动tomcat，Jenkins就安装完毕，访问<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a><br><br># 二、构建一个Maven项目<br><br>1、新建一个job<br><br><img src="http://pangguoming.com/blog/images/d9ee57f7-1451-4829-96d8-3306308aca43.jpg" alt=""><br><br>2、输入名称和项目类型<br><br><img src="http://pangguoming.com/blog/images/29878285-3d7a-4abf-93f0-b634d800136d.jpg" alt=""><br><br>3、设置编译的版本号等信息<br><br><img src="http://pangguoming.com/blog/images/c089ffcc-01c3-453b-b1e4-ab2a8ae1a186.jpg" alt=""><br><br>4、设置svn库地址：<br><br>输入项目托管的svn的地址，如果有出现要输入账号和密码的地方，输入即可。<br><br><img src="http://pangguoming.com/blog/images/9e317f17-4af8-4984-8e30-7c95f4585f29.jpg" alt=""><br><br>如果有出现如下说明用户或密码不对:<br><br><div><img src="http://pangguoming.com/blog/images/dc40254c-3901-419e-8ad1-f544e26cfb07.jpg" alt=""><br><br>点击进去重新设置用户和密码<br><br>5、配置jdk和maven<br><br>第一次打开出现如下，点击进去。要求提示设置JDK和Maven<br><br><img src="http://pangguoming.com/blog/images/e3eec8fe-6c2e-4c2f-8407-b829138b190a.jpg" alt=""><br><br>点击系统管理-》系统设置，找到JDK和Maven的设置位置<br><br>选择本电脑的：<br><br><img src="http://pangguoming.com/blog/images/6cfd21b3-9493-44fb-a5d3-f751f3afc9e9.jpg" alt=""><br><br>9、到这里已经可以构造这个项目了。<br><br>点击构建<br><br><img src="http://pangguoming.com/blog/images/0e820d6f-981f-4842-9488-1baddc6d8c52.jpg" alt=""><br><br>构建输出的信息：<br><br><img src="http://pangguoming.com/blog/images/026fc13d-6ef3-4f7f-a130-8b71743b0dac.jpg" alt=""><br><br>构建成功输出如下 ：<br><br><img src="http://pangguoming.com/blog/images/3bf68889-3bae-496e-a9be-71eee701b3dd.jpg" alt=""><br><br>10、验证<br><br>这时它已经自动把这个项目打包了一个war包,默认打包到了C:\Users\linbingwen.jenkins\workspace\JavaWeb\JavaWeb\target<br><br><img src="http://pangguoming.com/blog/images/4182d2c0-a9b0-4876-a528-7e4e26713f25.jpg" alt=""><br><br>或者点击如下：<br><br><img src="http://pangguoming.com/blog/images/5241c27b-c299-44bf-bb2d-58ec73b6191c.jpg" alt=""><br><br># 三、自动远程部署到tomcat<br><br>接下来要完成自动构建成war包后，将些war包上传到远程linux的tomcat的webapps目录，更新项目的war包，并重启tomcat.<br><br>1、安装插件<br><br>系统管理-》管理插件，在可选插件里找到下面这个，然后点击直接安装命令，安装成功后要重启jenkins<br><br><img src="http://pangguoming.com/blog/images/2c650c1b-6038-4cff-80d9-e4612345990d.jpg" alt=""><br><br>t笔者在安装插件时报错如下：<br><br><img src="http://pangguoming.com/blog/images/0adb7a47-0a5e-460b-bf8e-7f9a61de4605.jpg" alt=""><br><br>这应该是天朝的墙所导致的，所以笔者就使用了手动安装的方式。<br><br>解决方法：<br><br>手动安装<br><br>到<a href="https://wiki.jenkins-ci.org/display/JENKINS/Publish+Over+SSH+Plugin，下载hpi到本地电脑到" target="_blank" rel="noopener">https://wiki.jenkins-ci.org/display/JENKINS/Publish+Over+SSH+Plugin，下载hpi到本地电脑到</a><br><br><img src="http://pangguoming.com/blog/images/07e18b43-7a3c-4838-a42f-386d31b91d3e.jpg" alt=""><br><br>在系统管理–管理插件–高级–浏览-上传插件即可<br><br><img src="http://pangguoming.com/blog/images/dac24496-0226-42c6-9025-3fd12bffca82.jpg" alt=""><br><br>然后它自动上传并安装：<br><br>红色的是笔者在线安装不成功的，蓝色的是笔者安装成功的了，之后重启jenkis即可。<br><br><img src="http://pangguoming.com/blog/images/f36a00c4-6bdc-4315-861f-b3f692c0c166.jpg" alt=""><br><br><div>2、配置ssh内容:<br><div>在系统管理-》系统设置里<br><div>找到Publish over SSH<br>然后输入：<br><div><img src="http://pangguoming.com/blog/images/f54d4146-4411-4b84-a194-cfa7e55c2956.jpg" alt=""><br><div>3、配置Post Steps<br>这里还是接着上面的JavaWeb项目，这个配置得安装了上面的插件后才会显示！<br><div><img src="http://pangguoming.com/blog/images/91dcf8c0-3a13-4f31-858f-151709c687bf.jpg" alt=""><br><br><div>其中，<br>Transfer SetSource files：表示要上传的本地的war包及路径，可到工作空间去看<br><div><br>Remove prefix:表示要上传时要去除的文件夹，即只上传war包<br><div><br>remote driectory:即表示执行时的路径，相当于把war包上传到这里了<br><div><br>exec commad:要执行的命令<br><div><br><div><strong>要执行的脚本的内容：</strong><br><div><br><br>#!/bin/sh<br>    #defined<br>    TOMCAT_HOME=”/usr/java/tomcat/apache-tomcat-7.0.67/“<br>    ID=<code>ps -ef | grep java | grep tomcat|awk &#39;{print $2}&#39;</code><br>    echo $ID<br>    echo “kill tomcat”<br>    kill -9 $ID<br>    echo “remover war file”<br>    cd “$TOMCAT_HOME”/webapps<br>    rm -rf JavaWeb-0.0.1-SNAPSHOT<br>    rm -rf JavaWeb-0.0.1-SNAPSHOT.war<br>    echo “copy war to webapp”<br>    cd /home/lin<br>    cp JavaWeb-0.0.1-SNAPSHOT.war “$TOMCAT_HOME”/webapps<br>    cd “$TOMCAT_HOME”/bin<br>    echo “start tomcat”<br>    ./startup.sh<code>`</code><br>    <div>步骤：<br>    先停掉tomcat<br>    <div>删除webapp下对应的war包<br>    <div>复制war到webapps<br>    <div>重启tomcat<br><br>    <div><br>    <div>4、构建部署<br>    <div>点击项目的构建按钮，最终出现如下：<br>    <div><br>    <div><img src="http://pangguoming.com/blog/images/9810014b-a8d1-42d5-9a94-2714c2fbcabd.jpg" alt=""><br>    <div>在linux上打开浏览器，输入<a href="http://localhost:8080/JavaWeb-0.0.1-SNAPSHOT/" target="_blank" rel="noopener">http://localhost:8080/JavaWeb-0.0.1-SNAPSHOT/</a><br>    <div><img src="http://pangguoming.com/blog/images/91209af2-a5fa-4269-a136-5cd54f55c4dd.jpg" alt=""><br><br>    <div id="yui-gen24" class="dd-handle"><br><br>注意：这里配置的ssh用户：lin要有root的权限，要不可以会报错没有权限执行kill 或rm 命令<br><br>本文使用的Linux：Ubuntu14.04<br><br>其中JDK、Tomcat、SVN服务器请看这里<a href="http://blog.csdn.net/evankaka/article/details/50463782" target="_blank" rel="noopener">Ubuntu安装配置JDK、Tomcat、SVN服务器</a><br><br>转自:<a href="http://m.blog.csdn.net/article/details?id=50518959" target="_blank" rel="noopener">http://m.blog.csdn.net/article/details?id=50518959</a><br><br>    <div id="share"><br><br>本文固定链接: <a href="https://www.whatled.com/post-1922.html" title="https://www.whatled.com/post-1922.html" target="_blank" rel="noopener">https://www.whatled.com/post-1922.html</a><br></div></div></div></div></div></div></div></div></div></div></div></div></div><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -1474,7 +1784,7 @@ spring cloud中启动Eureka Server
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/11/07/配置sonarqube+maven/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/bc6dce66.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1493,7 +1803,7 @@ spring cloud中启动Eureka Server
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/07/配置sonarqube+maven/" itemprop="url">配置sonarqube+maven</a></h1>
+                <a class="post-title-link" href="/post/bc6dce66.html" itemprop="url">配置sonarqube+maven</a></h1>
         
 
         <div class="post-meta">
@@ -1545,15 +1855,8 @@ spring cloud中启动Eureka Server
       
         
           
-          Maven与Sonar配合使用 准备工作：下载sonarqube源码即可 步骤：     1）、安装sonar&gt;           解压，启动sonarqube-4.1\bin\windows-x86-32目录下的StartSonar.bat文件。&gt; 2）、安装插件 Quality I
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/07/配置sonarqube+maven/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h2 id="Maven与Sonar配合使用"><a href="#Maven与Sonar配合使用" class="headerlink" title="Maven与Sonar配合使用"></a>Maven与Sonar配合使用</h2><div> 准备工作：下载sonarqube源码即可<br><div> 步骤：<br><div>     1）、安装sonar<br><br>&gt;           解压，启动sonarqube-4.1\bin\windows-x86-32目录下的StartSonar.bat文件。<br><br>&gt; 2）、安装插件 Quality Index Plugin<br><br>&gt;           将sonar-quality-index-plugin-1.1.3.jar放到sonarqube-4.1\extensions\plugins目录下。<br><br>&gt; 3）、数据库设置<br><br>&gt;      Sonar 默认使用的是 Derby 数据库，但这个数据库一般用于评估版本或者测试用途。商用及对数据库要求较高时，建议使用其他数据库。Sonar 可以支持大多数主流关系型数据库（例如 Microsoft SQL Server, MySQL, Oracle, PostgreSQL 等）<br><br>          本文以 MySQL 为例说明如何更改 Sonar 的数据库设置：<br><br><div>          a、创建sonar数据库：create database sonar;<br><div>          b、创建用户：<br><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td><br><br>CREATE USER sonar IDENTIFIED BY ‘sonar’;<br><br>    GRANT ALL PRIVILEGES ON <em>.</em> TO ‘sonar‘@’localhost’ \<br>    IDENTIFIED BY ‘sonar’ WITH GRANT OPTION;<code>`</code><br><br></td><br></tr><br></tbody><br></table><br><br>          c、将 MySQL 的驱动文件（如 mysql-connector-java-5.1.13.jar）拷贝到 sonar-2.11\extensions\jdbc-driver\mysql 目录<br><br><div>          d、修改 sonar-2.11\conf\sonar.properties 文件，用 # 注释原来 Derby 的配置项，并打开 MySQL 数据库的配置项:<br><div><br><div>             e、重启 Sonar。<br><br><div>     4）、在maven中配置sonar：<br><div>                    打开setting.xml配置文件，在其中加入如下代码：<br><div><br><table style="width: 100%;" border="1" cellspacing="0" cellpadding="2"><br><tbody><br><tr><br><td valign="top"><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/tayanxunhua/article/details/19068725#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/tayanxunhua/article/details/19068725#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="tag">&lt;<span class="tag-name">profile<span class="tag">&gt;  </span></span></span><br>2.<br>3.       <span class="tag">&lt;<span class="tag-name">id<span class="tag">&gt;sonar<span class="tag">&lt;/<span class="tag-name">id<span class="tag">&gt;  </span></span></span></span></span></span><br>4.<br>5.       <span class="tag">&lt;<span class="tag-name">activation<span class="tag">&gt;  </span></span></span><br>6.<br>7.         <span class="tag">&lt;<span class="tag-name">activeByDefault<span class="tag">&gt;true<span class="tag">&lt;/<span class="tag-name">activeByDefault<span class="tag">&gt;  </span></span></span></span></span></span><br>8.<br>9.       <span class="tag">&lt;/<span class="tag-name">activation<span class="tag">&gt;  </span></span></span><br>10.<br>11.       <span class="tag">&lt;<span class="tag-name">properties<span class="tag">&gt;  </span></span></span><br>12.<br>13.         <span class="tag">&lt;<span class="tag-name">sonar.jdbc.url<span class="tag">&gt;  </span></span></span><br>14.<br>15.                jdbc:mysql://localhost:3306/sonar?<span class="attribute">useUnicode=<span class="attribute-value">true&amp;<span class="attribute">characterEncoding=<span class="attribute-value">utf8  </span></span></span></span><br>16.<br>17.         <span class="tag">&lt;/<span class="tag-name">sonar.jdbc.url<span class="tag">&gt;  </span></span></span><br>18.<br>19.         <span class="tag">&lt;<span class="tag-name">sonar.jdbc.driver<span class="tag">&gt;com.mysql.jdbc.Driver<span class="tag">&lt;/<span class="tag-name">sonar.jdbc.driver<span class="tag">&gt;  </span></span></span></span></span></span><br>20.<br>21.         <span class="tag">&lt;<span class="tag-name">sonar.jdbc.username<span class="tag">&gt;sonar<span class="tag">&lt;/<span class="tag-name">sonar.jdbc.username<span class="tag">&gt;  </span></span></span></span></span></span><br>22.<br>23.         <span class="tag">&lt;<span class="tag-name">sonar.jdbc.password<span class="tag">&gt;sonar<span class="tag">&lt;/<span class="tag-name">sonar.jdbc.password<span class="tag">&gt;  </span></span></span></span></span></span><br>24.<br>25.         <span class="tag">&lt;<span class="tag-name">sonar.host.url<span class="tag">&gt;<a href="http://localhost:9000" target="_blank" rel="noopener">http://localhost:9000</a><span class="tag">&lt;/<span class="tag-name">sonar.host.url<span class="tag">&gt;  </span></span></span></span></span></span><br>26.<br>27.       <span class="tag">&lt;/<span class="tag-name">properties<span class="tag">&gt;  </span></span></span><br>28.<br>29.     <span class="tag">&lt;/<span class="tag-name">profile<span class="tag">&gt;  </span></span></span><br><br></div></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><div><br><div>     5）、启动sonar：<br><div>               sonarqube-4.1\bin\windows-x86-32目录下的StartSonar.bat文件<br><div>     6）、进入maven项目中，执行mvn sonar:sonar命令，等待结束。<br>                     <img src="http://pangguoming.com/blog/images/350d5116-f4ed-4ed5-b7b7-561624ab5957.jpg" alt=""><br><div>     7）、输入localhost:9000回车，查看：<br><div>               <img src="http://pangguoming.com/blog/images/785426b7-68b8-4f40-970e-62c089fe0f73.jpg" alt=""><br><div><br><div>     8）、ok！可以查看分析结果。<br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -1616,105 +1919,108 @@ spring cloud中启动Eureka Server
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
-            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+
           
-            <p class="site-author-name" itemprop="name">庞国明</p>
-            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives">
-            
-                <span class="site-state-item-count">420</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">267</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>GitHub</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
-                  
-                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -1731,12 +2037,9 @@ spring cloud中启动Eureka Server
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">庞国明</span>
 
@@ -1744,11 +2047,17 @@ spring cloud中启动Eureka Server
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
@@ -1768,6 +2077,8 @@ spring cloud中启动Eureka Server
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -1802,53 +2113,61 @@ spring cloud中启动Eureka Server
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
 
-
-
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1874,6 +2193,23 @@ spring cloud中启动Eureka Server
 
   
 
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
 
 
 
@@ -2203,11 +2539,27 @@ spring cloud中启动Eureka Server
 
 
 
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
 
   
 
   
 
+  
+
+  
   
 
   

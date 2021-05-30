@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="neo4j,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、在windows上搭建Neo4j ha cluster的配置方法： 例如：建立集群的三台机器的ip分别为：10.230.9.91，10.230.9.92，10.230.9.93。 10.230.9.91**机器上的配置如下：** 1、关闭防火墙  2、ping 10.230.9.92和10.230.9.93，看是否能ping通  3、解压Neo4j 安装文件到某一目录下（例如F:\）  4、修">
+<meta name="keywords" content="neo4j">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Neo4j 2.0 生产环境集群搭建">
+<meta property="og:url" content="http://pangguoming.com/post/4cb54bc2.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="一、在windows上搭建Neo4j ha cluster的配置方法： 例如：建立集群的三台机器的ip分别为：10.230.9.91，10.230.9.92，10.230.9.93。 10.230.9.91**机器上的配置如下：** 1、关闭防火墙  2、ping 10.230.9.92和10.230.9.93，看是否能ping通  3、解压Neo4j 安装文件到某一目录下（例如F:\）  4、修">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pangguoming.com/blog/images/d9eb3868-97b9-4930-817c-ecbbb9127e3b.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/eeb4e640-5608-4c39-932b-2296555249e7.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/d3ba614b-0163-4f3f-9d42-bcd552515af7.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/bd07e2cc-d663-409f-8eae-067b224a6d31.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/9eb0642e-8d5e-4055-8162-5fac9d66abab.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/4bfffcd9-9ca9-42d9-8d65-bad51c817559.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/c96f6b8a-7788-4b56-b669-c953edd88ef7.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/b95632d1-78e2-4697-9e2f-ca2cee522f9f.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/d8b6b7f5-4730-4afa-9f8d-c4c4f4b33a41.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/143bf044-dcf4-42e4-8a1e-d32bcf1f7f2a.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/31a10317-83db-432e-b44c-3bf832da6d37.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/66df5150-18f0-4af9-b1a1-915e86767955.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/c72600aa-d334-4264-a27d-bf0230c4800c.jpg">
+<meta property="og:image" content="http://pangguoming.com/blog/images/ba9c0df5-a98f-488c-b51b-67ea2a8b7e59.jpg">
+<meta property="og:updated_time" content="2019-07-10T03:30:55.665Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Neo4j 2.0 生产环境集群搭建">
+<meta name="twitter:description" content="一、在windows上搭建Neo4j ha cluster的配置方法： 例如：建立集群的三台机器的ip分别为：10.230.9.91，10.230.9.92，10.230.9.93。 10.230.9.91**机器上的配置如下：** 1、关闭防火墙  2、ping 10.230.9.92和10.230.9.93，看是否能ping通  3、解压Neo4j 安装文件到某一目录下（例如F:\）  4、修">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/d9eb3868-97b9-4930-817c-ecbbb9127e3b.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/post/4cb54bc2.html">
+
+
+
+
+
+  <title>Neo4j 2.0 生产环境集群搭建 | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/4cb54bc2.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Neo4j 2.0 生产环境集群搭建</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T11:14:00+08:00">
+                2018-01-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/4cb54bc2.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/post/4cb54bc2.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>一、在windows上搭建Neo4j ha cluster的配置方法：</strong></p>
+<p>例如：建立集群的三台机器的ip分别为：10.230.9.91，10.230.9.92，10.230.9.93。</p>
+<p><strong>10.230.9.91**</strong>机器上的配置如下：**</p>
+<pre><code>1、关闭防火墙
+
+2、ping 10.230.9.92和10.230.9.93，看是否能ping通
+
+3、解压Neo4j 安装文件到某一目录下（例如F:\）
+
+4、修改Neo4j配置文件(F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\conf\neo4j.properties)
+
+   *ha.server_id=1*
+</code></pre><ul>
+<li><p>ha.initial_hosts=10.230.9.91:5001,10.230.9.92:5001,10.230.9.93:5001*</p>
+<p>5、修改Neo4j配置文件(F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\conf\neo4j-server.properties)</p>
+<p><em>org.neo4j.server.webserver.address=0.0.0.0</em></p>
+</li>
+<li><p>org.neo4j.server.database.mode=HA*</p>
+<p>6、以管理员权限启动cmd控制台, 进入F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\bin</p>
+</li>
+</ul>
+<p><strong>10.230.9.92**</strong>机器上的配置如下：**</p>
+<p>1、关闭防火墙</p>
+<p>2、ping 10.230.9.91和10.230.9.93，看是否能ping通</p>
+<p>3、解压Neo4j 安装文件到某一目录下（例如F:\）</p>
+<p>4、修改Neo4j配置文件(F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\conf\neo4j.properties)</p>
+<pre><code>ha.server_id=2
+
+ha.initial_hosts=10.230.9.91:5001,10.230.9.92:5001,10.230.9.93:5001
+</code></pre><p>5、修改Neo4j配置文件(F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\conf\neo4j-server.properties)</p>
+<pre><code>org.neo4j.server.webserver.address=0.0.0.0
+
+org.neo4j.server.database.mode=HA
+</code></pre><p>6、以管理员权限启动cmd控制台, 进入F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\bin</p>
+<p><strong>10.230.9.93**</strong>机器上的配置如下：**</p>
+<p>1、关闭防火墙</p>
+<p>2、ping 10.230.9.91和10.230.9.92，看是否能ping通</p>
+<p>3、解压Neo4j 安装文件到某一目录下（例如F:\）</p>
+<p>4、修改Neo4j配置文件(F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\conf\neo4j.properties)</p>
+<pre><code>ha.server_id=3
+
+ha.initial_hosts=10.230.9.91:5001,10.230.9.92:5001,10.230.9.93:5001
+</code></pre><p>5、修改Neo4j配置文件(F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\conf\neo4j-server.properties)</p>
+<pre><code>org.neo4j.server.webserver.address=0.0.0.0
+
+org.neo4j.server.database.mode=HA
+</code></pre><p>6、以管理员权限启动cmd控制台, 进入F:\neo4j-enterprise-2.0.0-M04-windows\neo4j-enterprise-2.0.0-M04\bin</p>
+<p><strong>启动集群：</strong></p>
+<p>在三个控制台分别输入Neo4j start，并回车。</p>
+<p><strong>集群启动成功验证：</strong></p>
+<p>在三台机器的浏览器分别输入：<a href="http://localhost:7474/" target="_blank" rel="noopener">http://localhost:7474</a> 回车，进入server info,点击左侧导航栏“High Availability”，显示如下即为成功启动cluster:</p>
+<p> <img src="http://pangguoming.com/blog/images/d9eb3868-97b9-4930-817c-ecbbb9127e3b.jpg" alt=""><img src="http://pangguoming.com/blog/images/eeb4e640-5608-4c39-932b-2296555249e7.jpg" alt=""><img src="http://pangguoming.com/blog/images/d3ba614b-0163-4f3f-9d42-bcd552515af7.jpg" alt=""><img src="http://pangguoming.com/blog/images/bd07e2cc-d663-409f-8eae-067b224a6d31.jpg" alt=""></p>
+<p>注：按照neo4j manual的写法，windows和linux生产环境集群，搭建后的验证方法相同。</p>
+<p><strong>注：某些情况下，集群未成功启动，但还是可以进入上面的页面，但是available=false,haRole=UNKNOWN。这种情况应该进入/data/graph.db/message.log查看出错原因。</strong></p>
+<p> <img src="http://pangguoming.com/blog/images/9eb0642e-8d5e-4055-8162-5fac9d66abab.jpg" alt=""></p>
+<p><strong>二、在RedHat6.0上搭建Neo4j ha cluster的配置方法：</strong></p>
+<p>例如：建立集群的三个虚拟机的ip分别为：192.168.110.131,192.168.110.132,192.168.110.133。</p>
+<p><strong>三台虚拟机上相同的配置：</strong></p>
+<pre><code>1、进入root，创建neo4j用户。
+
+2、关闭防火墙，$service iptables stop。
+
+3、将防火墙设置为非自启动。
+</code></pre><p> <img src="http://pangguoming.com/blog/images/4bfffcd9-9ca9-42d9-8d65-bad51c817559.jpg" alt=""></p>
+<p>4、手动配置网络。</p>
+<p> <img src="http://pangguoming.com/blog/images/c96f6b8a-7788-4b56-b669-c953edd88ef7.jpg" alt=""><img src="http://pangguoming.com/blog/images/b95632d1-78e2-4697-9e2f-ca2cee522f9f.jpg" alt=""><img src="http://pangguoming.com/blog/images/d8b6b7f5-4730-4afa-9f8d-c4c4f4b33a41.jpg" alt=""></p>
+<pre><code>修改 /etc/sysconfig/network 主机名，相应的主机名如下：
+
+    192.168.110.131虚拟机上的主机配置为NETWORKING=yes HOSTNAME=neo4j-01
+
+    192.168.110.132虚拟机上的主机配置为NETWORKING=yes HOSTNAME=neo4j-02
+
+    192.168.110.133虚拟机上的主机配置为NETWORKING=yes HOSTNAME=neo4j-03
+
+修改/etc/hosts,相应的配置如下：
+
+    192.168.110.131虚拟机上的配置为：
+</code></pre><p> <img src="http://pangguoming.com/blog/images/143bf044-dcf4-42e4-8a1e-d32bcf1f7f2a.jpg" alt=""></p>
+<p>192.168.110.132虚拟机上的配置为：</p>
+<p> <img src="http://pangguoming.com/blog/images/31a10317-83db-432e-b44c-3bf832da6d37.jpg" alt=""></p>
+<p>192.168.110.133虚拟机上的配置为：</p>
+<p> <img src="http://pangguoming.com/blog/images/66df5150-18f0-4af9-b1a1-915e86767955.jpg" alt=""></p>
+<p>5、配置java环境</p>
+<p> 将jdk安装包解压至/usr/java</p>
+<p> 在/etc/profile 文件中添加：</p>
+<p>export JAVA_HOME=/usr/java/jdk1.7.0_25</p>
+<p>export PATH=$PATH:$JAVA_HOME/bin</p>
+<p>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</p>
+<p> <img src="http://pangguoming.com/blog/images/c72600aa-d334-4264-a27d-bf0230c4800c.jpg" alt=""></p>
+<p>6、配置ssh</p>
+<p>各个虚拟机上 /etc/ssh/sshd_config文件放开如下属性：</p>
+<p>RSAAuthentication yes</p>
+<p>PubkeyAuthentication yes</p>
+<p>AuthorizedKeysFile  .ssh/authorized_keys</p>
+<p>UseDNS  yes</p>
+<p>7、（三个虚拟机都配）分别进入neo4j账户，配置ssh无密码登陆：</p>
+<p><strong>$ssh-keygen –t rsa</strong></p>
+<p>   一路回车，/home/neo4j/.ssh/中出现两个文件：id_rsa(私钥)和id_rsa.pub(公钥)。</p>
+<pre><code>**$cd /home/neo4j/.ssh**
+</code></pre><p><strong>$cat id_rsa.pub &gt;&gt; authorized_keys</strong></p>
+<p>   /home/neo4j/.ssh/中出现authorized_keys文件。</p>
+<p><strong>$sudo root</strong></p>
+<p><strong>$**</strong>输入root账户的密码**</p>
+<p><strong>Root]$chmod 700 /home/neo4j/.ssh</strong></p>
+<p><strong>Root]$chmod 600 /home/neo4j/.ssh/*</strong></p>
+<p>切换至neo4j账户：</p>
+<p><strong>Neo4j]$ssh localhost</strong></p>
+<p>会让输入(yes/no),输入yes回车</p>
+<p>第一次可能会让输入密码，以后就不会输入密码了。如果出现总让输入密码的状况，说明ssh配置不成功。</p>
+<p>8、配置相互间ssh无密码登陆：</p>
+<p>将neo4j-01上的/home/neo4j/.ssh/authorized_keys的内容追加到neo4j-02和neo4j-03上的此文件中。<strong>结果是保证每个虚拟机上的公钥（id_rsa.pub）的内容，在各个虚拟机的authorized_keys文件中都有。</strong></p>
+<p>验证ssh：</p>
+<pre><code>Neo4j-01]$ssh localhost
+</code></pre><p>Neo4j-01]$ssh 192.168.110.132</p>
+<p>Neo4j-01]$ssh neo4j-02</p>
+<p>以上如果都不需要密码登陆，则配置成功。</p>
+<pre><code>9、配置neo4j:
+</code></pre><p><strong>192.168.110.131**</strong>机器上的配置如下：**</p>
+<pre><code>1、解压Neo4j 安装文件到某一目录下（例如/home/neo4j/Documents）
+
+2、修改Neo4j配置文件(/home/neo4j/Documents/neo4j-enterprise-2.0.0-M06/conf/neo4j.properties)
+</code></pre><p><em>ha.server_id=1</em></p>
+<p><em>ha.initial_hosts=192.168.110.131:5001,192.168.110.132:5001,192.168.110.133:5001</em></p>
+<pre><code>5、修改Neo4j配置文件(/home/neo4j/Documents/neo4j-enterprise-2.0.0-M06/conf/neo4j-server.properties)
+
+    *org.neo4j.server.webserver.address=0.0.0.0*
+</code></pre><ul>
+<li><p>org.neo4j.server.database.mode=HA*</p>
+<p>6、进入控制台</p>
+<p>$cd /home/neo4j/Document/neo4j-enterprise-2.0.0-M06/bin</p>
+<p>$./neo4j start</p>
+</li>
+</ul>
+<p><strong>192.168.110.132**</strong>机器上的配置如下：**</p>
+<pre><code>1、解压Neo4j 安装文件到某一目录下（例如/home/neo4j/Documents）
+
+2、修改Neo4j配置文件(/home/neo4j/Documents/neo4j-enterprise-2.0.0-M06/conf/neo4j.properties)
+</code></pre><p><em>ha.server_id=2</em></p>
+<p><em>ha.initial_hosts=192.168.110.131:5001,192.168.110.132:5001,192.168.110.133:5001</em></p>
+<pre><code>5、修改Neo4j配置文件(/home/neo4j/Documents/neo4j-enterprise-2.0.0-M06/conf/neo4j-server.properties)
+
+    *org.neo4j.server.webserver.address=0.0.0.0*
+</code></pre><ul>
+<li><p>org.neo4j.server.database.mode=HA*</p>
+<p>6、进入控制台</p>
+<p>$cd /home/neo4j/Document/neo4j-enterprise-2.0.0-M06/bin</p>
+<p>$./neo4j start</p>
+</li>
+</ul>
+<p><strong>192.168.110.133**</strong>机器上的配置如下：**</p>
+<pre><code>1、解压Neo4j 安装文件到某一目录下（例如/home/neo4j/Documents）
+
+2、修改Neo4j配置文件(/home/neo4j/Documents/neo4j-enterprise-2.0.0-M06/conf/neo4j.properties)
+</code></pre><p><em>ha.server_id=3</em></p>
+<p><em>ha.initial_hosts=192.168.110.131:5001,192.168.110.132:5001,192.168.110.133:5001</em></p>
+<pre><code>5、修改Neo4j配置文件(/home/neo4j/Documents/neo4j-enterprise-2.0.0-M06/conf/neo4j-server.properties)
+
+    *org.neo4j.server.webserver.address=0.0.0.0*
+</code></pre><ul>
+<li><p>org.neo4j.server.database.mode=HA*</p>
+<p>6、进入控制台</p>
+<p>$cd /home/neo4j/Document/neo4j-enterprise-2.0.0-M06/bin</p>
+<p>$./neo4j start</p>
+</li>
+</ul>
+<p><strong>启动集群：</strong></p>
+<p>在三个控制台分别输入Neo4j start，并回车。</p>
+<p> <img src="http://pangguoming.com/blog/images/ba9c0df5-a98f-488c-b51b-67ea2a8b7e59.jpg" alt=""></p>
+<p>   集群搭建成功的验证方法同windows。</p>
+<p><strong>搭建过程中，message.log可能出现的错误：</strong></p>
+<p>1、ERROR [o.n.c.c.NetworkSender]: Receive exception:</p>
+<p>java.net.NoRouteToHostException: No route to host</p>
+<pre><code>可能没有关闭防火墙
+</code></pre><p>2、WARN [o.n.c.c.NetworkSender]: Could not connect to:cluster://192.168.1.129:5001<br>org.neo4j.cluster.com.ChannelOpenFailedException: Client could not connect to /192.168.1.129:5001<br>ERROR [o.n.c.c.NetworkSender]: Channel [id: 0xfc016066] had no URI associated with it.</p>
+<pre><code>Ssh没有配置成功，或者因为使用root账户创建ssh。
+</code></pre><p>3、WARN [o.n.k.h.c.HighAvailabilityModeSwitcher]: Consistency checker failed<br>org.neo4j.com.ComException: MasterClient18 could not connect to neo4j-01:6001</p>
+<pre><code>/etc/hosts没有配置对其他机器的映射。
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/neo4j/" rel="tag"># neo4j</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/7bec239b.html" rel="next" title="添加 Github  follow、star按钮到网页">
+                <i class="fa fa-chevron-left"></i> 添加 Github  follow、star按钮到网页
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/ed78bc01.html" rel="prev" title="使用Spring Cloud Security OAuth2搭建授权服务">
+                使用Spring Cloud Security OAuth2搭建授权服务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'pangguoming',
+            repo: 'pangguoming.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51',
+            
+                client_id: '1e9770fed2b4d227cd0a'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

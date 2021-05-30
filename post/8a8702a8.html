@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Node.js,开发模式,设计模式,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Asynchronous code &amp;amp; Synchronous codeAs we have seen in an earlier post (here), how node does things Asynchronously. For a “Traditional programmer”, this can be a tough pill to swallow. So lets tak">
+<meta name="keywords" content="Node.js,开发模式,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js 开发模式（设计模式）">
+<meta property="og:url" content="http://pangguoming.com/post/8a8702a8.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="Asynchronous code &amp;amp; Synchronous codeAs we have seen in an earlier post (here), how node does things Asynchronously. For a “Traditional programmer”, this can be a tough pill to swallow. So lets tak">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-10T03:30:55.786Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js 开发模式（设计模式）">
+<meta name="twitter:description" content="Asynchronous code &amp;amp; Synchronous codeAs we have seen in an earlier post (here), how node does things Asynchronously. For a “Traditional programmer”, this can be a tough pill to swallow. So lets tak">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/post/8a8702a8.html">
+
+
+
+
+
+  <title>Node.js 开发模式（设计模式） | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/8a8702a8.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Node.js 开发模式（设计模式）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-26T14:28:00+08:00">
+                2015-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/8a8702a8.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/post/8a8702a8.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Asynchronous-code-amp-Synchronous-code"><a href="#Asynchronous-code-amp-Synchronous-code" class="headerlink" title="Asynchronous code &amp; Synchronous code"></a>Asynchronous code &amp; Synchronous code</h2><p>As we have seen in an earlier post (<a href="http://thejackalofjavascript.com/nodejs/" title="What is Nodejs" target="_blank" rel="noopener">here</a>), how node does things Asynchronously. For a “Traditional programmer”, this can be a tough pill to swallow. So lets take a look at how things can be done async.</p>
+<p>Tradition programming</p>
+<div id="crayon-54ee73aac25d6541546407" class="crayon-syntax crayon-theme-arduino-ide crayon-font-droid-sans-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><span class="crayon-title"><span class="crayon-title">Sync Operation</span></span><br><div class="crayon-tools"><br><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-54ee73aac25d6541546407-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac25d6541546407-2">2<br><div class="crayon-num" data-line="crayon-54ee73aac25d6541546407-3">3<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac25d6541546407-4">4<br><div class="crayon-num" data-line="crayon-54ee73aac25d6541546407-5">5<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac25d6541546407-6">6<br><div class="crayon-num" data-line="crayon-54ee73aac25d6541546407-7">7<br><br></div></div></div></div></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-54ee73aac25d6541546407-1" class="crayon-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">result<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-v">db<span class="crayon-sy">.<span class="crayon-e">query<span class="crayon-sy">(<span class="crayon-s">“select <em> from someTable”<span class="crayon-sy">)<span class="crayon-sy">;</span></span></em></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac25d6541546407-2" class="crayon-line crayon-striped-line"><span class="crayon-c">// use the result here and do something</span><br><div id="crayon-54ee73aac25d6541546407-3" class="crayon-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">doSomething<span class="crayon-h">  <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-sy">)<span class="crayon-sy">{</span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac25d6541546407-4" class="crayon-line crayon-striped-line"><span class="crayon-h">   <span class="crayon-c">// doing something totally unrelated to the db call.</span></span><br><div id="crayon-54ee73aac25d6541546407-5" class="crayon-line"><span class="crayon-sy">}<span class="crayon-sy">;</span></span><br><div id="crayon-54ee73aac25d6541546407-6" class="crayon-line crayon-striped-line"><br><div id="crayon-54ee73aac25d6541546407-7" class="crayon-line"><span class="crayon-e">doSomething<span class="crayon-sy">(<span class="crayon-sy">)<span class="crayon-sy">;<span class="crayon-h"> <span class="crayon-c">// This will be blocked till the db response has arrived.</span></span></span></span></span></span><br><br></div></div></div></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>Here the  <span id="crayon-54ee73aac25ea974056651" class="crayon-syntax crayon-syntax-inline crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-e">doSomething<span class="crayon-sy">(<span class="crayon-sy">) executes a set of statements that are not dependent on the response of the db call. But it has to wait till the db operation is completed. This is why we have a server like Node to take care of all the I/O threads separately.</span></span></span></span></span><br><br>So in an async world, the same will be written like this<br><br><div id="crayon-54ee73aac25f2329723749" class="crayon-syntax crayon-theme-arduino-ide crayon-font-droid-sans-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><span class="crayon-title"><span class="crayon-title">Async</span></span><br><div class="crayon-tools"><br><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-54ee73aac25f2329723749-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac25f2329723749-2">2<br><div class="crayon-num" data-line="crayon-54ee73aac25f2329723749-3">3<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac25f2329723749-4">4<br><div class="crayon-num" data-line="crayon-54ee73aac25f2329723749-5">5<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac25f2329723749-6">6<br><div class="crayon-num" data-line="crayon-54ee73aac25f2329723749-7">7<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac25f2329723749-8">8<br><div class="crayon-num" data-line="crayon-54ee73aac25f2329723749-9">9<br><br></div></div></div></div></div></div></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-54ee73aac25f2329723749-1" class="crayon-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">result<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-v">db<span class="crayon-sy">.<span class="crayon-e">query<span class="crayon-sy">(<span class="crayon-s">“select  from someTable”<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-sy">)<span class="crayon-sy">{</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac25f2329723749-2" class="crayon-line crayon-striped-line"><span class="crayon-c">// use the result here and do something</span><br><div id="crayon-54ee73aac25f2329723749-3" class="crayon-line"><span class="crayon-sy">}<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span><br><div id="crayon-54ee73aac25f2329723749-4" class="crayon-line crayon-striped-line"><br><div id="crayon-54ee73aac25f2329723749-5" class="crayon-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">doSomething<span class="crayon-h">  <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-sy">)<span class="crayon-sy">{</span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac25f2329723749-6" class="crayon-line crayon-striped-line"><span class="crayon-h">   <span class="crayon-c">// doing something totally unrelated to the db call.</span></span><br><div id="crayon-54ee73aac25f2329723749-7" class="crayon-line"><span class="crayon-sy">}<span class="crayon-sy">;</span></span><br><div id="crayon-54ee73aac25f2329723749-8" class="crayon-line crayon-striped-line"><br><div id="crayon-54ee73aac25f2329723749-9" class="crayon-line"><span class="crayon-e">doSomething<span class="crayon-sy">(<span class="crayon-sy">)<span class="crayon-sy">;<span class="crayon-h"> <span class="crayon-c">// The DB request gets fired and doSomething() will get executed after that.</span></span></span></span></span></span><br><br></div></div></div></div></div></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>Here, the DB request gets fired and <span id="crayon-54ee73aac25fa560147026" class="crayon-syntax crayon-syntax-inline crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-e">doSomething<span class="crayon-sy">(<span class="crayon-sy">)  will get executed immediately after that. All the actions happen async. Its Node’s event loop’s responsibility to take care of I/O operations and fire the registered callback.</span></span></span></span></span><br><br>Now, life is always not that simple is it? (<em>tell me about it!..</em>) Take a look at this example<br><br><div id="crayon-54ee73aac2601959606597" class="crayon-syntax crayon-theme-arduino-ide crayon-font-droid-sans-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><span class="crayon-title"><span class="crayon-title">Complex Async</span></span><br><div class="crayon-tools"><br><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-54ee73aac2601959606597-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2601959606597-2">2<br><div class="crayon-num" data-line="crayon-54ee73aac2601959606597-3">3<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2601959606597-4">4<br><div class="crayon-num" data-line="crayon-54ee73aac2601959606597-5">5<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2601959606597-6">6<br><br></div></div></div></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-54ee73aac2601959606597-1" class="crayon-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">result<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-v">db<span class="crayon-sy">.<span class="crayon-e">query<span class="crayon-sy">(<span class="crayon-s">“select <em> from someTable”<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-v">data<span class="crayon-sy">)<span class="crayon-sy">{</span></span></span></span></span></span></span></em></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2601959606597-2" class="crayon-line crayon-striped-line"><span class="crayon-h">   <span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">userId<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-v">data<span class="crayon-sy">.<span class="crayon-e">get<span class="crayon-sy">(<span class="crayon-cn">1<span class="crayon-sy">)<span class="crayon-sy">.<span class="crayon-v">id<span class="crayon-sy">;<span class="crayon-h">  </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2601959606597-3" class="crayon-line"><span class="crayon-h">   <span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">subQResult<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-v">db<span class="crayon-sy">.<span class="crayon-e">query<span class="crayon-sy">(<span class="crayon-s">“select  from someOtherTable where id=”<span class="crayon-o">+<span class="crayon-v">userId<span class="crayon-o">+<span class="crayon-s">“;”<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-v">userData<span class="crayon-sy">)<span class="crayon-sy">{</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2601959606597-4" class="crayon-line crayon-striped-line"><span class="crayon-h">      <span class="crayon-c">// some more info.. and the fire another db call! </span></span><br><div id="crayon-54ee73aac2601959606597-5" class="crayon-line"><span class="crayon-h">    <span class="crayon-sy">}<span class="crayon-sy">)<span class="crayon-sy">;<span class="crayon-h">       </span></span></span></span></span><br><div id="crayon-54ee73aac2601959606597-6" class="crayon-line crayon-striped-line"><span class="crayon-sy">}<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span><br><br></div></div></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>or<br><br><div id="crayon-54ee73aac2608748380267" class="crayon-syntax crayon-theme-arduino-ide crayon-font-droid-sans-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><span class="crayon-title"><span class="crayon-title">Complex file reader</span></span><br><div class="crayon-tools"><br><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-54ee73aac2608748380267-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2608748380267-2">2<br><div class="crayon-num" data-line="crayon-54ee73aac2608748380267-3">3<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2608748380267-4">4<br><div class="crayon-num" data-line="crayon-54ee73aac2608748380267-5">5<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2608748380267-6">6<br><div class="crayon-num" data-line="crayon-54ee73aac2608748380267-7">7<br><br></div></div></div></div></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-54ee73aac2608748380267-1" class="crayon-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">file<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-v">fs<span class="crayon-sy">.<span class="crayon-e">readFile<span class="crayon-sy">(<span class="crayon-s">“/usr/bin”<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-v">data<span class="crayon-sy">)<span class="crayon-sy">{</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2608748380267-2" class="crayon-line crayon-striped-line"><span class="crayon-h">   <span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">listOfFiles<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-v">data<span class="crayon-sy">.<span class="crayon-e">getContents<span class="crayon-sy">(<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2608748380267-3" class="crayon-line"><span class="crayon-h">   <span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">anotherFile<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-v">fs<span class="crayon-sy">.<span class="crayon-e">readFile<span class="crayon-sy">(<span class="crayon-v">listOfFiles<span class="crayon-sy">[<span class="crayon-cn">0<span class="crayon-sy">]<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-v">userIDs<span class="crayon-sy">)<span class="crayon-sy">{</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2608748380267-4" class="crayon-line crayon-striped-line"><span class="crayon-h">       <span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">user<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-v">userIds<span class="crayon-sy">[<span class="crayon-cn">0<span class="crayon-sy">]<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2608748380267-5" class="crayon-line"><span class="crayon-h">       <span class="crayon-c">// Call db and get the data for this user</span></span><br><div id="crayon-54ee73aac2608748380267-6" class="crayon-line crayon-striped-line"><span class="crayon-h">   <span class="crayon-sy">}<span class="crayon-sy">)<span class="crayon-sy">;<span class="crayon-h">    </span></span></span></span></span><br><div id="crayon-54ee73aac2608748380267-7" class="crayon-line"><span class="crayon-sy">}<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span><br><br></div></div></div></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>Very nested and convoluted? So can we fix this whole nested thing? Yes, you can use any of the following modules<br><br><em>   <a href="http://github.com/willconant/flow-js" target="_blank" rel="noopener">flow-js</a>
+</em>   <a href="https://github.com/FuturesJS/FuturesJS" target="_blank" rel="noopener">future js</a><br><em>   <a href="https://github.com/fjakobs/async.js" target="_blank" rel="noopener">async.js</a><br><br>So our code will turn into<br><br><div id="crayon-54ee73aac2610892665424" class="crayon-syntax crayon-theme-arduino-ide crayon-font-droid-sans-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><span class="crayon-title"><span class="crayon-title">Flowjs - Async Simplification</span></span><br><div class="crayon-tools"><br><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-54ee73aac2610892665424-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2610892665424-2">2<br><div class="crayon-num" data-line="crayon-54ee73aac2610892665424-3">3<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2610892665424-4">4<br><div class="crayon-num" data-line="crayon-54ee73aac2610892665424-5">5<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2610892665424-6">6<br><div class="crayon-num" data-line="crayon-54ee73aac2610892665424-7">7<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2610892665424-8">8<br><div class="crayon-num" data-line="crayon-54ee73aac2610892665424-9">9<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2610892665424-10">10<br><div class="crayon-num" data-line="crayon-54ee73aac2610892665424-11">11<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2610892665424-12">12<br><div class="crayon-num" data-line="crayon-54ee73aac2610892665424-13">13<br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-54ee73aac2610892665424-1" class="crayon-line"><span class="crayon-v">flow<span class="crayon-sy">.<span class="crayon-e">exec<span class="crayon-sy">(</span></span></span></span><br><div id="crayon-54ee73aac2610892665424-2" class="crayon-line crayon-striped-line"><span class="crayon-h">    <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-sy">)<span class="crayon-h"> <span class="crayon-sy">{</span></span></span></span></span></span><br><div id="crayon-54ee73aac2610892665424-3" class="crayon-line"><span class="crayon-h">        <span class="crayon-e">readFile<span class="crayon-sy">(<span class="crayon-s">“/usr/bin”<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-r">this<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2610892665424-4" class="crayon-line crayon-striped-line"><span class="crayon-h">        <span class="crayon-c">// process data</span></span><br><div id="crayon-54ee73aac2610892665424-5" class="crayon-line"><span class="crayon-h">    <span class="crayon-sy">}<span class="crayon-sy">,<span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-v">url<span class="crayon-sy">)<span class="crayon-h"> <span class="crayon-sy">{</span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2610892665424-6" class="crayon-line crayon-striped-line"><span class="crayon-h">       <span class="crayon-c">// get some other file       </span></span><br><div id="crayon-54ee73aac2610892665424-7" class="crayon-line"><span class="crayon-h">    <span class="crayon-sy">}<span class="crayon-sy">,<span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-v">userIDs<span class="crayon-sy">)<span class="crayon-h"> <span class="crayon-sy">{</span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2610892665424-8" class="crayon-line crayon-striped-line"><span class="crayon-h">       <span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">user<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-v">userIds<span class="crayon-sy">[<span class="crayon-cn">0<span class="crayon-sy">]<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2610892665424-9" class="crayon-line"><span class="crayon-h">        <span class="crayon-c">// and so on      </span></span><br><div id="crayon-54ee73aac2610892665424-10" class="crayon-line crayon-striped-line"><span class="crayon-h">    <span class="crayon-sy">}<span class="crayon-sy">,<span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-sy">)<span class="crayon-h"> <span class="crayon-sy">{</span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2610892665424-11" class="crayon-line"><span class="crayon-h">        <span class="crayon-e">completedAll<span class="crayon-sy">(<span class="crayon-sy">)</span></span></span></span><br><div id="crayon-54ee73aac2610892665424-12" class="crayon-line crayon-striped-line"><span class="crayon-h">    <span class="crayon-sy">}</span></span><br><div id="crayon-54ee73aac2610892665424-13" class="crayon-line"><span class="crayon-sy">)<span class="crayon-sy">;</span></span><br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>Now, lets take a look at Node’s Modules.<br><br>## Node Modules<br><br>If you have interacted with programming languages like C, C++, Java, .Net or PHP, you would have seen statements like <span id="crayon-54ee73aac2617409485493" class="crayon-syntax crayon-syntax-inline crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-v">import  <span id="crayon-54ee73aac261e863556876" class="crayon-syntax crayon-syntax-inline crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-v">using  <span id="crayon-54ee73aac2624351756492" class="crayon-syntax crayon-syntax-inline crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-p">#include  <span id="crayon-54ee73aac262a928504263" class="crayon-syntax crayon-syntax-inline crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-v">include or  <span id="crayon-54ee73aac2630480765997" class="crayon-syntax crayon-syntax-inline crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-v">require to get external files/libraries to your current file. Since the code is isolated in these programming languages, we need to explicitly include the required libraries.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><br>But, Javascript runs everything in the global scope and does not have a partition between variables/functions or variables/functions of a file. In simple, there is no namespacing!.<br><br>If you have 3 files, <span id="crayon-54ee73aac2637548951009" class="crayon-syntax crayon-syntax-inline crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-v">fileOne<span class="crayon-sy">.<span class="crayon-v">js , <span id="crayon-54ee73aac263e880108362" class="crayon-syntax crayon-syntax-inline crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-v">fileTwo<span class="crayon-sy">.<span class="crayon-v">js  &amp; <span id="crayon-54ee73aac2655334011921" class="crayon-syntax crayon-syntax-inline crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-v">fileThree<span class="crayon-sy">.<span class="crayon-v">js  and you loaded them in your browser in the same order, The function definition or variable values of the prior will be overridden by the later without any warnings.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><br>Lets say fileOne has a method called <span id="crayon-54ee73aac265c582847751" class="crayon-syntax crayon-syntax-inline crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-e">add<span class="crayon-sy">(<span class="crayon-v">num1<span class="crayon-sy">,<span class="crayon-v">num2<span class="crayon-sy">)<span class="crayon-sy">;  which adds two numbers &amp; fileTwo has a method called <span id="crayon-54ee73aac2663349407189" class="crayon-syntax crayon-syntax-inline crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-e">add<span class="crayon-sy">(<span class="crayon-v">str1<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-v">str2<span class="crayon-sy">)<span class="crayon-sy">;  which concats’ two strings. And fileThree is calling the<span id="crayon-54ee73aac266a740479976" class="crayon-syntax crayon-syntax-inline crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-e">add<span class="crayon-sy">(<span class="crayon-cn">5<span class="crayon-sy">,<span class="crayon-cn">4<span class="crayon-sy">)<span class="crayon-sy">;  expecting the method to return the sum. But instead, it receives a concatenated string.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><br>This phenomenon in the programming world is called as the </div></div></div></div></div></em>“spaghetti code”. <em>Unless you are careful about your variables names, you might override someone else’s code or some one might override yours!<br><br>So we need to use a dependency management system, that will take care of things like these. Node uses **</em>CommonJs Modules<strong><em> for handling dependency.<br><br>CommonJS dependency management revolves around two methods <span id="crayon-54ee73aac2671306674567" class="crayon-syntax crayon-syntax-inline crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-v">exports  &amp;  <span id="crayon-54ee73aac267a053267867" class="crayon-syntax crayon-syntax-inline crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-v">require.</span></span></span></span></span></span><br><br>Let’s reconsider the above example, and implement the same via CommonJs modules.<br><br>fileOne.js<br><br><div id="crayon-54ee73aac2682765474727" class="crayon-syntax crayon-theme-arduino-ide crayon-font-droid-sans-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><span class="crayon-title"><span class="crayon-title">fileOne.js</span></span><br><div class="crayon-tools"><br><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><br><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><br><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><br><div class="crayon-button crayon-copy-button" title="Copy"><br><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><br><span class="crayon-language">JavaScript</span><br><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-54ee73aac2682765474727-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2682765474727-2">2<br><div class="crayon-num" data-line="crayon-54ee73aac2682765474727-3">3<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2682765474727-4">4<br><div class="crayon-num" data-line="crayon-54ee73aac2682765474727-5">5<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2682765474727-6">6<br><br></div></div></div></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-54ee73aac2682765474727-1" class="crayon-line"><span class="crayon-v">exports<span class="crayon-sy">.<span class="crayon-v">add<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-v">a<span class="crayon-sy">,<span class="crayon-v">b<span class="crayon-sy">)<span class="crayon-sy">{</span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2682765474727-2" class="crayon-line crayon-striped-line"><span class="crayon-st">if<span class="crayon-sy">(<span class="crayon-o">!<span class="crayon-e">isNaN<span class="crayon-sy">(<span class="crayon-v">a<span class="crayon-sy">)<span class="crayon-h"> <span class="crayon-o">&amp;&amp;<span class="crayon-h"> <span class="crayon-o">!<span class="crayon-e">isNaN<span class="crayon-sy">(<span class="crayon-v">b<span class="crayon-sy">)<span class="crayon-sy">)</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2682765474727-3" class="crayon-line"><span class="crayon-h"> <span class="crayon-st">return<span class="crayon-h"> <span class="crayon-r">parseInt<span class="crayon-sy">(<span class="crayon-v">a<span class="crayon-sy">)<span class="crayon-h"> <span class="crayon-o">+<span class="crayon-h"> <span class="crayon-r">parseInt<span class="crayon-sy">(<span class="crayon-v">b<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2682765474727-4" class="crayon-line crayon-striped-line"><span class="crayon-st">else</span><br><div id="crayon-54ee73aac2682765474727-5" class="crayon-line"><span class="crayon-h"> <span class="crayon-st">return<span class="crayon-h"> <span class="crayon-s">“Invalid data”<span class="crayon-sy">;</span></span></span></span></span><br><div id="crayon-54ee73aac2682765474727-6" class="crayon-line crayon-striped-line"><span class="crayon-sy">}<span class="crayon-sy">;</span></span><br><br></div></div></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>fileTwo.js<br><br><div id="crayon-54ee73aac268c767736495" class="crayon-syntax crayon-theme-arduino-ide crayon-font-droid-sans-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><span class="crayon-title"><span class="crayon-title">fileTwo.js</span></span><br><div class="crayon-tools"><br><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><br><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><br><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><br><div class="crayon-button crayon-copy-button" title="Copy"><br><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><br><span class="crayon-language">JavaScript</span><br><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-54ee73aac268c767736495-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac268c767736495-2">2<br><div class="crayon-num" data-line="crayon-54ee73aac268c767736495-3">3<br><br></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-54ee73aac268c767736495-1" class="crayon-line"><span class="crayon-v">exports<span class="crayon-sy">.<span class="crayon-v">add<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-v">a<span class="crayon-sy">,<span class="crayon-v">b<span class="crayon-sy">)<span class="crayon-sy">{</span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac268c767736495-2" class="crayon-line crayon-striped-line"><span class="crayon-h"> <span class="crayon-st">return<span class="crayon-h"> <span class="crayon-v">a<span class="crayon-h"> <span class="crayon-o">+<span class="crayon-h"> <span class="crayon-v">b<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac268c767736495-3" class="crayon-line"><span class="crayon-sy">}<span class="crayon-sy">;</span></span><br><br></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>and now in fileThree.js<br><br><div id="crayon-54ee73aac2694791977855" class="crayon-syntax crayon-theme-arduino-ide crayon-font-droid-sans-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><span class="crayon-title"><span class="crayon-title">fileThree.js</span></span><br><div class="crayon-tools"><br><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><br><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><br><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><br><div class="crayon-button crayon-copy-button" title="Copy"><br><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><br><span class="crayon-language">JavaScript</span><br><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-54ee73aac2694791977855-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2694791977855-2">2<br><div class="crayon-num" data-line="crayon-54ee73aac2694791977855-3">3<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac2694791977855-4">4<br><br></div></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-54ee73aac2694791977855-1" class="crayon-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">moduleOne<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-e">require<span class="crayon-sy">(<span class="crayon-s">“./fileOne”<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2694791977855-2" class="crayon-line crayon-striped-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">moduleTwo<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-e">require<span class="crayon-sy">(<span class="crayon-s">“./fileTwo”<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac2694791977855-3" class="crayon-line"><br><div id="crayon-54ee73aac2694791977855-4" class="crayon-line crayon-striped-line"><span class="crayon-v">console<span class="crayon-sy">.<span class="crayon-e">log<span class="crayon-sy">(<span class="crayon-v">moduleOne<span class="crayon-sy">.<span class="crayon-e">add<span class="crayon-sy">(<span class="crayon-cn">5<span class="crayon-sy">,<span class="crayon-cn">4<span class="crayon-sy">)<span class="crayon-sy">)<span class="crayon-sy">;<span class="crayon-h"> <span class="crayon-c">// This will be the sum for sure!!</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><br></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>Neat right? Node uses this for its dependency management &amp; name-spacing and you need to when you are developing code around Node.<br><br>## Javascript’s Callback
+
+</div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></em>A call back basically is a function that will get invoked after the initiated task is completed.<em><br><br>That means, I want do something after some other thing is completed. Like, after 5 seconds fire an alert.<br><br><div id="crayon-54ee73aac269d039485506" class="crayon-syntax crayon-theme-arduino-ide crayon-font-droid-sans-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><span class="crayon-title"><span class="crayon-title">SetTimeOut</span></span><br><div class="crayon-tools"><br><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><br><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><br><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><br><div class="crayon-button crayon-copy-button" title="Copy"><br><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><br><span class="crayon-language">JavaScript</span><br><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-54ee73aac269d039485506-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac269d039485506-2">2<br><div class="crayon-num" data-line="crayon-54ee73aac269d039485506-3">3<br><br></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-54ee73aac269d039485506-1" class="crayon-line"><span class="crayon-e">setTimeOut<span class="crayon-sy">(<span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-sy">)<span class="crayon-sy">{</span></span></span></span></span></span><br><div id="crayon-54ee73aac269d039485506-2" class="crayon-line crayon-striped-line"><span class="crayon-h">  <span class="crayon-r">alert<span class="crayon-sy">(<span class="crayon-s">“I had to wait for 521ms before I am shown!”<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span><br><div id="crayon-54ee73aac269d039485506-3" class="crayon-line"><span class="crayon-sy">}<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-cn">521<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span><br><br></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>Or in Node, since everything is async, the callback gets fired on completion of an I/O operation.<br><br><div id="crayon-54ee73aac26a4566447520" class="crayon-syntax crayon-theme-arduino-ide crayon-font-droid-sans-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><span class="crayon-title"><span class="crayon-title">Node I/O</span></span><br><div class="crayon-tools"><br><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><br><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><br><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><br><div class="crayon-button crayon-copy-button" title="Copy"><br><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><br><span class="crayon-language">JavaScript</span><br><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-54ee73aac26a4566447520-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26a4566447520-2">2<br><div class="crayon-num" data-line="crayon-54ee73aac26a4566447520-3">3<br><br></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-54ee73aac26a4566447520-1" class="crayon-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">results<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-v">db<span class="crayon-sy">.<span class="crayon-e">query<span class="crayon-sy">(<span class="crayon-s">“select </span></span></span></span></span></span></span></span></span></span></span></div></div></td></tr></tbody></table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></em> from someTable”<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-v">data<span class="crayon-sy">)<span class="crayon-sy">{</span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26a4566447520-2" class="crayon-line crayon-striped-line"><span class="crayon-h"> <span class="crayon-c">// I am a callback!!. I will be fired only after the query operation is completed.</span></span><br><div id="crayon-54ee73aac26a4566447520-3" class="crayon-line"><span class="crayon-sy">}<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span><br><br></div></div></strong></div></div><br><br><br><br><br>Callback function can be named or anonymous.<br><br>As we have seen earlier, nesting callbacks can be a nightmare for code readability. We have also seen libraries like async would help clean the code for us. Another way to implement the same without any external module is<br><br><div id="crayon-54ee73aac26ac441349307" class="crayon-syntax crayon-theme-arduino-ide crayon-font-droid-sans-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><span class="crayon-title"><span class="crayon-title">Callback Named Functions</span></span><br><div class="crayon-tools"><br><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><br><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><br><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><br><div class="crayon-button crayon-expand-button" title="Expand Code"><br><div class="crayon-button crayon-copy-button" title="Copy"><br><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><br><span class="crayon-language">JavaScript</span><br><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-54ee73aac26ac441349307-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ac441349307-2">2<br><div class="crayon-num" data-line="crayon-54ee73aac26ac441349307-3">3<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ac441349307-4">4<br><div class="crayon-num" data-line="crayon-54ee73aac26ac441349307-5">5<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ac441349307-6">6<br><div class="crayon-num" data-line="crayon-54ee73aac26ac441349307-7">7<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ac441349307-8">8<br><div class="crayon-num" data-line="crayon-54ee73aac26ac441349307-9">9<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ac441349307-10">10<br><div class="crayon-num" data-line="crayon-54ee73aac26ac441349307-11">11<br><br></div></div></div></div></div></div></div></div></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-54ee73aac26ac441349307-1" class="crayon-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">result<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-v">db<span class="crayon-sy">.<span class="crayon-e">query<span class="crayon-sy">(<span class="crayon-s">“select <em> from someTable”<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-v">processData<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></em></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ac441349307-2" class="crayon-line crayon-striped-line"><br><div id="crayon-54ee73aac26ac441349307-3" class="crayon-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">processData<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-v">data<span class="crayon-sy">)</span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ac441349307-4" class="crayon-line crayon-striped-line"><span class="crayon-sy">{</span><br><div id="crayon-54ee73aac26ac441349307-5" class="crayon-line"><span class="crayon-h">  <span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">userId<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-v">data<span class="crayon-sy">.<span class="crayon-e">get<span class="crayon-sy">(<span class="crayon-cn">1<span class="crayon-sy">)<span class="crayon-sy">.<span class="crayon-v">id<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ac441349307-6" class="crayon-line crayon-striped-line"><span class="crayon-h">  <span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">subQResult<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-v">db<span class="crayon-sy">.<span class="crayon-e">query<span class="crayon-sy">(<span class="crayon-s">“select  from someOtherTable where id=”<span class="crayon-o">+<span class="crayon-v">userId<span class="crayon-o">+<span class="crayon-s">“;”<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-v">processSomeMoreData<span class="crayon-sy">)<span class="crayon-sy">;<span class="crayon-h">  </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ac441349307-7" class="crayon-line"><span class="crayon-sy">}<span class="crayon-sy">;</span></span><br><div id="crayon-54ee73aac26ac441349307-8" class="crayon-line crayon-striped-line"><br><div id="crayon-54ee73aac26ac441349307-9" class="crayon-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">processSomeMoreData<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-v">userData<span class="crayon-sy">)<span class="crayon-sy">{</span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ac441349307-10" class="crayon-line crayon-striped-line"><span class="crayon-h">  <span class="crayon-c">// some more info.. and the fire another db call! </span></span><br><div id="crayon-54ee73aac26ac441349307-11" class="crayon-line"><span class="crayon-sy">}<span class="crayon-sy">;</span></span><br><br></div></div></div></div></div></div></div></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>*Any async function in node accepts a callback as it’s last parameter.<em>**<br><br>So, this is what you can expect from Node.<br><br><div id="crayon-54ee73aac26b3076688727" class="crayon-syntax crayon-theme-arduino-ide crayon-font-droid-sans-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><span class="crayon-title"><span class="crayon-title">Node Callback</span></span><br><div class="crayon-tools"><br><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><br><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><br><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><br><div class="crayon-button crayon-copy-button" title="Copy"><br><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><br><span class="crayon-language">JavaScript</span><br><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-54ee73aac26b3076688727-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26b3076688727-2">2<br><div class="crayon-num" data-line="crayon-54ee73aac26b3076688727-3">3<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26b3076688727-4">4<br><br></div></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-54ee73aac26b3076688727-1" class="crayon-line"><span class="crayon-e">myNodeFunction<span class="crayon-sy">(<span class="crayon-v">arg1<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-v">arg2<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-v">callback<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26b3076688727-2" class="crayon-line crayon-striped-line"><span class="crayon-e">myOtherNodeFunction<span class="crayon-sy">(<span class="crayon-v">arg1<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-v">arg2<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-v">arg3<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-v">callback<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26b3076688727-3" class="crayon-line"><br><div id="crayon-54ee73aac26b3076688727-4" class="crayon-line crayon-striped-line"><span class="crayon-t">function<span class="crayon-h"> <span class="crayon-e">callback<span class="crayon-sy">(<span class="crayon-v">err<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-v">result<span class="crayon-sy">)<span class="crayon-h"> <span class="crayon-sy">{<span class="crayon-h"> <span class="crayon-sy">.<span class="crayon-sy">.<span class="crayon-sy">.<span class="crayon-h"> <span class="crayon-sy">}</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><br></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>And the callback function’s first argument is always an error object (if there an error, else null) and the second argument is the results from the parent Function.<br><br>## The Event Emitter Pattern<br><br>Let’s take a look at some sample code first<br><br><div id="crayon-54ee73aac26ba696065222" class="crayon-syntax crayon-theme-arduino-ide crayon-font-droid-sans-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><span class="crayon-title"><span class="crayon-title">Event Driven</span></span><br><div class="crayon-tools"><br><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><br><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><br><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><br><div class="crayon-button crayon-copy-button" title="Copy"><br><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><br><span class="crayon-language">JavaScript</span><br><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-54ee73aac26ba696065222-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ba696065222-2">2<br><div class="crayon-num" data-line="crayon-54ee73aac26ba696065222-3">3<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ba696065222-4">4<br><div class="crayon-num" data-line="crayon-54ee73aac26ba696065222-5">5<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ba696065222-6">6<br><div class="crayon-num" data-line="crayon-54ee73aac26ba696065222-7">7<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ba696065222-8">8<br><div class="crayon-num" data-line="crayon-54ee73aac26ba696065222-9">9<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ba696065222-10">10<br><div class="crayon-num" data-line="crayon-54ee73aac26ba696065222-11">11<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ba696065222-12">12<br><div class="crayon-num" data-line="crayon-54ee73aac26ba696065222-13">13<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ba696065222-14">14<br><div class="crayon-num" data-line="crayon-54ee73aac26ba696065222-15">15<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ba696065222-16">16<br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-54ee73aac26ba696065222-1" class="crayon-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">net<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-e">require<span class="crayon-sy">(<span class="crayon-s">‘net’<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ba696065222-2" class="crayon-line crayon-striped-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">port<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-cn">1235<span class="crayon-sy">;</span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ba696065222-3" class="crayon-line"><br><div id="crayon-54ee73aac26ba696065222-4" class="crayon-line crayon-striped-line"><span class="crayon-v">net<span class="crayon-sy">.<span class="crayon-e">createServer<span class="crayon-sy">(<span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-v">socket<span class="crayon-sy">)<span class="crayon-h"> <span class="crayon-sy">{<span class="crayon-h">    </span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ba696065222-5" class="crayon-line"><span class="crayon-h">    <span class="crayon-v">console<span class="crayon-sy">.<span class="crayon-e">log<span class="crayon-sy">(<span class="crayon-s">‘A new client connected’<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ba696065222-6" class="crayon-line crayon-striped-line"><br><div id="crayon-54ee73aac26ba696065222-7" class="crayon-line"><span class="crayon-h">    <span class="crayon-v">socket<span class="crayon-sy">.<span class="crayon-e">on<span class="crayon-sy">(<span class="crayon-s">‘data’<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-v">data<span class="crayon-sy">)<span class="crayon-h"> <span class="crayon-sy">{</span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ba696065222-8" class="crayon-line crayon-striped-line"><span class="crayon-h">        <span class="crayon-v">console<span class="crayon-sy">.<span class="crayon-e">log<span class="crayon-sy">(<span class="crayon-s">‘Data received from client : ‘<span class="crayon-o">+<span class="crayon-v">data<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ba696065222-9" class="crayon-line"><span class="crayon-h">    <span class="crayon-sy">}<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span><br><div id="crayon-54ee73aac26ba696065222-10" class="crayon-line crayon-striped-line"><span class="crayon-h">     <span class="crayon-v">socket<span class="crayon-sy">.<span class="crayon-e">on<span class="crayon-sy">(<span class="crayon-s">‘close’<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-v">data<span class="crayon-sy">)<span class="crayon-h"> <span class="crayon-sy">{</span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ba696065222-11" class="crayon-line"><span class="crayon-h">        <span class="crayon-v">console<span class="crayon-sy">.<span class="crayon-e">log<span class="crayon-sy">(<span class="crayon-s">‘A client disconnected’<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ba696065222-12" class="crayon-line crayon-striped-line"><span class="crayon-h">    <span class="crayon-sy">}<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span><br><div id="crayon-54ee73aac26ba696065222-13" class="crayon-line"><br><div id="crayon-54ee73aac26ba696065222-14" class="crayon-line crayon-striped-line"><span class="crayon-sy">}<span class="crayon-sy">)<span class="crayon-sy">.<span class="crayon-e">listen<span class="crayon-sy">(<span class="crayon-v">port<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-s">“localhost”<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ba696065222-15" class="crayon-line"><br><div id="crayon-54ee73aac26ba696065222-16" class="crayon-line crayon-striped-line"><span class="crayon-v">console<span class="crayon-sy">.<span class="crayon-e">log<span class="crayon-sy">(<span class="crayon-s">“Server Running on “<span class="crayon-o">+<span class="crayon-v">port<span class="crayon-o">+<span class="crayon-s">“.\nLaunch <a href="http://localhost:&quot;" target="_blank" rel="noopener">http://localhost:&quot;</a><span class="crayon-o">+<span class="crayon-v">port<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span></span></span></span></span><br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>The above code is a simple TCP server. Lines 4,7 &amp; 10 register events. And the server gets created. When a client navigates to  <span id="crayon-54ee73aac26c1462071907" class="crayon-syntax crayon-syntax-inline crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-v">http<span class="crayon-o">:<span class="crayon-c">//localhost:1235 the server starts to listen to the new client. And registers events when a data comes in &amp; when a client disconnects from the server.</span></span></span></span></span><br><br>So when a client connects, we see a console log about the connection. We wait.. wait.. wait.. and then the client emits a data event, the server logs it &amp; finally the client disconnects.<br><br>This model is also called as the “</div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></em>PubSub” -<em> A publisher-subscriber. For all you jQuery devs out there, you know this!! (You register an event on a button click and write some code and wait for the button click). Some call this as </em>Observable <em>pattern. You can figure this out <a href="http://stackoverflow.com/a/15596131/1015046" title="PubSub vs Observer" target="_blank" rel="noopener">here</a>.<br><br>So, In simple, our server code will get executed only if there is an action.This is a simple example of event driven development in Node.<br><br>Node provides an option to write &amp; trigger custom event too. Take an example of a baseball<br><br><div id="crayon-54ee73aac26ca740922325" class="crayon-syntax crayon-theme-arduino-ide crayon-font-droid-sans-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><span class="crayon-title"><span class="crayon-title">Event Emitter</span></span><br><div class="crayon-tools"><br><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><br><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><br><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><br><div class="crayon-button crayon-copy-button" title="Copy"><br><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><br><span class="crayon-language">JavaScript</span><br><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-54ee73aac26ca740922325-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ca740922325-2">2<br><div class="crayon-num" data-line="crayon-54ee73aac26ca740922325-3">3<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ca740922325-4">4<br><div class="crayon-num" data-line="crayon-54ee73aac26ca740922325-5">5<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ca740922325-6">6<br><div class="crayon-num" data-line="crayon-54ee73aac26ca740922325-7">7<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ca740922325-8">8<br><div class="crayon-num" data-line="crayon-54ee73aac26ca740922325-9">9<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ca740922325-10">10<br><div class="crayon-num" data-line="crayon-54ee73aac26ca740922325-11">11<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ca740922325-12">12<br><div class="crayon-num" data-line="crayon-54ee73aac26ca740922325-13">13<br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-54ee73aac26ca740922325-1" class="crayon-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">events<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-e">require<span class="crayon-sy">(<span class="crayon-s">‘events’<span class="crayon-sy">)<span class="crayon-sy">;<span class="crayon-h"> <span class="crayon-c">// require events</span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ca740922325-2" class="crayon-line crayon-striped-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">eventEmitter<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-r">new<span class="crayon-h"> <span class="crayon-v">events<span class="crayon-sy">.<span class="crayon-e">EventEmitter<span class="crayon-sy">(<span class="crayon-sy">)<span class="crayon-sy">;<span class="crayon-h"> <span class="crayon-c">// create a new instance</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ca740922325-3" class="crayon-line"><br><div id="crayon-54ee73aac26ca740922325-4" class="crayon-line crayon-striped-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">homeRun<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-sy">)</span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ca740922325-5" class="crayon-line"><span class="crayon-sy">{</span><br><div id="crayon-54ee73aac26ca740922325-6" class="crayon-line crayon-striped-line"><span class="crayon-h">  <span class="crayon-v">console<span class="crayon-sy">.<span class="crayon-e">log<span class="crayon-sy">(<span class="crayon-s">‘Home Run!!’<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ca740922325-7" class="crayon-line"><span class="crayon-sy">}</span><br><div id="crayon-54ee73aac26ca740922325-8" class="crayon-line crayon-striped-line"><br><div id="crayon-54ee73aac26ca740922325-9" class="crayon-line"><span class="crayon-c">// Register an event for ‘swing’</span><br><div id="crayon-54ee73aac26ca740922325-10" class="crayon-line crayon-striped-line"><span class="crayon-v">eventEmitter<span class="crayon-sy">.<span class="crayon-e">on<span class="crayon-sy">(<span class="crayon-s">‘swing’<span class="crayon-sy">,<span class="crayon-v">homeRun<span class="crayon-sy">)<span class="crayon-sy">;<span class="crayon-h"> <span class="crayon-c">// yay!!</span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ca740922325-11" class="crayon-line"><br><div id="crayon-54ee73aac26ca740922325-12" class="crayon-line crayon-striped-line"><span class="crayon-c">// Ball pitched.. So lets emit a ‘swing’ </span><br><div id="crayon-54ee73aac26ca740922325-13" class="crayon-line"><span class="crayon-e">event <span class="crayon-v">eventEmitter<span class="crayon-sy">.<span class="crayon-e">emit<span class="crayon-sy">(<span class="crayon-s">‘swing’<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span><br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>What happened here?
+
+</div></div></div></div></div></div></div></div></div></div></em>   We created a response ( <span id="crayon-54ee73aac26d1536885971" class="crayon-syntax crayon-syntax-inline  crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-e">homeRun<span class="crayon-sy">(<span class="crayon-sy">))</span></span></span></span></span><br><em>   We registered an event (‘ <span id="crayon-54ee73aac26d7961963973" class="crayon-syntax crayon-syntax-inline  crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-v">swing’) passing the callback ( <span id="crayon-54ee73aac26dd266621577" class="crayon-syntax crayon-syntax-inline  crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-e">homeRun<span class="crayon-sy">(<span class="crayon-sy">))</span></span></span></span></span></span></span></span>
+</em>   We Emitted the event (‘ <span id="crayon-54ee73aac26e3197192534" class="crayon-syntax crayon-syntax-inline  crayon-theme-arduino-ide crayon-theme-arduino-ide-inline crayon-font-droid-sans-mono"><span class="crayon-pre crayon-code"><span class="crayon-v">swing’)</span></span></span><br><br>Apart from the above way of implementing the eventEmitter, we can inherit the same too. What do I mean? Take a look at this<br><br><div id="crayon-54ee73aac26ea334329181" class="crayon-syntax crayon-theme-arduino-ide crayon-font-droid-sans-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover"><br><div class="crayon-toolbar" data-settings=" show"><span class="crayon-title"><span class="crayon-title">Baseball Swing</span></span><br><div class="crayon-tools"><br><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><br><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><br><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><br><div class="crayon-button crayon-expand-button" title="Expand Code"><br><div class="crayon-button crayon-copy-button" title="Copy"><br><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><br><span class="crayon-language">JavaScript</span><br><br><div class="crayon-plain-wrap"><br><div class="crayon-main"><br><table class="crayon-table"><br><tbody><br><tr class="crayon-row"><br><td class="crayon-nums " data-settings="show"><br><div class="crayon-nums-content"><br><div class="crayon-num" data-line="crayon-54ee73aac26ea334329181-1">1<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ea334329181-2">2<br><div class="crayon-num" data-line="crayon-54ee73aac26ea334329181-3">3<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ea334329181-4">4<br><div class="crayon-num" data-line="crayon-54ee73aac26ea334329181-5">5<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ea334329181-6">6<br><div class="crayon-num" data-line="crayon-54ee73aac26ea334329181-7">7<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ea334329181-8">8<br><div class="crayon-num" data-line="crayon-54ee73aac26ea334329181-9">9<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ea334329181-10">10<br><div class="crayon-num" data-line="crayon-54ee73aac26ea334329181-11">11<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ea334329181-12">12<br><div class="crayon-num" data-line="crayon-54ee73aac26ea334329181-13">13<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ea334329181-14">14<br><div class="crayon-num" data-line="crayon-54ee73aac26ea334329181-15">15<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ea334329181-16">16<br><div class="crayon-num" data-line="crayon-54ee73aac26ea334329181-17">17<br><div class="crayon-num crayon-striped-num" data-line="crayon-54ee73aac26ea334329181-18">18<br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></td><br><td class="crayon-code"><br><div class="crayon-pre"><br><div id="crayon-54ee73aac26ea334329181-1" class="crayon-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">events<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-e">require<span class="crayon-sy">(<span class="crayon-s">‘events’<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ea334329181-2" class="crayon-line crayon-striped-line"><br><div id="crayon-54ee73aac26ea334329181-3" class="crayon-line"><span class="crayon-t">function<span class="crayon-h"> <span class="crayon-e">Batter<span class="crayon-sy">(<span class="crayon-r">name<span class="crayon-sy">)<span class="crayon-h"> <span class="crayon-sy">{</span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ea334329181-4" class="crayon-line crayon-striped-line"><span class="crayon-h">  <span class="crayon-r">this<span class="crayon-sy">.<span class="crayon-v">name<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-r">name<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ea334329181-5" class="crayon-line"><span class="crayon-h">  <span class="crayon-v">events<span class="crayon-sy">.<span class="crayon-v">EventEmitter<span class="crayon-sy">.<span class="crayon-e">call<span class="crayon-sy">(<span class="crayon-r">this<span class="crayon-sy">)<span class="crayon-sy">;<span class="crayon-h"> <span class="crayon-c">// making the Batter class a event emitter. </span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ea334329181-6" class="crayon-line crayon-striped-line"><span class="crayon-c">//Invoking the EventEmitter’s constructor with Batter.</span><br><div id="crayon-54ee73aac26ea334329181-7" class="crayon-line"><span class="crayon-h">  <span class="crayon-r">this<span class="crayon-sy">.<span class="crayon-v">swing<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-sy">)</span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ea334329181-8" class="crayon-line crayon-striped-line"><span class="crayon-h">  <span class="crayon-sy">{</span></span><br><div id="crayon-54ee73aac26ea334329181-9" class="crayon-line"><span class="crayon-h">   <span class="crayon-r">this<span class="crayon-sy">.<span class="crayon-e">emit<span class="crayon-sy">(<span class="crayon-s">‘swing’<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ea334329181-10" class="crayon-line crayon-striped-line"><span class="crayon-h">  <span class="crayon-sy">}</span></span><br><div id="crayon-54ee73aac26ea334329181-11" class="crayon-line"><span class="crayon-sy">}</span><br><div id="crayon-54ee73aac26ea334329181-12" class="crayon-line crayon-striped-line"><span class="crayon-v">Batter<span class="crayon-sy">.<span class="crayon-v">prototype<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-v">events<span class="crayon-sy">.<span class="crayon-v">EventEmitter<span class="crayon-sy">;<span class="crayon-h"> <span class="crayon-c">// Inheriting EventEmitters methods into Batter. ex: ‘on’, as user below</span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ea334329181-13" class="crayon-line"><span class="crayon-t">var<span class="crayon-h"> <span class="crayon-v">batter<span class="crayon-h"> <span class="crayon-o">=<span class="crayon-h"> <span class="crayon-r">new<span class="crayon-h"> <span class="crayon-e">Batter<span class="crayon-sy">(<span class="crayon-s">‘Babe Ruth’<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ea334329181-14" class="crayon-line crayon-striped-line"><br><div id="crayon-54ee73aac26ea334329181-15" class="crayon-line"><span class="crayon-v">batter<span class="crayon-sy">.<span class="crayon-e">on<span class="crayon-sy">(<span class="crayon-s">‘swing’<span class="crayon-sy">,<span class="crayon-h"> <span class="crayon-t">function<span class="crayon-sy">(<span class="crayon-sy">)<span class="crayon-h"> <span class="crayon-sy">{</span></span></span></span></span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ea334329181-16" class="crayon-line crayon-striped-line"><span class="crayon-h">    <span class="crayon-v">console<span class="crayon-sy">.<span class="crayon-e">log<span class="crayon-sy">(<span class="crayon-s">‘It is a Strrikkkeee!!!!’<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span></span></span><br><div id="crayon-54ee73aac26ea334329181-17" class="crayon-line"><span class="crayon-h">  <span class="crayon-sy">}<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span><br><div id="crayon-54ee73aac26ea334329181-18" class="crayon-line crayon-striped-line"><span class="crayon-v">batter<span class="crayon-sy">.<span class="crayon-e">swing<span class="crayon-sy">(<span class="crayon-sy">)<span class="crayon-sy">;</span></span></span></span></span></span><br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>Pretty neat right? Now you can have your own class that is invisible.<br><br>So these are some of the ways, in which node <em>should</em> be implemented. Depending on our requirement, you can pick from above.<br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+          
+            <a href="/tags/开发模式/" rel="tag"># 开发模式</a>
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/dfa1fb2e.html" rel="next" title="Comet：基于 HTTP 长连接的“服务器推”技术">
+                <i class="fa fa-chevron-left"></i> Comet：基于 HTTP 长连接的“服务器推”技术
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/f1817f75.html" rel="prev" title="Android 反编译apk 详解">
+                Android 反编译apk 详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Asynchronous-code-amp-Synchronous-code"><span class="nav-number">1.</span> <span class="nav-text">Asynchronous code &amp; Synchronous code</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'pangguoming',
+            repo: 'pangguoming.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51',
+            
+                client_id: '1e9770fed2b4d227cd0a'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

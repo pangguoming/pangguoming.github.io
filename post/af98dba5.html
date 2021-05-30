@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="shiro,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="# Spring Boot 集成Shiro和CAS标签： springshirocas2016-01-17 23:03 35765人阅读 评论(22) 收藏 举报 分类：Spring（42） 版权声明：本文为博主原创文章，未经博主允许不得转载。请大家在看本文之前，先了解如下知识点：1、Shiro 是什么？怎么用？2、Cas 是什么？怎么用？3、最好有Spring基础可以先看看这两篇文章，按照这2篇">
+<meta name="keywords" content="shiro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot 集成Shiro和CAS">
+<meta property="og:url" content="http://pangguoming.com/post/af98dba5.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="# Spring Boot 集成Shiro和CAS标签： springshirocas2016-01-17 23:03 35765人阅读 评论(22) 收藏 举报 分类：Spring（42） 版权声明：本文为博主原创文章，未经博主允许不得转载。请大家在看本文之前，先了解如下知识点：1、Shiro 是什么？怎么用？2、Cas 是什么？怎么用？3、最好有Spring基础可以先看看这两篇文章，按照这2篇">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pangguoming.com/blog/images/ff5db064-6f7a-4c21-b4dd-2fbb017d35e0.jpg">
+<meta property="og:image" content="http://static.blog.csdn.net/images/arrow_triangle%20_down.jpg">
+<meta property="og:image" content="http://img.blog.csdn.net/20160117224937078">
+<meta property="og:updated_time" content="2019-07-10T03:30:55.752Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Boot 集成Shiro和CAS">
+<meta name="twitter:description" content="# Spring Boot 集成Shiro和CAS标签： springshirocas2016-01-17 23:03 35765人阅读 评论(22) 收藏 举报 分类：Spring（42） 版权声明：本文为博主原创文章，未经博主允许不得转载。请大家在看本文之前，先了解如下知识点：1、Shiro 是什么？怎么用？2、Cas 是什么？怎么用？3、最好有Spring基础可以先看看这两篇文章，按照这2篇">
+<meta name="twitter:image" content="http://pangguoming.com/blog/images/ff5db064-6f7a-4c21-b4dd-2fbb017d35e0.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/post/af98dba5.html">
+
+
+
+
+
+  <title>Spring Boot 集成Shiro和CAS | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/af98dba5.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring Boot 集成Shiro和CAS</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T11:09:00+08:00">
+                2017-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/af98dba5.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/post/af98dba5.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div class="article_title"><br><br># <span class="link_title"><a href="http://blog.csdn.net/catoop/article/details/50534006" target="_blank" rel="noopener">Spring Boot 集成Shiro和CAS</a></span><br><br><div class="article_manage clearfix"><br><div class="article_l"><span class="link_categories">标签： <a href="http://www.csdn.net/tag/spring" target="_blank" rel="noopener">spring</a><a href="http://www.csdn.net/tag/shiro" target="_blank" rel="noopener">shiro</a><a href="http://www.csdn.net/tag/cas" target="_blank" rel="noopener">cas</a></span><br><div class="article_r"><span class="link_postdate">2016-01-17 23:03 <span class="link_view" title="阅读次数">35765人阅读 <span class="link_comments" title="评论次数"><a href="http://blog.csdn.net/catoop/article/details/50534006#comments" target="_blank" rel="noopener">评论</a>(22) <span class="link_collect tracking-ad" data-mod="popu_171"><a href="&quot;收藏&quot;">收藏</a> <span class="link_report"><a href="http://blog.csdn.net/catoop/article/details/50534006#report" title="举报" target="_blank" rel="noopener">举报</a></span></span></span></span></span><br><br><div class="category clearfix"><br><div class="category_l"><img src="http://pangguoming.com/blog/images/ff5db064-6f7a-4c21-b4dd-2fbb017d35e0.jpg" alt=""> 分类：<br><div class="category_r"><label>Spring（42） <img src="http://static.blog.csdn.net/images/arrow_triangle%20_down.jpg" alt=""></label><br><br><div class="bog_copyright"><br><br>版权声明：本文为博主原创文章，未经博主允许不得转载。<br><br><div id="article_content" class="article_content tracking-ad" data-mod="popu_307" data-dsm="post"><br><div class="markdown_views"><br><br>请大家在看本文之前，先了解如下知识点：<br>1、Shiro 是什么？怎么用？<br>2、Cas 是什么？怎么用？<br>3、最好有Spring基础<br><br>可以先看看这两篇文章，按照这2篇文章的内容做一遍：<br><a href="http://blog.csdn.net/catoop/article/details/50520958" target="_blank" rel="noopener">Spring Boot Shiro 权限管理</a><br><a href="http://blog.csdn.net/catoop/article/details/50530364" target="_blank" rel="noopener">CAS单点登录</a><br><br>首先看一下下面这张图：<br>第一个流程是单纯使用Shiro的流程。<br>第二个流程是单纯使用Cas的流程。<br>第三个图是Shiro集成Cas后的流程。<br><br>【流程图高清图连接：<a href="http://img.blog.csdn.net/20160117224937078" target="_blank" rel="noopener">http://img.blog.csdn.net/20160117224937078</a>】<br><br><img src="http://img.blog.csdn.net/20160117224937078" alt="流程图"><br><br>PS：流程图急急忙忙画的，整体上应该没有什么问题，具体细节问题还请大家留言指正。<br><br>如果你只是打算用到你的Spring Boot项目中，那么看着如下配置完成便可。<br>如果你想进一步了解其中的细节，还是建议大家单独配置Shiro、单独配置Cas，看看官方相关文档。<br>Shiro在1.2版本开始提供了对cas的集成，按下面添加依赖到pom.xml中：<br><br><code class="hljs xml has-numbering">        <span class="hljs-comment"><!--Apache Shiro所需的jar包 --><br>            <span class="hljs-tag">&lt;<span class="hljs-title">dependency&gt;<br>                <span class="hljs-tag">&lt;<span class="hljs-title">groupId&gt;org.apache.shiro<span class="hljs-tag">&lt;/<span class="hljs-title">groupId&gt;<br>                <span class="hljs-tag">&lt;<span class="hljs-title">artifactId&gt;shiro-spring<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId&gt;<br>                <span class="hljs-tag">&lt;<span class="hljs-title">version&gt;1.2.4<span class="hljs-tag">&lt;/<span class="hljs-title">version&gt;<br>            <span class="hljs-tag">&lt;/<span class="hljs-title">dependency&gt;<br>            <span class="hljs-tag">&lt;<span class="hljs-title">dependency&gt;<br>                <span class="hljs-tag">&lt;<span class="hljs-title">groupId&gt;org.apache.shiro<span class="hljs-tag">&lt;/<span class="hljs-title">groupId&gt;<br>                <span class="hljs-tag">&lt;<span class="hljs-title">artifactId&gt;shiro-ehcache<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId&gt;<br>                <span class="hljs-tag">&lt;<span class="hljs-title">version&gt;1.2.4<span class="hljs-tag">&lt;/<span class="hljs-title">version&gt;<br>            <span class="hljs-tag">&lt;/<span class="hljs-title">dependency&gt;<br>            <span class="hljs-tag">&lt;<span class="hljs-title">dependency&gt;<br>                <span class="hljs-tag">&lt;<span class="hljs-title">groupId&gt;org.apache.shiro<span class="hljs-tag">&lt;/<span class="hljs-title">groupId&gt;<br>                <span class="hljs-tag">&lt;<span class="hljs-title">artifactId&gt;shiro-cas<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId&gt;<br>                <span class="hljs-tag">&lt;<span class="hljs-title">version&gt;1.2.4<span class="hljs-tag">&lt;/<span class="hljs-title">version&gt;<br>            <span class="hljs-tag">&lt;/<span class="hljs-title">dependency&gt;</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">shiro-cas 依赖 shiro-web，shiro-web 依赖 shiro-core，所以添加shiro-cas后shiro-web.jar和shiro-core.jar会自动被引用。 </span><br><span class="line"></span><br><span class="line">cas被shiro集成后，其原理就是shiro将casFilter加入到shiroFilter的filterChain中。</span><br><span class="line"></span><br><span class="line">在SpringBoot工程中创建ShiroCasConfiguration.java</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs java has-numbering&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;package org.springboot.sample.config;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import java.util.HashMap;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import java.util.LinkedHashMap;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import java.util.Map;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import javax.servlet.Filter;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.apache.shiro.cache.ehcache.EhCacheManager;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.apache.shiro.cas.CasFilter;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.apache.shiro.cas.CasSubjectFactory;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.apache.shiro.spring.LifecycleBeanPostProcessor;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.apache.shiro.spring.web.ShiroFilterFactoryBean;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.apache.shiro.web.mgt.DefaultWebSecurityManager;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.slf4j.Logger;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.slf4j.LoggerFactory;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.springboot.sample.dao.IScoreDao;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.springboot.sample.security.MyShiroCasRealm;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.springboot.sample.service.StudentService;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.springframework.boot.context.embedded.FilterRegistrationBean;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.springframework.context.annotation.Bean;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.springframework.context.annotation.Configuration;</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;import org.springframework.web.filter.DelegatingFilterProxy;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-javadoc&quot;&gt;/**</span><br><span class="line">     * Shiro集成Cas配置</span><br><span class="line">     *</span><br><span class="line">     *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @author   单红宇(365384722)</span><br><span class="line">     *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @myblog  http://blog.csdn.net/catoop/</span><br><span class="line">     *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @create    2016年1月17日</span><br><span class="line">     */</span><br><span class="line">    &lt;span class=&quot;hljs-annotation&quot;&gt;@Configuration</span><br><span class="line">    &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class &lt;span class=&quot;hljs-title&quot;&gt;ShiroCasConfiguration &#123;</span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;private &lt;span class=&quot;hljs-keyword&quot;&gt;static &lt;span class=&quot;hljs-keyword&quot;&gt;final Logger logger = LoggerFactory.getLogger(ShiroCasConfiguration.class);</span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-comment&quot;&gt;// CasServerUrlPrefix</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-keyword&quot;&gt;static &lt;span class=&quot;hljs-keyword&quot;&gt;final String casServerUrlPrefix = &lt;span class=&quot;hljs-string&quot;&gt;&quot;https://localhost:8443/cas&quot;;</span><br><span class="line">        &lt;span class=&quot;hljs-comment&quot;&gt;// Cas登录页面地址</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-keyword&quot;&gt;static &lt;span class=&quot;hljs-keyword&quot;&gt;final String casLoginUrl = casServerUrlPrefix + &lt;span class=&quot;hljs-string&quot;&gt;&quot;/login&quot;;</span><br><span class="line">        &lt;span class=&quot;hljs-comment&quot;&gt;// Cas登出页面地址</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-keyword&quot;&gt;static &lt;span class=&quot;hljs-keyword&quot;&gt;final String casLogoutUrl = casServerUrlPrefix + &lt;span class=&quot;hljs-string&quot;&gt;&quot;/logout&quot;;</span><br><span class="line">        &lt;span class=&quot;hljs-comment&quot;&gt;// 当前工程对外提供的服务地址</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-keyword&quot;&gt;static &lt;span class=&quot;hljs-keyword&quot;&gt;final String shiroServerUrlPrefix = &lt;span class=&quot;hljs-string&quot;&gt;&quot;http://localhost:9090/myspringboot&quot;;</span><br><span class="line">        &lt;span class=&quot;hljs-comment&quot;&gt;// casFilter UrlPattern</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-keyword&quot;&gt;static &lt;span class=&quot;hljs-keyword&quot;&gt;final String casFilterUrlPattern = &lt;span class=&quot;hljs-string&quot;&gt;&quot;/shiro-cas&quot;;</span><br><span class="line">        &lt;span class=&quot;hljs-comment&quot;&gt;// 登录地址</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public &lt;span class=&quot;hljs-keyword&quot;&gt;static &lt;span class=&quot;hljs-keyword&quot;&gt;final String loginUrl = casLoginUrl + &lt;span class=&quot;hljs-string&quot;&gt;&quot;?service=&quot; + shiroServerUrlPrefix + casFilterUrlPattern;</span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@Bean</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public EhCacheManager &lt;span class=&quot;hljs-title&quot;&gt;getEhCacheManager() &#123;  </span><br><span class="line">            EhCacheManager em = &lt;span class=&quot;hljs-keyword&quot;&gt;new EhCacheManager();  </span><br><span class="line">            em.setCacheManagerConfigFile(&lt;span class=&quot;hljs-string&quot;&gt;&quot;classpath:ehcache-shiro.xml&quot;);  </span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;return em;  </span><br><span class="line">        &#125;  </span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@Bean(name = &lt;span class=&quot;hljs-string&quot;&gt;&quot;myShiroCasRealm&quot;)</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public MyShiroCasRealm &lt;span class=&quot;hljs-title&quot;&gt;myShiroCasRealm(EhCacheManager cacheManager) &#123;  </span><br><span class="line">            MyShiroCasRealm realm = &lt;span class=&quot;hljs-keyword&quot;&gt;new MyShiroCasRealm(); </span><br><span class="line">            realm.setCacheManager(cacheManager);</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;return realm;</span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-javadoc&quot;&gt;/**</span><br><span class="line">         * 注册DelegatingFilterProxy（Shiro）</span><br><span class="line">         *</span><br><span class="line">         *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @param dispatcherServlet</span><br><span class="line">         *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @return</span><br><span class="line">         *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @author SHANHY</span><br><span class="line">         *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @create  2016年1月13日</span><br><span class="line">         */</span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@Bean</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public FilterRegistrationBean &lt;span class=&quot;hljs-title&quot;&gt;filterRegistrationBean() &#123;</span><br><span class="line">            FilterRegistrationBean filterRegistration = &lt;span class=&quot;hljs-keyword&quot;&gt;new FilterRegistrationBean();</span><br><span class="line">            filterRegistration.setFilter(&lt;span class=&quot;hljs-keyword&quot;&gt;new DelegatingFilterProxy(&lt;span class=&quot;hljs-string&quot;&gt;&quot;shiroFilter&quot;));</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;//  该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理  </span><br><span class="line">            filterRegistration.addInitParameter(&lt;span class=&quot;hljs-string&quot;&gt;&quot;targetFilterLifecycle&quot;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;true&quot;);</span><br><span class="line">            filterRegistration.setEnabled(&lt;span class=&quot;hljs-keyword&quot;&gt;true);</span><br><span class="line">            filterRegistration.addUrlPatterns(&lt;span class=&quot;hljs-string&quot;&gt;&quot;/*&quot;);</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;return filterRegistration;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@Bean(name = &lt;span class=&quot;hljs-string&quot;&gt;&quot;lifecycleBeanPostProcessor&quot;)</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public LifecycleBeanPostProcessor &lt;span class=&quot;hljs-title&quot;&gt;getLifecycleBeanPostProcessor() &#123;</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;return &lt;span class=&quot;hljs-keyword&quot;&gt;new LifecycleBeanPostProcessor();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@Bean</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public DefaultAdvisorAutoProxyCreator &lt;span class=&quot;hljs-title&quot;&gt;getDefaultAdvisorAutoProxyCreator() &#123;</span><br><span class="line">            DefaultAdvisorAutoProxyCreator daap = &lt;span class=&quot;hljs-keyword&quot;&gt;new DefaultAdvisorAutoProxyCreator();</span><br><span class="line">            daap.setProxyTargetClass(&lt;span class=&quot;hljs-keyword&quot;&gt;true);</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;return daap;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@Bean(name = &lt;span class=&quot;hljs-string&quot;&gt;&quot;securityManager&quot;)</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public DefaultWebSecurityManager &lt;span class=&quot;hljs-title&quot;&gt;getDefaultWebSecurityManager(MyShiroCasRealm myShiroCasRealm) &#123;</span><br><span class="line">            DefaultWebSecurityManager dwsm = &lt;span class=&quot;hljs-keyword&quot;&gt;new DefaultWebSecurityManager();</span><br><span class="line">            dwsm.setRealm(myShiroCasRealm);</span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;//      &lt;!-- 用户授权/认证信息Cache, 采用EhCache 缓存 --&gt; </span><br><span class="line">            dwsm.setCacheManager(getEhCacheManager());</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 指定 SubjectFactory</span><br><span class="line">            dwsm.setSubjectFactory(&lt;span class=&quot;hljs-keyword&quot;&gt;new CasSubjectFactory());</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;return dwsm;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@Bean</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public AuthorizationAttributeSourceAdvisor &lt;span class=&quot;hljs-title&quot;&gt;getAuthorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager) &#123;</span><br><span class="line">            AuthorizationAttributeSourceAdvisor aasa = &lt;span class=&quot;hljs-keyword&quot;&gt;new AuthorizationAttributeSourceAdvisor();</span><br><span class="line">            aasa.setSecurityManager(securityManager);</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;return aasa;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-javadoc&quot;&gt;/**</span><br><span class="line">         * 加载shiroFilter权限控制规则（从数据库读取然后配置）</span><br><span class="line">         *</span><br><span class="line">         *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @author SHANHY</span><br><span class="line">         *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @create  2016年1月14日</span><br><span class="line">         */</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;private &lt;span class=&quot;hljs-keyword&quot;&gt;void &lt;span class=&quot;hljs-title&quot;&gt;loadShiroFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean, StudentService stuService, IScoreDao scoreDao)&#123;</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;/////////////////////// 下面这些规则配置最好配置到配置文件中 ///////////////////////</span><br><span class="line">            Map&lt;String, String&gt; filterChainDefinitionMap = &lt;span class=&quot;hljs-keyword&quot;&gt;new LinkedHashMap&lt;String, String&gt;();</span><br><span class="line"></span><br><span class="line">            filterChainDefinitionMap.put(casFilterUrlPattern, &lt;span class=&quot;hljs-string&quot;&gt;&quot;casFilter&quot;);&lt;span class=&quot;hljs-comment&quot;&gt;// shiro集成cas后，首先添加该规则</span><br><span class="line"></span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// authc：该过滤器下的页面必须验证后才能访问，它是Shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFilter</span><br><span class="line">            filterChainDefinitionMap.put(&lt;span class=&quot;hljs-string&quot;&gt;&quot;/user&quot;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;authc&quot;);&lt;span class=&quot;hljs-comment&quot;&gt;// 这里为了测试，只限制/user，实际开发中请修改为具体拦截的请求规则</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// anon：它对应的过滤器里面是空的,什么都没做</span><br><span class="line">            logger.info(&lt;span class=&quot;hljs-string&quot;&gt;&quot;##################从数据库读取权限规则，加载到shiroFilter中##################&quot;);</span><br><span class="line">            filterChainDefinitionMap.put(&lt;span class=&quot;hljs-string&quot;&gt;&quot;/user/edit/**&quot;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;authc,perms[user:edit]&quot;);&lt;span class=&quot;hljs-comment&quot;&gt;// 这里为了测试，固定写死的值，也可以从数据库或其他配置中读取</span><br><span class="line"></span><br><span class="line">            filterChainDefinitionMap.put(&lt;span class=&quot;hljs-string&quot;&gt;&quot;/login&quot;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;anon&quot;);</span><br><span class="line">            filterChainDefinitionMap.put(&lt;span class=&quot;hljs-string&quot;&gt;&quot;/**&quot;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;anon&quot;);&lt;span class=&quot;hljs-comment&quot;&gt;//anon 可以理解为不拦截</span><br><span class="line"></span><br><span class="line">            shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-javadoc&quot;&gt;/**</span><br><span class="line">         * CAS过滤器</span><br><span class="line">         *</span><br><span class="line">         *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @return</span><br><span class="line">         *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @author SHANHY</span><br><span class="line">         *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @create  2016年1月17日</span><br><span class="line">         */</span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@Bean(name = &lt;span class=&quot;hljs-string&quot;&gt;&quot;casFilter&quot;)</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public CasFilter &lt;span class=&quot;hljs-title&quot;&gt;getCasFilter() &#123;</span><br><span class="line">            CasFilter casFilter = &lt;span class=&quot;hljs-keyword&quot;&gt;new CasFilter();</span><br><span class="line">            casFilter.setName(&lt;span class=&quot;hljs-string&quot;&gt;&quot;casFilter&quot;);</span><br><span class="line">            casFilter.setEnabled(&lt;span class=&quot;hljs-keyword&quot;&gt;true);</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 登录失败后跳转的URL，也就是 Shiro 执行 CasRealm 的 doGetAuthenticationInfo 方法向CasServer验证tiket</span><br><span class="line">            casFilter.setFailureUrl(loginUrl);&lt;span class=&quot;hljs-comment&quot;&gt;// 我们选择认证失败后再打开登录页面</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;return casFilter;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &lt;span class=&quot;hljs-javadoc&quot;&gt;/**</span><br><span class="line">         * ShiroFilter&lt;br/&gt;</span><br><span class="line">         * 注意这里参数中的 StudentService 和 IScoreDao 只是一个例子，因为我们在这里可以用这样的方式获取到相关访问数据库的对象，</span><br><span class="line">         * 然后读取数据库相关配置，配置到 shiroFilterFactoryBean 的访问规则中。实际项目中，请使用自己的Service来处理业务逻辑。</span><br><span class="line">         *</span><br><span class="line">         *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @param myShiroCasRealm</span><br><span class="line">         *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @param stuService</span><br><span class="line">         *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @param scoreDao</span><br><span class="line">         *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @return</span><br><span class="line">         *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @author SHANHY</span><br><span class="line">         *&lt;span class=&quot;hljs-javadoctag&quot;&gt; @create  2016年1月14日</span><br><span class="line">         */</span><br><span class="line">        &lt;span class=&quot;hljs-annotation&quot;&gt;@Bean(name = &lt;span class=&quot;hljs-string&quot;&gt;&quot;shiroFilter&quot;)</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public ShiroFilterFactoryBean &lt;span class=&quot;hljs-title&quot;&gt;getShiroFilterFactoryBean(DefaultWebSecurityManager securityManager, CasFilter casFilter, StudentService stuService, IScoreDao scoreDao) &#123;</span><br><span class="line">            ShiroFilterFactoryBean shiroFilterFactoryBean = &lt;span class=&quot;hljs-keyword&quot;&gt;new ShiroFilterFactoryBean();</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 必须设置 SecurityManager  </span><br><span class="line">            shiroFilterFactoryBean.setSecurityManager(securityManager);</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 如果不设置默认会自动寻找Web工程根目录下的&quot;/login.jsp&quot;页面</span><br><span class="line">            shiroFilterFactoryBean.setLoginUrl(loginUrl);</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 登录成功后要跳转的连接</span><br><span class="line">            shiroFilterFactoryBean.setSuccessUrl(&lt;span class=&quot;hljs-string&quot;&gt;&quot;/user&quot;);</span><br><span class="line">            shiroFilterFactoryBean.setUnauthorizedUrl(&lt;span class=&quot;hljs-string&quot;&gt;&quot;/403&quot;);</span><br><span class="line">            &lt;span class=&quot;hljs-comment&quot;&gt;// 添加casFilter到shiroFilter中</span><br><span class="line">            Map&lt;String, Filter&gt; filters = &lt;span class=&quot;hljs-keyword&quot;&gt;new HashMap&lt;&gt;();</span><br><span class="line">            filters.put(&lt;span class=&quot;hljs-string&quot;&gt;&quot;casFilter&quot;, casFilter);</span><br><span class="line">            shiroFilterFactoryBean.setFilters(filters);</span><br><span class="line"></span><br><span class="line">            loadShiroFilterChain(shiroFilterFactoryBean, stuService, scoreDao);</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;return shiroFilterFactoryBean;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>创建权限认证的 MyShiroCasRealm.java<br><br>    <pre name="code" class="prettyprint"><code class="hljs java has-numbering"><span class="hljs-keyword">package org.springboot.sample.security;<br><br>    <span class="hljs-keyword">import java.util.List;<br><br>    <span class="hljs-keyword">import javax.annotation.PostConstruct;<br><br>    <span class="hljs-keyword">import org.apache.shiro.authz.AuthorizationInfo;<br>    <span class="hljs-keyword">import org.apache.shiro.authz.SimpleAuthorizationInfo;<br>    <span class="hljs-keyword">import org.apache.shiro.cas.CasRealm;<br>    <span class="hljs-keyword">import org.apache.shiro.subject.PrincipalCollection;<br>    <span class="hljs-keyword">import org.slf4j.Logger;<br>    <span class="hljs-keyword">import org.slf4j.LoggerFactory;<br>    <span class="hljs-keyword">import org.springboot.sample.config.ShiroCasConfiguration;<br>    <span class="hljs-keyword">import org.springboot.sample.dao.IUserDao;<br>    <span class="hljs-keyword">import org.springboot.sample.entity.Role;<br>    <span class="hljs-keyword">import org.springboot.sample.entity.User;<br>    <span class="hljs-keyword">import org.springframework.beans.factory.annotation.Autowired;<br>    <span class="hljs-keyword">import org.springframework.stereotype.Service;<br>    <span class="hljs-keyword">import org.springframework.transaction.annotation.Transactional;<br><br>    <span class="hljs-keyword">public <span class="hljs-class"><span class="hljs-keyword">class <span class="hljs-title">MyShiroCasRealm <span class="hljs-keyword">extends <span class="hljs-title">CasRealm{<br><br>        <span class="hljs-keyword">private <span class="hljs-keyword">static <span class="hljs-keyword">final Logger logger = LoggerFactory.getLogger(MyShiroCasRealm.class);<br><br>        <span class="hljs-annotation">@Autowired<br>        <span class="hljs-keyword">private IUserDao userDao;<br><br>        <span class="hljs-annotation">@PostConstruct<br>        <span class="hljs-keyword">public <span class="hljs-keyword">void <span class="hljs-title">initProperty(){<br>    <span class="hljs-comment">//      setDefaultRoles(“ROLE_USER”);<br>            setCasServerUrlPrefix(ShiroCasConfiguration.casServerUrlPrefix);<br>            <span class="hljs-comment">// 客户端回调地址<br>            setCasService(ShiroCasConfiguration.shiroServerUrlPrefix + ShiroCasConfiguration.casFilterUrlPattern);<br>        }<br><br>        <span class="hljs-javadoc">/*<em>
+         </em> 权限认证，为当前登录的Subject授予角色和权限<br>         <em><span class="hljs-javadoctag"> @see 经测试：本例中该方法的调用时机为需授权资源被访问时 
+         </span></em><span class="hljs-javadoctag"> @see 经测试：并且每次访问需授权资源时都会执行该方法中的逻辑，这表明本例中默认并未启用AuthorizationCache<br>         <em><span class="hljs-javadoctag"> @see 经测试：如果连续访问同一个URL（比如刷新），该方法不会被重复调用，Shiro有一个时间间隔（也就是cache时间，在ehcache-shiro.xml中配置），超过这个时间间隔再刷新页面，该方法会被执行
+         </span></em>/<br>        <span class="hljs-annotation">@Override<br>        <span class="hljs-keyword">protected AuthorizationInfo <span class="hljs-title">doGetAuthorizationInfo(PrincipalCollection principalCollection) {<br>            logger.info(<span class="hljs-string">“##################执行Shiro权限认证##################”);<br>            <span class="hljs-comment">//获取当前登录输入的用户名，等价于(String) principalCollection.fromRealm(getName()).iterator().next();<br>            String loginName = (String)<span class="hljs-keyword">super.getAvailablePrincipal(principalCollection);<br>            <span class="hljs-comment">//到数据库查是否有此对象<br>            User user=userDao.findByName(loginName);<span class="hljs-comment">// 实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法<br>            <span class="hljs-keyword">if(user!=<span class="hljs-keyword">null){<br>                <span class="hljs-comment">//权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）<br>                SimpleAuthorizationInfo info=<span class="hljs-keyword">new SimpleAuthorizationInfo();<br>                <span class="hljs-comment">//用户的角色集合<br>                info.setRoles(user.getRolesName());<br>                <span class="hljs-comment">//用户的角色对应的所有权限，如果只使用角色定义访问权限，下面的四行可以不要<br>                List<role> roleList=user.getRoleList();<br>                <span class="hljs-keyword">for (Role role : roleList) {<br>                    info.addStringPermissions(role.getPermissionsName());<br>                }<br>                <span class="hljs-comment">// 或者按下面这样添加<br>                <span class="hljs-comment">//添加一个角色,不是配置意义上的添加,而是证明该用户拥有admin角色<br>    <span class="hljs-comment">//            simpleAuthorInfo.addRole(“admin”);<br>                <span class="hljs-comment">//添加权限<br>    <span class="hljs-comment">//            simpleAuthorInfo.addStringPermission(“admin:manage”);<br>    <span class="hljs-comment">//            logger.info(“已为用户[mike]赋予了[admin]角色和[admin:manage]权限”);<br>                <span class="hljs-keyword">return info;<br>            }<br>            <span class="hljs-comment">// 返回null的话，就会导致任何用户访问被拦截的请求时，都会自动跳转到unauthorizedUrl指定的地址<br>            <span class="hljs-keyword">return <span class="hljs-keyword">null;<br>        }<br><br>    }<br>    </span></span></span></span></span></span></span></span></span></span></span></role></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在Controller中添加一个方法，用于将登录URL简单化，提供一个重定向功能</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs cs has-numbering&quot;&gt;</span><br><span class="line">        @RequestMapping(&lt;span class=&quot;hljs-keyword&quot;&gt;value=&lt;span class=&quot;hljs-string&quot;&gt;&quot;/login&quot;,method=RequestMethod.GET)</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;public String &lt;span class=&quot;hljs-title&quot;&gt;loginForm(Model model)&#123;</span><br><span class="line">            model.addAttribute(&lt;span class=&quot;hljs-string&quot;&gt;&quot;user&quot;, &lt;span class=&quot;hljs-keyword&quot;&gt;new User());</span><br><span class="line">    &lt;span class=&quot;hljs-comment&quot;&gt;//      return &quot;login&quot;;</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;return &lt;span class=&quot;hljs-string&quot;&gt;&quot;redirect:&quot; + ShiroCasConfiguration.loginUrl;</span><br><span class="line">        &#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>本文主要是介绍如何在Spring Boot中集成Shiro+Cas，并非一个从零创建工程到整体完成的介绍。<br>上面贴出了2个主要的Java类，整个工程的其他所有代码没有任何与Shiro和Cas耦合的地方。如果需要jsp页面、Controller、实体类、连接数据库测试数据等代码，可以先参考文章：<a href="http://blog.csdn.net/catoop/article/details/50520958" target="_blank" rel="noopener">http://blog.csdn.net/catoop/article/details/50520958</a>（建议先看这篇文章再看本文）<br><br>    </pre><br></div></div></div></div></div></div></div></div></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shiro/" rel="tag"># shiro</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/bed27e30.html" rel="next" title="activiti5.13 框架 数据库设计说明书">
+                <i class="fa fa-chevron-left"></i> activiti5.13 框架 数据库设计说明书
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/136f7745.html" rel="prev" title="分布式系统唯一ID生成方案汇总">
+                分布式系统唯一ID生成方案汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'pangguoming',
+            repo: 'pangguoming.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51',
+            
+                client_id: '1e9770fed2b4d227cd0a'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

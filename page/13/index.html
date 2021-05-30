@@ -45,38 +45,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT">
@@ -84,11 +73,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
 
 
 
@@ -113,11 +97,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -153,30 +137,6 @@
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-	<div id="topnavbar">
-  <div class="tophead">
-    <div class="toplogo"><a href="/">庞国明-博客</a></div>
-    <div id="mnav">
-      <h2><span class="navicon"></span></h2>
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </div>
-    <nav class="topnav" id="topnav">
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
 
   
   
@@ -230,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -250,12 +220,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            关于
+            归档
           </a>
         </li>
       
@@ -278,20 +248,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -324,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/04/09/使用JAVA开发微信公众平台（一）——环境搭建与开发接入/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/1dfa7f9b.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -343,7 +319,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/09/使用JAVA开发微信公众平台（一）——环境搭建与开发接入/" itemprop="url">使用JAVA开发微信公众平台（一）——环境搭建与开发接入</a></h1>
+                <a class="post-title-link" href="/post/1dfa7f9b.html" itemprop="url">使用JAVA开发微信公众平台（一）——环境搭建与开发接入</a></h1>
         
 
         <div class="post-meta">
@@ -395,18 +371,157 @@
       
         
           
-          一、 初始微信公众平台
-微信公众平台，即我们平时所说的“公众号”，曾用名“官方平台”、“媒体平台”，但最终命名为“公众平台”。从微信的命名我可以发现，公众平台不只是官方、媒体使用的平台，而是对所有公众都开放的统一平台。
-微信公众平台地址：https://mp.weixin.qq.com/
-微信公众平
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/09/使用JAVA开发微信公众平台（一）——环境搭建与开发接入/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>一、 初始微信公众平台</p>
+<p>微信公众平台，即我们平时所说的“公众号”，曾用名“官方平台”、“媒体平台”，但最终命名为“公众平台”。从微信的命名我可以发现，公众平台不只是官方、媒体使用的平台，而是对所有公众都开放的统一平台。</p>
+<p>微信公众平台地址：<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">https://mp.weixin.qq.com/</a></p>
+<p>微信公众平台公分4大板块：订阅号、服务号、小程序、企业号。按照微信2016年公开课规划，企业号后续将与企业微信合并，因此我们主要针对前三部分开始讲解：</p>
+<p> <img src="http://pangguoming.com/blog/images/7f491055-13df-4ae7-8181-3460949579b0.png" alt=""></p>
+<p>简单的对比一下前三者的区别以及本次课程即后续课程的讲解重点：</p>
+<p>1、 订阅号和服务号均为传统意义的“公众号”，具有消息群发能力，详细区别可在官方平台查看：<a href="http://kf.qq.com/faq/140806zARbmm140826M36RJF.html" target="_blank" rel="noopener">http://kf.qq.com/faq/140806zARbmm140826M36RJF.html</a> 我们将注重于服务能力开发，而在服务方面，两者开发模式完全相同，只不过服务号可以使用更多的服务接口，而订阅号则是“阉割版”的服务号。因此，后续课程我们将使用服务号为案例进行操作。</p>
+<p>2、 微信小程序，原本为“微信应用号”，即一个根植在微信生态系统内的APP。因苹果和谷歌的限制，“应用号”未上线便已夭折，取而代之的是适度阉割功能的“微信小程序”，而其堪比原生APP的操作体验，也使得小程序成为时下大火的开发方向。而<a href="http://www.jredu100.com/" target="_blank" rel="noopener">杰瑞教育</a> 全新的H5开发课程，也将加入时下火爆的微信小程序开发。</p>
+<p>二、 开发账号准备</p>
+<p>1、 账号注册</p>
+<p>进入微信公众平台<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">https://mp.weixin.qq.com</a> ，点击右上角立即注册，选择“服务号”或“订阅号”注册（服务号仅限机构用户注册，个人用户只能选择订阅号）</p>
+<p>注册时需填写一系列信息，根据提示填写即可，此处不做赘述。</p>
+<p>2、 测试账号申请</p>
+<p>如果暂时不想注册账号，或者无法注册服务号，可选择官方提供的测试账号申请。申请地址：<a href="http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login" target="_blank" rel="noopener">http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login</a> 点击后扫描二维码，即可获得一个测试账号，拥有服务号全部权限。</p>
+<p> <img src="http://pangguoming.com/blog/images/4f970a5c-6b83-4e3d-8243-d91f20fa9d22.png" alt=""></p>
+<p>三、 开发环境准备</p>
+<p>1、 外网映射工具</p>
+<p>微信公众平台在访问后台时，必须提供能够正确访问的外网地址，微信平台对后台URL的要求有两点：</p>
+<p>① 必须能够用公网访问    ② 必须使用80端口</p>
+<p>要实现以上两点，我们可以选择购买外网服务器，例如：阿里云、百度云、腾讯云…都是不错的选择。如果没有服务器，可以选择用外网映射工具，将我们的内网链接映射为公网，比较不错的映射软件有：花生壳、ngrok、nat123等…</p>
+<p>这几款软件都可以百度很容易搜索到并下载，下面简单讲解一下用法：</p>
+<p>① Ngrock：</p>
+<p>进入dos环境，切换到ngrock所在盘符，输入ngrock 8080 回车：</p>
+<p> <img src="http://pangguoming.com/blog/images/bdae2680-7624-4353-b179-870e14cb9b7f.png" alt=""></p>
+<p>回车后等待一会，即可得到公网链接，下图所示阴影区域给出的链接，即可直接访问本机127.0.0.1:8080下的链接内容，分别是http协议和https协议对应的地址：</p>
+<p> <img src="http://pangguoming.com/blog/images/cd5a49bd-40f2-453b-ae49-a5f0cd5c1d54.png" alt=""></p>
+<p>② 花生壳、nat123，均可安装软件后，在软件中操作，详情可查看百度经验：<a href="http://jingyan.baidu.com/article/363872ec361d3f6e4ba16ff9.html" target="_blank" rel="noopener">http://jingyan.baidu.com/article/363872ec361d3f6e4ba16ff9.html</a> 此处不做赘述</p>
+<p>四、 微信公众平台数据交互原理</p>
+<p>搭建好公网访问地址后，我们自己开发的后台代码就可以放到公网地址了，那么用户是怎么样访问到我们的代码呢？</p>
+<p>下面我们来看一下微信公众平台的数据交互原理：</p>
+<p> <img src="http://pangguoming.com/blog/images/315ecc9f-3c50-4e54-8ccd-d6bd25a00436.png" alt=""></p>
+<p>从上图可以看到，微信公众平台实际只是起到一个桥梁作用，实际处理业务、提供服务的代码，依然是放在我们自己的服务器或者公网映射上面。</p>
+<p>那么，我们就可以在我们自己的电脑（服务器）上面编写后台代码，并通过映射工具提供公网能够访问的URL，然后将此URL绑定到微信后台即可。</p>
+<p>五、 开发模式接入</p>
+<p>下面将进入实际开发过程，我们可以参考官方提供的开发文档：<a href="https://mp.weixin.qq.com/wiki" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki</a> </p>
+<p>1、 填写服务器配置</p>
+<p>进入微信公众平台，点击左侧【开发——基本配置】，选择【服务器配置】。即可进入配置页面：</p>
+<p> <img src="http://pangguoming.com/blog/images/004590ad-c021-4c40-8416-d4e859613961.png" alt=""></p>
+<p>其中：</p>
+<p>URL：即我们上述所说的后台服务器公网访问地址</p>
+<p>Token：开发者自定的验证口令</p>
+<p>EncodingAESKey：随机字符串，如果消息加解密方式采用安全模式才需验证</p>
+<p>2、 验证消息是否有效</p>
+<p>当我们点击提交时，微信服务器将会发送一个Get请求，到我们上述地址，同时传递四个参数：</p>
+<p> <img src="http://pangguoming.com/blog/images/975d4ae1-3c74-4557-8233-d5d4f0c39bca.png" alt=""></p>
+<p>我们通过检验signature对请求进行校验（下面有校验方式）。若确认此次GET请求来自微信服务器，请原样返回echostr参数内容，则接入生效，成为开发者成功，否则接入失败。加密/校验流程如下：</p>
+<p>下面，我们实现代码操作。</p>
+<p>六、 开发接入后台代码</p>
+<p>1、 使用MyEclipse创建Web项目，并新建一个servlet：</p>
+<p> <img src="http://pangguoming.com/blog/images/18e3fb8b-5199-44fb-a510-1a9e87c77045.png" alt=""></p>
+<p>2、 在servlet的doGet方法中，获取上述四个校验参数：</p>
+<p> <img src="http://pangguoming.com/blog/images/2c46839c-ab34-4021-bd73-b6836e0a7ecd.png" alt=""></p>
+<p>3、 编写工具类，进行校验方法的操作：</p>
+<p> <img src="http://pangguoming.com/blog/images/6931f054-274b-4df3-a62c-fa9caf7c97ea.png" alt=""></p>
+<p>校验步骤，参考上述【五-2】三大步操作流程</p>
+<p> <img src="http://pangguoming.com/blog/images/d0e0d095-a50d-46eb-a33f-b68efcf0bce8.png" alt=""></p>
+<p>使用sha1加密方法↓</p>
+<p> <img src="http://pangguoming.com/blog/images/f4373cb4-6881-4f4a-91d4-a8bae1d260e9.png" alt=""></p>
+<p>4、 Servlet中调用校验方法，并验证结果，如果检验成功，将得到的随机字符串eahostr原路返回结果给微信平台：</p>
+<p> <img src="http://pangguoming.com/blog/images/1f8039b6-e7ea-482c-b85f-be1134ce4c20.png" alt=""></p>
+<p>至此，Servlet及Check工具类，编写完成。</p>
+<p>5、 启动Tomcat，将Servlet的本地地址（例如本机为：localhost:8080/WeiXin/servlet/WeiXinServlet ）进行公网映射，参照上述第三大部分内容，进行公网映射，确定公网地址能够正确访问。</p>
+<p>我将直接将将代码放到<a href="http://www.jredu100.com/" target="_blank" rel="noopener">杰瑞教育</a> 公网服务器进行访问。获得如下地址：<a href="http://www.jredu100.com/WeiXin/servlet/WeiXinServlet" target="_blank" rel="noopener">http://www.jredu100.com/WeiXin/servlet/WeiXinServlet</a> </p>
+<p>七、 配置公众平台后台</p>
+<p>进入微信后台配置相关信息：</p>
+<p> <img src="http://pangguoming.com/blog/images/222cd6e4-47af-4c7e-be6a-3933599004d0.png" alt=""></p>
+<p>点击提交，微信将发送Get指令到Servlet，并调用doGet方法，进行我们编写的验证操作，最后如果顺利返回随机字符串，则绑定成功。</p>
+<p>八、 源码共享</p>
+<p>1、 Servlet源码（只保留doGet部分）：</p>
+<p>public void doGet(HttpServletRequest request, HttpServletResponse response)</p>
+<p>throws ServletException, IOException {</p>
+<p>String signature = request.getParameter(“signature”);</p>
+<p>String timestamp = request.getParameter(“timestamp”);</p>
+<p>String nonce = request.getParameter(“nonce”);</p>
+<p>String echostr = request.getParameter(“echostr”);</p>
+<p>PrintWriter out = response.getWriter();</p>
+<p>if(CheckUtil.checkSignature(signature, timestamp, nonce)){</p>
+<p>//如果校验成功，将得到的随机字符串原路返回</p>
+<p>out.print(echostr);</p>
+<p>}</p>
+<p>}</p>
+<p>2、 CheckUtil源码（可直接Copy其中的getSha1加密方法）：</p>
+<p>package com.jredu.util;</p>
+<p>import java.security.MessageDigest;</p>
+<p>import java.util.Arrays;</p>
+<p>public class CheckUtil {</p>
+<p>public static final String  tooken = “jredu100”; //开发者自行定义Tooken</p>
+<p>public static boolean checkSignature(String signature,String timestamp,String nonce){</p>
+<p>//1.定义数组存放tooken，timestamp,nonce</p>
+<p>String[] arr = {tooken,timestamp,nonce};</p>
+<p>//2.对数组进行排序</p>
+<p>Arrays.sort(arr);</p>
+<p>//3.生成字符串</p>
+<p>StringBuffer sb = new StringBuffer();</p>
+<p>for(String s : arr){</p>
+<p>sb.append(s);</p>
+<p>}</p>
+<p>//4.sha1加密,网上均有现成代码</p>
+<p>String temp = getSha1(sb.toString());</p>
+<p>//5.将加密后的字符串，与微信传来的加密签名比较，返回结果</p>
+<p>return temp.equals(signature);</p>
+<p>}</p>
+<p>public static String getSha1(String str){</p>
+<pre><code>    if(str==null||str.length()==0){
+
+        return null;
+
+    }
+
+    char hexDigits[] = {&apos;0&apos;,&apos;1&apos;,&apos;2&apos;,&apos;3&apos;,&apos;4&apos;,&apos;5&apos;,&apos;6&apos;,&apos;7&apos;,&apos;8&apos;,&apos;9&apos;,
+
+            &apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;,&apos;f&apos;};
+
+    try {
+
+        MessageDigest mdTemp = MessageDigest.getInstance(&quot;SHA1&quot;);
+
+        mdTemp.update(str.getBytes(&quot;UTF-8&quot;));
+
+        byte[] md = mdTemp.digest();
+
+        int j = md.length;
+
+        char buf[] = new char[j*2];
+
+        int k = 0;
+
+        for (int i = 0; i &lt; j; i++) {
+
+            byte byte0 = md[i];
+
+            buf[k++] = hexDigits[byte0 &gt;&gt;&gt; 4 &amp; 0xf];
+
+            buf[k++] = hexDigits[byte0 &amp; 0xf];      
+
+        }
+
+        return new String(buf);
+
+    } catch (Exception e) {
+
+        // TODO: handle exception
+
+        return null;
+
+    }
+
+}
+</code></pre><p>}</p>
+
+          
         
       
     </div>
@@ -453,7 +568,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/04/03/使用Vue.js实现列表选中效果/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/69e5a2b9.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -472,7 +587,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/03/使用Vue.js实现列表选中效果/" itemprop="url">使用Vue.js实现列表选中效果</a></h1>
+                <a class="post-title-link" href="/post/69e5a2b9.html" itemprop="url">使用Vue.js实现列表选中效果</a></h1>
         
 
         <div class="post-meta">
@@ -524,16 +639,26 @@
       
         
           
-           实际项目中，我们会遇到很多类似的需求，一个列表，需要点击其中一条高亮显示。熟悉JQuery的同学说这个太简单了。可以给这个选中的element设置一个active的class。配合Css样式，让active有选中高亮效果。但是谁说一定要用到jQuery呢。
-  最近在做的项目中，我尝试脱离JQue
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/03/使用Vue.js实现列表选中效果/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p> 实际项目中，我们会遇到很多类似的需求，一个列表，需要点击其中一条高亮显示。熟悉JQuery的同学说这个太简单了。可以给这个选中的element设置一个active的class。配合Css样式，让active有选中高亮效果。但是谁说一定要用到jQuery呢。</p>
+<p>  最近在做的项目中，我尝试脱离JQuery，绕过JQuery，我所接触的大部分项目中好像不使用JQuery无法进行开发一样。它确实给开发者提供了太多便利。以至于大部分web网站都依赖它运行着。据<a href="http://w3techs.com/technologies/details/js-jquery/all/all" target="_blank" rel="noopener">w3Techs统计</a>，JQuery的市场份额高达94.9%，是时候脱离JQuery的束缚了。使用<code>Vue.js</code>更简洁，快速地实现。</p>
+<p>  选中效果实现的核心实现逻辑是拷贝一份当前状态作为快照。比对列表的快照和当前的唯一索引，如果相同则视为选中。</p>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><hr>
+<p><span class="img-wrap"><img src="http://pangguoming.com/blog/images/6d20b277-bc8e-4e5e-a445-d1c8d2091d15.jpg" alt=""></span></p>
+<h3 id="使用Vue-js实现"><a href="#使用Vue-js实现" class="headerlink" title="使用Vue.js实现"></a>使用Vue.js实现</h3><hr>
+<p><strong>javascript</strong></p>
+<p><code class="js"><span class="hljs-keyword">new Vue({<br>      <span class="hljs-attr">el: <span class="hljs-string">“#app”,<br>      <span class="hljs-attr">data: {<br>        <span class="hljs-attr">gameNames: [<span class="hljs-string">‘魔兽世界’, <span class="hljs-string">‘暗黑破坏神Ⅲ’, <span class="hljs-string">‘星际争霸Ⅱ’, <span class="hljs-string">‘炉石传说’, <span class="hljs-string">‘风暴英雄’,<br>          <span class="hljs-string">‘守望先锋’<br>        ],<br>        <span class="hljs-attr">activeName: <span class="hljs-string">‘’<br>      },<br>      <span class="hljs-attr">methods: {<br>        <span class="hljs-attr">selected: <span class="hljs-function"><span class="hljs-keyword">function(<span class="hljs-params">gameName) {<br>          <span class="hljs-keyword">this.activeName = gameName<br>        }<br>      }<br>    })</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code><code>`</code></p>
+<p><strong>html</strong></p>
+<pre><code>&lt;div class=&quot;widget-codetool&quot;&gt; 
+&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-name&quot;&gt;div &lt;span class=&quot;hljs-attr&quot;&gt;id=&lt;span class=&quot;hljs-string&quot;&gt;&quot;app&quot;&gt;
+  &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-name&quot;&gt;div &lt;span class=&quot;hljs-attr&quot;&gt;class=&lt;span class=&quot;hljs-string&quot;&gt;&quot;collection&quot;&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-name&quot;&gt;a &lt;span class=&quot;hljs-attr&quot;&gt;href=&lt;span class=&quot;hljs-string&quot;&gt;&quot;#!&quot; &lt;span class=&quot;hljs-attr&quot;&gt;class=&lt;span class=&quot;hljs-string&quot;&gt;&quot;collection-item&quot;
+       &lt;span class=&quot;hljs-attr&quot;&gt;v-for=&lt;span class=&quot;hljs-string&quot;&gt;&quot;gameName in gameNames&quot;
+       @&lt;span class=&quot;hljs-attr&quot;&gt;click=&lt;span class=&quot;hljs-string&quot;&gt;&quot;selected(gameName)&quot;
+       &lt;span class=&quot;hljs-attr&quot;&gt;:class=&lt;span class=&quot;hljs-string&quot;&gt;&quot;{active: activeName == gameName}&quot;&gt;{{gameName}}&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-name&quot;&gt;a&gt;
+  &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-name&quot;&gt;div&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-name&quot;&gt;div&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;```&lt;/pre&gt;&lt;/div&gt;
+</code></pre>
+          
         
       
     </div>
@@ -580,7 +705,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/03/28/2018Neo4jParty/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/32d3364e.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -599,7 +724,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/28/2018Neo4jParty/" itemprop="url">3月18日 在北京参与《2018 Neo4j 中国聚会》</a></h1>
+                <a class="post-title-link" href="/post/32d3364e.html" itemprop="url">3月18日 在北京参与《2018 Neo4j 中国聚会》</a></h1>
         
 
         <div class="post-meta">
@@ -673,15 +798,37 @@
       
         
           
-          “2018 Neo4j 中国聚会”圆满落幕2018年3月18日，微云数聚与中国传媒大学计算机学院联合举办“2018 Neo4j 中国聚会”，这是一场Neo4j技术爱好者的饕餮盛宴。出席本次活动的嘉宾有 Neo4j 亚太区销售负责人Brandon Richards和技术专家Joshua Yu（俞方桦）
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/28/2018Neo4jParty/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h2 id="“2018-Neo4j-中国聚会”圆满落幕"><a href="#“2018-Neo4j-中国聚会”圆满落幕" class="headerlink" title="“2018 Neo4j 中国聚会”圆满落幕"></a>“2018 Neo4j 中国聚会”圆满落幕</h2><p>2018年3月18日，微云数聚与中国传媒大学计算机学院联合举办“2018 Neo4j 中国聚会”，这是一场Neo4j技术爱好者的饕餮盛宴。出席本次活动的嘉宾有 Neo4j 亚太区销售负责人Brandon Richards和技术专家Joshua Yu（俞方桦），计算机学院院长石民勇教授、李春芳副教授和洪志国副教授，Neo4j中文社区创始人庞国明，微云数聚董事长张帜与首席商务官邬瑞文，以及来自全国各地50多位专家学者参会交流。会议同时进行了在线直播，数百名线上观众观看了网络现场直播。<br><img src="1.jpg" alt="TIM截图20180321084559.png"></p>
+<center>参会嘉宾合影</center>
+
+<p> Neo4j是世界排名第一的图数据库，将结构化数据存储在网络结构中，解决传统关系型数据库（RDBMS）处理关系的效率低下问题。LinkedIn、亚马逊等全球100多家大型企业都将 Neo4j应用于数据存储方案。<br> <img src="2.jpg" alt="TIM截图20180321084559.png"><br> <center>微云数聚董事长张帜主持会议</center></p>
+<p> <img src="3.jpg" alt="TIM截图20180321084559.png"><br> <center>石民勇院长致欢迎辞</center><br> 会议由我国著名信息化专家微云数聚董事长张帜主持，石民勇院长致词并分享了中传在大数据人才培养与科研教学成果，以及图论、超图和图数据库在影视传媒的应用经验。<br> <img src="4.jpg" alt="TIM截图20180321084559.png"><br> <center>Neo4j亚太区销售负责人BrandonRichards讲解 Neo4j的市场环境和应用场景</center></p>
+<p>Neo4j亚太区销售负责人BrandonRichards向大家介绍了Neo4j的市场环境和应用场景，并表示在大数据时代，随着信息化程度越来越高，我们要处理大量的、复杂的数据。图数据库 Neo4j就是一种很好的选择，一种擅长处理复杂网状关系的新型数据库系统，善于处理大量的、复杂的、互联的、多变的网状数据。其效率远远高于传统的关系型数据库的百倍、千倍甚至万倍，目前在全球范围内Neo4j的用户数量在逐年增加。<br><img src="5.jpg" alt="TIM截图20180321084559.png"></p>
+<center>Neo4j亚太技术专家Joshua Yu讲解 Neo4j 图数据最新技术</center>
+
+
+
+<p>亚太技术专家Joshua Yu从Neo4j图数据库平台、Neo4j集群技术和Neo4j扩展库APOC三个方面讲解了Neo4j的最新技术，让图数据库的爱好者了解到现阶段 Neo4j最前沿的技术领域。<br><img src="6.jpg" alt="TIM截图20180321084559.png"></p>
+<center>中国传媒大学李春芳副教授讲解Neo4j在影视大数据中的应用</center>
+
+
+
+<p>中国传媒大学李春芳副教授和大家分享了 Neo4j在影视大数据中的应用，并介绍了“如艺剧本”(<a href="http://www.ruyi.cool)，“如艺剧本”是基于" target="_blank" rel="noopener">www.ruyi.cool)，“如艺剧本”是基于</a> Neo4j技术研究了中国演员社交网络和剧情人物关系网络，以大数据技术辅助剧本创作，基于群智创作和知识关联提高剧本创作质量，系统包含故事梗概、人物小传、人物关系、分集大纲、剧本写作、事件关系、拍摄场景、人物场次、拍摄通告管理等模块，以剧本为核心提供编剧、导演、制片人、演员和统筹的协作平台。<br><img src="7.jpg" alt="TIM截图20180321084559.png"></p>
+<center>Neo4j中文社区创始人庞国明进行Neo4j技术交流与分享</center><br><img src="8.jpg" alt="TIM截图20180321084559.png"><br><center>微云数聚首席商务官邬瑞文讲解Neo4j解决方案-关系搜</center>
+
+
+
+<p>庞国明先生作为Neo4j中文社区的创始人和大家进行了社区中的技术交流和分享，微云数聚首席商务官邬瑞文先生向大家讲解了微云数聚最新Neo4j解决方案-关系搜。《关系搜》是基于世界领先的图数据库Neo4j而实现的一种通用的多元模糊关系搜索引擎。《关系搜》提供了非常简洁的搜索界面，供用户以联想的方式输入多个对象（人物、公司、房产、事件等）的关键词，《关系搜》将搜索、计算这些对象之间的关系，并以网状图形的形式展现其关系网。<br><img src="9.jpg" alt="TIM截图20180321084559.png"></p>
+<center>演讲嘉宾合影</center><br><img src="10.jpg" alt="TIM截图20180321084559.png"><br><center>嘉宾会后深入讨论</center>
+
+
+
+<p>会议后，与会专家与各位嘉宾进行了深入的交流和探讨，大家对Neo4j的在中国的发展前景充满信心，并期待此类活动有机会能够多开展。至此，此次”2018 Neo4j 中国聚会”圆满结束。</p>
+<p>微云数据（北京）科技有限公司是一家专注于图数据库技术及其应用研究的大数据公司，是世界排名第一的图数据Neo4j在中国的战略合作伙伴和官方代理。微云数聚致力于研制具有自主知识产权的图数据库应用产品，让中国企业能够更好地应用图数据库技术。 </p>
+<p>“2018 Neo4j 中国聚会”视频及PPT下载地址：</p>
+<p><a href="http://we-yun.com/2018_Neo4j_China_Meetup" target="_blank" rel="noopener">http://we-yun.com/2018_Neo4j_China_Meetup</a></p>
+
+          
         
       
     </div>
@@ -728,7 +875,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/03/28/c#以POST方式模拟提交表单/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/1ef523a1.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -747,7 +894,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/28/c#以POST方式模拟提交表单/" itemprop="url">c#以POST方式模拟提交表单</a></h1>
+                <a class="post-title-link" href="/post/1ef523a1.html" itemprop="url">c#以POST方式模拟提交表单</a></h1>
         
 
         <div class="post-meta">
@@ -799,16 +946,125 @@
       
         
           
-          这是我一年前写的一个用C#模拟以POST方式提交表单的代码，现在记录在下面，以免忘记咯。那时候刚学C#~忽忽。。很生疏。。代码看上去也很幼稚 臃肿不堪
-#region 内容添加函数(Contentinsert)    public string Contentinsert(string bookID
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/28/c#以POST方式模拟提交表单/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>这是我一年前写的一个用C#模拟以POST方式提交表单的代码，现在记录在下面，以免忘记咯。那时候刚学C#~忽忽。。很生疏。。代码看上去也很幼稚 臃肿不堪</p>
+<p>#region 内容添加函数(Contentinsert)<br>    public string Contentinsert(string bookID, string bookTitle, string bookContent,string taskUrl,string Ztagend)<br>    {<br>               string uriString = “这里是取VIEWSTATE等值的页面”;</p>
+<pre><code> //如果是asp.net页面，最好是先取到VIEWSTATE和EVENTVALIDATION值一并提交   
+        ///////////////////////////////////////   
+        // 打开指定的页面   
+        ///////////////////////////////////////   
+       XMLRW UpdateBook = new XMLRW();   
+        WebClient webClient = new WebClient();   
+        byte[] responseData = webClient.DownloadData(uriString);   
+        string srcString = Encoding.UTF8.GetString(responseData);   
+        ///////////////////////////////////////   
+        // 填写页面并提交   
+        ///////////////////////////////////////   
+        webClient = new WebClient();   
+        webClient.Headers.Add(&quot;Content-Type&quot;, &quot;application/x-www-form-urlencoded&quot;); //定义关联的标头
+
+        // 获取页面的 VeiwState   这个值和EventValidation 的值在这里用于数据接收页接收数据               
+        string viewStateFlag = &quot;id=\&quot;__VIEWSTATE\&quot; value=\&quot;&quot;; //动态抓取__VIEWSTATE的值   
+        int i = srcString.IndexOf(viewStateFlag) + viewStateFlag.Length;   
+        int j = srcString.IndexOf(&quot;\&quot;&quot;,i);   
+        string viewState = srcString.Substring(i, j-i);
+
+        // 获取页面的 EventValidation 这个值和EventValidation 的值在这里用于数据接收页接收数据   
+string eventValidationFlag = &quot;id=\&quot;__EVENTVALIDATION\&quot; value=\&quot;&quot;; //动态抓取__EVENTVALIDATION\的值  
+        i = srcString.IndexOf(eventValidationFlag) + eventValidationFlag.Length;   
+        j = srcString.IndexOf(&quot;\&quot;&quot;, i);   
+        string eventValidation = srcString.Substring(i, j - i);   
+//获取页面的章数   
+        string viewmenuid = &quot;&lt;input name=\&quot;txt_menuid\&quot; type=\&quot;text\&quot; value=\&quot;&quot;; //动态抓取__VIEWSTATE的值   
+         i = srcString.IndexOf(viewmenuid) + viewmenuid.Length;   
+         j = srcString.IndexOf(&quot;\&quot;&quot;,i);   
+        string txt_menuid = srcString.Substring(i, j-i);   
+        /* 提交按钮的文本   
+        string submitButton = &quot;提交&quot;;   
+         * 这句代码主要用于当数据接收页面是button的情况   
+         * */   
+        bookTitle = System.Web.HttpUtility.UrlEncode(bookTitle);   
+        bookContent = System.Web.HttpUtility.UrlEncode(bookContent);   
+        viewState = System.Web.HttpUtility.UrlEncode(viewState);   
+        eventValidation = System.Web.HttpUtility.UrlEncode(eventValidation);   
+        txt_menuid = System.Web.HttpUtility.UrlEncode(txt_menuid);   
+         // 要提交的字符串数据。格式形如:user=uesr1&amp;password=123   
+        //下面开始执行数据的提交 当提交没有错误将返回提交后的页面代码回来   
+        string postString = &quot;txt_title=&quot; + bookTitle + &quot;&amp;txt_content=&quot; + bookContent + &quot;&amp;txt_menuid=&quot; + txt_menuid + &quot;&amp;cmdSaveConn.x=0&amp;cmdSaveConn.y=0&quot; + &quot;&amp;__VIEWSTATE=&quot; + viewState + &quot;&amp;__EVENTVALIDATION=&quot; + eventValidation;   
+  /*txt_title为标题内容,bookContent为内容txt_menuid为当前章节数cmdSaveConn.x=0&amp;cmdSaveConn.y=0用于传递imagebutton控件传递参数 用于数据接收页面的提交针对不同的按钮用参数实现触发祥见:http://hi.baidu.com/zeratul_bb/blog/item/34d9f7fda770c241d6887deb.html __VIEWSTATE和_EVENTVALIDATION是asp.net特有的隐藏值传递，目前认为作用在于传递数据～待查*/   
+        // 将字符串转换成字节数组   
+        byte[] postData = Encoding.ASCII.GetBytes(postString);   
+        // 上传数据，返回页面的字节数组   
+        responseData = webClient.UploadData(uriString, &quot;POST&quot;, postData); //本函数的核心，这里主要解决了用POST方法传递数据以模拟表单提交～还有就是避免了提交后返回到数据接收指定的页面～是个很好的方法！！详见:http://www.cnblogs.com/anjou/archive/2006/12/25/602943.html (asp.net中webClient填充和提交表单的方法！)   
+        // 将返回的将字节数组转换成字符串(HTML);   
+        // ASP.NET 返回的页面一般是Unicode,如果是简体中文应使用   
+        //   Encoding.GetEncoding(&quot;GB2312&quot;).GetString(responseData)   
+        srcString = Encoding.UTF8.GetString(responseData);   
+        UpdateBook.UpdateXml(taskUrl, bookID, Ztagend);   
+        return &quot;成功添加数据,返回数据字节为:&quot;+srcString.Length.ToString(); //向主调函数返回数据提交后转到的页面代码长度！
+
+        ///////////////////////////////////////   
+        // 分析返回的页面   
+        ///////////////////////////////////////   
+        // ...... ......   
+</code></pre><p>}   </p>
+<pre><code>#endregion
+</code></pre><hr>
+<p>根据不同按钮总结如下：</p>
+<p>Asp.net 中在客户端触发服务端事件分为两种情况：</p>
+<p>一.     WebControls中的Button 和HtmlControls中的Type为submit的HtmlInputButton</p>
+<p>这两种按钮最终到客户端的表现形式为： <input name="Submit1" id="Submit1" type="submit" value="”Submit”">，这是Form表单的提交按钮，点击以后会作为参数发送到服务端，参数是这样的： 控件的name属性=控件的value值，对应上面的例子就是：Submit1= Submit。 服务端会根据接收到的控件的name属性的这个key来得知是这个按钮被点击了，从而在服务端触发这个按钮的点击事件。</p>
+<p>二.     ImageButton或者HttpInputImage:</p>
+<p>这些控件到客户端的表现类似这样的： <input type="image" id="img1">，点击了这样的控件会直接提交表单，作用同提交按钮。点击了这样的控件传到服务端的参数是这样的：id.x=nn&amp;id.y=nn，对应到上面的例子就是：img1.x=nn&amp;img1.y=nn</p>
+<p>三.     HtmlControls 中的 Type为button的HtmlInputButton 和其它所有的控件事件，比如LinkButton点击，TextBox的Change事件等等：</p>
+<p>这些事件在客户端产生后会经过一个统一的机制发送到服务端。</p>
+<ol>
+<li>首先asp.net页框架会使用两个Hidden域来存放表示是哪个控件触发的事件，以及事件的参数：</li>
+</ol>
+<p>&lt;!—表示触发事件的控件，一般是这个控件的name –&gt;</p>
+<input type="hidden" name="__EVENTTARGET" value="">
+
+<p>&lt;!—表示触发事件的参数，一般是当某个控件有两个以上的事件时，用来区别是哪个事件 –&gt;</p>
+<input type="hidden" name="__EVENTARGUMENT" value="">
+
+<ol start="2">
+<li>服务端会生成一个jscript的方法来处理所有这些事件的发送，这段代码是：</li>
+</ol>
+<script language="javascript">
+
+<!--
+
+function __doPostBack(eventTarget, eventArgument) {
+
+         var theform = document.WebForm2;
+
+         theform.__EVENTTARGET.value = eventTarget;
+
+         theform.__EVENTARGUMENT.value = eventArgument;
+
+         theform.submit();
+
+}
+
+// -->
+
+</script>
+
+<ol start="3">
+<li>每个会引发服务端事件的控件都会在响应的客户端事件中调用上面的代码：</li>
+</ol>
+<p>比如，HtmlControls 中的 Type为button的HtmlInputButton的点击事件</p>
+<p>&lt;!—客户端的点击事件调用__doPostBack，eventTarget 参数为’Button2’，表示是name为’Button2’控件触发的事件，eventArgument 为空，表示这个Type为button的HtmlInputButton只有一个客户端触发的服务端事件–&gt;</p>
+<input language="javascript" onclick="__doPostBack('Button2','')" name="Button2" id="Button2" type="button" value="Button">
+
+<p>又比如，TextBox控件的Change事件</p>
+<p>&lt;!—客户端的onchange事件调用__doPostBack，eventTarget 参数为’TextBox1’，表示是name为’TextBox1’控件触发的事件，而TextBox控件只有一个客户端触发的服务端事件TextChanged，故服务器就会去触发这个TextBox的TextChanged事件-&gt;</p>
+<input name="TextBox1" type="text" id="TextBox1" onchange="__doPostBack('TextBox1','')" language="javascript">
+
+<ol start="4">
+<li>客户端触发事件后调用<strong>doPostBack方法，将表示触发的控件源的eventTarget 和事件参数eventArgument分别付给两个隐藏域</strong>EVENTTARGET和<strong>EVENTARGUMENT，然后提交Form，在服务端根据</strong>EVENTTARGET和__EVENTARGUMENT来判断是哪个控件的什么事件触发了。</li>
+</ol>
+
+          
         
       
     </div>
@@ -855,7 +1111,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/03/28/vue项目里的日期格式化/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/382f7c7.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -874,7 +1130,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/28/vue项目里的日期格式化/" itemprop="url">vue项目里的日期格式化</a></h1>
+                <a class="post-title-link" href="/post/382f7c7.html" itemprop="url">vue项目里的日期格式化</a></h1>
         
 
         <div class="post-meta">
@@ -926,17 +1182,18 @@
       
         
           
-          在项目中，我们经常需要把后台传回的日期进行格式化，可以在common里定义一个公共的js
+            <p>在项目中，我们经常需要把后台传回的日期进行格式化，可以在common里定义一个公共的js</p>
+<p><img src="http://pangguoming.com/blog/images/9d35c55c-808c-4eb5-b519-f1a885ca2eaf.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> 1 export function formatDate (date, fmt) &#123;</span><br><span class="line"> 2   if (/(y+)/.test(fmt)) &#123;</span><br><span class="line"> 3     fmt = fmt.replace(RegExp.$1, (date.getFullYear() + &apos;&apos;).substr(4 - RegExp.$1.length))</span><br><span class="line"> 4   &#125;</span><br><span class="line"> 5   let o = &#123;</span><br><span class="line"> 6     &apos;M+&apos;: date.getMonth() + 1,</span><br><span class="line"> 7     &apos;d+&apos;: date.getDate(),</span><br><span class="line"> 8     &apos;h+&apos;: date.getHours(),</span><br><span class="line"> 9     &apos;m+&apos;: date.getMinutes(),</span><br><span class="line">10     &apos;s+&apos;: date.getSeconds()</span><br><span class="line">11   &#125;</span><br><span class="line">12   for (let k in o) &#123;</span><br><span class="line">13     if (new RegExp(`($&#123;k&#125;)`).test(fmt)) &#123;</span><br><span class="line">14       let str = o[k] + &apos;&apos;</span><br><span class="line">15       fmt = fmt.replace(RegExp.$1, RegExp.$1.length === 1 ? str : padLeftZero(str))</span><br><span class="line">16     &#125;</span><br><span class="line">17   &#125;</span><br><span class="line">18   return fmt</span><br><span class="line">19 &#125;</span><br><span class="line">20 </span><br><span class="line">21 function padLeftZero (str) &#123;</span><br><span class="line">22   return (&apos;00&apos; + str).substr(str.length)</span><br><span class="line">23 &#125;</span><br></pre></td></tr></table></figure>
+<p>vue文件引入</p>
+<p><img src="http://pangguoming.com/blog/images/87696a99-5e0f-46c9-b5a4-ebb440cf6fb6.png" alt=""></p>
+<p>js文件用的是export,  vue文件引入的时候需要加{}</p>
+<p> <img src="http://pangguoming.com/blog/images/8c2181b6-a0a3-4548-b2b4-2b7145097c3e.png" alt=""></p>
+<p>箭头对应的就是上面{}里面的</p>
+<p>template中这样使用:：</p>
+<p><img src="http://pangguoming.com/blog/images/5d690580-e3cb-4e08-9d74-3db7fbed7a6d.png" alt=""></p>
 
-1234567891011121314151617181920212223 1 export function formatDate (date, fmt) &#123; 2   if (/(y+)/.tes
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/28/vue项目里的日期格式化/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -983,7 +1240,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/03/26/Hadoop概念学习系列之Hadoop、Spark学习路线（很值得推荐）/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/196e85c5.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1002,7 +1259,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/26/Hadoop概念学习系列之Hadoop、Spark学习路线（很值得推荐）/" itemprop="url">Hadoop概念学习系列之Hadoop、Spark学习路线（很值得推荐）</a></h1>
+                <a class="post-title-link" href="/post/196e85c5.html" itemprop="url">Hadoop概念学习系列之Hadoop、Spark学习路线（很值得推荐）</a></h1>
         
 
         <div class="post-meta">
@@ -1054,19 +1311,191 @@
       
         
           
-          说在前面的话
- 此笔，对于仅对于Hadoop和Spark初中学者。高手请忽略！
-1 Java基础：
-**视频方面：**  
-      推荐《毕向东JAVA基础视频教程》。学习hadoop不需要过度的深入，java学习到javase，在Java虚拟机的内存管理、以及多线程、线程池、设计模式、并行化多
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/26/Hadoop概念学习系列之Hadoop、Spark学习路线（很值得推荐）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p><strong>说在前面的话</strong></p>
+<p> 此笔，对于仅对于Hadoop和Spark初中学者。高手请忽略！</p>
+<p><strong>1 Java基础：</strong></p>
+<pre><code>**视频方面：**  
+      推荐《毕向东JAVA基础视频教程》。学习hadoop不需要过度的深入，java学习到javase，在Java虚拟机的内存管理、以及多线程、线程池、设计模式、并行化多多理解实践即可。
+</code></pre><p><strong>    书籍方面：</strong></p>
+<pre><code>推荐李兴华的《java开发实战经典》
+</code></pre><p><strong>2 Linux基础：</strong></p>
+<p><strong>    视频方面：</strong></p>
+<pre><code>（1）马哥的高薪Linux视频课程-Linux入门、
+</code></pre><p> （2）兄弟连的新版Linux视频教程、</p>
+<pre><code>（3）老段的讲解鸟哥Linux基础+私房菜、
+
+（4）老男孩的Linux。
+
+看的过程中，不可只看不同步操作，这是最危险的一件事！不需全部看完。如：基本的Linux操作系统官网下载、安装（命令行界面和图形界面）、基本命令、网络配置、快照、VM tools工具安装、虚拟机的菜单熟悉等等。这是必须要首先完成的。之后，可回过来再根据需要使用到哪些，再来学习即可。当作工具书！
+</code></pre><p><strong>    书籍方面：</strong></p>
+<pre><code>（1）《鸟哥的linux私房菜》,
+
+（2）之后，进一步可以看书籍《鸟哥的服务架设篇》。
+
+（3）Linux随身指南
+</code></pre><p>  （4）老男孩Linux运维</p>
+<pre><code>系统学习只要多多实践，学习linux并不枯燥。
+</code></pre><p><strong>3 hadoop书籍：</strong></p>
+<pre><code>      （1）《Hadoop实战  (第1版)  陆嘉恒》、《Hadoop实战  (第2版)  陆嘉恒》
+
+      （2） 《hadoop definitive guide 》，
+
+            中文书名是《Hadoop权威指南 （第1版）曾大聃译》，《Hadoop权威指南 (第2版) 周敏奇译》，《Hadoop权威指南 （第3版 ） 华东师范大学数据科学与工程学院译》，当然现在应该是第4版了。
+
+      （3）Hadoop技术内幕：《深入解析Hadoop common和HDFS架构设计与实现原理》 蔡斌  
+
+      （4）hadoop技术内幕：《深入解析YARN架构设计与实现原理》董西成  
+
+      （5）Hadoop技术内幕：《深入理解MapReduce架构设计与实现原理》 董西成 
+
+      （5）《Hadoop in Action》,
+
+              中文书名是《Hadoop实战》，
+
+      （6） 《Hadoop应用开发技术详解    刘刚》 
+
+      （7）《Hadoop 核心技术》 翟周伟 
+
+平常多看看hadoop的官网，虽然是官网，但尽量多学习计算机方面的单词，对后续学习帮助极大。
+
+平常多看看他人的博客和社区论坛。  
+平常多总结和做好笔记，及时回过头来再次多次整理。
+</code></pre><p><strong>4 Maven书籍：</strong></p>
+<pre><code>强烈推荐书籍：Maven实战   许晓斌著。目前是第一版 
+</code></pre><p><strong>5、spark书籍：</strong></p>
+<p> （1）《Spark大数据处理  技术、应用与性能优化   高彦杰》</p>
+<p> （2）《深入理解Spark核心思想与源码分析   耿嘉安》</p>
+<pre><code>（3）《图解Spark：核心技术与案例实战》
+</code></pre><p><strong>摘要:</strong> 致目前想要学习大数据，但是却不了解大数据，也不知道该从哪开始学起的同学，希望这篇文章能够帮到你们。</p>
+<p> 最近群里有很多朋友问我，”初学大数据，不知道怎么开始学”，”不知道大数据具体是什么东西，只是听说很厉害的样子”，”学习大数据，需要学习哪些框架，只学习spark可以吗？” 等等…类似的问题，针对这些问题，一两句话解释不清楚，所以，就在这里写一些我自己的看法吧，希望可以帮助到初学者的你。</p>
+<p>大数据初学者，总结下来，大致有这么几种情况：</p>
+<ul>
+<li>跨行业转过来的(这一种是最难的，之前可能都没接触过编程，这种属于真正的0基础)</li>
+<li>即将毕业的大四学员(包含计算机专业或者其他专业，这一种稍微好点，最起码大学的时候多少会接触一点编程)</li>
+<li><p>有软件开发经验的老司机(包含，javaweb，.net，c 等)</p>
+<p>上面这几种情况的同学都有一个共性，对大数据都是0基础，相对而言，有软件开发经验的老司机学习起来不会很吃力，其余的刚开始学起来会比较吃力，但只要肯比别人多花点时间，多下点功夫，其实并没有你想象的那么难。有付出，才会有回报！</p>
+<p>好了，废话不多说了，下面就直接说一下，针对所有大数据初学者的一些学习建议吧【适用于上面三种基础的同学】</p>
+</li>
+</ul>
+<h3 id="大数据是什么"><a href="#大数据是什么" class="headerlink" title="大数据是什么?"></a>大数据是什么?</h3><p> 有很多朋友问过我，大数据到底是什么？一句话来概括</p>
+<ul>
+<li>针对非软件行业的朋友</li>
+<li><ul>
+<li><p>根据你平时在超市，加油站，饭店等地方的一些消费行为，通过大数据这个技术，我们可以知道你现在的年龄范围，是否婚配，是否有孩子，孩子大致是几岁，是否有固定住宅，车大致是什么价位的等信息。<br>针对软件行业的朋友</p>
+</li>
+<li><p>平时我们写的程序都是在一台机器上运行，处理能力有限，当然，数据量也是有限的。大数据这个技术，其实就是可以实现把我们的代码分布在很多台机器上去并行处理海量的数据，然后从这些海量数据中获取有价值，有意义的信息。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="学习大数据需要的基本功"><a href="#学习大数据需要的基本功" class="headerlink" title="学习大数据需要的基本功"></a>学习大数据需要的基本功</h3><p><span class="hljs-bullet"> 1. linux基础是必须的，最起码需要掌握linux命令行下的基本操作命令</span></p>
+<p><span class="hljs-bullet"> <span class="hljs-bullet">2. javase基础【包含mysql】，注意是javase，不是javaee。javaweb那一块的知识针对大数据工程师而言不是必须的</span></span></p>
+<h3 id="大数据技术板块划分"><a href="#大数据技术板块划分" class="headerlink" title="大数据技术板块划分"></a>大数据技术板块划分</h3><ul>
+<li><p>数据采集</p>
+<ul>
+<li>flume kafka logstash filebeat …</li>
+</ul>
+</li>
+<li><p>数据存储</p>
+<ul>
+<li><p>mysql redis hbase hdfs …</p>
+</li>
+<li><p>虽然mysql不属于大数据范畴 但是我在这也列出来了，因为你在工作中离不开它</p>
+</li>
+</ul>
+</li>
+<li><p>数据查询</p>
+<ul>
+<li>hive impala elasticsearch kylin …</li>
+</ul>
+</li>
+<li><p>数据计算</p>
+<ul>
+<li><p>实时计算</p>
+</li>
+<li><p>storm sparkstreaming flink …</p>
+</li>
+<li><p>离线计算</p>
+</li>
+<li><p>hadoop spark …</p>
+</li>
+</ul>
+</li>
+<li><p>其他框架</p>
+<ul>
+<li>zookeeper …</li>
+</ul>
+</li>
+</ul>
+<p>下面有一张图，大致列出来了大数据生态圈周边的一些技术框架[不够全面，仅供参考]</p>
+<p> 其实这张图中主要列出来了hadoop生态圈的框架，后期有时间的话重新整理一份完整的 。</p>
+<p><img src="http://pangguoming.com/blog/images/551ddddf-ce5e-4356-b3fd-bb120f0513a1.png" alt=""></p>
+<p>  这个图中列出来了很多框架，其实，学习大数据，就是要学习大数据生态圈周边的各种框架。</p>
+<h3 id="大数据学习步骤"><a href="#大数据学习步骤" class="headerlink" title="大数据学习步骤"></a>大数据学习步骤</h3><p> 上面虽然列出来了很多框架，但是最开始学习的时候没必要全部都学，就算是在工作中，这些框架也不一定会全部用到。</p>
+<p> 下面我就大致列一下，各种框架的一个学习步骤吧：</p>
+<p><strong> 注意：下面列出来的顺序只是个人建议，可以根据个人实际情况来调整顺序</strong></p>
+<ol>
+<li><h4 id="linux基础和javase基础【包含mysql】"><a href="#linux基础和javase基础【包含mysql】" class="headerlink" title="linux基础和javase基础【包含mysql】"></a>linux基础和javase基础【包含mysql】</h4><ul>
+<li>这些是基本功，刚开始也不可能学的很精通，最起码要对linux中的一些基本的命令混个脸熟，后面学习各种框架的时候都会用到，用多了就熟悉了。javase的话建议主要看面向对象，集合，io，多线程，以及jdbc操作即可。</li>
+</ul>
+</li>
+<li><h4 id="zookeeper"><a href="#zookeeper" class="headerlink" title="zookeeper"></a>zookeeper</h4><ul>
+<li>zookeeper是很多大数据框架的基础，中文名称是动物园的意思，因为目前的大数据框架的图标很多都是动物的形状，所以zookeeper其实就是可以管理很多大数据框架的。针对这个框架，主要掌握如何搭建单节点和集群，以及掌握如何在zkcli客户端下对zookeeper的节点进行增删改查操作即可。</li>
+</ul>
+</li>
+<li><h4 id="hadoop"><a href="#hadoop" class="headerlink" title="hadoop"></a>hadoop</h4><ul>
+<li><p>目前企业中一般都是用hadoop2.x的版本了，所以就没有必要再去学hadoop1.x版本了，hadoop2.x主要包含三大块</p>
+</li>
+<li><p>hdfs 前期，主要学习hdfs的一些命令即可，上传，下载，删除，移动，查看等命令…</p>
+</li>
+<li>mapreduce 这个需要重点学习下，要理解mr的原理以及代码实现，虽然现在工作中真正写mr的代码次数很少了，但是原理还是要理解的。</li>
+<li>yarn 前期了解即可，只需要知道yarn是一个资源调度平台，主要负责给任务分配资源即可，yarn不仅可以给mapreduce任务调度资源，还可以为spark任务调度资源…yarn是一个公共的资源调度平台，所有满足条件的框架都可以使用yarn来进行资源调度。</li>
+</ul>
+</li>
+<li><h4 id="hive"><a href="#hive" class="headerlink" title="hive"></a>hive</h4><ul>
+<li>hive是一个数据仓库，所有的数据都是存储在hdfs上的，具体【数据仓库和数据库】的区别大家可以去网上搜索一下，有很多介绍。其实如果对mysql的使用比较熟悉的话，使用hive也就简单很多了，使用hive主要是写hql，hql是hive的sql语言，非常类似于mysql数据库的sql，后续学习hive的时候主要理解一些hive的语法特性即可。其实hive在执行hql，底层在执行的时候还是执行的mapredce程序。</li>
+<li>注意：其实hive本身是很强大的，数据仓库的设计在工作中也是很重要的，但是前期学习的时候，主要先学会如何使用就好了。后期可以好好研究一下hive。</li>
+</ul>
+</li>
+<li><h4 id="hbase"><a href="#hbase" class="headerlink" title="hbase"></a>hbase</h4><ul>
+<li>hbase是一个nosql 数据库，是一个key-value类型的数据库，底层的数据存储在hdfs上。在学习hbase的时候主要掌握 row-key的设计，以及列簇的设计。要注意一个特点就是，hbase基于rowkey查询效率很快，可以达到秒级查询，但是基于列簇中的列进行查询，特别是组合查询的时候，如果数据量很大的话，查询性能会很差。</li>
+</ul>
+</li>
+<li><h4 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h4><ul>
+<li>redis也是一个nosql 数据库和key-value类型的数据库，但是这个数据库是纯基于内存的，也就是redis数据库中的数据都是存储在内存中的，所以它的一个特点就是适用于快速读写的应用场景，读写可以达到10W次/秒，但是不适合存储海量数据，毕竟机器的内存是有限的，当然，redis也支持集群，也可以存储大量数据。在学习redis的时候主要掌握string，list，set，sortedset，hashmap这几种数据类型的区别以及使用，还有pipeline管道，这个在批量入库数据的时候是非常有用的，以及transaction事务功能。</li>
+</ul>
+</li>
+<li><h4 id="flume"><a href="#flume" class="headerlink" title="flume"></a>flume</h4><ul>
+<li>flume是一个日志采集工具，这个还是比较常用的，最常见的就是采集应用产生的日志文件中的数据。一般有两个流程，一个是flume采集数据存储到kafka中，为了后面使用storm或者sparkstreaming进行实时处理。另一个流程是flume采集的数据落盘到hdfs上，为了后期使用hadoop或者spark进行离线处理。在学习flume的时候其实主要就是学会看flume官网的文档，学习各种组建的配置参数，因为使用flume就是写各种的配置。</li>
+</ul>
+</li>
+<li><h4 id="kafka"><a href="#kafka" class="headerlink" title="kafka"></a>kafka</h4><ul>
+<li>kafka 是一个消息队列，在工作中常用于实时处理的场景中，作为一个中间缓冲层，例如，flume-&gt;kafka-&gt;storm/sparkstreaming。学习kafka主要掌握topic，partition，replicate等的概念和原理。</li>
+</ul>
+</li>
+<li><h4 id="storm"><a href="#storm" class="headerlink" title="storm"></a>storm</h4><ul>
+<li>storm是一个实时计算框架，和hadoop的区别就是，hadoop是对离线的海量数据进行处理，而storm是对实时新增的每一条数据进行处理，是一条一条的处理，可以保证数据处理的时效性。学习storm主要学习topology的编写，storm并行度的调整，以及storm如何整合kafka实时消费数据。</li>
+</ul>
+</li>
+<li><h4 id="spark"><a href="#spark" class="headerlink" title="spark"></a>spark</h4><ul>
+<li>spark 现在发展的也很不错，也发展成了一个生态圈，spark里面包含很多技术，spark core，spark steaming，spark mlib，spark graphx。</li>
+<li>spark生态圈里面包含的有离线处理spark core，和实时处理spark streaming，在这里需要注意一下，storm和spark streaming ，两个都是实时处理框架，但是主要区别是：storm是真正的一条一条的处理，而spark streaming 是一批一批的处理。</li>
+<li>spark中包含很多框架，在刚开始学习的时候主要学习spark core和spark streaming即可。这个一般搞大数据的都会用到。spark mlib和spark graphx 可以等后期工作需要或者有时间了在研究即可。</li>
+</ul>
+</li>
+<li><h4 id="elasticsearch"><a href="#elasticsearch" class="headerlink" title="elasticsearch"></a>elasticsearch</h4><ul>
+<li>elasticsearch是一个适合海量数据实时查询的全文搜索引擎，支持分布式集群，其实底层是基于lucene的。在查询的时候支持快速模糊查询，求count，distinct，sum，avg等操作，但是不支持join操作。elasticsearch目前也有一个生态圈，elk(elasticsearch logstash kibana)是一个典型的日志收集，存储，快速查询出图表的一整套解决方案。在学习elasticsearch的时候，前期主要学习如何使用es进行增删改查，es中的index，type，document的概念，以及es中的mapping的设计。</li>
+</ul>
+<p>目前暂且列出来这么多吧，大数据生态圈目前还有很多比较好的技术框架，这个就需要等大家以后工作之后再去扩展了。</p>
+<p>其实上面列出来的这十几个框架，在学习的时候，要专门挑一两个着重研究一下，最好针对，底层原理，优化，源码等部分有所涉猎，这么的话可以在面试过程中脱颖而出。不要想着把每一个框架都搞精通，目前是不现实的，其实就算是在工作中也不会每一个框架都会用的很深。</p>
+<p>如果能过对上面的框架都大致会使用，并且对某一两个框架研究的比较深的话，其实想去找一份满意的大数据工作也就水到渠成了。</p>
+<p>上面说的这么多，是根据博主最近几年的一些经验总结吧，如果大家有什么观点可以在下面留言讨论。</p>
+<p><strong> 最终，大家还是要落于找项目来提升自己，必须要有做项目的经验。现在互联网时代，别跟我说，找不到学习的资源。谷歌百度你懂的… !!!</strong></p>
+<p>其实，说白了，大家还是要在入门之后，有了一定经验，更多还是要去看官网。这是最重要！包括动手去实践，多敲命令！</p>
+</li>
+</ol>
+
+          
         
       
     </div>
@@ -1113,7 +1542,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/03/23/CentOS下的Mysql的安装和使用/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/2c0748eb.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1132,7 +1561,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/23/CentOS下的Mysql的安装和使用/" itemprop="url">CentOS下的Mysql的安装和使用</a></h1>
+                <a class="post-title-link" href="/post/2c0748eb.html" itemprop="url">CentOS下的Mysql的安装和使用</a></h1>
         
 
         <div class="post-meta">
@@ -1184,15 +1613,18 @@
       
         
           
-          1.使用安装命令 ：yum -y install mysql mysql-server mysql-devel安装完成却发现Myserver安装缺失，在网上找原因，原来是因为CentOS 7上把MySQL从默认软件列表中移除了，用MariaDB来代替，所以这导致我们必须要去官网上进行下载，找到链接，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/23/CentOS下的Mysql的安装和使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h4 id="1-使用安装命令-：yum-y-install-mysql-mysql-server-mysql-devel"><a href="#1-使用安装命令-：yum-y-install-mysql-mysql-server-mysql-devel" class="headerlink" title="1.使用安装命令 ：yum -y install mysql mysql-server mysql-devel"></a>1.使用安装命令 ：yum -y install mysql mysql-server mysql-devel</h4><p>安装完成却发现Myserver安装缺失，在网上找原因，原来是因为CentOS 7上把MySQL从默认软件列表中移除了，用MariaDB来代替，所以这导致我们必须要去官网上进行下载，找到链接，用wget打开：</p>
+<p>a: #wget <a href="http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm" target="_blank" rel="noopener">http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm</a> </p>
+<p>b：rpm -ivh mysql-community-release-el7-5.noarch.rpm</p>
+<p>c.两次进行yum -y install mysql mysql-server mysql-devel，安装成功。再次使用该命令，然后得到以下信息</p>
+<p><img src="http://pangguoming.com/blog/images/ade7bbfb-8c32-4562-8465-e4b539f04280.png" alt=""></p>
+<h4 id="2-Mysql分为client，server端两个端口，如果想要使用，先打开服务端"><a href="#2-Mysql分为client，server端两个端口，如果想要使用，先打开服务端" class="headerlink" title="2.Mysql分为client，server端两个端口，如果想要使用，先打开服务端"></a>2.Mysql分为client，server端两个端口，如果想要使用，先打开服务端</h4><p><img src="http://pangguoming.com/blog/images/22f9e2aa-617f-48be-818a-e58ebd91fa44.png" alt=""></p>
+<h4 id="3-接下来进入客户端，作用命令mysql-u-root-p-输入密码，默认为空"><a href="#3-接下来进入客户端，作用命令mysql-u-root-p-输入密码，默认为空" class="headerlink" title="3.接下来进入客户端，作用命令mysql -u root -p 输入密码，默认为空"></a>3.接下来进入客户端，作用命令mysql -u root -p 输入密码，默认为空</h4><p><img src="http://pangguoming.com/blog/images/6da644f5-3a38-4210-b9e7-cc5c19f1be5b.png" alt=""></p>
+<h4 id="4-基本操作-show-databases"><a href="#4-基本操作-show-databases" class="headerlink" title="4.基本操作 show databases;"></a>4.基本操作 show databases;</h4><p><img src="http://pangguoming.com/blog/images/97a8e06a-24f7-4385-828d-343ddcf15a78.png" alt=""></p>
+<h4 id="5-使用某个数据库use-chouti-查看表show-tables"><a href="#5-使用某个数据库use-chouti-查看表show-tables" class="headerlink" title="5.使用某个数据库use chouti,查看表show tables;"></a>5.使用某个数据库use chouti,查看表show tables;</h4><h4 id="6-常用数据库操作"><a href="#6-常用数据库操作" class="headerlink" title="6.常用数据库操作"></a>6.常用数据库操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"> 1 mysql数据库使用总结</span><br><span class="line"> 2 本文主要记录一些mysql日常使用的命令，供以后查询。</span><br><span class="line"> 3 1.更改root密码</span><br><span class="line"> 4 mysqladmin -uroot password &apos;yourpassword&apos;</span><br><span class="line"> 5 2.远程登陆mysql服务器</span><br><span class="line"> 6 mysql -uroot -p -h192.168.137.10 -P3306</span><br><span class="line"> 7 3.查询数据库</span><br><span class="line"> 8 show databases;</span><br><span class="line"> 9 4.进入某个数据库</span><br><span class="line">10 use databasename;</span><br><span class="line">11 5.列出数据库中的表</span><br><span class="line">12 show tables;</span><br><span class="line">13 6.查看某个表全部字段</span><br><span class="line">14 desc slow_log;</span><br><span class="line">15 show create table slow_log\G; （不仅可以显示表信息，还可以显示建表语句）</span><br><span class="line">16 7.查看当前用户</span><br><span class="line">17 select user();</span><br><span class="line">18 8.查看当前所在数据库</span><br><span class="line">19 select database();</span><br><span class="line">20 9.创建新数据库（可以指定字符集）</span><br><span class="line">21 create database db1 charset utf8;</span><br><span class="line">22 10.创建新表</span><br><span class="line">23 create table t1 (`id` int(4), `name` char(40));</span><br><span class="line">24 11.查看数据库版本</span><br><span class="line">25 select version();</span><br><span class="line">26 12.查看数据库状态</span><br><span class="line">27 show status;         当前会话状态</span><br><span class="line">28 show global status;  全局数据库状态</span><br><span class="line">29 show slave status\G;   查看主从数据库状态信息</span><br><span class="line">30 13.查询数据库参数</span><br><span class="line">31 show variables;</span><br><span class="line">32 14.修改数据库参数</span><br><span class="line">33 show variables like &apos;max_connect%&apos;;</span><br><span class="line">34 set global max_connect_errors = 1000;（重启数据库会失效，要在配置文件中修改）</span><br><span class="line">35 15.查看当前数据库队列</span><br><span class="line">36 show processlist;</span><br><span class="line">37 16.创建普通用户并授权给某个数据库</span><br><span class="line">38 grant all on databasename.* to &apos;user1&apos;@&apos;localhost&apos; identified by &apos;123456&apos;;</span><br><span class="line">39 17.查询表数据</span><br><span class="line">40 select * from mysql.db;           //查询该表中的所有字段</span><br><span class="line">41 select count(*) from mysql.user;  //count(*)表示表中有多少行</span><br><span class="line">42 select db,user  from mysql.db;    //查询表中的多个字段</span><br><span class="line">43 select * from mysql.db where host like &apos;10.0.%&apos;;在查询语句中可以使用万能匹配 “%”</span><br><span class="line">44 18.插入一行数据</span><br><span class="line">45 insert into db1.t1 values (1, &apos;abc&apos;);</span><br><span class="line">46 19.更改表的某一行数据</span><br><span class="line">47 update db1.t1 set name=&apos;aaa&apos; where id=1;</span><br><span class="line">48 20.清空表数据</span><br><span class="line">49 truncate table db1.t1;</span><br><span class="line">50 21.删除表</span><br><span class="line">51 drop table db1.t1;</span><br><span class="line">52 22.清空数据库中的所有表（数据库名是eab12）</span><br><span class="line">53 mysql -N -s information_schema -e &quot;SELECT CONCAT(&apos;TRUNCATE TABLE &apos;,TABLE_NAME,&apos;;&apos;) FROM TABLES WHERE TABLE_SCHEMA=&apos;eab12&apos;&quot; | mysql -f eab12</span><br><span class="line">54 23.删除数据库</span><br><span class="line">55 drop database db1;</span><br><span class="line">56 24.数据库备份</span><br><span class="line">57 mysqldump  -uroot -p&apos;yourpassword&apos; mysql &gt;/tmp/mysql.sql</span><br><span class="line">58 25.数据库恢复</span><br><span class="line">59 mysql -uroot -p&apos;yourpassword&apos; mysql &lt;/tmp/mysql.sql</span><br><span class="line">60 26.新建普通用户</span><br><span class="line">61 CREATE USER name IDENTIFIED BY &apos;ssapdrow&apos;;</span><br><span class="line">62 27.更改普通用户密码</span><br><span class="line">63 SET PASSWORD FOR name=PASSWORD(&apos;fdddfd&apos;);</span><br><span class="line">64 28.查看name用户权限</span><br><span class="line">65 SHOW GRANTS FOR name;</span><br><span class="line">66 29.脚本中执行mysql命令</span><br><span class="line">67 mysql -uuser -ppasswd -e&quot;show databases&quot;</span><br><span class="line">68 echo &quot;show databases&quot;|mysql -uuser -ppassword</span><br><span class="line">69 以下是执行大量mysql语句采用的方式</span><br><span class="line">70 mysql -uuser -hhostname -ppasswd &lt;&lt;EOF</span><br><span class="line">71 mysql语句</span><br><span class="line">72 EOF</span><br></pre></td></tr></table></figure>
+<p>7.至于对于表的增删查改，由于属于另外的内容，这里不再展示。由于服务器（CentOS）的带宽或者空间限制，所以不太可能像windows一样进行相应的类似于navicat式的图形化操作，因此还是请大家多多熟悉相应的关于黑屏窗口的操作</p>
+
+          
         
       
     </div>
@@ -1239,7 +1671,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/03/19/vue路由跳转传参数/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/aa90ce7b.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1258,7 +1690,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/19/vue路由跳转传参数/" itemprop="url">vue路由跳转传参数</a></h1>
+                <a class="post-title-link" href="/post/aa90ce7b.html" itemprop="url">vue路由跳转传参数</a></h1>
         
 
         <div class="post-meta">
@@ -1310,16 +1742,88 @@
       
         
           
-          1. router-link
-&lt;router-link        :to=“{            path: ‘yourPath’,            params: {                name: ‘name’,                dataObj: da
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/19/vue路由跳转传参数/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h5 id="1-router-link"><a href="#1-router-link" class="headerlink" title="1. router-link"></a>1. router-link</h5><hr>
+<p><code class="hljs lasso has-numbering"><span class="hljs-subst">&lt;router<span class="hljs-attribute">-link<br>        :<span class="hljs-keyword">to<span class="hljs-subst">=<span class="hljs-string">“{<br>            path: ‘yourPath’,<br>            params: {<br>                name: ‘name’,<br>                dataObj: data<br>            },<br>            query: {<br>                name: ‘name’,<br>                dataObj: data<br>            }<br>        }”<span class="hljs-subst">&gt;<br>    <span class="hljs-subst">&lt;/router<span class="hljs-attribute">-link<span class="hljs-subst">&gt;</span></span></span></span></span></span></span></span></span></code></p>
+<pre><code> &lt;span class=&quot;hljs-number&quot;&gt;1. path &lt;span class=&quot;hljs-subst&quot;&gt;-&gt; 是要跳转的路由路径,也可以是路由文件里面配置的 name 值,两者都可以进行路由导航
+ &lt;span class=&quot;hljs-number&quot;&gt;2. &lt;span class=&quot;hljs-keyword&quot;&gt;params &lt;span class=&quot;hljs-subst&quot;&gt;-&gt; 是要传送的参数,参数可以直接key:value形式传递
+ &lt;span class=&quot;hljs-number&quot;&gt;3. query &lt;span class=&quot;hljs-subst&quot;&gt;-&gt; 是通过 url 来传递参数的同样是key:value形式传递
+
+ &lt;span class=&quot;hljs-comment&quot;&gt;// 2,3两点皆可传递
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;```
+
+* * *
+
+##### 2. $router方式跳转
+
+* * *
+
+&lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs xml has-numbering&quot;&gt;// 组件 a
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;template&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;button @&lt;span class=&quot;hljs-attribute&quot;&gt;click=&lt;span class=&quot;hljs-value&quot;&gt;&quot;sendParams&quot;&gt;传递&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;button&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;template&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;script&gt;&lt;span class=&quot;javascript&quot;&gt;
+  export &lt;span class=&quot;hljs-keyword&quot;&gt;default {
+    name: &lt;span class=&quot;hljs-string&quot;&gt;&apos;&apos;,
+    data () {
+      &lt;span class=&quot;hljs-keyword&quot;&gt;return {
+        msg: &lt;span class=&quot;hljs-string&quot;&gt;&apos;test message&apos;
+      }
+    },
+    methods: {
+      sendParams () {
+        &lt;span class=&quot;hljs-keyword&quot;&gt;this.$router.push({
+            path: &lt;span class=&quot;hljs-string&quot;&gt;&apos;yourPath&apos;, 
+            name: &lt;span class=&quot;hljs-string&quot;&gt;&apos;要跳转的路径的 name,在 router 文件夹下的 index.js 文件内找&apos;,
+            params: { 
+                name: &lt;span class=&quot;hljs-string&quot;&gt;&apos;name&apos;, 
+                dataObj: &lt;span class=&quot;hljs-keyword&quot;&gt;this.msg
+            }
+            &lt;span class=&quot;hljs-comment&quot;&gt;/*query: {
+                name: &apos;name&apos;, 
+                dataObj: this.msg
+            }*/
+        })
+      }
+    },
+    computed: {
+
+    },
+    mounted () {
+
+    }
+  }
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;script&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;style &lt;span class=&quot;hljs-attribute&quot;&gt;scoped&gt;&lt;span class=&quot;css&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;style&gt;
+----------------------------------------
+// 组件b
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;template&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;h3&gt;msg&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;h3&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;template&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;script&gt;&lt;span class=&quot;javascript&quot;&gt;
+  export &lt;span class=&quot;hljs-keyword&quot;&gt;default {
+    name: &lt;span class=&quot;hljs-string&quot;&gt;&apos;&apos;,
+    data () {
+      &lt;span class=&quot;hljs-keyword&quot;&gt;return {
+        msg: &lt;span class=&quot;hljs-string&quot;&gt;&apos;&apos;
+      }
+    },
+    methods: {
+      getParams () {
+        &lt;span class=&quot;hljs-comment&quot;&gt;// 取到路由带过来的参数 
+        &lt;span class=&quot;hljs-keyword&quot;&gt;let routerParams = &lt;span class=&quot;hljs-keyword&quot;&gt;this.$route.params.dataobj
+        &lt;span class=&quot;hljs-comment&quot;&gt;// 将数据放在当前组件的数据内
+        &lt;span class=&quot;hljs-keyword&quot;&gt;this.msg = routerParams
+      }
+    },
+    watch: {
+    &lt;span class=&quot;hljs-comment&quot;&gt;// 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
+      &lt;span class=&quot;hljs-string&quot;&gt;&apos;$route&apos;: &lt;span class=&quot;hljs-string&quot;&gt;&apos;getParams&apos;
+    }
+  }
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;script&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;style &lt;span class=&quot;hljs-attribute&quot;&gt;scoped&gt;&lt;span class=&quot;css&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;style&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;```&lt;/pre&gt;
+</code></pre>
+          
         
       
     </div>
@@ -1366,7 +1870,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/03/06/Linux上安装Hadoop集群(CentOS7+hadoop-2.8.0)/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/3f580db6.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1385,7 +1889,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/06/Linux上安装Hadoop集群(CentOS7+hadoop-2.8.0)/" itemprop="url">Linux上安装Hadoop集群(CentOS7+hadoop-2.8.0)</a></h1>
+                <a class="post-title-link" href="/post/3f580db6.html" itemprop="url">Linux上安装Hadoop集群(CentOS7+hadoop-2.8.0)</a></h1>
         
 
         <div class="post-meta">
@@ -1437,15 +1941,8 @@
       
         
           
-          1下载hadoop2安装3个虚拟机并实现ssh免密码登录        2.1安装3个机器        2.2检查机器名称        2.3修改/etc/hosts文件        2.4 给3个机器生成秘钥文件        2.5 在hserver1上创建authorized_keys文
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/06/Linux上安装Hadoop集群(CentOS7+hadoop-2.8.0)/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div id="article_content" class="article_content csdn-tracking-statistics tracking-click" data-mod="popu_519" data-dsm="post"><br><div class="htmledit_views"><br><br><a href="">1下载hadoop</a><br><br><a href="">2安装3个虚拟机并实现ssh免密码登录</a><br><br>        <a href="">2.1安装3个机器</a><br><br>        <a href="">2.2检查机器名称</a><br><br>        <a href="">2.3修改/etc/hosts文件</a><br><br>        <a href="">2.4 给3个机器生成秘钥文件</a><br><br>        <a href="">2.5 在hserver1上创建authorized_keys文件</a><br><br>        <a href="">2.6将authorized_keys文件复制到其他机器</a><br><br>        <a href="">2.7 测试使用ssh进行无密码登录</a><br><br>                   <a href="">2.7.1在hserver1上进行测试</a><br><br>                   <a href="">2.7.2在hserver2上进行测试</a><br><br>                   <a href="">2.7.3在hserver3上进行测试</a><br><br><a href="">3安装jdk和hadoop</a><br><br>         <a href="">3.1安装JDK</a><br><br>         <a href="">3.2安装hadoop</a><br><br>                  <a href="">3.2.1上载文件并解压缩</a><br><br>                  <a href="">3.2.2新建几个目录</a><br><br>                  <a href="">3.2.3修改etc/hadoop中的一系列配置文件</a><br><br>                              <a href="">3.2.3.1修改core-site.xml</a><br><br>                              <a href="">3.2.3.2修改hadoop-env.sh</a><br><br>                              <a href="">3.2.3.3修改hdfs-site.xml</a><br><br>                              <a href="">3.2.3.4新建并且修改mapred-site.xml</a><br><br>                              <a href="">3.2.3.5修改slaves文件</a><br><br>                              <a href="">3.2.3.6修改yarn-site.xml文件</a><br><br><a href="">4启动hadoop</a><br><br>              <a href="">4.1在namenode上执行初始化</a><br><br>              <a href="">4.2在namenode上执行启动命令</a><br><br><a href="">5测试hadoop</a><br><br>  关键字：Linux  CentOS  Hadoop  Java<br><br>  版本：  CentOS7  Hadoop2.8.0  JDK1.8<br><br>  说明：Hadoop从版本2开始加入了Yarn这个资源管理器，Yarn并不需要单独安装。只要在机器上安装了JDK就可以直接安装Hadoop，单纯安装Hadoop并不依赖Zookeeper之类的其他东西。<br><br># 1下载hadoop<br><br>     本博文使用的hadoop是2.8.0<br><br>    打开下载地址选择页面：<br><br><a href="http://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.8.0/hadoop-2.8.0.tar.gz" target="_blank" rel="noopener">http://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.8.0/hadoop-2.8.0.tar.gz</a><br><br>    如图：<br><br><img src="http://pangguoming.com/blog/images/3018a565-9c11-42f1-a0b6-7bde88135b95.jpg" alt=""><br><br>我使用的地址是：<br><br>       <a href="http://mirror.bit.edu.cn/apache/hadoop/common/hadoop-2.8.0/hadoop-2.8.0.tar.gz" target="_blank" rel="noopener">http://mirror.bit.edu.cn/apache/hadoop/common/hadoop-2.8.0/hadoop-2.8.0.tar.gz</a><br><br># 2安装3个虚拟机并实现ssh免密码登录<br><br>## 2.1安装3个机器<br><br>        这里用的Linux系统是CentOS7(其实Ubuntu也很好，但是这里用的是CentOS7演示)，安装方法就不多说了，如有需要请参考该博文：<br><br>        <a href="http://blog.csdn.net/pucao_cug/article/details/71229416" target="_blank" rel="noopener">http://blog.csdn.net/pucao_cug/article/details/71229416</a><br><br>        安装3个机器，机器名称分别叫hserver1、hserver2、hserver3(说明机器名不这么叫可以，待会用hostname命令修改也行)。<br><br>如图：<br><br>   <img src="http://pangguoming.com/blog/images/8e579a26-d06a-4617-bb55-75c9ac81a982.jpg" alt=""><br><br>          说明：为了免去后面一系列授权的麻烦，这里直接使用root账户登录和操作了。<br><br>          使用ifconfig命令，查看这3个机器的IP。我的机器名和ip的对应关系是:<br><br>192.168.119.128   hserver1<br><br>192.168.119.129   hserver2<br><br>192.168.119.130   hserver3<br><br>## 2.2检查机器名称<br><br>         为了后续操作方便，确保机器的hostname是我们想要的。拿192.168.119.128这台机器为例，用root账户登录，然后使用hostname命令查看机器名称<br><br>如图：<br><br>    <img src="http://pangguoming.com/blog/images/e31ba34e-6694-4f6c-bb5f-02883ad0a44f.jpg" alt=""><br><br>        发现，这个机器名称不是我们想要的。不过这个好办， 我给它改个名称，命令是：<br><br>hostname   hserver1<br><br>如图：<br><br>   <img src="http://pangguoming.com/blog/images/9d495c94-fccc-4c75-a7fe-eab4131b90f0.jpg" alt=""><br><br>         执行完成后，在检查看，是否修改了，敲入hostname命令：<br><br>  如图：<br><br>      <img src="http://pangguoming.com/blog/images/74a8a60e-748f-4712-9081-2a379bcb657c.jpg" alt=""><br><br>          类似的，将其他两个机器，分别改名为hserver2和hserver3。<br><br>## 2.3 修改/etc/hosts文件<br><br>        修改这3台机器的/etc/hosts文件，在文件中添加以下内容：<br><br><div class="dp-highlighter bg_plain"><br><div class="bar"><br><div class="tools"><strong>[plain]</strong> <a href="http://blog.csdn.net/pucao_cug/article/details/71698903#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/pucao_cug/article/details/71698903#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  192.168.119.128   hserver1<br>2.  192.168.119.129   hserver2<br>3.  192.168.119.130   hserver3<br><br>如图：<br><br>     <img src="http://pangguoming.com/blog/images/d2f1bfd3-4817-4415-8c13-47503ce83917.jpg" alt=""><br><br>          说明：IP地址没必要和我的一样，这里只是做一个映射，只要映射是对的就可以，至于修改方法，可以用vim命令，也可以在你的本地机器上把hosts文件内容写好后，拿到Linux机器上去覆盖。<br><br>          配置完成后使用ping命令检查这3个机器是否相互ping得通，以hserver1为例，在什么执行命令：<br><br> ping  -c 3  hserver2<br><br>如图：<br><br>     <img src="http://pangguoming.com/blog/images/c3972e1c-5e86-4eee-ba79-e926d523d582.jpg" alt=""><br><br>       执行命令：<br><br>ping  -c  3  hserver3<br><br>如图：<br><br>     <img src="http://pangguoming.com/blog/images/81b03fc6-a130-480f-bbdd-fed172aad114.jpg" alt=""><br><br>        ping得通，说明机器是互联的，而且hosts配置也正确。<br><br>## 2.4给3个机器生成秘钥文件<br><br>         以hserve1为例，执行命令，生成空字符串的秘钥(后面要使用公钥)，命令是：<br><br>ssh-keygen  -t   rsa   -P  ‘’<br><br>如图：<br><br>     <img src="http://pangguoming.com/blog/images/45273cdb-eac2-4640-b81a-f59023ea0ba1.jpg" alt=""><br><br>         因为我现在用的是root账户，所以秘钥文件保存到了/root/.ssh/目录内，可以使用命令查看，命令是：<br><br>ls    /root/.ssh/<br><br>如图：<br><br>   <img src="http://pangguoming.com/blog/images/43ff93c9-b565-4421-9e3c-9aa4d8a65b98.jpg" alt=""><br><br>       使用同样的方法为hserver2和hserver3生成秘钥(命令完全相同，不用做如何修改)。<br><br>## 2.5在hserver1上创建authorized_keys文件<br><br>          接下来要做的事情是在3台机器的/root/.ssh/目录下都存入一个内容相同的文件，文件名称叫authorized_keys，文件内容是我们刚才为3台机器生成的公钥。为了方便，我下面的步骤是现在hserver1上生成authorized_keys文件，然后把3台机器刚才生成的公钥加入到这个hserver1的authorized_keys文件里，然后在将这个authorized_keys文件复制到hserver2和hserver3上面。<br><br>       首先使用命令，在hserver1的/root/.ssh/目录中生成一个名为authorized_keys的文件，命令是：<br><br>touch  /root/.ssh/authorized_keys<br><br>如图：<br><br>    <img src="http://pangguoming.com/blog/images/c14bebdd-956c-4755-9301-5b0d35f9d7b0.jpg" alt=""><br><br>      可以使用命令看，是否生成成功，命令是：<br><br>ls   /root/.ssh/<br><br>如图：<br><br>    <img src="http://pangguoming.com/blog/images/19ec11ca-30ab-478d-b6d6-6cfaab9eb0e3.jpg" alt=""><br><br>          其次将hserver1上的/root/.ssh/id_rsa.pub文件内容，hserver2上的/root/.ssh/id_rsa.pub文件内容，hserver3上的/root/.ssh/id_rsa.pub文件内容复制到这个authorized_keys文件中，复制的方法很多了，可以用cat命令和vim命令结合来弄，也可以直接把这3台机器上的/root/.ssh/id_rsa.pub文件下载到本地，在本地将authorized_keys文件编辑好在上载到这3台机器上。<br><br>hserver1机器上我的/root/.ssh/id_rsa.pub内容是:<br><br><div class="dp-highlighter bg_plain"><br><div class="bar"><br><div class="tools"><strong>[plain]</strong> <a href="http://blog.csdn.net/pucao_cug/article/details/71698903#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/pucao_cug/article/details/71698903#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD8fTIVorOxgDo81yCEgcJTstUcyfOBecL+NZ/OLXCEzaBMw5pLV0UNRX6SZnaAgu/erazkz4sw74zfRIMzEeKKCeNcZ6W78cg+ZNxDcj8+FGeYqY5+nc0YPhXFVI7AwFmfr7fH5hoIT14ClKfGklPgpEgUjDth0PeRwnUTvUy9A1x76npjAZrknQsnoLYle7cVJZ/zO3eGxS75YEdTYDMv+UMiwtcJg7UxOqR+9UT3TO+xLk0yOl8GIISXzMhdCZkmyAH+DmW56ejzsd+JWwCMm177DtOZULl7Osq+OGOtpbloj4HCfstpoiG58SM6Nba8WUXWLnbgqZuHPBag/Kqjroot@hserver1<br><br>hserver2机器上我的/root/.ssh/id_rsa.pub内容是:<br><br><div class="dp-highlighter bg_plain"><br><div class="bar"><br><div class="tools"><strong>[plain]</strong> <a href="http://blog.csdn.net/pucao_cug/article/details/71698903#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/pucao_cug/article/details/71698903#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC29kPkYz4c3bd9Qa1TV8kCR0bUNs4f7/dDcR1NKwrgIiecN7zPEWJpjILtlm3niNNx1j5R49QLTLBKKo8PE8mid47POvNypkVRGDeN2IVCivoAQ1T7S8bTJ4zDECGydFYyKQfS2nOAifAWECdgFFtIp52d+dLIAg1JC37pfER9f32rd7anhTHYKwnLwR/NDVGAw3tMkXOnFuFKUMdOJ3GSoVOZf3QHKykGIC2fz/lsXZHaCcQWvOU/Ecd9e0263Tvqh7zGWpF5WYEGjkLlY8v2sioeZxgzog1LWycUTMTqaO+fSdbvKqVj6W0qdy3Io8bJ29Q3S/6MxLa6xvFcBJEXroot@hserver2<br><br>hserver2机器上我的/root/.ssh/id_rsa.pub内容是:<br><br><div class="dp-highlighter bg_plain"><br><div class="bar"><br><div class="tools"><strong>[plain]</strong> <a href="http://blog.csdn.net/pucao_cug/article/details/71698903#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/pucao_cug/article/details/71698903#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1a2o10ttv2570GpuUZy7g9o7lIkkeed7ba25VvFEBcUroQIZ+NIAiVIMGPRiOqm7X4bTLWj5EOz5JXG2l8rwA6CFnWfW3U+ttD1COLOrv2tHTiJ1PhQy1jJR/LpC1iX3sNIDDs+I0txZFGTCTRMLmrbHVTl8j5Yy/CTYLuC7reIZjzpHP7aaS2ev0dlbQzeB08ncjA5Jh4X72qQMOGPUUc2C9oa/CeCvI0SJbt8mkHwqFanZz/IfhLJIKhupjtYsqwQMmzLIjHxbLRwUGoWU6X4e76OkUz/xyyHlzBg1Vu2F9hjoXPW80VmupIRSXFDliDBJ8NlXXQN47wwYBG28broot@hserver3<br><br>合并之后，我的hserver1机器上的/root/.ssh/authorized_keys文件内容是：<br><br><div class="dp-highlighter bg_plain"><br><div class="bar"><br><div class="tools"><strong>[plain]</strong> <a href="http://blog.csdn.net/pucao_cug/article/details/71698903#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/pucao_cug/article/details/71698903#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD8fTIVorOxgDo81yCEgcJTstUcyfOBecL+NZ/OLXCEzaBMw5pLV0UNRX6SZnaAgu/erazkz4sw74zfRIMzEeKKCeNcZ6W78cg+ZNxDcj8+FGeYqY5+nc0YPhXFVI7AwFmfr7fH5hoIT14ClKfGklPgpEgUjDth0PeRwnUTvUy9A1x76npjAZrknQsnoLYle7cVJZ/zO3eGxS75YEdTYDMv+UMiwtcJg7UxOqR+9UT3TO+xLk0yOl8GIISXzMhdCZkmyAH+DmW56ejzsd+JWwCMm177DtOZULl7Osq+OGOtpbloj4HCfstpoiG58SM6Nba8WUXWLnbgqZuHPBag/Kqjroot@hserver1<br>2.  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC29kPkYz4c3bd9Qa1TV8kCR0bUNs4f7/dDcR1NKwrgIiecN7zPEWJpjILtlm3niNNx1j5R49QLTLBKKo8PE8mid47POvNypkVRGDeN2IVCivoAQ1T7S8bTJ4zDECGydFYyKQfS2nOAifAWECdgFFtIp52d+dLIAg1JC37pfER9f32rd7anhTHYKwnLwR/NDVGAw3tMkXOnFuFKUMdOJ3GSoVOZf3QHKykGIC2fz/lsXZHaCcQWvOU/Ecd9e0263Tvqh7zGWpF5WYEGjkLlY8v2sioeZxgzog1LWycUTMTqaO+fSdbvKqVj6W0qdy3Io8bJ29Q3S/6MxLa6xvFcBJEXroot@hserver2<br>3.  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1a2o10ttv2570GpuUZy7g9o7lIkkeed7ba25VvFEBcUroQIZ+NIAiVIMGPRiOqm7X4bTLWj5EOz5JXG2l8rwA6CFnWfW3U+ttD1COLOrv2tHTiJ1PhQy1jJR/LpC1iX3sNIDDs+I0txZFGTCTRMLmrbHVTl8j5Yy/CTYLuC7reIZjzpHP7aaS2ev0dlbQzeB08ncjA5Jh4X72qQMOGPUUc2C9oa/CeCvI0SJbt8mkHwqFanZz/IfhLJIKhupjtYsqwQMmzLIjHxbLRwUGoWU6X4e76OkUz/xyyHlzBg1Vu2F9hjoXPW80VmupIRSXFDliDBJ8NlXXQN47wwYBG28broot@hserver3<br><br>如图：<br><br>    <img src="http://pangguoming.com/blog/images/0da66a1c-0a39-488d-acb5-9d530c366f48.jpg" alt=""><br><br>## 2.6将authorized_keys文件复制到其他机器<br><br>        hserver1机器的/root/.ssh/目录下已经有authorized_keys这个文件了，该文件的内容也已经OK了，接下来要将该文件复制到hserver2的/root/.ssh/和hserver3的/root/.ssh/。<br><br>       复制的方法有很多，最简单的就是用SecureFX可视化工具操作吧。<br><br>       复制完成后，可以看到三台机器的/root/.ssh目录下都有了这样的文件<br><br>       如图：<br><br>       <img src="http://pangguoming.com/blog/images/52fedde3-4ad2-423f-b544-ff8870992a1d.jpg" alt=""><br><br>        上图已经说得很清楚了，三台机器的/root/.ssh都有同名的文件，但是只有authorized_keys文件的内容是相同的。<br><br>## 2.7测试使用ssh进行无密码登录<br><br><div><br><br>### 2.7.1在hserver1上进行测试<br><br>       输入命令：<br><br>ssh   hserver2<br><br>如图：<br><br>  <img src="http://pangguoming.com/blog/images/aa9cc200-445e-4be2-aeae-ce1b3816c7ca.jpg" alt=""><br><br> 输入命令：<br><br> exit回车<br><br>如图：<br><br>   <img src="http://pangguoming.com/blog/images/e5eeb64c-00cb-4084-a69c-e307a7338c53.jpg" alt=""><br><br>输入命令：<br><br>ssh   hserver3<br><br>如图：<br><br>   <img src="http://pangguoming.com/blog/images/a8ad7a44-c697-42c4-bf59-e26c035f0cdf.jpg" alt=""><br><br>输入命令：<br><br> exit回车<br><br>如图：<br><br>    <img src="http://pangguoming.com/blog/images/c51e186e-07d2-4063-b2fd-0b0ac136cd1d.jpg" alt=""><br><br>### 2.7.2 在hserver2上进行测试<br><br>        方法类似2.7.1，只不过命令变成了ssh  hserver1和ssh  hserver3，但是一定要注意的是，每次ssh完成后，都要执行exit，否则你的后续命令是在另外一台机器上执行的。<br><br>### 2.7.3 在hserver3上进行测试<br><br>      方法类似2.7.1，只不过命令变成了ssh  hserver1和ssh  hserver2，但是一定要注意的是，每次ssh完成后，都要执行exit，否则你的后续命令是在另外一台机器上执行的。<br><br># 3安装jdk和hadoop<br><br>         说明，为了省去一系列获取管理员权限，授权等繁琐操作，精简教程，这里都是使用root账户登录并且使用root权限进行操作。<br><br>## 3.1 安装JDK<br><br>        安装jdk在这里不在细数，如果有需要可以参考该博文(虽然那篇博文用的是ubuntu，但是jdk安装在CentOS下也一样)：<br><br><a href="http://blog.csdn.net/pucao_cug/article/details/68948639" target="_blank" rel="noopener">http://blog.csdn.net/pucao_cug/article/details/68948639</a><br><br>## 3.2  安装hadoop<br><br>        注意： 3台机器上都需要重复下面所讲的步骤。<br><br>### 3.2.1 上载文件并解压缩<br><br>        在opt目录下新建一个名为hadoop的目录，并将下载得到的hadoop-2.8.0.tar上载到该目录下，如图:<br><br>    <img src="http://pangguoming.com/blog/images/8138dc11-dc60-42bc-a37a-6c1e1e486be3.jpg" alt=""><br><br>         进入到该目录，执行命令:<br><br>cd   /opt/hadoop<br><br>           执行解压命令：<br><br> tar  -xvf   hadoop-2.8.0.tar.gz<br><br>            说明：3台机器都要进行上述操作，解压缩后得到一个名为hadoop-2.8.0的目录。<br><br>### 3.2.2新建几个目录<br><br>           在/root目录下新建几个目录，复制粘贴执行下面的命令：<br><br><div class="dp-highlighter bg_plain"><br><div class="bar"><br><div class="tools"><strong>[plain]</strong> <a href="http://blog.csdn.net/pucao_cug/article/details/71698903#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/pucao_cug/article/details/71698903#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  mkdir  /root/hadoop<br>2.  mkdir  /root/hadoop/tmp<br>3.  mkdir  /root/hadoop/var<br>4.  mkdir  /root/hadoop/dfs<br>5.  mkdir  /root/hadoop/dfs/name<br>6.  mkdir  /root/hadoop/dfs/data<br><br>### 3.2.3 修改etc/hadoop中的一系列配置文件<br><br>          修改/opt/hadoop/hadoop-2.8.0/etc/hadoop目录内的一系列文件。<br><br>#### 3.2.3.1 修改core-site.xml<br><br>            修改/opt/hadoop/hadoop-2.8.0/etc/hadoop/core-site.xml文件<br><br>          在<configuration>节点内加入配置:<br><br> <property><br><br>        <name>hadoop.tmp.dir</name><br><br>        <value>/root/hadoop/tmp</value><br><br>        <description>Abase for other temporary directories.</description><br><br>   </property><br><br>   <property><br><br>        <name>fs.default.name</name><br><br>        <value>hdfs://hserver1:9000</value><br><br>   </property><br><br></configuration><br><br>#### 3.2.3.2 修改hadoop-env.sh<br><br>         修改/opt/hadoop/hadoop-2.8.0/etc/hadoop/hadoop-env.sh文件<br><br>         将export   JAVA_HOME=${JAVA_HOME}<br><br>         修改为：<br><br>         export   JAVA_HOME=/opt/java/jdk1.8.0_121<br><br>        说明：修改为自己的JDK路径<br><br>#### 3.2.3.3 修改hdfs-site.xml<br><br>          修改/opt/hadoop/hadoop-2.8.0/etc/hadoop/hdfs-site.xml文件<br><br>          在<configuration>节点内加入配置:<br><br><property><br><br>   <name>dfs.name.dir</name><br><br>   <value>/root/hadoop/dfs/name</value><br><br>   <description>Path on the local filesystem where theNameNode stores the namespace and transactions logs persistently.</description><br><br></property><br><br><property><br><br>   <name>dfs.data.dir</name><br><br>   <value>/root/hadoop/dfs/data</value><br><br>   <description>Comma separated list of paths on the localfilesystem of a DataNode where it should store its blocks.</description><br><br></property><br><br><property><br><br>   <name>dfs.replication</name><br><br>   <value>2</value><br><br></property><br><br><property><br><br>      <name>dfs.permissions</name><br><br>      <value>false</value><br><br>      <description>need not permissions</description><br><br></property><br><br>          说明：dfs.permissions配置为false后，可以允许不要检查权限就生成dfs上的文件，方便倒是方便了，但是你需要防止误删除，请将它设置为true，或者直接将该property节点删除，因为默认就是true。<br><br>#### 3.2.3.4 新建并且修改mapred-site.xml<br><br>           在该版本中，有一个名为mapred-site.xml.template的文件，复制该文件，然后改名为mapred-site.xml，命令是：<br><br><div class="dp-highlighter bg_plain"><br><div class="bar"><br><div class="tools"><strong>[plain]</strong> <a href="http://blog.csdn.net/pucao_cug/article/details/71698903#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/pucao_cug/article/details/71698903#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  cp   /opt/hadoop/hadoop-2.8.0/etc/hadoop/mapred-site.xml.template     /opt/hadoop/hadoop-2.8.0/etc/hadoop/mapred-site.xml<br><br>          修改这个新建的mapred-site.xml文件，在<configuration>节点内加入配置:<br><br> <property><br><br>    <name>mapred.job.tracker</name><br><br>    <value>hserver1:49001</value><br><br></property><br><br><property><br><br>      <name>mapred.local.dir</name><br><br>       <value>/root/<span style="text-decoration: underline;">hadoop</span>/<span style="text-decoration: underline;">var</span></value><br><br></property><br><br><property><br><br>       <name>mapreduce.framework.name</name><br><br>       <value>yarn</value><br><br></property><br><br>#### 3.2.3.5 修改slaves文件<br><br>         修改/opt/hadoop/hadoop-2.8.0/etc/hadoop/slaves文件，将里面的localhost删除，添加如下内容：<br><br><div class="dp-highlighter bg_plain"><br><div class="bar"><br><div class="tools"><strong>[plain]</strong> <a href="http://blog.csdn.net/pucao_cug/article/details/71698903#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/pucao_cug/article/details/71698903#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  hserver2<br>2.  hserver3<br><br>#### 3.2.3.6 修改yarn-site.xml文件<br><br>         修改/opt/hadoop/hadoop-2.8.0/etc/hadoop/yarn-site.xml文件，<br><br>         在<configuration>节点内加入配置(注意了，内存根据机器配置越大越好，我这里只配2个G是因为机器不行):<br><br><property><br><br>        <name>yarn.resourcemanager.hostname</name><br><br>        <value>hserver1</value><br><br>   </property><br><br>   <property><br><br>        <description>The address of the applications manager interface in the RM.</description><br><br>        <name>yarn.resourcemanager.address</name><br><br>        <value>${yarn.resourcemanager.hostname}:8032</value><br><br>   </property><br><br>   <property><br><br>        <description>The address of the scheduler interface.</description><br><br>        <name>yarn.resourcemanager.scheduler.address</name><br><br>        <value>${yarn.resourcemanager.hostname}:8030</value><br><br>   </property><br><br>   <property><br><br>        <description>The http address of the RM web application.</description><br><br>        <name>yarn.resourcemanager.webapp.address</name><br><br>        <value>${yarn.resourcemanager.hostname}:8088</value><br><br>   </property><br><br>   <property><br><br>        <description>The https adddress of the RM web application.</description><br><br>        <name>yarn.resourcemanager.webapp.https.address</name><br><br>        <value>${yarn.resourcemanager.hostname}:8090</value><br><br>   </property><br><br>   <property><br><br>        <name>yarn.resourcemanager.resource-tracker.address</name><br><br>        <value>${yarn.resourcemanager.hostname}:8031</value><br><br>   </property><br><br>   <property><br><br>        <description>The address of the RM admin interface.</description><br><br>        <name>yarn.resourcemanager.admin.address</name><br><br>        <value>${yarn.resourcemanager.hostname}:8033</value><br><br>   </property><br><br>   <property><br><br>        <name>yarn.nodemanager.aux-services</name><br><br>        <value>mapreduce_shuffle</value><br><br>   </property><br><br>   <property><br><br>        <name>yarn.scheduler.maximum-allocation-<span style="text-decoration: underline;">mb</span></name><br><br>        <value>2048</value><br><br>        <discription>每个节点可用内存,单位MB,默认8182MB</discription><br><br>   </property><br><br>   <property><br><br>        <name>yarn.nodemanager.vmem-<span style="text-decoration: underline;">pmem</span>-ratio</name><br><br>        <value>2.1</value><br><br>   </property><br><br>   <property><br><br>        <name>yarn.nodemanager.resource.memory-<span style="text-decoration: underline;">mb</span></name><br><br>        <value>2048</value><br><br></property><br><br>   <property><br><br>        <name>yarn.nodemanager.vmem-check-enabled</name><br><br>        <value>false</value><br><br></property><br><br>       说明：yarn.nodemanager.vmem-check-enabled这个的意思是忽略虚拟内存的检查，如果你是安装在虚拟机上，这个配置很有用，配上去之后后续操作不容易出问题。如果是实体机上，并且内存够多，可以将这个配置去掉。<br><br># 4启动hadoop<br><br>## 4.1在namenode上执行初始化<br><br>           因为hserver1是namenode，hserver2和hserver3都是datanode，所以只需要对hserver1进行初始化操作，也就是对hdfs进行格式化。<br><br>          进入到hserver1这台机器的/opt/hadoop/hadoop-2.8.0/bin目录，也就是执行命令：<br><br>cd   /opt/hadoop/hadoop-2.8.0/bin<br><br>           执行初始化脚本，也就是执行命令：<br><br> ./hadoop  namenode  -format<br><br>如图：<br><br>         <img src="http://pangguoming.com/blog/images/47b66c3b-817e-4ef4-81ed-4fef215f8d95.jpg" alt=""><br><br>      稍等几秒，不报错的话，即可执行成功，如图：      <img src="http://pangguoming.com/blog/images/cf9a3f05-2f62-4998-a009-08cb681f868c.jpg" alt=""><br><br>          格式化成功后，可以在看到在/root/hadoop/dfs/name/目录多了一个current目录，而且该目录内有一系列文件<br><br>          如图：<br><br> <img src="http://pangguoming.com/blog/images/d6a47b55-cbb2-4ced-8f8c-e37b76363f7a.jpg" alt=""><br><br>## 4.2在namenode上执行启动命令<br><br>           因为hserver1是namenode，hserver2和hserver3都是datanode，所以只需要再hserver1上执行启动命令即可。<br><br>           进入到hserver1这台机器的/opt/hadoop/hadoop-2.8.0/sbin目录，也就是执行命令：<br><br>cd    /opt/hadoop/hadoop-2.8.0/sbin<br><br>          执行初始化脚本，也就是执行命令：<br><br> ./start-all.sh<br><br>         第一次执行上面的启动命令，会需要我们进行交互操作，在问答界面上输入yes回车<br><br>如图：<br><br><img src="http://pangguoming.com/blog/images/f439530d-ad92-41a2-b2e9-acbcc8ed5f50.jpg" alt=""><br><br># 5测试hadoop<br><br>           haddoop启动了，需要测试一下hadoop是否正常。<br><br>          执行命令，关闭防火墙，CentOS7下，命令是：<br><br>          systemctl   stop   firewalld.service<br><br>         如图：<br><br>         <img src="http://pangguoming.com/blog/images/63dbfb88-239c-4ddf-afc8-743569c1f2ec.jpg" alt=""><br><br>            hserver1是我们的namanode，该机器的IP是192.168.119.128，在本地电脑访问如下地址:<br><br>             <a href="http://192.168.119.128:50070/" target="_blank" rel="noopener">http://192.168.119.128:50070/</a><br><br>             自动跳转到了overview页面<br><br>         如图：<br><br>   <img src="http://pangguoming.com/blog/images/cd89a416-ff92-4d96-b06a-125e92c29247.jpg" alt=""><br><br>            在本地浏览器里访问如下地址：<br><br>            <a href="http://192.168.119.128:8088/" target="_blank" rel="noopener">http://192.168.119.128:8088/</a><br><br>           自动跳转到了cluster页面<br><br>           如图：<br><br>    <img src="http://pangguoming.com/blog/images/97b02ee3-a41d-4c67-85d1-92a250deaabf.jpg" alt=""><br><br></configuration></div></div></div></div></configuration></div></div></div></div></configuration></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -1492,7 +1989,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/03/06/CentOS 7安装Hadoop 3.0.0/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/c3452022.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1511,7 +2008,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/06/CentOS 7安装Hadoop 3.0.0/" itemprop="url">CentOS 7安装Hadoop 3.0.0</a></h1>
+                <a class="post-title-link" href="/post/c3452022.html" itemprop="url">CentOS 7安装Hadoop 3.0.0</a></h1>
         
 
         <div class="post-meta">
@@ -1563,17 +2060,15 @@
       
         
           
-          最近在学习大数据，需要安装Hadoop，自己弄了好久，最后终于弄好了。网上也有很多文章关于安装Hadoop的，但总会遇到一些问题，所以把在CentOS 7安装Hadoop 3.0.0的整个过程记录下来，有什么不对的地方大家可以留言更正。
-　　一、ssh免密登录1、测试是否能免密登录
-　　　　　　# 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/06/CentOS 7安装Hadoop 3.0.0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>最近在学习大数据，需要安装<a href="http://www.linuxidc.com/topicnews.aspx?tid=13" title="Hadoop" target="_blank" rel="noopener">Hadoop</a>，自己弄了好久，最后终于弄好了。网上也有很多文章关于安装Hadoop的，但总会遇到一些问题，所以把在<a href="http://www.linuxidc.com/topicnews.aspx?tid=14" title="CentOS" target="_blank" rel="noopener">CentOS</a> 7安装Hadoop 3.0.0的整个过程记录下来，有什么不对的地方大家可以留言更正。</p>
+<h4 id="一、ssh免密登录"><a href="#一、ssh免密登录" class="headerlink" title="　　一、ssh免密登录"></a>　　一、ssh免密登录</h4><p>1、测试是否能免密登录</p>
+<div class="linuxidc_code"><br><br>　　　　　　# ssh localhost<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">The authenticity of host &apos;localhost (::1)&apos; can&apos;t be established.</span><br><span class="line"></span><br><span class="line">2、设置免密登录</span><br><span class="line"></span><br><span class="line">1)、去掉 /etc/ssh/sshd_config中的两行注释，如没有则添加，所有服务器都要设置的：</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;linuxidc_code&quot;&gt;</span><br><span class="line">    &lt;pre&gt;　　　　　　　　#RSAAuthentication yes  </span><br><span class="line">    　　　　　　　　#PubkeyAuthentication yes</span><br></pre></td></tr></table></figure><br><br>2)、生成秘钥：<br><br>    <div class="linuxidc_code"><br>    <pre># ssh-keygen -t rsa<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">备注：输入命令后回车4次</span><br><span class="line"></span><br><span class="line">3)、复制到公共密钥中：</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;linuxidc_code&quot;&gt;</span><br><span class="line">    &lt;pre&gt;# cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys</span><br></pre></td></tr></table></figure><br><br>4)、将秘钥复制到目标服务器：<br><br>    <div class="linuxidc_code"><br>    <pre># ssh-copy-id 目标服务器IP<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">5)、测试：（没有报错，并没有提示输入目标服务器用户密码，用户切换到目标服务器用户名则成功）</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;linuxidc_code&quot;&gt;</span><br><span class="line">    &lt;pre&gt;# ssh 目标服务器IP</span><br></pre></td></tr></table></figure><br><br><img src="http://pangguoming.com/blog/images/9ac65831-cbff-4a91-9c44-947207178882.png" alt=""><br><br>备注：配置好了hadoop1到hadoop2免密登录，同时需要配置hadoop2到hadoop1的免密登录，在hadoop2上操作，过程同上<br><br>    #### 　　二、安装JDK<br><br>hadoop-3.0.0需要jdk1.8，此处省略安装过程，网上很多，过程也比较简单<br><br>    #### 　　三、安装hadoop<br><br>1、下载hadoop：<br><br><a href="http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-3.0.0/" title="hadoop-3.0.0下载" target="_blank" rel="noopener">http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-3.0.0/</a><br><br>2、解压安装：<br><br> 1)、复制 <a href="http://mirrors.hust.edu.cn/apache/hadoop/common/stable2/hadoop-2.6.0.tar.gz" target="_blank" rel="noopener">hadoop-3.0.0</a>.tar.gz 到/usr/hadoop目录下， 然后<br><br>    <div class="linuxidc_code"><br>    <pre>　　#tar -xzvf hadoop-3.0.0.tar.gz<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">解压，解压后目录为：/usr/hadoop/hadoop-3.0.0，Hadoop 解压后即可使用。输入如下命令来检查 Hadoop 是否可用，成功则会显示 Hadoop 版本信息：</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;linuxidc_code&quot;&gt;</span><br><span class="line">    &lt;pre&gt;#cd /usr/hadoop/hadoop-3.0.0 </span><br><span class="line">    　　　　　　　　#./bin/hadoop version</span><br></pre></td></tr></table></figure><br><br>2），在/usr/hadoop/目录下，建立tmp：<br><br>    <div class="linuxidc_code"><br>    <pre>#mkdir /usr/hadoop/tmp<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3)、设置环境变量：</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;linuxidc_code&quot;&gt;</span><br><span class="line">    &lt;pre&gt;#vi /etc/profile  </span><br><span class="line">　　　　　　　　# set hadoop path   </span><br><span class="line">　　　　　　　　&lt;span class=&quot;hljs-keyword&quot;&gt;export HADOOP_HOME=/usr/hadoop/hadoop-3.0.0&lt;span class=&quot;hljs-number&quot;&gt;&lt;span class=&quot;hljs-number&quot;&gt;   </span><br><span class="line">　　　　　　　　&lt;span class=&quot;hljs-keyword&quot;&gt;export PATH=&lt;span class=&quot;hljs-variable&quot;&gt;$PATH:&lt;span class=&quot;hljs-variable&quot;&gt;$HADOOP_HOME/bin&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</span><br></pre></td></tr></table></figure><br><br>4)、使环境变量生效，终端中运行如下命令：<br><br>    <div class="linuxidc_code"><br>    <pre>#source /etc/profile<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">5)、设置hadoop： </span><br><span class="line"></span><br><span class="line">一共需要配置主要的6个文件：</span><br><span class="line"></span><br><span class="line"> hadoop-3.0.0/etc/hadoop/hadoop-env.sh </span><br><span class="line"></span><br><span class="line"> hadoop-3.0.0/etc/hadoop/yarn-env.sh </span><br><span class="line"></span><br><span class="line"> hadoop-3.0.0/etc/hadoop/core-site.xml </span><br><span class="line"></span><br><span class="line"> hadoop-3.0.0/etc/hadoop/hdfs-site.xml </span><br><span class="line"></span><br><span class="line">　　&lt;em id=&quot;__mceDel&quot;&gt;hadoop-3.0.0/etc/hadoop/mapred-site.xml *</span><br><span class="line"></span><br><span class="line">&lt;em id=&quot;__mceDel&quot;&gt;　　　　　　　　　　*&lt;em id=&quot;__mceDel&quot;&gt;hadoop-3.0.0/etc/hadoop/yarn-site.xml*</span><br><span class="line"></span><br><span class="line">*　　　　　　　　⑴、*&lt;em id=&quot;__mceDel&quot;&gt;配置hadoop-env.sh：*</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;linuxidc_code&quot;&gt;</span><br><span class="line">    &lt;pre&gt;　　　　　　　　　　# The java implementation to use.  </span><br><span class="line">    　　　　　　　　　　#export JAVA_HOME=$&#123;JAVA_HOME&#125;  </span><br><span class="line">    　　　　　　　　　　export JAVA_HOME=/usr/java/jdk1.8.0_152 //根据自己jdk安装目录配置</span><br></pre></td></tr></table></figure><br><br>⑵、<em id="__mceDel">配置yarn-env.sh：<em><br><br>    <div class="linuxidc_code"><br>    <pre>　　　　　　　　　　#The java implementation to usr<br>    　　　　　　　　　　export JAVA_HOME=/usr/java/jdk1.8.0_152 <em id="__mceDel">//</em><em id="__mceDel">根据自己jdk安装目录配置<em><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">⑶、&lt;em id=&quot;__mceDel&quot;&gt;配置core-site.xml：*</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;linuxidc_code&quot;&gt;</span><br><span class="line">    &lt;pre&gt;　　&lt;!-- 指定HADOOP所使用的文件系统schema（URI），HDFS的老大（NameNode）的地址 --&gt;  </span><br><span class="line">　　　　　　　　　　&lt;configuration&gt;  </span><br><span class="line">     　　　　　　　　　　　&lt;property&gt;  </span><br><span class="line">        　　　　　　　　　　&lt;name&gt;fs.default.name&lt;/name&gt;  </span><br><span class="line">        　　　　　　　　　　&lt;value&gt;hdfs://localhost:9000&lt;/value&gt;  </span><br><span class="line">        　　　　　　　　　　&lt;description&gt;HDFS的URI，文件系统://namenode标识:端口号&lt;/description&gt;  </span><br><span class="line">    　　　　　　　　　　　　&lt;/property&gt;  </span><br><span class="line"></span><br><span class="line">    　　　　　　　　　　　　&lt;property&gt;  </span><br><span class="line">        　　　　　　　　　　&lt;name&gt;hadoop.tmp.dir&lt;/name&gt;  </span><br><span class="line">        　　　　　　　　　　&lt;value&gt;/usr/hadoop/tmp&lt;/value&gt; </span><br><span class="line">        　　　　　　　　　　&lt;description&gt;namenode上本地的hadoop临时文件夹&lt;/description&gt;  </span><br><span class="line">    　　　　　　　　　　　　&lt;/property&gt;  </span><br><span class="line">    　　　　　　　　　　&lt;/configuration&gt;</span><br></pre></td></tr></table></figure><br><br>⑷、<em id="__mceDel">配置hdfs-site.xml：</em><br><br>    <div class="linuxidc_code"><br>    <pre>　　<configuration><br>    　　　　　　　　　　&lt;!—hdfs-site.xml–&gt;<br>    　　　　　　　　　　　　<property><br>        　　　　　　　　　　<name>dfs.replication</name><br>        　　　　　　　　　　<value>1</value><br>        　　　　　　　　　　<description>副本个数，配置默认是3,应小于datanode机器数量</description><br>    　　　　　　　　　　　　</property><br>    　　　　　　　　　　</configuration><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">⑸、&lt;em id=&quot;__mceDel&quot;&gt;配置mapred-site.xml：*</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;linuxidc_code&quot;&gt;</span><br><span class="line">    &lt;pre&gt;　　&lt;!-- 指定mr运行在yarn上 --&gt;  </span><br><span class="line">　　　　　　　　　　&lt;configuration&gt;  </span><br><span class="line">    　　　　　　　　　　　　&lt;property&gt;  </span><br><span class="line">            　　　　　　　　&lt;name&gt;mapreduce.framework.name&lt;/name&gt;  </span><br><span class="line">            　　　　　　　　&lt;value&gt;yarn&lt;/value&gt;  </span><br><span class="line">    　　　　　　　　　　　　&lt;/property&gt;  </span><br><span class="line">    　　　　　　　　　　&lt;/configuration&gt;</span><br></pre></td></tr></table></figure><br><br>⑹、<em id="__mceDel">配置yarn-site.xml：<em><br><br>    <div class="linuxidc_code"><br>    <pre>　　<!-- 指定YARN的老大（ResourceManager）的地址 --><br>　　　　　　　　　　<configuration><br>    　　　　　　　　　　　　<property><br>            　　　　　　　　　　<name>yarn.nodemanager.aux-services</name><br>            　　　　　　　　　　<value>mapreduce_shuffle</value><br>    　　　　　　　　　　　　</property>  　<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> &lt;!-- reducer获取数据的方式 --&gt;  </span><br><span class="line"> &lt;property&gt;  </span><br><span class="line"> &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;  </span><br><span class="line"> &lt;value&gt;mapreduce_shuffle&lt;/value&gt;  </span><br><span class="line"> &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">　　　&lt;em id=&quot;__mceDel&quot;&gt;&lt;/configuration&gt;*</span><br><span class="line"></span><br><span class="line"> 备注：以上配置都是以最简配置，还有很多配置可以自行添加</span><br><span class="line"></span><br><span class="line">* 6)、将/usr/hadoop复制到其他服务器：*</span><br><span class="line"></span><br><span class="line">****** scp -r ******/usr/hadoop****** root@192.168.1.11:******/usr/hadoop************</span><br><span class="line"></span><br><span class="line">　7)、格式化namenode：&lt;em id=&quot;__mceDel&quot;&gt;　　*</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;linuxidc_code&quot;&gt;</span><br><span class="line">    &lt;pre&gt;　　#CD /usr/hadoop/hadoop-3.0.0</span><br><span class="line">    　　　　　　　　　　# ./bin/hdfs namenode -format</span><br></pre></td></tr></table></figure><br><br> 成功的话，会看到 “successfully formatted” 和 “Exitting with status 0” 的提示，若为 “Exitting with status 1” 则是出错<br><br>　　备注：只需格式化namenode，datanode不需要格式化（若格式化了，可将<em id="__mceDel">/usr/hadoop/tmp目录下文件都删除</em><em id="__mceDel">），所以先将安装文件夹复制到其他服务器，再格式化<em>
+
+</em> 四、测试：<em>
+
+</em> 1、启动HDFS：*<br><br>    <div class="linuxidc_code"><br>    <pre>　　　　　　#CD /usr/hadoop/hadoop-3.0.0<br>    　　　　　　# sbin/start-dfs.sh<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果运行脚本报如下错误,</span><br><span class="line"></span><br><span class="line">ERROR: Attempting to launch hdfs namenode as root  </span><br><span class="line"> ERROR: but there is no HDFS_NAMENODE_USER defined. Aborting launch.  </span><br><span class="line"> Starting datanodes  </span><br><span class="line"> ERROR: Attempting to launch hdfs datanode as root  </span><br><span class="line"> ERROR: but there is no HDFS_DATANODE_USER defined. Aborting launch.  </span><br><span class="line"> Starting secondary namenodes [localhost.localdomain]  </span><br><span class="line"> ERROR: Attempting to launch hdfs secondarynamenode as root  </span><br><span class="line"> ERROR: but there is no HDFS_SECONDARYNAMENODE_USER defined. Aborting launch.</span><br><span class="line"></span><br><span class="line">解决方案</span><br><span class="line"></span><br><span class="line">（缺少用户定义而造成的）因此编辑启动和关闭</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;linuxidc_code&quot;&gt;</span><br><span class="line">    &lt;pre&gt;　　　　　　$ vim sbin/start-dfs.sh</span><br><span class="line">    　　　　　　$ vim sbin/stop-dfs.sh</span><br></pre></td></tr></table></figure><br><br>顶部空白处添加<br><br>    <div class="linuxidc_code"><br>    <pre>　　　　　　HDFS_DATANODE_USER=root<br>    　　　　　　HADOOP_SECURE_DN_USER=hdfs<br>    　　　　　　HDFS_NAMENODE_USER=root<br>    　　　　　　HDFS_SECONDARYNAMENODE_USER=root<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2)启动ResourceManager和NodeManager：**  </span><br><span class="line">**</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;linuxidc_code&quot;&gt;</span><br><span class="line">    &lt;pre&gt;　　　　　　#CD /usr/hadoop/hadoop-3.0.0</span><br><span class="line">    　　　　　　#sbin/start-yarn.sh</span><br></pre></td></tr></table></figure><br><br><strong> 如果启动时报如下错误，</strong><br><br><strong> Starting resourcemanager<br> ERROR: Attempting to launch yarn resourcemanager as root<br> ERROR: but there is no YARN_RESOURCEMANAGER_USER defined. Aborting launch.</strong><br><br><strong> 解决方案</strong><br><br>（也是由于缺少用户定义）<br><br><strong> 是因为缺少用户定义造成的，所以分别编辑开始和关闭脚本   
+</strong><br><br>    <div class="linuxidc_code"><br>    <pre>　　　　　　$ vim sbin/start-yarn.sh<br>    　　　　　　$ vim sbin/stop-yarn.sh <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">顶部空白添加</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;linuxidc_code&quot;&gt;</span><br><span class="line">    &lt;pre&gt;　　　　　　YARN_RESOURCEMANAGER_USER=root  </span><br><span class="line">    　　　　　　HADOOP_SECURE_DN_USER=yarn  </span><br><span class="line">    　　　　　　YARN_NODEMANAGER_USER=root</span><br></pre></td></tr></table></figure><br><br>3)、启动验证：<br><br>执行jps命令，出现下图基本完成<br><br><img src="http://pangguoming.com/blog/images/757ced83-c1b9-4694-b7e2-6da2226ea1a5.png" alt=""><br><br>备注：也可以使用下面命令同时启动HDFS和ResourceManager、NodeManager：<br><br>    <div class="linuxidc_code"><br>    <pre>　　　　　　#CD /usr/hadoop/hadoop-3.0.0<br>    　　　　　　#sbin/start-all.sh<code>`</code><br><br>Hadoop2.3-HA高可用集群环境搭建  <a href="https://www.linuxidc.com/Linux/2017-03/142155p2.htm" target="_blank" rel="noopener">http://www.linuxidc.com/Linux/2017-03/142155.htm</a><br><br>Hadoop项目之基于CentOS7的Cloudera 5.10.1（CDH）的安装部署  <a href="https://www.linuxidc.com/Linux/2017-04/143095p2.htm" target="_blank" rel="noopener">http://www.linuxidc.com/Linux/2017-04/143095.htm</a><br><br>Hadoop2.7.2集群搭建详解（高可用）  <a href="https://www.linuxidc.com/Linux/2017-03/142052p2.htm" target="_blank" rel="noopener">http://www.linuxidc.com/Linux/2017-03/142052.htm</a><br><br>使用Ambari来部署Hadoop集群（搭建内网HDP源）  <a href="https://www.linuxidc.com/Linux/2017-03/142136p2.htm" target="_blank" rel="noopener">http://www.linuxidc.com/Linux/2017-03/142136.htm</a><br><br><a href="http://www.linuxidc.com/topicnews.aspx?tid=2" title="Ubuntu" target="_blank" rel="noopener">Ubuntu</a> 14.04下Hadoop集群安装  <a href="https://www.linuxidc.com/Linux/2017-02/140783p2.htm" target="_blank" rel="noopener">http://www.linuxidc.com/Linux/2017-02/140783.htm</a><br><br>CentOS 6.7安装Hadoop 2.7.2  <a href="https://www.linuxidc.com/Linux/2017-08/146232.htm" target="_blank" rel="noopener">http://www.linuxidc.com/Linux/2017-08/146232.htm</a><br><br>Ubuntu 16.04上构建分布式Hadoop-2.7.3集群  <a href="https://www.linuxidc.com/Linux/2017-07/145503.htm" target="_blank" rel="noopener">http://www.linuxidc.com/Linux/2017-07/145503.htm</a><br><br>CentOS 7 下 Hadoop 2.6.4 分布式集群环境搭建  <a href="https://www.linuxidc.com/Linux/2017-06/144932p2.htm" target="_blank" rel="noopener">http://www.linuxidc.com/Linux/2017-06/144932.htm</a><br><br>Hadoop2.7.3+Spark2.1.0完全分布式集群搭建过程  <a href="https://www.linuxidc.com/Linux/2017-06/144926p2.htm" target="_blank" rel="noopener">http://www.linuxidc.com/Linux/2017-06/144926.htm</a><br><br>更多Hadoop相关信息见<a href="https://www.linuxidc.com/topicnews.aspx?tid=13" target="_blank" rel="noopener">Hadoop</a> 专题页面 <a href="https://www.linuxidc.com/topicnews.aspx?tid=13" title="Hadoop" target="_blank" rel="noopener">http://www.linuxidc.com/topicnews.aspx?tid=13</a><br><br>本文永久更新链接地址：<a href="https://www.linuxidc.com/Linux/2018-02/150812.htm" target="_blank" rel="noopener">http://www.linuxidc.com/Linux/2018-02/150812.htm</a><br><br><a href="http://www.linuxidc.com/" target="_blank" rel="noopener"><img src="http://pangguoming.com/blog/images/63b809c6-7b35-4423-8933-e38303d716b1.gif" alt="linux"></a><br></pre></div></pre></div></pre></div></pre></div></em></configuration></pre></div></em></em></pre></div></em></em></pre></div></em></em></pre></div></pre></div></pre></div></pre></div></pre></div></div><br>
+          
         
       
     </div>
@@ -1636,105 +2131,108 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
-            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+
           
-            <p class="site-author-name" itemprop="name">庞国明</p>
-            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives">
-            
-                <span class="site-state-item-count">420</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">267</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>GitHub</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
-                  
-                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -1751,12 +2249,9 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">庞国明</span>
 
@@ -1764,11 +2259,17 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
@@ -1788,6 +2289,8 @@
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -1822,53 +2325,61 @@
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
 
-
-
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1894,6 +2405,23 @@
 
   
 
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
 
 
 
@@ -2223,11 +2751,27 @@
 
 
 
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
 
   
 
   
 
+  
+
+  
   
 
   

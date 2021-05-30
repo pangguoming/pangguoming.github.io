@@ -45,38 +45,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT">
@@ -84,11 +73,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
 
 
 
@@ -113,11 +97,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -153,30 +137,6 @@
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-	<div id="topnavbar">
-  <div class="tophead">
-    <div class="toplogo"><a href="/">庞国明-博客</a></div>
-    <div id="mnav">
-      <h2><span class="navicon"></span></h2>
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </div>
-    <nav class="topnav" id="topnav">
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
 
   
   
@@ -230,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -250,12 +220,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            关于
+            归档
           </a>
         </li>
       
@@ -278,20 +248,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -324,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/28/vue2.0路由-适合刚接触新手简单理解/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/aea0d8fe.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -343,7 +319,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/28/vue2.0路由-适合刚接触新手简单理解/" itemprop="url">vue2.0路由-适合刚接触新手简单理解</a></h1>
+                <a class="post-title-link" href="/post/aea0d8fe.html" itemprop="url">vue2.0路由-适合刚接触新手简单理解</a></h1>
         
 
         <div class="post-meta">
@@ -395,16 +371,18 @@
       
         
           
-          vue路由:vue-router
-vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适合用于构建单页面应用。vue的单页面应用是基于路由和组件的，路由用于设定访问路径，并将路径和组件映射起来。传统的页面应用，是用一些超链接来实现页面切换和跳转的。在vue-router单
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/28/vue2.0路由-适合刚接触新手简单理解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p><strong>vue路由:vue-router</strong></p>
+<p><strong>vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适合用于构建单页面应用。vue的单页面应用是基于路由和组件的，路由用于设定访问路径，并将路径和组件映射起来。传统的页面应用，是用一些超链接来实现页面切换和跳转的。在vue-router单页面应用中，则是路径之间的切换，也就是组件的切换。</strong></p>
+<p>下载方式:npm install vue-router</p>
+<p><strong>html:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;vue路由&lt;/title&gt;</span><br><span class="line">    &lt;script src=&quot;vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;vue-router.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;box&quot;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;router-link to=&quot;/home&quot;&gt;主页&lt;/router-link&gt;</span><br><span class="line">            &lt;router-link to=&quot;/news&quot;&gt;新闻&lt;/router-link&gt;</span><br><span class="line">            &lt;router-link to=&apos;/about&apos;&gt;关于&lt;/router-link&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>JavaScript:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    //组件</span><br><span class="line">    const Home = &#123;</span><br><span class="line">        template:&apos;&lt;h3&gt;我是主页&lt;/h3&gt;&apos;</span><br><span class="line">    &#125;;</span><br><span class="line">    const News = &#123;</span><br><span class="line">        template:&apos;&lt;h3&gt;我是新闻&lt;/h3&gt;&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    const About = &#123;</span><br><span class="line">        template:&apos;&lt;h3&gt;我是关于&lt;/h3&gt;&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    //配置路由</span><br><span class="line">    const routes = [ </span><br><span class="line">        &#123;path:&apos;/home&apos;, component :Home&#125;,</span><br><span class="line">        &#123;path:&apos;/news&apos;, component:News&#125;,</span><br><span class="line">        &#123;path:&apos;/about&apos;,component:About&#125;,</span><br><span class="line">        //重定向</span><br><span class="line">        &#123;path:&apos;*&apos;,redirect:&apos;/home&apos;&#125;</span><br><span class="line">    ]</span><br><span class="line">    //生成路由实例</span><br><span class="line">    const router = new VueRouter(&#123;</span><br><span class="line">        routes</span><br><span class="line">    &#125;)</span><br><span class="line">    //挂载到vue上</span><br><span class="line">    new Vue(&#123;</span><br><span class="line">        router,</span><br><span class="line">        el:&apos;#box&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .router-link-active&#123;</span><br><span class="line">        background: #ccc;</span><br><span class="line">        padding: 5px;</span><br><span class="line">        text-decoration: none;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>总体:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;vue路由&lt;/title&gt;</span><br><span class="line">    &lt;script src=&quot;vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;vue-router.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .router-link-active&#123;</span><br><span class="line">            background: #ccc;</span><br><span class="line">            padding: 5px;</span><br><span class="line">            text-decoration: none;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;box&quot;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;router-link to=&quot;/home&quot;&gt;主页&lt;/router-link&gt;</span><br><span class="line">            &lt;router-link to=&quot;/news&quot;&gt;新闻&lt;/router-link&gt;</span><br><span class="line">            &lt;router-link to=&apos;/about&apos;&gt;关于&lt;/router-link&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        //组件</span><br><span class="line">        const Home = &#123;</span><br><span class="line">            template:&apos;&lt;h3&gt;我是主页&lt;/h3&gt;&apos;</span><br><span class="line">        &#125;;</span><br><span class="line">        const News = &#123;</span><br><span class="line">            template:&apos;&lt;h3&gt;我是新闻&lt;/h3&gt;&apos;</span><br><span class="line">        &#125;</span><br><span class="line">        const About = &#123;</span><br><span class="line">            template:&apos;&lt;h3&gt;我是关于&lt;/h3&gt;&apos;</span><br><span class="line">        &#125;</span><br><span class="line">        //配置路由</span><br><span class="line">        const routes = [ </span><br><span class="line">            &#123;path:&apos;/home&apos;, component :Home&#125;,</span><br><span class="line">            &#123;path:&apos;/news&apos;, component:News&#125;,</span><br><span class="line">            &#123;path:&apos;/about&apos;,component:About&#125;,</span><br><span class="line">            //重定向</span><br><span class="line">            &#123;path:&apos;*&apos;,redirect:&apos;/home&apos;&#125;</span><br><span class="line">        ]</span><br><span class="line">        //生成路由实例</span><br><span class="line">        const router = new VueRouter(&#123;</span><br><span class="line">            routes</span><br><span class="line">        &#125;)</span><br><span class="line">        //挂载到vue上</span><br><span class="line">        new Vue(&#123;</span><br><span class="line">            router,</span><br><span class="line">            el:&apos;#box&apos;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -451,7 +429,7 @@ vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/26/vue-自定义组件传值/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/15e52425.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -470,7 +448,7 @@ vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/26/vue-自定义组件传值/" itemprop="url">vue-自定义组件传值</a></h1>
+                <a class="post-title-link" href="/post/15e52425.html" itemprop="url">vue-自定义组件传值</a></h1>
         
 
         <div class="post-meta">
@@ -522,19 +500,104 @@ vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适�
       
         
           
-          项目中，我们经常会遇到自定义组件传值的问题，方法很多种，但是原理很简单，下述文档总结实际项目中使用的传值方式。
+            <p>项目中，我们经常会遇到自定义组件传值的问题，方法很多种，但是原理很简单，下述文档总结实际项目中使用的传值方式。</p>
+<blockquote>
+<p>父组件传递给子组件某一值，子组件内会修改该值，然后父组件需要获取新值</p>
+</blockquote>
+<p>​ 在 Vue 中，父子组件的关系可以总结为 prop 向下传递，事件向上传递。父组件通过 prop给子组件下发数据，子组件通过事件给父组件发送消息。</p>
+<p><img src="https://img-blog.csdn.net/20171223165335121?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGlnYW5nMjU4NTExNg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="自定义组件传值"></p>
+<h2 id="常规prop-event"><a href="#常规prop-event" class="headerlink" title="常规prop-event"></a>常规prop-event</h2><p>父组件</p>
+<p><code class="language-vue hljs xml has-numbering"><span class="hljs-tag">&lt;<span class="hljs-title">prop-event-value <span class="hljs-attribute">:address=<span class="hljs-value">“address” @<span class="hljs-attribute">update=<span class="hljs-value">“val =&gt; address = val” <span class="hljs-attribute">key=<span class="hljs-value">“4”&gt;<span class="hljs-tag">&lt;/<span class="hljs-title">prop-event-value&gt;</span></span></span></span></span></span></span></span></span></span></code></p>
+<pre><code>&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;script&gt;&lt;span class=&quot;javascript&quot;&gt;
+import propEventValue from &lt;span class=&quot;hljs-string&quot;&gt;&apos;./components/prop-event-value.vue&apos;
+export &lt;span class=&quot;hljs-keyword&quot;&gt;default {
+  name: &lt;span class=&quot;hljs-string&quot;&gt;&apos;app&apos;,
+  components: {
+    propEventValue
+  },
+  data() {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;return {
+      address: &lt;span class=&quot;hljs-string&quot;&gt;&apos;&apos;
+    }
+  }
+}
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;script&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">子组件</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;language-vue hljs xml has-numbering&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;template&gt;</span><br><span class="line">        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;div&gt;</span><br><span class="line">            &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;p&gt;prop-event&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;p&gt;</span><br><span class="line">            &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;label &lt;span class=&quot;hljs-attribute&quot;&gt;for=&lt;span class=&quot;hljs-value&quot;&gt;&quot;address&quot;&gt;地址&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;label&gt;</span><br><span class="line">            &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;input &lt;span class=&quot;hljs-attribute&quot;&gt;type=&lt;span class=&quot;hljs-value&quot;&gt;&quot;text&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;id=&lt;span class=&quot;hljs-value&quot;&gt;&quot;address&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;v-model=&lt;span class=&quot;hljs-value&quot;&gt;&quot;tempAddress&quot;&gt;</span><br><span class="line">        &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;div&gt;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;template&gt;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;script&gt;&lt;span class=&quot;javascript&quot;&gt;</span><br><span class="line">      export &lt;span class=&quot;hljs-keyword&quot;&gt;default &#123;</span><br><span class="line">        name: &lt;span class=&quot;hljs-string&quot;&gt;&apos;prop-event&apos;,</span><br><span class="line">        props: [&lt;span class=&quot;hljs-string&quot;&gt;&apos;address&apos;],</span><br><span class="line">        data() &#123;</span><br><span class="line">          &lt;span class=&quot;hljs-keyword&quot;&gt;return &#123;</span><br><span class="line">            tempAddress: &lt;span class=&quot;hljs-keyword&quot;&gt;this.address</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        watch: &#123;</span><br><span class="line">          tempAddress(newVal) &#123;</span><br><span class="line">            &lt;span class=&quot;hljs-keyword&quot;&gt;this.$emit(&lt;span class=&quot;hljs-string&quot;&gt;&apos;update&apos;, newVal)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;script&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>需要注意：不要直接在子组件内操作父组件的内容</p>
+<blockquote>
+<p>​ 组件实例的作用域是孤立的。每次父组件更新时，子组件的所有 prop 都会更新为最新值。这意味着不能 (也不应该) 在子组件的模板内直接引用父组件的数据。如果你这么做了，Vue 会在控制台给出警告。</p>
+</blockquote>
+<pre><code>&lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;language-javascript hljs  has-numbering&quot;&gt;export &lt;span class=&quot;hljs-keyword&quot;&gt;default {
+  name: &lt;span class=&quot;hljs-string&quot;&gt;&apos;prop-event&apos;,
+  props: [&lt;span class=&quot;hljs-string&quot;&gt;&apos;address&apos;],
+  watch: {
+    address(newVal) {
+      &lt;span class=&quot;hljs-keyword&quot;&gt;this.$emit(&lt;span class=&quot;hljs-string&quot;&gt;&apos;update&apos;, newVal)
+    }
+  }
+}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如将上述代码替换子组件，内容会报错！   </span><br><span class="line">![自定义组件传值-emit](https://img-blog.csdn.net/20171223165403736?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGlnYW5nMjU4NTExNg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)</span><br><span class="line"></span><br><span class="line">    ## 修饰符.sync</span><br><span class="line"></span><br><span class="line">父组件</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;language-vue hljs xml has-numbering&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;my-sync-value &lt;span class=&quot;hljs-attribute&quot;&gt;:address.sync=&lt;span class=&quot;hljs-value&quot;&gt;&quot;address&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;key=&lt;span class=&quot;hljs-value&quot;&gt;&quot;5&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;my-sync-value&gt;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;script&gt;&lt;span class=&quot;javascript&quot;&gt;</span><br><span class="line">    import mySyncValue from &lt;span class=&quot;hljs-string&quot;&gt;&apos;./components/my-sync-value.vue&apos;</span><br><span class="line">    export &lt;span class=&quot;hljs-keyword&quot;&gt;default &#123;</span><br><span class="line">      name: &lt;span class=&quot;hljs-string&quot;&gt;&apos;app&apos;,</span><br><span class="line">      components: &#123;</span><br><span class="line">        mySyncValue</span><br><span class="line">      &#125;,</span><br><span class="line">      data() &#123;</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;return &#123;</span><br><span class="line">          address: &lt;span class=&quot;hljs-string&quot;&gt;&apos;&apos;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;script&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>子组件</p>
+<pre><code>&lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;language-vue hljs xml has-numbering&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;template&gt;
+  &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;div&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;p&gt;my-sync&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;p&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;label &lt;span class=&quot;hljs-attribute&quot;&gt;for=&lt;span class=&quot;hljs-value&quot;&gt;&quot;address&quot;&gt;地址&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;label&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;input &lt;span class=&quot;hljs-attribute&quot;&gt;type=&lt;span class=&quot;hljs-value&quot;&gt;&quot;text&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;id=&lt;span class=&quot;hljs-value&quot;&gt;&quot;address&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;v-model=&lt;span class=&quot;hljs-value&quot;&gt;&quot;tempAddress&quot;&gt;
+  &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;div&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;template&gt;
 
-父组件传递给子组件某一值，子组件内会修改该值，然后父组件需要获取新值
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;script&gt;&lt;span class=&quot;javascript&quot;&gt;
+  export &lt;span class=&quot;hljs-keyword&quot;&gt;default {
+    name: &lt;span class=&quot;hljs-string&quot;&gt;&apos;my-sync&apos;,
+    props: [&lt;span class=&quot;hljs-string&quot;&gt;&apos;address&apos;],
+    data() {
+      &lt;span class=&quot;hljs-keyword&quot;&gt;return {
+        tempAddress: &lt;span class=&quot;hljs-keyword&quot;&gt;this.address
+      }
+    },
+    watch: {
+      tempAddress(newVal) {
+        &lt;span class=&quot;hljs-comment&quot;&gt;// 必须是这个update:address
+        &lt;span class=&quot;hljs-keyword&quot;&gt;this.$emit(&lt;span class=&quot;hljs-string&quot;&gt;&apos;update:address&apos;, newVal)
+      }
+    }
+  }
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;script&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">prop-update:[prop]语法糖，与prop-event对比的优势：父组件无需监听事件`@update=&quot;val =&gt; address = val&quot;`，自动监听update:[prop]事件。</span><br><span class="line"></span><br><span class="line">    ## 双向数据绑定v-model</span><br><span class="line"></span><br><span class="line">所以要让组件的 `v-model` 生效，它应该 (从 2.2.0 起是可配置的)：</span><br><span class="line"></span><br><span class="line">    *   接受一个 `value` prop</span><br><span class="line">    *   在有新的值时触发 `input` 事件并将新值作为参数</span><br><span class="line"></span><br><span class="line">父组件</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;language-vue hljs xml has-numbering&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;my-vmodel-value &lt;span class=&quot;hljs-attribute&quot;&gt;v-model=&lt;span class=&quot;hljs-value&quot;&gt;&quot;address&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;key=&lt;span class=&quot;hljs-value&quot;&gt;&quot;6&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;my-vmodel-value&gt;</span><br><span class="line"></span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;script&gt;&lt;span class=&quot;javascript&quot;&gt;</span><br><span class="line">    import myVmodelValue from &lt;span class=&quot;hljs-string&quot;&gt;&apos;./components/my-vmodel-value.vue&apos;</span><br><span class="line">    export &lt;span class=&quot;hljs-keyword&quot;&gt;default &#123;</span><br><span class="line">      name: &lt;span class=&quot;hljs-string&quot;&gt;&apos;app&apos;,</span><br><span class="line">      components: &#123;</span><br><span class="line">        myVmodelValue</span><br><span class="line">      &#125;,</span><br><span class="line">      data() &#123;</span><br><span class="line">        &lt;span class=&quot;hljs-keyword&quot;&gt;return &#123;</span><br><span class="line">          address: &lt;span class=&quot;hljs-string&quot;&gt;&apos;&apos;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;script&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>子组件</p>
+<pre><code>&lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;language-Vue hljs xml has-numbering&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;template&gt;
+  &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;div&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;p&gt;my-vmodel&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;p&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;label &lt;span class=&quot;hljs-attribute&quot;&gt;for=&lt;span class=&quot;hljs-value&quot;&gt;&quot;address&quot;&gt;姓名&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;label&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;input &lt;span class=&quot;hljs-attribute&quot;&gt;type=&lt;span class=&quot;hljs-value&quot;&gt;&quot;text&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;id=&lt;span class=&quot;hljs-value&quot;&gt;&quot;address&quot; &lt;span class=&quot;hljs-attribute&quot;&gt;v-model=&lt;span class=&quot;hljs-value&quot;&gt;&quot;tempAddress&quot;&gt;
+  &lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;div&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;template&gt;
 
-​ 在 Vue 中，父子组件的关系可以总结为 prop 向下传递，事件向上传递。父组件通过 prop给子组件下发数
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/26/vue-自定义组件传值/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;script&gt;&lt;span class=&quot;javascript&quot;&gt;
+  export &lt;span class=&quot;hljs-keyword&quot;&gt;default {
+    name: &lt;span class=&quot;hljs-string&quot;&gt;&apos;my-vmodel&apos;,
+    props: [&lt;span class=&quot;hljs-string&quot;&gt;&apos;value&apos;],
+    data() {
+      &lt;span class=&quot;hljs-keyword&quot;&gt;return {
+        tempAddress: &lt;span class=&quot;hljs-keyword&quot;&gt;this.value
+      }
+    },
+    watch: {
+      tempAddress(newVal) {
+        &lt;span class=&quot;hljs-comment&quot;&gt;// 必须是input
+        &lt;span class=&quot;hljs-keyword&quot;&gt;this.$emit(&lt;span class=&quot;hljs-string&quot;&gt;&apos;input&apos;, newVal)
+      }
+    }
+  }
+&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;script&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">prop-input语法糖，父组件v-model默认监听input事件   </span><br><span class="line">需要注意，这里必须触发input事件，当然也可以自定v-model属性值和事件，请参照[自定义组件的v-model](https://cn.vuejs.org/v2/guide/components.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6%E7%9A%84-v-model)</span><br><span class="line"></span><br><span class="line">    ## vuex</span><br><span class="line"></span><br><span class="line">通过store传值，这里后续单独讲述vuex。</span><br><span class="line"></span><br><span class="line">    ## 单向数据流</span><br><span class="line"></span><br><span class="line">​ 上述已经提及，在子组件内部改变 prop，Vue会在控制台给出告警。但经常开发周静，我们很容易忍不住修改prop中的数据，如：</span><br><span class="line"></span><br><span class="line">    *   Prop 作为初始值传入后，子组件想把它当作局部数据来用；</span><br><span class="line">    *   Prop 作为原始数据传入，由子组件处理成其它数据输出。</span><br><span class="line"></span><br><span class="line">对这两种情况，正确的应对方式是：   </span><br><span class="line">问题1：定义一个局部变量，并用 prop 的值初始化它：</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;language-Javascript hljs javascript has-numbering&quot;&gt;props: [&lt;span class=&quot;hljs-string&quot;&gt;&apos;initialCounter&apos;],</span><br><span class="line">    data: &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function &lt;span class=&quot;hljs-params&quot;&gt;() &#123;</span><br><span class="line">      &lt;span class=&quot;hljs-keyword&quot;&gt;return &#123; counter: &lt;span class=&quot;hljs-keyword&quot;&gt;this.initialCounter &#125;</span><br><span class="line">    &#125;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>问题2：定义一个计算属性，处理 prop 的值并返回：</p>
+<pre><code>&lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;language-javascript hljs  has-numbering&quot;&gt;props: [&lt;span class=&quot;hljs-string&quot;&gt;&apos;size&apos;],
+computed: {
+  normalizedSize: &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function &lt;span class=&quot;hljs-params&quot;&gt;() {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;return &lt;span class=&quot;hljs-keyword&quot;&gt;this.size.trim().toLowerCase()
+  }
+}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;```
+</code></pre><p>特别需要注意：在 JavaScript 中对象和数组是引用类型，指向同一个内存空间，如果 prop 是一个对象或数组，在子组件内部改变它会影响父组件的状态。<br></p>
+
+          
         
       
     </div>
@@ -581,7 +644,7 @@ vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/24/Sequence在Oracle中的使用/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/439129a.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -600,7 +663,7 @@ vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/24/Sequence在Oracle中的使用/" itemprop="url">Sequence在Oracle中的使用</a></h1>
+                <a class="post-title-link" href="/post/439129a.html" itemprop="url">Sequence在Oracle中的使用</a></h1>
         
 
         <div class="post-meta">
@@ -652,17 +715,10 @@ vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适�
       
         
           
-            Oracle中，当需要建立一个自增字段时，需要用到sequence。sequence也可以在mysql中使用，但是有些差别，日后再补充，先把oracle中sequence的基本使用总结一下，方便日后查阅。
-1、创建sequence：
-[sql] view plain copy1.  create
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/24/Sequence在Oracle中的使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>  Oracle中，当需要建立一个自增字段时，需要用到sequence。sequence也可以在mysql中使用，但是有些差别，日后再补充，先把oracle中sequence的基本使用总结一下，方便日后查阅。</p>
+<p>1、创建sequence<span lang="zh-cn" xml:lang="zh-cn">：</span></p>
+<div class="dp-highlighter bg_sql"><br><div class="bar"><br><div class="tools"><strong>[sql]</strong> <a href="https://blog.csdn.net/ls1645/article/details/54908663#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="https://blog.csdn.net/ls1645/article/details/54908663#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="keyword">create <span class="keyword">sequence SEQ_ON_USER  </span></span><br>2.  minvalue 1<br>3.  maxvalue 999999999999999999999999999<br>4.  start <span class="keyword">with 1  </span><br>5.  increment <span class="keyword">by 1  </span><br>6.  nocache;<br><br>说明：<br><br> minvalue：序列最小值<br><br> maxvalue/nomaxvalue：序列最大值/没有最大值<br><br> start with 1：序列从1开始<br><br> increment by 1：每次增加1<br><br> cache/nocache：nocache不缓存。cache缓存。开启缓存，效率高，只是如果数据库宕机了，缓存丢失，会出现序列跳号情况。<br><br>2、查看已有<span lang="en-us" xml:lang="en-us">sequence<span lang="zh-cn" xml:lang="zh-cn">：</span></span><br><br><div class="dp-highlighter bg_sql"><br><div class="bar"><br><div class="tools"><strong>[sql]</strong> <a href="https://blog.csdn.net/ls1645/article/details/54908663#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="https://blog.csdn.net/ls1645/article/details/54908663#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="keyword">select * <span class="keyword">from user_sequences;  </span></span><br><br><span lang="zh-cn" xml:lang="zh-cn">3、删除指定<span lang="en-us" xml:lang="en-us">sequence<span lang="zh-cn" xml:lang="zh-cn">：</span></span></span><br><br><div class="dp-highlighter bg_sql"><br><div class="bar"><br><div class="tools"><strong>[sql]</strong> <a href="https://blog.csdn.net/ls1645/article/details/54908663#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="https://blog.csdn.net/ls1645/article/details/54908663#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="keyword">DROP <span class="keyword">SEQUENCE SEQ_ON_USER；  </span></span><br><br><span lang="zh-cn" xml:lang="zh-cn">4、查看指定<span lang="en-us" xml:lang="en-us">sequence<span lang="zh-cn" xml:lang="zh-cn">的当前值：</span></span></span><br><br>两种方式：<br><br><div class="dp-highlighter bg_sql"><br><div class="bar"><br><div class="tools"><strong>[sql]</strong> <a href="https://blog.csdn.net/ls1645/article/details/54908663#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="https://blog.csdn.net/ls1645/article/details/54908663#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="keyword">select last_number <span class="keyword">from user_sequences wheresequence_name=<span class="string">‘SEQ_ON_USER’;  </span></span></span><br><br><div class="dp-highlighter bg_sql"><br><div class="bar"><br><div class="tools"><strong>[sql]</strong> <a href="https://blog.csdn.net/ls1645/article/details/54908663#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="https://blog.csdn.net/ls1645/article/details/54908663#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="keyword">select SEQ_ON_USER.nextval <span class="keyword">from sys.dual;  </span></span><br><br>        5、创建触发器使用sequence设置主键自动插入。<br><br><div class="dp-highlighter bg_sql"><br><div class="bar"><br><div class="tools"><strong>[sql]</strong> <a href="https://blog.csdn.net/ls1645/article/details/54908663#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="https://blog.csdn.net/ls1645/article/details/54908663#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="keyword">create <span class="op">or <span class="func">replace <span class="keyword">trigger <span class="string">“SEQ_ON_USER_GENERATOR” before  </span></span></span></span></span><br>2.    <span class="keyword">insert <span class="keyword">on databasename1.T_USER <span class="keyword">for each row  </span></span></span><br>3.    <span class="keyword">declare  </span><br>4.           mid number,<br>5.    <span class="keyword">begin  </span><br>6.      <span class="keyword">select SEQ_ON_USER.nextval <span class="keyword">into mid <span class="keyword">from dual;  </span></span></span><br>7.      :new.id:=mid;<br>8.     <span class="keyword">end  </span><br>9.<br>10.  <span class="keyword">create <span class="keyword">trigger SEQ_ON_USER_Trigger   </span></span><br>11.<br>12.  before <span class="keyword">insert <span class="keyword">on T_USER <span class="keyword">for each row   </span></span></span><br>13.  <span class="keyword">begin   </span><br>14.  <span class="keyword">select SEQ_ON_USER.nextval <span class="keyword">into :new.id <span class="keyword">from dual;   </span></span></span><br>15.  <span class="keyword">end SEQ_ON_USER_Trigger;   </span><br><br>        6、代码中使用sequence.nextval插入主键值。<br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -709,7 +765,7 @@ vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/23/axios post提交的Content-Type/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/a688014c.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -728,7 +784,7 @@ vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/23/axios post提交的Content-Type/" itemprop="url">axios post提交的Content-Type</a></h1>
+                <a class="post-title-link" href="/post/a688014c.html" itemprop="url">axios post提交的Content-Type</a></h1>
         
 
         <div class="post-meta">
@@ -780,16 +836,26 @@ vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适�
       
         
           
-          使用axios的坑jQuery.ajax的post提交默认的请求头的Content-Type: application/x-www-form-urlencoded而axios.post提交的请求头是Content-Type: application/json。
-application/json是一个
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/23/axios post提交的Content-Type/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="使用axios的坑"><a href="#使用axios的坑" class="headerlink" title="使用axios的坑"></a>使用axios的坑</h1><p><code>jQuery.ajax</code>的<code>post</code>提交默认的请求头的<code>Content-Type: application/x-www-form-urlencoded</code><br>而<code>axios.post</code>提交的请求头是<code>Content-Type: application/json</code>。</p>
+<p><code>application/json</code>是一个趋势，但是如果改一个旧项目，把<code>jQuery.ajax</code>全部换成<code>axios.post</code>时，需要对请求做一些配置。</p>
+<p>改之前的代码：</p>
+<p><code class="hljs haskell">// 没有指定请求头的content-<span class="hljs-class"><span class="hljs-keyword">type<br>    <span class="hljs-title">var <span class="hljs-class"><span class="hljs-keyword">data = {<span class="hljs-title">age: 18};<br>    $.ajax({<br>        url: ‘’,<br>        <span class="hljs-class"><span class="hljs-keyword">type: ‘<span class="hljs-type">POST’,<br>        <span class="hljs-class"><span class="hljs-keyword">data: <span class="hljs-keyword">data<br>        dataType: ‘json’,<br>        success: function(result) {<br>            // <span class="hljs-keyword">do something<br>        }<br>    })</span></span></span></span></span></span></span></span></span></span></span></span></span></code><code>`</code></p>
+<p>使用<code>axios</code>的代码</p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;hljs javascript&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;import axios &lt;span class=&quot;hljs-keyword&quot;&gt;from &lt;span class=&quot;hljs-string&quot;&gt;&apos;axios&apos;;
+&lt;span class=&quot;hljs-keyword&quot;&gt;import qs &lt;span class=&quot;hljs-keyword&quot;&gt;from &lt;span class=&quot;hljs-string&quot;&gt;&apos;qs&apos;;
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;var data = {age: &lt;span class=&quot;hljs-number&quot;&gt;18};
+&lt;span class=&quot;hljs-keyword&quot;&gt;var url = &lt;span class=&quot;hljs-string&quot;&gt;&apos;&apos;;
+
+axios.post(
+    url, 
+    qs.stringify(data), 
+    {headers: {&lt;span class=&quot;hljs-string&quot;&gt;&apos;Content-Type&apos;: &lt;span class=&quot;hljs-string&quot;&gt;&apos;application/x-www-form-urlencoded&apos;}}
+).then(result =&gt; {
+    &lt;span class=&quot;hljs-comment&quot;&gt;// do something
+})&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;```&lt;/pre&gt;
+</code></pre>
+          
         
       
     </div>
@@ -836,7 +902,7 @@ application/json是一个
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/19/CentOS 6和CentOS 7防火墙的关闭/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/a50aed64.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -855,7 +921,7 @@ application/json是一个
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/19/CentOS 6和CentOS 7防火墙的关闭/" itemprop="url">CentOS 6和CentOS 7防火墙的关闭</a></h1>
+                <a class="post-title-link" href="/post/a50aed64.html" itemprop="url">CentOS 6和CentOS 7防火墙的关闭</a></h1>
         
 
         <div class="post-meta">
@@ -907,16 +973,34 @@ application/json是一个
       
         
           
-          CentOS6.5查看防火墙的状态：
-1[linuxidc@localhost ~]$service iptable status 显示结果：12345[linuxidc@localhost ~]$service iptable statusRedirecting to /bin/systemctl
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/19/CentOS 6和CentOS 7防火墙的关闭/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p><a href="http://www.linuxidc.com/topicnews.aspx?tid=14" title="CentOS" target="_blank" rel="noopener">CentOS</a>6.5查看防火墙的状态：</p>
+<div class="linuxidc_Highlighter sh-gutter"><br><div><br><div id="highlighter_858967" class="syntaxhighlighter  sql ie"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="sql plain">[linuxidc@localhost ~]$service iptable status</code><br><br></div></div></td><br></tr><br></tbody><br></table><br><br> 显示结果：<br><br><div class="linuxidc_Highlighter sh-gutter"><br><div><br><div id="highlighter_503081" class="syntaxhighlighter  sql ie"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><div class="line number3 index2 alt2">3<br><div class="line number4 index3 alt1">4<br><div class="line number5 index4 alt2">5<br></div></div></div></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="sql plain">[linuxidc@localhost ~]$service iptable status</code><br><div class="line number2 index1 alt1"><code class="sql plain">Redirecting </code><code class="sql keyword">to</code> <code class="sql plain">/bin/systemctl status  iptable.service</code><br><div class="line number3 index2 alt2"><code class="sql plain">● iptable.service</code><br><div class="line number4 index3 alt1"><code class="sql spaces">   </code><code class="sql plain">Loaded: </code><code class="sql color1">not</code><code class="sql plain">-found (Reason: </code><code class="sql keyword">No</code> <code class="sql plain">such file </code><code class="sql color1">or</code> <code class="sql plain">directory)</code><br><div class="line number5 index4 alt2"><code class="sql spaces">   </code><code class="sql plain">Active: inactive (dead)  </code><code class="sql comments">–表示防火墙已经关闭</code><br><br></div></div></div></div></div></div></td><br></tr><br></tbody><br></table><br><br>    CentOS 6.5关闭防火墙<br><br><div class="linuxidc_Highlighter sh-gutter"><br><div><br><div id="highlighter_289173" class="syntaxhighlighter  sql ie"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="sql plain">[root@localhost ~]#servcie iptables stop                    </code><code class="sql comments">–临时关闭防火墙</code><br><div class="line number2 index1 alt1"><code class="sql plain">[root@localhost ~]#chkconfig iptables </code><code class="sql keyword">off</code>                    <code class="sql comments">–永久关闭防火墙</code><br><br></div></div></div></td><br></tr><br></tbody><br></table><br><br>    CentOS 7.2关闭防火墙<br><br>CentOS 7.0默认使用的是firewall作为防火墙，这里改为iptables防火墙步骤。<br><br>firewall-cmd –state #查看默认防火墙状态（关闭后显示notrunning，开启后显示running）<br><br><div class="linuxidc_Highlighter sh-gutter"><br><div><br><div id="highlighter_277208" class="syntaxhighlighter  sql ie"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><br></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="sql plain">[root@localhost ~]#firewall-cmd </code><code class="sql comments">–state</code><br><div class="line number2 index1 alt1"><code class="sql color1">not</code> <code class="sql plain">running</code><br><br></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br>   检查防火墙的状态：<br><br>从centos7开始使用systemctl来管理服务和程序，包括了service和chkconfig。<br><br><div class="linuxidc_Highlighter sh-gutter"><br><div><br><div id="highlighter_15283" class="syntaxhighlighter  sql ie"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><br></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="sql plain">[root@localhost ~]#systemctl list-unit-files|grep firewalld.service            </code><code class="sql comments">–防火墙处于关闭状态</code><br><div class="line number2 index1 alt1"><code class="sql plain">firewalld.service                          disabled</code><br><br></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br> 或者<br><br><div class="linuxidc_Highlighter sh-gutter"><br><div><br><div id="highlighter_973037" class="syntaxhighlighter  sql ie"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><div class="line number3 index2 alt2">3<br><div class="line number4 index3 alt1">4<br><br></div></div></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="sql plain">[root@localhost ~]#systemctl status firewalld.service</code><br><div class="line number2 index1 alt1"><code class="sql plain">● firewalld.service - firewalld - </code><code class="sql keyword">dynamic</code> <code class="sql plain">firewall daemon</code><br><div class="line number3 index2 alt2"><code class="sql spaces">   </code><code class="sql plain">Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)</code><br><div class="line number4 index3 alt1"><code class="sql spaces">   </code><code class="sql plain">Active: inactive (dead)</code><br><br></div></div></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br>   关闭防火墙：<br><br>systemctl stop firewalld.service #停止firewall<br>systemctl disable firewalld.service #禁止firewall开机启动<br><br><div class="linuxidc_Highlighter sh-gutter"><br><div><br><div id="highlighter_797084" class="syntaxhighlighter  sql ie"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><br></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="sql plain">[root@localhost ~]#systemctl stop firewalld.service</code><br><div class="line number2 index1 alt1"><code class="sql plain">[root@localhost ~]#systemctl disable firewalld.service</code><br><br></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="linuxidc_Highlighter sh-gutter"><br><div><br><div id="highlighter_949894" class="syntaxhighlighter  sql ie"><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><div class="line number3 index2 alt2">3<br><div class="line number4 index3 alt1">4<br><div class="line number5 index4 alt2">5<br><div class="line number6 index5 alt1">6<br><div class="line number7 index6 alt2">7<br><div class="line number8 index7 alt1">8<br><br></div></div></div></div></div></div></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="sql plain">启动一个服务：systemctl start firewalld.service</code><br><div class="line number2 index1 alt1"><code class="sql plain">关闭一个服务：systemctl stop firewalld.service</code><br><div class="line number3 index2 alt2"><code class="sql plain">重启一个服务：systemctl restart firewalld.service</code><br><div class="line number4 index3 alt1"><code class="sql plain">显示一个服务的状态：systemctl status firewalld.service</code><br><div class="line number5 index4 alt2"><code class="sql plain">在开机时启用一个服务：systemctl enable firewalld.service</code><br><div class="line number6 index5 alt1"><code class="sql plain">在开机时禁用一个服务：systemctl disable firewalld.service</code><br><div class="line number7 index6 alt2"><code class="sql plain">查看服务是否开机启动：systemctl </code><code class="sql keyword">is</code><code class="sql plain">-enabled firewalld.service;echo $?</code><br><div class="line number8 index7 alt1"><code class="sql plain">查看已启动的服务列表：systemctl list-unit-files|grep enabled</code><br><br></div></div></div></div></div></div></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br>## Centos 7 firewall 命令：<br><br>查看已经开放的端口：<br><br><code class="hljs lasso has-numbering">firewall<span class="hljs-attribute">-cmd <span class="hljs-subst">–<span class="hljs-built_in">list<span class="hljs-attribute">-ports</span></span></span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">开启端口</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs brainfuck has-numbering&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;firewall&lt;span class=&quot;hljs-literal&quot;&gt;-&lt;span class=&quot;hljs-comment&quot;&gt;cmd &lt;span class=&quot;hljs-literal&quot;&gt;-&lt;span class=&quot;hljs-literal&quot;&gt;-&lt;span class=&quot;hljs-comment&quot;&gt;zone=public &lt;span class=&quot;hljs-literal&quot;&gt;-&lt;span class=&quot;hljs-literal&quot;&gt;-&lt;span class=&quot;hljs-comment&quot;&gt;add&lt;span class=&quot;hljs-literal&quot;&gt;-&lt;span class=&quot;hljs-comment&quot;&gt;port=80/tcp &lt;span class=&quot;hljs-literal&quot;&gt;-&lt;span class=&quot;hljs-literal&quot;&gt;-&lt;span class=&quot;hljs-comment&quot;&gt;permanent&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>命令含义：<br><br>–zone #作用域<br><br>–add-port=80/tcp #添加端口，格式为：端口/通讯协议<br><br>–permanent #永久生效，没有此参数重启后失效<br><br>重启防火墙<br><br>    <pre class="prettyprint"><code class="hljs avrasm has-numbering">firewall-cmd –reload <span class="hljs-preprocessor">#重启firewall<br>    systemctl stop firewalld<span class="hljs-preprocessor">.service <span class="hljs-preprocessor">#停止firewall<br>    systemctl disable firewalld<span class="hljs-preprocessor">.service <span class="hljs-preprocessor">#禁止firewall开机启动</span></span></span></span></span></code><br><strong>firewall-cmd –state</strong> #查看默认防火墙状态（关闭后显示notrunning，开启后显示running）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ## CentOS 7 以下版本 iptables 命令</span><br><span class="line"></span><br><span class="line">如要开放80，22，8080 端口，输入以下命令即可</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs lasso has-numbering&quot;&gt;/sbin/iptables &lt;span class=&quot;hljs-attribute&quot;&gt;-I INPUT &lt;span class=&quot;hljs-attribute&quot;&gt;-p tcp &lt;span class=&quot;hljs-subst&quot;&gt;--dport &lt;span class=&quot;hljs-number&quot;&gt;80 &lt;span class=&quot;hljs-attribute&quot;&gt;-j ACCEPT</span><br><span class="line">    /sbin/iptables &lt;span class=&quot;hljs-attribute&quot;&gt;-I INPUT &lt;span class=&quot;hljs-attribute&quot;&gt;-p tcp &lt;span class=&quot;hljs-subst&quot;&gt;--dport &lt;span class=&quot;hljs-number&quot;&gt;22 &lt;span class=&quot;hljs-attribute&quot;&gt;-j ACCEPT</span><br><span class="line">    /sbin/iptables &lt;span class=&quot;hljs-attribute&quot;&gt;-I INPUT &lt;span class=&quot;hljs-attribute&quot;&gt;-p tcp &lt;span class=&quot;hljs-subst&quot;&gt;--dport &lt;span class=&quot;hljs-number&quot;&gt;8080 &lt;span class=&quot;hljs-attribute&quot;&gt;-j ACCEPT&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>然后保存：<br><br>    <pre class="prettyprint"><code class="hljs avrasm has-numbering">/etc/rc<span class="hljs-preprocessor">.d/init<span class="hljs-preprocessor">.d/iptables save</span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">查看打开的端口：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs avrasm has-numbering&quot;&gt;/etc/init&lt;span class=&quot;hljs-preprocessor&quot;&gt;.d/iptables status&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>关闭防火墙<br>1） 永久性生效，重启后不会复原<br><br>开启： chkconfig iptables on<br><br>关闭： chkconfig iptables off<br><br>2） 即时生效，重启后复原<br><br>开启： service iptables start<br><br>关闭： service iptables stop<br><br>查看防火墙状态： service iptables status<br><br><strong>下面说下CentOS7和6的默认防火墙的区别</strong><br><br>CentOS 7默认使用的是firewall作为防火墙，使用iptables必须重新设置一下<br><br>1、直接关闭防火墙<br><br>systemctl stop firewalld.service #停止firewall<br><br>systemctl disable firewalld.service #禁止firewall开机启动<br><br>2、设置 iptables service<br><br>yum -y install iptables-services<br><br>如果要修改防火墙配置，如增加防火墙端口3306<br><br>vi /etc/sysconfig/iptables<br><br>增加规则<br><br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT<br><br>保存退出后<br><br>systemctl restart iptables.service #重启防火墙使配置生效<br><br>systemctl enable iptables.service #设置防火墙开机启动<br><br>最后重启系统使设置生效即可。<br><br>systemctl start iptables.service #打开防火墙<br><br>systemctl stop iptables.service #关闭防火墙<br><br>    ### 解决主机不能访问虚拟机CentOS中的站点<br><br>    <div>前阵子在虚拟机上装好了CentOS6.2，并配好了apache+php+mysql，但是本机就是无法访问。一直就没去折腾了。<br>    <div><br>    <div>具体情况如下<br><br>&gt; <div>1. 本机能ping通虚拟机<br>&gt;     <div>2. 虚拟机也能ping通本机<br>&gt;     <div>3.虚拟机能访问自己的web<br>&gt;     <div>4.本机无法访问虚拟机的web<br>&gt;<br>&gt;     </div></div></div></div>
+
+<pre><code>&lt;div&gt; 
+&lt;div&gt;后来发现是**防火墙将80端口屏蔽了的缘故。** 
+&lt;div&gt; 
+&lt;div&gt;检查是不是服务器的80端口被防火墙堵了，可以通过命令：telnet server_ip 80 来测试。 
+&lt;div&gt; 
+&lt;div&gt;解决方法如下： 
+</code></pre><blockquote>
+<p>/sbin/iptables -I INPUT -p tcp –dport 80 -j ACCEPT </p>
+</blockquote>
+<pre><code>&lt;div&gt;然后保存： 
+</code></pre><blockquote>
+<p>/etc/rc.d/init.d/iptables save </p>
+</blockquote>
+<pre><code>&lt;div&gt;重启防火墙 
+</code></pre><blockquote>
+<p>/etc/init.d/iptables restart </p>
+</blockquote>
+<pre><code>&lt;div&gt; 
+&lt;div&gt;CentOS防火墙的关闭，关闭其服务即可： 
+</code></pre><blockquote>
+<div>查看CentOS防火墙信息：/etc/init.d/iptables status<br>    <div>关闭CentOS防火墙服务：/etc/init.d/iptables stop<br><br>    </div></div>
+</blockquote>
+<p></p></div></div></div></pre></pre></div></div></div></div></div></div></div></div></div></div><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div><p></p>
+
+          
         
       
     </div>
@@ -963,7 +1047,7 @@ application/json是一个
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/19/Centos后台运行jar/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/78a5faa3.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -982,7 +1066,7 @@ application/json是一个
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/19/Centos后台运行jar/" itemprop="url">Centos后台运行jar</a></h1>
+                <a class="post-title-link" href="/post/78a5faa3.html" itemprop="url">Centos后台运行jar</a></h1>
         
 
         <div class="post-meta">
@@ -1034,15 +1118,10 @@ application/json是一个
       
         
           
-          ## jar后台运行nohup java -jar xx.jar &gt;/dev/null  &amp;123456789101112    *   1&gt; 此处的“&gt;/dev/null”作用是将终端输出信息输出到空洞中，即不保存输出信息，若要查看输出信息需指定输出到那个文件，例如“&g
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/19/Centos后台运行jar/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div id="article_content" class="article_content clearfix csdn-tracking-statistics" data-pid="blog" data-mod="popu_307" data-dsm="post"><br><div class="markdown_views"><br><br>## jar后台运行<br><br><code class="hljs javascript has-numbering">nohup java -jar xx.jar &gt;<span class="hljs-regexp">/dev/<span class="hljs-literal">null  &amp;</span></span></code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    *   1</span><br><span class="line"></span><br><span class="line">&gt; 此处的“&gt;/dev/null”作用是将终端输出信息输出到空洞中，即不保存输出信息，若要查看输出信息需指定输出到那个文件，例如“&gt;/xxx/yyy.out”</span><br><span class="line">&gt; </span><br><span class="line">&gt;     * * *</span><br><span class="line"></span><br><span class="line">    ## 关闭后台进程</span><br><span class="line"></span><br><span class="line">先查看后台进程pid</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;prettyprint&quot;&gt;&lt;code class=&quot;hljs dos has-numbering&quot;&gt;ps -&lt;span class=&quot;hljs-stream&quot;&gt;aux&lt;/span&gt;&lt;/code&gt;</span><br></pre></td></tr></table></figure><br><br>    <em>   1<br><br>记住进程pid，然后kill命令关闭<br><br>    <pre name="code" class="prettyprint"><code class="hljs css has-numbering"><span class="hljs-tag">kill <span class="hljs-attr_selector">[pid]</span></span></code><code>`</code>
+
+    </pre></em>   1<br><br>    <div class="article-bar-bottom"><br>    <div class="article-copyright">版权声明：本文为博主原创文章，未经博主允许不得转载。 <a href="https://blog.csdn.net/pwc1996/article/details/48913063" target="_blank" rel="noopener">https://blog.csdn.net/pwc1996/article/details/48913063</a><br>    </div></div><br></div></div>
+          
         
       
     </div>
@@ -1089,7 +1168,7 @@ application/json是一个
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/19/CentOS查询端口占用和清除端口占用的程序/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/a3fd360d.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1108,7 +1187,7 @@ application/json是一个
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/19/CentOS查询端口占用和清除端口占用的程序/" itemprop="url">CentOS查询端口占用和清除端口占用的程序</a></h1>
+                <a class="post-title-link" href="/post/a3fd360d.html" itemprop="url">CentOS查询端口占用和清除端口占用的程序</a></h1>
         
 
         <div class="post-meta">
@@ -1160,16 +1239,23 @@ application/json是一个
       
         
           
-          1、查询端口号占用，根据端口查看进程信息
-[root@server2 ~]# lsof -i:80COMMAND  PID   USER   FD   TYPE DEVICE SIZE NODE NAMEhttpd   5014   root    3u  IPv4  14346       TCP
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/19/CentOS查询端口占用和清除端口占用的程序/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>1、查询端口号占用，根据端口查看进程信息</p>
+<p>[root@server2 ~]# lsof -i:80<br>COMMAND  PID   USER   FD   TYPE DEVICE SIZE NODE NAME<br>httpd   5014   root    3u  IPv4  14346       TCP server2:http (LISTEN)<br>2、根据进程号查看进程对应的可执行程序<br>ps -f -p 进程号  </p>
+<h1 id="ps-f-p-5014"><a href="#ps-f-p-5014" class="headerlink" title="ps -f -p 5014"></a>ps -f -p 5014</h1><p>UID        PID  PPID  C STIME TTY          TIME CMD<br>root      5014     1  0 17:26 ?        00:00:00 /usr/local/apache/bin/httpd -k<br>3、根据可执行程序查看动态链接<br>ldd 可执行文件名</p>
+<p>ldd  /usr/local/apache/bin/httpd<br>        linux-vdso.so.1 =&gt;  (0x00007fff9dc90000)<br>        libaprutil-0.so.0 =&gt; /usr/local/apache/lib/libaprutil-0.so.0 (0x00002af026fcd000)<br>4、根据端口号得到其占用的进程的详细信息</p>
+<p>netstat -tlnp|grep 80<br>tcp        0      0 192.168.33.10:80            0.0.0.0:<em>                   LISTEN      5014/httpd<br>tcp        0      0 0.0.0.0:48054               0.0.0.0:</em>                   LISTEN      5386/java</p>
+<p>这一步骤等于刚才上面的一二两个步骤</p>
+<p>5、根据端口号查询，查询其占用进程ID</p>
+<p>netstat -tlnp|grep 80|awk ‘{print 7}’|awk -F ‘/‘ ‘{print1}’<br>5014<br>或则是用下面的命令</p>
+<p>netstat -pan|grep 80</p>
+<p>NETSTAT [-a] [-b] [-e] [-n] [-o] [-p proto] [-r] [-s] [-v] [interval]<br>-a            显示所有连接和监听端口。<br>-b            显<br>示包含于创建每个连接或监听端口的可执行组件。在某些情况下已知可执行组件<br>拥有多个独立组件，并且在这些情况下包含于创建连接或监听端口的组件序列被显示。这种情况下，可执行组件名 在底部的 []<br>中，顶部是其调用的组件，等等，直到 TCP/IP 部分。注意此选项  可能需要很长时间，如果没有足够权限可能失败。              </p>
+<p>-e            显示以太网统计信息。此选项可以与 -s选项组合使用。<br>-n            以数字形式显示地址和端口号。<br>-o            显示与每个连接相关的所属进程 ID。<br>-p<br>proto      显示 proto 指定的协议的连接；proto 可以是下列协议之一: TCP、UDP、TCPv6 或<br>UDPv6。  如果与 -s 选项一起使用以显示按协议统计信息，proto 可以是下列协议之一:<br>IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 或 UDPv6。<br>-r   显示路由表。<br>-s  显示按协议统计信息。默认地，显示 IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 和 UDPv6 的统计信息；<br>-p 选项用于指定默认情况的子集。<br>-v            与 -b 选项一起使用时将显示包含于 为所有可执行组件创建连接或监听端口的组件。<br>interval      重新显示选定统计信息，每次显示之间 暂停时间间隔(以秒计)。按 CTRL+C 停止重新 显示统计信息。如果省略，netstat 显示当前 配置信息(只显示一次)</p>
+<p>6、一次性的清除占用80端口的程序</p>
+<p>lsof -i :80|grep -v “PID”|awk ‘{print “kill -9”,$2}’|sh</p>
+<p>7、手工终止进程的运行</p>
+<p>kill 5014<br>如果终止不了，可以强制终止<br>kill -9 5014<br>lsof -i:80</p>
+
+          
         
       
     </div>
@@ -1216,7 +1302,7 @@ application/json是一个
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/19/Spring Boot Maven 打包可执行Jar文件！/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/9ebb6412.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1235,7 +1321,7 @@ application/json是一个
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/19/Spring Boot Maven 打包可执行Jar文件！/" itemprop="url">Spring Boot Maven 打包可执行Jar文件！</a></h1>
+                <a class="post-title-link" href="/post/9ebb6412.html" itemprop="url">Spring Boot Maven 打包可执行Jar文件！</a></h1>
         
 
         <div class="post-meta">
@@ -1287,16 +1373,9 @@ application/json是一个
       
         
           
-          Maven pom.xml 必须包含
-[plain] view plain copy1.  jar[html] view plain copy1.     &lt;build&gt;  2.      &lt;plugins&gt;  3.          &lt;plugin&gt;  4.  
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/19/Spring Boot Maven 打包可执行Jar文件！/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>Maven pom.xml 必须包含</p>
+<div class="dp-highlighter bg_plain"><br><div class="bar"><br><div class="tools"><strong>[plain]</strong> <a href="https://blog.csdn.net/smilecall/article/details/56288972#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="https://blog.csdn.net/smilecall/article/details/56288972#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <packaging>jar</packaging><br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="https://blog.csdn.net/smilecall/article/details/56288972#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="https://blog.csdn.net/smilecall/article/details/56288972#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.     <span class="tag">&lt;<span class="tag-name">build<span class="tag">&gt;  </span></span></span><br>2.      <span class="tag">&lt;<span class="tag-name">plugins<span class="tag">&gt;  </span></span></span><br>3.          <span class="tag">&lt;<span class="tag-name">plugin<span class="tag">&gt;  </span></span></span><br>4.              <span class="tag">&lt;<span class="tag-name">groupId<span class="tag">&gt;org.springframework.boot<span class="tag">&lt;/<span class="tag-name">groupId<span class="tag">&gt;  </span></span></span></span></span></span><br>5.              <span class="tag">&lt;<span class="tag-name">artifactId<span class="tag">&gt;spring-boot-maven-plugin<span class="tag">&lt;/<span class="tag-name">artifactId<span class="tag">&gt;  </span></span></span></span></span></span><br>6.              <span class="tag">&lt;<span class="tag-name">configuration<span class="tag">&gt;  </span></span></span><br>7.                  <span class="tag">&lt;<span class="tag-name">fork<span class="tag">&gt;true<span class="tag">&lt;/<span class="tag-name">fork<span class="tag">&gt;  </span></span></span></span></span></span><br>8.              <span class="tag">&lt;/<span class="tag-name">configuration<span class="tag">&gt;  </span></span></span><br>9.          <span class="tag">&lt;/<span class="tag-name">plugin<span class="tag">&gt;  </span></span></span><br>10.      <span class="tag">&lt;/<span class="tag-name">plugins<span class="tag">&gt;  </span></span></span><br>11.  <span class="tag">&lt;/<span class="tag-name">build<span class="tag">&gt;  </span></span></span><br><br>完整pox.xml<br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="https://blog.csdn.net/smilecall/article/details/56288972#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="https://blog.csdn.net/smilecall/article/details/56288972#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="tag">&lt;<span class="tag-name">project <span class="attribute">xmlns=<span class="attribute-value">“<a href="http://maven.apache.org/POM/4.0.0&quot;" target="_blank" rel="noopener">http://maven.apache.org/POM/4.0.0&quot;</a> <span class="attribute">xmlns:xsi=<span class="attribute-value">“<a href="http://www.w3.org/2001/XMLSchema-instance&quot;" target="_blank" rel="noopener">http://www.w3.org/2001/XMLSchema-instance&quot;</a>  </span></span></span></span></span></span><br>2.      <span class="attribute">xsi:schemaLocation=<span class="attribute-value">“<a href="http://maven.apache.org/POM/4.0.0" target="_blank" rel="noopener">http://maven.apache.org/POM/4.0.0</a> <a href="http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;" target="_blank" rel="noopener">http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</a><span class="tag">&gt;  </span></span></span><br>3.      <span class="tag">&lt;<span class="tag-name">modelVersion<span class="tag">&gt;4.0.0<span class="tag">&lt;/<span class="tag-name">modelVersion<span class="tag">&gt;  </span></span></span></span></span></span><br>4.<br>5.      <span class="tag">&lt;<span class="tag-name">groupId<span class="tag">&gt;com.feedback<span class="tag">&lt;/<span class="tag-name">groupId<span class="tag">&gt;  </span></span></span></span></span></span><br>6.      <span class="tag">&lt;<span class="tag-name">artifactId<span class="tag">&gt;feedback-service<span class="tag">&lt;/<span class="tag-name">artifactId<span class="tag">&gt;  </span></span></span></span></span></span><br>7.      <span class="tag">&lt;<span class="tag-name">version<span class="tag">&gt;0.1.0<span class="tag">&lt;/<span class="tag-name">version<span class="tag">&gt;  </span></span></span></span></span></span><br>8.      <span class="tag">&lt;<span class="tag-name">packaging<span class="tag">&gt;jar<span class="tag">&lt;/<span class="tag-name">packaging<span class="tag">&gt;  </span></span></span></span></span></span><br>9.<br>10.      <span class="tag">&lt;<span class="tag-name">properties<span class="tag">&gt;  </span></span></span><br>11.          <span class="tag">&lt;<span class="tag-name">java.version<span class="tag">&gt;1.8<span class="tag">&lt;/<span class="tag-name">java.version<span class="tag">&gt;  </span></span></span></span></span></span><br>12.      <span class="tag">&lt;/<span class="tag-name">properties<span class="tag">&gt;  </span></span></span><br>13.<br>14.      <span class="tag">&lt;<span class="tag-name">parent<span class="tag">&gt;  </span></span></span><br>15.          <span class="tag">&lt;<span class="tag-name">groupId<span class="tag">&gt;org.springframework.boot<span class="tag">&lt;/<span class="tag-name">groupId<span class="tag">&gt;  </span></span></span></span></span></span><br>16.          <span class="tag">&lt;<span class="tag-name">artifactId<span class="tag">&gt;spring-boot-starter-parent<span class="tag">&lt;/<span class="tag-name">artifactId<span class="tag">&gt;  </span></span></span></span></span></span><br>17.          <span class="tag">&lt;<span class="tag-name">version<span class="tag">&gt;1.3.0.RELEASE<span class="tag">&lt;/<span class="tag-name">version<span class="tag">&gt;  </span></span></span></span></span></span><br>18.      <span class="tag">&lt;/<span class="tag-name">parent<span class="tag">&gt;  </span></span></span><br>19.<br>20.      <span class="tag">&lt;<span class="tag-name">dependencies<span class="tag">&gt;  </span></span></span><br>21.          <span class="comments"><!-- spring boot -->  </span><br>22.          <span class="tag">&lt;<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>23.              <span class="tag">&lt;<span class="tag-name">groupId<span class="tag">&gt;org.springframework.boot<span class="tag">&lt;/<span class="tag-name">groupId<span class="tag">&gt;  </span></span></span></span></span></span><br>24.              <span class="tag">&lt;<span class="tag-name">artifactId<span class="tag">&gt;spring-boot-starter-web<span class="tag">&lt;/<span class="tag-name">artifactId<span class="tag">&gt;  </span></span></span></span></span></span><br>25.          <span class="tag">&lt;/<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>26.          <span class="tag">&lt;<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>27.              <span class="tag">&lt;<span class="tag-name">groupId<span class="tag">&gt;org.springframework.boot<span class="tag">&lt;/<span class="tag-name">groupId<span class="tag">&gt;  </span></span></span></span></span></span><br>28.              <span class="tag">&lt;<span class="tag-name">artifactId<span class="tag">&gt;spring-boot-starter-data-jpa<span class="tag">&lt;/<span class="tag-name">artifactId<span class="tag">&gt;  </span></span></span></span></span></span><br>29.          <span class="tag">&lt;/<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>30.<br>31.          <span class="comments"><!-- mysql数据库 -->  </span><br>32.          <span class="tag">&lt;<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>33.              <span class="tag">&lt;<span class="tag-name">groupId<span class="tag">&gt;mysql<span class="tag">&lt;/<span class="tag-name">groupId<span class="tag">&gt;  </span></span></span></span></span></span><br>34.              <span class="tag">&lt;<span class="tag-name">artifactId<span class="tag">&gt;mysql-connector-java<span class="tag">&lt;/<span class="tag-name">artifactId<span class="tag">&gt;  </span></span></span></span></span></span><br>35.          <span class="tag">&lt;/<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>36.<br>37.          <span class="comments"><!-- commons-lang -->  </span><br>38.          <span class="tag">&lt;<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>39.              <span class="tag">&lt;<span class="tag-name">groupId<span class="tag">&gt;commons-lang<span class="tag">&lt;/<span class="tag-name">groupId<span class="tag">&gt;  </span></span></span></span></span></span><br>40.              <span class="tag">&lt;<span class="tag-name">artifactId<span class="tag">&gt;commons-lang<span class="tag">&lt;/<span class="tag-name">artifactId<span class="tag">&gt;  </span></span></span></span></span></span><br>41.              <span class="tag">&lt;<span class="tag-name">version<span class="tag">&gt;2.6<span class="tag">&lt;/<span class="tag-name">version<span class="tag">&gt;  </span></span></span></span></span></span><br>42.          <span class="tag">&lt;/<span class="tag-name">dependency<span class="tag">&gt;  </span></span></span><br>43.      <span class="tag">&lt;/<span class="tag-name">dependencies<span class="tag">&gt;  </span></span></span><br>44.<br>45.      <span class="comments"><!-- jar -->  </span><br>46.      <span class="tag">&lt;<span class="tag-name">build<span class="tag">&gt;  </span></span></span><br>47.          <span class="tag">&lt;<span class="tag-name">plugins<span class="tag">&gt;  </span></span></span><br>48.              <span class="tag">&lt;<span class="tag-name">plugin<span class="tag">&gt;  </span></span></span><br>49.                  <span class="tag">&lt;<span class="tag-name">groupId<span class="tag">&gt;org.springframework.boot<span class="tag">&lt;/<span class="tag-name">groupId<span class="tag">&gt;  </span></span></span></span></span></span><br>50.                  <span class="tag">&lt;<span class="tag-name">artifactId<span class="tag">&gt;spring-boot-maven-plugin<span class="tag">&lt;/<span class="tag-name">artifactId<span class="tag">&gt;  </span></span></span></span></span></span><br>51.                  <span class="tag">&lt;<span class="tag-name">configuration<span class="tag">&gt;  </span></span></span><br>52.                      <span class="tag">&lt;<span class="tag-name">fork<span class="tag">&gt;true<span class="tag">&lt;/<span class="tag-name">fork<span class="tag">&gt;  </span></span></span></span></span></span><br>53.                  <span class="tag">&lt;/<span class="tag-name">configuration<span class="tag">&gt;  </span></span></span><br>54.              <span class="tag">&lt;/<span class="tag-name">plugin<span class="tag">&gt;  </span></span></span><br>55.          <span class="tag">&lt;/<span class="tag-name">plugins<span class="tag">&gt;  </span></span></span><br>56.      <span class="tag">&lt;/<span class="tag-name">build<span class="tag">&gt;  </span></span></span><br>57.  <span class="tag">&lt;/<span class="tag-name">project<span class="tag">&gt;  </span></span></span><br><br>进入到项目目录下运行：mvn clean package<br><br><img src="http://pangguoming.com/blog/images/82864241-c7be-40d3-8e66-0736b9d26b93.jpg" alt=""><br><br>会在项目目录下target文件夹中生成jar<br><br>如上生成的jar文件在：D:\programmer\eclipse\feedback-service\target  文件夹中<br><br>java -jar 运行jar包 即可<br><br><img src="http://pangguoming.com/blog/images/08ee5a35-06ac-4460-9a84-003dbd25121f.jpg" alt=""><br><br>java -jar 运行jar包时使用外部配置文件application.properties<br><br><img src="http://pangguoming.com/blog/images/e6ca495e-8433-4351-8f0a-6369221032fb.jpg" alt=""><br><br>linux下执行jar<br><br><div class="dp-highlighter bg_plain"><br><div class="bar"><br><div class="tools"><strong>[plain]</strong> <a href="https://blog.csdn.net/smilecall/article/details/56288972#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="https://blog.csdn.net/smilecall/article/details/56288972#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  nohup java -Xmx512M -Xms512M -Djava.security.egd=/dev/urandom -jar message-service-1.0-SNAPSHOT.jar &gt; /dev/null 2&gt;&amp;1 &amp;<br><br>Linux下还有一个特殊的文件/dev/null，它就像一个无底洞，所有重定向到它的信息都会消失得无影无踪。<br><br> &gt;/dev/null 2&gt;&amp;1<br><br>注意：此处的顺序不能更改，否则达不到想要的效果，此时先将标准输出重定向到 /dev/null，然后将标准错误重定向到标准输出，由于标准输出已经重定向到了/dev/null，因此标准错误也会重定向到/dev/null，于是一切静悄悄:-)<br><br><img src="http://pangguoming.com/blog/images/8003c0d0-7ddd-4398-b4e2-5541af2c325a.jpg" alt=""><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -1343,7 +1422,7 @@ application/json是一个
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/19/MySql 5.7安装（随机密码，修改默认密码）两个坑/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/a89c6a9b.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1362,7 +1441,7 @@ application/json是一个
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/19/MySql 5.7安装（随机密码，修改默认密码）两个坑/" itemprop="url">MySql 5.7安装（随机密码，修改默认密码）两个坑</a></h1>
+                <a class="post-title-link" href="/post/a89c6a9b.html" itemprop="url">MySql 5.7安装（随机密码，修改默认密码）两个坑</a></h1>
         
 
         <div class="post-meta">
@@ -1414,16 +1493,9 @@ application/json是一个
       
         
           
-          MySql 5.7安装（随机密码，修改默认密
-下载了MySql 最新版本，安装的过程中，发现了很多新特性1.data目录不见了在进行my-default.ini配置的时候（需要配置 # basedir = C:/Program Files/MySQL/MySQL Server 5.7.11# dat
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/19/MySql 5.7安装（随机密码，修改默认密码）两个坑/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>MySql 5.7安装（随机密码，修改默认密</p>
+<div id="article_content" class="article_content clearfix csdn-tracking-statistics" data-pid="blog" data-mod="popu_307" data-dsm="post"><br><div class="htmledit_views"><br><br>下载了MySql 最新版本，安装的过程中，发现了很多新特性<br><br>1.data目录不见了<br><br><img src="http://pangguoming.com/blog/images/b36a115e-61c4-4a63-bcc2-59371d249ef9.jpg" alt=""><br><br>在进行my-default.ini配置的时候<br><br>（需要配置 # basedir = C:/Program Files/MySQL/MySQL Server 5.7.11<br><br># datadir = C:/Program Files/MySQL/MySQL Server 5.7.11/data）<br><br>细心的同学会发现，/data这个目录不存在，但是这个data目录可不是我们手动创建的，根据官方指南<br><br>C:/&gt;<code>bin/mysqld --initialize</code><br><br>C:/&gt;<code>bin/mysqld --initialize-insecure</code><br><br>cmd中输入这两个代码中的一个就可以自动在对应的目录下生成啦<br><br>（前提是你的path配置正确，比如mysql的路径，如果提示net命令不是内部命令，就在path中增加“C:/Windows/System32”即可）<br><br><img src="http://pangguoming.com/blog/images/90783f54-d5a1-4de7-a9a8-4c7cd978c3e1.jpg" alt=""><br><br>2.随机生成了一个random string 作为密码<br><br>在没有启动前，root的密码是ABC123xyz<br><br>随机生成的密码在日志文件中可以查看，没错就是在initialize命令下生成的那个data文件<br><br><img src="http://pangguoming.com/blog/images/b36a115e-61c4-4a63-bcc2-59371d249ef9.jpg" alt=""><img src="http://pangguoming.com/blog/images/17fc1002-5cb5-4c25-ab52-fd6378f8e961.jpg" alt=""><br><br>使用记事本打开Acer.err<br><br><img src="http://pangguoming.com/blog/images/9a93ea3b-deae-408e-8da6-c507e3cee82d.jpg" alt=""><br><br><img src="http://pangguoming.com/blog/images/b36a115e-61c4-4a63-bcc2-59371d249ef9.jpg" alt=""><br><br>找到<br><br>“2016-02-12T15:35:00.026880Z 1 [Note] A temporary password is generated for root@localhost: Ux&lt;&lt;lCbrr8&amp;d”<br><br>Ux&lt;&lt;lCbrr8&amp;d<br><br>这个就是我们要找的密码了<br><br>登陆成功：<br><br><img src="http://pangguoming.com/blog/images/b36a115e-61c4-4a63-bcc2-59371d249ef9.jpg" alt=""><img src="http://pangguoming.com/blog/images/a2ff951b-a135-4315-836a-390d28de66f8.jpg" alt=""><br><br>3.修改密码的指令<br><br>果然新版本中修改密码的指令也不是那么好找的。。<br><br>在成功连接之后，使用sql语句修改，以往未登录状态下的修改方法已经不能使用啦~~<br><br>mysql&gt; <code>new_password&#39;</code>;<code>`</code><br><br>修改成功：<br><br><img src="http://pangguoming.com/blog/images/a21bbd91-07c5-4a39-88c9-25d77016b793.jpg" alt=""><br><br>    <div class="article-bar-bottom"><br>    <div class="article-copyright">版权声明：本文为博主原创文章，未经博主允许不得转载。 <a href="https://blog.csdn.net/quentain/article/details/51543991" target="_blank" rel="noopener">https://blog.csdn.net/quentain/article/details/51543991</a><br><br>码）两个坑<br></div></div><br></div></div>
+          
         
       
     </div>
@@ -1470,7 +1542,7 @@ application/json是一个
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/05/19/centos6.8 mysql5.6.34 root密码重置/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/acd01cbe.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1489,7 +1561,7 @@ application/json是一个
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/19/centos6.8 mysql5.6.34 root密码重置/" itemprop="url">centos6.8 mysql5.6.34 root密码重置</a></h1>
+                <a class="post-title-link" href="/post/acd01cbe.html" itemprop="url">centos6.8 mysql5.6.34 root密码重置</a></h1>
         
 
         <div class="post-meta">
@@ -1541,22 +1613,27 @@ application/json是一个
       
         
           
-          1.关闭正在运行的MySQL
-service mysql stop
-2.启动MySQL的安全模式
-mysqld_safe –skip-grant-tables
-等1分钟如果还没返回的话，新开shell执行以下语句
-3.使用root用户[免密码]登陆MySQL
-mysql -u root -p
-输入密
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/19/centos6.8 mysql5.6.34 root密码重置/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>1.关闭正在运行的MySQL</p>
+<p>service mysql stop</p>
+<p>2.启动MySQL的安全模式</p>
+<p>mysqld_safe –skip-grant-tables</p>
+<p>等1分钟如果还没返回的话，新开shell执行以下语句</p>
+<p>3.使用root用户[免密码]登陆MySQL</p>
+<p>mysql -u root -p</p>
+<p>输入密码时,直接回车</p>
+<p>4.选择MySQL系统库</p>
+<p>use mysql</p>
+<p>5.查看当前系统用户root的密码</p>
+<p><code class="sql keyword">select </code><code class="sql color2">user</code><code class="sql plain">,host,</code><code class="sql keyword">password </code><code class="sql keyword">from </code><code class="sql color2">user </code><code class="sql keyword">where </code><code class="sql color2">user</code><code class="sql plain">=</code><code class="sql string">“root”</code></p>
+<p><code class="sql string">查看的password是经过加密的<br></code></p>
+<p>6.修改root用户的密码</p>
+<p><code class="sql keyword">update </code><code class="sql color2">user </code><code class="sql keyword">set </code><code class="sql keyword">password</code><code class="sql plain">=</code><code class="sql keyword">PASSWORD</code><code class="sql plain">(</code><code class="sql string">“your_password”</code><code class="sql plain">) </code><code class="sql keyword">where </code><code class="sql color2">user</code><code class="sql plain">=</code><code class="sql string">“root”</code></p>
+<p><code class="sql string">7.刷新一下系统的权限<br></code></p>
+<p><code class="sql string"><code class="sql plain">flush </code><code class="sql keyword">privileges</code><code class="sql plain">;</code><br></code></p>
+<p><code class="sql string"><code class="sql plain">8.重新启动mysql</code></code></p>
+<p><code class="sql string"><code class="sql plain">service mysql restart</code></code></p>
+
+          
         
       
     </div>
@@ -1619,105 +1696,108 @@ mysql -u root -p
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
-            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+
           
-            <p class="site-author-name" itemprop="name">庞国明</p>
-            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives">
-            
-                <span class="site-state-item-count">420</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">267</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>GitHub</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
-                  
-                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -1734,12 +1814,9 @@ mysql -u root -p
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">庞国明</span>
 
@@ -1747,11 +1824,17 @@ mysql -u root -p
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
@@ -1771,6 +1854,8 @@ mysql -u root -p
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -1805,53 +1890,61 @@ mysql -u root -p
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
 
-
-
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1877,6 +1970,23 @@ mysql -u root -p
 
   
 
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
 
 
 
@@ -2206,11 +2316,27 @@ mysql -u root -p
 
 
 
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
 
   
 
   
 
+  
+
+  
   
 
   

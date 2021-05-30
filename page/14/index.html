@@ -45,38 +45,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT">
@@ -84,11 +73,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
 
 
 
@@ -113,11 +97,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -153,30 +137,6 @@
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-	<div id="topnavbar">
-  <div class="tophead">
-    <div class="toplogo"><a href="/">庞国明-博客</a></div>
-    <div id="mnav">
-      <h2><span class="navicon"></span></h2>
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </div>
-    <nav class="topnav" id="topnav">
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
 
   
   
@@ -230,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -250,12 +220,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            关于
+            归档
           </a>
         </li>
       
@@ -278,20 +248,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -324,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/02/27/java正则校验，密码必须由字母和数字组成/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/eb133a6a.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -343,7 +319,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/27/java正则校验，密码必须由字母和数字组成/" itemprop="url">java正则校验，密码必须由字母和数字组成</a></h1>
+                <a class="post-title-link" href="/post/eb133a6a.html" itemprop="url">java正则校验，密码必须由字母和数字组成</a></h1>
         
 
         <div class="post-meta">
@@ -395,15 +371,8 @@
       
         
           
-          # 一个匹配数字和字母密码的正则表达式2011 年 12 月 14 日 | Filed under: 正则表达式 and tagged with: 密码 , 正则表达式 , 零宽断言一个用户注册功能的密码有如下要求：由数字和字母组成，并且要同时含有数字和字母，且长度要在8-16位之间。 如何分析需求
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/27/java正则校验，密码必须由字母和数字组成/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div id="article_content" class="article_content csdn-tracking-statistics tracking-click" data-mod="popu_519" data-dsm="post"><br><div class="htmledit_views"><br><br># 一个匹配数字和字母密码的正则表达式<br><br><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 25.2px;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 25.2px;">2011 年 12 月 14 日 | Filed under: <a href="http://buzheng.org/blog/category/dev/regex/" title="查看 正则表达式 中的全部文章" target="_blank" rel="noopener">正则表达式</a><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 25.2px;"> and tagged with: <a href="http://buzheng.org/blog/tag/%E5%AF%86%E7%A0%81/" target="_blank" rel="noopener">密码</a><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 25.2px;"> , <a href="http://buzheng.org/blog/tag/regex/" target="_blank" rel="noopener">正则表达式</a><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 25.2px;"> , <a href="http://buzheng.org/blog/tag/%E9%9B%B6%E5%AE%BD%E6%96%AD%E8%A8%80/" target="_blank" rel="noopener">零宽断言</a></span></span></span></span></span><br><br>一个用户注册功能的密码有如下要求：由数字和字母组成，并且要同时含有数字和字母，且长度要在8-16位之间。<br><br> 如何分析需求？拆分！这就是软件设计的一般思路了。于是乎，拆分需求如下：<br> 1，不能全部是数字<br> 2，不能全部是字母<br> 3，必须是数字或字母<br> 只要能同时满足上面3个要求就可以了，写出来如下：<br><br>^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">分开来注释一下：  </span><br><span class="line">^ 匹配一行的开头位置  </span><br><span class="line">(?![0-9]+$) 预测该位置后面不全是数字  </span><br><span class="line">(?![a-zA-Z]+$) 预测该位置后面不全是字母  </span><br><span class="line">[0-9A-Za-z] &#123;8,16&#125; 由8-16位数字或这字母组成  </span><br><span class="line">$ 匹配行结尾位置</span><br><span class="line"></span><br><span class="line">注：(?!xxxx) 是正则表达式的负向零宽断言一种形式，标识预该位置后不是xxxx字符。</span><br><span class="line"></span><br><span class="line">测试用例如下：</span><br><span class="line"></span><br><span class="line">   &lt;pre&gt;public class Test &#123;</span><br><span class="line">       public static void main(String[] args) throws Exception &#123;</span><br><span class="line">           String regex = &quot;^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]&#123;8,16&#125;$&quot;;        </span><br><span class="line"></span><br><span class="line">           String value = &quot;aaa&quot;;  // 长度不够</span><br><span class="line">           System.out.println(value.matches(regex));</span><br><span class="line"></span><br><span class="line">           value = &quot;1111aaaa1111aaaaa&quot;;  // 太长</span><br><span class="line">           System.out.println(value.matches(regex));</span><br><span class="line"></span><br><span class="line">           value = &quot;111111111&quot;; // 纯数字</span><br><span class="line">           System.out.println(value.matches(regex));</span><br><span class="line"></span><br><span class="line">           value = &quot;aaaaaaaaa&quot;; // 纯字母</span><br><span class="line">           System.out.println(value.matches(regex));</span><br><span class="line"></span><br><span class="line">           value = &quot;####@@@@#&quot;; // 特殊字符</span><br><span class="line">           System.out.println(value.matches(regex));</span><br><span class="line"></span><br><span class="line">           value = &quot;1111aaaa&quot;;  // 数字字母组合</span><br><span class="line">           System.out.println(value.matches(regex));</span><br><span class="line"></span><br><span class="line">           value = &quot;aaaa1111&quot;; // 数字字母组合</span><br><span class="line">           System.out.println(value.matches(regex));</span><br><span class="line"></span><br><span class="line">           value = &quot;aa1111aa&quot;;    // 数字字母组合</span><br><span class="line">           System.out.println(value.matches(regex));</span><br><span class="line"></span><br><span class="line">           value = &quot;11aaaa11&quot;;    // 数字字母组合</span><br><span class="line">           System.out.println(value.matches(regex));</span><br><span class="line"></span><br><span class="line">           value = &quot;aa11aa11&quot;; // 数字字母组合</span><br><span class="line">           System.out.println(value.matches(regex));</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure><br><br>    <div class="article_copyright"> </div><br></div></div>
+          
         
       
     </div>
@@ -450,7 +419,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/02/24/Mysql 高可用方案/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/f93481fb.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -469,7 +438,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/24/Mysql 高可用方案/" itemprop="url">Mysql 高可用方案</a></h1>
+                <a class="post-title-link" href="/post/f93481fb.html" itemprop="url">Mysql 高可用方案</a></h1>
         
 
         <div class="post-meta">
@@ -521,15 +490,8 @@
       
         
           
-          1 mysql分布式数据库，如 mycat https://www.cnblogs.com/zzsdream/articles/6650690.html2 读写分离，mysql主从复制+mysql proxy http://www.cnblogs.com/phpstudy2015-6/p/66874
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/24/Mysql 高可用方案/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div style="white-space: pre-wrap; text-align: left; line-height: 1.75; font-size: 14px;">1 mysql分布式数据库，如 mycat <a href="https://www.cnblogs.com/zzsdream/articles/6650690.html" target="_blank" rel="noopener"><span style="color: #003884; text-decoration: underline;">https://www.cnblogs.com/zzsdream/articles/6650690.html</span></a><br><div style="white-space: pre-wrap; text-align: left; line-height: 1.75; font-size: 14px;">2 读写分离，mysql主从复制+mysql proxy <a href="http://www.cnblogs.com/phpstudy2015-6/p/6687480.html" target="_blank" rel="noopener"><span style="color: #003884; text-decoration: underline;">http://www.cnblogs.com/phpstudy2015-6/p/6687480.html</span></a><br><div style="white-space: pre-wrap; text-align: left; line-height: 1.75; font-size: 14px;">3 mysql负载均衡，haproxy+mysql <a href="http://www.cnblogs.com/phpstudy2015-6/p/6706465.html" target="_blank" rel="noopener"><span style="color: #003884; text-decoration: underline;">http://www.cnblogs.com/phpstudy2015-6/p/6706465.html</span></a><br><div style="white-space: pre-wrap; text-align: left; line-height: 1.75; font-size: 14px;">4 mysql cluster <a href="https://www.cnblogs.com/linkstar/p/6510713.html" target="_blank" rel="noopener"><span style="color: #003884; text-decoration: underline;">https://www.cnblogs.com/linkstar/p/6510713.html</span></a></div></div></div></div>
+          
         
       
     </div>
@@ -576,7 +538,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/02/23/数据库Sharding的基本思想和切分策略/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/77678807.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -595,7 +557,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/23/数据库Sharding的基本思想和切分策略/" itemprop="url">数据库Sharding的基本思想和切分策略</a></h1>
+                <a class="post-title-link" href="/post/77678807.html" itemprop="url">数据库Sharding的基本思想和切分策略</a></h1>
         
 
         <div class="post-meta">
@@ -647,17 +609,41 @@
       
         
           
-          本文着重介绍sharding的基本思想和理论上的切分策略，关于更加细致的实施策略和参考事例请参考我的另一篇博文：数据库分库分表(sharding)系列(一) 拆分实施策略和示例演示 
-一、基本思想
-Sharding的基本思想就要把一个数据库切分成多个部分放到不同的数据库(server)上，从而缓解单
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/数据库Sharding的基本思想和切分策略/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>本文着重介绍sharding的基本思想和理论上的切分策略，关于更加细致的实施策略和参考事例请参考我的另一篇博文：<a href="http://blog.csdn.net/bluishglc/article/details/7696085" target="_blank" rel="noopener">数据库分库分表(sharding)系列(一) 拆分实施策略和示例演示 </a></p>
+<p>一、基本思想</p>
+<pre><code>Sharding的基本思想就要把一个数据库切分成多个部分放到不同的数据库(server)上，从而缓解单一数据库的性能问题。不太严格的讲，对于海量数据的数据库，如果是因为表多而数据多，这时候适合使用垂直切分，即把关系紧密（比如同一模块）的表切分出来放在一个server上。如果表并不多，但每张表的数据非常多，这时候适合水平切分，即把表的数据按某种规则（比如按ID散列）切分到多个数据库(server)上。当然，现实中更多是这两种情况混杂在一起，这时候需要根据实际情况做出选择，也可能会综合使用垂直与水平切分，从而将原有数据库切分成类似矩阵一样可以无限扩充的数据库(server)阵列。下面分别详细地介绍一下垂直切分和水平切分.  
+
+垂直切分的最大特点就是规则简单，实施也更为方便，尤其适合各业务之间的耦合度非  
+</code></pre><p>常低，相互影响很小，业务逻辑非常清晰的系统。在这种系统中，可以很容易做到将不同业<br>务模块所使用的表分拆到不同的数据库中。根据不同的表来进行拆分，对应用程序的影响也<br>更小，拆分规则也会比较简单清晰。（这也就是所谓的”share nothing”）。</p>
+<p><img src="http://pangguoming.com/blog/images/3de39afb-e14b-4376-84cc-f65cbf6e4782.gif" alt="">  </p>
+<pre><code>水平切分于垂直切分相比，相对来说稍微复杂一些。因为要将同一个表中的不同数据拆  
+</code></pre><p>分到不同的数据库中，对于应用程序来说，拆分规则本身就较根据表名来拆分更为复杂，后<br>期的数据维护也会更为复杂一些。</p>
+<p><img src="http://pangguoming.com/blog/images/48bde1c6-3518-4900-a43f-0a9ed94a511b.gif" alt="">  </p>
+<pre><code>让我们从普遍的情况来考虑数据的切分：一方面，一个库的所有表通常不可能由某一张表全部串联起来，这句话暗含的意思是，水平切分几乎都是针对一小搓一小搓（实际上就是垂直切分出来的块）关系紧密的表进行的，而不可能是针对所有表进行的。另一方面，一些负载非常高的系统，即使仅仅只是单个表都无法通过单台数据库主机来承担其负载，这意味着单单是垂直切分也不能完全解决问明。因此多数系统会将垂直切分和水平切分联合使用，先对系统做垂直切分，再针对每一小搓表的情况选择性地做水平切分。从而将整个数据库切分成一个分布式矩阵。
+</code></pre><p><img src="http://pangguoming.com/blog/images/f218b699-26fb-4fd9-8a2a-1ff65f8c7ab7.gif" alt=""></p>
+<p>二、切分策略</p>
+<pre><code>如前面所提到的，切分是按先垂直切分再水平切分的步骤进行的。垂直切分的结果正好为水平切分做好了铺垫。垂直切分的思路就是分析表间的聚合关系，把关系紧密的表放在一起。多数情况下可能是同一个模块，或者是同一“聚集”。这里的“聚集”正是领域驱动设计里所说的聚集。在垂直切分出的表聚集内，找出“根元素”（这里的“根元素”就是领域驱动设计里的“聚合根”），按“根元素”进行水平切分，也就是从“根元素”开始，把所有和它直接与间接关联的数据放入一个shard里。这样出现跨shard关联的可能性就非常的小。应用程序就不必打断既有的表间关联。比如：对于社交网站，几乎所有数据最终都会关联到某个用户上，基于用户进行切分就是最好的选择。再比如论坛系统，用户和论坛两个模块应该在垂直切分时被分在了两个shard里，对于论坛模块来说，Forum显然是聚合根，因此按Forum进行水平切分，把Forum里所有的帖子和回帖都随Forum放在一个shard里是很自然的。  
+
+对于共享数据数据，如果是只读的字典表，每个shard里维护一份应该是一个不错的选择，这样不必打断关联关系。如果是一般数据间的跨节点的关联，就必须打断。
+
+需要特别说明的是：当同时进行垂直和水平切分时，切分策略会发生一些微妙的变化。比如：在只考虑垂直切分的时候，被划分到一起的表之间可以保持任意的关联关系，因此你可以按“功能模块”划分表格，但是一旦引入水平切分之后，表间关联关系就会受到很大的制约，通常只能允许一个主表（以该表ID进行散列的表）和其多个次表之间保留关联关系，也就是说：当同时进行垂直和水平切分时，在垂直方向上的切分将不再以“功能模块”进行划分，而是需要更加细粒度的垂直切分，而这个粒度与领域驱动设计中的“聚合”概念不谋而合，甚至可以说是完全一致，每个shard的主表正是一个聚合中的聚合根！这样切分下来你会发现数据库分被切分地过于分散了（shard的数量会比较多，但是shard里的表却不多），为了避免管理过多的数据源，充分利用每一个数据库服务器的资源，可以考虑将业务上相近，并且具有相近数据增长速率（主表数据量在同一数量级上）的两个或多个shard放到同一个数据源里，每个shard依然是独立的，它们有各自的主表，并使用各自主表ID进行散列，不同的只是它们的散列取模（即节点数量）必需是一致的。（
+</code></pre><p>本文着重介绍sharding的基本思想和理论上的切分策略，关于更加细致的实施策略和参考事例请参考我的另一篇博文：<a href="http://blog.csdn.net/bluishglc/article/details/7696085" target="_blank" rel="noopener">数据库分库分表(sharding)系列(一) 拆分实施策略和示例演示 </a></p>
+<p> ）</p>
+<p>1.事务问题：<br>解决事务问题目前有两种可行的方案：分布式事务和通过应用程序与数据库共同控制实现事务下面对两套方案进行一个简单的对比。<br>方案一：使用分布式事务<br>    优点：交由数据库管理，简单有效<br>    缺点：性能代价高，特别是shard越来越多时<br>方案二：由应用程序和数据库共同控制<br>     原理：将一个跨多个数据库的分布式事务分拆成多个仅处<br>           于单个数据库上面的小事务，并通过应用程序来总控<br>           各个小事务。<br>     优点：性能上有优势<br>     缺点：需要应用程序在事务控制上做灵活设计。如果使用<br>           了spring的事务管理，改动起来会面临一定的困难。<br>2.跨节点Join的问题<br>      只要是进行切分，跨节点Join的问题是不可避免的。但是良好的设计和切分却可以减少此类情况的发生。解决这一问题的普遍做法是分两次查询实现。在第一次查询的结果集中找出关联数据的id,根据这些id发起第二次请求得到关联数据。  </p>
+<p>3.跨节点的count,order by,group by以及聚合函数问题<br>      这些是一类问题，因为它们都需要基于全部数据集合进行计算。多数的代理都不会自动处理合并工作。解决方案：与解决跨节点join问题的类似，分别在各个节点上得到结果后在应用程序端进行合并。和join不同的是每个结点的查询可以并行执行，因此很多时候它的速度要比单一大表快很多。但如果结果集很大，对应用程序内存的消耗是一个问题。</p>
+<p>参考资料：</p>
+<p>《MySQL性能调优与架构设计》</p>
+<p>注：本文图片摘自《MySQL性能调优与架构设计》一 书</p>
+<p>相关阅读：</p>
+<h3 id="数据库分库分表-sharding-系列-五-一种支持自由规划无须数据迁移和修改路由代码的Sharding扩容方案"><a href="#数据库分库分表-sharding-系列-五-一种支持自由规划无须数据迁移和修改路由代码的Sharding扩容方案" class="headerlink" title="数据库分库分表(sharding)系列(五) 一种支持自由规划无须数据迁移和修改路由代码的Sharding扩容方案"></a><a href="http://blog.csdn.net/bluishglc/article/details/7970268" target="_blank" rel="noopener">数据库分库分表(sharding)系列(五) 一种支持自由规划无须数据迁移和修改路由代码的Sharding扩容方案</a></h3><p>### </p>
+<p>### </p>
+<p>### </p>
+<h3 id="数据库分库分表-sharding-系列-四-多数据源的事务处理"><a href="#数据库分库分表-sharding-系列-四-多数据源的事务处理" class="headerlink" title="数据库分库分表(sharding)系列(四) 多数据源的事务处理"></a><a href="http://blog.csdn.net/bluishglc/article/details/7793172" target="_blank" rel="noopener">数据库分库分表(sharding)系列(四) 多数据源的事务处理</a></h3><h3 id="数据库分库分表-sharding-系列-三-关于使用框架还是自主开发以及sharding实现层面的考量"><a href="#数据库分库分表-sharding-系列-三-关于使用框架还是自主开发以及sharding实现层面的考量" class="headerlink" title="数据库分库分表(sharding)系列(三) 关于使用框架还是自主开发以及sharding实现层面的考量"></a><a href="http://blog.csdn.net/bluishglc/article/details/7766508" target="_blank" rel="noopener">数据库分库分表(sharding)系列(三) 关于使用框架还是自主开发以及sharding实现层面的考量</a></h3><p>### </p>
+<h3 id="数据库分库分表-sharding-系列-二-全局主键生成策略"><a href="#数据库分库分表-sharding-系列-二-全局主键生成策略" class="headerlink" title="数据库分库分表(sharding)系列(二) 全局主键生成策略"></a><a href="http://blog.csdn.net/bluishglc/article/details/7710738" target="_blank" rel="noopener">数据库分库分表(sharding)系列(二) 全局主键生成策略</a></h3><p>### </p>
+<h3 id="数据库分库分表-sharding-系列-一-拆分实施策略和示例演示"><a href="#数据库分库分表-sharding-系列-一-拆分实施策略和示例演示" class="headerlink" title="数据库分库分表(sharding)系列(一) 拆分实施策略和示例演示"></a><a href="http://blog.csdn.net/bluishglc/article/details/6274841" target="_blank" rel="noopener">数据库分库分表(sharding)系列(一) 拆分实施策略和示例演示</a></h3><p>### </p>
+<h3 id="关于垂直切分Vertical-Sharding的粒度"><a href="#关于垂直切分Vertical-Sharding的粒度" class="headerlink" title="关于垂直切分Vertical Sharding的粒度"></a><a href="http://blog.csdn.net/bluishglc/article/details/6274841" target="_blank" rel="noopener">关于垂直切分Vertical Sharding的粒度</a></h3><h3 id="数据库Sharding的基本思想和切分策略"><a href="#数据库Sharding的基本思想和切分策略" class="headerlink" title="数据库Sharding的基本思想和切分策略"></a><a href="http://blog.csdn.net/bluishglc/article/details/6161475" target="_blank" rel="noopener">数据库Sharding的基本思想和切分策略</a></h3><p># </p>
+
+          
         
       
     </div>
@@ -704,7 +690,7 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/02/23/Hadoop家族学习路线图v/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/d39acf3b.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -723,7 +709,7 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/23/Hadoop家族学习路线图v/" itemprop="url">Hadoop家族学习路线图v</a></h1>
+                <a class="post-title-link" href="/post/d39acf3b.html" itemprop="url">Hadoop家族学习路线图v</a></h1>
         
 
         <div class="post-meta">
@@ -775,15 +761,115 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
       
         
           
-          主要介绍Hadoop家族产品，常用的项目包括Hadoop, Hive, Pig, HBase, Sqoop, Mahout, Zookeeper, Avro, Ambari, Chukwa，新增加的项目包括，YARN, Hcatalog, Oozie, Cassandra, Hama, Whirr,
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/Hadoop家族学习路线图v/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>主要介绍Hadoop家族产品，常用的项目包括Hadoop, Hive, Pig, HBase, Sqoop, Mahout, Zookeeper, Avro, Ambari, Chukwa，新增加的项目包括，YARN, Hcatalog, Oozie, Cassandra, Hama, Whirr, Flume, Bigtop, Crunch, Hue等。</p>
+<p>从2011年开始，中国进入大数据风起云涌的时代，以Hadoop为代表的家族软件，占据了大数据处理的广阔地盘。开源界及厂商，所有数据软件，无一不向Hadoop靠拢。Hadoop也从小众的高富帅领域，变成了大数据开发的标准。在Hadoop原有技术基础之上，出现了Hadoop家族产品，通过“大数据”概念不断创新，推出科技进步。</p>
+<p>作为IT界的开发人员，我们也要跟上节奏，抓住机遇，跟着Hadoop一起雄起！</p>
+<p><a href="http://pangguoming.com/blog/images/1bc56fab-243c-452c-b775-dd0a113b0e06.png"><span style="color: #0e73b8;"><img src="http://pangguoming.com/blog/images/1bc56fab-243c-452c-b775-dd0a113b0e06.png" alt="hadoopFamilyRoadmap"></span></a></p>
+<p><strong>前言</strong></p>
+<p>使用Hadoop已经有一段时间了，从开始的迷茫，到各种的尝试，到现在组合应用….慢慢地涉及到数据处理的事情，已经离不开hadoop了。Hadoop在大数据领域的成功，更引发了它本身的加速发展。现在Hadoop家族产品，已经达到20个了之多。</p>
+<p>有必要对自己的知识做一个整理了，把产品和技术都串起来。不仅能加深印象，更可以对以后的技术方向，技术选型做好基础准备。</p>
+<p>本文为“Hadoop家族”开篇，<a href="http://blog.fens.me/hadoop-family-roadmap/" title="Hadoop家族学习路线图" target="_blank" rel="noopener"><span style="color: #0e73b8;">Hadoop家族学习路线图</span></a></p>
+<p><strong>目录</strong></p>
+<ol>
+<li>Hadoop家族产品</li>
+<li>Hadoop家族学习路线图</li>
+</ol>
+<h2 id="1-Hadoop家族产品"><a href="#1-Hadoop家族产品" class="headerlink" title="1. Hadoop家族产品"></a>1. Hadoop家族产品</h2><p>截止到2013年，根据cloudera的统计，Hadoop家族产品已经达到20个！<br><a href="http://blog.cloudera.com/blog/2013/01/apache-hadoop-in-2013-the-state-of-the-platform/" target="_blank" rel="noopener"><span style="color: #0e73b8;">http://blog.cloudera.com/blog/2013/01/apache-hadoop-in-2013-the-state-of-the-platform/</span></a></p>
+<p>接下来，我把这20个产品，分成了2类。</p>
+<ul>
+<li>第一类，是我已经掌握的</li>
+<li>第二类，是TODO准备继续学习的</li>
+</ul>
+<p><a href="http://blog.fens.me/wp-content/uploads/2013/09/HadoopFamilySmall.png" target="_blank" rel="noopener"><img src="http://blog.fens.me/wp-content/uploads/2013/09/HadoopFamilySmall.png" alt="HadoopFamilySmall"></a></p>
+<p><strong>一句话产品介绍:</strong></p>
+<ul>
+<li><a href="http://hadoop.apache.org/" title="Apache Hadoop" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Hadoop</span></a>: 是Apache开源组织的一个分布式计算开源框架，提供了一个分布式文件系统子项目(HDFS)和支持MapReduce分布式计算的软件架构。</li>
+<li><a href="http://hive.apache.org/" title="Apache Hive" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Hive</span></a>: 是基于Hadoop的一个数据仓库工具，可以将结构化的数据文件映射为一张数据库表，通过类SQL语句快速实现简单的MapReduce统计，不必开发专门的MapReduce应用，十分适合数据仓库的统计分析。</li>
+<li><a href="http://pig.apache.org/" title="Apache Pig" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Pig</span></a>: 是一个基于Hadoop的大规模数据分析工具，它提供的SQL-LIKE语言叫Pig Latin，该语言的编译器会把类SQL的数据分析请求转换为一系列经过优化处理的MapReduce运算。</li>
+<li><a href="http://hbase.apache.org/" title="Apache HBase" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache HBase</span></a>: 是一个高可靠性、高性能、面向列、可伸缩的分布式存储系统，利用HBase技术可在廉价PC Server上搭建起大规模结构化存储集群。</li>
+<li><a href="http://sqoop.apache.org/" title="Apache Sqoop" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Sqoop</span></a>: 是一个用来将Hadoop和关系型数据库中的数据相互转移的工具，可以将一个关系型数据库（MySQL ,Oracle ,Postgres等）中的数据导进到Hadoop的HDFS中，也可以将HDFS的数据导进到关系型数据库中。</li>
+<li><a href="http://zookeeper.apache.org/" title="Zookeeper" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Zookeeper</span></a>: 是一个为分布式应用所设计的分布的、开源的协调服务，它主要是用来解决分布式应用中经常遇到的一些数据管理问题，简化分布式应用协调及其管理的难度，提供高性能的分布式服务</li>
+<li><a href="http://mahout.apache.org/" title="Apache Mahout" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Mahout</span></a>:是基于Hadoop的机器学习和数据挖掘的一个分布式框架。Mahout用MapReduce实现了部分数据挖掘算法，解决了并行挖掘的问题。</li>
+<li><a href="http://cassandra.apache.org/" title="Apache Cassandra" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Cassandra</span></a>:是一套开源分布式NoSQL数据库系统。它最初由Facebook开发，用于储存简单格式数据，集Google BigTable的数据模型与Amazon Dynamo的完全分布式的架构于一身</li>
+<li><a href="http://avro.apache.org/" title="Apache Avro" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Avro</span></a>: 是一个数据序列化系统，设计用于支持数据密集型，大批量数据交换的应用。Avro是新的数据序列化格式与传输工具，将逐步取代Hadoop原有的IPC机制</li>
+<li><a href="http://incubator.apache.org/ambari/" title="Apache Ambari" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Ambari</span></a>: 是一种基于Web的工具，支持Hadoop集群的供应、管理和监控。</li>
+<li><a href="http://incubator.apache.org/chukwa/" title="Apache Chukwa" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Chukwa</span></a>: 是一个开源的用于监控大型分布式系统的数据收集系统，它可以将各种各样类型的数据收集成适合 Hadoop 处理的文件保存在 HDFS 中供 Hadoop 进行各种 MapReduce 操作。</li>
+<li><a href="http://hama.apache.org/" title="Apache Hama" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Hama</span></a>: 是一个基于HDFS的BSP（Bulk Synchronous Parallel)并行计算框架, Hama可用于包括图、矩阵和网络算法在内的大规模、大数据计算。</li>
+<li><a href="http://flume.apache.org/" title="Apache Flume" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Flume</span></a>: 是一个分布的、可靠的、高可用的海量日志聚合的系统，可用于日志数据收集，日志数据处理，日志数据传输。</li>
+<li><a href="http://giraph.apache.org/" title="Apache Giraph" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Giraph</span></a>: 是一个可伸缩的分布式迭代图处理系统， 基于Hadoop平台，灵感来自 BSP (bulk synchronous parallel) 和 Google 的 Pregel。</li>
+<li><a href="http://oozie.apache.org/" title="Apache Oozie" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Oozie</span></a>: 是一个工作流引擎服务器, 用于管理和协调运行在Hadoop平台上（HDFS、Pig和MapReduce）的任务。</li>
+<li><a href="http://incubator.apache.org/crunch/" title="Apache Crunch" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Crunch</span></a>: 是基于Google的FlumeJava库编写的Java库，用于创建MapReduce程序。与Hive，Pig类似，Crunch提供了用于实现如连接数据、执行聚合和排序记录等常见任务的模式库</li>
+<li><a href="http://whirr.apache.org/" title="Apache Whirr" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Whirr</span></a>: 是一套运行于云服务的类库（包括Hadoop），可提供高度的互补性。Whirr学支持Amazon EC2和Rackspace的服务。</li>
+<li><a href="http://bigtop.apache.org/" title="Apache Bigtop" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache Bigtop</span></a>: 是一个对Hadoop及其周边生态进行打包，分发和测试的工具。</li>
+<li><a href="http://incubator.apache.org/hcatalog/" title="Apache HCatalog" target="_blank" rel="noopener"><span style="color: #0e73b8;">Apache HCatalog</span></a>: 是基于Hadoop的数据表和存储管理，实现中央的元数据和模式管理，跨越Hadoop和RDBMS，利用Pig和Hive提供关系视图。</li>
+<li><a href="http://cloudera.github.io/hue/" title="Cloudera Hue" target="_blank" rel="noopener"><span style="color: #0e73b8;">Cloudera Hue</span></a>: 是一个基于WEB的监控和管理系统，实现对HDFS，MapReduce/YARN, HBase, Hive, Pig的web化操作和管理。</li>
+</ul>
+<h2 id="2-Hadoop家族学习路线图"><a href="#2-Hadoop家族学习路线图" class="headerlink" title="2. Hadoop家族学习路线图"></a>2. Hadoop家族学习路线图</h2><p>下面我将分别介绍各个产品的安装和使用，以我经验总结我的学习路线。</p>
+<p><strong>Hadoop</strong></p>
+<ul>
+<li><a href="http://blog.fens.me/hadoop-core-roadmap/" title="Hadoop学习路线图" target="_blank" rel="noopener"><span style="color: #0e73b8;">Hadoop学习路线图</span></a></li>
+<li>Yarn学习路线图</li>
+<li><a href="http://blog.fens.me/hadoop-maven-eclipse/" title="用Maven构建Hadoop项目" target="_blank" rel="noopener"><span style="color: #0e73b8;">用Maven构建Hadoop项目</span></a></li>
+<li><a href="http://blog.fens.me/hadoop-history-source-install/" title="Hadoop历史版本安装" target="_blank" rel="noopener"><span style="color: #0e73b8;">Hadoop历史版本安装</span></a></li>
+<li><a href="http://blog.fens.me/hadoop-hdfs-api/" title="Hadoop编程调用HDFS" target="_blank" rel="noopener"><span style="color: #0e73b8;">Hadoop编程调用HDFS</span></a></li>
+<li><a href="http://blog.fens.me/hadoop-mapreduce-log-kpi/" title="海量Web日志分析 用Hadoop提取KPI统计指标" target="_blank" rel="noopener"><span style="color: #0e73b8;">海量Web日志分析 用Hadoop提取KPI统计指标</span></a></li>
+<li><a href="http://blog.fens.me/hadoop-mapreduce-recommand/" title="用Hadoop构建电影推荐系统" target="_blank" rel="noopener"><span style="color: #0e73b8;">用Hadoop构建电影推荐系统</span></a></li>
+<li><a href="http://blog.fens.me/hadoop-base-kvm/" title="让Hadoop跑在云端系列文章 之 创建Hadoop母体虚拟机" target="_blank" rel="noopener"><span style="color: #0e73b8;">创建Hadoop母体虚拟机</span></a></li>
+<li><a href="http://blog.fens.me/hadoop-clone-node/" title="让Hadoop跑在云端系列文章 之 克隆虚拟机增加Hadoop节点" target="_blank" rel="noopener"><span style="color: #0e73b8;">克隆虚拟机增加Hadoop节点</span></a></li>
+<li><a href="http://blog.fens.me/r-hadoop-intro/" title="R语言为Hadoop注入统计血脉" target="_blank" rel="noopener"><span style="color: #0e73b8;">R语言为Hadoop注入统计血脉</span></a></li>
+<li><a href="http://blog.fens.me/rhadoop-hadoop/" title="RHadoop实践系列之一:Hadoop环境搭建" target="_blank" rel="noopener"><span style="color: #0e73b8;">RHadoop实践系列之一 Hadoop环境搭建</span></a></li>
+</ul>
+<p><strong>Hive</strong></p>
+<ul>
+<li><a href="http://blog.fens.me/hadoop-hive-roadmap/" title="Hive学习路线图" target="_blank" rel="noopener"><span style="color: #0e73b8;">Hive学习路线图</span></a></li>
+<li><a href="http://blog.fens.me/hadoop-hive-intro/" title="让Hadoop跑在云端系列文章 之 Hive安装及使用攻略" target="_blank" rel="noopener"><span style="color: #0e73b8;">Hive安装及使用攻略</span></a></li>
+<li><a href="http://blog.fens.me/hadoop-hive-10g/" title="让Hadoop跑在云端系列文章 之 Hive导入10G数据的测试" target="_blank" rel="noopener"><span style="color: #0e73b8;">Hive导入10G数据的测试</span></a></li>
+<li><a href="http://blog.fens.me/nosql-r-hive/" title="R利剑NoSQL系列文章 之 Hive" target="_blank" rel="noopener"><span style="color: #0e73b8;">R利剑NoSQL系列文章 之 Hive</span></a></li>
+<li><a href="http://blog.fens.me/finance-rhive-repurchase/" title="用RHive从历史数据中提取逆回购信息" target="_blank" rel="noopener"><span style="color: #0e73b8;">用RHive从历史数据中提取逆回购信息</span></a></li>
+</ul>
+<p><strong>Pig</strong></p>
+<ul>
+<li><a href="http://blog.fens.me/hadoop-pig-roadmap/" title="Pig学习路线图" target="_blank" rel="noopener"><span style="color: #0e73b8;">Pig学习路线图</span></a></li>
+</ul>
+<p><strong>Zookeeper</strong></p>
+<ul>
+<li><a href="http://blog.fens.me/hadoop-zookeeper-roadmap/" title="Zookeeper学习路线图" target="_blank" rel="noopener"><span style="color: #0e73b8;">Zookeeper学习路线图</span></a></li>
+<li><a href="http://blog.fens.me/hadoop-zookeeper-intro/" title="让Hadoop跑在云端系列文章 之 ZooKeeper伪分步式集群安装及使用" target="_blank" rel="noopener"><span style="color: #0e73b8;">ZooKeeper伪分步式集群安装及使用</span></a></li>
+<li><a href="http://blog.fens.me/zookeeper-queue/" title="让Hadoop跑在云端系列文章 之 ZooKeeper实现分布式队列Queue" target="_blank" rel="noopener"><span style="color: #0e73b8;">ZooKeeper实现分布式队列Queue</span></a></li>
+<li><a href="http://blog.fens.me/zookeeper-queue-fifo/" title="让Hadoop跑在云端系列文章 之 ZooKeeper实现分布式FIFO队列" target="_blank" rel="noopener"><span style="color: #0e73b8;">ZooKeeper实现分布式FIFO队列</span></a></li>
+</ul>
+<p><strong>HBase</strong></p>
+<ul>
+<li><a href="http://blog.fens.me/hadoop-hbase-roadmap/" title="HBase学习路线图" target="_blank" rel="noopener"><span style="color: #0e73b8;">HBase学习路线图</span></a></li>
+<li><a href="http://blog.fens.me/rhadoop-hbase-rhase/" title="RHadoop实践系列之四 rhbase安装与使用" target="_blank" rel="noopener"><span style="color: #0e73b8;">RHadoop实践系列之四  rhbase安装与使用</span></a></li>
+</ul>
+<p><strong>Mahout</strong></p>
+<ul>
+<li><a href="http://blog.fens.me/hadoop-mahout-roadmap/" title="Mahout学习路线图" target="_blank" rel="noopener"><span style="color: #0e73b8;">Mahout学习路线图</span></a></li>
+<li><a href="http://blog.fens.me/r-mahout-usercf/" title="用R解析Mahout用户推荐协同过滤算法(UserCF)" target="_blank" rel="noopener"><span style="color: #0e73b8;">用R解析Mahout用户推荐协同过滤算法(UserCF)</span></a></li>
+<li><a href="http://blog.fens.me/rhadoop-mapreduce-rmr/" title="RHadoop实践系列之三 R实现MapReduce的协同过滤算法" target="_blank" rel="noopener"><span style="color: #0e73b8;">RHadoop实践系列之三 R实现MapReduce的协同过滤算法</span></a></li>
+<li><a href="http://blog.fens.me/hadoop-mahout-maven-eclipse/" title="用Maven构建Mahout项目" target="_blank" rel="noopener"><span style="color: #0e73b8;">用Maven构建Mahout项目</span></a></li>
+<li><a href="http://blog.fens.me/mahout-recommendation-api/" title="Mahout推荐算法API详解" target="_blank" rel="noopener"><span style="color: #0e73b8;">Mahout推荐算法API详解</span></a></li>
+<li><a href="http://blog.fens.me/mahout-recommend-engine/" title="从源代码剖析Mahout推荐引擎" target="_blank" rel="noopener"><span style="color: #0e73b8;">从源代码剖析Mahout推荐引擎</span></a></li>
+<li><a href="http://blog.fens.me/hadoop-mahout-mapreduce-itemcf/" title="Mahout分步式程序开发 基于物品的协同过滤ItemCF" target="_blank" rel="noopener"><span style="color: #0e73b8;">Mahout分步式程序开发 基于物品的协同过滤ItemCF</span></a></li>
+<li><a href="http://blog.fens.me/hadoop-mahout-kmeans/" title="Mahout分步式程序开发 聚类Kmeans" target="_blank" rel="noopener"><span style="color: #0e73b8;">Mahout分步式程序开发 聚类Kmeans</span></a></li>
+<li><a href="http://blog.fens.me/hadoop-mahout-recommend-job/" title="用Mahout构建职位推荐引擎" target="_blank" rel="noopener"><span style="color: #0e73b8;">用Mahout构建职位推荐引擎</span></a></li>
+</ul>
+<p><strong>Sqoop</strong></p>
+<ul>
+<li><a href="http://blog.fens.me/hadoop-sqoop-roadmap/" title="Sqoop学习路线图" target="_blank" rel="noopener"><span style="color: #0e73b8;">Sqoop学习路线图</span></a></li>
+</ul>
+<p><strong>Cassandra</strong></p>
+<ul>
+<li><ul>
+<li><a href="http://blog.fens.me/hadoop-cassandra-roadmap/" title="Cassandra学习路线图" target="_blank" rel="noopener"><span style="color: #0e73b8;">Cassandra学习路线图</span></a></li>
+<li><a href="http://blog.fens.me/cassandra-clustor/" title="Cassandra单集群实验2个节点" target="_blank" rel="noopener"><span style="color: #0e73b8;">Cassandra单集群实验2个节点</span></a></li>
+<li><a href="http://blog.fens.me/nosql-r-cassandra/" title="R利剑NoSQL系列文章 之 Cassandra" target="_blank" rel="noopener"><span style="color: #0e73b8;">R利剑NoSQL系列文章 之 Cassandra</span></a></li>
+</ul>
+</li>
+</ul>
+
+          
         
       
     </div>
@@ -830,7 +916,7 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/02/23/Hadoop家族学习路线、实践案例/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/56e0ee93.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -849,7 +935,7 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/23/Hadoop家族学习路线、实践案例/" itemprop="url">Hadoop家族学习路线、实践案例</a></h1>
+                <a class="post-title-link" href="/post/56e0ee93.html" itemprop="url">Hadoop家族学习路线、实践案例</a></h1>
         
 
         <div class="post-meta">
@@ -901,15 +987,19 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
       
         
           
-          作者：Han Hsiao链接：https://www.zhihu.com/question/19795366/answer/24524910来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。推荐一些Hadoop家族系列文章，主要介绍Hadoop家族产品，常用的项目包括Ha
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/Hadoop家族学习路线、实践案例/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div>作者：Han Hsiao<br>链接：<a href="https://www.zhihu.com/question/19795366/answer/24524910" target="_blank" rel="noopener">https://www.zhihu.com/question/19795366/answer/24524910</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br><br><div><br><br>推荐一些Hadoop家族系列文章，主要介绍Hadoop家族产品，常用的项目包括Hadoop, Hive, Pig, HBase, Sqoop, Mahout, Zookeeper, Avro, Ambari, Chukwa，新增加的项目包括，YARN, Hcatalog, Oozie, Cassandra, Hama, Whirr, Flume, Bigtop, Crunch, Hue等。<br><br>一、学习路线图<br><br><em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/hadoop-family-roadmap/" target="_blank" rel="noopener">Hadoop家族学习路线图 开篇必读</a>
+</em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/hadoop-hive-roadmap/" target="_blank" rel="noopener">Hive学习路线图</a><br><em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/hadoop-mahout-roadmap/" target="_blank" rel="noopener">Mahout学习路线图</a><br><br>二、编程实践
+
+</em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/hadoop-history-source-install/" target="_blank" rel="noopener">Hadoop历史版本安装</a><br><em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/hadoop-maven-eclipse/" target="_blank" rel="noopener">用Maven构建Hadoop项目</a>
+</em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/hadoop-hdfs-api/" target="_blank" rel="noopener">Hadoop编程调用HDFS</a><br><em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/hadoop-mahout-maven-eclipse/" target="_blank" rel="noopener">用Maven构建Mahout项目</a>
+</em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/mahout-recommendation-api/" target="_blank" rel="noopener">Mahout推荐算法API详解</a><br><em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/hadoop-mapreduce-matrix/" target="_blank" rel="noopener">用MapReduce实现矩阵乘法</a>
+</em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/mahout-recommend-engine/" target="_blank" rel="noopener">从源代码剖析Mahout推荐引擎</a><br><em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/hadoop-mahout-mapreduce-itemcf/" target="_blank" rel="noopener">Mahout分步式程序开发 基于物品的协同过滤ItemCF</a>
+</em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/hadoop-mahout-kmeans/" target="_blank" rel="noopener">Mahout分步式程序开发 聚类Kmeans</a><br><em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/algorithm-pagerank-mapreduce/" target="_blank" rel="noopener">PageRank算法并行实现</a><br><br>三、案例分析
+
+</em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/hadoop-mapreduce-log-kpi/" target="_blank" rel="noopener">海量Web日志分析 用Hadoop提取KPI统计指标</a><br><em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/hadoop-mapreduce-recommand/" target="_blank" rel="noopener">用Hadoop构建电影推荐系统</a>
+</em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/hadoop-mahout-recommend-job/" target="_blank" rel="noopener">用Mahout构建职位推荐引擎</a><br><em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/hadoop-mahout-recommend-book/" target="_blank" rel="noopener">Mahout构建图书推荐系统</a>
+</em>   <a href="https://link.zhihu.com/?target=http%3A//blog.fens.me/hadoop-social-peoplerank/" target="_blank" rel="noopener">PeopleRank从社交网络中发现个体价值</a><br><br></div></div>
+          
         
       
     </div>
@@ -956,7 +1046,7 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/02/23/AI 经典书单 - 人工智能学习该读哪些书/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/68af736a.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -975,7 +1065,7 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/23/AI 经典书单 - 人工智能学习该读哪些书/" itemprop="url">AI 经典书单 | 人工智能学习该读哪些书</a></h1>
+                <a class="post-title-link" href="/post/68af736a.html" itemprop="url">AI 经典书单 | 人工智能学习该读哪些书</a></h1>
         
 
         <div class="post-meta">
@@ -1027,15 +1117,9 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
       
         
           
-           转载 2018年01月16日 00:00:00 **&gt; 人工智能相关岗位中，涉及到的内容包含：&gt;&gt; 算法、深度学习、机器学习、自然语言处理、数据结构、Tensorflow、Python 、数据挖掘、搜索开发、神经网络、视觉度量、图像识别、语音识别、推荐系统、系统算法、图像算法、数
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/AI 经典书单 - 人工智能学习该读哪些书/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div class="artical_tag"><span class="original"> 转载 <span class="time">2018年01月16日 00:00:00 </span></span><br><div class="article_bar clearfix"><br><br><span style="letter-spacing: normal;"><strong style="color: #262626; text-align: center; white-space: normal; font-size: 18px; line-height: 28.8px; max-width: 100%; box-sizing: border-box !important; word-wrap: break-word !important;"><span style="max-width: 100%; color: inherit; font-size: 14px; box-sizing: border-box !important; word-wrap: break-word !important;" data-brushtype="text"><strong style="max-width: 100%; color: #3e3e3e; line-height: 25.6px; font-size: 24px; box-sizing: border-box !important; overflow-wrap: break-word !important;"><span style="max-width: 100%; font-size: 16px; box-sizing: border-box !important; word-wrap: break-word !important;"><strong style="max-width: 100%; line-height: 25.6px; box-sizing: border-box !important; word-wrap: break-word !important;"><span style="max-width: 100%; font-size: 14px; box-sizing: border-box !important; word-wrap: break-word !important;"><strong style="max-width: 100%; font-size: 16px; line-height: 25.6px; box-sizing: border-box !important; word-wrap: break-word !important;"><span style="max-width: 100%; font-size: 14px; box-sizing: border-box !important; word-wrap: break-word !important;"><strong style="max-width: 100%; line-height: 25.6px; font-size: 16px; font-family: 'Microsoft YaHei', 'Helvetica Neue', STHeiti, Helvetica, Arial, sans-serif; orphans: 2; widows: 2; box-sizing: border-box !important; word-wrap: break-word !important;"><span style="max-width: 100%; font-size: 14px; box-sizing: border-box !important; word-wrap: break-word !important;"><strong style="max-width: 100%; letter-spacing: 1px; font-size: 16px; box-sizing: border-box !important; word-wrap: break-word !important;"><span style="max-width: 100%; font-size: 14px; box-sizing: border-box !important; word-wrap: break-word !important;"><strong style="max-width: 100%; font-size: 18px; box-sizing: border-box !important; word-wrap: break-word !important;"><strong style="max-width: 100%; font-size: 16px; line-height: 25.6px; font-family: Simsun; box-sizing: border-box !important; word-wrap: break-word !important;"><span style="max-width: 100%; font-size: 14px; box-sizing: border-box !important; word-wrap: break-word !important;"><strong style="max-width: 100%; font-size: 16px; box-sizing: border-box !important; word-wrap: break-word !important;"><span style="max-width: 100%; font-size: 14px; box-sizing: border-box !important; word-wrap: break-word !important;"><strong style="max-width: 100%; font-size: 18px; box-sizing: border-box !important; word-wrap: break-word !important;"><img src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_gif/5OacicITg3o2HcX4ibicxHL8yyfjPzKYPlkpEx6uA0mUlRucsOP6bAx9VP1FncGsnTaN0CWxekiby8ibRr5QWFv63Gw/0?wx_fmt=gif&amp;wxfrom=5&amp;wx_lazy=1" alt=""><strong></strong></strong></span></strong></span></strong></strong></span><strong>**</strong></strong></span></strong></span></strong></span><strong></strong></strong></span></strong></span></strong></span><strong></strong><strong></strong><br><br>&gt; <span style="letter-spacing: normal;">人工智能相关岗位中，涉及到的内容包含：</span><br>&gt;<br>&gt; <span style="letter-spacing: normal;">算法、深度学习、机器学习、自然语言处理、数据结构、Tensorflow、Python 、数据挖掘、搜索开发、神经网络、视觉度量、图像识别、语音识别、推荐系统、系统算法、图像算法、数据分析、概率编程、计算机数学、数据仓库、建模等关键词，基本涵盖了现阶段人工智能细分领域的人才结构。</span><br><br><span style="font-size: 14px; max-width: 100%; letter-spacing: normal;">将上面的岗位涉及到的知识和技术划类，就形成了今天的五份书单：</span><br><br><span style="font-size: 14px; max-width: 100%; letter-spacing: normal;"> </span><br><br><span style="letter-spacing: normal;"><em style="font-size: 42px;" title="" data-original-title="">1<em></em></em></span><em style="font-size: 42px;" title="" data-original-title=""><span style="color: #000000; font-size: 14px; letter-spacing: normal;">人工智能科普类：<span style="font-size: 14px; color: #212122; line-height: 31.5px; letter-spacing: 0.5px;">人工智能科普、人工智能哲学</span></span></em><br><br><em style="font-size: 42px;" title="" data-original-title=""><img src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/s6Qwf4VLycRAlqst1MkH5CU54tky4tbDZaDt0NHgUGNKFeR09sib2Cxc1WLYBmxqGVgsiajKkfsKh8bKXISR1fbw/640?wx_fmt=jpeg&amp;wxfrom=5&amp;wx_lazy=1" alt=""><em><br><br><em style="font-size: 42px;" title="" data-original-title=""><span style="letter-spacing: normal;"><span style="letter-spacing: normal; color: #374aae; font-size: 14px; max-width: 100%;">《智能的本质》<span style="letter-spacing: normal; color: #000000; font-size: 14px; max-width: 100%;">斯坦福、伯克利客座教授30年AI研究巅峰之作</span></span></span></em><br><br><em style="font-size: 42px;" title="" data-original-title=""><span style="letter-spacing: normal;"><span style="letter-spacing: normal; color: #374aae; font-size: 14px; max-width: 100%;">《科学+遇见人工智能》<span style="letter-spacing: normal; color: #000000; font-size: 14px; max-width: 100%;">李开复、张亚勤、张首晟等20余位科学家与投资人共同解读AI革命</span></span></span><em><br><br><em style="font-size: 42px;" title="" data-original-title=""><span style="letter-spacing: normal;"><span style="letter-spacing: normal; color: #374aae; font-size: 14px; max-width: 100%;">《人工智能时代》<span style="letter-spacing: normal; color: #000000; font-size: 14px; max-width: 100%;">从人工智能的历史、现状、未来，工业机器人、商业机器人、家用机器人、机器翻译、机器学习等人工智能应用领域依次介绍了人工智能发展前景。</span></span></span></em><br><br><em style="font-size: 42px;" title="" data-original-title=""><span style="letter-spacing: normal;"><span style="letter-spacing: normal; color: #374aae; font-size: 14px; max-width: 100%;">《人工智能简史》 <span style="letter-spacing: normal; color: #000000; font-size: 14px; max-width: 100%;">跟着图灵、冯•诺依曼、香农、西蒙、纽维尔、麦卡锡、明斯基等人工智能的先驱们重走人工智能之路，站在前人的肩膀上，看人工智能的三生三世，鉴以往才能知未来。 </span></span></span><em><br><br><em style="font-size: 42px;" title="" data-original-title=""> </em><br><br><em style="font-size: 42px;" title="" data-original-title=""><span style="letter-spacing: normal;"><em style="font-size: 42px;">2<em></em></em></span></em><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><span style="color: #000000; font-size: 14px; letter-spacing: normal;"><span style="color: #000000; font-size: 14px; letter-spacing: 1px; max-width: 100%;">人工智能机器学习类：<span style="color: #000000; font-size: 14px; letter-spacing: normal; max-width: 100%;"><span style="color: #000000; font-size: 14px; letter-spacing: 0.5px; max-width: 100%;">Python、<span style="color: #000000; font-size: 14px; letter-spacing: 1px; max-width: 100%;">机器学习、数据科学</span></span></span></span></span><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><img src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/s6Qwf4VLycRAlqst1MkH5CU54tky4tbDCrjP6iaoTKIC5mo42WQextQeuztLHYOnrcWW1AhNMAgTzAglapLzicEA/640?wx_fmt=jpeg" alt="" title="undefined"><strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><span style="color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%; letter-spacing: normal;">《Python机器学习实践指南》 <span style="line-height: 22px; font-size: 14px; letter-spacing: normal; color: #000000; max-width: 100%;">结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来用Python 做数据分析。<br></span></span></em></em></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><span style="letter-spacing: normal;"><span style="letter-spacing: normal; color: #000000; line-height: 22px; font-size: 14px; max-width: 100%;">《<span style="letter-spacing: normal; color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%;">Python机器学习——预测分析核心算法<span style="letter-spacing: normal; color: #000000; line-height: 22px; font-size: 14px; max-width: 100%;">》从算法和Python语言实现的角度，认识机器学习。</span></span></span></span><strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><span style="letter-spacing: normal;"><span style="letter-spacing: normal; color: #000000; line-height: 22px; font-size: 14px; max-width: 100%;">《<span style="letter-spacing: normal; color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%;">机器学习实践应用<span style="letter-spacing: normal; color: #000000; line-height: 22px; font-size: 14px; max-width: 100%;">》阿里机器学习专家力作，实战经验分享，基于阿里云机器学习平台，针对7个具体的业务场景，搭建了完整的解决方案。</span></span></span></span></em></em></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><span style="letter-spacing: normal;"><span style="letter-spacing: normal; color: #000000; line-height: 22px; font-size: 14px; max-width: 100%;">《<span style="letter-spacing: normal; color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%;">NLTK基础教程——用NLTK和Python库构建机器学习应用<span style="letter-spacing: normal; color: #000000; line-height: 22px; font-size: 14px; max-width: 100%;">》介绍如何通过NLTK库与一些Python库的结合从而实现复杂的NLP任务和机器学习应用。</span></span></span></span><strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"> </em></em></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><span style="letter-spacing: normal;"><em style="font-size: 42px;">3<em></em></em></span><strong><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="font-size: 14px; max-width: 100%; letter-spacing: normal;">人工智能深度学习类：深度学习、Tensorflow</span></em></em></em></strong></em><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><img src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/s6Qwf4VLycRAlqst1MkH5CU54tky4tbD9tjzDUia9rPe3RklibROSaHxa2eF58KMbFvN6otn9IlNKWCOTRvofteg/640?wx_fmt=jpeg" alt=""><strong><em><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="color: #374aae; font-size: 14px; max-width: 100%; letter-spacing: normal;">《深度学习》<span style="font-size: 14px; color: #000000; max-width: 100%;">AI圣经，深度学习领域奠基性的经典畅销书 特斯拉CEO埃隆·马斯克等国内外众多专家推荐！<br></span></span></em></em></em></em></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%; letter-spacing: normal;">《深度学习精要（基于R语言）》<span style="line-height: 22px; font-size: 14px; letter-spacing: normal; color: #000000; max-width: 100%;">基于R语言实战,使用无监督学习建立自动化的预测和分类模型</span></span><strong><em><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%; letter-spacing: normal;">《TensorFlow技术解析与实战》<span style="line-height: 22px; font-size: 14px; letter-spacing: normal; color: #000000; max-width: 100%;">包揽TensorFlow1.1的新特性 人脸识别 语音识别 图像和语音相结合等热点一应俱全</span></span></em></em></em></em></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="letter-spacing: normal;"><span style="letter-spacing: normal; color: #000000; line-height: 22px; font-size: 14px; max-width: 100%;">《<span style="letter-spacing: normal; color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%;">TensorFlow机器学习项目实战<span style="letter-spacing: normal; color: #000000; line-height: 22px; font-size: 14px; max-width: 100%;">》第二代机器学习实战指南，提供深度学习神经网络等项目实战，有效改善项目速度和效率。</span></span></span></span><strong><em><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"> </em></em></em></em></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="letter-spacing: normal;"><em style="font-size: 42px;">4<em></em></em></span>**</em><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="color: #000000; font-size: 14px; letter-spacing: normal;"><span style="color: #000000; font-size: 14px; letter-spacing: 1px; max-width: 100%;">人工智能算法策略类：算法、<span style="font-size: 14px; color: #212122; line-height: 31.5px; letter-spacing: 1px; max-width: 100%;">推荐系统、编程等</span></span></span><strong><strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><img src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/s6Qwf4VLycRAlqst1MkH5CU54tky4tbD161bia5H9QcmicjKsK2jlBRrniao9fmeThkquT6md6a0FPcxUbTtoYWibg/640?wx_fmt=jpeg" alt=""></em></em></em></em></strong></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%; letter-spacing: normal;">《神经网络算法与实现——基于Java语言》 <span style="line-height: 22px; font-size: 14px; letter-spacing: normal; color: #000000; max-width: 100%;">完整地演示了使用Java开发神经网络的过程，既有非常基础的实例也有高级实例。<br></span></span><strong><strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%; letter-spacing: normal;">《趣学算法》 <span style="line-height: 22px; font-size: 14px; letter-spacing: normal; color: #000000; max-width: 100%;">50 多个实例循展示算法的设计、实现、复杂性分析及优化过程 培养算法思维 带您感受算法之美。</span></span></em></em></em></em></strong></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%; letter-spacing: normal;">《算法谜题》 <span style="line-height: 22px; font-size: 14px; letter-spacing: normal; color: #000000; max-width: 100%;">Google、Facebook等一流IT公司算法面试必备，经典算法谜题合集。</span></span><strong><strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="letter-spacing: normal;"><span style="letter-spacing: normal; color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%;">《Python算法教程》<span style="letter-spacing: normal; font-size: 14px;">精通Python基础算法，畅销书Python基础教程作者力作。</span></span></span></em></em></em></em></strong></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><img src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/s6Qwf4VLycRAlqst1MkH5CU54tky4tbDXscZJ9F1iapoAOib7OibGczBYO2SC5VxAOHqQuCdicEQgFy3EBrc21eiaDg/640?wx_fmt=jpeg" alt=""><strong><strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="letter-spacing: normal;"><span style="letter-spacing: normal; color: #374aae; font-size: 14px;">《<span style="letter-spacing: normal; color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%;">编程之法：面试和算法心得<span style="letter-spacing: normal; color: #374aae; font-size: 14px;">》<span style="letter-spacing: normal; color: #000000; font-size: 14px; max-width: 100%;">程序员面试宝典 笔试金典 CSDN访问量过千万的博客结构之法算法之道博主July著作。<br></span></span></span></span></span></em></em></em></em></strong></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%; letter-spacing: normal;">《趣题学算法》 <span style="line-height: 22px; font-size: 14px; letter-spacing: normal; color: #000000; max-width: 100%;">一本有趣的、易学的、实用的，帮助读者快速入门应用的算法书。</span></span><strong><strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%; letter-spacing: normal;">《Java遗传算法编程》 <span style="line-height: 22px; font-size: 14px; letter-spacing: normal; color: #000000; max-width: 100%;">遗传算法设计 机器学习人工智能 来自Java专家的声音 用遗传算法解决类似旅行商的经典问题。</span></span></em></em></em></em></strong></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="letter-spacing: normal;"><span style="letter-spacing: normal; color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%;">《算法学习与应用从入门到精通》<span style="letter-spacing: normal; color: #000000; line-height: 22px; font-size: 14px; max-width: 100%;">320个实例、753分钟视频、5个综合案例、74个技术解惑，一本书的容量，讲解了入门类、范例类和项目实战类三类图书的内容。</span></span></span><strong><strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"> </em></em></em></em></strong></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="letter-spacing: normal;"><em style="font-size: 42px;">5*</em></span><strong><strong><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="color: #000000; font-size: 14px; max-width: 100%; letter-spacing: normal;">人工智能时间图像和视觉识别类：图像识别 、语音识别、自然语言处理、建模工程</span></em></em></em></em></strong></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><img src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/s6Qwf4VLycRAlqst1MkH5CU54tky4tbDCu37OVFnD3bhdZq5LhOu8CoBpyWMQ3G34Zfk06qPn5qXuFS7Rhia8kg/640?wx_fmt=jpeg" alt=""><strong><strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="color: #374aae; font-size: 14px; max-width: 100%; letter-spacing: normal;">《OpenCV和Visual Studio图像识别应用开发》<span style="font-size: 14px; letter-spacing: normal; color: #000000; max-width: 100%;">无人驾驶人脸识别基础技术 用OpenCV实现图像处理应用 计算机视觉编程实战手册。<br></span></span></em></em></em></em></strong></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%; letter-spacing: normal;">《人脸识别原理及算法——动态人脸识别系统研究》 <span style="line-height: 22px; font-size: 14px; letter-spacing: normal; color: #000000; max-width: 100%;">介绍了动态场景下的人脸识别方法，该方法综合应用了人脸定位、人脸识别、视频处理等算法。</span></span><strong><strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="letter-spacing: normal;"><span style="letter-spacing: normal; color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%;">《精通Python自然语言处理》<span style="letter-spacing: normal; color: #000000; line-height: 22px; font-size: 14px; max-width: 100%;">用Python开发令人惊讶的NLP项目，自然语言处理任务，掌握利用Python设计和构建给予NLP的应用的实践。</span></span></span></em></em></em></em></strong></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="letter-spacing: normal;"><span style="letter-spacing: normal; color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%;">《Python自然语言处理》<span style="letter-spacing: normal; font-size: 14px;">基于Python编程语言和NLTK，自然语言处理领域的一本实用入门指南。</span></span></span><strong><strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><img src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/s6Qwf4VLycRAlqst1MkH5CU54tky4tbDmLwA4XuXaBtY4ZgFvysljjYWamrbupCOodMX31HkziawLeNCqn8txVQ/640?wx_fmt=jpeg" alt="">  
+</em></em></em></em></strong></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%; letter-spacing: normal;">《贝叶斯方法：概率编程与贝叶斯推断》 <span style="line-height: 22px; font-size: 14px; letter-spacing: normal; color: #000000; max-width: 100%;">机器学习 人工智能 数据分析从业者的技能基础 国际杰出机器学习专家余凯博士 腾讯专家研究员岳亚丁博士推荐。<br></span></span><strong><strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="letter-spacing: normal;"><span style="letter-spacing: normal; color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%;">《贝叶斯思维：统计建模的Python学习法》<span style="letter-spacing: normal; color: #000000; line-height: 22px; font-size: 14px; max-width: 100%;">Thin Stats和Think Python图书作者重磅出击，数据分析师、数据工程师、数据科学家案头常备。</span></span></span></em></em></em></em></strong></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="letter-spacing: normal;"><span style="letter-spacing: normal; color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%;">《概率编程实战》<span style="letter-spacing: normal; color: #000000; line-height: 22px; font-size: 14px; max-width: 100%;">人工智能领域的先驱、美国加州大学伯克利分校教授Stuart Russell作序推荐！一本不可思议的Scala概率编程实战书籍！</span></span></span><strong><strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"><span style="letter-spacing: normal;"><span style="letter-spacing: normal; color: #374aae; line-height: 22px; font-size: 14px; max-width: 100%;">《自己动手写神经网络》<span style="letter-spacing: normal; color: #000000; line-height: 22px; font-size: 14px; max-width: 100%;">机器学习与人工智能参考书，基于Java语言撰写。</span></span></span></em></em></em></em></strong></strong><br><br><em style="font-size: 42px;" title="" data-original-title=""><em style="font-size: 42px;"><em style="font-size: 42px;"><em style="font-size: 42px;"> <em>**</em><br><br></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></div></div>
+          
         
       
     </div>
@@ -1082,7 +1166,7 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/02/22/angular-autocomplete/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/5a3df062.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1101,7 +1185,7 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/22/angular-autocomplete/" itemprop="url">AngularJS 联想输入框：angular-autocomplete</a></h1>
+                <a class="post-title-link" href="/post/5a3df062.html" itemprop="url">AngularJS 联想输入框：angular-autocomplete</a></h1>
         
 
         <div class="post-meta">
@@ -1175,16 +1259,36 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
       
         
           
-          本项目使用AngularJS实现一个联想输入框功能。当用户输入字符、字符串时能够按照输入的字符（串）自动匹配列表中最相似的条目，并以下拉列表形式显示出来。
-本项目创建了一个可重复使用的AngularJS指令（Drictive），只需要引入指令所在的js文件，然后在HTML中使用指令即可。此联想输入框
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/22/angular-autocomplete/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>本项目使用AngularJS实现一个联想输入框功能。当用户输入字符、字符串时能够按照输入的字符（串）自动匹配列表中最相似的条目，并以下拉列表形式显示出来。</p>
+<p>本项目创建了一个可重复使用的AngularJS指令（Drictive），只需要引入指令所在的js文件，然后在HTML中使用指令即可。<br>此联想输入框的数据可以来自远程的REST API，并且可以使用Promise。</p>
+<p>项目源码：<a href="https://github.com/pangguoming/angular-autocomplete" target="_blank" rel="noopener">源码</a></p>
+<p>效果参见： <a href="http://pangguoming.com/angular-autocomplete/">demo</a> </p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用本联想输入框，您需要先载入AngularJS，比如从下面Google的CDN载入：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当然还需要载入样式表文件:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"style/autocomplete.css"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后我们就可以将本项目中的angular-autocomplete.js载入到您的网页中了:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"script/angular-autocomplete.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"script/app.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>下一步，我们需要将angular-autocomplete这个依赖注入到我们的angularjs应用中:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.module(<span class="string">'app'</span>, [<span class="string">'autocomplete'</span>]);</span><br></pre></td></tr></table></figure>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>如果想要在自己的页面中添加此联想输入框，只需要将<code>&lt;autocomplete&gt;</code> 添加到您的HTML某一位置中，并且使用 <code>data</code> 属性来绑定列表数据，当然，这个列表数据必须在当前视图的controller的$scope下。</p>
+<p>当我们需要从REST API来获取远程服务端返回的数据来填充联想输入框的下拉列表数据时，我们可以使用<code>on-type</code>属性，<code>on-type</code>可以绑定一个js方法，此方法可以用于请求REST API并将返回的数据放入 <code>data</code> 中来动态改变列表数据。</p>
+<h3 id="参数、属性"><a href="#参数、属性" class="headerlink" title="参数、属性"></a>参数、属性</h3><p><code>data</code> : 将数组传递给autocomplete指令. 数组应该在当前视图controller的 $scope of your controller内。</p>
+<p><code>on-type</code> : <em>(可选)</em> 用于指定一个js方法，当键入内容时会接收更改。 它传递键入或删除的字符的完整字符串到指定的js方法中。 您可以使用它来更新您在数据中传递的数组。P</p>
+<p><code>on-select</code> : <em>(可选)</em> 用于指定一个js方法数，当选择一个联想到的列表项时，将出发此js方法。 它传递了完整的建议字符串。</p>
+<p><code>click-activation</code> : <em>(可选)</em> 当’true’时，联想下拉框会在点击时打开（不幸的是，在大多数浏览器中，onfocus没有正确实现）。 默认情况下，只有在您开始输入内容时才会激活它。</p>
+<p><code>ng-model</code>: 用于将当前input框中的内容绑定到某个变量上，此变量必须在当前视图controller的 $scope 中。</p>
+<p><code>attr-placeholder</code>: <em>(可选)</em> 设置<code>input</code>d placeholder。</p>
+<p><code>attr-class</code>: <em>(可选)</em> 修改内部 <code>div</code>元素的样式class。</p>
+<p><code>attr-id</code>: <em>(可选)</em> 修改内部 <code>div</code> 元素的id, 参见 <code>attrs-class</code>.</p>
+<p><code>attr-input-class</code>: <em>(可选)</em> 设置<code>input</code>元素的样式class。</p>
+<p><code>attr-input-id</code>: <em>(可选)</em> 修改<code>input</code> 元素的id, 参见 <code>attrs-input-class</code>.</p>
+<p><code>autocomplete-required</code>: <em>(可选)</em> 类似 <code>ng-required</code> 属性要求input框非空。</p>
+<p><code>no-auto-sort</code>: <em>(可选)</em> 防止js库自动将列表中的数据按照字母顺序排序。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>HTML:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">"MyCtrl"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">autocomplete</span> <span class="attr">ng-model</span>=<span class="string">"yourchoice"</span> <span class="attr">data</span>=<span class="string">"movies"</span> <span class="attr">on-type</span>=<span class="string">"updateMovies"</span>&gt;</span><span class="tag">&lt;/<span class="name">autocomplete</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>JavaScript:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.module(<span class="string">'app'</span>, [<span class="string">'autocomplete'</span>]);</span><br><span class="line"></span><br><span class="line">app.controller(<span class="string">'MyCtrl'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, MovieRetriever</span>)</span>&#123;</span><br><span class="line">	$scope.movies = [<span class="string">"Lord of the Rings"</span>,</span><br><span class="line">	 				<span class="string">"Drive"</span>,</span><br><span class="line">	 				<span class="string">"Science of Sleep"</span>,</span><br><span class="line">	 				<span class="string">"Back to the Future"</span>,</span><br><span class="line">	 				<span class="string">"Oldboy"</span>];</span><br><span class="line"></span><br><span class="line">	<span class="comment">// gives another movie array on change</span></span><br><span class="line">	$scope.updateMovies = <span class="function"><span class="keyword">function</span>(<span class="params">typed</span>)</span>&#123;</span><br><span class="line">		<span class="comment">// MovieRetriever could be some service returning a promise</span></span><br><span class="line">	    $scope.newmovies = MovieRetriever.getmovies(typed);</span><br><span class="line">	    $scope.newmovies.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">	      $scope.movies = data;</span><br><span class="line">	    &#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+
+          
         
       
     </div>
@@ -1231,7 +1335,7 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/02/22/阿里巴巴十年Java架构师分享，会了这个知识点的人都去BAT了/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/fdeafd88.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1250,7 +1354,7 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/22/阿里巴巴十年Java架构师分享，会了这个知识点的人都去BAT了/" itemprop="url">阿里巴巴十年Java架构师分享，会了这个知识点的人都去BAT了</a></h1>
+                <a class="post-title-link" href="/post/fdeafd88.html" itemprop="url">阿里巴巴十年Java架构师分享，会了这个知识点的人都去BAT了</a></h1>
         
 
         <div class="post-meta">
@@ -1302,21 +1406,47 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
       
         
           
-          1.源码分析专题
+            <p><span style="-webkit-tap-highlight-color: transparent; box-sizing: border-box; font-weight: bold;">1.源码分析专题</span></p>
+<p><img src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/YUYc62VIvE1SS7EJyk1FFI5Z02p0oNyIcozOE3N0oMnOUXfCLThQIYdO6HZ5McLsDyib77tokR115vwSnSsq5yw/640?wx_fmt=jpeg&amp;wxfrom=5&amp;wx_lazy=1" alt=""></p>
+<p>详细介绍源码中所用到的经典设计思想，看看大牛是如何写代码的，提升技术审美、提高核心竞争力。</p>
+<p>帮助大家寻找分析源码的切入点，在思想上来一次巨大的升华。知其然，并知其所以然。把知识变成自己的</p>
+<p><span style="-webkit-tap-highlight-color: transparent; box-sizing: border-box; font-weight: bold;">2.分布式架构</span></p>
+<p><img src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/YUYc62VIvE1SS7EJyk1FFI5Z02p0oNyILC2Zg9owVY98jTGQicfNgEzJIL7YSjnNWjiaujwAhgEBHwG7IwJYUCGw/0?wx_fmt=jpeg" alt=""></p>
+<p>互联网时代，系统架构如何迎接高并发流量的挑战。而作为技术开发者，如何去应对技术变革带来的技能危机。基于传统架构到分布式架构演变过程所带来的技术变革进行全面深入讲解。</p>
+<p>在技术深度和技术广度上得到飞跃的提升。成为互联网行业所需要的T型人才</p>
+<p><span style="-webkit-tap-highlight-color: transparent; box-sizing: border-box; font-weight: bold;">3.微服务架构专题</span></p>
+<p><img src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/YUYc62VIvE1SS7EJyk1FFI5Z02p0oNyI00YCawyc2usvebCic3zG2CibSana3FAm5F8Tkowh6mibqBBpYZWn75xBw/0?wx_fmt=jpeg" alt=""></p>
+<p>应对复杂的业务需求变更、用户膨胀，SOA已成为现在互联网公司标准的解决方案，微服务相关的框架正是为此而生。</p>
+<p><span style="-webkit-tap-highlight-color: transparent; box-sizing: border-box; font-weight: bold;">4.Java架构学习交流平台</span></p>
+<p>这里给大家提供一个学习交流的平台，java架构师群：190713474</p>
+<ol>
+<li></li>
+</ol>
+<p>具有1-5工作经验的，面对目前流行的技术不知从何下手，需要突破技术瓶颈的可以加群。</p>
+<ol start="2">
+<li></li>
+</ol>
+<p>在公司待久了，过得很安逸，但跳槽时面试碰壁。需要在短时间内进修、跳槽拿高薪的可以加群。</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>如果没有工作经验，但基础非常扎实，对java工作机制，常用设计思想，常用java开发框架掌握熟练的可以加群。</p>
+<p><span style="-webkit-tap-highlight-color: transparent; box-sizing: border-box; font-weight: bold;">5.性能优化</span></p>
+<p><img src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/YUYc62VIvE1SS7EJyk1FFI5Z02p0oNyIFy9icdsN9yOFPYicSx0uQicx3yicodp900paPSnGIPdCgoHanz3e8oMGLw/0?wx_fmt=jpeg" alt=""></p>
+<p>全面认识性能优化这个理念，理解底层机制，助力科学调优 实战案例让你不再只是旁观者</p>
+<p><span style="-webkit-tap-highlight-color: transparent; box-sizing: border-box; font-weight: bold;">6.工程化专题</span></p>
+<p><img src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/YUYc62VIvE1SS7EJyk1FFI5Z02p0oNyIHqibPFdOyolr6icdt6sBOdW4X6WjKJAbpMNUtFRsuhuR1zYxnibzqRvHg/0?wx_fmt=jpeg" alt=""></p>
+<p>不管是刚入门的小白，还是才高八斗的资深开发、架构，你都需要从这里开始</p>
+<p>1、掌握自动化部署技能；</p>
+<p>2、对于来时小白可以快速提升</p>
+<p>3、对于资深开发人群可以加分</p>
+<p><span style="-webkit-tap-highlight-color: transparent; box-sizing: border-box; font-weight: bold;">7.双11项目架构实战</span></p>
+<p><img src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/YUYc62VIvE1SS7EJyk1FFI5Z02p0oNyI7tTOiazHt8kpKiaYpzgp9icQBJvlh4FSS166jo425ibHajalFfqlols5Ag/0?wx_fmt=jpeg" alt=""></p>
+<p>利用云服务器搭建真实的开发和部署环境，学员参与，开发一个千人参与的项目。在项目实战中引入大数据相关的内容，学完就能上手</p>
+<p>1、具备独立开发和搭建分布架构系统的能力</p>
+<p>2、学习完后相当于具备2年以上互联网开发经验。</p>
 
-详细介绍源码中所用到的经典设计思想，看看大牛是如何写代码的，提升技术审美、提高核心竞争力。
-帮助大家寻找分析源码的切入点，在思想上来一次巨大的升华。知其然，并知其所以然。把知识变成自己的
-2.分布式架构
-
-互联网时代，系统架构如何迎接高并发流量的挑战。而作为技术开发者，如何去应对
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/22/阿里巴巴十年Java架构师分享，会了这个知识点的人都去BAT了/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1363,7 +1493,7 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/02/20/Hadoop视频教程汇总/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/e0efc2e8.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1382,7 +1512,7 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/20/Hadoop视频教程汇总/" itemprop="url">Hadoop视频教程汇总</a></h1>
+                <a class="post-title-link" href="/post/e0efc2e8.html" itemprop="url">Hadoop视频教程汇总</a></h1>
         
 
         <div class="post-meta">
@@ -1434,15 +1564,8 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
       
         
           
-          一 慕课网1.Hadoop大数据平台架构与实践–基础篇(已学习)链接:https://www.imooc.com/learn/3912.Hadoop进阶（已学习）链接:https://www.imooc.com/learn/890二 极客学院1.Hadoop 概述(已学习)链接:http://www
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/20/Hadoop视频教程汇总/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div>一 慕课网<br><div>1.Hadoop大数据平台架构与实践–基础篇(已学习)<br><div>链接:<a href="https://www.imooc.com/learn/391" target="_blank" rel="noopener">https://www.imooc.com/learn/391</a><br><div>2.Hadoop进阶（已学习）<br><div>链接:<a href="https://www.imooc.com/learn/890" target="_blank" rel="noopener">https://www.imooc.com/learn/890</a><br><div><br><div>二 极客学院<br><div>1.Hadoop 概述(已学习)<br><div>链接:<a href="http://www.jikexueyuan.com/course/677.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/677.html</a><br><div>2.Hadoop 架构介绍(已学习)<br><div>链接:<a href="http://www.jikexueyuan.com/course/986.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/986.html</a><br><div>3.Yarn 的发展背景及基本原理(已学习)<br><div>链接:<a href="http://www.jikexueyuan.com/course/1459.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/1459.html</a><br><div>4.安装 Hadoop YARN<br><div>链接:<a href="http://www.jikexueyuan.com/course/1588.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/1588.html</a><br><div>5.Hadoop 用户行为分析项目之应用概述<br><div>链接:<a href="http://www.jikexueyuan.com/course/1276.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/1276.html</a><br><div>6.Hadoop 用户行为分析项目之分析与设计<br><div>链接:<a href="http://www.jikexueyuan.com/course/1291.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/1291.html</a><br><div>7.Hadoop 用户行为分析项目之编码实践<br><div>链接：<a href="http://www.jikexueyuan.com/course/1414.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/1414.html</a><br><div>8.Hadoop 性能调优与运维<br><div>链接：<a href="http://www.jikexueyuan.com/course/2365.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2365.html</a><br><div>9.初识Hive<br><div>链接：<a href="http://www.jikexueyuan.com/course/825.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/825.html</a><br><div>10.Hive 环境搭建<br><div>链接：<a href="http://www.jikexueyuan.com/course/1629.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/1629.html</a><br><div>11.Hive 基本原理<br><div>链接：<a href="http://www.jikexueyuan.com/course/1281.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/1281.html</a><br><div>12.认识 ZooKeeper<br><div>链接：<a href="http://www.jikexueyuan.com/course/1813.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/1813.html</a><br><div>13.ZooKeeper 客户端的使用(一)<br><div>链接：<a href="http://www.jikexueyuan.com/course/1888.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/1888.html</a><br><div>14.ZooKeeper 客户端的使用(二)<br><div>链接：<a href="http://www.jikexueyuan.com/course/2063.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2063.html</a><br><div>15.ZooKeeper 实战(一)<br><div>链接：<a href="http://www.jikexueyuan.com/course/2299.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2299.html</a><br><div>16.ZooKeeper 实战(二)<br><div>链接：<a href="http://www.jikexueyuan.com/course/2333.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2333.html</a><br><div>17.ZooKeeper 运维<br><div>链接：<a href="http://www.jikexueyuan.com/course/2436.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2436.html</a><br><div>18.HBase 入门<br><div>链接：<a href="http://www.jikexueyuan.com/course/2089.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2089.html</a><br><div>19.HBase Java 编程<br><div>链接：<a href="http://www.jikexueyuan.com/course/2220.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2220.html</a><br><div>20.HBase 架构详解<br><div>链接：<a href="http://www.jikexueyuan.com/course/2184.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2184.html</a><br><div>21.MapReduce on HBase<br><div>链接：<a href="http://www.jikexueyuan.com/course/2314.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2314.html</a><br><div>22.Hive On HBase<br><div>链接：<a href="http://www.jikexueyuan.com/course/2322.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2322.html</a><br><div>23.HBase集群管理<br><div>链接：<a href="http://www.jikexueyuan.com/course/2359.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2359.html</a><br><div>24.HBase Rest/Thrift<br><div>链接：<a href="http://www.jikexueyuan.com/course/2421.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2421.html</a><br><div>25.安装 HBase 的集群<br><div>链接：<a href="http://www.jikexueyuan.com/course/1802.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/1802.html</a><br><div>26.HBase 数据的导入<br><div>链接：<a href="http://www.jikexueyuan.com/course/1911.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/1911.html</a><br><div>27.HBase 管理工具的使用<br><div>链接：<a href="http://www.jikexueyuan.com/course/2077.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2077.html</a><br><div>28.HBase 的备份与恢复<br><div>链接：<a href="http://www.jikexueyuan.com/course/2248.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2248.html</a><br><div>29.HBase 高级特性之快照<br><div>链接：<a href="http://www.jikexueyuan.com/course/2290.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2290.html</a><br><div>30.HBase 高级特性之集群复制<br><div>链接：<a href="http://www.jikexueyuan.com/course/2279.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2279.html</a><br><div>31.HBase 与 Phoenix<br><div>链接：<a href="http://www.jikexueyuan.com/course/2341.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2341.html</a><br><div>32.Hadoop MapReduce 进阶<br><div>链接：<a href="http://www.jikexueyuan.com/course/2710.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2710.html</a><br><div>33.Hadoop MapReduce 入门<br><div>链接：<a href="http://www.jikexueyuan.com/course/2686.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2686.html</a><br><div>34.YARN 架构详解<br><div>链接：<a href="http://www.jikexueyuan.com/course/2667.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2667.html</a><br><div>35.HDFS 架构详解<br><div>链接：<a href="http://www.jikexueyuan.com/course/2656.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2656.html</a><br><div>36.Hadoop 管理与调优<br><div>链接：<a href="http://www.jikexueyuan.com/course/2619.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2619.html</a><br><div>37.Hadoop CDH5 集群管理<br><div>链接：<a href="http://www.jikexueyuan.com/course/2582.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2582.html</a><br><div>38.Hadoop Federation<br><div>链接：<a href="http://www.jikexueyuan.com/course/2570.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2570.html</a><br><div>39.Hadoop 高可用集群<br><div>链接：<a href="http://www.jikexueyuan.com/course/2562.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2562.html</a><br><div>40.Hadoop 集群与管理<br><div>链接：<a href="http://www.jikexueyuan.com/course/2547.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2547.html</a><br><div>41.Hadoop 配置完善<br><div>链接：<a href="http://www.jikexueyuan.com/course/2533.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2533.html</a><br><div>42.Hadoop 入门<br><div>链接：<a href="http://www.jikexueyuan.com/course/2475.html" target="_blank" rel="noopener">http://www.jikexueyuan.com/course/2475.html</a></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -1489,7 +1612,7 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2018/02/10/Vue实现对数组、对象的深拷贝、复制/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/f284d06e.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1508,7 +1631,7 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/10/Vue实现对数组、对象的深拷贝、复制/" itemprop="url">Vue实现对数组、对象的深拷贝、复制</a></h1>
+                <a class="post-title-link" href="/post/f284d06e.html" itemprop="url">Vue实现对数组、对象的深拷贝、复制</a></h1>
         
 
         <div class="post-meta">
@@ -1560,16 +1683,15 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
       
         
           
-          当组件间传递对象时，由于此对象的引用类型指向的都是一个地址（除了基本类型跟null,对象之间的赋值，只是将地址指向同一个，而不是真正意义上的拷贝），如下
-12345数组：var a = [1,2,3];var b = a;b.push(4); // b中添加了一个4alert(a); // a变成了
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/10/Vue实现对数组、对象的深拷贝、复制/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>当组件间传递对象时，由于此对象的引用类型指向的都是一个地址（除了基本类型跟null,对象之间的赋值，只是将地址指向同一个，而不是真正意义上的拷贝），如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">数组：</span><br><span class="line">var a = [1,2,3];</span><br><span class="line">var b = a;</span><br><span class="line">b.push(4); // b中添加了一个4</span><br><span class="line">alert(a); // a变成了[1,2,3,4]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">对象：</span><br><span class="line">var obj = &#123;a:10&#125;;</span><br><span class="line">var obj2 = obj;</span><br><span class="line">obj2.a = 20; // obj2.a改变了，</span><br><span class="line">alert(obj.a); // 20，obj的a跟着改变</span><br></pre></td></tr></table></figure>
+<p>这就是由于对象类型直接赋值，只是将引用指向同一个地址，导致修改了obj会导致obj2也被修改</p>
+<p>所以在vue中，如果多个组件引用了同一个对象作为数据，那么当其中一个组件改动对象数据时，其他对象的数据也会同步改动。有这种双向绑定的需要的话，那么自然是最好的，但如果不需要这种绑定而希望各组件的对象数据之间相互独立，即是互不关联的对象副本的话，可以用下面的方法解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">computed: &#123;  </span><br><span class="line">         data: function () &#123;  </span><br><span class="line">             var obj=&#123;&#125;;  </span><br><span class="line">             obj=JSON.parse(JSON.stringify(this.templateData)); //this.templateData是父组件传递的对象  </span><br><span class="line">             return obj  </span><br><span class="line">        &#125;  </span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<p> 参考文档：<a href="https://cn.vuejs.org/v2/api/#data" target="_blank" rel="noopener">https://cn.vuejs.org/v2/api/#data</a></p>
+
+          
         
       
     </div>
@@ -1632,105 +1754,108 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
-            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+
           
-            <p class="site-author-name" itemprop="name">庞国明</p>
-            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives">
-            
-                <span class="site-state-item-count">420</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">267</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>GitHub</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
-                  
-                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -1747,12 +1872,9 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">庞国明</span>
 
@@ -1760,11 +1882,17 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
@@ -1784,6 +1912,8 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -1818,53 +1948,61 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
 
-
-
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1890,6 +2028,23 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
 
   
 
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
 
 
 
@@ -2219,11 +2374,27 @@ Sharding的基本思想就要把一个数据库切分成多个部分放到不同
 
 
 
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
 
   
 
   
 
+  
+
+  
   
 
   

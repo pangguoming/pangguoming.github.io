@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.1 CodeSmith一款人气很旺国外的基于模板的dotnet代码生成器 官方网站：http：//www.codesmithtools.com 官方论坛：http：//forum.codesmithtools.com/default.aspx 版权形式：30天试用 开源：否 需要先注册确认后才能下载 1.2 MyGeneratorMyGenerator是又一个国外很不错的代码生成工具，有人觉得">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20个代码生成框架 （.NET JAVA）">
+<meta property="og:url" content="http://pangguoming.com/post/10974bda.html">
+<meta property="og:site_name" content="庞国明-博客">
+<meta property="og:description" content="1.1 CodeSmith一款人气很旺国外的基于模板的dotnet代码生成器 官方网站：http：//www.codesmithtools.com 官方论坛：http：//forum.codesmithtools.com/default.aspx 版权形式：30天试用 开源：否 需要先注册确认后才能下载 1.2 MyGeneratorMyGenerator是又一个国外很不错的代码生成工具，有人觉得">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-10T03:30:55.636Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="20个代码生成框架 （.NET JAVA）">
+<meta name="twitter:description" content="1.1 CodeSmith一款人气很旺国外的基于模板的dotnet代码生成器 官方网站：http：//www.codesmithtools.com 官方论坛：http：//forum.codesmithtools.com/default.aspx 版权形式：30天试用 开源：否 需要先注册确认后才能下载 1.2 MyGeneratorMyGenerator是又一个国外很不错的代码生成工具，有人觉得">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pangguoming.com/post/10974bda.html">
+
+
+
+
+
+  <title>20个代码生成框架 （.NET JAVA） | 庞国明-博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">庞国明-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">此心用度八千遍，不曾厌倦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/10974bda.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="庞国明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="庞国明-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">20个代码生成框架 （.NET JAVA）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-24T16:37:00+08:00">
+                2017-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/10974bda.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/post/10974bda.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-1-CodeSmith"><a href="#1-1-CodeSmith" class="headerlink" title="1.1 CodeSmith"></a>1.1 CodeSmith</h1><p>一款人气很旺国外的基于模板的dotnet代码生成器</p>
+<p>官方网站：http：//<a href="http://www.codesmithtools.com" target="_blank" rel="noopener">www.codesmithtools.com</a></p>
+<p>官方论坛：http：//forum.codesmithtools.com/default.aspx</p>
+<p>版权形式：30天试用</p>
+<p>开源：否</p>
+<p>需要先注册确认后才能下载</p>
+<h2 id="1-2-MyGenerator"><a href="#1-2-MyGenerator" class="headerlink" title="1.2 MyGenerator"></a>1.2 MyGenerator</h2><p>MyGenerator是又一个国外很不错的代码生成工具，有人觉得比CodeSmith简单、好用。所有api可以在帮助菜单中找到。</p>
+<p>官方网站：http：//<a href="http://www.mygenerationsoftware.com/portal/default.aspx" target="_blank" rel="noopener">www.mygenerationsoftware.com/portal/default.aspx</a></p>
+<p>官方论坛：</p>
+<p>版权形式：免费</p>
+<p>开源：否</p>
+<h2 id="1-3-NHibernate"><a href="#1-3-NHibernate" class="headerlink" title="1.3 NHibernate."></a>1.3 NHibernate.</h2><p>NHibernate是Hibernate公司在Java自动生成领域取得巨大成功后推出的一款ORM工具.</p>
+<p>官方网站：http：//<a href="http://www.hibernate.org/" target="_blank" rel="noopener">www.hibernate.org/</a></p>
+<p>官方论坛：</p>
+<p>版权形式：免费</p>
+<p>开源：否</p>
+<h2 id="1-4-湛蓝-Net代码生成器"><a href="#1-4-湛蓝-Net代码生成器" class="headerlink" title="1.4 湛蓝.Net代码生成器"></a>1.4 湛蓝.Net代码生成器</h2><p>一款基于软件自动生成理念，能直接生成应用的dotnet代码生成器</p>
+<p>官方网站：http：//<a href="http://www.dotnetcoding.net" target="_blank" rel="noopener">www.dotnetcoding.net</a></p>
+<p>官方论坛：http：//dotnetcoding.cnblogs.com/</p>
+<p>版权形式：免费</p>
+<p>开源：否</p>
+<h2 id="1-5-动软-NET代码自动生成器"><a href="#1-5-动软-NET代码自动生成器" class="headerlink" title="1.5 动软.NET代码自动生成器"></a>1.5 动软.NET代码自动生成器</h2><p>一款人气很旺的免费C#代码生成器</p>
+<p>官方网站：http：//<a href="http://www.maticsoft.com" target="_blank" rel="noopener">www.maticsoft.com</a></p>
+<p>官方论坛：</p>
+<p>版权形式：免费</p>
+<p>开源：否</p>
+<h2 id="1-6-CodePlus"><a href="#1-6-CodePlus" class="headerlink" title="1.6 CodePlus"></a>1.6 CodePlus</h2><p>专为sql server c#语言设计的代码生成器,功能还是很强大</p>
+<p>官方网站：http：//<a href="http://www.CodePlus.com" target="_blank" rel="noopener">www.CodePlus.com</a></p>
+<p>官方论坛：</p>
+<p>版权形式：需要少量的注册费用</p>
+<p>开源：否</p>
+<p>下载地址很神秘</p>
+<h2 id="1-7-CodeMaker"><a href="#1-7-CodeMaker" class="headerlink" title="1.7 CodeMaker"></a>1.7 CodeMaker</h2><p>asp,jsp,php代码生成工具，自动生成维护数据库信息的动态网页的代码生成器。它可以帮助ASP、JSP、PHP开发人员快速的开发简单的数据库维护程序。无需任何编码，只需将数据库结构导入到CodeMaker中并做简单的设置，CodeMaker即可生成完整的数据库操作页面。用CodeMaker可以简单快速的创建网站后台维护程序。提高开发效率数十倍以上。</p>
+<p>官方网站：http：//<a href="http://www.mhua.com" target="_blank" rel="noopener">www.mhua.com</a></p>
+<p>官方论坛：</p>
+<p>版权形式：免费</p>
+<p>开源：否</p>
+<h2 id="1-8-非非-Net代码生成器"><a href="#1-8-非非-Net代码生成器" class="headerlink" title="1.8 非非.Net代码生成器"></a>1.8 非非.Net代码生成器</h2><p>可以使用本工具生成VB.Net和C#语言的代码，以及三层架构与ORM架构代码，并且使用的ORM持久化组件是开源的，您可以在本软件的安装目录下找到它</p>
+<p>官方网站：</p>
+<p>官方论坛：</p>
+<p>版权形式：免费</p>
+<p>开源：否</p>
+<h2 id="1-9-BMW业务模型及代码生成器"><a href="#1-9-BMW业务模型及代码生成器" class="headerlink" title="1.9 BMW业务模型及代码生成器"></a>1.9 BMW业务模型及代码生成器</h2><p>一款人气很旺的免费C#代码生成器</p>
+<p>官方网站：</p>
+<p>官方论坛：</p>
+<p>版权形式：免费</p>
+<p>开源：否</p>
+<h2 id="1-10-飞鹰CoolCoder"><a href="#1-10-飞鹰CoolCoder" class="headerlink" title="1.10 飞鹰CoolCoder"></a>1.10 飞鹰CoolCoder</h2><p>专门为采用nhibernate做关系对象影射架构的系统提供代码的工具，简单易用，虽然不提供源码，我们可以用反编译工具对其反编译看源码。这是个很不错的学习机会。</p>
+<p>官方网站：</p>
+<p>官方论坛：</p>
+<p>版权形式：免费</p>
+<p>开源：否</p>
+<h2 id="1-11-AutoCoder自动代码生成器"><a href="#1-11-AutoCoder自动代码生成器" class="headerlink" title="1.11 AutoCoder自动代码生成器"></a>1.11 AutoCoder自动代码生成器</h2><p>AutoCoder自动代码生成器是一个根据模板自动生成代码的代码生成工具，根据模板的不同，可以生成任何语言（如：ASP、C#、C++BUILDER、DELPHI、JAVA、JSP、PHP、VB、VC.NET……），不同层次结构（B/S、C/S、n-tiger……），基于不同数据库（ORACLE、MSSQL、MYSQL、DB2、ACCESS、ODBC、OLE……）的代码和开发文档。开发人员无需任何编码，只需将数据库结构导入到AutoCoder中,并做简单的设置即可生成所需的代码，可以大幅度地提高开发效率！！！系统同时也提供了一个模板制作工具ModeMaker，用户可以方便的制作或修改模板，使得生成的代码更适合您使用！系统附带了十几个模板，基本上可以满足用户多方位的需求</p>
+<p>官方网站：</p>
+<p>官方论坛：</p>
+<p>版权形式：免费</p>
+<p>开源：否</p>
+<h2 id="1-12-wawa-Code-Pro代码生成器"><a href="#1-12-wawa-Code-Pro代码生成器" class="headerlink" title="1.12 wawa Code Pro代码生成器"></a>1.12 wawa Code Pro代码生成器</h2><p>一款开源的用VBScript写的代码生成器</p>
+<p>官方网站：</p>
+<p>官方论坛：</p>
+<p>版权形式：免费</p>
+<p>开源：是</p>
+<h2 id="1-13-MyGeneration"><a href="#1-13-MyGeneration" class="headerlink" title="1.13 MyGeneration"></a>1.13 MyGeneration</h2><p>MyGeneration 是一款不错的ORM和代码生成工具，它基于模板（Template）工作，安装好MyGeneration 后自带了很多模板，并且提供在线模板库提供模板升级和允许用户自定义模板。MyGeneration 的模板可以用C#, VB.NET, JScript, and VBScript编写。使用MyGeneration 可以为Gentle.NET, Opf3, NHibernate等生成ORM架构或ORM文件，为多种数据库生成存储过程，为.Net项目生成C#、VB.NET 程序代码，PHP、HTML等页面代码。</p>
+<p>官方网站：http：//<a href="http://www.mygenerationsoftware.com/portal/default.aspx" target="_blank" rel="noopener">www.mygenerationsoftware.com/portal/default.aspx</a></p>
+<p>官方论坛：http：//<a href="http://www.mygenerationsoftware.com/phpbb3/index.php" target="_blank" rel="noopener">www.mygenerationsoftware.com/phpbb3/index.php</a></p>
+<p>版权形式：免费</p>
+<p>开源：是</p>
+<h2 id="1-14-iBATIS的代码生成工具-Ibator"><a href="#1-14-iBATIS的代码生成工具-Ibator" class="headerlink" title="1.14 iBATIS的代码生成工具 Ibator"></a>1.14 iBATIS的代码生成工具 Ibator</h2><p>Ibator 是一个 iBATIS 的代码生成工具，它自动扫描数据库中的所有表，并生成Bean类和对应的配置文件。同时还帮你生成CRUD操作方法。提供一个独立运行的界面以及 Eclipse 的插件。</p>
+<p>官方网站：<a href="http://ibatis.apache.org/ibator.html" target="_blank" rel="noopener">http://ibatis.apache.org/ibator.html</a></p>
+<p>官方论坛：</p>
+<p>版权形式：免费</p>
+<p>开源：是</p>
+<h2 id="1-15-代码自动生成工具-Acceleo"><a href="#1-15-代码自动生成工具-Acceleo" class="headerlink" title="1.15 代码自动生成工具 Acceleo"></a>1.15 代码自动生成工具 Acceleo</h2><p>Acceleo是MDA（Model Driven Architecture：模型驱动体系结构）的一个代码自动生成工具，Acceleo能把模型转换为Java，C#，PHP等代码。Acceleo基于Eclipse平台以及EMF（Eclipse模型框架），开放源代码，可以免费使用。</p>
+<p>官方网站：<a href="http://www.acceleo.org/pages/home/en" target="_blank" rel="noopener">http://www.acceleo.org/pages/home/en</a></p>
+<p>官方论坛：</p>
+<p>版权形式：免费</p>
+<p>开源：是</p>
+<h2 id="1-16-最快速的java代码生成器-rapid-generator"><a href="#1-16-最快速的java代码生成器-rapid-generator" class="headerlink" title="1.16 最快速的java代码生成器 rapid-generator"></a>1.16 最快速的java代码生成器 rapid-generator</h2><p>rapid-generator是一个生成器引擎,让你可以专注与代码生成器模板的编写, 可以生成如ibatis,ibatis3,hibernate,spring_mvc,struts2等等代码.</p>
+<p>该项目是 Rapid Framework 框架的一部分。</p>
+<p>官方网站：<a href="http://code.google.com/p/rapid-generator/" target="_blank" rel="noopener">http://code.google.com/p/rapid-generator/</a></p>
+<p>官方论坛：</p>
+<p>版权形式：免费</p>
+<p>开源：是</p>
+<h2 id="1-17-开源代码生成插件-J2EE-Spider"><a href="#1-17-开源代码生成插件-J2EE-Spider" class="headerlink" title="1.17 开源代码生成插件 J2EE Spider"></a>1.17 开源代码生成插件 J2EE Spider</h2><p>J2EE Spider是一个开源代码生成插件。它能够以界面引导方式产生代码，定制代码生成模板。J2EE Spider当前能够生成基于Struts/JSF，Spring，Hibernate等框架的源代码。</p>
+<p>J2EE Spider的主要特性如下：</p>
+<p>•支持以界面引导方式产生代码</p>
+<p>•支持与Eclipse集成</p>
+<p>•支持增量构建</p>
+<p>•支持正向逆向工程</p>
+<p>•产生代码的国际化</p>
+<p>•支持利用模版生成代码</p>
+<p>•支持利用多个框架</p>
+<p>J2EE Spider除了提供可定制的页面模版外，还可以在需要时候把新的技术集成进来。不过，其只对以下几种提供“立等可用的服务”：</p>
+<p>•Web 框架：Struts、JSF和Mentawa（一个来自巴西的应用框架）</p>
+<p>•依赖注入容器：Spring</p>
+<p>•O/R 映射: Hibernate</p>
+<p>•页面模版：SiteMesh 和Facelets</p>
+<p>官方网站：<a href="http://www.spideronrails.org/" target="_blank" rel="noopener">http://www.spideronrails.org/</a></p>
+<p>官方论坛：</p>
+<p>版权形式：免费</p>
+<p>开源：是</p>
+<h2 id="1-18-slave4j"><a href="#1-18-slave4j" class="headerlink" title="1.18 slave4j"></a>1.18 slave4j</h2><p>slave4j是一个eclipse的插件，也是一个springmvc，spring，hibernate的整合框架</p>
+<p>slave4j插件能帮你做什么？</p>
+<pre><code>搭建spring，springmvc，hibernate开发环境
+
+代码生成：生成curd代码，包括jsp
+</code></pre><p>slave4j框架能帮你做什么？</p>
+<pre><code>封装了hibernate常用操作
+
+提供了常用的工具类（1.0.0版本提供的比较少，在以后的版本中继续添加）
+</code></pre><p>官方网站：<a href="http://code.google.com/p/slave4j/" target="_blank" rel="noopener">http://code.google.com/p/slave4j/</a></p>
+<p>官方论坛：</p>
+<p>版权形式：免费</p>
+<p>开源：是</p>
+<h2 id="1-19-JunJava"><a href="#1-19-JunJava" class="headerlink" title="1.19 JunJava"></a>1.19 JunJava</h2><p>JunJava 一个java程序代码自动生产的工具。</p>
+<p>针对JavaEE或者是JAVASE，AutoJava能快速的生成可以由目前最流行的结构框架搭建的项目，如Hibernater，Spring，Struts等自动组合配置。</p>
+<p>通过连接数据库，选择任意数据表生成实体模型，支持简单SQL语句查询，直接浏览数据表结构和数据。</p>
+<p>支持多项目管理，文件编辑，一键式生成代码。快速构建基础框架代码，并支持MVC 3层构架。</p>
+<p>生成的项目可以直接导入Eclipse，并且可以直接运行部署Tomcat服务器中，大大减少程序员的工作量。</p>
+<p>官方网站：</p>
+<p>官方论坛：</p>
+<p>版权形式：免费</p>
+<p>开源：是</p>
+<h2 id="1-20-XDoclet"><a href="#1-20-XDoclet" class="headerlink" title="1.20 XDoclet"></a>1.20 XDoclet</h2><p>XDoclet 是一个通用的代码生成实用程序,是一个扩展的Javadoc Doclet引擎(现已与Javadoc Doclet独立),XDoclet是EJBDoclet的后继者，而EJBDoclet是由Rickard Oberg发起的。它允许您使用象 JavaDoc 标记之类的东西来向诸如类、方法和字段之类的语言特征添加元数据。随后，它利用这些额外的元数据来生成诸如部署描述符和源代码之类的相关文件。可以让你创 建自己的javadoc @tags进而利用XDoclet中的Templet enging基于这些@tags生成源代码或其他文件（例如xml的deployment descriptors）。</p>
+<p>XDoclet 继承了 JavaDoc 引擎的思想，允许根据定制 JavaDoc 标记生成代码和其他文件。当然，XDoclet 也可以访问整个解析树。这样，它就可以访问类、类的包结构和类的方法。</p>
+<p>XDoclet 提供了自己的模板引擎。该模板引擎在概念上类似于 JavaServer Pages（JSP）技术。它实质上包含两类标记：块标记（block tag）和内容标记（content tag）。块标记控制如 Java 编程语言中的 if 和 for 语句之类的流。内容标记打印当前解析树上下文的片段，如类名称、方法名称和参数，等等。</p>
+<p>官方网站：<a href="http://xdoclet.sourceforge.net/xdoclet/index.html" target="_blank" rel="noopener">http://xdoclet.sourceforge.net/xdoclet/index.html</a></p>
+<p>官方论坛：</p>
+<p>版权形式：免费</p>
+<p>开源：是</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持原创技术分享</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/repo/wechatpay.png" alt="庞国明 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/repo/alipay.jpg" alt="庞国明 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/a2d19c2f.html" rel="next" title="Java主流Web Service框架介绍：CXF和Axis2">
+                <i class="fa fa-chevron-left"></i> Java主流Web Service框架介绍：CXF和Axis2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/b9910cba.html" rel="prev" title="CentOS开启和关闭防火墙">
+                CentOS开启和关闭防火墙 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-1-CodeSmith"><span class="nav-number">1.</span> <span class="nav-text">1.1 CodeSmith</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-MyGenerator"><span class="nav-number">1.1.</span> <span class="nav-text">1.2 MyGenerator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-NHibernate"><span class="nav-number">1.2.</span> <span class="nav-text">1.3 NHibernate.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-湛蓝-Net代码生成器"><span class="nav-number">1.3.</span> <span class="nav-text">1.4 湛蓝.Net代码生成器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-动软-NET代码自动生成器"><span class="nav-number">1.4.</span> <span class="nav-text">1.5 动软.NET代码自动生成器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-CodePlus"><span class="nav-number">1.5.</span> <span class="nav-text">1.6 CodePlus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-CodeMaker"><span class="nav-number">1.6.</span> <span class="nav-text">1.7 CodeMaker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8-非非-Net代码生成器"><span class="nav-number">1.7.</span> <span class="nav-text">1.8 非非.Net代码生成器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-9-BMW业务模型及代码生成器"><span class="nav-number">1.8.</span> <span class="nav-text">1.9 BMW业务模型及代码生成器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-10-飞鹰CoolCoder"><span class="nav-number">1.9.</span> <span class="nav-text">1.10 飞鹰CoolCoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-11-AutoCoder自动代码生成器"><span class="nav-number">1.10.</span> <span class="nav-text">1.11 AutoCoder自动代码生成器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-12-wawa-Code-Pro代码生成器"><span class="nav-number">1.11.</span> <span class="nav-text">1.12 wawa Code Pro代码生成器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-13-MyGeneration"><span class="nav-number">1.12.</span> <span class="nav-text">1.13 MyGeneration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-14-iBATIS的代码生成工具-Ibator"><span class="nav-number">1.13.</span> <span class="nav-text">1.14 iBATIS的代码生成工具 Ibator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-15-代码自动生成工具-Acceleo"><span class="nav-number">1.14.</span> <span class="nav-text">1.15 代码自动生成工具 Acceleo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-16-最快速的java代码生成器-rapid-generator"><span class="nav-number">1.15.</span> <span class="nav-text">1.16 最快速的java代码生成器 rapid-generator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-17-开源代码生成插件-J2EE-Spider"><span class="nav-number">1.16.</span> <span class="nav-text">1.17 开源代码生成插件 J2EE Spider</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-18-slave4j"><span class="nav-number">1.17.</span> <span class="nav-text">1.18 slave4j</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-19-JunJava"><span class="nav-number">1.18.</span> <span class="nav-text">1.19 JunJava</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-20-XDoclet"><span class="nav-number">1.19.</span> <span class="nav-text">1.20 XDoclet</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">庞国明</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'pangguoming',
+            repo: 'pangguoming.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '51f66abac54ca9e1b5a5608d706ce6af47ffaa51',
+            
+                client_id: '1e9770fed2b4d227cd0a'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

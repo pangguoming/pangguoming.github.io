@@ -45,38 +45,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT">
@@ -84,11 +73,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
 
 
 
@@ -113,11 +97,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -153,30 +137,6 @@
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-	<div id="topnavbar">
-  <div class="tophead">
-    <div class="toplogo"><a href="/">庞国明-博客</a></div>
-    <div id="mnav">
-      <h2><span class="navicon"></span></h2>
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </div>
-    <nav class="topnav" id="topnav">
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
 
   
   
@@ -230,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -250,12 +220,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            关于
+            归档
           </a>
         </li>
       
@@ -278,20 +248,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -324,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/03/24/Java 线程内异常处理/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/c8a909b9.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -343,7 +319,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/24/Java 线程内异常处理/" itemprop="url">Java 线程内异常处理</a></h1>
+                <a class="post-title-link" href="/post/c8a909b9.html" itemprop="url">Java 线程内异常处理</a></h1>
         
 
         <div class="post-meta">
@@ -395,15 +371,15 @@
       
         
           
-          Thread的run方法是不抛出任何检查型异常(checked exception)的,但是它自身却可能因为一个异常而被终止，导致这个线程的终结。最麻烦的是，在线程中抛出的异常即使使用try…catch也无法截获，因此可能导致一些问题出现，比如异常的时候无法回收一些系统资源，或者没有关闭当前的连接等
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/24/Java 线程内异常处理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p><span class="javascript">Thread的run方法是不抛出任何检查型异常(checked exception)的,但是它自身却可能因为一个异常而被终止，导致这个线程的终结。最麻烦的是，在线程中抛出的异常即使使用try…catch也无法截获，因此可能导致一些问题出现，比如异常的时候无法回收一些系统资源，或者没有关闭当前的连接等等。   </span></p>
+<p>JDK5.0之前，不能为单独的Thread设置UncaughtExceptionHandler，也不能指定一个默认的UncaughtExceptionHandler。为了可以设置一个UncaughtExceptionHandler，需要去继承ThreadGroup并覆写uncaughtException方法。   </p>
+<p>在JDK5.0中，我们通过Thread的实例方法setUncaughtExceptionHandler，可以为任何一个Thread设置一个UncaughtExceptionHandler。当然你也可以为所有Thread设置一个默认的UncaughtExceptionHandler，通过调用Thread.setDefaultUncaughtExceptionHandler(Thread.UncaughtExceptionHandler eh)方法,这是Thread的一个static方法。   </p>
+<p>定义一个Handler类必须实现Thread.UncaughtExceptionHandler接口的void uncaughtException(Thread t, Throwable e)方法。如果不设置一个Handler，那么单个Thread的Handler是null。但是，如果这个单个线程是ThreadGroup中的一个Thread，那么这个线程将使用ThreadGroup的UncaughtExceptionHandler。ThreadGroup自身已经实现了Thread.UncaughtExceptionHandler接口。 </p>
+<p><span class="javascript">這樣就夠了<br></span></p>
+<p>uncaughtException(Thread a, Throwable e)可以拿到Thread，所以在uncaughtException释放相关资源是最好的办法。</p>
+<p>总之，JDK5.0中Thread及其相关的辅助功能得到了加强，为我们提供了很多便利和安全的解决方案：） </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import java.lang.Thread.UncaughtExceptionHandler;</span><br><span class="line"></span><br><span class="line">    public class ThreadTest &#123;</span><br><span class="line"></span><br><span class="line">      public static void main(String[] args) &#123;</span><br><span class="line">        ErrHandler handle = null;</span><br><span class="line">        ThreadA a = null;</span><br><span class="line"></span><br><span class="line">        a = new ThreadA();</span><br><span class="line">        handle = new ErrHandler();</span><br><span class="line">        a.setUncaughtExceptionHandler(handle);// 加入定义的ErrHandler</span><br><span class="line">        a.start();</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 自定义的一个UncaughtExceptionHandler</span><br><span class="line">     */</span><br><span class="line">    class ErrHandler implements UncaughtExceptionHandler &#123;</span><br><span class="line">      /**</span><br><span class="line">       * 这里可以做任何针对异常的处理,比如记录日志等等</span><br><span class="line">       */</span><br><span class="line">      public void uncaughtException(Thread a, Throwable e) &#123;</span><br><span class="line">        System.out.println(&quot;This is:&quot; + a.getName() + &quot;,Message:&quot;</span><br><span class="line">            + e.getMessage());</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 拥有UncaughtExceptionHandler的线程</span><br><span class="line">     */</span><br><span class="line">    class ThreadA extends Thread &#123;</span><br><span class="line"></span><br><span class="line">      public ThreadA() &#123;</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      public void run() &#123;</span><br><span class="line"></span><br><span class="line">        double i = 12 / 0;// 抛出异常的地方</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -450,7 +426,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/03/23/同时启动多个Tomcat服务器/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/da759a7a.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -469,7 +445,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/23/同时启动多个Tomcat服务器/" itemprop="url">同时启动多个Tomcat服务器</a></h1>
+                <a class="post-title-link" href="/post/da759a7a.html" itemprop="url">同时启动多个Tomcat服务器</a></h1>
         
 
         <div class="post-meta">
@@ -521,15 +497,9 @@
       
         
           
-          以下步骤能够同时启动两个tomcat：1、特别要注意：不要设置CATALINA_HOME2、分别修改安装目录下的conf子目录中的server.xml文件：a.修改http访问端口（默认为8080端口，在安装的时候就改成别的端口号，比如5.改成8081，6.改成8086），将8080修改为tomca
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/23/同时启动多个Tomcat服务器/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>以下步骤能够同时启动两个tomcat：<br>1、特别要注意：不要设置CATALINA_HOME<br>2、分别修改安装目录下的conf子目录中的server.xml文件：<br>a.修改http访问端口（默认为<a href="https://www.baidu.com/s?wd=8080%E7%AB%AF%E5%8F%A3&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Yzuh7-nhRYPjPhnvRdnWDk0ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3Erj03nW03rHRYPjRvPW0dnjRz" target="_blank" rel="noopener">8080端口</a>，在安装的时候就改成别的端口号，比如5.<em>改成8081，6.</em>改成8086），将8080修改为tomcat不在使用的端口号。此处所设的端口号即是以后访问web时所用的端口号。<br>b.修改其中一个tomcat的Shutdown端口（在server.xml中，默认为8005端口），将8005修改为没有在使用的端口号，例如8055。<br>c.修改其中一个tomcat的8009端口，将8009修改为没有在使用的端口号，（也在server.xml中修改）例如8099<br>（注：两个”配置文件server.xml“中对应的端口号必须不同。）<br>3、依次启动两个tomcat。<br>可以都在eclipse中启动（比如tomcat5.0是插件版本的，在eclipse有一个猫，而另一个6.0版本的是通过myeclipse在windows-perfrences-配置），也可以通过对应的startup.bat启动，还可以一个用elipse启动，另一个通过startup.bat启动。<code>`</code></p>
+
+          
         
       
     </div>
@@ -576,7 +546,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/03/09/Swift学习资源/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/6cf3ec7a.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -595,7 +565,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/09/Swift学习资源/" itemprop="url">Swift学习资源</a></h1>
+                <a class="post-title-link" href="/post/6cf3ec7a.html" itemprop="url">Swift学习资源</a></h1>
         
 
         <div class="post-meta">
@@ -647,20 +617,259 @@
       
         
           
+            <p><img src="http://pangguoming.com/blog/images/284400bc-dee4-426d-8d3f-2079328b0194.png" alt="Swift"></p>
+<blockquote>
+<p>Swift，一种强大的开源编程语言，</p>
+</blockquote>
+<blockquote>
+<p>让大家都能开发出众的 App。 Swift 是一种强劲而直观的编程语言，它由 Apple 创造，可用来为 iOS、Mac、Apple TV 和 Apple Watch 开发 app。它旨在为开发者提供充分的自由。Swift 易用并且开源，只要有想法，谁都可以创造非凡。</p>
+</blockquote>
+<blockquote>
+<p>Swift is a high-performance system programming language. It has a clean and modern syntax, offers seamless access to existing C and Objective-C code and frameworks, and is memory safe by default.</p>
+</blockquote>
+<blockquote>
+<p>On December 3, 2015, the Swift language, supporting libraries, debugger, and package manager were published under the Apache 2.0 license with a Runtime Library Exception, and Swift.org was created to host the project.</p>
+</blockquote>
+<p>苹果公司在WWDC 2014上宣布了他们将会推出一款新的编程语言，面向iOS和OS X系统的开发人员，这个新的语言被命名为Swift。</p>
+<p>Swift在iOS 8发布的时候推向市场，用来取代 Objective-C 语言。 对于这个巨大的决定，苹果公司的解释是Swift速度更快，使用起来更加容易。 在Swift推出之后，苹果公司应该不会停止对 Objective-C 的支持，开发工具会同时支持两种语言。</p>
+<p>在 Swift 开源后，开发者社区活跃。目前 CocoaPods 中有大量的第三方开发库已经支持 Swift。</p>
+<h3 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h3><ul>
+<li>提交 PR - <a href="https://github.com/Lax/iOS-Swift-Demos" target="_blank" rel="noopener">iOS-Swift-Demos</a></li>
+<li>加入 QQ群 32958950</li>
+</ul>
+<h3 id="官方资源"><a href="#官方资源" class="headerlink" title="官方资源"></a>官方资源</h3><ul>
+<li></li>
+</ul>
+<p><a href="https://swift.org/" target="_blank" rel="noopener">Swift 开发者社区 - Swift.org</a></p>
+<ul>
+<li></li>
+</ul>
+<p><a href="https://github.com/apple/swift" target="_blank" rel="noopener">Swift 代码库</a></p>
+<ul>
+<li><p><a href="https://developer.apple.com/swift/" target="_blank" rel="noopener">Apple developer 的 Swift 首页</a></p>
+<ul>
+<li><a href="https://developer.apple.com/swift/playgrounds/" target="_blank" rel="noopener">Swift Blog</a></li>
+<li><a href="https://developer.apple.com/swift/resources/" target="_blank" rel="noopener">Swift Resources</a></li>
+<li><a href="https://developer.apple.com/swift/playgrounds/" target="_blank" rel="noopener">Swift Playgrounds</a> Learn Swift on iPad</li>
+</ul>
+</li>
+<li><p><a href="http://www.apple.com/swift/" target="_blank" rel="noopener">苹果公司官网的 Swift 页面</a></p>
+<ul>
+<li><a href="https://itunes.apple.com/app/xcode/id497799835" target="_blank" rel="noopener">Xcode</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="权威文档"><a href="#权威文档" class="headerlink" title="权威文档"></a>权威文档</h3><ul>
+<li><p>《The Swift Programming Language》- The Definitive Book</p>
+<ul>
+<li><a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html" target="_blank" rel="noopener">Web</a></li>
+<li>ePub（<a href="https://swift.org/documentation/TheSwiftProgrammingLanguage(Swift3.0.1" target="_blank" rel="noopener">官方</a>.epub）</li>
+<li><a href="https://itunes.apple.com/us/book-series/swift-programming-series/id888896989?mt=11" target="_blank" rel="noopener">iBooks Store</a></li>
+</ul>
+</li>
+<li><p>《App Development with Swift》</p>
+<ul>
+<li><a href="https://itunes.apple.com/us/book/app-development-with-swift/id1118575552?mt=11" target="_blank" rel="noopener">iBooks Store</a></li>
+</ul>
+</li>
+<li><p>《Using Swift with Cocoa and Objective-C》</p>
+<ul>
+<li><a href="https://itunes.apple.com/us/book/using-swift-cocoa-objective/id888894773?mt=11" target="_blank" rel="noopener">iBooks Store</a></li>
+<li><a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/index.html" target="_blank" rel="noopener">Web</a></li>
+</ul>
+</li>
+<li></li>
+</ul>
+<p>《<a href="https://developer.apple.com/reference/swift" target="_blank" rel="noopener">Swift Standard Library API Reference</a>》</p>
+<ul>
+<li></li>
+</ul>
+<p>《<a href="https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html" target="_blank" rel="noopener">Start Developing iOS Apps</a>》</p>
+<ul>
+<li></li>
+</ul>
+<p>《<a href="https://swift.org/documentation/api-design-guidelines/" target="_blank" rel="noopener">API Design Guidelines</a>》</p>
+<ul>
+<li></li>
+</ul>
+<p>《<a href="http://apple.github.io/swift-evolution/" target="_blank" rel="noopener">Swift Programming Language Evolution</a>》</p>
+<ul>
+<li><a href="https://developer.apple.com/videos/wwdc/2014/" target="_blank" rel="noopener">WWDC2014 Videos</a></li>
+</ul>
+<h3 id="社区文档"><a href="#社区文档" class="headerlink" title="社区文档"></a>社区文档</h3><ul>
+<li>《The Swift Programming Language》 <a href="https://github.com/numbbbbb/the-swift-programming-language-in-chinese" target="_blank" rel="noopener">社区译中文版</a></li>
+</ul>
+<h3 id="课程"><a href="#课程" class="headerlink" title="课程"></a>课程</h3><ul>
+<li></li>
+</ul>
+<p><a href="https://itunes.com/StanfordSwift" target="_blank" rel="noopener">Stanford University: Developing iOS 9 Apps with Swift</a></p>
+<ul>
+<li></li>
+</ul>
+<p><a href="https://itunes.com/PlymouthSwift" target="_blank" rel="noopener">Plymouth University: iOS Development in Swift</a></p>
+<h3 id="非官方文档与社区（英文）"><a href="#非官方文档与社区（英文）" class="headerlink" title="非官方文档与社区（英文）"></a>非官方文档与社区（英文）</h3><h4 id="初级话题"><a href="#初级话题" class="headerlink" title="初级话题"></a>初级话题</h4><ul>
+<li><a href="http://stackoverflow.com/questions/tagged/swift-language" target="_blank" rel="noopener">StackOverflow上的Swift讨论</a></li>
+<li>github上的swift内容 <a href="https://github.com/search?l=Swift&amp;q=swift&amp;ref=cmdform&amp;type=Repositories" target="_blank" rel="noopener">search结果</a></li>
+<li><a href="http://cdn2.raywenderlich.com/wp-content/uploads/2014/06/RW-Swift-Cheatsheet-0_3.pdf" target="_blank" rel="noopener">Swift Cheatsheet</a></li>
+<li><a href="https://medium.com/swift-programming/swift-cocoapods-da09d8ba6dd2" target="_blank" rel="noopener">Swift &amp; Cocoapods</a> How to integrate Cocoapods into a vanilla Swift project</li>
+<li></li>
+</ul>
+<p><a href="http://www.swifttoolbox.io/" target="_blank" rel="noopener">Swift Toolbox</a></p>
+<ul>
+<li><a href="http://jamesonquave.com/blog/developing-ios-apps-using-swift-tutorial/" target="_blank" rel="noopener">Developing iOS Apps Using Swift Tutorial</a></li>
+<li><a href="http://studentf.wordpress.com/2014/06/03/swift-not-quite-there-but-too-far-gone-too/" target="_blank" rel="noopener">7 thoughts on “Swift: Not quite there, but too far gone too”</a></li>
+<li><a href="http://www.evanmiller.org/swift-impressions.html" target="_blank" rel="noopener">Swift Impressions</a> by Evan Miller</li>
+<li></li>
+</ul>
+<p><a href="http://jamesonquave.com/blog/developing-ios-apps-using-swift-tutorial/" target="_blank" rel="noopener">Swift Tutorial – Developing iOS 8 Apps</a> by Jameson Quave 很完整的学习文档</p>
+<ul>
+<li><a href="http://blog.teamtreehouse.com/an-absolute-beginners-guide-to-swift" target="_blank" rel="noopener">An Absolute Beginner’s Guide to Swift</a>和<a href="http://blog.teamtreehouse.com/understanding-optionals-swift" target="_blank" rel="noopener">Understanding Optionals in Swift</a> by Amit Bijlani</li>
+<li><a href="http://cdn2.raywenderlich.com/wp-content/uploads/2014/06/RW-Swift-Cheatsheet-0_3.pdf" target="_blank" rel="noopener">Swift Cheat Sheet and Quick Reference</a> by Ray Wenderlich</li>
+<li><a href="http://swiftyeti.com/generics/" target="_blank" rel="noopener">Generics in Swift</a></li>
+<li><a href="http://practicalswift.com/2014/06/07/swift-repl/" target="_blank" rel="noopener">How to use the Swift REPL language shell – Swift programming from the command line</a></li>
+<li><a href="http://practicalswift.com/2014/06/27/a-minimal-webkit-browser-in-30-lines-of-swift/" target="_blank" rel="noopener">How to write a minimal WebKit browser in 30 lines of Swift</a></li>
+<li><a href="http://ashfurrow.com/blog/swift-initializers/" target="_blank" rel="noopener">Swift Initializers</a></li>
+<li><a href="https://www.makegameswith.us/gamernews/399/create-the-game-of-life-using-swift-and-spritekit" target="_blank" rel="noopener">Create the Game of Life using Swift and SpriteKit</a></li>
+<li><a href="http://railsware.com/blog/2014/06/17/composing-functions-in-swift/" target="_blank" rel="noopener">Composing functions in Swift</a></li>
+<li></li>
+</ul>
+<p><a href="http://blog.fivelakesstudio.com/2014/06/advanced-swift-part-1.html" target="_blank" rel="noopener">Advanced Swift</a></p>
+<ul>
+<li><a href="http://www.weheartswift.com/" target="_blank" rel="noopener">We ❤ Swift</a></li>
+<li><a href="http://worrydream.com/#!/LearnableProgramming" target="_blank" rel="noopener">LEARNABLE PROGRAMMING</a> Designing a programming system for understanding programs</li>
+<li><a href="http://hawstein.com/posts/make-thiner-tspl.html" target="_blank" rel="noopener">把《The Swift Programming Language》读薄</a> by <a href="http://hawstein.com/" target="_blank" rel="noopener">Hawstein</a></li>
+</ul>
+<h4 id="深入话题"><a href="#深入话题" class="headerlink" title="深入话题"></a>深入话题</h4><ul>
+<li><a href="http://nshipster.com/swift-operators/" target="_blank" rel="noopener">Swift Operators</a> by Mattt Thompson</li>
+<li><a href="http://www.raywenderlich.com/76285/beginning-core-image-swift" target="_blank" rel="noopener">Beginning Core Image in Swift</a></li>
+<li><a href="http://ronnqvi.st/multiple-animations/" target="_blank" rel="noopener">Multiple Animations</a> by David Rönnqvist</li>
+<li><a href="http://www.buckleyisms.com/home/2014/6/16/the-case-for-message-passing-in-swift.html" target="_blank" rel="noopener">The Case for Message Passing in Swift</a> by Michael Buckley</li>
+<li><a href="http://www.cimgf.com/2014/06/08/the-core-data-stack-in-swift/" target="_blank" rel="noopener">The Core Data stack in Swift</a> by Marcus Zarra</li>
+<li><a href="http://www.raywenderlich.com/75270/make-game-like-candy-crush-with-swift-tutorial-part-1" target="_blank" rel="noopener">How to Make a Game Like Candy Crush with Swift Tutorial: Part 1</a> and <a href="http://www.raywenderlich.com/75273/make-game-like-candy-crush-with-swift-tutorial-part-2" target="_blank" rel="noopener">Part 2</a> by Matthijs Hollemans</li>
+<li><a href="http://ericasadun.com/2014/06/18/ios-8-building-custom-simulators/" target="_blank" rel="noopener">Build custom simulators</a> by Erica Sadun</li>
+<li><a href="http://www.atomicbird.com/blog/cloudkit-moves-like-azure" target="_blank" rel="noopener">CloudKit: Moves like Azure</a> by Tom Harrington</li>
+<li>about <a href="http://swiftlytyping.tumblr.com/post/88210131086/error-handling" target="_blank" rel="noopener">Error handling</a> by Chris Cieslak</li>
+<li><a href="http://www.eswick.com/2014/06/inside-swift/" target="_blank" rel="noopener">Inside Swift</a></li>
+<li><a href="http://practicalswift.com/2014/06/10/list-of-implicitly-defined-variables-in-swift/" target="_blank" rel="noopener">List of implicitly defined variables in Swift</a> 和 <a href="http://practicalswift.com/2014/06/14/the-swift-standard-library-list-of-built-in-functions/" target="_blank" rel="noopener">Swift Standard Library: Documented and undocumented built-in functions in the Swift standard library – the complete list with all 74 functions</a> by practicalswift</li>
+<li><a href="http://www.drewag.me/posts/swift-s-weird-handling-of-basic-value-types-and-anyobject" target="_blank" rel="noopener">Swift’s Weird Handling of Basic Value Types and AnyObject</a></li>
+<li><a href="http://railsware.com/blog/2014/06/26/creation-of-pure-swift-module/" target="_blank" rel="noopener">Creation of pure Swift module</a> by Alex Denisov. make a logging library and shows us how to document classes in Xcode.</li>
+<li><a href="http://roadfiresoftware.com/2014/06/unit-testing-with-swift/" target="_blank" rel="noopener">How to write unit tests in Swift with XCTest</a></li>
+<li><a href="http://michaelteeuw.nl/post/90182386142/swift-around-and-around" target="_blank" rel="noopener">gesture recognizer</a></li>
+<li><a href="http://www.raywenderlich.com/73997/swift-language-highlights" target="_blank" rel="noopener">Swift Language Highlights: An Objective-C Developer’s Perspective</a></li>
+<li><a href="http://www.scottlogic.com/blog/2014/06/26/swift-sequences.html" target="_blank" rel="noopener">Swift Sequences and lazy evaluation</a></li>
+<li><a href="http://vperi.com/2014/06/05/spaceship-operator-in-swift/" target="_blank" rel="noopener">SPACESHIP OPERATOR IN SWIFT</a> 和 <a href="http://vperi.com/2014/06/08/regular-expressions-in-switch-statements/" target="_blank" rel="noopener">REGULAR EXPRESSIONS IN SWITCH STATEMENTS</a> by Venkat Peri</li>
+</ul>
+<h4 id="社区"><a href="#社区" class="headerlink" title="社区"></a>社区</h4><ul>
+<li><a href="https://www.v2ex.com/go/swift" target="_blank" rel="noopener">https://www.v2ex.com/go/swift</a></li>
+<li><a href="http://swift.sh" target="_blank" rel="noopener">http://swift.sh</a></li>
+<li><a href="http://swift-china.org" target="_blank" rel="noopener">http://swift-china.org</a></li>
+<li>CocoaChina的<a href="http://www.cocoachina.com/bbs/thread.php?fid=57" target="_blank" rel="noopener">Swift讨论区</a></li>
+<li>QQ群 iOS开发者-开始Swift，群号：32958950，申请时请说明身份。</li>
+</ul>
+<h4 id="翻译"><a href="#翻译" class="headerlink" title="翻译"></a>翻译</h4><ul>
+<li></li>
+</ul>
+<p><a href="http://www.swiftguide.cn/" target="_blank" rel="noopener">《The Swift Programming Language》中文版</a> （<a href="http://numbbbbb.github.io/the-swift-programming-language-in-chinese/" target="_blank" rel="noopener">协作翻译</a>)）第一份完整的中文翻译</p>
+<ul>
+<li></li>
+</ul>
+<p>《<a href="http://gashero.iteye.com/blog/2075324" target="_blank" rel="noopener">Apple Swift编程语言入门教程</a>》比较早期的一篇翻译，最近没有更新</p>
+<h4 id="评论"><a href="#评论" class="headerlink" title="评论"></a>评论</h4><ul>
+<li>《<a href="http://onevcat.com/2014/06/my-opinion-about-swift/" target="_blank" rel="noopener">关于 Swift 的一点初步看法</a>》 by onevcat</li>
+<li>《<a href="http://onevcat.com/2014/06/walk-in-swift/" target="_blank" rel="noopener">行走于 Swift 的世界中</a>》 by onevcat 更详细的一篇评论</li>
+<li>《<a href="http://zh.lucida.me/blog/an-introduction-to-swift/" target="_blank" rel="noopener">来自苹果的编程语言——Swift简介</a>》</li>
+</ul>
+<h4 id="课程-1"><a href="#课程-1" class="headerlink" title="课程"></a>课程</h4><ul>
+<li>《<a href="http://www.swiftv.cn/" target="_blank" rel="noopener">SwiftV课堂</a>》 免费Swift学习视频</li>
+<li>《<a href="http://www.jikexueyuan.com/course/92.html" target="_blank" rel="noopener">Apple Swift语言基础教程</a>》极客学院</li>
+</ul>
+<h3 id="官方示例"><a href="#官方示例" class="headerlink" title="官方示例"></a>官方示例</h3><p>Apple同时发布了3个示例程序，用于初窥Swift开发的项目。</p>
+<ul>
+<li></li>
+</ul>
+<p>Lister: A Productivity App Built in Swift <a href="https://github.com/Lax/iOS-Swift-Demos/tree/master/Lister" target="_blank" rel="noopener">github</a></p>
+<ul>
+<li></li>
+</ul>
+<p>UICatalog: Creating and Customizing UIKit Controls in Swift <a href="https://developer.apple.com/library/ios/samplecode/UICatalog/Introduction/Intro.html" target="_blank" rel="noopener">apple</a> / <a href="https://github.com/Lax/iOS-Swift-Demos/tree/master/UICatalog" target="_blank" rel="noopener">github</a></p>
+<ul>
+<li></li>
+</ul>
+<p>Adventure: Building a SpriteKit Game Using Swift <a href="https://developer.apple.com/library/mac/samplecode/Adventure-Swift/Introduction/Intro.html" target="_blank" rel="noopener">apple</a> / <a href="https://github.com/Lax/iOS-Swift-Demos/tree/master/Adventure" target="_blank" rel="noopener">github</a></p>
+<ul>
+<li></li>
+</ul>
+<p>GestureRecognizers: Using standard UIGestureRecognizers in Swift <a href="https://github.com/Lax/iOS-Swift-Demos/tree/master/GestureRecognizersUsingstandardUIGestureRecognizers" target="_blank" rel="noopener">github</a></p>
+<h3 id="非官方代码分享"><a href="#非官方代码分享" class="headerlink" title="非官方代码分享"></a>非官方代码分享</h3><ul>
+<li></li>
+</ul>
+<p><a href="https://github.com/trending?l=swift&amp;since=monthly" target="_blank" rel="noopener">Swift Trending</a></p>
+<ul>
+<li><a href="https://github.com/fullstackio/FlappySwift" target="_blank" rel="noopener">FlappySwift</a> 用Swift实现的FlappyBird</li>
+<li><a href="https://github.com/austinzheng/swift-2048" target="_blank" rel="noopener">swift-2048</a></li>
+<li><a href="https://github.com/kevinzhow/PNChart-Swift" target="_blank" rel="noopener">PNChart-Swift</a> 可以创建图表的库</li>
+<li><a href="https://github.com/yonbergman/swift-gameoflife" target="_blank" rel="noopener">Game of Life</a> 一个游戏</li>
+<li><a href="https://github.com/ChrisChares/swift-alarm.git" target="_blank" rel="noopener">swift-alarm</a> 基于地理位置的提醒工具 <a href="http://chares.ghost.io/lets-make-a-swift-app-part-1/" target="_blank" rel="noopener">blog</a></li>
+<li><a href="https://github.com/mslathrop/SwiftNote.git" target="_blank" rel="noopener">SwiftNote</a></li>
+<li><a href="https://github.com/geek5nan/FanFanSwift" target="_blank" rel="noopener">翻翻看</a> 游戏翻翻看Swift版</li>
+<li><a href="https://github.com/amitburst/HackerNews" target="_blank" rel="noopener">HackerNews</a> HackerNews网站的第三方客户端</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/JakeLin/SwiftWeather" target="_blank" rel="noopener">SwiftWeather</a> 一个天气客户端</p>
+<ul>
+<li><a href="https://github.com/hpique/SwiftSingleton" target="_blank" rel="noopener">SwiftSingleton</a></li>
+<li></li>
+</ul>
+<p><a href="http://ericasadun.com/2014/06/23/swift-spiroswiftograph/" target="_blank" rel="noopener">Swift: Spiroswiftograph</a> a cool example of what you can do in the Playground</p>
+<ul>
+<li><a href="https://github.com/croath/UIImageView-BetterFace-Swift" target="_blank" rel="noopener">UIImageView-BetterFace-Swift</a> 展示图片是加入面部识别，改善展示效果</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/yayuhh/YYHRequest-Swift" target="_blank" rel="noopener">YYHRequest-Swift</a> 异步HTTP请求类</p>
+<ul>
+<li><a href="https://twitter.com/futurepaul/status/473902211463118848" target="_blank" rel="noopener">Noah’s Ark, in Swift</a> is a funny example of unicode support</li>
+<li><a href="https://github.com/robb/Cartography" target="_blank" rel="noopener">Cartography</a> is an excellent example of what could be achieved with operator overloading. If you don’t like writing Autolayout constraints you should definitely check it out.</li>
+<li><a href="https://github.com/ankurp/Dollar.swift" target="_blank" rel="noopener">Dollar</a> is a Swift library that provides useful functional programming helper methods without extending any built in objects. It is similar to Lo-Dash or Underscore in Javascript.</li>
+<li><a href="https://github.com/glock45/swifter" target="_blank" rel="noopener">swifter</a> Tiny http server engine written in Swift programming language.</li>
+<li><a href="https://github.com/lingoer/SwiftyJSON" target="_blank" rel="noopener">SwiftyJSON</a></li>
+<li><a href="https://github.com/hallas/agent" target="_blank" rel="noopener">Agent</a> Minimalistic Swift HTTP request agent for iOS and OS X</li>
+</ul>
+<h2 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h2><h3 id="xcode-6-下载"><a href="#xcode-6-下载" class="headerlink" title="xcode 6 下载"></a>xcode 6 下载</h3><p><code class="highlighter-rouge">xcode 6 安装系统要求为MacOSX 10.9.3+</code></p>
+<ul>
+<li></li>
+</ul>
+<p><a href="http://pan.baidu.com/s/1dD2AJ3j" target="_blank" rel="noopener">http://pan.baidu.com/s/1dD2AJ3j</a></p>
+<ul>
+<li>xcode_6.0.1.dmg <a href="http://pan.baidu.com/s/1sjNQY1B" target="_blank" rel="noopener">http://pan.baidu.com/s/1sjNQY1B</a></li>
+<li>xcode_6.dmg <a href="http://pan.baidu.com/s/1jGoTsWm" target="_blank" rel="noopener">http://pan.baidu.com/s/1jGoTsWm</a>_</li>
+<li>xcode_6_beta_6.dmg <a href="http://pan.baidu.com/s/1dD3qeOT" target="_blank" rel="noopener">http://pan.baidu.com/s/1dD3qeOT</a></li>
+<li>xcode_6_beta_4.dmg <a href="http://pan.baidu.com/s/1pJ0nkJx" target="_blank" rel="noopener">http://pan.baidu.com/s/1pJ0nkJx</a></li>
+<li>xcode_6_beta_3.dmg <a href="http://pan.baidu.com/s/1nt0WS8T" target="_blank" rel="noopener">http://pan.baidu.com/s/1nt0WS8T</a></li>
+</ul>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ul>
+<li><a href="https://developer.apple.com/library/ios/navigation/" target="_blank" rel="noopener">iOS Developer Library</a></li>
+<li></li>
+</ul>
+<p><a href="http://nondot.org/sabre/" target="_blank" rel="noopener">Chris Lattner</a> Swift设计者</p>
+<ul>
+<li><a href="https://developer.apple.com/library/prerelease/ios/releasenotes/General/iOS80APIDiffs/index.html" target="_blank" rel="noopener">iOS 7.1 to iOS 8.0 API Differences</a></li>
+<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/ExtensibilityPG/index.html" target="_blank" rel="noopener">App Extensions Increase Your Impact</a></li>
+<li><a href="http://blog.liulantao.com/SwiftBeginnersGuide/" target="_blank" rel="noopener">Swift学习资源</a> Swift 学习资料汇总，比较详细总结了常用的资源。</li>
+</ul>
+<h3 id="因为重名躺枪的-Swift"><a href="#因为重名躺枪的-Swift" class="headerlink" title="因为重名躺枪的 Swift"></a>因为重名躺枪的 Swift</h3><ul>
+<li><a href="http://swift-lang.org/" target="_blank" rel="noopener">Swift Lang</a> 一门很专业的并行编程语言，有苹果在Swift页面的链接，肯定带过去很多访问量。</li>
+<li><a href="https://github.com/openstack/swift" target="_blank" rel="noopener">OpenStack Swift</a> OpenStack Object Storage (Swift)。</li>
+<li></li>
+</ul>
+<p><a href="http://swift.im/" target="_blank" rel="noopener">Swift 聊天工具</a> 基于XMPP的聊天工具及服务端SDK。</p>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Taylor_Swift" target="_blank" rel="noopener">Taylor Swift</a> 美国乡村音乐女創作歌手、吉他歌手、演员。这位1989年出生的美女获得过数不清的格莱美奖及其它排行榜大奖。2014/05/30刚举办了泰勒•斯威夫特“红”巡演上海演唱会。WWDC2014之后三天，她从Google搜索结果首页被挤出，很受伤，歌迷们也很受伤。去<a href="https://www.facebook.com/TaylorSwift" target="_blank" rel="noopener">脸盆网</a>关注她，去音悦台<a href="http://www.yinyuetai.com/fanclub/122" target="_blank" rel="noopener">听她的歌</a>。</li>
+</ul>
+<h3 id="讨论区"><a href="#讨论区" class="headerlink" title="讨论区"></a>讨论区</h3><ul>
+<li>【iOS开发者-开始Swift】QQ交流群32958950 申请时请说明身份。</li>
+</ul>
+
           
-
-Swift，一种强大的开源编程语言，
-
-
-让大家都能开发出众的 App。 Swift 是一种强劲而直观的编程语言，它由 Apple 创造，可用来为 iOS、Mac、Apple TV 和 Apple Watch 开发 app。它旨在为开发者提供充分的自由。Swift 易用并且开源，只要有想法，谁都
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/09/Swift学习资源/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -707,7 +916,7 @@ Swift，一种强大的开源编程语言，
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/03/09/jwplayer 隐藏属性方法记载/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/f701931b.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -726,7 +935,7 @@ Swift，一种强大的开源编程语言，
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/09/jwplayer 隐藏属性方法记载/" itemprop="url">jwplayer 隐藏属性方法记载</a></h1>
+                <a class="post-title-link" href="/post/f701931b.html" itemprop="url">jwplayer 隐藏属性方法记载</a></h1>
         
 
         <div class="post-meta">
@@ -778,15 +987,8 @@ Swift，一种强大的开源编程语言，
       
         
           
-          123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/09/jwplayer 隐藏属性方法记载/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">jwplayer().getPosition()； //播放了多少秒</span><br><span class="line">    jwplayer(&apos;playerdiv&apos;).play(); || 　</span><br><span class="line">    jwplayer(0).play(true / false);　 //是否播放　０为索引</span><br><span class="line">    jwplayer(0).pause(true / false); //是否暂停</span><br><span class="line">    jwplayer(0).stop(); //停止无参</span><br><span class="line">    jwplayer().getBuffer(); //加载了百分之几</span><br><span class="line">    jwplayer().getFullscreen();</span><br><span class="line">    setFullscreen(state); //是否全屏</span><br><span class="line">    jwplayer().getMute();</span><br><span class="line">    setMute(state) //是否静音</span><br><span class="line"></span><br><span class="line">     jwplayer().getPlaylist()[0][&apos;file&apos;] ||</span><br><span class="line">        jwplayer().getPlaylistItem(0)[&apos;file&apos;] //获取播放列表中索引为0项的file值</span><br><span class="line"></span><br><span class="line">     jwplayer().getWidth() jwplayer().getHeight() //宽高</span><br><span class="line"></span><br><span class="line">     jwplayer().getState() //state值：1.playing播放中 2.paused停止 3.idle空闲 4.completed结束</span><br><span class="line"></span><br><span class="line">     jwplayer().getDuration() //视频播放结束需要的时间</span><br><span class="line"></span><br><span class="line">     jwplayer().getVolume() //声音大小</span><br><span class="line"></span><br><span class="line">     //加载播放列表</span><br><span class="line">     var playlist = new Array(&#123;</span><br><span class="line">        file: &quot;video/123.mp4&quot;,</span><br><span class="line">        image: &quot;images/videoimg1.jpg&quot;</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        file: &quot;video/234.flv&quot;,</span><br><span class="line">        image: &quot;images/videoimg1.jpg&quot;</span><br><span class="line">    &#125;);</span><br><span class="line">    jwplayer(0).load(playlist);</span><br><span class="line"></span><br><span class="line">    jwplayer(0).playlistItem(1); //播放下标为1的视频</span><br><span class="line">    jwplayer(0).playlistNext(); //播放下一个视频</span><br><span class="line">    jwplayer(0).playlistPrev(); //播放上一个视频</span><br><span class="line">    jwplayer(0).resize(width, height); //宽高</span><br><span class="line">     //从第(10-缓冲秒数)秒开始，缓冲(bufferlength)默认为3秒</span><br><span class="line">    jwplayer(0).seek(10);</span><br><span class="line"></span><br><span class="line">    events: &#123;</span><br><span class="line">        onComplete: function () &#123;</span><br><span class="line">            alert(&quot;播放结束!!!&quot;);</span><br><span class="line">        &#125;,</span><br><span class="line">        onVolume: function () &#123;</span><br><span class="line">            alert(&quot;声音大小改变!!!&quot;);</span><br><span class="line">        &#125;,</span><br><span class="line">        onReady: function () &#123;</span><br><span class="line">            alert(&quot;准备就绪!!!&quot;);</span><br><span class="line">        &#125;,</span><br><span class="line">        onPlay: function () &#123;</span><br><span class="line">            alert(&quot;开始播放!!!&quot;);</span><br><span class="line">        &#125;,</span><br><span class="line">        onPause: function () &#123;</span><br><span class="line">            alert(&quot;暂停!!!&quot;);</span><br><span class="line">        &#125;--1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Jwplayer(0).onPause: function () &#123;</span><br><span class="line">        alert(&quot;暂停!!!&quot;);</span><br><span class="line">    &#125; //与1等同，先执行1</span><br><span class="line"></span><br><span class="line">     //回调函数</span><br><span class="line">    jwplayer(0).onBufferChange(function () &#123;</span><br><span class="line">        alert(&quot;缓冲改变!!!&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">    jwplayer(0).onBufferFull(function () &#123;</span><br><span class="line">        alert(&quot;视频缓冲完成!!!&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">    jwplayer(0).onError(function (obj) &#123;</span><br><span class="line">        alert(&quot;播放器出错!!!&quot; + obj.message);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">     jwplayer(0).onFullscreen(function (obj) &#123;</span><br><span class="line">        if (obj.fullscreen) &#123;</span><br><span class="line">            alert(&quot;全屏&quot;);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            alert(&quot;非全屏&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    onMute(callback) // obj. mute是否静音</span><br><span class="line">     onPlaylist(function (obj) &#123; //视频列表载入完成</span><br><span class="line">        alert(obj.playlist[0][&apos;file&apos;]);</span><br><span class="line">    &#125;);</span><br><span class="line">    onPlaylistItem(callback) // 开始播放一个视频时触发obj.index为视频索引</span><br><span class="line">     onReady(callback) //准备就绪</span><br><span class="line">     onResize(callback) //obj.width obj.height  宽高</span><br><span class="line"></span><br><span class="line">     //进入播放时触发obj.oldstate 值：从BUFFERING PAUSE状态进入播放状态</span><br><span class="line">     onPlay(callback)</span><br><span class="line"></span><br><span class="line">     //进入暂停obj.oldstate 值1：从PLAYING BUFFERING状态进入暂停</span><br><span class="line">     onPause(callback)</span><br><span class="line"></span><br><span class="line">     onBuffer(callback) //进入加载obj.oldstate 值PLAYING, PAUSED or IDLE</span><br><span class="line"></span><br><span class="line">     onIdle(callback) //进入空闲obj.oldstate 值PLAYING, PAUSED or BUFFERING.</span><br><span class="line"></span><br><span class="line">     onComplete(callback) //结束播放</span><br><span class="line"></span><br><span class="line">     onVolume(callback) //obj.volume</span><br></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -833,7 +1035,7 @@ Swift，一种强大的开源编程语言，
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/03/08/简单的java socket 示例/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/20161f70.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -852,7 +1054,7 @@ Swift，一种强大的开源编程语言，
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/08/简单的java socket 示例/" itemprop="url">简单的java socket 示例</a></h1>
+                <a class="post-title-link" href="/post/20161f70.html" itemprop="url">简单的java socket 示例</a></h1>
         
 
         <div class="post-meta">
@@ -904,21 +1106,26 @@ Swift，一种强大的开源编程语言，
       
         
           
-          一、搭建服务器端
-a)、创建ServerSocket对象绑定监听端口。
-b)、通过accept()方法监听客户端的请求。
-c)、建立连接后，通过输入输出流读取客户端发送的请求信息。
-d)、通过输出流向客户端发送请求信息。
-e)、关闭相关资源。
-1234567891011121314151617181
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/08/简单的java socket 示例/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>一、搭建服务器端</p>
+<p>a)、创建ServerSocket对象绑定监听端口。</p>
+<p>b)、通过accept()方法监听客户端的请求。</p>
+<p>c)、建立连接后，通过输入输出流读取客户端发送的请求信息。</p>
+<p>d)、通过输出流向客户端发送请求信息。</p>
+<p>e)、关闭相关资源。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package socket;</span><br><span class="line"></span><br><span class="line">    import java.io.BufferedReader;</span><br><span class="line">    import java.io.IOException;</span><br><span class="line">    import java.io.InputStreamReader;</span><br><span class="line">    import java.io.PrintWriter;</span><br><span class="line">    import java.net.ServerSocket;</span><br><span class="line">    import java.net.Socket;</span><br><span class="line"></span><br><span class="line">    public class SocketService &#123;</span><br><span class="line">        //搭建服务器端</span><br><span class="line">        public static void main(String[] args) throws IOException&#123;</span><br><span class="line">            SocketService socketService = new SocketService();</span><br><span class="line">            //1、a)创建一个服务器端Socket，即SocketService </span><br><span class="line">            socketService.oneServer();</span><br><span class="line">        &#125;</span><br><span class="line">        public  void oneServer()&#123;</span><br><span class="line">            try&#123;</span><br><span class="line">                ServerSocket server=null;</span><br><span class="line">                try&#123;</span><br><span class="line">                    server=new ServerSocket(5209);</span><br><span class="line">                    //b)指定绑定的端口，并监听此端口。</span><br><span class="line">                    System.out.println(&quot;服务器启动成功&quot;);</span><br><span class="line">                    //创建一个ServerSocket在端口5209监听客户请求</span><br><span class="line">                &#125;catch(Exception e) &#123;</span><br><span class="line">                        System.out.println(&quot;没有启动监听：&quot;+e);</span><br><span class="line">                        //出错，打印出错信息</span><br><span class="line">                &#125;</span><br><span class="line">                Socket socket=null;</span><br><span class="line">                try&#123;</span><br><span class="line">                    socket=server.accept();</span><br><span class="line">                    //2、调用accept()方法开始监听，等待客户端的连接 </span><br><span class="line">                    //使用accept()阻塞等待客户请求，有客户</span><br><span class="line">                    //请求到来则产生一个Socket对象，并继续执行</span><br><span class="line">                &#125;catch(Exception e) &#123;</span><br><span class="line">                    System.out.println(&quot;Error.&quot;+e);</span><br><span class="line">                    //出错，打印出错信息</span><br><span class="line">                &#125;</span><br><span class="line">                //3、获取输入流，并读取客户端信息 </span><br><span class="line">                String line;</span><br><span class="line">                BufferedReader in=new BufferedReader(new InputStreamReader(socket.getInputStream()));</span><br><span class="line">                //由Socket对象得到输入流，并构造相应的BufferedReader对象</span><br><span class="line">                PrintWriter writer=new PrintWriter(socket.getOutputStream());</span><br><span class="line">                //由Socket对象得到输出流，并构造PrintWriter对象</span><br><span class="line">                BufferedReader br=new BufferedReader(new InputStreamReader(System.in));</span><br><span class="line">                //由系统标准输入设备构造BufferedReader对象</span><br><span class="line">                System.out.println(&quot;Client:&quot;+in.readLine());</span><br><span class="line">                //在标准输出上打印从客户端读入的字符串</span><br><span class="line">                line=br.readLine();</span><br><span class="line">                //从标准输入读入一字符串</span><br><span class="line">                //4、获取输出流，响应客户端的请求 </span><br><span class="line">                while(!line.equals(&quot;end&quot;))&#123;</span><br><span class="line">                //如果该字符串为 &quot;bye&quot;，则停止循环</span><br><span class="line">                    writer.println(line);</span><br><span class="line">                    //向客户端输出该字符串</span><br><span class="line">                    writer.flush();</span><br><span class="line">                    //刷新输出流，使Client马上收到该字符串</span><br><span class="line">                    System.out.println(&quot;Server:&quot;+line);</span><br><span class="line">                    //在系统标准输出上打印读入的字符串</span><br><span class="line">                    System.out.println(&quot;Client:&quot;+in.readLine());</span><br><span class="line">                    //从Client读入一字符串，并打印到标准输出上</span><br><span class="line">                    line=br.readLine();</span><br><span class="line">                    //从系统标准输入读入一字符串</span><br><span class="line">                &#125; //继续循环</span><br><span class="line"></span><br><span class="line">                //5、关闭资源 </span><br><span class="line">                writer.close(); //关闭Socket输出流</span><br><span class="line">                in.close(); //关闭Socket输入流</span><br><span class="line">                socket.close(); //关闭Socket</span><br><span class="line">                server.close(); //关闭ServerSocket</span><br><span class="line">            &#125;catch(Exception e) &#123;//出错，打印出错信息</span><br><span class="line">                System.out.println(&quot;Error.&quot;+e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>二、搭建客户器端</p>
+<p>a)、创建Socket对象，指明需要连接的服务器的地址和端口。</p>
+<p>b)、建立连接后，通过输出流向服务器发送请求信息。</p>
+<p>c)、通过输入流获取服务器的响应信息。</p>
+<p>d)、关闭响应资源</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:java;gutter:true;&quot;&gt;package socket;</span><br><span class="line"></span><br><span class="line">import java.io.BufferedReader;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.PrintWriter;</span><br><span class="line">import java.net.InetAddress;</span><br><span class="line">import java.net.Socket;</span><br><span class="line">import java.net.URL;</span><br><span class="line"></span><br><span class="line">public class SocketClient &#123;</span><br><span class="line">    // 搭建客户端</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            // 1、创建客户端Socket，指定服务器地址和端口</span><br><span class="line">            // Socket socket=new Socket(&quot;127.0.0.1&quot;,5200);</span><br><span class="line">            Socket socket = new Socket(&quot;192.168.1.115&quot;, 5209);</span><br><span class="line">            System.out.println(&quot;客户端启动成功&quot;);</span><br><span class="line">            // 2、获取输出流，向服务器端发送信息</span><br><span class="line">            // 向本机的52000端口发出客户请求</span><br><span class="line">            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));</span><br><span class="line">            // 由系统标准输入设备构造BufferedReader对象</span><br><span class="line">            PrintWriter write = new PrintWriter(socket.getOutputStream());</span><br><span class="line">            // 由Socket对象得到输出流，并构造PrintWriter对象</span><br><span class="line">            //3、获取输入流，并读取服务器端的响应信息 </span><br><span class="line">            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));</span><br><span class="line">            // 由Socket对象得到输入流，并构造相应的BufferedReader对象</span><br><span class="line">            String readline;</span><br><span class="line">            readline = br.readLine(); // 从系统标准输入读入一字符串</span><br><span class="line">            while (!readline.equals(&quot;end&quot;)) &#123;</span><br><span class="line">                // 若从标准输入读入的字符串为 &quot;end&quot;则停止循环</span><br><span class="line">                write.println(readline);</span><br><span class="line">                // 将从系统标准输入读入的字符串输出到Server</span><br><span class="line">                write.flush();</span><br><span class="line">                // 刷新输出流，使Server马上收到该字符串</span><br><span class="line">                System.out.println(&quot;Client:&quot; + readline);</span><br><span class="line">                // 在系统标准输出上打印读入的字符串</span><br><span class="line">                System.out.println(&quot;Server:&quot; + in.readLine());</span><br><span class="line">                // 从Server读入一字符串，并打印到标准输出上</span><br><span class="line">                readline = br.readLine(); // 从系统标准输入读入一字符串</span><br><span class="line">            &#125; // 继续循环</span><br><span class="line">            //4、关闭资源 </span><br><span class="line">            write.close(); // 关闭Socket输出流</span><br><span class="line">            in.close(); // 关闭Socket输入流</span><br><span class="line">            socket.close(); // 关闭Socket</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            System.out.println(&quot;can not listen to:&quot; + e);// 出错，打印出错信息</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p>这是我们先启动服务器端，再启动客户端（顺序不能乱）</p>
+<p><img src="http://pangguoming.com/blog/images/6c83499a-4229-460b-b569-cf1522ab1229.png" alt=""> </p>
+<p><img src="http://pangguoming.com/blog/images/b491b319-86e9-4ccf-ba83-10b275aa5197.png" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/034530e9-f191-4920-abf5-146d67325b0d.png" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/83e2b90c-fa52-4e94-ba6e-ac6b4ccc1225.png" alt=""><br></p>
+
+          
         
       
     </div>
@@ -965,7 +1172,7 @@ e)、关闭相关资源。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/03/07/SQL SERVER 2008-2012-2012R2-2014 设置开启远程连接（sa配置）/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/a4dae115.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -984,7 +1191,7 @@ e)、关闭相关资源。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/07/SQL SERVER 2008-2012-2012R2-2014 设置开启远程连接（sa配置）/" itemprop="url">SQL SERVER 2008/2012/2012R2/2014 设置开启远程连接（sa配置）</a></h1>
+                <a class="post-title-link" href="/post/a4dae115.html" itemprop="url">SQL SERVER 2008/2012/2012R2/2014 设置开启远程连接（sa配置）</a></h1>
         
 
         <div class="post-meta">
@@ -1036,18 +1243,42 @@ e)、关闭相关资源。
       
         
           
-          本文方案适用于Microsoft Sql Server 2008/2012/2012 r2/2014版本，以下简称MSSQLSERVER。
-MSSQL默认是不允许远程连接，并且禁用sa账户的。如果想要在本地用SSMS连接远程服务器上的MSSQLSERVER，需要做两个部分的配置：
+            <p>本文方案适用于Microsoft Sql Server 2008/2012/2012 r2/2014版本，以下简称MSSQLSERVER。</p>
+<p>MSSQL默认是不允许远程连接，并且禁用sa账户的。如果想要在本地用SSMS连接远程服务器上的MSSQLSERVER，需要做两个部分的配置：</p>
+<ol>
+<li><p>SQL SERVER MANAGEMENT STUDIO(SSMS)</p>
+</li>
+<li><p>SQL SERVER配置管理器（SQL SERVER CONFIGURATION MANAGER - SSCM）</p>
+</li>
+</ol>
+<p>并且需要注意的是，有些地方如果没有生效，请重启一下sql server（可以从SSCM里，也可以从系统服务中找），下面是详细的步骤：</p>
+<p>STEP1. 打开SSMS，使用Windows身份连接数据库，登录后，右键选择“属性”</p>
+<p><img src="http://img1.tuicool.com/732Ar2M.png!web" alt=""></p>
+<p>STEP 2. 选择“安全性”，选中SQL SERVER和Windows身份验证模式</p>
+<p><img src="http://img1.tuicool.com/rYNNRn6.png!web" alt=""></p>
+<p>STEP 3. 再选择“连接”，勾选“允许远程连接此服务器”，然后点击“确定”按钮。</p>
+<p><img src="http://img1.tuicool.com/NBbaQf.png!web" alt=""></p>
+<p><img src="http://img1.tuicool.com/aIryuy.png!web" alt=""></p>
+<p>STEP 4. 展开“安全性” -》登录名 -》sa，右键选择“属性”</p>
+<p><img src="http://img2.tuicool.com/QjiYvaa.png!web" alt=""></p>
+<p>STEP 5. 在“常规”中，改好你自己的密码，这是你sa登录的密码。</p>
+<p><img src="http://img1.tuicool.com/EbMfYbi.png!web" alt=""></p>
+<p>STEP 6. 在“状态”中，启用sa登录，点击“确定”按钮</p>
+<p><img src="http://img0.tuicool.com/yqU77f.png!web" alt=""></p>
+<p>STEP 7. 右键数据库server，选择“方面”</p>
+<p><img src="http://img1.tuicool.com/BrUnaiY.png!web" alt=""></p>
+<p>STEP 8. 选择“服务器配置”，找到RemoteAccessEnabled，设置为“True”</p>
+<p><img src="http://img2.tuicool.com/IjqA3eU.png!web" alt=""></p>
+<p>STEP 9. 重新启动SQL SERVER服务，退出当前的连接，这时候应该可以用sa进行登录了。</p>
+<p><img src="http://img2.tuicool.com/quUziyy.png!web" alt=""></p>
+<p><img src="http://img1.tuicool.com/2yuiem.png!web" alt=""></p>
+<p>STEP 10. 配置SSCM，选中左侧的“SQL SERVER服务”，确保右侧的“SQL SERVER”以及“SQL SERVER BROWER”正在运行，选择“网络配置”，双击TCP/IP，确保状态为“启用”</p>
+<p><img src="http://img1.tuicool.com/2EjeMbI.png!web" alt=""></p>
+<p>STEP 11. 在Client里也确保TCP/IP是启用的，默认的端口都是1433，可以自己修改，非默认端口需要在连接字符串里显式指明。</p>
+<p><img src="http://img1.tuicool.com/nUfQne2.png!web" alt=""></p>
+<p>STEP 12. 到这里再次重启SQL SERVER服务，应该就可以用了。不过还不能用，确认防火墙端口设置，并把SQL SERVER安装目录下，C:\Program Files\Microsoft SQL Server\MSSQL10.SQLEXPRESS\MSSQL\Binn\sqlservr.exe添加到允许的列表中。</p>
 
-SQL SERV
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/07/SQL SERVER 2008-2012-2012R2-2014 设置开启远程连接（sa配置）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1094,7 +1325,7 @@ SQL SERV
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/03/06/JS原型继承和类式继承/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/bc9b9452.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1113,7 +1344,7 @@ SQL SERV
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/06/JS原型继承和类式继承/" itemprop="url">JS原型继承和类式继承</a></h1>
+                <a class="post-title-link" href="/post/bc9b9452.html" itemprop="url">JS原型继承和类式继承</a></h1>
         
 
         <div class="post-meta">
@@ -1165,15 +1396,8 @@ SQL SERV
       
         
           
-          ### 类式继承（构造函数）JS中其实是没有类的概念的，所谓的类也是模拟出来的。特别是当我们是用new 关键字的时候，就使得“类”的概念就越像其他语言中的类了。类式继承是在函数对象内调用父类的构造函数，使得自身获得父类的方法和属性。call和apply方法为类式继承提供了支持。通过改变this的作用
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/06/JS原型继承和类式继承/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div id="article_content" class="article_content"><br><br>### 类式继承（构造函数）<br><br>JS中其实是没有类的概念的，所谓的类也是模拟出来的。特别是当我们是用new 关键字的时候，就使得“类”的概念就越像其他语言中的类了。类式继承是在函数对象内调用父类的构造函数，使得自身获得父类的方法和属性。call和apply方法为类式继承提供了支持。通过改变this的作用环境，使得子类本身具有父类的各种属性。<br><br><div id="crayon-572b8ba0e11d2479322414" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate"><br><div class="crayon-toolbar"><br><div class="crayon-tools"><br><div class="crayon-button crayon-nums-button crayon-pressed" title="切换是否显示行编号"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var father = function() &#123; </span><br><span class="line">      this.age = 52; </span><br><span class="line">      this.say = function() &#123; </span><br><span class="line">        alert(&apos;hello i am &apos;+ this.name +&apos; and i am &apos;+this.age + &apos;years old&apos;); </span><br><span class="line">      &#125; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var child = function() &#123; </span><br><span class="line">      this.name = &apos;bill&apos;; </span><br><span class="line">      father.call(this); </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var man = new child();</span><br><span class="line">    man.say();</span><br></pre></td></tr></table></figure><br><br>    ### 原型继承<br><br>原型继承在开发中经常用到。它有别于类继承是因为继承不在对象本身，而在对象的原型上（prototype）。每一个对象都有原型，在浏览器中它体现在一个隐藏的<strong>proto</strong>属性上。在一些现代浏览器中你可以更改它们。比如在zepto中，就是通过添加zepto的fn对象到一个空的数组的<strong>proto</strong>属性上去，从而使得该数组成为一个zepto对象并且拥有所有的方法。话说回来，当一个对象需要调用某个方法时，它回去最近的原型上查找该方法，如果没有找到，它会再次往下继续查找。这样逐级查找，一直找到了要找的方法。 这些查找的原型构成了该对象的原型链条。原型最后指向的是null。我们说的原型继承，就是将父对像的方法给子类的原型。子类的构造函数中不拥有这些方法和属性。<br><br>    <div id="crayon-572b8ba0e11dc416888738" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" touchscreen minimize scroll-mouseover"><br>    <div class="crayon-toolbar" data-settings=" show"><br>    <div class="crayon-tools"><br>    <div class="crayon-button crayon-nums-button crayon-pressed" title="切换是否显示行编号"><br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:javascript;gutter:true;&quot;&gt;var father = function() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">father.prototype.a = function() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var child = function()&#123;&#125;</span><br><span class="line"></span><br><span class="line">//开始继承</span><br><span class="line"></span><br><span class="line">child.prototype = new father(); </span><br><span class="line">var man = new child(); </span><br><span class="line">man.a();</span><br></pre></td></tr></table></figure><br><br>可以看到第七行实现了原型继承。很多人并不陌生这种方式。通过在浏览器中打印man我们就可以查看各个原型的继承关系。<br><br><img src="http://ww4.sinaimg.cn/mw690/0064cTs2gw1evg7r3spypj30uv01y74h.jpg" alt=""><br><br>可以看到逐级的关系child-&gt;object（father实例化的对象）-&gt;father。child是通过中间层继承了father的原型上的东西的。但是为什么中间还有一层object呢，为什么不把child.prototype = father.prototype。答案是如果这样做child和father就没有区别了。大家应该还记得在prototype中有个constructor属性，指向的是构造函数。按照正常的情况我们要把constructor的值改回来指向child的构造函数。但如果直接把father.prototype赋值给child.prototype，那么constructor应该指向谁呢？所以很显然只能通过中间层才能使得child和father保持为独立的对象。<br><br>    ### 对比<br><br>和原型对比起来，构造函数（类）式继承有什么不一样呢？首先，构造函数继承的方法都会存在父对象之中，每一次实例，都回将funciton保存在内存中，这样的做法毫无以为会带来性能上的问题。其次类式继承是不可变的。在运行时，无法修改或者添加新的方法，这种方式是一种固步自封的死方法。而原型继承是可以通过改变原型链接而对子类进行修改的。另外就是类式继承不支持多重继承，而对于原型继承来说，你只需要写好extend对对象进行扩展即可。<br><br>    ### 组合模式<br><br>另外的一种模式，是结合类继承和原型继承的各自优点来进行对父类的继承。用类式继承属性，而原型继承方法。这种模式避免了属性的公用，因为一般来说，每一个子类的属性都是私有的，而方法得到了统一。这种模式称为组合模式，也是继承类式常用到的一种方法。<br><br>    <div id="crayon-572b8ba0e11e1960795767" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate"><br>    <div class="crayon-toolbar"><br>    <div class="crayon-tools"><br>    <div class="crayon-button crayon-nums-button crayon-pressed" title="切换是否显示行编号"><br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:javascript;gutter:true;&quot;&gt;function father() &#123; </span><br><span class="line">  this.a = &apos;father&apos;   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">father.prototype.b = function() &#123; </span><br><span class="line">   alert(this.a) </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var child = function() &#123; </span><br><span class="line">  father.call(this) </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">child.prototype = new father();</span><br></pre></td></tr></table></figure><br><br>    ### new 关键字和Obeject.create方法<br><br>在文章中，博主指出了使用new关键字的弊端。他说：“new关键字掩盖了<a href="http://lib.csdn.net/base/javascript" title="JavaScript知识库" target="_blank" rel="noopener">JavaScript</a>中真正的原型继承，使得它更像是基于类的继承。其实new关键字只是Javascript在为了获得流行度而加入与<a href="http://lib.csdn.net/base/javase" title="Java SE知识库" target="_blank" rel="noopener">Java</a>类似的语法时期留下来的一个残留物”。作者推荐我们使用Object.create方法创建或者实例化对象。露珠做过<a href="http://lib.csdn.net/base/softwaretest" title="软件测试知识库" target="_blank" rel="noopener">测试</a>，使用new和使用object.create方法都是将对象添加到原型上去。我们可以看一下代码：<br><br>    <div id="crayon-572b8ba0e11e5636709793" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" touchscreen minimize scroll-mouseover"><br>    <div class="crayon-toolbar" data-settings=" show"><br>    <div class="crayon-tools"><br>    <div class="crayon-button crayon-nums-button crayon-pressed" title="切换是否显示行编号"><br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:javascript;gutter:true;&quot;&gt;var father = function() &#123; </span><br><span class="line">    this.a = &apos;father&apos;   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">father.prototype.b = function() &#123;alert(this.a)&#125; </span><br><span class="line">var obj = new father();</span><br></pre></td></tr></table></figure><br><br>在浏览器中打印obj，可以观察它的结构。它本身是一个对象，有自身属性，同时在其<strong>proto</strong>熟悉上也有b方法。在<strong>proto</strong>的后面有father，可以看出原型是自father来的。<br><br><img src="http://ww2.sinaimg.cn/mw690/0064cTs2gw1evg7r658q4j30mx03daaj.jpg" alt=""><br><br>那么objcet.create方法呢，我们也可以通过下面代码测试之:<br><br>    <div id="crayon-572b8ba0e11e9655077459" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate"><br>    <div class="crayon-toolbar"><br>    <div class="crayon-tools"><br>    <div class="crayon-button crayon-nums-button crayon-pressed" title="切换是否显示行编号"><br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:javascript;gutter:true;&quot;&gt;var father = &#123; </span><br><span class="line">  a: &apos;father&apos;, </span><br><span class="line">  b: function() &#123; </span><br><span class="line">     alert(this.a); </span><br><span class="line">   &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var obj = Object.create(father); </span><br><span class="line">console.dir(obj)</span><br></pre></td></tr></table></figure><br><br>下面是浏览器输出的结果:<br><br><img src="http://ww1.sinaimg.cn/mw690/0064cTs2gw1evg7v2s8dzj30mb02bjri.jpg" alt=""><br><br>可以看到，用create的方法构造出来的对象，a属性和b方法都是在对象的原型上，也就是说我们可以通过更改father的属性动态改变obj的原型上的方法和属性，而上面通过new关键字用构造函数生成的实例，a属性是无法改变的。从这里，我们也可以看到类继承和原型基础的一些区别。<br><br>    ### 结论<br><br>原型继承比较符合js这种语言的特点。因为它本身就是js强大的原型的一部分。而类式继承，与其称它为继承方式，毋宁说是一种函数的运用技巧来模拟继承罢了。本文是卤煮的一己之见，错误偏颇在所难免，如果有之，请各位斧正。<br><br>    <div class="bdsharebuttonbox tracking-ad bdshare-button-style0-16" data-mod="popu_172" data-bd-bind="1488801414485"><br>    <div id="digg"> </div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div><br></div></div></div></div></div>
+          
         
       
     </div>
@@ -1220,7 +1444,7 @@ SQL SERV
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/03/06/理解js中的原型链，prototype与__proto__的关系/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/12ce8b48.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1239,7 +1463,7 @@ SQL SERV
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/06/理解js中的原型链，prototype与__proto__的关系/" itemprop="url">理解js中的原型链，prototype与__proto__的关系</a></h1>
+                <a class="post-title-link" href="/post/12ce8b48.html" itemprop="url">理解js中的原型链，prototype与__proto__的关系</a></h1>
         
 
         <div class="post-meta">
@@ -1291,15 +1515,8 @@ SQL SERV
       
         
           
-          # 首先，要明确几个点：1.在JS里，万物皆对象。方法（Function）是对象，方法的原型(Function.prototype)是对象。因此，它们都会具有对象共有的特点。即：对象具有属性proto，可称为隐式原型，一个对象的隐式原型指向构造该对象的构造函数的原型，这也保证了实例能够访问在构造函数
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/06/理解js中的原型链，prototype与__proto__的关系/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div id="blog_content" class="blog_content"><br><br><img src="http://pangguoming.com/blog/images/0f85c38c-3877-42ce-8a17-6613a28d1473.jpg" alt=""><br><br># 首先，要明确几个点：<br><br>1.在JS里，万物皆对象。方法（Function）是对象，方法的原型(Function.prototype)是对象。因此，它们都会具有对象共有的特点。<br>即：对象具有属性<strong>proto</strong>，可称为隐式原型，一个对象的隐式原型指向构造该对象的构造函数的原型，这也保证了实例能够访问在构造函数原型中定义的属性和方法。<br><br>2.方法(Function)<br>方法这个特殊的对象，除了和其他对象一样有上述<em>proto</em>属性之外，还有自己特有的属性——原型属性（prototype），这个属性是一个指针，指向一个对象，这个对象的用途就是包含所有实例共享的属性和方法（我们把这个对象叫做原型对象）。原型对象也有一个属性，叫做constructor，这个属性包含了一个指针，指回原构造函数。<br><br># 好啦，知道了这两个基本点，我们来看看上面这副图。<br><br>1.构造函数Foo()<br>构造函数的原型属性Foo.prototype指向了原型对象，在原型对象里有共有的方法，所有构造函数声明的实例（这里是f1，f2）都可以共享这个方法。<br><br>2.原型对象Foo.prototype<br>Foo.prototype保存着实例共享的方法，有一个指针constructor指回构造函数。<br><br>3.实例<br>f1和f2是Foo这个对象的两个实例，这两个对象也有属性<strong>proto</strong>，指向构造函数的原型对象，这样子就可以像上面1所说的访问原型对象的所有方法啦。<br><br># 另外：<br><br>构造函数Foo()除了是方法，也是对象啊，它也有<strong>proto</strong>属性，指向谁呢？<br>指向它的构造函数的原型对象呗。函数的构造函数不就是Function嘛，因此这里的<strong>proto</strong>指向了Function.prototype。<br>其实除了Foo()，Function(), Object()也是一样的道理。<br><br>原型对象也是对象啊，它的<strong>proto</strong>属性，又指向谁呢？<br>同理，指向它的构造函数的原型对象呗。这里是Object.prototype.<br><br>最后，Object.prototype的<strong>proto</strong>属性指向null。<br><br># 总结：<br><br>1.对象有属性<strong>proto</strong>,指向该对象的构造函数的原型对象。<br>2.方法除了有属性<strong>proto</strong>,还有属性prototype，prototype指向该方法的原型对象。<br><br><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>***</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br><br>说到prototype，就不得不先说下new的过程。<br><br>我们先看看这样一段代码：<br><br><div class="syntaxhighlighter  "><br><div class="lines"><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>1</code></td><br><td class="content"><code class="plain">&lt;script type=</code><code class="string">“text/javascript”</code><code class="plain">&gt;</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>2</code></td><br><td class="content"><code class="keyword"> var</code> <code class="plain">Person = </code><code class="keyword">function</code> <code class="plain">() { };</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>3</code></td><br><td class="content"><code class="keyword"> var</code> <code class="plain">p = </code><code class="keyword">new</code> <code class="plain">Person();</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>4</code></td><br><td class="content"><code class="plain"></code></td><br><br></tr><br><br></tbody><br><br></table><br><br>很简单的一段代码，我们来看看这个new究竟做了什么？我们可以把new的过程拆分成以下三步：<br><br><1> var p={}; 也就是说，初始化一个对象p。<br><br><2> p.<strong>proto</strong>=Person.prototype;<br><br><3> Person.call(p);也就是说构造p，也可以称之为初始化p。<br><br>关键在于第二步，我们来证明一下：<br><br><div class="syntaxhighlighter  "><br><div class="lines"><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>1</code></td><br><td class="content"><code class="plain">&lt;script type=</code><code class="string">“text/javascript”</code><code class="plain">&gt;</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>2</code></td><br><td class="content"><code class="keyword">var</code> <code class="plain">Person = </code><code class="keyword">function</code> <code class="plain">() { };</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>3</code></td><br><td class="content"><code class="keyword">var</code> <code class="plain">p = </code><code class="keyword">new</code> <code class="plain">Person();</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>4</code></td><br><td class="content"><code class="plain">alert(p.<strong>proto</strong> === Person.prototype);</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>5</code></td><br><td class="content"><code class="plain"></code></td><br><br></tr><br><br></tbody><br><br></table><br><br>这段代码会返回true。说明我们步骤2的正确。<br><br>那么<strong>proto</strong>是什么？我们在这里简单地说下。每个对象都会在其内部初始化一个属性，就是<strong>proto</strong>，当我们访问一个对象的属性 时，如果这个对象内部不存在这个属性，那么他就会去<strong>proto</strong>里找这个属性，这个<strong>proto</strong>又会有自己的<strong>proto</strong>，于是就这样 一直找下去，也就是我们平时所说的原型链的概念。<br><br>按照标准，<strong>proto</strong>是不对外公开的，也就是说是个私有属性，但是Firefox的引擎将他暴露了出来成为了一个共有的属性，我们可以对外访问和设置。<br><br>好，概念说清了，让我们看一下下面这些代码：<br><br><div class="syntaxhighlighter  "><br><div class="lines"><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>1</code></td><br><td class="content"><code class="plain">&lt;script type=</code><code class="string">“text/javascript”</code><code class="plain">&gt;</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>2</code></td><br><td class="content"><code class="keyword">var</code> <code class="plain">Person = </code><code class="keyword">function</code> <code class="plain">() { };</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>3</code></td><br><td class="content"><code class="plain"> Person.prototype.Say = </code><code class="keyword">function</code> <code class="plain">() {</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>4</code></td><br><td class="content"><code class="plain"> alert(</code><code class="string">“Person say”</code><code class="plain">);</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>5</code></td><br><td class="content"><code class="plain">}</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>6</code></td><br><td class="content"><code class="keyword">var</code> <code class="plain">p = </code><code class="keyword">new</code> <code class="plain">Person();</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>7</code></td><br><td class="content"><code class="plain">p.Say();</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>8</code></td><br><td class="content"><code class="plain"></code></td><br><br></tr><br><br></tbody><br><br></table><br><br>这段代码很简单，相信每个人都这样写过，那就让我们看下为什么p可以访问Person的Say。<br><br>首先var p=new Person()；可以得出p.<strong>proto</strong>=Person.prototype。那么当我们调用p.Say()时，首先p中没有Say这个属性， 于是，他就需要到他的<strong>proto</strong>中去找，也就是Person.prototype，而我们在上面定义了 Person.prototype.Say=function(){}; 于是，就找到了这个方法。<br><br>好，接下来，让我们看个更复杂的。<br><br><div class="syntaxhighlighter  "><br><div class="lines"><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>01</code></td><br><td class="content"><code class="plain">&lt;script type=</code><code class="string">“text/javascript”</code><code class="plain">&gt;</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>02</code></td><br><td class="content"><code class="keyword">var</code> <code class="plain">Person = </code><code class="keyword">function</code> <code class="plain">() { };</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>03</code></td><br><td class="content"><code class="plain"> Person.prototype.Say = </code><code class="keyword">function</code> <code class="plain">() {</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>04</code></td><br><td class="content"><code class="plain"> alert(</code><code class="string">“Person say”</code><code class="plain">);</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>05</code></td><br><td class="content"><code class="plain">}</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>06</code></td><br><td class="content"><code class="plain">Person.prototype.Salary = 50000;</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>07</code></td><br><td class="content"><code class="keyword">var</code> <code class="plain">Programmer = </code><code class="keyword">function</code> <code class="plain">() { };</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>08</code></td><br><td class="content"><code class="plain">Programmer.prototype = </code><code class="keyword">new</code> <code class="plain">Person();</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>09</code></td><br><td class="content"><code class="plain">Programmer.prototype.WriteCode = </code><code class="keyword">function</code> <code class="plain">() {</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>10</code></td><br><td class="content"><code class="plain"> alert(</code><code class="string">“programmer writes code”</code><code class="plain">);</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>11</code></td><br><td class="content"><code class="plain">};</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>12</code></td><br><td class="content"><code class="plain">Programmer.prototype.Salary = 500;</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>13</code></td><br><td class="content"><code class="keyword">var</code> <code class="plain">p = </code><code class="keyword">new</code> <code class="plain">Programmer();</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>14</code></td><br><td class="content"><code class="plain">p.Say();</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>15</code></td><br><td class="content"><code class="plain">p.WriteCode();</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt2"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>16</code></td><br><td class="content"><code class="plain">alert(p.Salary);</code></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="line alt1"><br><table border="0"><br><tbody><br><tr><br><td class="number"><code>17</code></td><br><td class="content"><code class="plain"></code></td><br><br></tr><br><br></tbody><br><br></table><br><br>我们来做这样的推导：<br><br>var p=new Programmer()可以得出p.<strong>proto</strong>=Programmer.prototype;<br><br>而在上面我们指定了Programmer.prototype=new Person();我们来这样拆分，var p1=new Person();Programmer.prototype=p1;那么:<br><br>p1.<strong>proto</strong>=Person.prototype;<br><br>Programmer.prototype.<strong>proto</strong>=Person.prototype;<br><br>由根据上面得到p.<strong>proto</strong>=Programmer.prototype。可以得到p.<strong>proto</strong>.<strong>proto</strong>=Person.prototype。<br><br>好，算清楚了之后我们来看上面的结果,p.Say()。由于p没有Say这个属性，于是去p.<strong>proto</strong>，也就是 Programmer.prototype，也就是p1中去找，由于p1中也没有Say，那就去p.<strong>proto</strong>.<strong>proto</strong>，也就是 Person.prototype中去找，于是就找到了alert(“Person say”)的方法。<br><br>其余的也都是同样的道理。<br><br>这也就是原型链的实现原理。<br><br>最后，其实prototype只是一个假象，他在实现原型链中只是起到了一个辅助作用，换句话说，他只是在new的时候有着一定的价值，而原型链的本质，其实在于<strong>proto</strong>！<br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></3></2></1></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -1346,7 +1563,7 @@ SQL SERV
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/03/02/C# 事件（Event）/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/4dc3f7e.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1365,7 +1582,7 @@ SQL SERV
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/02/C# 事件（Event）/" itemprop="url">C# 事件（Event）</a></h1>
+                <a class="post-title-link" href="/post/4dc3f7e.html" itemprop="url">C# 事件（Event）</a></h1>
         
 
         <div class="post-meta">
@@ -1417,15 +1634,15 @@ SQL SERV
       
         
           
-          事件（Event） 基本上说是一个用户操作，如按键、点击、鼠标移动等等，或者是一些出现，如系统生成的通知。应用程序需要在事件发生时响应事件。例如，中断。事件是用于进程间通信。## 通过事件使用委托事件在类中声明且生成，且通过使用同一个类或其他类中的委托与事件处理程序关联。包含事件的类用于发布事件。这
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/02/C# 事件（Event）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div class="tutintro"><br><br><strong>事件（Event）</strong> 基本上说是一个用户操作，如按键、点击、鼠标移动等等，或者是一些出现，如系统生成的通知。应用程序需要在事件发生时响应事件。例如，中断。事件是用于进程间通信。<br><br>## 通过事件使用委托<br><br>事件在类中声明且生成，且通过使用同一个类或其他类中的委托与事件处理程序关联。包含事件的类用于发布事件。这被称为 <strong>发布器（publisher）</strong> 类。其他接受该事件的类被称为 <strong>订阅器（subscriber）</strong> 类。事件使用 <strong>发布-订阅（publisher-subscriber）</strong> 模型。<br><br><strong>发布器（publisher）</strong> 是一个包含事件和委托定义的对象。事件和委托之间的联系也定义在这个对象中。发布器（publisher）类的对象调用这个事件，并通知其他的对象。<br><br><strong>订阅器（subscriber）</strong> 是一个接受事件并提供事件处理程序的对象。在发布器（publisher）类中的委托调用订阅器（subscriber）类中的方法（事件处理程序）。<br><br>## 声明事件（Event）<br><br>在类的内部声明事件，首先必须声明该事件的委托类型。例如：<br><br><span class="kwd">public<span class="pln"> <span class="kwd">delegate<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">BoilerLogHandler<span class="pun">(<span class="kwd">string<span class="pln"> status<span class="pun">);</span></span></span></span></span></span></span></span></span></span></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">然后，声明事件本身，使用 **event** 关键字：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;prettyprint prettyprinted&quot;&gt;&lt;span class=&quot;com&quot;&gt;// 基于上面的委托定义事件&lt;span class=&quot;pln&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;kwd&quot;&gt;public&lt;span class=&quot;pln&quot;&gt; &lt;span class=&quot;kwd&quot;&gt;event&lt;span class=&quot;pln&quot;&gt; &lt;span class=&quot;typ&quot;&gt;BoilerLogHandler&lt;span class=&quot;pln&quot;&gt; &lt;span class=&quot;typ&quot;&gt;BoilerEventLog&lt;span class=&quot;pun&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</span><br></pre></td></tr></table></figure><br><br>上面的代码定义了一个名为 <em>BoilerLogHandler</em> 的委托和一个名为 <em>BoilerEventLog</em> 的事件，该事件在生成的时候会调用委托。<br><br>    ## 实例 1<br><br>    <pre class="prettyprint prettyprinted"><span class="kwd">using<span class="pln"> <span class="typ">System<span class="pun">;<span class="pln"><br>    <span class="kwd">namespace<span class="pln"> <span class="typ">SimpleEvent<span class="pln"><br>    <span class="pun">{<span class="pln"><br>       <span class="kwd">using<span class="pln"> <span class="typ">System<span class="pun">;<span class="pln"><br><br>       <span class="kwd">public<span class="pln"> <span class="kwd">class<span class="pln"> <span class="typ">EventTest<span class="pln"><br>       <span class="pun">{<span class="pln"><br>          <span class="kwd">private<span class="pln"> <span class="kwd">int<span class="pln"> value<span class="pun">;<span class="pln"><br><br>          <span class="kwd">public<span class="pln"> <span class="kwd">delegate<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">NumManipulationHandler<span class="pun">();<span class="pln"><br><br>          <span class="kwd">public<span class="pln"> <span class="kwd">event<span class="pln"> <span class="typ">NumManipulationHandler<span class="pln"> <span class="typ">ChangeNum<span class="pun">;<span class="pln"><br><br>          <span class="kwd">protected<span class="pln"> <span class="kwd">virtual<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">OnNumChanged<span class="pun">()<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="kwd">if<span class="pln"> <span class="pun">(<span class="typ">ChangeNum<span class="pln"> <span class="pun">!=<span class="pln"> <span class="kwd">null<span class="pun">)<span class="pln"><br>             <span class="pun">{<span class="pln"><br>                <span class="typ">ChangeNum<span class="pun">();<span class="pln"><br>             <span class="pun">}<span class="pln"><br>             <span class="kwd">else<span class="pln"><br>             <span class="pun">{<span class="pln"><br>                <span class="typ">Console<span class="pun">.<span class="typ">WriteLine<span class="pun">(<span class="str">“Event fired!”<span class="pun">);<span class="pln"><br>             <span class="pun">}<span class="pln"><br><br>          <span class="pun">}<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="typ">EventTest<span class="pun">(<span class="kwd">int<span class="pln"> n <span class="pun">)<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="typ">SetValue<span class="pun">(<span class="pln">n<span class="pun">);<span class="pln"><br>          <span class="pun">}<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">SetValue<span class="pun">(<span class="kwd">int<span class="pln"> n<span class="pun">)<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="kwd">if<span class="pln"> <span class="pun">(<span class="pln">value <span class="pun">!=<span class="pln"> n<span class="pun">)<span class="pln"><br>             <span class="pun">{<span class="pln"><br>                value <span class="pun">=<span class="pln"> n<span class="pun">;<span class="pln"><br>                <span class="typ">OnNumChanged<span class="pun">();<span class="pln"><br>             <span class="pun">}<span class="pln"><br>          <span class="pun">}<span class="pln"><br>       <span class="pun">}<span class="pln"><br>       <span class="kwd">public<span class="pln"> <span class="kwd">class<span class="pln"> <span class="typ">MainClass<span class="pln"><br>       <span class="pun">{<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="kwd">static<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">Main<span class="pun">()<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="typ">EventTest<span class="pln"> e <span class="pun">=<span class="pln"> <span class="kwd">new<span class="pln"> <span class="typ">EventTest<span class="pun">(<span class="lit">5<span class="pun">);<span class="pln"><br>             e<span class="pun">.<span class="typ">SetValue<span class="pun">(<span class="lit">7<span class="pun">);<span class="pln"><br>             e<span class="pun">.<span class="typ">SetValue<span class="pun">(<span class="lit">11<span class="pun">);<span class="pln"><br>             <span class="typ">Console<span class="pun">.<span class="typ">ReadKey<span class="pun">();<span class="pln"><br>          <span class="pun">}<span class="pln"><br>       <span class="pun">}<span class="pln"><br>    <span class="pun">}</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">当上面的代码被编译和执行时，它会产生下列结果：</span><br><span class="line"></span><br><span class="line">    &lt;pre class=&quot;result&quot;&gt;Event Fired!</span><br><span class="line">    Event Fired!</span><br><span class="line">    Event Fired!</span><br></pre></td></tr></table></figure><br><br>    ## 实例 2<br><br>本实例提供一个简单的用于热水锅炉系统故障排除的应用程序。当维修工程师检查锅炉时，锅炉的温度和压力会随着维修工程师的备注自动记录到日志文件中。<br><br>    <pre class="prettyprint prettyprinted"><span class="kwd">using<span class="pln"> <span class="typ">System<span class="pun">;<span class="pln"><br>    <span class="kwd">using<span class="pln"> <span class="typ">System<span class="pun">.<span class="pln">IO<span class="pun">;<span class="pln"><br><br>    <span class="kwd">namespace<span class="pln"> <span class="typ">BoilerEventAppl<span class="pln"><br>    <span class="pun">{<span class="pln"><br><br>       <span class="com">// boiler 类<span class="pln"><br>       <span class="kwd">class<span class="pln"> <span class="typ">Boiler<span class="pln"><br>       <span class="pun">{<span class="pln"><br>          <span class="kwd">private<span class="pln"> <span class="kwd">int<span class="pln"> temp<span class="pun">;<span class="pln"><br>          <span class="kwd">private<span class="pln"> <span class="kwd">int<span class="pln"> pressure<span class="pun">;<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="typ">Boiler<span class="pun">(<span class="kwd">int<span class="pln"> t<span class="pun">,<span class="pln"> <span class="kwd">int<span class="pln"> p<span class="pun">)<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             temp <span class="pun">=<span class="pln"> t<span class="pun">;<span class="pln"><br>             pressure <span class="pun">=<span class="pln"> p<span class="pun">;<span class="pln"><br>          <span class="pun">}<span class="pln"><br><br>          <span class="kwd">public<span class="pln"> <span class="kwd">int<span class="pln"> getTemp<span class="pun">()<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="kwd">return<span class="pln"> temp<span class="pun">;<span class="pln"><br>          <span class="pun">}<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="kwd">int<span class="pln"> getPressure<span class="pun">()<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="kwd">return<span class="pln"> pressure<span class="pun">;<span class="pln"><br>          <span class="pun">}<span class="pln"><br>       <span class="pun">}<span class="pln"><br>       <span class="com">// 事件发布器<span class="pln"><br>       <span class="kwd">class<span class="pln"> <span class="typ">DelegateBoilerEvent<span class="pln"><br>       <span class="pun">{<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="kwd">delegate<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">BoilerLogHandler<span class="pun">(<span class="kwd">string<span class="pln"> status<span class="pun">);<span class="pln"><br><br>          <span class="com">// 基于上面的委托定义事件<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="kwd">event<span class="pln"> <span class="typ">BoilerLogHandler<span class="pln"> <span class="typ">BoilerEventLog<span class="pun">;<span class="pln"><br><br>          <span class="kwd">public<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">LogProcess<span class="pun">()<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="kwd">string<span class="pln"> remarks <span class="pun">=<span class="pln"> <span class="str">“O. K”<span class="pun">;<span class="pln"><br>             <span class="typ">Boiler<span class="pln"> b <span class="pun">=<span class="pln"> <span class="kwd">new<span class="pln"> <span class="typ">Boiler<span class="pun">(<span class="lit">100<span class="pun">,<span class="pln"> <span class="lit">12<span class="pun">);<span class="pln"><br>             <span class="kwd">int<span class="pln"> t <span class="pun">=<span class="pln"> b<span class="pun">.<span class="pln">getTemp<span class="pun">();<span class="pln"><br>             <span class="kwd">int<span class="pln"> p <span class="pun">=<span class="pln"> b<span class="pun">.<span class="pln">getPressure<span class="pun">();<span class="pln"><br>             <span class="kwd">if<span class="pun">(<span class="pln">t <span class="pun">&gt;<span class="pln"> <span class="lit">150<span class="pln"> <span class="pun">||<span class="pln"> t <span class="pun">&lt;<span class="pln"> <span class="lit">80<span class="pln"> <span class="pun">||<span class="pln"> p <span class="pun">&lt;<span class="pln"> <span class="lit">12<span class="pln"> <span class="pun">||<span class="pln"> p <span class="pun">&gt;<span class="pln"> <span class="lit">15<span class="pun">)<span class="pln"><br>             <span class="pun">{<span class="pln"><br>                remarks <span class="pun">=<span class="pln"> <span class="str">“Need Maintenance”<span class="pun">;<span class="pln"><br>             <span class="pun">}<span class="pln"><br>             <span class="typ">OnBoilerEventLog<span class="pun">(<span class="str">“Logging Info:\n”<span class="pun">);<span class="pln"><br>             <span class="typ">OnBoilerEventLog<span class="pun">(<span class="str">“Temparature “<span class="pln"> <span class="pun">+<span class="pln"> t <span class="pun">+<span class="pln"> <span class="str">“\nPressure: “<span class="pln"> <span class="pun">+<span class="pln"> p<span class="pun">);<span class="pln"><br>             <span class="typ">OnBoilerEventLog<span class="pun">(<span class="str">“\nMessage: “<span class="pln"> <span class="pun">+<span class="pln"> remarks<span class="pun">);<span class="pln"><br>          <span class="pun">}<span class="pln"><br><br>          <span class="kwd">protected<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">OnBoilerEventLog<span class="pun">(<span class="kwd">string<span class="pln"> message<span class="pun">)<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="kwd">if<span class="pln"> <span class="pun">(<span class="typ">BoilerEventLog<span class="pln"> <span class="pun">!=<span class="pln"> <span class="kwd">null<span class="pun">)<span class="pln"><br>             <span class="pun">{<span class="pln"><br>                <span class="typ">BoilerEventLog<span class="pun">(<span class="pln">message<span class="pun">);<span class="pln"><br>             <span class="pun">}<span class="pln"><br>          <span class="pun">}<span class="pln"><br>       <span class="pun">}<span class="pln"><br>       <span class="com">// 该类保留写入日志文件的条款<span class="pln"><br>       <span class="kwd">class<span class="pln"> <span class="typ">BoilerInfoLogger<span class="pln"><br>       <span class="pun">{<span class="pln"><br>          <span class="typ">FileStream<span class="pln"> fs<span class="pun">;<span class="pln"><br>          <span class="typ">StreamWriter<span class="pln"> sw<span class="pun">;<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="typ">BoilerInfoLogger<span class="pun">(<span class="kwd">string<span class="pln"> filename<span class="pun">)<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             fs <span class="pun">=<span class="pln"> <span class="kwd">new<span class="pln"> <span class="typ">FileStream<span class="pun">(<span class="pln">filename<span class="pun">,<span class="pln"> <span class="typ">FileMode<span class="pun">.<span class="typ">Append<span class="pun">,<span class="pln"> <span class="typ">FileAccess<span class="pun">.<span class="typ">Write<span class="pun">);<span class="pln"><br>             sw <span class="pun">=<span class="pln"> <span class="kwd">new<span class="pln"> <span class="typ">StreamWriter<span class="pun">(<span class="pln">fs<span class="pun">);<span class="pln"><br>          <span class="pun">}<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">Logger<span class="pun">(<span class="kwd">string<span class="pln"> info<span class="pun">)<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             sw<span class="pun">.<span class="typ">WriteLine<span class="pun">(<span class="pln">info<span class="pun">);<span class="pln"><br>          <span class="pun">}<span class="pln"><br>          <span class="kwd">public<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">Close<span class="pun">()<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             sw<span class="pun">.<span class="typ">Close<span class="pun">();<span class="pln"><br>             fs<span class="pun">.<span class="typ">Close<span class="pun">();<span class="pln"><br>          <span class="pun">}<span class="pln"><br>       <span class="pun">}<span class="pln"><br>       <span class="com">// 事件订阅器<span class="pln"><br>       <span class="kwd">public<span class="pln"> <span class="kwd">class<span class="pln"> <span class="typ">RecordBoilerInfo<span class="pln"><br>       <span class="pun">{<span class="pln"><br>          <span class="kwd">static<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">Logger<span class="pun">(<span class="kwd">string<span class="pln"> info<span class="pun">)<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="typ">Console<span class="pun">.<span class="typ">WriteLine<span class="pun">(<span class="pln">info<span class="pun">);<span class="pln"><br>          <span class="pun">}<span class="com">//end of Logger<span class="pln"><br><br>          <span class="kwd">static<span class="pln"> <span class="kwd">void<span class="pln"> <span class="typ">Main<span class="pun">(<span class="kwd">string<span class="pun">[]<span class="pln"> args<span class="pun">)<span class="pln"><br>          <span class="pun">{<span class="pln"><br>             <span class="typ">BoilerInfoLogger<span class="pln"> filelog <span class="pun">=<span class="pln"> <span class="kwd">new<span class="pln"> <span class="typ">BoilerInfoLogger<span class="pun">(<span class="str">“e:\boiler.txt”<span class="pun">);<span class="pln"><br>             <span class="typ">DelegateBoilerEvent<span class="pln"> boilerEvent <span class="pun">=<span class="pln"> <span class="kwd">new<span class="pln"> <span class="typ">DelegateBoilerEvent<span class="pun">();<span class="pln"><br>             boilerEvent<span class="pun">.<span class="typ">BoilerEventLog<span class="pln"> <span class="pun">+=<span class="pln"> <span class="kwd">new<span class="pln"><br>             <span class="typ">DelegateBoilerEvent<span class="pun">.<span class="typ">BoilerLogHandler<span class="pun">(<span class="typ">Logger<span class="pun">);<span class="pln"><br>             boilerEvent<span class="pun">.<span class="typ">BoilerEventLog<span class="pln"> <span class="pun">+=<span class="pln"> <span class="kwd">new<span class="pln"><br>             <span class="typ">DelegateBoilerEvent<span class="pun">.<span class="typ">BoilerLogHandler<span class="pun">(<span class="pln">filelog<span class="pun">.<span class="typ">Logger<span class="pun">);<span class="pln"><br>             boilerEvent<span class="pun">.<span class="typ">LogProcess<span class="pun">();<span class="pln"><br>             <span class="typ">Console<span class="pun">.<span class="typ">ReadLine<span class="pun">();<span class="pln"><br>             filelog<span class="pun">.<span class="typ">Close<span class="pun">();<span class="pln"><br>          <span class="pun">}<span class="com">//end of main<span class="pln"><br><br>       <span class="pun">}<span class="com">//end of RecordBoilerInfo<span class="pln"><br>    <span class="pun">}</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><code>当上面的代码被编译和执行时，它会产生下列结果：
+
+    &lt;pre class=&quot;result&quot;&gt;Logging info:
+
+    Temperature 100
+    Pressure 12
+
+    Message: O. K</code></pre></pre><br></div>
+          
         
       
     </div>
@@ -1472,7 +1689,7 @@ SQL SERV
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/03/02/Java 与 JavaScript 对websocket的使用/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/1b76f6f1.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1491,7 +1708,7 @@ SQL SERV
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/02/Java 与 JavaScript 对websocket的使用/" itemprop="url">Java 与 JavaScript 对websocket的使用</a></h1>
+                <a class="post-title-link" href="/post/1b76f6f1.html" itemprop="url">Java 与 JavaScript 对websocket的使用</a></h1>
         
 
         <div class="post-meta">
@@ -1543,20 +1760,18 @@ SQL SERV
       
         
           
-          ebsocket，HTML5中新一代全双工通信协议。其底层仍然是http协议。
-传统 HTTP 请求响应客户端服务器交互图
+            <p>ebsocket，<a href="http://lib.csdn.net/base/html5" title="HTML5知识库" target="_blank" rel="noopener">HTML5</a>中新一代全双工通信协议。其底层仍然是http协议。</p>
+<p><strong>传统 HTTP 请求响应客户端服务器交互图</strong></p>
+<p><img src="http://pangguoming.com/blog/images/47d5b176-ce14-491c-9060-c4878b44bcae.jpg" alt="图 1. 传统 HTTP 请求响应客户端服务器交互图"></p>
+<p><strong>WebSocket 请求响应客户端服务器交互图</strong></p>
+<p><img src="http://pangguoming.com/blog/images/cd0d1f07-03a8-4139-8e67-f4836a6a2f7f.jpg" alt="图 2.WebSocket 请求响应客户端服务器交互图"></p>
+<h5 id="WebSocket-客户端支持"><a href="#WebSocket-客户端支持" class="headerlink" title="WebSocket 客户端支持"></a>WebSocket 客户端支持</h5><table class="ibm-data-table     " border="0" cellspacing="0" cellpadding="0"><br><thead><br><tr><th>浏览器</th><th>支持情况</th></tr><br><br></thead><br><tbody><br><tr><br><td>Chrome</td><br><td>Chrome version 4+支持</td><br><br></tr><br><tr><br><td>Firefox</td><br><td>Firefox version 5+支持</td><br><br></tr><br><tr><br><td>IE</td><br><td>IE version 10+支持</td><br><br></tr><br><tr><br><td>Safari</td><br><td>IOS 5+支持</td><br><br></tr><br><tr><br><td>Android Brower</td><br><td>Android 4.5+支持</td><br><br></tr><br><br></tbody><br><br></table>
 
-WebSocket 请求响应客户端服务器交互图
-
-WebSocket 客户端支持浏览器支持情况ChromeChrome version 4+支持FirefoxFirefox 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/02/Java 与 JavaScript 对websocket的使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+<p> <strong>webSocket消息推送例子</strong></p>
+<p><a href="http://lib.csdn.net/base/javase" title="Java SE知识库" target="_blank" rel="noopener">Java</a>后端</p>
+<p>pom.xml</p>
+<div class="dp-highlighter bg_javascript"><br><div class="bar"><br><div class="tools"><strong>[javascript]</strong> <a href="http://blog.csdn.net/mafan121/article/details/51067593#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="http://blog.csdn.net/mafan121/article/details/51067593#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br><span data-mod="popu_168"><span data-mod="popu_169"> <a href="http://blog.csdn.net/mafan121/article/details/51067593#" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/mafan121/article/details/51067593#" title="?" target="_blank" rel="noopener">?</a><span class="tracking-ad" data-mod="popu_167"><a href="https://code.csdn.net/snippets/1635598" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="http://pangguoming.com/blog/images/5b0ca8d2-e21f-4743-bb5e-b459ddf8d828.png" alt="在CODE上查看代码片"></a><span class="tracking-ad" data-mod="popu_170"><a href="https://code.csdn.net/snippets/1635598/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="http://pangguoming.com/blog/images/514586f0-e1a5-4e92-b9b9-55001444308a.jpg" alt="派生到我的代码片"></a></span></span></span></span><br><br>1.  <!-- webSocket --><br>2.  <dependency><br>3.      <groupid>javax</groupid><br>4.      <artifactid>javaee-api</artifactid><br>5.      <version>7.0</version><br>6.  </dependency><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;pre&gt;</span><br></pre></td></tr></table></figure><br><br>（tomcat7.027开始支持websocket，但是tomcat7.047开始才能使用注解形式的websoket，从该版本开始websoket被集成进入了javaee7中）<br><br>java代码：<br><br>    <div class="dp-highlighter bg_java"><br>    <div class="bar"><br>    <div class="tools"><strong>[java]</strong> <a href="http://blog.csdn.net/mafan121/article/details/51067593#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="http://blog.csdn.net/mafan121/article/details/51067593#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br>    <div><br>    <span data-mod="popu_168"><span data-mod="popu_169"> <a href="http://blog.csdn.net/mafan121/article/details/51067593#" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/mafan121/article/details/51067593#" title="?" target="_blank" rel="noopener">?</a><span class="tracking-ad" data-mod="popu_167"><a href="https://code.csdn.net/snippets/1635598" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="http://pangguoming.com/blog/images/5b0ca8d2-e21f-4743-bb5e-b459ddf8d828.png" alt="在CODE上查看代码片"></a><span class="tracking-ad" data-mod="popu_170"><a href="https://code.csdn.net/snippets/1635598/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="http://pangguoming.com/blog/images/514586f0-e1a5-4e92-b9b9-55001444308a.jpg" alt="派生到我的代码片"></a></span></span></span></span><br><br>    1.  <span class="keyword">package com.student.system.listen;  </span><br>    2.<br>    3.  <span class="keyword">import java.io.IOException;  </span><br>    4.  <span class="keyword">import java.util.concurrent.CopyOnWriteArraySet;  </span><br>    5.<br>    6.  <span class="keyword">import javax.websocket.OnClose;  </span><br>    7.  <span class="keyword">import javax.websocket.OnError;  </span><br>    8.  <span class="keyword">import javax.websocket.OnMessage;  </span><br>    9.  <span class="keyword">import javax.websocket.OnOpen;  </span><br>    10.  <span class="keyword">import javax.websocket.Session;  </span><br>    11.  <span class="keyword">import javax.websocket.server.ServerEndpoint;  </span><br>    12.<br>    13.  <span class="annotation">@ServerEndpoint(<span class="string">“/websocket”)  </span></span><br>    14.  <span class="keyword">public <span class="keyword">class WebSocketListen {  </span></span><br>    15.<br>    16.      <span class="comment">// 静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。  </span><br>    17.      <span class="keyword">private <span class="keyword">static <span class="keyword">int onlineCount = <span class="number">0;  </span></span></span></span><br>    18.<br>    19.      <span class="comment">// concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。若要实现服务端与单一客户端通信的话，可以使用Map来存放，其中Key可以为用户标识  </span><br>    20.      <span class="keyword">private <span class="keyword">static CopyOnWriteArraySet<websocketlisten> webSocketSet = <span class="keyword">new CopyOnWriteArraySet<websocketlisten>();  </websocketlisten></span></websocketlisten></span></span><br>    21.<br>    22.      <span class="comment">// 与某个客户端的连接会话，需要通过它来给客户端发送数据  </span><br>    23.      <span class="keyword">private Session session;  </span><br>    24.<br>    25.      <span class="comment">/<strong> </strong></span><br>    26.  <span class="comment">     <em> 连接建立成功调用的方法 </em></span><br>    27.  <span class="comment">       </span><br>    28.  <span class="comment">     <em> @param session </em></span><br>    29.  <span class="comment">                 可选的参数。session为与某个客户端的连接会话，需要通过它来给客户端发送数据 </span><br>    30.  <span class="comment">     */  </span><br>    31.      <span class="annotation">@OnOpen  </span><br>    32.      <span class="keyword">public <span class="keyword">void onOpen(Session session) {  </span></span><br>    33.          <span class="keyword">this.session = session;  </span><br>    34.          webSocketSet.add(<span class="keyword">this); <span class="comment">// 加入set中  </span></span><br>    35.          addOnlineCount(); <span class="comment">// 在线数加1  </span><br>    36.          System.out.println(<span class="string">“有新连接加入！当前在线人数为” + getOnlineCount());  </span><br>    37.      }<br>    38.<br>    39.      <span class="comment">/ </span><br>    40.  <span class="comment">     <em> 连接关闭调用的方法 </em></span><br>    41.  <span class="comment">     /  </span><br>    42.      <span class="annotation">@OnClose  </span><br>    43.      <span class="keyword">public <span class="keyword">void onClose() {  </span></span><br>    44.          webSocketSet.remove(<span class="keyword">this); <span class="comment">// 从set中删除  </span></span><br>    45.          subOnlineCount(); <span class="comment">// 在线数减1  </span><br>    46.          System.out.println(<span class="string">“有一连接关闭！当前在线人数为” + getOnlineCount());  </span><br>    47.      }<br>    48.<br>    49.      <span class="comment">/<strong> </strong></span><br>    50.  <span class="comment">     <em> 收到客户端消息后调用的方法 </em></span><br>    51.  <span class="comment">       </span><br>    52.  <span class="comment">     <em> @param message </em></span><br>    53.  <span class="comment">                 客户端发送过来的消息 </span><br>    54.  <span class="comment">     <em> @param session </em></span><br>    55.  <span class="comment">                 可选的参数 </span><br>    56.  <span class="comment">     */  </span><br>    57.      <span class="annotation">@OnMessage  </span><br>    58.      <span class="keyword">public <span class="keyword">void onMessage(String message, Session session) {  </span></span><br>    59.          System.out.println(<span class="string">“来自客户端的消息:” + message);  </span><br>    60.          <span class="comment">// 群发消息  </span><br>    61.          <span class="keyword">for (WebSocketListen item : webSocketSet) {  </span><br>    62.              <span class="keyword">try {  </span><br>    63.                  item.sendMessage(message);<br>    64.              } <span class="keyword">catch (IOException e) {  </span><br>    65.                  e.printStackTrace();<br>    66.                  <span class="keyword">continue;  </span><br>    67.              }<br>    68.          }<br>    69.      }<br>    70.<br>    71.      <span class="comment">/ </span><br>    72.  <span class="comment">     <em> 发生错误时调用 </em></span><br>    73.  <span class="comment">       </span><br>    74.  <span class="comment">     <em> @param session </em></span><br>    75.  <span class="comment">      @param error </span><br>    76.  <span class="comment">     <em>/  </em></span><br>    77.      <span class="annotation">@OnError  </span><br>    78.      <span class="keyword">public <span class="keyword">void onError(Session session, Throwable error) {  </span></span><br>    79.          System.out.println(<span class="string">“发生错误”);  </span><br>    80.          error.printStackTrace();<br>    81.      }<br>    82.<br>    83.      <span class="comment">/** </span><br>    84.  <span class="comment">      这个方法与上面几个方法不一样。没有用注解，是根据自己需要添加的方法。 </span><br>    85.  <span class="comment">     <em>  </em></span><br>    86.  <span class="comment">      @param message </span><br>    87.  <span class="comment">     <em> @throws IOException </em></span><br>    88.  <span class="comment">     /  </span><br>    89.      <span class="keyword">public <span class="keyword">void sendMessage(String message) <span class="keyword">throws IOException {  </span></span></span><br>    90.          <span class="keyword">this.session.getBasicRemote().sendText(message);  </span><br>    91.          <span class="comment">// this.session.getAsyncRemote().sendText(message);  </span><br>    92.      }<br>    93.<br>    94.      <span class="keyword">public <span class="keyword">static <span class="keyword">synchronized <span class="keyword">int getOnlineCount() {  </span></span></span></span><br>    95.          <span class="keyword">return onlineCount;  </span><br>    96.      }<br>    97.<br>    98.      <span class="keyword">public <span class="keyword">static <span class="keyword">synchronized <span class="keyword">void addOnlineCount() {  </span></span></span></span><br>    99.          WebSocketListen.onlineCount++;<br>    100.      }<br>    101.<br>    102.      <span class="keyword">public <span class="keyword">static <span class="keyword">synchronized <span class="keyword">void subOnlineCount() {  </span></span></span></span><br>    103.          WebSocketListen.onlineCount–;<br>    104.      }<br>    105.  }<br><br>JSP页面<br><br>    <div class="dp-highlighter bg_html"><br>    <div class="bar"><br>    <div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/mafan121/article/details/51067593#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="http://blog.csdn.net/mafan121/article/details/51067593#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br>    <div><br><br>    <span data-mod="popu_168"><span data-mod="popu_169"> <a href="http://blog.csdn.net/mafan121/article/details/51067593#" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/mafan121/article/details/51067593#" title="?" target="_blank" rel="noopener">?</a><span class="tracking-ad" data-mod="popu_167"><a href="https://code.csdn.net/snippets/1635598" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="http://pangguoming.com/blog/images/5b0ca8d2-e21f-4743-bb5e-b459ddf8d828.png" alt="在CODE上查看代码片"></a><span class="tracking-ad" data-mod="popu_170"><a href="https://code.csdn.net/snippets/1635598/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="http://pangguoming.com/blog/images/514586f0-e1a5-4e92-b9b9-55001444308a.jpg" alt="派生到我的代码片"></a></span></span></span></span><br><br>    1.  <span class="tag">&lt;%@ page <span class="attribute">language=<span class="attribute-value">“java” <span class="attribute">contentType=<span class="attribute-value">“text/html; charset=UTF-8”  </span></span></span></span></span><br>    2.      <span class="attribute">pageEncoding=<span class="attribute-value">“UTF-8”%<span class="tag">&gt;  </span></span></span><br>    3.  <span class="tag">&lt;<span class="tag-name">html<span class="tag">&gt;  </span></span></span><br>    4.  <span class="tag">&lt;<span class="tag-name">head<span class="tag">&gt;  </span></span></span><br>    5.  <span class="tag">&lt;<span class="tag-name">meta <span class="attribute">http-equiv=<span class="attribute-value">“Content-Type” <span class="attribute">content=<span class="attribute-value">“text/html; charset=UTF-8”<span class="tag">&gt;  </span></span></span></span></span></span></span><br>    6.  <span class="tag">&lt;<span class="tag-name">title<span class="tag">&gt;websocket<span class="tag">&lt;/<span class="tag-name">title<span class="tag">&gt;  </span></span></span></span></span></span><br>    7.  <span class="tag">&lt;/<span class="tag-name">head<span class="tag">&gt;  </span></span></span><br>    8.  <span class="tag">&lt;<span class="tag-name">body<span class="tag">&gt;  </span></span></span><br>    9.      Welcome<span class="tag">&lt;<span class="tag-name">br<span class="tag">/&gt;  </span></span></span><br>    10.      <span class="tag">&lt;<span class="tag-name">input <span class="attribute">id=<span class="attribute-value">“text” <span class="attribute">type=<span class="attribute-value">“text”<span class="tag">/&gt;  </span></span></span></span></span></span></span><br>    11.          <span class="tag">&lt;<span class="tag-name">button <span class="attribute">onclick=<span class="attribute-value">“send()”<span class="tag">&gt;发送消息<span class="tag">&lt;/<span class="tag-name">button<span class="tag">&gt;  </span></span></span></span></span></span></span></span><br>    12.          <span class="tag">&lt;<span class="tag-name">hr<span class="tag">/&gt;       </span></span></span><br>    13.          <span class="tag">&lt;<span class="tag-name">button <span class="attribute">onclick=<span class="attribute-value">“closeWebSocket()”<span class="tag">&gt;关闭WebSocket连接<span class="tag">&lt;/<span class="tag-name">button<span class="tag">&gt;  </span></span></span></span></span></span></span></span><br>    14.          <span class="tag">&lt;<span class="tag-name">hr<span class="tag">/&gt;  </span></span></span><br>    15.          <span class="tag">&lt;<span class="tag-name">div <span class="attribute">id=<span class="attribute-value">“message”<span class="tag">&gt;<span class="tag">&lt;/<span class="tag-name">div<span class="tag">&gt;  </span></span></span></span></span></span></span></span><br>    16.    <span class="tag">&lt;<span class="tag-name">script <span class="attribute">type=<span class="attribute-value">“text/javascript”<span class="tag">&gt;  </span></span></span></span></span><br>    17.      var <span class="attribute">websocket = <span class="attribute-value">null;  </span></span><br>    18.         //判断当前浏览器是否支持WebSocket<br>    19.         if (‘WebSocket’ in window) {<br>    20.            <span class="attribute">websocket = <span class="attribute-value">new WebSocket(“ws://localhost:8028/ThesisManage/websocket”);  </span></span><br>    21.        }<br>    22.        else {<br>    23.            alert(‘当前浏览器 Not support websocket’)<br>    24.        }<br>    25.<br>    26.        //连接发生错误的回调方法<br>    27.        <span class="attribute">websocket.onerror = <span class="attribute-value">function () {  </span></span><br>    28.             setMessageInnerHTML(“WebSocket连接发生错误”);<br>    29.        };<br>    30.<br>    31.         //连接成功建立的回调方法<br>    32.         <span class="attribute">websocket.onopen = <span class="attribute-value">function () {  </span></span><br>    33.             setMessageInnerHTML(“WebSocket连接成功”);<br>    34.         }<br>    35.<br>    36.        //接收到消息的回调方法<br>    37.         <span class="attribute">websocket.onmessage = <span class="attribute-value">function (event) {  </span></span><br>    38.             setMessageInnerHTML(event.data);<br>    39.        }<br>    40.<br>    41.         //连接关闭的回调方法<br>    42.         <span class="attribute">websocket.onclose = <span class="attribute-value">function () {  </span></span><br>    43.            setMessageInnerHTML(“WebSocket连接关闭”);<br>    44.         }<br>    45.<br>    46.         //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。<br>    47.         <span class="attribute">window.onbeforeunload = <span class="attribute-value">function () {  </span></span><br>    48.             closeWebSocket();<br>    49.         }<br>    50.<br>    51.         //将消息显示在网页上<br>    52.         function setMessageInnerHTML(innerHTML) {<br>    53.            document.getElementById(‘message’).innerHTML += innerHTML + ‘<span class="tag">&lt;<span class="tag-name">br<span class="tag">/&gt;’;  </span></span></span><br>    54.        }<br>    55.<br>    56.        //关闭WebSocket连接<br>    57.         function closeWebSocket() {<br>    58.             websocket.close();<br>    59.         }<br>    60.<br>    61.         //发送消息<br>    62.         function send() {<br>    63.            var <span class="attribute">message = <span class="attribute-value">document.getElementById(‘text’).value;  </span></span><br>    64.            websocket.send(message);<br>    65.         }<br>    66.    <span class="tag">&lt;/<span class="tag-name">script<span class="tag">&gt;  </span></span></span><br>    67.  <span class="tag">&lt;/<span class="tag-name">body<span class="tag">&gt;  </span></span></span><br>    68.  <span class="tag">&lt;/<span class="tag-name">html<span class="tag">&gt;  </span></span></span><br><br>页面效果：<br><br><img src="http://pangguoming.com/blog/images/c92a64b9-4c3d-466d-841e-aa645d315880.jpg" alt=""><img src="http://pangguoming.com/blog/images/c19d6e4c-7cfb-4219-8b95-c5be8b6b5359.jpg" alt=""><br><br></div></div></div></div></div></div></div></div><br></div></div></div></div>
+          
         
       
     </div>
@@ -1619,105 +1834,108 @@ WebSocket 客户端支持浏览器支持情况ChromeChrome version 4+支持Firef
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
-            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+
           
-            <p class="site-author-name" itemprop="name">庞国明</p>
-            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives">
-            
-                <span class="site-state-item-count">420</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">267</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>GitHub</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
-                  
-                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -1734,12 +1952,9 @@ WebSocket 客户端支持浏览器支持情况ChromeChrome version 4+支持Firef
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">庞国明</span>
 
@@ -1747,11 +1962,17 @@ WebSocket 客户端支持浏览器支持情况ChromeChrome version 4+支持Firef
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
@@ -1771,6 +1992,8 @@ WebSocket 客户端支持浏览器支持情况ChromeChrome version 4+支持Firef
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -1805,53 +2028,61 @@ WebSocket 客户端支持浏览器支持情况ChromeChrome version 4+支持Firef
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
 
-
-
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1877,6 +2108,23 @@ WebSocket 客户端支持浏览器支持情况ChromeChrome version 4+支持Firef
 
   
 
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
 
 
 
@@ -2206,11 +2454,27 @@ WebSocket 客户端支持浏览器支持情况ChromeChrome version 4+支持Firef
 
 
 
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
 
   
 
   
 
+  
+
+  
   
 
   

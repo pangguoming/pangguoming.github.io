@@ -45,38 +45,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT">
@@ -84,11 +73,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
 
 
 
@@ -113,11 +97,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -153,30 +137,6 @@
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-	<div id="topnavbar">
-  <div class="tophead">
-    <div class="toplogo"><a href="/">庞国明-博客</a></div>
-    <div id="mnav">
-      <h2><span class="navicon"></span></h2>
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </div>
-    <nav class="topnav" id="topnav">
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
 
   
   
@@ -230,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -250,12 +220,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            关于
+            归档
           </a>
         </li>
       
@@ -278,20 +248,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -324,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/09/26/AngularJS例子 ng-repeat遍历输出 通过js的splice方法删除当前行/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/bf97f93.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -343,7 +319,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/26/AngularJS例子 ng-repeat遍历输出 通过js的splice方法删除当前行/" itemprop="url">AngularJS例子 ng-repeat遍历输出 通过js的splice方法删除当前行</a></h1>
+                <a class="post-title-link" href="/post/bf97f93.html" itemprop="url">AngularJS例子 ng-repeat遍历输出 通过js的splice方法删除当前行</a></h1>
         
 
         <div class="post-meta">
@@ -395,15 +371,8 @@
       
         
           
-          1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&lt;!doctype html&gt;    &lt;html&gt;    &lt;head&gt;        &lt;
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/26/AngularJS例子 ng-repeat遍历输出 通过js的splice方法删除当前行/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!doctype html&gt;</span><br><span class="line">    &lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">        &lt;title&gt;ng-repeat directive&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body ng-app=&quot;myApp&quot;&gt;</span><br><span class="line">    &lt;table ng-controller=&quot;CartController&quot;&gt;</span><br><span class="line">        &lt;caption&gt;我的购物车&lt;/caption&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;th&gt;序号&lt;/th&gt;</span><br><span class="line">            &lt;th&gt;商品&lt;/th&gt;</span><br><span class="line">            &lt;th&gt;单价&lt;/th&gt;</span><br><span class="line">            &lt;th&gt;数量&lt;/th&gt;</span><br><span class="line">            &lt;th&gt;金额&lt;/th&gt;</span><br><span class="line">            &lt;th&gt;操作&lt;/th&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;tr ng-repeat=&quot;item in items&quot;&gt;</span><br><span class="line">            &lt;td&gt;&#123;&#123;$index + 1&#125;&#125;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&#123;&#123;item.name&#125;&#125;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&#123;&#123;item.price | currency&#125;&#125;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&lt;input ng-model=&quot;item.quantity&quot;&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&#123;&#123;item.quantity * item.price | currency&#125;&#125;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;</span><br><span class="line">                &lt;button ng-click=&quot;remove($index)&quot;&gt;Remove&lt;/button&gt;</span><br><span class="line">            &lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">    &lt;/table&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script src=&quot;js/angular-1.3.0.14/angular.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        var app = angular.module(&apos;myApp&apos;, []);</span><br><span class="line">        app.controller(&apos;CartController&apos;,function($scope)&#123;</span><br><span class="line">            $scope.items = [</span><br><span class="line">                &#123;name: &quot;苹果 iPhone7&quot;, quantity: 1, price: 5088.00&#125;,</span><br><span class="line">                &#123;name: &quot;荣耀Magic&quot;, quantity: 1, price: 3699.00&#125;,</span><br><span class="line">                &#123;name: &quot;vivo X9&quot;, quantity: 2, price: 2798.00&#125;</span><br><span class="line">            ];</span><br><span class="line">            //$index包含了ng-repeat过程中的循环计数</span><br><span class="line">            $scope.remove = function (index) &#123;</span><br><span class="line">                $scope.items.splice(index, 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">    &lt;/html&gt;</span><br></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -450,7 +419,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/09/21/Android wifi无线调试App新玩法ADB WIFI/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/6f280250.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -469,7 +438,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/21/Android wifi无线调试App新玩法ADB WIFI/" itemprop="url">Android wifi无线调试App新玩法ADB WIFI</a></h1>
+                <a class="post-title-link" href="/post/6f280250.html" itemprop="url">Android wifi无线调试App新玩法ADB WIFI</a></h1>
         
 
         <div class="post-meta">
@@ -521,15 +490,8 @@
       
         
           
-          Wifi 调试App已经不是什么新鲜的事情了，之前也看过不少，不是使用麻烦就是需要root权限，今个我给大家介绍一款好用的android studio 插件–ADB WIFI。### 安装settings-&gt;plugins-&gt;Browse repositories 搜索框输入ADB WI
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/21/Android wifi无线调试App新玩法ADB WIFI/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div><br><div><br><br>Wifi 调试App已经不是什么新鲜的事情了，之前也看过不少，不是使用麻烦就是需要root权限，今个我给大家介绍一款好用的android studio 插件–ADB WIFI。<br><br>### 安装<br><br>settings-&gt;plugins-&gt;Browse repositories 搜索框输入ADB WIFI找到插件，安装，重启android Studio后可以看到 导航菜单下Tools-&gt;Android-&gt;ADB WIFI就算安装成功了。<br><br><div class="image-package"> <img src="http://pangguoming.com/blog/images/b9f5ac59-7868-417b-bc6f-b3e1081ec9e8.jpg" alt=""><br><br><div class="image-caption"><br><br>### 使用<br><br> 第一步：首先还是需要用数据线连接电脑，如下图：<br><br><div class="image-package"><br><img src="http://pangguoming.com/blog/images/657b3d9c-7891-41db-9b50-18dad45023d8.jpg" alt=""><br><br><div class="image-caption"><br><br>第二步：找到ADB WIFI菜单，如下图：<br><br><div class="image-package"><br><img src="http://pangguoming.com/blog/images/49c05ad9-2aae-4427-adc6-ac953248d859.jpg" alt=""><br><br><div class="image-caption"><br><br>第三步：运行ADB Restart(Ctrl+Alt+Shift+R）<br>第四步：运行ADB USB to WIFI(Ctrl+Alt+Shift+W)<br>第五步：最后拔掉数据线。<br><br>打开LogCat，看看有没有闪动的日志信息，如果有就是成功了。<br><br>&gt; 另外Android WiFi ADB这个插件也很好用<br>&gt; github地址<a href="https://github.com/pedrovgs/AndroidWiFiADB" target="_blank" rel="noopener">AndroidWiFiADB</a><br><br>作者：dongjunkun<br>链接：<a href="http://www.jianshu.com/p/21d1b65d92a4" target="_blank" rel="noopener">http://www.jianshu.com/p/21d1b65d92a4</a><br>來源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -576,7 +538,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/09/15/CentOS 7 开放防火墙端口命令/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/ec9d621e.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -595,7 +557,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/15/CentOS 7 开放防火墙端口命令/" itemprop="url">CentOS 7 开放防火墙端口命令</a></h1>
+                <a class="post-title-link" href="/post/ec9d621e.html" itemprop="url">CentOS 7 开放防火墙端口命令</a></h1>
         
 
         <div class="post-meta">
@@ -647,19 +609,20 @@
       
         
           
-          CentOS 7 开放防火墙端口 命令
-最近公司新的server要求用CentOS7， 发现以前CentOS 6 系列中的 iptables 相关命令不能用了，查了下，发现Centos 7使用firewalld代替了原来的iptables。
-使用方法如下：
-&gt;&gt;&gt; 关闭防火墙
-sy
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/15/CentOS 7 开放防火墙端口命令/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p><strong>CentOS 7 开放防火墙端口 命令</strong></p>
+<pre><code>最近公司新的server要求用CentOS7， 发现以前CentOS 6 系列中的 iptables 相关命令不能用了，查了下，发现Centos 7使用firewalld代替了原来的iptables。
+</code></pre><p><strong>使用方法如下：</strong></p>
+<p><strong>&gt;&gt;&gt; 关闭防火墙</strong></p>
+<p>systemctl stop firewalld.service             #停止firewall<br>systemctl disable firewalld.service        #禁止firewall开机启动</p>
+<p><strong>**&gt;&gt;&gt; </strong>开启端口<strong><br>firewall-cmd –zone=public –add-port=80/tcp –permanent<br>**</strong> <strong>命令含义：</strong><br>–zone #作用域<br>–add-port=80/tcp #添加端口，格式为：端口/通讯协议<br>–permanent #永久生效，没有此参数重启后失效<br><strong>**&gt;&gt;&gt; </strong>重启防火墙**<br>firewall-cmd –reload</p>
+<p><strong>常用命令介绍</strong><br>firewall-cmd –state                           ##查看防火墙状态，是否是running<br>firewall-cmd –reload                          ##重新载入配置，比如添加规则之后，需要执行此命令<br>firewall-cmd –get-zones                       ##列出支持的zone<br>firewall-cmd –get-services                    ##列出支持的服务，在列表中的服务是放行的<br>firewall-cmd –query-service ftp               ##查看ftp服务是否支持，返回yes或者no<br>firewall-cmd –add-service=ftp                 ##临时开放ftp服务<br>firewall-cmd –add-service=ftp –permanent     ##永久开放ftp服务<br>firewall-cmd –remove-service=ftp –permanent  ##永久移除ftp服务<br>firewall-cmd –add-port=80/tcp –permanent     ##永久添加80端口<br>iptables -L -n                                 ##查看规则，这个命令是和iptables的相同的<br>man firewall-cmd                               ##查看帮助</p>
+<p><strong>更多命令，使用 </strong> firewall-cmd –help <strong>查看帮助文件</strong></p>
+<p><strong>**&gt;&gt;&gt;  </strong>CentOS 7.0默认使用的是firewall作为防火墙，使用iptables必须重新设置一下<strong>  
+</strong>1、直接关闭防火墙**<br>systemctl stop firewalld.service           #停止firewall<br>systemctl disable firewalld.service     #禁止firewall开机启动</p>
+<p><strong>2、设置 iptables service</strong><br>yum -y install iptables-services<br>如果要修改防火墙配置，如增加防火墙端口3306<br>vi /etc/sysconfig/iptables<br>增加规则<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT  </p>
+<p>保存退出后<br>systemctl restart iptables.service #重启防火墙使配置生效<br>systemctl enable iptables.service #设置防火墙开机启动<br><strong>最后重启系统使设置生效即可。</strong></p>
+
+          
         
       
     </div>
@@ -706,7 +669,7 @@ sy
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/09/07/ILMerge-GUI的使用/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/2e05d8f0.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -725,7 +688,7 @@ sy
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/07/ILMerge-GUI的使用/" itemprop="url">ILMerge-GUI的使用</a></h1>
+                <a class="post-title-link" href="/post/2e05d8f0.html" itemprop="url">ILMerge-GUI的使用</a></h1>
         
 
         <div class="post-meta">
@@ -777,18 +740,14 @@ sy
       
         
           
-           去这里下载：
-这里下载ILMerge，http://www.microsoft.com/en-us/download/details.aspx?id=17630
-这里下载ILMerge-GUI，http://ilmergegui.codeplex.com/
-这两部分都是必须的，第一个是命令行的，不
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/07/ILMerge-GUI的使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p> 去这里下载：</p>
+<p>这里下载ILMerge，<a href="http://www.microsoft.com/en-us/download/details.aspx?id=17630" target="_blank" rel="noopener">http://www.microsoft.com/en-us/download/details.aspx?id=17630</a></p>
+<p>这里下载ILMerge-GUI，<a href="http://ilmergegui.codeplex.com/" target="_blank" rel="noopener">http://ilmergegui.codeplex.com/</a></p>
+<p>这两部分都是必须的，第一个是命令行的，不好用。第二个是第一个大GUI封装，使第一个工具好用多了！</p>
+<p>ILmerge-GUI是用来将一系列的exe，dll文件装载打包成一个exe文件。很好用！</p>
+<p><img src="http://pangguoming.com/blog/images/e5f8802f-3aae-49ac-b4d8-767893e9b96e.jpg" alt=""></p>
+
+          
         
       
     </div>
@@ -835,7 +794,7 @@ sy
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/09/05/IntPtr 转 string/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/f36a2b5e.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -854,7 +813,7 @@ sy
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/05/IntPtr 转 string/" itemprop="url">IntPtr 转 string</a></h1>
+                <a class="post-title-link" href="/post/f36a2b5e.html" itemprop="url">IntPtr 转 string</a></h1>
         
 
         <div class="post-meta">
@@ -906,21 +865,17 @@ sy
       
         
           
-          假设有 intPtr pBuffer
-方法一：
-直接使用Marshal.PtrToStringAnsi方法：
-string ss = Marshal.PtrToStringAnsi(pBuffer);
-但，如果pBuffer中有\0，此方法所获取的字符串会被截断。这种情况要用方法二。
-方法二：
-先转
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/05/IntPtr 转 string/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>假设有 intPtr pBuffer</p>
+<p>方法一：</p>
+<p>直接使用Marshal.PtrToStringAnsi方法：</p>
+<p>string ss = Marshal.PtrToStringAnsi(pBuffer);</p>
+<p>但，如果pBuffer中有\0，此方法所获取的字符串会被截断。这种情况要用方法二。</p>
+<p>方法二：</p>
+<p>先转为byte数组，然后再转string：</p>
+<p>byte[] cc = new byte[dwBufSize];<br> Marshal.Copy(pBuffer, cc, 0, (int)dwBufSize);<br> string ss = Encoding.ASCII.GetString(cc);//.Replace(“dhav”, “”).Replace(“DHAV”, “”);</p>
+<p>搞定！！</p>
+
+          
         
       
     </div>
@@ -967,7 +922,7 @@ string ss = Marshal.PtrToStringAnsi(pBuffer);
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/09/04/在VS2010上使用C#调用非托管C++生成的DLL文件（图文讲解） 背景/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/820e6fe4.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -986,7 +941,7 @@ string ss = Marshal.PtrToStringAnsi(pBuffer);
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/04/在VS2010上使用C#调用非托管C++生成的DLL文件（图文讲解） 背景/" itemprop="url">在VS2010上使用C#调用非托管C++生成的DLL文件（图文讲解） 背景</a></h1>
+                <a class="post-title-link" href="/post/820e6fe4.html" itemprop="url">在VS2010上使用C#调用非托管C++生成的DLL文件（图文讲解） 背景</a></h1>
         
 
         <div class="post-meta">
@@ -1038,23 +993,97 @@ string ss = Marshal.PtrToStringAnsi(pBuffer);
       
         
           
-          背景 
-在项目过程中，有时候你需要调用非C#编写的DLL文件，尤其在使用一些第三方通讯组件的时候，通过C#来开发应用软件时，就需要利用DllImport特性进行方法调用。本篇文章将引导你快速理解这个调用的过程。
-步骤
+            <p><strong>背景</strong> </p>
+<pre><code>在项目过程中，有时候你需要调用非C#编写的DLL文件，尤其在使用一些第三方通讯组件的时候，通过C#来开发应用软件时，就需要利用DllImport特性进行方法调用。本篇文章将引导你快速理解这个调用的过程。
+</code></pre><p><strong>步骤</strong></p>
+<ol>
+<li>创建一个CSharpInvokeCPP的解决方案：</li>
+</ol>
+<p><a href="http://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103302140564149.png" target="_blank" rel="noopener"><img src="https://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103302140566309.png" alt="image" title="image"></a></p>
+<ol start="2">
+<li>创建一个C++的动态库项目：</li>
+</ol>
+<p><a href="http://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103302149016557.png" target="_blank" rel="noopener"><img src="https://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103302149015652.png" alt="image" title="image"></a></p>
+<ol start="3">
+<li>在应用程序设置中，选择“DLL”，其他按照默认选项：</li>
+</ol>
+<p><a href="http://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103302149029000.png" target="_blank" rel="noopener"><img src="https://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103302149029523.png" alt="image" title="image"></a></p>
+<p>最后点击完成，得到如图所示项目：</p>
+<p><a href="http://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103302149028094.png" target="_blank" rel="noopener"><img src="https://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103302149023394.png" alt="image" title="image"></a></p>
+<pre><code>我们可以看到这里有一些文件，其中dllmain.cpp作为定义DLL应用程序的入口点，它的作用跟exe文件有个main或者WinMain入口函数是一样的，它就是作为DLL的一个入口函数，实际上它是个可选的文件。它是在静态链接时或动态链接时调用LoadLibrary和FreeLibrary时都会被调用。详细内容可以参考（[http://blog.csdn.net/benkaoya/archive/2008/06/02/2504781.aspx](http://blog.csdn.net/benkaoya/archive/2008/06/02/2504781.aspx &quot;http://blog.csdn.net/benkaoya/archive/2008/06/02/2504781.aspx&quot;)）。
+</code></pre><ol start="4">
+<li>现在我们打开CSharpInvokeCPP.CPPDemo.cpp文件：</li>
+</ol>
+<p>现在我们加入以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// CSharpInvokeCPP.CPPDemo.cpp : 定义 DLL 应用程序的导出函数。</span><br><span class="line">    //</span><br><span class="line"></span><br><span class="line">    #include &quot;stdafx.h&quot;</span><br><span class="line"></span><br><span class="line">    extern &quot;C&quot; __declspec(dllexport) int Add(int x, int y)</span><br><span class="line">    &#123;</span><br><span class="line">        return x + y;</span><br><span class="line">    &#125;</span><br><span class="line">    extern &quot;C&quot; __declspec(dllexport) int Sub(int x, int y)</span><br><span class="line">    &#123;</span><br><span class="line">        return x - y;</span><br><span class="line">    &#125;</span><br><span class="line">    extern &quot;C&quot; __declspec(dllexport) int Multiply(int x, int y)</span><br><span class="line">    &#123;</span><br><span class="line">        return x * y;</span><br><span class="line">    &#125;</span><br><span class="line">    extern &quot;C&quot; __declspec(dllexport) int Divide(int x, int y)</span><br><span class="line">    &#123;</span><br><span class="line">        return x / y;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;div class=&quot;cnblogs_Highlighter sh-gutter&quot;&gt; 
 
-创建一个CSharpInvokeCPP的解决方案：
+  extern &quot;C&quot; 包含双重含义，从字面上即可得到：首先，被它修饰的目标是“extern”的；其次，被它修饰的目标是“C”的。而被extern &quot;C&quot;修饰的变量和函数是按照C语言方式编译和连接的。
 
+  __declspec(dllexport)的目的是为了将对应的函数放入到DLL动态库中。
 
+  extern &quot;C&quot; __declspec(dllexport)加起来的目的是为了使用DllImport调用非托管C++的DLL文件。因为使用DllImport只能调用由C语言函数做成的DLL。
+</code></pre><ol start="5">
+<li>编译项目程序，最后在Debug目录生成CSharpInvokeCPP.CPPDemo.dll和CSharpInvokeCPP.CPPDemo.lib</li>
+</ol>
+<p><a href="http://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103302334509946.png" target="_blank" rel="noopener"><img src="https://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103302334502421.png" alt="image" title="image"></a></p>
+<p>我们用反编译工具PE Explorer查看下该DLL里面的方法：</p>
+<p><a href="http://images.cnblogs.com/cnblogs_com/liping13599168/201103/20110330233450752.png" target="_blank" rel="noopener"><img src="https://images.cnblogs.com/cnblogs_com/liping13599168/201103/20110330233451719.png" alt="image" title="image"></a></p>
+<p>可以发现对外的公共函数上包含这四种“加减乘除”方法。</p>
+<ol start="6">
+<li>现在来演示下如何利用C#项目来调用非托管C++的DLL，首先创建C#控制台应用程序：</li>
+</ol>
+<p><a href="http://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103302357586405.png" target="_blank" rel="noopener"><img src="https://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103302357593308.png" alt="image" title="image"></a></p>
+<ol start="7">
+<li><p>在CSharpInvokeCSharp.CSharpDemo项目上新建一个CPPDLL类，编写以下代码：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:cpp;gutter:true;&quot;&gt;public class CPPDLL</span><br><span class="line">&#123;</span><br><span class="line">    [DllImport(&quot;CSharpInvokeCPP.CPPDemo.dll&quot;)]</span><br><span class="line">    public static extern int Add(int x, int y);</span><br><span class="line"></span><br><span class="line">    [DllImport(&quot;CSharpInvokeCPP.CPPDemo.dll&quot;)]</span><br><span class="line">    public static extern int Sub(int x, int y);</span><br><span class="line"></span><br><span class="line">    [DllImport(&quot;CSharpInvokeCPP.CPPDemo.dll&quot;)]</span><br><span class="line">    public static extern int Multiply(int x, int y);</span><br><span class="line"></span><br><span class="line">    [DllImport(&quot;CSharpInvokeCPP.CPPDemo.dll&quot;)]</span><br><span class="line">    public static extern int Divide(int x, int y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ <div class="cnblogs_Highlighter sh-gutter"> 
 
-创建一个C++的动态库
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/04/在VS2010上使用C#调用非托管C++生成的DLL文件（图文讲解） 背景/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+</div></li>
+</ol>
+<p>DllImport作为C#中对C++的DLL类的导入入口特征，并通过static extern对extern “C”进行对应。</p>
+<ol start="8">
+<li>另外，记得把CPPDemo中生成的DLL文件拷贝到CSharpDemo的bin目录下，你也可以通过设置【项目属性】-&gt;【配置属性】-&gt;【常规】中的输出目录：</li>
+</ol>
+<p><a href="http://images.cnblogs.com/cnblogs_com/liping13599168/201103/20110330235759243.png" target="_blank" rel="noopener"><img src="https://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103302357596306.png" alt="image" title="image"></a></p>
+<p>这样编译项目后，生成的文件就自动输出到CSharpDemo中了。</p>
+<ol start="9">
+<li><p>然后在Main入口编写测试代码：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:cpp;gutter:true;&quot;&gt;static void Main(string[] args)</span><br><span class="line">&#123;</span><br><span class="line">    int result = CPPDLL.Add(10, 20);</span><br><span class="line">    Console.WriteLine(&quot;10 + 20 = &#123;0&#125;&quot;, result);</span><br><span class="line"></span><br><span class="line">    result = CPPDLL.Sub(30, 12);</span><br><span class="line">    Console.WriteLine(&quot;30 - 12 = &#123;0&#125;&quot;, result);</span><br><span class="line"></span><br><span class="line">    result = CPPDLL.Multiply(5, 4);</span><br><span class="line">    Console.WriteLine(&quot;5 * 4 = &#123;0&#125;&quot;, result);</span><br><span class="line"></span><br><span class="line">    result = CPPDLL.Divide(30, 5);</span><br><span class="line">    Console.WriteLine(&quot;30 / 5 = &#123;0&#125;&quot;, result);</span><br><span class="line"></span><br><span class="line">    Console.ReadLine();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>运行结果：</p>
+<p><a href="http://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103310003482870.png" target="_blank" rel="noopener"><img src="https://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103310003483394.png" alt="image" title="image"></a></p>
+<p>方法得到调用。 </p>
+<ol start="10">
+<li><p>以上的方法只能通过静态方法对于C++中的函数进行调用。那么怎样通过静态方法去调用C++中一个类对象中的方法呢？现在我在CPPDemo项目中添加一个头文件userinfo.h： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:cpp;gutter:true;&quot;&gt;class UserInfo &#123;</span><br><span class="line">private:</span><br><span class="line">    char* m_Name;</span><br><span class="line">    int m_Age;</span><br><span class="line">public:</span><br><span class="line">    UserInfo(char* name, int age)</span><br><span class="line">    &#123;</span><br><span class="line">        m_Name = name;</span><br><span class="line">        m_Age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    virtual ~UserInfo()&#123; &#125;</span><br><span class="line">    int GetAge() &#123; return m_Age; &#125;</span><br><span class="line">    char* GetName() &#123; return m_Name; &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在CSharpInvokeCPP.CPPDemo.cpp中，添加一些代码：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:cpp;gutter:true;&quot;&gt;#include &quot;malloc.h&quot;</span><br><span class="line">#include &quot;userinfo.h&quot;</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">    char name[32];</span><br><span class="line">    int age;</span><br><span class="line">&#125; User; </span><br><span class="line"></span><br><span class="line">UserInfo* userInfo;</span><br><span class="line"></span><br><span class="line">extern &quot;C&quot; __declspec(dllexport) User* Create(char* name, int age)   </span><br><span class="line">&#123;  </span><br><span class="line">    User* user = (User*)malloc(sizeof(User));</span><br><span class="line"></span><br><span class="line">    userInfo = new UserInfo(name, age);</span><br><span class="line">    strcpy(user-&gt;name, userInfo-&gt;GetName()); </span><br><span class="line">    user-&gt;age = userInfo-&gt;GetAge();</span><br><span class="line"></span><br><span class="line">    return user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+&lt;div class=&quot;cnblogs_Highlighter sh-gutter&quot;&gt;
+&lt;div id=&quot;highlighter_970499&quot; class=&quot;syntaxhighlighter  cpp&quot;&gt;&lt;span style=&quot;background-color: #ffffff; font-size: 14px;&quot;&gt;这里声明一个结构，包括name和age，这个结构是用于和C#方面的结构作个映射。&lt;/span&gt;
+</code></pre><p>注意：代码中的User*是个指针，返回也是一个对象指针，这样做为了防止方法作用域结束后的局部变量的释放。</p>
+<p>strcpy是个复制char数组的函数。</p>
+<ol start="11">
+<li><p>在CSharpDemo项目中CPPDLL类中补充代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:cpp;gutter:true;&quot;&gt;[DllImport(&quot;CSharpInvokeCPP.CPPDemo.dll&quot;)]</span><br><span class="line">public static extern IntPtr Create(string name, int age);</span><br><span class="line"></span><br><span class="line">[StructLayout(LayoutKind.Sequential)]</span><br><span class="line">public struct User</span><br><span class="line">&#123;</span><br><span class="line">    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]</span><br><span class="line">    public string Name;</span><br><span class="line"></span><br><span class="line">    public int Age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>其中这里的结构User就和C++中的User对应。</p>
+<ol start="12">
+<li><p>在Program.cs中补充代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:cpp;gutter:true;&quot;&gt;IntPtr ptr = CPPDLL.Create(&quot;李平&quot;, 27);</span><br><span class="line">&lt;strong&gt;&lt;font color=&quot;#ff0000&quot;&gt;CPPDLL.User user = (CPPDLL.User)Marshal.PtrToStructure(ptr, typeof(CPPDLL.User));&lt;/font&gt;&lt;/strong&gt;</span><br><span class="line">Console.WriteLine(&quot;Name: &#123;0&#125;, Age: &#123;1&#125;&quot;, user.Name, user.Age);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注意：红色字体部分，这里结构指针首先转换成IntPtr句柄，然后通过Marshal.PtrToStructrue转换成你所需要的结构。</p>
+<p>运行结果：</p>
+<p><a href="http://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103310047394166.png" target="_blank" rel="noopener"><img src="https://images.cnblogs.com/cnblogs_com/liping13599168/201103/201103310047392148.png" alt="image" title="image"></a> </p>
+<p>最后附上我的源代码：<a href="http://files.cnblogs.com/liping13599168/CSharpInvokeCPP.rar" target="_blank" rel="noopener">CSharpInvokeCPP.rar</a>，希望对大家有所帮助：）<br></p>
+
+          
         
       
     </div>
@@ -1101,7 +1130,7 @@ string ss = Marshal.PtrToStringAnsi(pBuffer);
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/09/04/Managed Debugging Assistant &#39;PInvokeStackImbalance&#39; has detected a problem in 解决方案/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/3b65b7ea.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1120,7 +1149,7 @@ string ss = Marshal.PtrToStringAnsi(pBuffer);
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/04/Managed Debugging Assistant &#39;PInvokeStackImbalance&#39; has detected a problem in 解决方案/" itemprop="url">Managed Debugging Assistant 'PInvokeStackImbalance' has detected a problem in 解决方案</a></h1>
+                <a class="post-title-link" href="/post/3b65b7ea.html" itemprop="url">Managed Debugging Assistant 'PInvokeStackImbalance' has detected a problem in 解决方案</a></h1>
         
 
         <div class="post-meta">
@@ -1172,15 +1201,12 @@ string ss = Marshal.PtrToStringAnsi(pBuffer);
       
         
           
-          because regular C functions work differently than the Windows API functions; their “calling conventions” are different, meaning how they pass around p
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/04/Managed Debugging Assistant &#39;PInvokeStackImbalance&#39; has detected a problem in 解决方案/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>because regular C functions work differently than the Windows API functions; their “calling conventions” are different, meaning how they pass around parameters is different. (This was hinted at in the error.)</p>
+<p>所以请在C#中 使用<code></code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;default prettyprint prettyprinted&quot;&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;pre class=&quot;default prettyprint prettyprinted&quot;&gt;`````&lt;/pre&gt;&lt;/pre&gt;
+</code></pre>
+          
         
       
     </div>
@@ -1227,7 +1253,7 @@ string ss = Marshal.PtrToStringAnsi(pBuffer);
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/09/01/Unable to find manifest signing certificate in the certificate store/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/2b91753e.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1246,7 +1272,7 @@ string ss = Marshal.PtrToStringAnsi(pBuffer);
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/01/Unable to find manifest signing certificate in the certificate store/" itemprop="url">Unable to find manifest signing certificate in the certificate store</a></h1>
+                <a class="post-title-link" href="/post/2b91753e.html" itemprop="url">Unable to find manifest signing certificate in the certificate store</a></h1>
         
 
         <div class="post-meta">
@@ -1298,18 +1324,12 @@ string ss = Marshal.PtrToStringAnsi(pBuffer);
       
         
           
-          方法一：把DEF项目的属性-&gt;Signing选项-&gt;Sign the ClickOnce manifests 勾去掉，这样就可以编绎通过了；
-方法二：用记事本打开 *.csproj文件 ，删除下面四句代码：
-    …    …     …     …
-如果你的项目没有经过发布，就不会有
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/01/Unable to find manifest signing certificate in the certificate store/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p><strong>方法一：把DEF项目的属性-&gt;Signing选项-&gt;Sign the ClickOnce manifests 勾去掉，这样就可以编绎通过了；</strong></p>
+<p><strong>方法二：用记事本打开 *.csproj文件 ，删除下面四句代码：</strong></p>
+<p><strong>    <manifestcertificatethumbprint>…</manifestcertificatethumbprint><br>    <manifestkeyfile>…</manifestkeyfile>     <generatemanifests>…</generatemanifests>     <signmanifests>…</signmanifests></strong></p>
+<p><strong>如果你的项目没有经过发布，就不会有以上问题出现</strong></p>
+
+          
         
       
     </div>
@@ -1356,7 +1376,7 @@ string ss = Marshal.PtrToStringAnsi(pBuffer);
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/09/01/Windows服务器PHPstudy配置安装微擎教程/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/6d61f09e.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1375,7 +1395,7 @@ string ss = Marshal.PtrToStringAnsi(pBuffer);
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/01/Windows服务器PHPstudy配置安装微擎教程/" itemprop="url">Windows服务器PHPstudy配置安装微擎教程</a></h1>
+                <a class="post-title-link" href="/post/6d61f09e.html" itemprop="url">Windows服务器PHPstudy配置安装微擎教程</a></h1>
         
 
         <div class="post-meta">
@@ -1427,15 +1447,23 @@ string ss = Marshal.PtrToStringAnsi(pBuffer);
       
         
           
-          此教程只适于无环境的新服务器，有环境请勿安装用电脑上面的远程桌面连接登陆服务器。1，下载微擎安装包，下载PHPstudy，下载V9运行库。安装PHPstudy。安装V9运行库。准备好3个。 &lt;ignore_js_op&gt; v9运行库.exe (3.94 MB, 下载次数: 5681) 、下
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/01/Windows服务器PHPstudy配置安装微擎教程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p><span style="font-size: medium;"><span style="color: #ff0000;">此教程只适于无环境的新服务器，有环境请勿安装</span></span><br>用电脑上面的远程桌面连接登陆服务器。<br>1，下载微擎安装包，下载PHPstudy，下载V9运行库。安装PHPstudy。安装V9运行库。<br>准备好3个。 &lt;ignore_js_op&gt;<img src="http://bbs.we7.cc/static/image/filetype/binary.gif" alt=""> <span id="attach_30974"><a href="http://bbs.we7.cc/forum.php?mod=attachment&amp;aid=MzA5NzR8MzYwNDE1MTJ8MTUwNDIyOTIwNXwwfDIxNjY4" target="_blank" rel="noopener">v9运行库.exe</a> <span class="xg1">(3.94 MB, 下载次数: 5681) </span></span>、<a href="http://www.phpstudy.net/phpstudy/phpStudy20161103.zip" target="_blank" rel="noopener">下载PHPstudy</a>、<a href="http://www.we7.cc/download/WeEngine-Laster-Offline.zip" target="_blank" rel="noopener">下载微擎安装包</a>  </p>
+<p>&lt;ignore_js_op&gt;<img src="http://bbs.we7.cc/data/attachment/forum/201612/19/143759lw4n4pz9bata959i.jpg" alt=""><br>根据实际情况的盘符安装PHPstudy  </p>
+<p>&lt;ignore_js_op&gt;<img src="http://bbs.we7.cc/data/attachment/forum/201612/19/145346luunzhweuznouueu.jpg" alt=""><br>安装支持PHP5.3运行的V9运行库  </p>
+<p>&lt;ignore_js_op&gt;<img src="http://bbs.we7.cc/data/attachment/forum/201612/19/143914yintl99t99twlc9i.jpg" alt=""><br>2、调整php与mysql的参数  </p>
+<p>&lt;ignore_js_op&gt;<img src="http://bbs.we7.cc/data/attachment/forum/201612/19/153520bxdx0awxhjhl0hdl.jpg" alt=""><br>php参数修改为max_execution_time = 300<br>memory_limit = 512M<br>post_max_size = 50M<br>upload_max_filesize = 50M  </p>
+<p>&lt;ignore_js_op&gt;<img src="http://bbs.we7.cc/data/attachment/forum/201612/19/145347yiyl4qgg4rhfg9hy.png" alt=""><br>mysql参数修改为<br>key_buffer_size=512M<br>table_cache=512<br>tmp_table_size=50M  </p>
+<p>&lt;ignore_js_op&gt;<img src="http://bbs.we7.cc/data/attachment/forum/201612/19/145348iqrrv4nqnftn9e6q.png" alt=""><br>3、修改mysql的密码，原密码默认的是root  </p>
+<p>&lt;ignore_js_op&gt;<img src="http://bbs.we7.cc/data/attachment/forum/201612/19/145348xkiv7j0mr7jjiqwx.png" alt=""><br>提示验证密码，在弹出的框里输入密码，如图提示就说明密码正确，  </p>
+<p>&lt;ignore_js_op&gt;<img src="http://bbs.we7.cc/data/attachment/forum/201612/19/145348tsdfsjt33j3fl9ej.png" alt=""><br>4、开启openssl  </p>
+<p>&lt;ignore_js_op&gt;<img src="http://bbs.we7.cc/data/attachment/forum/201612/19/145349gg8zma3lb8m322p2.png" alt=""><br>5、建站-填上自己的域名，已经设置好自己的网站目录，点击新增  </p>
+<p>&lt;ignore_js_op&gt;<img src="http://bbs.we7.cc/data/attachment/forum/201612/19/145349bdinl1iuf1fqr88x.png" alt=""><br>点击左侧新增的站，然后保存设置  </p>
+<p>&lt;ignore_js_op&gt;<img src="http://bbs.we7.cc/data/attachment/forum/201612/19/145350ioxkyn063nup0u6q.png" alt=""><br>把离线包复制到建站时设置的网站目录里面  </p>
+<p>&lt;ignore_js_op&gt;<img src="http://bbs.we7.cc/data/attachment/forum/201612/19/145350oyds7rgbgttidw57.jpg" alt=""><br>6、访问域名/install.php安装，例：baidu.com/install.php  </p>
+<p>&lt;ignore_js_op&gt;<img src="http://bbs.we7.cc/data/attachment/forum/201612/19/145350x9mj3c2ocizj9mof.jpg" alt=""><br>安装后会提示您使用的系统是简易版，请注册云服务更新到完整版！<br>必须要做2步才能使用微擎：<br>1）注册站点（系统-注册站点）。<br>2）更新到最新版（系统-一键更新）。  </p>
+<p>注册站点和更新的教程<br><a href="http://www.le.com/ptv/vplay/26412122.html" target="_blank" rel="noopener">http://www.le.com/ptv/vplay/26412122.html</a></p>
+
+          
         
       
     </div>
@@ -1482,7 +1510,7 @@ string ss = Marshal.PtrToStringAnsi(pBuffer);
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/08/24/Windows环境搭建Red5流媒体服务器/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/3201274c.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1501,7 +1529,7 @@ string ss = Marshal.PtrToStringAnsi(pBuffer);
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/24/Windows环境搭建Red5流媒体服务器/" itemprop="url">Windows环境搭建Red5流媒体服务器</a></h1>
+                <a class="post-title-link" href="/post/3201274c.html" itemprop="url">Windows环境搭建Red5流媒体服务器</a></h1>
         
 
         <div class="post-meta">
@@ -1553,25 +1581,65 @@ string ss = Marshal.PtrToStringAnsi(pBuffer);
       
         
           
-          Windows环境搭建Red5流媒体服务器指南
-测试环境：Windows 7
-一、   **下载安装程序**
+            <p>Windows环境搭建Red5流媒体服务器指南</p>
+<p>测试环境：Windows 7</p>
+<p><strong>一、   **</strong>下载安装程序**</p>
+<ol>
+<li>red5-server 下载地址</li>
+</ol>
+<p><a href="https://github.com/Red5/red5-server/releases" target="_blank" rel="noopener">https://github.com/Red5/red5-server/releases</a></p>
+<ol>
+<li>JDK 下载地址</li>
+</ol>
+<p><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
+<ol>
+<li>red5示例（如oflaDemo）下载地址，要FQ</li>
+</ol>
+<p><a href="http://red5.googlecode.com/svn/java/example/trunk/" target="_blank" rel="noopener">http://red5.googlecode.com/svn/java/example/trunk/</a></p>
+<ol>
+<li>flowplayer下载地址</li>
+</ol>
+<p><a href="https://codeload.github.com/flowplayer/flash/zip/release_3_2_18" target="_blank" rel="noopener">https://codeload.github.com/flowplayer/flash/zip/release_3_2_18</a></p>
+<p><a href="http://releases.flowplayer.org/flowplayer.rtmp/flowplayer.rtmp-3.2.13.swf" target="_blank" rel="noopener">http://releases.flowplayer.org/flowplayer.rtmp/flowplayer.rtmp-3.2.13.swf</a></p>
+<p><strong>二、   **</strong>安装JDK**</p>
+<p><strong>三、   **</strong>设置Java环境变量**</p>
+<p>1)       在桌面用鼠标右键点击“计算机”，在弹出的菜单中选择“属性”选项，弹出“系统属性”窗口；</p>
+<p>2)       在“系统属性”窗口，点击“高级”切换到高级系统设置Tab，然后点击</p>
+<p>“环境变量”按钮，弹出“环境变量”窗口；</p>
+<p>3)       在“环境变量”窗口，点击用户变量或者系统变更区域的“新建”按钮，弹出新建变量窗口，然后输入“变量名”：JAVA_HOME， “变量值”：C:\Program Files\Java\jdk1.8.0_51。</p>
+<pre><code>注：“变量值”这一栏主要填写的是你安装JDK的路径，这里根据个人的情况可能会有所不同。
+</code></pre><p>4)       上步结束之后，双击系统变量中的“Path”，在弹出的编辑系统变量窗口，</p>
+<p>在“变量值”一栏的最前面添加如下的路径：</p>
+<pre><code>%Java_Home%\bin;%Java_Home%\jre\bin;
 
-red5-server 下载地址
+也可以用完全路径，如：C:\Program Files\Java\jdk1.8.0_51\\bin;
+</code></pre><p><strong>四、   **</strong>安装red5**</p>
+<p>把下载的red5安装包解压（本指南下载的是Zip安装包），复制到要安装的目录，如F:\red5\Test\red5-server-1.0.5</p>
+<p>注意不要复制进 Program Files 这样中间有空格的文件夹下，有空格 启动路径就会被截断 报错 ： 错误: 找不到或无法加载主类 Files\red5-server</p>
+<p><strong>五、   **</strong>设置red5环境变量**</p>
+<p>根据设置Java环境变量的方法，添加red5_home和ClassPath</p>
+<p>变量名：red5_home</p>
+<p>变量值：F:\red5\Test\red5-server-1.0.5  （此处要根据你的安装目录调整）</p>
+<p>变量名：ClassPath</p>
+<p>变量值：.  （不配置此变量，或者此变更的值不是“.”，red5启动的过程会抛异常）</p>
+<p><strong>六、   **</strong>启动red5**</p>
+<p>双击“red5.bat”文件，启动red5。</p>
+<p><strong>七、   **</strong>测试red5是否部署成功**</p>
+<p>在浏览器中输入<a href="http://localhost:5080/，可成功打开，表示red5部署成功。" target="_blank" rel="noopener">http://localhost:5080/，可成功打开，表示red5部署成功。</a></p>
+<p>八、测试应用</p>
+<p>将下载的oflaDemo.war文件解压后，放到red5部署目录中的webapps目录，如F:\red5\Test\red5-server-1.0.5\webapps。本指南测试时将目录名改成了oflaDemo2。</p>
+<p>oflaDemo.war下载地址: <a href="http://pan.baidu.com/s/1hqAPl6O" target="_blank" rel="noopener">http://pan.baidu.com/s/1hqAPl6O</a></p>
+<p>重新启动red5服务器。</p>
+<p>然后在浏览器中访问<a href="http://localhost:5080/oflaDemo2/，成功打开后，播放页面中的视频，如果顺利播放，表示应用部署成功。" target="_blank" rel="noopener">http://localhost:5080/oflaDemo2/，成功打开后，播放页面中的视频，如果顺利播放，表示应用部署成功。</a></p>
+<p>注：如果在其它机器访问，将localhost改成服务器的IP即可。</p>
+<p><strong>九、   **</strong>在其它机器用FlowPlayer测试red5服务器上的视频播放**</p>
+<p>将测试示例拷到要测试的机器，修改示例中的red5服务器地址和视频文件名称，在浏览器上打开测试示例中的flowplayer.html文件，看视频是否正常播放。</p>
+<p>测试示例下载地址：<a href="http://pan.baidu.com/s/1dD8n8jf" target="_blank" rel="noopener">http://pan.baidu.com/s/1dD8n8jf</a></p>
+<p>参考文章：</p>
+<p>win7下配置java 环境变量<br><a href="http://www.cnblogs.com/zhj5chengfeng/archive/2013/01/01/2841253.html" target="_blank" rel="noopener">http://www.cnblogs.com/zhj5chengfeng/archive/2013/01/01/2841253.html</a></p>
+<p>搭建Windows Red5流媒体服务器详解<br><a href="http://blog.csdn.net/keepingstudying/article/details/41980961" target="_blank" rel="noopener">http://blog.csdn.net/keepingstudying/article/details/41980961</a></p>
 
-https://github.com/Red5/red5-server/releases
-
-JDK 下载地址
-
-http://www.oracle.co
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/24/Windows环境搭建Red5流媒体服务器/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1634,105 +1702,108 @@ http://www.oracle.co
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
-            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+
           
-            <p class="site-author-name" itemprop="name">庞国明</p>
-            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives">
-            
-                <span class="site-state-item-count">420</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">267</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>GitHub</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
-                  
-                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -1749,12 +1820,9 @@ http://www.oracle.co
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">庞国明</span>
 
@@ -1762,11 +1830,17 @@ http://www.oracle.co
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
@@ -1786,6 +1860,8 @@ http://www.oracle.co
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -1820,53 +1896,61 @@ http://www.oracle.co
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
 
-
-
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1892,6 +1976,23 @@ http://www.oracle.co
 
   
 
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
 
 
 
@@ -2221,11 +2322,27 @@ http://www.oracle.co
 
 
 
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
 
   
 
   
 
+  
+
+  
   
 
   

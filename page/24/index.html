@@ -45,38 +45,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT">
@@ -84,11 +73,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
 
 
 
@@ -113,11 +97,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -153,30 +137,6 @@
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-	<div id="topnavbar">
-  <div class="tophead">
-    <div class="toplogo"><a href="/">庞国明-博客</a></div>
-    <div id="mnav">
-      <h2><span class="navicon"></span></h2>
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </div>
-    <nav class="topnav" id="topnav">
-      <ul>
-        <li><a href="/">博客</a></li>
-        <li><a href="/course.html">文档教程</a></li>
-        <li><a href="/video.html">视频教程</a></li>
-        <li><a href="/code.html">源码分享</a></li>
-        <li><a href="/about.html">关于我</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
 
   
   
@@ -230,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -250,12 +220,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            关于
+            归档
           </a>
         </li>
       
@@ -278,20 +248,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -324,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/11/07/SonarQube代码质量管理平台 的安装、配置与使用/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/4a41c053.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -343,7 +319,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/07/SonarQube代码质量管理平台 的安装、配置与使用/" itemprop="url">SonarQube代码质量管理平台 的安装、配置与使用</a></h1>
+                <a class="post-title-link" href="/post/4a41c053.html" itemprop="url">SonarQube代码质量管理平台 的安装、配置与使用</a></h1>
         
 
         <div class="post-meta">
@@ -395,15 +371,8 @@
       
         
           
-          SonarQube是管理代码质量一个开放平台，可以快速的定位代码中潜在的或者明显的错误，下面将会介绍一下这个工具的安装、配置以及使用。准备工作；1、jdk（不再介绍）2、sonarqube：http://www.sonarqube.org/downloads/3、SonarQube+Scanner:
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/07/SonarQube代码质量管理平台 的安装、配置与使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div id="cnblogs_post_body"><br><br>SonarQube是管理代码质量一个开放平台，可以快速的定位代码中潜在的或者明显的错误，下面将会介绍一下这个工具的安装、配置以及使用。<br><br>准备工作；<br><br>1、jdk（不再介绍）<br><br>2、sonarqube：<a href="http://www.sonarqube.org/downloads/" target="_blank" rel="noopener">http://www.sonarqube.org/downloads/</a><br><br>3、SonarQube+Scanner:<a href="https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-2.5.zip" target="_blank" rel="noopener">https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-2.5.zip</a><br><br>4、mysql数据库（不再介绍）<br><br># 一、安装篇<br><br>1.下载好sonarqube后，解压打开bin目录，启动相应OS目录下的StartSonar。如本文演示使用的是win的64位系统，则打开D:\sonar\sonarqube-5.3\sonarqube-5.3\bin\windows-x86-64\StartSonar.bat<br><br>2.启动浏览器，访问<a href="http://localhost:9000，如出现下图则表示安装成功。" target="_blank" rel="noopener">http://localhost:9000，如出现下图则表示安装成功。</a><br><br><img src="http://pangguoming.com/blog/images/df22e553-442f-4e7f-862f-55b0613900fd.png" alt=""><br><br># 二、配置篇<br><br>1.打开mysql，新建一个数据库。<br><br>2.打开sonarqube安装目录下的D:\sonar\sonarqube-5.3\sonarqube-5.3\conf\sonar.properties文件<br><br>3.在mysql5.X节点下输入以下信息<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sonar.jdbc.url=jdbc:mysql://172.16.30.228:3306/qjfsonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance</span><br><span class="line">sonar.jdbc.username=gmsd</span><br><span class="line">sonar.jdbc.password=gmsdtrade</span><br><span class="line">sonar.sorceEncoding=UTF-8</span><br><span class="line">sonar.login=admin</span><br><span class="line">sonar.password=admin</span><br></pre></td></tr></table></figure><br><br>url是数据库连接地址，username是数据库用户名，jdbc.password是数据库密码，login是sonarqube的登录名，sonar.password是sonarqube的密码<br><br>4.重启sonarqube服务，再次访问<a href="http://localhost:9000，会稍微有点慢，因为要初始化数据库信息" target="_blank" rel="noopener">http://localhost:9000，会稍微有点慢，因为要初始化数据库信息</a><br><br>5.数据库初始化成功后，登录<br><br>6.按照下图的点击顺序，进入插件安装页面<br><br><img src="http://pangguoming.com/blog/images/173fdbcc-f46d-45ed-a307-8d0c261e2dfa.png" alt=""><br><br>7.搜索chinese Pack，安装中文语言包<br><br><img src="http://pangguoming.com/blog/images/8a063ee6-3a6b-4450-836c-0073cd5f8325.png" alt=""><br><br>8.安装成功后，重启sonarqube服务，再次访问<a href="http://localhost:9000/，即可看到中文界面" target="_blank" rel="noopener">http://localhost:9000/，即可看到中文界面</a><br><br><img src="http://pangguoming.com/blog/images/2d2c5a81-8c07-434c-a5fa-624f93010f82.png" alt=""><br><br># 三、使用篇<br><br>1.打开D:\sonar\sonar-scanner-2.5\conf\sonar-runner.properties文件<br><br>2.mysql节点下输入以下信息<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sonar.jdbc.url=jdbc:mysql://172.16.30.228:3306/qjfsonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance</span><br><span class="line">sonar.jdbc.username=gmsd</span><br><span class="line">sonar.jdbc.password=gmsdtrade</span><br></pre></td></tr></table></figure><br><br>注意：如果测试项目与服务器不在同一台机子，则需要添加服务器的IP：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#----- Default SonarQube server</span><br><span class="line">sonar.host.url=http://XXX.XXX.XXX.XXX:9000</span><br></pre></td></tr></table></figure><br><br>3.配置环境变量<br><br>a.新建变量，name=SONAR_RUNNER_HOME。value=D:\sonar\sonar-scanner-2.5<br><br>b.打开path，输入%SONAR_RUNNER_HOME%\bin;<br><br>c.sonar-runner -version，出现以下信息，则表示环境变量设置成功<br><br><img src="http://pangguoming.com/blog/images/06dcfe28-e1e1-4609-9ddc-5666d021fb08.png" alt=""><br><br>4.打开要进行代码分析的项目根目录，新建sonar-project.properties文件<br><br>5.输入以下信息<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># must be unique in a given SonarQube instance</span><br><span class="line">sonar.projectKey=my:project</span><br><span class="line"># this is the name displayed in the SonarQube UI</span><br><span class="line">sonar.projectName=apiautocore</span><br><span class="line">sonar.projectVersion=1.0</span><br><span class="line"></span><br><span class="line"># Path is relative to the sonar-project.properties file. Replace &quot;\&quot; by &quot;/&quot; on Windows.</span><br><span class="line"># Since SonarQube 4.2, this property is optional if sonar.modules is set. </span><br><span class="line"># If not set, SonarQube starts looking for source code from the directory containing </span><br><span class="line"># the sonar-project.properties file.</span><br><span class="line">sonar.sources=src</span><br><span class="line"></span><br><span class="line"># Encoding of the source code. Default is default system encoding</span><br><span class="line">#sonar.sourceEncoding=UTF-8</span><br></pre></td></tr></table></figure><br><br>其中：projectName是项目名字，sources是源文件所在的目录<br><br>6.设置成功后，启动sonarqube服务，并启动cmd<br><br>7.在cmd进入项目所在的根目录，输入命令：sonar-runner，分析成功后会出现下图<br><br><img src="http://pangguoming.com/blog/images/3345ecca-2668-4033-ba54-9e384b0e873e.png" alt=""><br><br>8.打开<a href="http://localhost:9000/，我们会看到主页出现了分析项目的概要图" target="_blank" rel="noopener">http://localhost:9000/，我们会看到主页出现了分析项目的概要图</a><br><br><img src="http://pangguoming.com/blog/images/7681af83-6344-4aba-ada8-a1ce85afb223.png" alt=""><br><br>9.我们点击项目，选择问题链接，会看到分析代码的bug，哇，好多<br><br><img src="http://pangguoming.com/blog/images/13d4c587-7448-4e4d-b72a-031497118035.png" alt=""><br><br>10.选择一个最严重的bug，看看<br><br><img src="http://pangguoming.com/blog/images/5461e416-e623-4dba-9583-5ab1163b0e21.png" alt=""><br><br>原来是这个地方会出现空指针异常，原因是我没有进行初始化就使用这个变量了。Over<br><br>预知更多使用，请登录官网自行学习。<br><br><a href="http://www.sonarqube.org/" target="_blank" rel="noopener">http://www.sonarqube.org/</a><br><br><a href="http://docs.sonarqube.org/display/SONAR/Analyzing+with+SonarQube+Scanner" target="_blank" rel="noopener">http://docs.sonarqube.org/display/SONAR/Analyzing+with+SonarQube+Scanner</a><br><br><div>作者：乔叶叶 博客地址：<a href="http://www.cnblogs.com/qiaoyeye/" target="_blank" rel="noopener">http://www.cnblogs.com/qiaoyeye/</a><br><div>本文版权归作者和博客园共有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。</div></div></div>
+          
         
       
     </div>
@@ -450,7 +419,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/11/07/SVN jsvnadmin 安装与基本使用/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/c155c7a0.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -469,7 +438,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/07/SVN jsvnadmin 安装与基本使用/" itemprop="url">SVN jsvnadmin 安装与基本使用</a></h1>
+                <a class="post-title-link" href="/post/c155c7a0.html" itemprop="url">SVN jsvnadmin 安装与基本使用</a></h1>
         
 
         <div class="post-meta">
@@ -521,17 +490,34 @@
       
         
           
-          1. jsvnadmin  介绍   
-https://code.google.com/p/jsvnadmin/
-Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。安装好Svn服务器端好，把Svn Admin部署好，就可以通过web浏览器管理Svn的项目，管理项目的用户，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/07/SVN jsvnadmin 安装与基本使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p><strong>1. jsvnadmin  介绍   
+</strong><a href="https://code.google.com/p/jsvnadmin/" target="_blank" rel="noopener">https://code.google.com/p/jsvnadmin/</a></p>
+<p>Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。安装好Svn服务器端好，把Svn Admin部署好，就可以通过web浏览器管理Svn的项目，管理项目的用户，管理项目的权限。使得管理配置Svn简便，再也不需要每次都到服务器手工修改配置文件。</p>
+<ul>
+<li>多数据库：Svn项目配置数据保存在数据库，支持所有数据库（默认MySQL/Oracle/SQL Server）。</li>
+<li>多操作系统：支持Window,Linux等操作系统。</li>
+<li>权限控制：管理员可以随意分配权限、项目管理员可以管理项目成员、成员只能查看和修改自己的密码。</li>
+<li>支持多项目、多用户、多用户组Group（默认带有“项目管理组”、“项目开发组”、“项目测试组”）。</li>
+<li>安全：密码加密保存。</li>
+<li>多协议：支持svn协议和http协议(从2.0开始支持Apache服务器单库方式，从3.0开始支持Apache多库方式)</li>
+<li>仓库浏览(从3.0.2开始)</li>
+<li>多语言(从3.0.2开始)</li>
+</ul>
+<p><strong>2.svnadmin下载地址   
+</strong><a href="https://jsvnadmin.googlecode.com/files/svnadmin-3.0.5.zip" target="_blank" rel="noopener">https://jsvnadmin.googlecode.com/files/svnadmin-3.0.5.zip</a>  ,解压后有svnadmin.war和db数据库文件</p>
+<p><strong>3.安装MySQL，JDK，Tomcat，SVN  
+</strong></p>
+<p>安装Mysql   <a href="http://blog.csdn.net/zsg88/article/details/75269457" target="_blank" rel="noopener">http://blog.csdn.net/zsg88/article/details/75269457</a></p>
+<p>安装JDK   <a href="http://blog.csdn.net/zsg88/article/details/75208710" target="_blank" rel="noopener">http://blog.csdn.net/zsg88/article/details/75208710</a></p>
+<p>安装TOMCAT   <a href="http://blog.csdn.net/zsg88/article/details/74906718" target="_blank" rel="noopener">http://blog.csdn.net/zsg88/article/details/74906718</a> </p>
+<p>安装SVN   <a href="http://blog.csdn.net/zsg88/article/details/75269156" target="_blank" rel="noopener">http://blog.csdn.net/zsg88/article/details/75269156</a></p>
+<p><strong>4. 安装Apache</strong></p>
+<h1 id="yum-install-httpd-httpd-devel"><a href="#yum-install-httpd-httpd-devel" class="headerlink" title="yum install httpd httpd-devel"></a>yum install httpd httpd-devel</h1><h1 id="service-httpd-start"><a href="#service-httpd-start" class="headerlink" title="service httpd start"></a>service httpd start</h1><h1 id="chkconfig-httpd-on"><a href="#chkconfig-httpd-on" class="headerlink" title="chkconfig httpd on"></a>chkconfig httpd on</h1><h1 id="vi-etc-httpd-conf-httpd-conf"><a href="#vi-etc-httpd-conf-httpd-conf" class="headerlink" title="vi /etc/httpd/conf/httpd.conf"></a>vi /etc/httpd/conf/httpd.conf</h1><p>找到 ServerName 并修改成 </p>
+<p>ServerName localhost:80</p>
+<p>防火墙中打开 80 端口： </p>
+<h1 id="vi-etc-sysconfig-iptables"><a href="#vi-etc-sysconfig-iptables" class="headerlink" title="vi /etc/sysconfig/iptables"></a>vi /etc/sysconfig/iptables</h1><div class="dp-highlighter bg_java"><br><div class="bar"><br><div class="tools"><strong>[java]</strong> <a href="http://blog.csdn.net/zsg88/article/details/75269411#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/zsg88/article/details/75269411#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  -A INPUT -m state –state NEW -m tcp -p tcp –dport <span class="number">80 -j ACCEPT   </span><br><br># service iptables restart<br><br><img src="http://pangguoming.com/blog/images/9e4bb48c-0a4a-421a-b8f0-2735b47df570.jpg" alt=""><br><br><strong>5.安装mod_dav_svn模块，使用http协议访问svn</strong><br><br># yum install mod_dav_svn<br><br>重启apache<br><br># service httpd restart<br><br>查看测试是否安装 svn 模块<br><br># ls /etc/httpd/modules/ | grep svn<br><br><img src="http://pangguoming.com/blog/images/4f70145e-10f0-4583-aac0-571acfd5c27f.jpg" alt=""><br><br><strong>6.创建 svn 库主目录（多库模式，一份配置文件管理多个库） </strong><br><br># mkdir /svn/<br><br>  编辑 /etc/httpd/conf/httpd.conf 文件<br><br># vi  /etc/httpd/conf/httpd.conf<br><br>添加以下内容<br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/zsg88/article/details/75269411#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/zsg88/article/details/75269411#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="tag">&lt;<span class="tag-name">Location /svn<span class="tag">/&gt;  </span></span></span><br>2.  DAV svn<br>3.  SVNListParentPath on<br>4.  SVNParentPath /svn<br>5.  AuthType Basic<br>6.  AuthName “subversion repository”<br>7.  AuthUserFile /svn/passwd.http<br>8.  AuthzSVNAccessFile /svn/authz<br>9.  Require valid-user<br>10.  <span class="tag">&lt;/<span class="tag-name">Location<span class="tag">&gt;  </span></span></span><br><br> &lt;Location /svn&gt;中的”/svn”表示我们的svn的访问URL为”<a href="http://ip/svn&quot;" target="_blank" rel="noopener">http://ip/svn&quot;</a><br><br>“DAV svn”表示使用”mod_dav_svn”模块，dav是一种http 1.1扩展协议，mod_dav_svn只是该协议的一种应用。<br><br>SVNListParentPath on  多库特有<br><br>SVNParentPath /svn  多版本库时的共同目录，与单版本的不同<br><br>AuthName 表示输入用户名和密码时的提示信息<br><br>AuthType 认证类型，这里我们使用基本的认证类型<br><br>AuthUserFile 表示认证文件的位置，我们待会创建它。 passwd.http 和 jsvnadmin中使用的文件保持一致<br><br>AuthzSVNAccessFile是权限控制文件，单个版本库可要可不要，多个版本库要设置不同版本库的权限。authz 和 jsvnadmin中使用的文件保持一致<br><br>创建/svn/passwd.http和/svn/authz<br># touch /svn/passwd.http<br># touch /svn/authz<br>重启apache<br># service httpd restart<br><br>7.创建svnadmin数据库并导入相应数据（UTF-8编码）<br><br>执行db/mysql5.sql 和db/lang/en.sql<br><br><strong>8 解压svnadmin.war </strong><br><br>cd /usr/local/program/tomcat8/webapps<br><br>unzip /home/zsg/Downloads/svnadmin.war -d svnadmin<br><br><strong>9.编辑jdbc配置文件</strong><br><br># cd svnadmin/WEB-INF<br># vi jdbc.properties<br><br><div class="dp-highlighter bg_java"><br><div class="bar"><br><div class="tools"><strong>[java]</strong> <a href="http://blog.csdn.net/zsg88/article/details/75269411#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/zsg88/article/details/75269411#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  db=MySQL<br>2.  #MySQL<br>3.  MySQL.jdbc.driver=com.mysql.jdbc.Driver<br>4.  MySQL.jdbc.url=jdbc:mysql:<span class="comment">//127.0.0.1:3306/svnadmin?characterEncoding=utf-8  </span><br>5.  MySQL.jdbc.username=root<br>6.  MySQL.jdbc.password=<span class="number">123456  </span><br><br><strong>10.启动tomcat</strong><br><br>浏览器中打开：<a href="http://ip：端口/svnadmin/" target="_blank" rel="noopener">http://ip：端口/svnadmin/</a><br><br><img src="http://pangguoming.com/blog/images/59a9f62e-745d-45b9-a965-1169d063e1f6.jpg" alt=""><br><br><img src="http://pangguoming.com/blog/images/df726001-800c-4172-85de-2a9182a3632b.jpg" alt=""><br><br><strong>11 创建项目</strong><br><br><img src="http://pangguoming.com/blog/images/a6c2e32e-8ad6-4195-adc8-d4e14a33dd8b.jpg" alt=""><br><br>/svn/目录下会创建一个abc的SVN库目录。<br>同时也会多出一个httpd.conf文件,内容就是我们步骤6中添加的内容。<br><br>/svn/authz 授权文件中会多出如下内容：<br><br><div class="dp-highlighter bg_java"><br><div class="bar"><br><div class="tools"><strong>[java]</strong> <a href="http://blog.csdn.net/zsg88/article/details/75269411#" title="view plain" target="_blank" rel="noopener">view plain</a><span class="tracking-ad" data-mod="popu_168"><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/zsg88/article/details/75269411#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  [aliases]<br>2.  [groups]<br>3.  abc_developer=<br>4.  abc_manager=admin<br>5.  abc_tester=<br>6.<br>7.  [abc:/]<br>8.  <span class="annotation">@abc_manager=rw  </span><br><br> 以上过程其实是调用了svn对应的命令做了相应的操作。<br><br><strong>12 配置库目录权限</strong><br><br>查看vi /etc/httpd/conf/httpd.conf<br><br>我们发现，apache的用户是apache，用户组是apache<br><br><img src="http://pangguoming.com/blog/images/a82ac6cf-1548-4dea-aadf-02c83b0611a8.jpg" alt=""><br><br>我们需要给新建的工程目录给apache用户授予权限。<br><br># cd /svn<br># chown -R apache.apache abc<br># chmod -R 777 abc<br>（如创建新库，需要对新建的库目录执行以上两步授权操作）<br>关闭SELinux（Linux的访问控制）<br>修改/etc/selinux/config 文件<br># vi /etc/selinux/config<br>将SELINUX=enforcing改为SELINUX=disabled<br>重启机器即可<br># reboot<br><br><img src="http://pangguoming.com/blog/images/fe5bdc7a-b38e-4fee-adf9-45679239cce8.jpg" alt=""><br><br><strong>13 先安装SVN管理客户端TortoiseSVN</strong><br><br><a href="http://tortoisesvn.net/downloads.html" target="_blank" rel="noopener">http://tortoisesvn.net/downloads.html</a>  （注意64位系统要安装64位版）<br><br>安装后输入项目库地址，输入帐号密码<br><br><img src="http://pangguoming.com/blog/images/3a084b79-0cfb-4f9e-85d2-b76dc44d359d.jpg" alt=""><br><br><strong>14接下来可以对wusc_edu库进行相应的操作</strong><br><br><strong>  
+</strong>(1)<br>用户组<br><br><img src="http://pangguoming.com/blog/images/d13345d4-ff18-4139-b2fc-3d5a8d2b8584.jpg" alt=""><br>(2)<br>用户<br><br><img src="http://pangguoming.com/blog/images/227d9c6d-7427-4848-a7d9-e28a0e00060c.jpg" alt=""><br>(3)<br>授权<br><br><img src="http://pangguoming.com/blog/images/c59127f7-ca34-425f-a5c1-237ed93053df.jpg" alt=""><br>(4)<br>导入项目<br><br><img src="http://pangguoming.com/blog/images/8143ff41-d806-4fbc-b72f-aaf09758b9c6.jpg" alt=""><br><br>引自 <a href="http://blog.csdn.net/RobertoHuang/article/details/55505879" target="_blank" rel="noopener">http://blog.csdn.net/RobertoHuang/article/details/55505879</a><br><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -578,7 +564,7 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/10/24/Loadrunner视频教程汇总/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/57253b6d.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -597,7 +583,7 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/24/Loadrunner视频教程汇总/" itemprop="url">Loadrunner视频教程汇总</a></h1>
+                <a class="post-title-link" href="/post/57253b6d.html" itemprop="url">Loadrunner视频教程汇总</a></h1>
         
 
         <div class="post-meta">
@@ -649,15 +635,8 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
       
         
           
-          小布老师视频:测试工具概述，兼LoadRunner介绍 -1-4http://www.boobooke.com/v/bbk1046http://www.boobooke.com/v/bbk1046.ziphttp://www.boobooke.com/v/bbk1047http://www.boob
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/24/Loadrunner视频教程汇总/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <div>小布老师视频:<br><a href=""><span style="text-decoration: underline;"><strong>测试</strong></span></a>工具概述，兼<a href=""><span style="text-decoration: underline;"><strong>LoadRunner</strong></span></a>介绍 -1-4<br><a href="http://www.boobooke.com/v/bbk1046" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1046</a><br><a href="http://www.boobooke.com/v/bbk1046.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1046.zip</a><br><a href="http://www.boobooke.com/v/bbk1047" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1047</a><br><a href="http://www.boobooke.com/v/bbk1047.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1047.zip</a><br><a href="http://www.boobooke.com/v/bbk1048" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1048</a><br><a href="http://www.boobooke.com/v/bbk1048.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1048.zip</a><br><a href="http://www.boobooke.com/v/bbk1055" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1055</a><br><a href="http://www.boobooke.com/v/bbk1055.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1055.zip</a><br>LR系列培训视频  - LoadRunner概述(上下)<br><a href="http://www.boobooke.com/v/bbk1059" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1059</a><br><a href="http://www.boobooke.com/v/bbk1059.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1059.zip</a><br><a href="http://www.boobooke.com/v/bbk1060" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1060</a><br><a href="http://www.boobooke.com/v/bbk1060.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1060.zip</a><br>LR系列培训视频  - LoadRunner安装<br><a href="http://www.boobooke.com/v/bbk1061" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1061</a><br><a href="http://www.boobooke.com/v/bbk1061.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1061.zip</a><br>LR系列培训视频  - 录制和回放测试脚本(1-3)<br><a href="http://www.boobooke.com/v/bbk1063" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1063</a><br><a href="http://www.boobooke.com/v/bbk1063.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1063.zip</a><br><a href="http://www.boobooke.com/v/bbk1064" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1064</a><br><a href="http://www.boobooke.com/v/bbk1064.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1064.zip</a><br><a href="http://www.boobooke.com/v/bbk1065" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1065</a><br><a href="http://www.boobooke.com/v/bbk1065.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1065.zip</a><br>LR系列培训视频 - LoadRunner测试Tuxedo应用系统 1-4<br><a href="http://www.boobooke.com/v/bbk1067" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1067</a><br><a href="http://www.boobooke.com/v/bbk1067.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1067.zip</a><br><a href="http://www.boobooke.com/v/bbk1068" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1068</a><br><a href="http://www.boobooke.com/v/bbk1068.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1068.zip</a><br><a href="http://www.boobooke.com/v/bbk1071" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1071</a><br><a href="http://www.boobooke.com/v/bbk1071.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1071.zip</a><br><a href="http://www.boobooke.com/v/bbk1072" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1072</a><br><a href="http://www.boobooke.com/v/bbk1072.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1072.zip</a><br>开源<a href=""><span style="text-decoration: underline;"><strong>性能测试</strong></span></a>工具Curl-Loader快速实战 - 1<br><a href="http://www.boobooke.com/v/bbk1808" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1808</a><br><a href="http://www.boobooke.com/v/bbk1808.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1808.zip</a><br>开源性能测试工具Curl-Loader快速实战 - 2<br><a href="http://www.boobooke.com/v/bbk1809" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1809</a><br><a href="http://www.boobooke.com/v/bbk1809.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1809.zip</a><br>开源性能测试工具Curl-Loader快速实战 - 3<br><a href="http://www.boobooke.com/v/bbk1835" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1835</a><br><a href="http://www.boobooke.com/v/bbk1835.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1835.zip</a><br>开源性能测试工具Curl-Loader快速实战 - 4<br><a href="http://www.boobooke.com/v/bbk1836" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1836</a><br><a href="http://www.boobooke.com/v/bbk1836.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1836.zip</a><br>使用LoadRunner测试<a href=""><span style="text-decoration: underline;"><strong>Oracle</strong></span></a>实例研究 - 1<br><a href="http://www.boobooke.com/v/bbk2159" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk2159</a><br><a href="http://www.boobooke.com/v/bbk2159.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk2159.zip</a><br>使用LoadRunner测试Oracle实例研究 - 2<br><a href="http://www.boobooke.com/v/bbk2170" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk2170</a><br><a href="http://www.boobooke.com/v/bbk2170.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk2170.zip</a><br>使用LoadRunner测试Oracle实例研究 - 3<br><a href="http://www.boobooke.com/v/bbk2171" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk2171</a><br><a href="http://www.boobooke.com/v/bbk2171.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk2171.zip</a><br><div>小强作品：<br>性能测试常见用语-性能测试基本概念剖析<br><a href="http://www.boobooke.com/v/bbk1577" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1577</a><br>1. lr目录分析<br><a href="http://www.boobooke.com/v/bbk1574" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1574</a><br>2.1 lr界面分析<br><a href="http://www.boobooke.com/v/bbk1735" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1735</a><br><a href="http://www.boobooke.com/v/bbk1735.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1735.zip</a><br>2.2 lr界面分析<br><a href="http://www.boobooke.com/v/bbk1736" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1736</a><br>2.3 lr界面分析<br><a href="http://www.boobooke.com/v/bbk1737" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1737</a><br>3 lr常用术语<br><a href="http://www.boobooke.com/v/bbk1620" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1620</a><br>4. hp <a href=""><span style="text-decoration: underline;"><strong>web</strong></span></a> tours 分析<br><a href="http://www.boobooke.com/v/bbk1762" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1762</a><br>5 lr录制测试脚本<br><a href="http://www.boobooke.com/v/bbk1763" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1763</a><br>6. lr回放测试脚本<br><a href="http://www.boobooke.com/v/bbk1764" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1764</a><br>7. HTML和URL比较<br><a href="http://www.boobooke.com/v/bbk1771" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1771</a><br>8. lr自动关联<br><a href="http://www.boobooke.com/v/bbk1778" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1778</a><br>9. lr测试脚本的增强方法<br><a href="http://www.boobooke.com/v/bbk1772" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1772</a><br>10. run time settings<br><a href="http://www.boobooke.com/v/bbk1782" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1782</a><br>11. lr脚本编写实践过程<br><a href="http://www.boobooke.com/v/bbk1781" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1781</a><br>小强作品：12 错误处理<br><a href="http://www.boobooke.com/v/bbk1776" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1776</a><br>小强作品：13 脚本调试<br><a href="http://www.boobooke.com/v/bbk1777" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1777</a><br>小强作品：14 <a href=""><span style="text-decoration: underline;"><strong>java</strong></span></a>虚拟用户<br><a href="http://www.boobooke.com/v/bbk1901" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1901</a><br>小强作品：15 调用dll<br><a href="http://www.boobooke.com/v/bbk1900" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1900</a><br>小强作品：16 lr录制sql脚本<br><a href="http://www.boobooke.com/v/bbk1526" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1526</a><br><a href="http://www.boobooke.com/v/bbk1526.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1526.zip</a><br>小强作品： HP Web Tour网站介绍<br><a href="http://www.boobooke.com/v/bbk1762" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1762</a><br><a href="http://www.boobooke.com/v/bbk1762.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1762.zip</a><br>小强作品：LoadRunner常用术语介绍<br><a href="http://www.boobooke.com/v/bbk1620" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1620</a><br><a href="http://www.boobooke.com/v/bbk1620.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1620.zip</a><br>小强作品：LoadRunner之Portmapping技术<br><a href="http://www.boobooke.com/v/bbk2163" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk2163</a><br>小强作品：性能分析基础知识<br><a href="http://www.boobooke.com/v/bbk2162" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk2162</a><br>小强作品： LoadRunner之结果分析<br><a href="http://www.boobooke.com/v/bbk2144" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk2144</a><br>小强作品：LoadRunner之Portmapping技术<br><a href="http://www.boobooke.com/v/bbk2163" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk2163</a><br>小强作品： LoadRunner之面向目标场景<br><a href="http://www.boobooke.com/v/bbk2168" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk2168</a><br>小强作品： LoadRunner之第一部分基础知识完结篇<br><a href="http://www.boobooke.com/v/bbk2201" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk2201</a><br><div><br><div>小歪作品：LoadRunner参数化之研究<br><a href="http://www.boobooke.com/v/bbk1617" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1617</a><br><a href="http://www.boobooke.com/v/bbk1617.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1617.zip</a><br>小歪作品：使用NMON监控系统性能<br><a href="http://www.boobooke.com/v/bbk1609" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1609</a><br><a href="http://www.boobooke.com/v/bbk1609.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1609.zip</a><br>小歪作品：LoadRunner关联之研究<br><a href="http://www.boobooke.com/v/bbk1586" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1586</a><br><a href="http://www.boobooke.com/v/bbk1586.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1586.zip</a><br><div>雪鹰老师：LoadRunner中如何手工编写ftp测试脚本<br><a href="http://www.boobooke.com/v/bbk1349" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1349</a><br><a href="http://www.boobooke.com/v/bbk1349.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1349.zip</a><br>雪鹰老师：LoadRunner中web_reg_find和web_find两个函数的区别。本系列讲座一共两集<br><a href="http://www.boobooke.com/v/bbk1333" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1333</a><br><a href="http://www.boobooke.com/v/bbk1333.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1333.zip</a><br><a href="http://www.boobooke.com/v/bbk1334" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1334</a><br><a href="http://www.boobooke.com/v/bbk1334.zip" target="_blank" rel="noopener">http://www.boobooke.com/v/bbk1334.zip</a></div></div></div></div></div>
+          
         
       
     </div>
@@ -704,7 +683,7 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/10/19/JS中判断null、undefined与NaN的方法/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/bea85f1f.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -723,7 +702,7 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/19/JS中判断null、undefined与NaN的方法/" itemprop="url">JS中判断null、undefined与NaN的方法</a></h1>
+                <a class="post-title-link" href="/post/bea85f1f.html" itemprop="url">JS中判断null、undefined与NaN的方法</a></h1>
         
 
         <div class="post-meta">
@@ -775,19 +754,12 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
       
         
           
-          写了个 str =”s”++;   
-然后出现Nan，找了一会。   
-收集资料如下判断：
-1.判断undefined:
-?1234var tmp = undefined; if (typeof(tmp) == “undefined”){ alert(“undefined”); }说明：typeof
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/19/JS中判断null、undefined与NaN的方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>写了个 str =”s”++;   </p>
+<p>然后出现Nan，找了一会。   </p>
+<p>收集资料如下判断：</p>
+<p>1.判断undefined:</p>
+<div class="jb51code"><br><div><br><div id="highlighter_526560" class="syntaxhighlighter  js"><br><div class="toolbar"><a href="http://www.jb51.net/article/48481.htm#" target="_blank" rel="noopener">?</a><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><div class="line number3 index2 alt2">3<br><div class="line number4 index3 alt1">4<br><br></div></div></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">tmp = undefined; </code><br><div class="line number2 index1 alt1"><code class="js keyword">if</code> <code class="js plain">(</code><code class="js keyword">typeof</code><code class="js plain">(tmp) == </code><code class="js string">“undefined”</code><code class="js plain">){ </code><br><div class="line number3 index2 alt2"><code class="js plain">alert(</code><code class="js string">“undefined”</code><code class="js plain">); </code><br><div class="line number4 index3 alt1"><code class="js plain">}</code><br><br></div></div></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br>说明：typeof 返回的是字符串，有六种可能：”number”、”string”、”boolean”、”object”、”function”、”undefined”<br><br>2.判断null:<br><br><div class="jb51code"><br><div><br><div id="highlighter_786771" class="syntaxhighlighter  js"><br><div class="toolbar"><a href="http://www.jb51.net/article/48481.htm#" target="_blank" rel="noopener">?</a><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><div class="line number3 index2 alt2">3<br><div class="line number4 index3 alt1">4<br><br></div></div></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">tmp = </code><code class="js keyword">null</code><code class="js plain">; </code><br><div class="line number2 index1 alt1"><code class="js keyword">if</code> <code class="js plain">(!tmp &amp;&amp; </code><code class="js keyword">typeof</code><code class="js plain">(tmp)!=</code><code class="js string">“undefined”</code> <code class="js plain">&amp;&amp; tmp!=0){ </code><br><div class="line number3 index2 alt2"><code class="js plain">alert(</code><code class="js string">“null”</code><code class="js plain">); </code><br><div class="line number4 index3 alt1"><code class="js plain">}</code><br><br></div></div></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br>3.判断NaN:<br><br><div class="jb51code"><br><div><br><div id="highlighter_6956" class="syntaxhighlighter  js"><br><div class="toolbar"><a href="http://www.jb51.net/article/48481.htm#" target="_blank" rel="noopener">?</a><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><div class="line number3 index2 alt2">3<br><div class="line number4 index3 alt1">4<br><br></div></div></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">tmp = 0/0; </code><br><div class="line number2 index1 alt1"><code class="js keyword">if</code><code class="js plain">(isNaN(tmp)){ </code><br><div class="line number3 index2 alt2"><code class="js plain">alert(</code><code class="js string">“NaN”</code><code class="js plain">); </code><br><div class="line number4 index3 alt1"><code class="js plain">}</code><br><br></div></div></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br>说明：如果把 NaN 与任何值（包括其自身）相比得到的结果均是 false，所以要判断某个值是否是 NaN，不能使用 == 或 === 运算符。<br><br>提示：isNaN() 函数通常用于检测 parseFloat() 和 parseInt() 的结果，以判断它们表示的是否是合法的数字。当然也可以用 isNaN() 函数来检测算数错误，比如用 0 作除数的情况。<br><br>4.判断undefined和null:<br><br><div class="jb51code"><br><div><br><div id="highlighter_392319" class="syntaxhighlighter  js"><br><div class="toolbar"><a href="http://www.jb51.net/article/48481.htm#" target="_blank" rel="noopener">?</a><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><div class="line number3 index2 alt2">3<br><div class="line number4 index3 alt1">4<br><div class="line number5 index4 alt2">5<br><br></div></div></div></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">tmp = undefined; </code><br><div class="line number2 index1 alt1"><code class="js keyword">if</code> <code class="js plain">(tmp== undefined) </code><br><div class="line number3 index2 alt2"><code class="js plain">{ </code><br><div class="line number4 index3 alt1"><code class="js plain">alert(</code><code class="js string">“null or undefined”</code><code class="js plain">); </code><br><div class="line number5 index4 alt2"><code class="js plain">}</code><br><br></div></div></div></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br><div class="jb51code"><br><div><br><div id="highlighter_212255" class="syntaxhighlighter  js"><br><div class="toolbar"><a href="http://www.jb51.net/article/48481.htm#" target="_blank" rel="noopener">?</a><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><div class="line number3 index2 alt2">3<br><div class="line number4 index3 alt1">4<br><div class="line number5 index4 alt2">5<br><br></div></div></div></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">tmp = undefined; </code><br><div class="line number2 index1 alt1"><code class="js keyword">if</code> <code class="js plain">(tmp== </code><code class="js keyword">null</code><code class="js plain">) </code><br><div class="line number3 index2 alt2"><code class="js plain">{ </code><br><div class="line number4 index3 alt1"><code class="js plain">alert(</code><code class="js string">“null or undefined”</code><code class="js plain">); </code><br><div class="line number5 index4 alt2"><code class="js plain">}</code><br><br></div></div></div></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br>说明：null==undefined<br><br><!--EndFragment--><br><br>5.判断undefined、null与NaN:<br><br><div class="jb51code"><br><div><br><div id="highlighter_125897" class="syntaxhighlighter  js"><br><div class="toolbar"><a href="http://www.jb51.net/article/48481.htm#" target="_blank" rel="noopener">?</a><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="gutter"><br><div class="line number1 index0 alt2">1<br><div class="line number2 index1 alt1">2<br><div class="line number3 index2 alt2">3<br><div class="line number4 index3 alt1">4<br><div class="line number5 index4 alt2">5<br><br></div></div></div></div></div></td><br><td class="code"><br><div class="container"><br><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">tmp = </code><code class="js keyword">null</code><code class="js plain">; </code><br><div class="line number2 index1 alt1"><code class="js keyword">if</code> <code class="js plain">(!tmp) </code><br><div class="line number3 index2 alt2"><code class="js plain">{ </code><br><div class="line number4 index3 alt1"><code class="js plain">alert(</code><code class="js string">“null or undefined or NaN”</code><code class="js plain">); </code><br><div class="line number5 index4 alt2"><code class="js plain">}</code><br><br></div></div></div></div></div></div></td><br><br></tr><br><br></tbody><br><br></table><br><br>提示：一般不那么区分就使用这个足够。<br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -834,7 +806,7 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/10/11/Intellij idea创建javaWeb以及Servlet简单实现/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/a9723ab8.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -853,7 +825,7 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/11/Intellij idea创建javaWeb以及Servlet简单实现/" itemprop="url">Intellij idea创建javaWeb以及Servlet简单实现</a></h1>
+                <a class="post-title-link" href="/post/a9723ab8.html" itemprop="url">Intellij idea创建javaWeb以及Servlet简单实现</a></h1>
         
 
         <div class="post-meta">
@@ -905,24 +877,34 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
       
         
           
-          准备：**1. 安装jdk1.7  
-
-安装tomcat1.8**  
-
-一、创建并设置javaweb工程  
-1.创建javaweb工程File –&gt; New –&gt; Project…
-  
-设置工程名字：  
-创建完成后工程结构如下：  
-2. Web工程设置2.1 在WEB-INF 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/11/Intellij idea创建javaWeb以及Servlet简单实现/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p><strong>准备：</strong><br>**1. 安装jdk1.7  </p>
+<ol start="2">
+<li>安装tomcat1.8**  </li>
+</ol>
+<p><strong>一、创建并设置javaweb工程</strong>  </p>
+<p><strong>1.创建javaweb工程</strong><br>File –&gt; New –&gt; Project…<br><img src="http://pangguoming.com/blog/images/aa09a028-6013-4ad9-9857-f1f728675d21.jpg" alt=""></p>
+<p><img src="http://pangguoming.com/blog/images/6c93a8ca-55d6-4ebc-bafe-bae4363715f0.jpg" alt="">  </p>
+<p>设置工程名字：<br><img src="http://pangguoming.com/blog/images/e705756d-cea1-44e3-a65a-4f848a7a338a.jpg" alt="">  </p>
+<p>创建完成后工程结构如下：<br><img src="http://pangguoming.com/blog/images/189c0656-2029-45fa-aede-2268ececd52d.jpg" alt="">  </p>
+<p><strong>2. Web工程设置</strong><br><strong>2.1 在WEB-INF 目录下点击右键，New –&gt; Directory，创建 classes 和 lib 两个目录</strong><br><img src="http://pangguoming.com/blog/images/038fee51-baff-43ac-b664-10fa7572a9bf.jpg" alt=""><br>classes目录用于存放编译后的class文件，lib用于存放依赖的jar包  </p>
+<p><strong>2.2 File –&gt; Project Structure…，进入 Project Structure窗口，点击 Modules –&gt; 选中项目“JavaWeb” –&gt; 切换到 Paths 选项卡 –&gt; 勾选 “Use module compile output path”，将 “Output path” 和 “Test output path” 都改为之前创建的classes目录</strong><br><img src="http://pangguoming.com/blog/images/0c9523b4-aee9-4d76-8703-42290ebb1a0e.jpg" alt=""><br>即将后面编译的class文件默认生成到classes目录下  </p>
+<p><strong>2.3 点击 Modules –&gt; 选中项目“JavaWeb” –&gt; 切换到 Dependencies 选项卡 –&gt; 点击右边的“+”，选择 “JARs or directories…”，选择创建的lib目录</strong><br><img src="http://pangguoming.com/blog/images/88006b88-c1ec-45a0-a2f9-8274e06b60de.jpg" alt=""><br><img src="http://pangguoming.com/blog/images/a96e7e69-3fa8-454d-976c-ca4a3a19fa00.jpg" alt="">  </p>
+<p>选择Jar Directory<br><img src="http://pangguoming.com/blog/images/057be014-3e8d-4d07-a239-792040c540f4.jpg" alt=""><br><img src="http://pangguoming.com/blog/images/73cdd4a1-0b5d-49db-9617-9a092a5f666d.jpg" alt="">  </p>
+<p><strong>2.4 配置打包方式Artifacts：点击 Artifacts选项卡，IDEA会为该项目自动创建一个名为“JavaWeb:war exploded”的打包方式，表示 打包成war包，并且是文件展开性的，输出路径为当前项目下的 out 文件夹，保持默认即可。另外勾选下“Build on make”，表示编译的时候就打包部署，勾选“Show content of elements”，表示显示详细的内容列表。</strong><br><img src="http://pangguoming.com/blog/images/71073042-ef63-4364-b77d-8387d71e6971.jpg" alt="">  </p>
+<p><strong>3. Tomcat配置</strong>  </p>
+<p><strong>3.1 Run -&gt; Edit Configurations，进入“Run Configurations”窗口，点击”+”-&gt; Tomcat Server -&gt; Local，创建一个新的Tomcat容器  
+</strong><img src="http://pangguoming.com/blog/images/1630e24a-0fc2-4464-a7b8-8ec03da13112.jpg" alt="">  </p>
+<p><strong>3.2 在”Name”处输入新的服务名，点击“Application server”后面的“Configure…”，弹出Tomcat Server窗口，选择本地安装的Tomcat目录 -&gt; OK</strong><br><img src="http://pangguoming.com/blog/images/116bcf37-c9f5-4d44-a7db-ce34fbb03f07.jpg" alt="">  </p>
+<p><strong>3.3 在“Run Configurations”窗口的“Server”选项板中，去掉勾选“After launch”，设置“HTTP port”和“JMX port”，点击 Apply -&gt; OK，至此Tomcat配置完成。</strong><br><img src="http://pangguoming.com/blog/images/9e1316bc-8db8-4695-9434-ad8d2264486b.jpg" alt="">  </p>
+<p><strong>4. JavaWeb测试</strong>  </p>
+<p><strong>4.1 Run -&gt; Edit Configurations，进入“Run Configurations”窗口，选择之前配置好的Tomcat，点击“Deployment”选项卡，点击“+” -&gt; “Artifact”-&gt; 选择创建的web项目的Artifact…<br>修改“Application context”-&gt; Apply -&gt; OK</strong><br><img src="http://pangguoming.com/blog/images/6fc80202-2239-4f41-8d01-bf51edd46a14.jpg" alt=""><br>说明：此处的Application context是指定本工程的根目录  </p>
+<p><strong>4.2 在index.jsp文件中的body之间添加要显示的内容，然后点击“运行”的绿色三角</strong><br><img src="http://pangguoming.com/blog/images/9ac59a45-fe94-4bd3-8e8c-b79ae8409d2b.jpg" alt="">  </p>
+<p>打开浏览器，输入：localhost:8080/JavaWeb<br><img src="http://pangguoming.com/blog/images/4d3ea5e3-f5f8-45c1-9f59-047d66af8d3e.jpg" alt="">  </p>
+<p>至此，intellij idea创建并设置javaweb工程全部完成，下面是在其中编写并运行Servlet。  </p>
+<p><strong>二、Servlet简单实现</strong>  </p>
+<p><strong>1. 编写servlet源文件</strong><br>在src目录下新建HelloWorld.java，并编写一下代码并进行编译：</p>
+<div class="dp-highlighter bg_java"><br><div class="bar"><br><div class="tools"><strong>[java]</strong> <a href="http://blog.csdn.net/yhao2014/article/details/45740111#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="http://blog.csdn.net/yhao2014/article/details/45740111#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="keyword">import javax.servlet.ServletException;  </span><br>2.  <span class="keyword">import javax.servlet.http.HttpServlet;  </span><br>3.  <span class="keyword">import javax.servlet.http.HttpServletRequest;  </span><br>4.  <span class="keyword">import javax.servlet.http.HttpServletResponse;  </span><br>5.  <span class="keyword">import java.io.IOException;  </span><br>6.  <span class="keyword">import java.io.PrintWriter;  </span><br>7.<br>8.  <span class="keyword">public <span class="keyword">class HelloWorld <span class="keyword">extends HttpServlet {  </span></span></span><br>9.  <span class="keyword">private String message;  </span><br>10.<br>11.      <span class="annotation">@Override  </span><br>12.      <span class="keyword">public <span class="keyword">void init() <span class="keyword">throws ServletException {  </span></span></span><br>13.      message = <span class="string">“Hello world, this message is from servlet!”;  </span><br>14.      }<br>15.<br>16.      <span class="annotation">@Override  </span><br>17.      <span class="keyword">protected <span class="keyword">void doGet(HttpServletRequest req, HttpServletResponse resp) <span class="keyword">throws ServletException, IOException {  </span></span></span><br>18.          <span class="comment">//设置响应内容类型  </span><br>19.      resp.setContentType(<span class="string">“text/html”);  </span><br>20.<br>21.          <span class="comment">//设置逻辑实现  </span><br>22.      PrintWriter out = resp.getWriter();<br>23.      out.println(<span class="string">“<h1>“ + message + <span class="string">“</span></h1>“);  </span><br>24.      }<br>25.<br>26.      <span class="annotation">@Override  </span><br>27.      <span class="keyword">public <span class="keyword">void destroy() {  </span></span><br>28.      <span class="keyword">super.destroy();  </span><br>29.      }<br>30.  }<br><br>编译后会发现在classes目录下生成了HelloWorld.class文件<br><img src="http://pangguoming.com/blog/images/abdfdfe1-99cf-412f-aece-866157c933e8.jpg" alt=""><br><br><strong>2. 部署servlet</strong><br><strong>方法一：</strong><br>    在WEB-INF目录下web.xml文件的<web-app>标签中添加如下内容：<br><br><div class="dp-highlighter bg_plain"><br><div class="bar"><br><div class="tools"><strong>[plain]</strong> <a href="http://blog.csdn.net/yhao2014/article/details/45740111#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="http://blog.csdn.net/yhao2014/article/details/45740111#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <servlet><br>2.      <servlet-name>HelloWorld</servlet-name><br>3.      <servlet-class>HelloWorld</servlet-class><br>4.  </servlet><br>5.<br>6.  <servlet-mapping><br>7.      <servlet-name>HelloWorld</servlet-name><br>8.      <url-pattern>/HelloWorld</url-pattern><br>9.  </servlet-mapping><br><br><strong>方法二：</strong><br>在HelloWorld文件的类前面加上：@WebServlet(“/HelloWorld”)<br><br><strong>3. 运行servlet</strong><br>点击运行按钮<br><img src="http://pangguoming.com/blog/images/0f63eab1-a156-4910-a6aa-93a97ae49790.jpg" alt=""><br><br>控制台出现successfully则tomcat服务启动成功！打开浏览器输入：localhost:8080/JavaWeb/HelloWorld即可查看servlet运行状态了.<br><br><img src="http://pangguoming.com/blog/images/04ab8e55-ac70-4220-b1b3-313e36bf7816.jpg" alt=""><br></div></div></div></div></web-app></div></div></div></div>
+          
         
       
     </div>
@@ -969,7 +951,7 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/10/07/mybatis异常 ：元素内容必须由格式正确的字符数据或标记组成。/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/1bfd2192.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -988,7 +970,7 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/07/mybatis异常 ：元素内容必须由格式正确的字符数据或标记组成。/" itemprop="url">mybatis异常 ：元素内容必须由格式正确的字符数据或标记组成。</a></h1>
+                <a class="post-title-link" href="/post/1bfd2192.html" itemprop="url">mybatis异常 ：元素内容必须由格式正确的字符数据或标记组成。</a></h1>
         
 
         <div class="post-meta">
@@ -1040,18 +1022,15 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
       
         
           
-          今天同事写一个查询接口的时候，出错：元素内容必须由格式正确的字符数据或标记组成。
-错误原因：mybatis查询的时候，需要用到运算符 小于号：&lt; 和  大于号： &gt;，在mybatis配置文件里面，这种会被认为是标签，所以解析错误
-错误事例：
-1234567select          
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/07/mybatis异常 ：元素内容必须由格式正确的字符数据或标记组成。/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>今天同事写一个查询接口的时候，出错：元素内容必须由格式正确的字符数据或标记组成。</p>
+<p>错误原因：mybatis查询的时候，需要用到运算符 小于号：&lt; 和  大于号： &gt;，在mybatis配置文件里面，这种会被认为是标签，所以解析错误</p>
+<p>错误事例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">select </span><br><span class="line">         &lt;include refid=&quot;Base_Column_List&quot; /&gt;</span><br><span class="line">         from t_time_interval where </span><br><span class="line">         status &lt;&gt; 99 </span><br><span class="line">         and time_intvl_id &gt;=29 and time_intvl_id &lt;=45 </span><br><span class="line">         order by time_intvl_id</span><br></pre></td></tr></table></figure>
+<p>解决办法： 用 &lt;![CDATA[  ]]&gt; 把 加括号 包裹起来</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;brush:sql;gutter:true;&quot;&gt;select </span><br><span class="line">&lt;include refid=&quot;Base_Column_List&quot; /&gt;</span><br><span class="line">from t_time_interval where </span><br><span class="line">&lt;![CDATA[ status &lt;&gt; 99 </span><br><span class="line">and time_intvl_id &gt;=29 and time_intvl_id &lt;=45 </span><br><span class="line">order by time_intvl_id]]&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p></p>
+
+          
         
       
     </div>
@@ -1098,7 +1077,7 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/10/04/linux 杀死所有nodejs 进程/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/2154ac9d.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1117,7 +1096,7 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/04/linux 杀死所有nodejs 进程/" itemprop="url">linux 杀死所有nodejs 进程</a></h1>
+                <a class="post-title-link" href="/post/2154ac9d.html" itemprop="url">linux 杀死所有nodejs 进程</a></h1>
         
 
         <div class="post-meta">
@@ -1169,16 +1148,9 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
       
         
           
-          `
+            <p><code>`</code></p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/04/linux 杀死所有nodejs 进程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1225,7 +1197,7 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/10/04/mongoDB报错Cannot find module &#39;..-build-Release-bson&#39;/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/40e3efdb.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1244,7 +1216,7 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/04/mongoDB报错Cannot find module &#39;..-build-Release-bson&#39;/" itemprop="url">mongoDB报错Cannot find module '../build/Release/bson'</a></h1>
+                <a class="post-title-link" href="/post/40e3efdb.html" itemprop="url">mongoDB报错Cannot find module '../build/Release/bson'</a></h1>
         
 
         <div class="post-meta">
@@ -1296,16 +1268,9 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
       
         
           
-          打算用nodejs写一个blog系统，发现nodejs还是存在很多的坑。在使用mongodb时遇到如下报错问题：
-[html] view plain copy1.  { [Error: Cannot find module ‘../build/Release/bson’] code: ‘MODULE
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/04/mongoDB报错Cannot find module &#39;..-build-Release-bson&#39;/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>打算用nodejs写一个blog系统，发现nodejs还是存在很多的坑。在使用mongodb时遇到如下报错问题：</p>
+<div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/xiebaochun/article/details/46490741#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="http://blog.csdn.net/xiebaochun/article/details/46490741#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  { [Error: Cannot find module ‘../build/Release/bson’] code: ‘MODULE_NOT_FOUND’ }<br>2.    js-bson: Failed to load c++ bson extension, using pure JS version<br><br>折腾了一番，最后是这样解决的：<br><br>找到 npm 的module mongodb ..node_modules\mongodb\node_modules\bson\ext\index.js<br><br>并并在catch块改变bson的js本版路径：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">变成</span><br><span class="line"></span><br><span class="line">    &lt;pre name=&quot;code&quot; class=&quot;lang-js prettyprint prettyprinted&quot;&gt;</span><br></pre></td></tr></table></figure><br><br>如果发现连文件夹browser_biuild都没有的话（我的情况就是这样），直接复制文件：<br><br>&gt; ..node_modules\bson\build\Release\bson<br><br>from<br><br>&gt; ..node_modules\bson\browser_build\bson<br><br><br></div></div></div></div>
+          
         
       
     </div>
@@ -1352,7 +1317,7 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/10/02/android中一些特殊字符（如：←↑→↓等箭头符号）的Unicode码值/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/953753e2.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1371,7 +1336,7 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/02/android中一些特殊字符（如：←↑→↓等箭头符号）的Unicode码值/" itemprop="url">android中一些特殊字符（如：←↑→↓等箭头符号）的Unicode码值</a></h1>
+                <a class="post-title-link" href="/post/953753e2.html" itemprop="url">android中一些特殊字符（如：←↑→↓等箭头符号）的Unicode码值</a></h1>
         
 
         <div class="post-meta">
@@ -1423,19 +1388,12 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
       
         
           
-           在项目中，有时候在一些控件（如Button、TextView)中要添加一些符号，如下图所示：
-                        
-这个时候可以使用图片的方式来显示，不过这些可以直接使用Unicode码就直接显示出来了。
-4个箭头图标的代码如下：
-[html] view plain c
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/02/android中一些特殊字符（如：←↑→↓等箭头符号）的Unicode码值/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p> 在项目中，有时候在一些控件（如Button、TextView)中要添加一些符号，如下图所示：</p>
+<p><img src="http://pangguoming.com/blog/images/80f74af6-d3aa-4abe-8e24-cb5fede500d5.jpg" alt="">                        <img src="http://pangguoming.com/blog/images/22d4d6eb-ad8c-4da4-8186-49f0121f240c.jpg" alt=""></p>
+<p>这个时候可以使用图片的方式来显示，不过这些可以直接使用Unicode码就直接显示出来了。</p>
+<p>4个箭头图标的代码如下：</p>
+<div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/ouyang_peng/article/details/50493004#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="http://blog.csdn.net/ouyang_peng/article/details/50493004#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="tag">&lt;<span class="tag-name">RelativeLayout  </span></span><br>2.              <span class="attribute">android:layout_width=<span class="attribute-value">“0dp”  </span></span><br>3.              <span class="attribute">android:layout_height=<span class="attribute-value">“match_parent”  </span></span><br>4.              <span class="attribute">android:layout_weight=<span class="attribute-value">“1”  </span></span><br>5.              <span class="attribute">android:gravity=<span class="attribute-value">“center_horizontal” <span class="tag">&gt;  </span></span></span><br>6.<br>7.              <span class="tag">&lt;<span class="tag-name">Button  </span></span><br>8.                  <span class="attribute">android:id=<span class="attribute-value">“@+id/scroll_left”  </span></span><br>9.                  <span class="attribute">android:layout_width=<span class="attribute-value">“40dip”  </span></span><br>10.                  <span class="attribute">android:layout_height=<span class="attribute-value">“40dip”  </span></span><br>11.                  <span class="attribute">android:layout_alignParentLeft=<span class="attribute-value">“true”  </span></span><br>12.                  <span class="attribute">android:layout_centerVertical=<span class="attribute-value">“true”  </span></span><br>13.                  <span class="attribute">android:text=<span class="attribute-value">“@string/left_arrow” <span class="tag">/&gt;  </span></span></span><br>14.<br>15.              <span class="tag">&lt;<span class="tag-name">Button  </span></span><br>16.                  <span class="attribute">android:id=<span class="attribute-value">“@+id/scroll_up”  </span></span><br>17.                  <span class="attribute">android:layout_width=<span class="attribute-value">“40dip”  </span></span><br>18.                  <span class="attribute">android:layout_height=<span class="attribute-value">“40dip”  </span></span><br>19.                  <span class="attribute">android:layout_alignParentTop=<span class="attribute-value">“true”  </span></span><br>20.                  <span class="attribute">android:layout_toRightOf=<span class="attribute-value">“@id/scroll_left”  </span></span><br>21.                  <span class="attribute">android:text=<span class="attribute-value">“@string/up_arrow” <span class="tag">/&gt;  </span></span></span><br>22.<br>23.              <span class="tag">&lt;<span class="tag-name">Button  </span></span><br>24.                  <span class="attribute">android:id=<span class="attribute-value">“@+id/scroll_down”  </span></span><br>25.                  <span class="attribute">android:layout_width=<span class="attribute-value">“40dip”  </span></span><br>26.                  <span class="attribute">android:layout_height=<span class="attribute-value">“40dip”  </span></span><br>27.                  <span class="attribute">android:layout_below=<span class="attribute-value">“@id/scroll_up”  </span></span><br>28.                  <span class="attribute">android:layout_toRightOf=<span class="attribute-value">“@id/scroll_left”  </span></span><br>29.                  <span class="attribute">android:text=<span class="attribute-value">“@string/down_arrow” <span class="tag">/&gt;  </span></span></span><br>30.<br>31.              <span class="tag">&lt;<span class="tag-name">Button  </span></span><br>32.                  <span class="attribute">android:id=<span class="attribute-value">“@+id/scroll_right”  </span></span><br>33.                  <span class="attribute">android:layout_width=<span class="attribute-value">“40dip”  </span></span><br>34.                  <span class="attribute">android:layout_height=<span class="attribute-value">“40dip”  </span></span><br>35.                  <span class="attribute">android:layout_centerVertical=<span class="attribute-value">“true”  </span></span><br>36.                  <span class="attribute">android:layout_toRightOf=<span class="attribute-value">“@id/scroll_down”  </span></span><br>37.                  <span class="attribute">android:text=<span class="attribute-value">“@string/right_arrow” <span class="tag">/&gt;  </span></span></span><br>38.          <span class="tag">&lt;/<span class="tag-name">RelativeLayout<span class="tag">&gt;  </span></span></span><br><br>皇冠和音乐图标代码如下：<br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/ouyang_peng/article/details/50493004#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="http://blog.csdn.net/ouyang_peng/article/details/50493004#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="tag">&lt;<span class="tag-name">LinearLayout  </span></span><br>2.       <span class="attribute">android:layout_width=<span class="attribute-value">“wrap_content”  </span></span><br>3.       <span class="attribute">android:layout_height=<span class="attribute-value">“wrap_content”  </span></span><br>4.       <span class="attribute">android:orientation=<span class="attribute-value">“vertical” <span class="tag">&gt;  </span></span></span><br>5.<br>6.       <span class="tag">&lt;<span class="tag-name">Button  </span></span><br>7.           <span class="attribute">android:layout_width=<span class="attribute-value">“wrap_content”  </span></span><br>8.           <span class="attribute">android:layout_height=<span class="attribute-value">“wrap_content”  </span></span><br>9.           <span class="attribute">android:text=<span class="attribute-value">“@string/music” <span class="tag">/&gt;  </span></span></span><br>10.<br>11.       <span class="tag">&lt;<span class="tag-name">Button  </span></span><br>12.           <span class="attribute">android:layout_width=<span class="attribute-value">“wrap_content”  </span></span><br>13.           <span class="attribute">android:layout_height=<span class="attribute-value">“wrap_content”  </span></span><br>14.           <span class="attribute">android:text=<span class="attribute-value">“@string/crown” <span class="tag">/&gt;  </span></span></span><br>15.   <span class="tag">&lt;/<span class="tag-name">LinearLayout<span class="tag">&gt;  </span></span></span><br><br>上面的几个字符串值为：<br><br><div class="dp-highlighter bg_html"><br><div class="bar"><br><div class="tools"><strong>[html]</strong> <a href="http://blog.csdn.net/ouyang_peng/article/details/50493004#" title="view plain" target="_blank" rel="noopener">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"> <a href="http://blog.csdn.net/ouyang_peng/article/details/50493004#" title="copy" target="_blank" rel="noopener">copy</a></span></span><br><div><br><br>1.  <span class="tag">&lt;<span class="tag-name">string <span class="attribute">name=<span class="attribute-value">“music”<span class="tag">&gt;\u265A<span class="tag">&lt;/<span class="tag-name">string<span class="tag">&gt;  </span></span></span></span></span></span></span></span><br>2.  <span class="tag">&lt;<span class="tag-name">string <span class="attribute">name=<span class="attribute-value">“crown”<span class="tag">&gt;\u266B<span class="tag">&lt;/<span class="tag-name">string<span class="tag">&gt;  </span></span></span></span></span></span></span></span><br>3.<br>4.  <span class="tag">&lt;<span class="tag-name">string <span class="attribute">name=<span class="attribute-value">“left_arrow”<span class="tag">&gt;\u2190<span class="tag">&lt;/<span class="tag-name">string<span class="tag">&gt;  </span></span></span></span></span></span></span></span><br>5.  <span class="tag">&lt;<span class="tag-name">string <span class="attribute">name=<span class="attribute-value">“up_arrow”<span class="tag">&gt;\u2191<span class="tag">&lt;/<span class="tag-name">string<span class="tag">&gt;  </span></span></span></span></span></span></span></span><br>6.  <span class="tag">&lt;<span class="tag-name">string <span class="attribute">name=<span class="attribute-value">“down_arrow”<span class="tag">&gt;\u2193<span class="tag">&lt;/<span class="tag-name">string<span class="tag">&gt;  </span></span></span></span></span></span></span></span><br>7.  <span class="tag">&lt;<span class="tag-name">string <span class="attribute">name=<span class="attribute-value">“right_arrow”<span class="tag">&gt;\u2192<span class="tag">&lt;/<span class="tag-name">string<span class="tag">&gt;  </span></span></span></span></span></span></span></span><br><br> ====================================================================================================<br><br><span style="color: #333333; font-family: KaiTi_GB2312; font-size: large;">从网上找到了部分关于特殊符号的Unicode码值，记录下来，以备后用，如下所示：<br>用Android的string.xml中使用Unicode表示符号的话，就使用下面的JS相关的Unicode值即可</span><br><br>### ⇠  箭头类<br><br><table class="zfz_table   " cellspacing="0" cellpadding="8"><br><tbody><br><tr><th rowspan="2">符号</th><th colspan="3">UNICODE</th><th rowspan="2">符号</th><th class="lasttd" colspan="3">UNICODE</th></tr><br><tr class="secondtr"><th>HTML</th><th>JS</th><th>CSS</th><th>HTML</th><th>JS</th><th class="lasttd">CSS</th></tr><br><tr><br><td>⇠</td><br><td>&amp;#8672</td><br><td>\u21E0</td><br><td>\21E0</td><br><td>⇢</td><br><td>&amp;#8674</td><br><td>\u21E2</td><br><td class="lasttd">\21E2</td><br><br></tr><br><tr><br><td>⇡</td><br><td>&amp;#8673</td><br><td>\u21E1</td><br><td>\21E1</td><br><td>⇣</td><br><td>&amp;#8675</td><br><td>\u21E3</td><br><td class="lasttd">\21E3</td><br><br></tr><br><tr><br><td>↞</td><br><td>&amp;#8606</td><br><td>\u219E</td><br><td>\219E</td><br><td>↠</td><br><td>&amp;#8608</td><br><td>\u21A0</td><br><td class="lasttd">\21A0</td><br><br></tr><br><tr><br><td>↟</td><br><td>&amp;#8607</td><br><td>\u219F</td><br><td>\219F</td><br><td>↡</td><br><td>&amp;#8609</td><br><td>\u21A1</td><br><td class="lasttd">\21A1</td><br><br></tr><br><tr><br><td>←</td><br><td>&amp;#8592</td><br><td>\u2190</td><br><td>\2190</td><br><td>→</td><br><td>&amp;#8594</td><br><td>\u2192</td><br><td class="lasttd">\2192</td><br><br></tr><br><tr><br><td>↑</td><br><td>&amp;#8593</td><br><td>\u2191</td><br><td>\2191</td><br><td>↓</td><br><td>&amp;#8595</td><br><td>\u2193</td><br><td class="lasttd">\2193</td><br><br></tr><br><tr><br><td>↔</td><br><td>&amp;#8596</td><br><td>\u2194</td><br><td>\2194</td><br><td>↕</td><br><td>&amp;#8597</td><br><td>\u2195</td><br><td class="lasttd">\2195</td><br><br></tr><br><tr><br><td>⇄</td><br><td>&amp;#8644</td><br><td>\u21C4</td><br><td>\21C4</td><br><td>⇅</td><br><td>&amp;#8645</td><br><td>\u21C5</td><br><td class="lasttd">\21C5</td><br><br></tr><br><tr><br><td>↢</td><br><td>&amp;#8610</td><br><td>\u21A2</td><br><td>\21A2</td><br><td>↣</td><br><td>&amp;#8611</td><br><td>\u21A3</td><br><td class="lasttd">\21A3</td><br><br></tr><br><tr><br><td>⇞</td><br><td>&amp;#8670</td><br><td>\u21DE</td><br><td>\21DE</td><br><td>⇟</td><br><td>&amp;#8671</td><br><td>\u21DF</td><br><td class="lasttd">\21DF</td><br><br></tr><br><tr><br><td>↫</td><br><td>&amp;#8619</td><br><td>\u21AB</td><br><td>\21AB</td><br><td>↬</td><br><td>&amp;#8620</td><br><td>\u21AC</td><br><td class="lasttd">\21AC</td><br><br></tr><br><tr><br><td>⇜</td><br><td>&amp;#8668</td><br><td>\u21DC</td><br><td>\21DC</td><br><td>⇝</td><br><td>&amp;#8669</td><br><td>\u21DD</td><br><td class="lasttd">\21DD</td><br><br></tr><br><tr><br><td>↚</td><br><td>&amp;#8602</td><br><td>\u219A</td><br><td>\219A</td><br><td>↛</td><br><td>&amp;#8603</td><br><td>\u219B</td><br><td class="lasttd">\219B</td><br><br></tr><br><tr><br><td>↮</td><br><td>&amp;#8622</td><br><td>\u21AE</td><br><td>\21AE</td><br><td>↭</td><br><td>&amp;#8621</td><br><td>\u21AD</td><br><td class="lasttd">\21AD</td><br><br></tr><br><tr><br><td>⇦</td><br><td>&amp;#8678</td><br><td>\u21E6</td><br><td>\21E6</td><br><td>⇨</td><br><td>&amp;#8680</td><br><td>\u21E8</td><br><td class="lasttd">\21E8</td><br><br></tr><br><tr><br><td>⇧</td><br><td>&amp;#8679</td><br><td>\u21E7</td><br><td>\21E7</td><br><td>⇩</td><br><td>&amp;#8681</td><br><td>\u21E9</td><br><td class="lasttd">\21E9</td><br><br></tr><br><tr><br><td>▲</td><br><td>&amp;#9650</td><br><td>\u25B2</td><br><td>\25B2</td><br><td>►</td><br><td>&amp;#9658</td><br><td>\u25BA</td><br><td class="lasttd">\25BA</td><br><br></tr><br><tr><br><td>▼</td><br><td>&amp;#9660</td><br><td>\u25BC</td><br><td>\25BC</td><br><td>◄</td><br><td>&amp;#9668</td><br><td>\u25C4</td><br><td class="lasttd">\25C4</td><br><br></tr><br><tr><br><td>➔</td><br><td>&amp;#10132</td><br><td>\u2794</td><br><td>\2794</td><br><td>➙</td><br><td>&amp;#10137</td><br><td>\u2799</td><br><td class="lasttd">\2799</td><br><br></tr><br><tr><br><td>➨</td><br><td>&amp;#10152</td><br><td>\u27A8</td><br><td>\27A8</td><br><td>➲</td><br><td>&amp;#10162</td><br><td>\u27B2</td><br><td class="lasttd">\27B2</td><br><br></tr><br><tr><br><td>➜</td><br><td>&amp;#10140</td><br><td>\u279C</td><br><td>\279C</td><br><td>➞</td><br><td>&amp;#10142</td><br><td>\u279E</td><br><td class="lasttd">\279E</td><br><br></tr><br><tr><br><td>➟</td><br><td>&amp;#10143</td><br><td>\u279F</td><br><td>\279F</td><br><td>➠</td><br><td>&amp;#10144</td><br><td>\u27A0</td><br><td class="lasttd">\27A0</td><br><br></tr><br><tr><br><td>➤</td><br><td>&amp;#10148</td><br><td>\u27A4</td><br><td>\27A4</td><br><td>➥</td><br><td>&amp;#10149</td><br><td>\u27A5</td><br><td class="lasttd">\27A5</td><br><br></tr><br><tr><br><td>➦</td><br><td>&amp;#10150</td><br><td>\u27A6</td><br><td>\27A6</td><br><td>➧</td><br><td>&amp;#10151</td><br><td>\u27A7</td><br><td class="lasttd">\27A7</td><br><br></tr><br><tr><br><td>➵</td><br><td>&amp;#10165</td><br><td>\u27B5</td><br><td>\27B5</td><br><td>➸</td><br><td>&amp;#10168</td><br><td>\u27B8</td><br><td class="lasttd">\27B8</td><br><br></tr><br><tr><br><td>➼</td><br><td>&amp;#10172</td><br><td>\u27BC</td><br><td>\27BC</td><br><td>➽</td><br><td>&amp;#10173</td><br><td>\u27BD</td><br><td class="lasttd">\27BD</td><br><br></tr><br><tr><br><td>➺</td><br><td>&amp;#10170</td><br><td>\u27BA</td><br><td>\27BA</td><br><td>➳</td><br><td>&amp;#10163</td><br><td>\u27B3</td><br><td class="lasttd">\27B3</td><br><br></tr><br><tr><br><td>↷</td><br><td>&amp;#8631</td><br><td>\u21B7</td><br><td>\21B7</td><br><td>↶</td><br><td>&amp;#8630</td><br><td>\u21B6</td><br><td class="lasttd">\21B6</td><br><br></tr><br><tr><br><td>↻</td><br><td>&amp;#8635</td><br><td>\u21BB</td><br><td>\21BB</td><br><td>↺</td><br><td>&amp;#8634</td><br><td>\u21BA</td><br><td class="lasttd">\21BA</td><br><br></tr><br><tr><br><td>↵</td><br><td>&amp;#8629</td><br><td>\u21B5</td><br><td>\21B5</td><br><td>↯</td><br><td>&amp;#8623</td><br><td>\u21AF</td><br><td class="lasttd">\21AF</td><br><br></tr><br><tr><br><td>➾</td><br><td>&amp;#10174</td><br><td>\u27BE</td><br><td>\27BE</td><br><td> </td><br><td> </td><br><td> </td><br><td class="lasttd"> </td><br><br></tr><br><br></tbody><br><br></table><br><br>### ❤  基本形状类<br><br><table class="zfz_table   " cellspacing="0" cellpadding="8"><br><tbody><br><tr><th rowspan="2">符号</th><th colspan="3">UNICODE</th><th rowspan="2">符号</th><th class="lasttd" colspan="3">UNICODE</th></tr><br><tr class="secondtr"><th>HTML</th><th>JS</th><th>CSS</th><th>HTML</th><th>JS</th><th class="lasttd">CSS</th></tr><br><tr><br><td>❤</td><br><td>&amp;#10084</td><br><td>\u2764</td><br><td>\2764</td><br><td>✈</td><br><td>&amp;#9992</td><br><td>\u2708</td><br><td class="lasttd">\2708</td><br><br></tr><br><tr><br><td>★</td><br><td>&amp;#9733</td><br><td>\u2605</td><br><td>\2605</td><br><td>✦</td><br><td>&amp;#10022</td><br><td>\u2726</td><br><td class="lasttd">\2726</td><br><br></tr><br><tr><br><td>☀</td><br><td>&amp;#9728</td><br><td>\u2600</td><br><td>\2600</td><br><td>◆</td><br><td>&amp;#9670</td><br><td>\u25C6</td><br><td class="lasttd">\25C6</td><br><br></tr><br><tr><br><td>◈</td><br><td>&amp;#9672</td><br><td>\u25C8</td><br><td>\25C8</td><br><td>▣</td><br><td>&amp;#9635</td><br><td>\u25A3</td><br><td class="lasttd">\25A3</td><br><br></tr><br><tr><br><td>☻</td><br><td>&amp;#9787</td><br><td>\u263B</td><br><td>\263B</td><br><td>☺</td><br><td>&amp;#9786</td><br><td>\u263A</td><br><td class="lasttd">\263A</td><br><br></tr><br><tr><br><td>☹</td><br><td>&amp;#9785</td><br><td>\u2639</td><br><td>\2639</td><br><td>✉</td><br><td>&amp;#9993</td><br><td>\u2709</td><br><td class="lasttd">\2709</td><br><br></tr><br><tr><br><td>☎</td><br><td>&amp;#9742</td><br><td>\u260E</td><br><td>\260E</td><br><td>☏</td><br><td>&amp;#9743</td><br><td>\u260F</td><br><td class="lasttd">\260F</td><br><br></tr><br><tr><br><td>✆</td><br><td>&amp;#9990</td><br><td>\u2706</td><br><td>\2706</td><br><td>�</td><br><td>&amp;#65533</td><br><td>\uFFFD</td><br><td class="lasttd">\FFFD</td><br><br></tr><br><tr><br><td>☁</td><br><td>&amp;#9729</td><br><td>\u2601</td><br><td>\2601</td><br><td>☂</td><br><td>&amp;#9730</td><br><td>\u2602</td><br><td class="lasttd">\2602</td><br><br></tr><br><tr><br><td>❄</td><br><td>&amp;#10052</td><br><td>\u2744</td><br><td>\2744</td><br><td>☃</td><br><td>&amp;#9731</td><br><td>\u2603</td><br><td class="lasttd">\2603</td><br><br></tr><br><tr><br><td>❈</td><br><td>&amp;#10056</td><br><td>\u2748</td><br><td>\2748</td><br><td>✿</td><br><td>&amp;#10047</td><br><td>\u273F</td><br><td class="lasttd">\273F</td><br><br></tr><br><tr><br><td>❀</td><br><td>&amp;#10048</td><br><td>\u2740</td><br><td>\2740</td><br><td>❁</td><br><td>&amp;#10049</td><br><td>\u2741</td><br><td class="lasttd">\2741</td><br><br></tr><br><tr><br><td>☘</td><br><td>&amp;#9752</td><br><td>\u2618</td><br><td>\2618</td><br><td>❦</td><br><td>&amp;#10086</td><br><td>\u2766</td><br><td class="lasttd">\2766</td><br><br></tr><br><tr><br><td>☕</td><br><td>&amp;#9749</td><br><td>\u9749</td><br><td>\9749</td><br><td>❂</td><br><td>&amp;#10050</td><br><td>\u2742</td><br><td class="lasttd">\2742</td><br><br></tr><br><tr><br><td>☥</td><br><td>&amp;#9765</td><br><td>\u2625</td><br><td>\2625</td><br><td>☮</td><br><td>&amp;#9774</td><br><td>\u262E</td><br><td class="lasttd">\262E</td><br><br></tr><br><tr><br><td>☯</td><br><td>&amp;#9775</td><br><td>\u262F</td><br><td>\262F</td><br><td>☪</td><br><td>&amp;#9770</td><br><td>\u262A</td><br><td class="lasttd">\262A</td><br><br></tr><br><tr><br><td>☤</td><br><td>&amp;#9764</td><br><td>\u2624</td><br><td>\2624</td><br><td>✄</td><br><td>&amp;#9988</td><br><td>\u2704</td><br><td class="lasttd">\2704</td><br><br></tr><br><tr><br><td>✂</td><br><td>&amp;#9986</td><br><td>\u2702</td><br><td>\2702</td><br><td>☸</td><br><td>&amp;#9784</td><br><td>\u2638</td><br><td class="lasttd">\2638</td><br><br></tr><br><tr><br><td>⚓</td><br><td>&amp;#9875</td><br><td>\u2693</td><br><td>\2693</td><br><td>☣</td><br><td>&amp;#9763</td><br><td>\u2623</td><br><td class="lasttd">\2623</td><br><br></tr><br><tr><br><td>⚠</td><br><td>&amp;#9888</td><br><td>\u26A0</td><br><td>\26A0</td><br><td>⚡</td><br><td>&amp;#9889</td><br><td>\u26A1</td><br><td class="lasttd">\26A1</td><br><br></tr><br><tr><br><td>☢</td><br><td>&amp;#9762</td><br><td>\u2622</td><br><td>\2622</td><br><td>♻</td><br><td>&amp;#9851</td><br><td>\u267B</td><br><td class="lasttd">\267B</td><br><br></tr><br><tr><br><td>♿</td><br><td>&amp;#9855</td><br><td>\u267F</td><br><td>\267F</td><br><td>☠</td><br><td>&amp;#9760</td><br><td>\u2620</td><br><td class="lasttd">\2620</td><br><br></tr><br><br></tbody><br><br></table><br><br>### ¥  货币类<br><br><table class="zfz_table   " cellspacing="0" cellpadding="8"><br><tbody><br><tr><th rowspan="2">符号</th><th colspan="3">UNICODE</th><th rowspan="2">符号</th><th class="lasttd" colspan="3">UNICODE</th></tr><br><tr class="secondtr"><th>HTML</th><th>JS</th><th>CSS</th><th>HTML</th><th>JS</th><th class="lasttd">CSS</th></tr><br><tr><br><td>$</td><br><td>&amp;#36</td><br><td>\u0024</td><br><td>\0024</td><br><td>¢</td><br><td>&amp;#162</td><br><td>\u00A2</td><br><td class="lasttd">\00A2</td><br><br></tr><br><tr><br><td>£</td><br><td>&amp;#163</td><br><td>\u00A3</td><br><td>\00A3</td><br><td>¤</td><br><td>&amp;#164</td><br><td>\u00A4</td><br><td class="lasttd">\00A4</td><br><br></tr><br><tr><br><td>€</td><br><td>&amp;#8364</td><br><td>\u20AC</td><br><td>\20AC</td><br><td>¥</td><br><td>&amp;#165</td><br><td>\u00A5</td><br><td class="lasttd">\00A5</td><br><br></tr><br><tr><br><td>₱</td><br><td>&amp;#8369</td><br><td>\u20B1</td><br><td>\20B1</td><br><td>₹</td><br><td>&amp;#8377</td><br><td>\u20B9</td><br><td class="lasttd">\20B9</td><br><br></tr><br><br></tbody><br><br></table><br><br>### ½  数学类<br><br><table class="zfz_table   " cellspacing="0" cellpadding="8"><br><tbody><br><tr><th rowspan="2">符号</th><th colspan="3">UNICODE</th><th rowspan="2">符号</th><th class="lasttd" colspan="3">UNICODE</th></tr><br><tr class="secondtr"><th>HTML</th><th>JS</th><th>CSS</th><th>HTML</th><th>JS</th><th class="lasttd">CSS</th></tr><br><tr><br><td>½</td><br><td>&amp;#189</td><br><td>\u00BD</td><br><td>\00BD</td><br><td>¼</td><br><td>&amp;#188</td><br><td>\u00BC</td><br><td class="lasttd">\00BC</td><br><br></tr><br><tr><br><td>¾</td><br><td>&amp;#190</td><br><td>\u00BE</td><br><td>\00BE</td><br><td>⅓</td><br><td>&amp;#8531</td><br><td>\u2153</td><br><td class="lasttd">\2153</td><br><br></tr><br><tr><br><td>⅔</td><br><td>&amp;#8532</td><br><td>\u2154</td><br><td>\2154</td><br><td>⅛</td><br><td>&amp;#8539</td><br><td>\u215B</td><br><td class="lasttd">\215B</td><br><br></tr><br><tr><br><td>⅜</td><br><td>&amp;#8540</td><br><td>\u215C</td><br><td>\215C</td><br><td>⅝</td><br><td>&amp;#8541</td><br><td>\u215D</td><br><td class="lasttd">\215D</td><br><br></tr><br><tr><br><td>‰</td><br><td>&amp;#8240</td><br><td>\u2030</td><br><td>\2030</td><br><td>%</td><br><td>&amp;#37</td><br><td>\u0025</td><br><td class="lasttd">\0025</td><br><br></tr><br><tr><br><td>&lt;</td><br><td>&amp;#60</td><br><td>\u003C</td><br><td>\003C</td><br><td>&gt;</td><br><td>&amp;#62</td><br><td>\u003E</td><br><td class="lasttd">\003E</td><br><br></tr><br><br></tbody><br><br></table><br><br>### ♫  音乐符号类<br><br><table class="zfz_table   " cellspacing="0" cellpadding="8"><br><tbody><br><tr><th rowspan="2">符号</th><th colspan="3">UNICODE</th><th rowspan="2">符号</th><th class="lasttd" colspan="3">UNICODE</th></tr><br><tr class="secondtr"><th>HTML</th><th>JS</th><th>CSS</th><th>HTML</th><th>JS</th><th class="lasttd">CSS</th></tr><br><tr><br><td>♩</td><br><td>&amp;#9833</td><br><td>\u2669</td><br><td>\2669</td><br><td>♪</td><br><td>&amp;#9834</td><br><td>\u266A</td><br><td class="lasttd">\266A</td><br><br></tr><br><tr><br><td>♫</td><br><td>&amp;#9835</td><br><td>\u266B</td><br><td>\266B</td><br><td>♬</td><br><td>&amp;#9836</td><br><td>\u266C</td><br><td class="lasttd">\266C</td><br><br></tr><br><tr><br><td>♭</td><br><td>&amp;#9837</td><br><td>\u266D</td><br><td>\266D</td><br><td>♯</td><br><td>&amp;#9839</td><br><td>\u266F</td><br><td class="lasttd">\266F</td><br><br></tr><br><br></tbody><br><br></table><br><br>### ✖  对错号<br><br><table class="zfz_table   " cellspacing="0" cellpadding="8"><br><tbody><br><tr><th rowspan="2">符号</th><th colspan="3">UNICODE</th><th rowspan="2">符号</th><th class="lasttd" colspan="3">UNICODE</th></tr><br><tr class="secondtr"><th>HTML</th><th>JS</th><th>CSS</th><th>HTML</th><th>JS</th><th class="lasttd">CSS</th></tr><br><tr><br><td> </td><br><td>&amp;#160</td><br><td>\u00A0</td><br><td>\00A0</td><br><td>☐</td><br><td>&amp;#9744</td><br><td>\u2610</td><br><td class="lasttd">\2610</td><br><br></tr><br><tr><br><td>☑</td><br><td>&amp;#9745</td><br><td>\u2611</td><br><td>\2611</td><br><td>☒</td><br><td>&amp;#9746</td><br><td>\u2612</td><br><td class="lasttd">\2612</td><br><br></tr><br><tr><br><td>✓</td><br><td>&amp;#10003</td><br><td>\u2713</td><br><td>\2713</td><br><td>✔</td><br><td>&amp;#10004</td><br><td>\u2714</td><br><td class="lasttd">\2714</td><br><br></tr><br><tr><br><td>✕</td><br><td>&amp;#10005</td><br><td>\u10005</td><br><td>\10005</td><br><td>✖</td><br><td>&amp;#10006</td><br><td>\u2716</td><br><td class="lasttd">\2716</td><br><br></tr><br><tr><br><td>✗</td><br><td>&amp;#10007</td><br><td>\u2717</td><br><td>\2717</td><br><td>✘</td><br><td>&amp;#10008</td><br><td>\u2718</td><br><td class="lasttd">\2718</td><br><br></tr><br><br></tbody><br><br></table><br><br>### ★  全都是星星<br><br><table class="zfz_table   " cellspacing="0" cellpadding="8"><br><tbody><br><tr><th rowspan="2">符号</th><th colspan="3">UNICODE</th><th rowspan="2">符号</th><th class="lasttd" colspan="3">UNICODE</th></tr><br><tr class="secondtr"><th>HTML</th><th>JS</th><th>CSS</th><th>HTML</th><th>JS</th><th class="lasttd">CSS</th></tr><br><tr><br><td>★</td><br><td>&amp;#9733</td><br><td>\u2605</td><br><td>\2605</td><br><td>✭</td><br><td>&amp;#10029</td><br><td>\u272D</td><br><td class="lasttd">\272D</td><br><br></tr><br><tr><br><td>✮</td><br><td>&amp;#10030</td><br><td>\u272E</td><br><td>\272E</td><br><td>☆</td><br><td>&amp;#9734</td><br><td>\u2606</td><br><td class="lasttd">\2606</td><br><br></tr><br><tr><br><td>✪</td><br><td>&amp;#10026</td><br><td>\u272A</td><br><td>\272A</td><br><td>✡</td><br><td>&amp;#10017</td><br><td>\u2721</td><br><td class="lasttd">\2721</td><br><br></tr><br><tr><br><td>✯</td><br><td>&amp;#10031</td><br><td>\u272F</td><br><td>\272F</td><br><td>✵</td><br><td>&amp;#10037</td><br><td>\u2735</td><br><td class="lasttd">\2735</td><br><br></tr><br><tr><br><td>✶</td><br><td>&amp;#10038</td><br><td>\u2736</td><br><td>\2736</td><br><td>✸</td><br><td>&amp;#10040</td><br><td>\u2738</td><br><td class="lasttd">\2738</td><br><br></tr><br><tr><br><td>✹</td><br><td>&amp;#10041</td><br><td>\u2739</td><br><td>\2739</td><br><td>✺</td><br><td>&amp;#10042</td><br><td>\u273A</td><br><td class="lasttd">\273A</td><br><br></tr><br><tr><br><td>✱</td><br><td>&amp;#10033</td><br><td>\u2731</td><br><td>\2731</td><br><td>✲</td><br><td>&amp;#10034</td><br><td>\u2732</td><br><td class="lasttd">\2732</td><br><br></tr><br><tr><br><td>✴</td><br><td>&amp;#10036</td><br><td>\u2734</td><br><td>\2734</td><br><td>✳</td><br><td>&amp;#10035</td><br><td>\u2733</td><br><td class="lasttd">\2733</td><br><br></tr><br><tr><br><td>✻</td><br><td>&amp;#10043</td><br><td>\u273B</td><br><td>\273B</td><br><td>✽</td><br><td>&amp;#10045</td><br><td>\u273D</td><br><td class="lasttd">\273D</td><br><br></tr><br><tr><br><td>❋</td><br><td>&amp;#10059</td><br><td>\u274B</td><br><td>\274B</td><br><td>❆</td><br><td>&amp;#10054</td><br><td>\u2746</td><br><td class="lasttd">\2746</td><br><br></tr><br><tr><br><td>❄</td><br><td>&amp;#10052</td><br><td>\u2744</td><br><td>\2744</td><br><td>❅</td><br><td>&amp;#10053</td><br><td>\u2745</td><br><td class="lasttd">\2745</td><br><br></tr><br><br></tbody><br><br></table><br><br>### ♒  星座类<br><br><table class="zfz_table   " cellspacing="0" cellpadding="8"><br><tbody><br><tr><th rowspan="2">符号</th><th colspan="3">UNICODE</th><th rowspan="2">符号</th><th class="lasttd" colspan="3">UNICODE</th></tr><br><tr class="secondtr"><th>HTML</th><th>JS</th><th>CSS</th><th>HTML</th><th>JS</th><th class="lasttd">CSS</th></tr><br><tr><br><td>♈</td><br><td>&amp;#9800</td><br><td>\u2648</td><br><td>\2648</td><br><td>♉</td><br><td>&amp;#9801</td><br><td>\u2649</td><br><td class="lasttd">\2649</td><br><br></tr><br><tr><br><td>♊</td><br><td>&amp;#9802</td><br><td>\u264A</td><br><td>\264A</td><br><td>♋</td><br><td>&amp;#9803</td><br><td>\u264B</td><br><td class="lasttd">\264B</td><br><br></tr><br><tr><br><td>♌</td><br><td>&amp;#9804</td><br><td>\u264C</td><br><td>\264C</td><br><td>♍</td><br><td>&amp;#9805</td><br><td>\u264D</td><br><td class="lasttd">\264D</td><br><br></tr><br><tr><br><td>♎</td><br><td>&amp;#9806</td><br><td>\u264E</td><br><td>\264E</td><br><td>♏</td><br><td>&amp;#9807</td><br><td>\u264F</td><br><td class="lasttd">\264F</td><br><br></tr><br><tr><br><td>♐</td><br><td>&amp;#9808</td><br><td>\u2650</td><br><td>\2650</td><br><td>♑</td><br><td>&amp;#9809</td><br><td>\u2651</td><br><td>\2651</td><br><br></tr><br><tr><br><td>♒</td><br><td>&amp;#9810</td><br><td>\u2652</td><br><td>\2652</td><br><td>♓</td><br><td>&amp;#9811</td><br><td>\u2653</td><br><td class="lasttd">\2653</td><br><br></tr><br><br></tbody><br><br></table><br><br>### ♚  国际象棋类<br><br><table class="zfz_table   " cellspacing="0" cellpadding="8"><br><tbody><br><tr><th rowspan="2">符号</th><th colspan="3">UNICODE</th><th rowspan="2">符号</th><th class="lasttd" colspan="3">UNICODE</th></tr><br><tr class="secondtr"><th>HTML</th><th>JS</th><th>CSS</th><th>HTML</th><th>JS</th><th class="lasttd">CSS</th></tr><br><tr><br><td>♚</td><br><td>&amp;#9818</td><br><td>\u265A</td><br><td>\265A</td><br><td>♛</td><br><td>&amp;#9819</td><br><td>\u265B</td><br><td class="lasttd">\265B</td><br><br></tr><br><tr><br><td>♜</td><br><td>&amp;#9820</td><br><td>\u265C</td><br><td>\265C</td><br><td>♝</td><br><td>&amp;#9821</td><br><td>\u265D</td><br><td class="lasttd">\265D</td><br><br></tr><br><tr><br><td>♞</td><br><td>&amp;#9822</td><br><td>\u265E</td><br><td>\265E</td><br><td>♟</td><br><td>&amp;#9823</td><br><td>\u265F</td><br><td class="lasttd">\265F</td><br><br></tr><br><tr><br><td>♔</td><br><td>&amp;#9812</td><br><td>\u2654</td><br><td>\2654</td><br><td>♕</td><br><td>&amp;#9813</td><br><td>\u2655</td><br><td class="lasttd">\2655</td><br><br></tr><br><tr><br><td>♖</td><br><td>&amp;#9814</td><br><td>\u2656</td><br><td>\2656</td><br><td>♗</td><br><td>&amp;#9815</td><br><td>\u2657</td><br><td class="lasttd">\2657</td><br><br></tr><br><tr><br><td>♘</td><br><td>&amp;#9816</td><br><td>\u2658</td><br><td>\2658</td><br><td>♙</td><br><td>&amp;#9817</td><br><td>\u2659</td><br><td class="lasttd">\2659</td><br><br></tr><br><br></tbody><br><br></table><br><br>### ♣  扑克牌类<br><br><table class="zfz_table   " cellspacing="0" cellpadding="8"><br><tbody><br><tr><th rowspan="2">符号</th><th colspan="3">UNICODE</th><th rowspan="2">符号</th><th class="lasttd" colspan="3">UNICODE</th></tr><br><tr class="secondtr"><th>HTML</th><th>JS</th><th>CSS</th><th>HTML</th><th>JS</th><th class="lasttd">CSS</th></tr><br><tr><br><td>♠</td><br><td>&amp;#9824</td><br><td>\u2660</td><br><td>\2660</td><br><td>♣</td><br><td>&amp;#9827</td><br><td>\u2663</td><br><td class="lasttd">\2663</td><br><br></tr><br><tr><br><td>♥</td><br><td>&amp;#9829</td><br><td>\u2665</td><br><td>\2665</td><br><td>♦</td><br><td>&amp;#9830</td><br><td>\u2666</td><br><td class="lasttd">\2666</td><br><br></tr><br><tr><br><td>♤</td><br><td>&amp;#9828</td><br><td>\u2664</td><br><td>\2664</td><br><td>♧</td><br><td>&amp;#9831</td><br><td>\u2667</td><br><td class="lasttd">\2667</td><br><br></tr><br><tr><br><td>♡</td><br><td>&amp;#9825</td><br><td>\u2661</td><br><td>\2661</td><br><td>♢</td><br><td>&amp;#9826</td><br><td>\u2662</td><br><td class="lasttd">\2662</td><br><br></tr><br><br></tbody><br><br></table><br><br>### Ω  希腊字母<br><br><table class="zfz_table   " cellspacing="0" cellpadding="8"><br><tbody><br><tr><th rowspan="2">符号</th><th colspan="3">UNICODE</th><th rowspan="2">符号</th><th class="lasttd" colspan="3">UNICODE</th></tr><br><tr class="secondtr"><th>HTML</th><th>JS</th><th>CSS</th><th>HTML</th><th>JS</th><th class="lasttd">CSS</th></tr><br><tr><br><td>Α</td><br><td>&amp;#913</td><br><td>\u0391</td><br><td>\0391</td><br><td>Β</td><br><td>&amp;#914</td><br><td>\u0392</td><br><td class="lasttd">\0392</td><br><br></tr><br><tr><br><td>Γ</td><br><td>&amp;#915</td><br><td>\u0393</td><br><td>\0393</td><br><td>Δ</td><br><td>&amp;#916</td><br><td>\u0394</td><br><td class="lasttd">\0394</td><br><br></tr><br><tr><br><td>Ε</td><br><td>&amp;#917</td><br><td>\u0395</td><br><td>\0395</td><br><td>Ζ</td><br><td>&amp;#918</td><br><td>\u0396</td><br><td class="lasttd">\0396</td><br><br></tr><br><tr><br><td>Η</td><br><td>&amp;#919</td><br><td>\u0397</td><br><td>\0397</td><br><td>Θ</td><br><td>&amp;#920</td><br><td>\u0398</td><br><td class="lasttd">\0398</td><br><br></tr><br><tr><br><td>Ι</td><br><td>&amp;#921</td><br><td>\u0399</td><br><td>\0399</td><br><td>Κ</td><br><td>&amp;#922</td><br><td>\u039A</td><br><td class="lasttd">\039A</td><br><br></tr><br><tr><br><td>Λ</td><br><td>&amp;#923</td><br><td>\u039B</td><br><td>\039B</td><br><td>Μ</td><br><td>&amp;#924</td><br><td>\u039C</td><br><td class="lasttd">\039C</td><br><br></tr><br><tr><br><td>Ν</td><br><td>&amp;#925</td><br><td>\u039D</td><br><td>\039D</td><br><td>Ξ</td><br><td>&amp;#926</td><br><td>\u039E</td><br><td class="lasttd">\039E</td><br><br></tr><br><tr><br><td>Ο</td><br><td>&amp;#927</td><br><td>\u039F</td><br><td>\039F</td><br><td>Π</td><br><td>&amp;#928</td><br><td>\u03A0</td><br><td class="lasttd">\03A0</td><br><br></tr><br><tr><br><td>Ρ</td><br><td>&amp;#929</td><br><td>\u03A1</td><br><td>\03A1</td><br><td>Σ</td><br><td>&amp;#931</td><br><td>\u03A3</td><br><td class="lasttd">\03A3</td><br><br></tr><br><tr><br><td>Τ</td><br><td>&amp;#932</td><br><td>\u03A4</td><br><td>\03A4</td><br><td>Υ</td><br><td>&amp;#933</td><br><td>\u03A5</td><br><td class="lasttd">\03A5</td><br><br></tr><br><tr><br><td>Φ</td><br><td>&amp;#934</td><br><td>\u03A6</td><br><td>\03A6</td><br><td>Χ</td><br><td>&amp;#935</td><br><td>\u03A7</td><br><td class="lasttd">\03A7</td><br><br></tr><br><tr><br><td>Ψ</td><br><td>&amp;#936</td><br><td>\u03A8</td><br><td>\03A8</td><br><td>Ω</td><br><td>&amp;#937</td><br><td>\u03A9</td><br><td class="lasttd">\03A9</td><br><br></tr><br><br></tbody><br><br></table><br><br>### ☩  十字<br><br><table class="zfz_table   " cellspacing="0" cellpadding="8"><br><tbody><br><tr><th rowspan="2">符号</th><th colspan="3">UNICODE</th><th rowspan="2">符号</th><th class="lasttd" colspan="3">UNICODE</th></tr><br><tr class="secondtr"><th>HTML</th><th>JS</th><th>CSS</th><th>HTML</th><th>JS</th><th class="lasttd">CSS</th></tr><br><tr><br><td>☨</td><br><td>&amp;#9768</td><br><td>\u2628</td><br><td>\2628</td><br><td>☩</td><br><td>&amp;#9769</td><br><td>\u2629</td><br><td class="lasttd">\2629</td><br><br></tr><br><tr><br><td>✝</td><br><td>&amp;#10013</td><br><td>\u271D</td><br><td>\271D</td><br><td>✞</td><br><td>&amp;#10014</td><br><td>\u271E</td><br><td class="lasttd">\271E</td><br><br></tr><br><tr><br><td>✟</td><br><td>&amp;#10015</td><br><td>\u271F</td><br><td>\271F</td><br><td>✠</td><br><td>&amp;#10016</td><br><td>\u2720</td><br><td class="lasttd">\2720</td><br><br></tr><br><tr><br><td>✚</td><br><td>&amp;#10010</td><br><td>\u271A</td><br><td>\271A</td><br><td>†</td><br><td>&amp;#8224</td><br><td>\u2020</td><br><td class="lasttd">\2020</td><br><br></tr><br><tr><br><td>✢</td><br><td>&amp;#10018</td><br><td>\u2722</td><br><td>\2722</td><br><td>✤</td><br><td>&amp;#10020</td><br><td>\u2724</td><br><td class="lasttd">\2724</td><br><br></tr><br><tr><br><td>✣</td><br><td>&amp;#10019</td><br><td>\u2723</td><br><td>\2723</td><br><td>✥</td><br><td>&amp;#10021</td><br><td>\u2725</td><br><td class="lasttd">\2725</td><br><br></tr><br><br></tbody><br><br></table><br><br>### ©  法律符号<br><br><table class="zfz_table   " cellspacing="0" cellpadding="8"><br><tbody><br><tr><th rowspan="2">符号</th><th colspan="3">UNICODE</th><th rowspan="2">符号</th><th class="lasttd" colspan="3">UNICODE</th></tr><br><tr class="secondtr"><th>HTML</th><th>JS</th><th>CSS</th><th>HTML</th><th>JS</th><th class="lasttd">CSS</th></tr><br><tr><br><td>®</td><br><td>&amp;#174</td><br><td>\u00AE</td><br><td>\00AE</td><br><td>©</td><br><td>&amp;#169</td><br><td>\u00A9</td><br><td class="lasttd">\00A9</td><br><br></tr><br><tr><br><td>℗</td><br><td>&amp;#8471</td><br><td>\u2117</td><br><td>\2117</td><br><td>™</td><br><td>&amp;#153</td><br><td>\u0099</td><br><td class="lasttd">\0099</td><br><br></tr><br><tr><br><td>℠</td><br><td>&amp;#8480</td><br><td>\u2120</td><br><td>\2120</td><br><td> </td><br><td> </td><br><td> </td><br><td class="lasttd"> </td><br><br></tr><br><br></tbody><br><br></table><br><br>### @  标点和符号<br><br><table class="zfz_table   " cellspacing="0" cellpadding="8"><br><tbody><br><tr><th rowspan="2">符号</th><th colspan="3">UNICODE</th><th rowspan="2">符号</th><th class="lasttd" colspan="3">UNICODE</th></tr><br><tr class="secondtr"><th>HTML</th><th>JS</th><th>CSS</th><th>HTML</th><th>JS</th><th class="lasttd">CSS</th></tr><br><tr><br><td>«</td><br><td>&amp;#171</td><br><td>\u00AB</td><br><td>\00AB</td><br><td>»</td><br><td>&amp;#187</td><br><td>\u00BB</td><br><td class="lasttd">\00BB</td><br><br></tr><br><tr><br><td>‹</td><br><td>&amp;#139</td><br><td>\u008B</td><br><td>\008B</td><br><td>›</td><br><td>&amp;#155</td><br><td>\u009B</td><br><td class="lasttd">\009B</td><br><br></tr><br><tr><br><td>“</td><br><td>&amp;#8220</td><br><td>\u201C</td><br><td>\201C</td><br><td>”</td><br><td>&amp;#8221</td><br><td>\u201D</td><br><td class="lasttd">\201D</td><br><br></tr><br><tr><br><td>‘</td><br><td>&amp;#8216</td><br><td>\u2018</td><br><td>\2018</td><br><td>’</td><br><td>&amp;#8217</td><br><td>\u2019</td><br><td class="lasttd">\2019</td><br><br></tr><br><tr><br><td>•</td><br><td>&amp;#8226</td><br><td>\u2022</td><br><td>\2022</td><br><td>◦</td><br><td>&amp;#9702</td><br><td>\u25E6</td><br><td class="lasttd">\25E6</td><br><br></tr><br><tr><br><td>¡</td><br><td>&amp;#161</td><br><td>\u00A1</td><br><td>\00A1</td><br><td>¿</td><br><td>&amp;#191</td><br><td>\u00BF</td><br><td class="lasttd">\00BF</td><br><br></tr><br><tr><br><td>℅</td><br><td>&amp;#8453</td><br><td>\u2105</td><br><td>\2105</td><br><td>№</td><br><td>&amp;#8470</td><br><td>\u2116</td><br><td class="lasttd">\2116</td><br><br></tr><br><tr><br><td>&amp;</td><br><td>&amp;#38</td><br><td>\u0026</td><br><td>\0026</td><br><td>@</td><br><td>&amp;#64</td><br><td>\u0040</td><br><td class="lasttd">\0040</td><br><br></tr><br><tr><br><td>℞</td><br><td>&amp;#8478</td><br><td>\u211E</td><br><td>\211E</td><br><td>℃</td><br><td>&amp;#8451</td><br><td>\u2103</td><br><td class="lasttd">\2103</td><br><br></tr><br><tr><br><td>℉</td><br><td>&amp;#8457</td><br><td>\u2109</td><br><td>\2109</td><br><td>°</td><br><td>&amp;#176</td><br><td>\u00B0</td><br><td class="lasttd">\00B0</td><br><br></tr><br><tr><br><td>|</td><br><td>&amp;#124</td><br><td>\u007C</td><br><td>\007C</td><br><td>¦</td><br><td>&amp;#166</td><br><td>\u00A6</td><br><td class="lasttd">\00A6</td><br><br></tr><br><tr><br><td>–</td><br><td>&amp;#8211</td><br><td>\u2013</td><br><td>\2013</td><br><td>—</td><br><td>&amp;#8212</td><br><td>\u2014</td><br><td class="lasttd">\2014</td><br><br></tr><br><tr><br><td>…</td><br><td>&amp;#8230</td><br><td>\u2026</td><br><td>\2026</td><br><td>¶</td><br><td>&amp;#182</td><br><td>\u00B6</td><br><td class="lasttd">\00B6</td><br><br></tr><br><tr><br><td>∼</td><br><td>&amp;#8764</td><br><td>\u223C</td><br><td>\223C</td><br><td>≠</td><br><td>&amp;#8800</td><br><td>\u2260</td><br><td class="lasttd">\2260</td><br><br></tr><br><br></tbody><br></table></div></div></div></div></div></div></div></div></div></div></div></div>
+          
         
       
     </div>
@@ -1482,7 +1440,7 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/2017/09/28/neo4jBookPublish/">
+    <link itemprop="mainEntityOfPage" href="http://pangguoming.com/post/4af35ba8.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="庞国明">
@@ -1501,7 +1459,7 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/28/neo4jBookPublish/" itemprop="url">编写《Neo4j权威指南》一书，并被Neo4j 官网收录到图书推荐！</a></h1>
+                <a class="post-title-link" href="/post/4af35ba8.html" itemprop="url">编写《Neo4j权威指南》一书，并被Neo4j 官网收录到图书推荐！</a></h1>
         
 
         <div class="post-meta">
@@ -1575,18 +1533,43 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
       
         
           
-          Neo4j权威指南
-这是第一本由中国人原创的图数据库专业书籍。
-本书将陪伴您漫步“图”的世界，领略“图”的风采，玩转大数据时代新的利器——图数据库Neo4j。
-书    名  Neo4j权威指南    作    者 张帜、庞国明、胡佳辉、苏亮、赵炳、陈振宇、李敏、高兴宇、薛述强、董琴洁类    别 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/28/neo4jBookPublish/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p><strong>Neo4j权威指南</strong></p>
+<p>这是第一本由中国人原创的图数据库专业书籍。</p>
+<p>本书将陪伴您漫步“图”的世界，领略“图”的风采，玩转大数据时代新的利器——图数据库Neo4j。</p>
+<p>书    名  Neo4j权威指南    作    者 张帜、庞国明、胡佳辉、苏亮、赵炳、陈振宇、李敏、高兴宇、薛述强、董琴洁<br>类    别  计算机数据库类  页    数 500<br>出版社   清华大学出版社</p>
+<p><img src="http://ofsebki4w.bkt.clouddn.com/FruphVQuMMnRd-afrFBlS3BxLrO-" alt="image.png"></p>
+<p><strong>简述</strong></p>
+<p>世界上很多著名的公司都在使用图数据库。比如，领英用它来管理社交关系，实现朋友推荐，构建了一个非常强大的人脉网络；沃尔玛用它连接“商品关联”和“买家习惯”两个子网，实现了零售商品的实时推荐，给买家带来更好的购物体验；思科用它做主数据管理，将企业内部的组织架构、产品订购、社交网络、IT网络等有效地管理起来；惠普用它管理复杂的IT网络；全美排名前三的金融公司，都在用图数据库进行风控业务管理。此外，物流、交通、电信、制造业、广告、打印、文化传媒和医疗等领域的公司也在使用图数据库（详见第7.1节）。</p>
+<p>反观我国的情况又如何呢？我是从2015年开始研究图数据库的，当时国内知道图数据库的人还寥寥无几。令人意想不到的是，才短短一年多时间，国内竟然有很多应用都用上了图数据库，涉及的领域包括金融、社交、商务、知识管理等。毋庸置疑，其发展速度将远超乎我们的想象。<br>然而遗憾的是，目前市面上有关图数据库的中文书籍屈指可数，即便有也是直接从英文原版翻译而成。随着图数据库在中国的推广和普及，大家都渴求有一本国人原创的权威指南，能系统、全面地涵盖图数据库的原理和使用方法等方方面面。因此，我们决定集中组织国内对图数据库有深入研究的专家，共同来编写一套原创的中文版图数据库技术丛书。</p>
+<p><strong>主要内容</strong></p>
+<p>本书基于Neo4j 3.1版本编写，共分九章，外加两个附录，涵盖基本概念、基础入门、查询语言、开发技术、管理运维、集群技术、应用案例、高级应用、中文扩展、配置设置、内建过程等内容。各章简要介绍如下：</p>
+<ul>
+<li>第1章 Neo4j 图数据库基础介绍传统数据库、图数据库概念以及 Neo4j 的体系结构。本章可以作为初学者的入门部分。有经验者可以略过，直接阅读后续章节；</li>
+<li>第2章 Neo4j 基础入门引导读者初步使用 Neo4j，包括 Neo4j 的安装部署、操控平台的使用、引导实例；</li>
+<li>第3章 Neo4j 之 Cypher详细介绍 Cypher 语法，它是 Neo4j 引擎的接口语言，掌握好它是用好 Neo4j 的关键，也是使用中常备的参考资料；</li>
+<li>第4章 Neo4j 程序开发详细讨论如何将 Neo4j 与开发平台、编程语言之间的集成，并提供相应开发实例；</li>
+<li>第5章 Neo4j 数据库管理介绍 Neo4j 数据库管理相关的内容，主要包括：部署、监控、安全管理、运维与优化、备份与恢复、数据库管理相关工具等基本知识和基本操作；</li>
+<li>第6章 Neo4j 集群技术主要介绍如何部署大规模生产环境，包括高可用性、备份与恢复，以及最新的因果集群；</li>
+<li>第7章 Neo4j 应用案例对 Neo4j 目前的客户应用实践进行汇总，同时介绍5 个Neo4j典型应用案例；</li>
+<li>第8章 Neo4j 高级应用介绍高级索引、Docker 环境部署、自定义批量导入、Neo4j与图计算、Neo4j 与自然语言处理等高级话题；</li>
+<li>第9章 Neo4j 简体中文版介绍 Neo4j 简体中文版及其扩展功能，包括图片显示、数据驱动下节点和关系的呈现、以及智能查询功能；</li>
+<li>附录A Neo4j 配置设置详细介绍配置文件 neo4j.conf 的配置细节；</li>
+<li>附录B Neo4j 内建过程详细介绍通用过程、本地用户和角色管理过程。</li>
+</ul>
+<p><strong>出版背景</strong></p>
+<p>本书的写作始于2016年12月，历经数月，现终于问世，是整个写作团队齐心协力、日夜耕耘的结晶。这支团队在大数据和图数据库领域具有丰富的实战经验。他们是张帜（微云数聚创始人）、庞国明（Neo4j中文社区创始人）、胡佳辉（数之联软件架构师）、赵炳（北京邮电大学研究生）、陈振宇（中科院中美联合培养博士）、苏亮（国防科技大学计算机学院博士）、李敏（中科院计算数学博士）、高兴宇（中科院中新联合培养博士）、薛述强（华为公司高级工程师）和董琴洁（微软 Office 专家）。</p>
+<p>在本书的编写过程中，得到了各界朋友的倾力支持。请允许我代表整个写作团队在此表示由衷的感谢！</p>
+<p><strong>Neo4j官网推荐</strong></p>
+<p> <a href="https://neo4j.com/books/neo4j%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97-neo4j-definitive-guide/" target="_blank" rel="noopener">Neo4j官网推荐地址</a><br> <img src="http://ofsebki4w.bkt.clouddn.com/FrV8KhpP21zxzVo1OT_xbv2oQnl2" alt="image.png"></p>
+<p><strong>相关链接</strong></p>
+<ul>
+<li>清华大学出版社：<a href="http://www.tup.tsinghua.edu.cn/booksCenter/book_07389801.html" target="_blank" rel="noopener">《Neo4j权威指南》</a></li>
+<li>百度百科： <a href="https://baike.baidu.com/item/Neo4j%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/22122519?fr=aladdin" target="_blank" rel="noopener">《Neo4j权威指南》</a></li>
+<li>天猫书店： <a href="https://detail.tmall.com/item.htm?spm=a220m.1000858.1000725.1.4c637810M4IaPv&amp;id=558467366391&amp;user_id=2451699564&amp;cat_id=2&amp;is_b=1&amp;rn=993624b191e54495056d40066145637b" target="_blank" rel="noopener">《Neo4j权威指南》</a></li>
+</ul>
+<p><strong>预售途径</strong><br> <a href="http://product.dangdang.com/25163569.html" target="_blank" rel="noopener">当当书店</a><br> <a href="https://item.jd.com/12241030.html" target="_blank" rel="noopener">京东商城</a><br> <a href="https://detail.tmall.com/item.htm?spm=a220m.1000858.1000725.1.4c637810M4IaPv&amp;id=558467366391&amp;user_id=2451699564&amp;cat_id=2&amp;is_b=1&amp;rn=993624b191e54495056d40066145637b" target="_blank" rel="noopener">天猫书店</a></p>
+
+          
         
       
     </div>
@@ -1649,105 +1632,108 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+            
+              <p class="site-author-name" itemprop="name">庞国明</p>
+              <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">420</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">267</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
-            <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/7269202?s=460&v=4" alt="庞国明">
+
           
-            <p class="site-author-name" itemprop="name">庞国明</p>
-            <p class="site-description motion-element" itemprop="description">Software make the information world run, and programer make the softeware run.</p>
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives">
-            
-                <span class="site-state-item-count">420</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">267</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/pangguoming" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>GitHub</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:pangguoming@yeah.net" target="_blank" title="E-Mail">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/pangguoming" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>Twitter</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://stackoverflow.com/users/1570700/pangguoming" target="_blank" title="StackOverflow">
-                  
-                    <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/pangguoming" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>Instagram</a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -1764,12 +1750,9 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">庞国明</span>
 
@@ -1777,11 +1760,17 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
@@ -1801,6 +1790,8 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -1835,53 +1826,61 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
 
-
-
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1907,6 +1906,23 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
 
   
 
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
 
 
 
@@ -2236,11 +2252,27 @@ Svn Admin是一个Java开发的管理Svn服务器的项目用户的web应用。�
 
 
 
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
 
   
 
   
 
+  
+
+  
   
 
   
