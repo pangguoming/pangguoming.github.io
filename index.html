@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>庞国明 Rainbow.Pang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    /* unvisited link */
+    a:link {
+      color: #095484;
+      text-decoration: none;
+    }
+
+    /* visited link */
+    a:visited {
+      color: #a02280;
+      text-decoration: none;
+    }
+
+    /* mouse over link */
+    a:hover {
+      color: #a02280;
+    }
+
+    /* 头部样式 */
+    .header {
+      background-color: #f1f1f1;
+      padding: 20px;
+      text-align: center;
+    }
+
+
+    /* 创建三个相等的列 */
+    .column {
+      float: left;
+      padding: 10px;
+    }
+
+    /* 左右两侧宽度 */
+    .column.side {
+      width: 20%;
+    }
+
+    .avatar {
+      border-radius: 100%;
+      width: 150px;
+      height: 150px;
+    }
+
+    /* 中间区域宽度 */
+    .column.middle {
+      width: 60%;
+    }
+
+    .column.middle ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .column.middle ul li {
+      margin: 10px 0;
+    }
+
+    /* 列后面清除浮动 */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* 响应式布局 - 宽度小于600px时设置上下布局 */
+    @media screen and (max-width: 600px) {
+
+      .column.side,
+      .column.middle {
+        width: 100%;
+      }
+    }
+
+    /* 底部样式 */
+    .footer {
+      background-color: #f1f1f1;
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <img class="avatar" src="https://avatars.githubusercontent.com/u/7269202?v=4" />
+    <h1>庞国明</h1>
+    <h3>Rainbow.Pang</h3>
+    <p>Program make the information world run, and programmer make the Program run.</p>
+  </div>
+
+
+  <div class="row">
+    <div class="column side">
+      <!-- <h2>左侧栏</h2>
+    <p>菜鸟教程 - 学的不仅是技术，更是梦想！</p> -->
+    </div>
+
+    <div class="column middle">
+      <div class="column">
+        <h2>About Me</h2>
+        <ul>
+          <li><span>CN</span> From China</li>
+          <li><span>👨‍💻</span>Software Developer</li>
+          <li><span>🔨</span>Full-stack programmer</li>
+          <li><span>✉️</span>pangguoming@yeah.net</li>
+        </ul>
+      </div>
+      <div class="column">
+        <h2>My Products</h2>
+        <ul>
+          <li>
+            <div><span>🧠</span><a href="https://neurodb.org" target="_blank">NeuroDB.org</a></div>
+            <div>NeuroDB Graph Database</div>
+          </li>
+          <li>
+            <div><span>🧰</span><a href="http://df.6laohu.com" target="_blank">PDF Batch Converter</a></div>
+            <div>Word\Excel\PPT to PDF</div>
+          </li>
+        </ul>
+      </div>
+      <div class="column">
+        <h2>Social Media</h2>
+        <ul>
+          <li>
+            <div><span>🐦</span><a href="https://twitter.com/pangguoming" target="_blank">Twitter</a></div>
+            <div>3 tweets last 48hrs</div>
+          </li>
+          <li>
+            <div><span>🎥</span><a href="https://www.youtube.com/pangguoming" target="_blank">YouTube</a></div>
+            <div>Last video: 11 months ago</div>
+          </li>
+          <li>
+            <div><span>📺</span><a href="http://bilibili.com/pangguoming" target="_blank">BiliBili</a></div>
+            <div>Last update: last week</div>
+          </li>
+          <li>
+            <div><span>💼</span><a href="https://www.linkedin.com/in/pangguoming/" target="_blank">LinkedIn</a></div>
+            <div>I post once a week</div>
+          </li>
+        </ul>
+      </div>
+      <div class="column">
+        <h2>Writings</h2>
+        <ul>
+          <li>
+            <div><span>✏️</span><a href="https://blog.pangguoming.com" target="_blank">Blog.pangguoming.com</a></div>
+            <div>My Blog</div>
+          </li>
+          <li>
+            <div><span>📚</span><a href="http://www.tup.tsinghua.edu.cn/booksCenter/book_08900201.html"
+                target="_blank">《精通Neo4j》</a></div>
+            <div>Neo4j book in chinese</div>
+          </li>
+          <li>
+            <div><span>📚</span><a href="http://www.tup.tsinghua.edu.cn/booksCenter/book_07389801.html"
+                target="_blank">《Neo4j权威指南》</a></div>
+            <div>Neo4j book in chinese</div>
+          </li>
+          <li>
+            <div><span>📚</span><a href="http://www.tup.tsinghua.edu.cn/booksCenter/book_07831801.html"
+                target="_blank">《Neo4j 3.X 入门经典》</a></div>
+            <div>Neo4j book in chinese</div>
+          </li>
+          <li>
+            <div><span>🎥</span><a href="https://ke.qq.com/course/327374?tuin=442d3e14#term_id=100524013"
+                target="_blank">Neo4j 视频教程</a></div>
+            <div>Neo4j Video Tutorials in chinese</div>
+          </li>
+        </ul>
+      </div>
+      <div class="column">
+        <h2>Coding</h2>
+        <ul>
+          <li><span>⌨️</span><a href="https://github.com/pangguoming" target="_blank">GitHub</a>
+            <div>Last commit: Today</div>
+          </li>
+          <li>
+            <div><span>🧰</span><a href="https://gitee.com/pangguoming" target="_blank">Gitee</a></div>
+            <div>Last commit: Today</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="column side">
+      <!-- <h2>右侧栏</h2>
+    <p>菜鸟教程 - 学的不仅是技术，更是梦想！</p> -->
+    </div>
+  </div>
+
+  <!-- <div class="footer">
+  <p>底部区域</p>
+</div> -->
+
+</body>
+
+</html>
