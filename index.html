@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -67,6 +68,10 @@ var _hmt = _hmt || [];
     }
 
     /* 中间区域宽度 */
+	.column .category{
+	  width:220px;
+	  word-wrap: break-word;
+	}
     .column.middle {
       width: 64%;
     }
@@ -88,13 +93,13 @@ var _hmt = _hmt || [];
     }
 
     /* 响应式布局 - 宽度小于600px时设置上下布局 */
-    @media screen and (max-width: 600px) {
-
+    /*@media screen and (max-width: 600px) {
       .column.side,
       .column.middle {
         width: 100%;
       }
     }
+	*/
 
     /* 底部样式 */
     .footer {
@@ -122,7 +127,7 @@ var _hmt = _hmt || [];
     </div>
 
     <div class="column middle">
-      <div class="column">
+      <div class="column category">
         <h2>关于我</h2>
         <ul>
           <li><span>CN</span>中国•山东</li>
@@ -133,7 +138,7 @@ var _hmt = _hmt || [];
 		  <li><span>📺</span><a href="http://bilibili.com/pangguoming" target="_blank">BiliBili</a></li>
         </ul>
       </div>
-      <div class="column">
+      <div class="column category">
         <h2>我的产品</h2>
         <ul>
           <li>
@@ -150,7 +155,7 @@ var _hmt = _hmt || [];
           </li>
         </ul>
       </div>
-      <div class="column">
+      <div class="column category">
         <h2>在线教程</h2>
         <ul>
           <li>
@@ -160,7 +165,7 @@ var _hmt = _hmt || [];
 
         </ul>
       </div>
-      <div class="column">
+      <div class="column category">
         <h2>视频教程</h2>
         <ul>
           <li>
@@ -170,7 +175,7 @@ var _hmt = _hmt || [];
           </li>
         </ul>
       </div>
-      <div class="column">
+      <div class="column category">
         <h2>博客论坛</h2>
         <ul>
 			<li>
