@@ -94,14 +94,7 @@ var _hmt = _hmt || [];
       clear: both;
     }
 
-    /* 响应式布局 - 宽度小于600px时设置上下布局 */
-    /*@media screen and (max-width: 600px) {
-      .column.side,
-      .column.middle {
-        width: 100%;
-      }
-    }
-	*/
+
 
     /* 底部样式 */
     .footer {
@@ -110,11 +103,14 @@ var _hmt = _hmt || [];
       text-align: center;
     }
 
-@media (max-width:1024px) {
-.column.middle {
-      width: 70%;
+    /* 响应式布局 - 宽度小于600px时设置上下布局 */
+    @media screen and (max-width: 600px) {
+      .column.middle {
+        width: 70%;
+    	display: block;
+      }
     }
-}
+	
   </style>
 </head>
 
